@@ -1,0 +1,341 @@
+# This file is distributed under the same license as the Posts in Sidebar package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Posts in Sidebar 1.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
+"POT-Creation-Date: 2012-10-20 06:48:25+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-11-02 11:03+0330\n"
+"Last-Translator: AlirezaJamali\n"
+"Language-Team: Wordpress98.com <me@alirezajamali.net>\n"
+"Language: fa_IR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+
+#: posts-in-sidebar-widget.php:33
+msgid "Display a list of posts in a widget"
+msgstr "نمایش یک فهرست از نوشته ها در یک ابزارک"
+
+#. #-#-#-#-#  pis.pot (Posts in Sidebar 1.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: posts-in-sidebar-widget.php:43
+msgid "Posts in Sidebar"
+msgstr "نمایش نوشته ها در ابزارک"
+
+#: posts-in-sidebar-widget.php:135
+msgid "Posts"
+msgstr "نوشته ها"
+
+#: posts-in-sidebar-widget.php:160 posts-in-sidebar.php:67
+msgid "Category:"
+msgstr "دسته :"
+
+#: posts-in-sidebar-widget.php:163 posts-in-sidebar.php:70
+msgid "Tags:"
+msgstr "برچسب ها :"
+
+#: posts-in-sidebar-widget.php:168 posts-in-sidebar.php:75
+#: posts-in-sidebar.php:263
+msgid "More posts &rarr;"
+msgstr "نوشته های بیشتر &rarr;"
+
+#: posts-in-sidebar-widget.php:185
+msgid "The title of the widget"
+msgstr "عنوان ابزارک"
+
+#: posts-in-sidebar-widget.php:189 posts-in-sidebar-widget.php:269
+msgid "Title"
+msgstr "عنوان"
+
+#: posts-in-sidebar-widget.php:196
+msgid "Get these posts"
+msgstr "نمایش این نوشته ها :"
+
+#: posts-in-sidebar-widget.php:200
+msgid "Author"
+msgstr "نویسنده"
+
+#: posts-in-sidebar-widget.php:205 posts-in-sidebar-widget.php:223
+#: posts-in-sidebar-widget.php:242
+msgid "None"
+msgstr "هیچ"
+
+#: posts-in-sidebar-widget.php:219
+msgid "Category"
+msgstr "دسته"
+
+#: posts-in-sidebar-widget.php:237
+msgid "Tag"
+msgstr "برچسب "
+
+#: posts-in-sidebar-widget.php:256
+msgid "How many posts to display"
+msgstr "تعداد نوشته ها ؟"
+
+#: posts-in-sidebar-widget.php:262
+msgid "Order by"
+msgstr "مرتب سازی بر اساس"
+
+#: posts-in-sidebar-widget.php:266
+msgid "Date"
+msgstr "تاریخ"
+
+#: posts-in-sidebar-widget.php:272
+msgid "ID"
+msgstr "شناسه"
+
+#: posts-in-sidebar-widget.php:275
+msgid "Modified"
+msgstr "ویرایش شده"
+
+#: posts-in-sidebar-widget.php:278
+msgid "Random"
+msgstr "تصادفی"
+
+#: posts-in-sidebar-widget.php:284
+msgid "Order"
+msgstr "مرتب سازی"
+
+#: posts-in-sidebar-widget.php:288
+msgid "Ascending"
+msgstr "صعودی"
+
+#: posts-in-sidebar-widget.php:291
+msgid "Descending"
+msgstr "نزولی"
+
+#: posts-in-sidebar-widget.php:297
+msgid "Number of posts to skip"
+msgstr "تعداد نوشته های از قلم انداخته شده"
+
+#: posts-in-sidebar-widget.php:303
+msgid "Post status"
+msgstr "آمار نوشته "
+
+#: posts-in-sidebar-widget.php:317
+msgid "Post meta key"
+msgstr ""
+
+#: posts-in-sidebar-widget.php:323
+msgid "Post meta value"
+msgstr "مقدار متای نوشته"
+
+#: posts-in-sidebar-widget.php:330
+msgid "Ignore sticky posts"
+msgstr "نپذیرفتن نوشته های چسبناک"
+
+#: posts-in-sidebar-widget.php:332
+msgid "Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget."
+msgstr ""
+
+#: posts-in-sidebar-widget.php:339
+msgid "Exclude posts"
+msgstr "معاف کردن نوشته ها"
+
+#: posts-in-sidebar-widget.php:341
+msgid "Use <code>CTRL+clic</code> to select/deselect multiple items."
+msgstr ""
+
+#: posts-in-sidebar-widget.php:345
+msgid "Exclude posts from these categories"
+msgstr "معاف کردن نوشته ها از این دسته ها :"
+
+#: posts-in-sidebar-widget.php:358
+msgid "Exclude posts from these tags"
+msgstr "معاف کردن نوشته ها از این برچسب ها :"
+
+#: posts-in-sidebar-widget.php:371
+msgid "The title of the post"
+msgstr "عنوان نوشته"
+
+#: posts-in-sidebar-widget.php:376
+msgid "Display the title of the post"
+msgstr "نمایش عنوان نوشته"
+
+#: posts-in-sidebar-widget.php:382
+msgid "Link the title to the post"
+msgstr "پیونددارکردن عنوان نوشته ، به نوشته"
+
+#: posts-in-sidebar-widget.php:388
+msgid "Show an arrow after the title"
+msgstr "نمایش پیکان پس از عنوان نوشته"
+
+#: posts-in-sidebar-widget.php:394
+msgid "The featured image of the post"
+msgstr "تصویرشاخص نوشته "
+
+#: posts-in-sidebar-widget.php:399
+msgid "Display the featured image of the post"
+msgstr "نمایش تصویر شاخص نوشته "
+
+#: posts-in-sidebar-widget.php:404
+msgid "Size of the thumbnail"
+msgstr "اندازه ی تصویر شاخص"
+
+#: posts-in-sidebar-widget.php:420
+msgid "Note that in order to use image sizes different from the WordPress standards, add them to your functions.php. See the %1$sCodex%2$s for further information."
+msgstr ""
+
+#: posts-in-sidebar-widget.php:424
+msgid "You can also use a plugin that could help you in doing it."
+msgstr ""
+
+#: posts-in-sidebar-widget.php:430
+msgid "The text of the post"
+msgstr "متن نوشته"
+
+#: posts-in-sidebar-widget.php:434
+msgid "What type of text to display"
+msgstr "متن نوشته چگونه نمایش داده شود ؟"
+
+#: posts-in-sidebar-widget.php:438
+msgid "The excerpt"
+msgstr "گزیده ها"
+
+#: posts-in-sidebar-widget.php:441
+msgid "The entire content"
+msgstr "محتوای نوشته"
+
+#: posts-in-sidebar-widget.php:444
+msgid "Do not show any text"
+msgstr "هیچ متن نوشته ای را نمایش نـده"
+
+#: posts-in-sidebar-widget.php:450
+msgid "Shortcodes will be stripped."
+msgstr "کدهای کوتاه (شُرت کُدها) پذیرفته نیستند"
+
+#: posts-in-sidebar-widget.php:455
+msgid "Length of the excerpt (in words)"
+msgstr "طول کلمات متن گزیده"
+
+#: posts-in-sidebar-widget.php:462
+msgid "Show an arrow after the excerpt"
+msgstr "نمایش پیکان پس از متن گزیده"
+
+#: posts-in-sidebar-widget.php:470
+msgid "The date and the comments of the post"
+msgstr "تاریخ و دیدگاه های نوشته"
+
+#: posts-in-sidebar-widget.php:475
+msgid "Display the date of the post"
+msgstr "نمایش تاریخ نوشته ؟"
+
+#: posts-in-sidebar-widget.php:481
+msgid "Display the number of comments"
+msgstr "نمایش تعداد دیدگاه ها"
+
+#: posts-in-sidebar-widget.php:487
+msgid "The categories of the post"
+msgstr "دسته های نوشته"
+
+#: posts-in-sidebar-widget.php:492
+msgid "Show the categories of the post"
+msgstr "نمایش دسته های نوشته "
+
+#: posts-in-sidebar-widget.php:497
+msgid "Text before categories list"
+msgstr "متن پیش از فهرست دسته ها"
+
+#: posts-in-sidebar-widget.php:503
+msgid "Use this separator between categories"
+msgstr "استفاده از این جداکننده میان دسته ها"
+
+#: posts-in-sidebar-widget.php:506 posts-in-sidebar-widget.php:536
+msgid "A space will be added after the separator."
+msgstr ""
+
+#: posts-in-sidebar-widget.php:511
+msgid "The tags of the post"
+msgstr "برچسب های نوشته"
+
+#: posts-in-sidebar-widget.php:516
+msgid "Show the tags of the post"
+msgstr "نمایش برچسب های نوشته"
+
+#: posts-in-sidebar-widget.php:521
+msgid "Text before tags list"
+msgstr "متن پیش از فهرست برچسب ها"
+
+#: posts-in-sidebar-widget.php:527
+msgid "Use this hashtag"
+msgstr ""
+
+#: posts-in-sidebar-widget.php:533
+msgid "Use this separator between tags"
+msgstr "استفاده از این جداکننده میان برچسب ها"
+
+#: posts-in-sidebar-widget.php:541
+msgid "The link to the archive"
+msgstr "پیوند به بایگانی"
+
+#: posts-in-sidebar-widget.php:546
+msgid "Show the link to the taxonomy archive"
+msgstr "نمایش پیوند به بایگانی دسته بندی"
+
+#: posts-in-sidebar-widget.php:551
+msgid "Link to"
+msgstr "پیوند به :"
+
+#: posts-in-sidebar-widget.php:555
+msgid "Author Archive"
+msgstr "بایگانی نویسنده"
+
+#: posts-in-sidebar-widget.php:558
+msgid "Category Archive"
+msgstr "بایگانی دسته"
+
+#: posts-in-sidebar-widget.php:561
+msgid "Tag Archive"
+msgstr "بایگانی برچسب"
+
+#: posts-in-sidebar-widget.php:567
+msgid "Use this text for archive link"
+msgstr "استفاده از این متن برای پیوند بایگانی"
+
+#: posts-in-sidebar-widget.php:573
+msgid "Please, note that if you don't select any taxonomy, the link won't appear."
+msgstr ""
+
+#: posts-in-sidebar.php:114
+msgid "Permalink to %s"
+msgstr "لینک پایدار به :  %s"
+
+#: posts-in-sidebar.php:165
+msgid "Read the full post"
+msgstr "خواندن نوشته ی کامل"
+
+#: posts-in-sidebar.php:215
+msgid "Leave a comment"
+msgstr "ارسال یک دیدگاه"
+
+#: posts-in-sidebar.php:215
+msgid "1 Comment"
+msgstr "یک دیدگاه"
+
+#: posts-in-sidebar.php:215
+msgid "% Comments"
+msgstr "% دیدگاه"
+
+#: posts-in-sidebar.php:277
+msgid "No posts yet."
+msgstr "هنوز هیچ نوشته ای وجود ندارد. "
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.aldolat.it/wordpress/wordpress-plugins/posts-in-sidebar/"
+msgstr "http://www.aldolat.it/wordpress/wordpress-plugins/posts-in-sidebar/"
+
+#. Description of the plugin/theme
+msgid "Publish a list of posts in your sidebar"
+msgstr ""
+"یک فهرست از نوشته های شما را در ابزارک نمایش میدهد . انتشار : همیاروردپرس"
+
+#. Author of the plugin/theme
+msgid "Aldo Latino"
+msgstr "Aldo Latino"
+
+#. Author URI of the plugin/theme
+msgid "http://www.aldolat.it/"
+msgstr "http://www.aldolat.it/"

@@ -3,8 +3,8 @@ Contributors: aldolat
 Donate link: http://www.aldolat.it/wordpress/wordpress-plugins/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
-Tested up to: 3.4.2
-Stable tag: 1.2.1
+Tested up to: 3.5
+Stable tag: 1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -45,6 +45,14 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 3. The widget displays three posts from a particular category. At the bottom you can view the link to the taxonomy which we retrieved the posts from.
 
 == Changelog ==
+
+= 1.3 =
+
+* New: The date can be linkified or not.
+* New: The widget panel now shows empty categories and tags.
+* New: The 'No posts yet.' text can be customized.
+* Bug fix: The markup no longer shows empty containers.
+* Some minor enhancements.
 
 = 1.2.1 =
 

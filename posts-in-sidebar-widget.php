@@ -67,6 +67,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_title' => $instance['display_title'],
 			'link_on_title' => $instance['link_on_title'],
 			'display_date'  => $instance['display_date'],
+			'linkify_date'  => $instance['linkify_date'],
 			'display_image' => $instance['display_image'],
 			'image_size'    => $instance['image_size'],
 			'excerpt'       => $instance['excerpt'],
@@ -83,7 +84,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'tag_sep'       => $instance['tag_sep'],
 			'archive_link'  => $instance['archive_link'],
 			'link_to'       => $instance['link_to'],
-			'archive_text'  => $instance['archive_text']
+			'archive_text'  => $instance['archive_text'],
+			'nopost_text'   => $instance['nopost_text'],
 		));
 		echo $after_widget;
 	}
@@ -109,6 +111,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['display_title'] = $new_instance['display_title'];
 		$instance['link_on_title'] = $new_instance['link_on_title'];
 		$instance['display_date']  = $new_instance['display_date'];
+		$instance['linkify_date']  = $new_instance['linkify_date'];
 		$instance['display_image'] = $new_instance['display_image'];
 		$instance['image_size']    = $new_instance['image_size'];
 		$instance['excerpt']       = $new_instance['excerpt'];
@@ -127,6 +130,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['archive_link']  = $new_instance['archive_link'];
 		$instance['link_to']       = $new_instance['link_to'];
 		$instance['archive_text']  = strip_tags( $new_instance['archive_text'] );
+		$instance['nopost_text']   = strip_tags( $new_instance['nopost_text'] );
 		return $instance;
 	}
 
@@ -149,6 +153,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_title' => true,
 			'link_on_title' => true,
 			'display_date'  => false,
+			'linkify_date'  => true,
 			'display_image' => false,
 			'image_size'    => 'thumbnail',
 			'excerpt'       => 'excerpt',
@@ -165,13 +170,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'tag_sep'       => '',
 			'archive_link'  => false,
 			'link_to'       => 'category',
-			'archive_text'  => __( 'More posts &rarr;', 'pis' )
+			'archive_text'  => __( 'More posts &rarr;', 'pis' ),
+			'nopost_text'   => __( 'No posts yet.', 'pis' ),
 		);
 		$instance      = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky = (bool) $instance['ignore_sticky'];
 		$display_title = (bool) $instance['display_title'];
 		$link_on_title = (bool) $instance['link_on_title'];
 		$display_date  = (bool) $instance['display_date'];
+		$linkify_date  = (bool) $instance['linkify_date'];
 		$display_image = (bool) $instance['display_image'];
 		$arrow         = (bool) $instance['arrow'];
 		$exc_arrow     = (bool) $instance['exc_arrow'];
@@ -223,7 +230,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php _e( 'None', 'pis' ); ?>
 					</option>
 					<?php
-						$my_cats = get_categories();
+						$my_cats = get_categories( array( 'hide_empty' => 0 ) );
 						foreach( $my_cats as $my_cat ) :
 					?>
 						<option <?php selected( $my_cat->slug, $instance['cat']); ?> value="<?php echo $my_cat->slug; ?>">
@@ -242,7 +249,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php _e( 'None', 'pis' ); ?>
 					</option>
 					<?php
-						$my_tags = get_tags();
+						$my_tags = get_tags( array( 'hide_empty' => 0 ) );
 						foreach( $my_tags as $my_tag ) :
 					?>
 						<option <?php selected( $my_tag->slug, $my_tagx); ?> value="<?php echo $my_tag->slug; ?>">
@@ -336,7 +343,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div style="float: left; width: 31%; margin-left: 2%;">
 
-			<h4><?php _e( 'Exclude posts', 'pis' ); ?></h4>
+			<h4><?php _e( 'Exclude these posts', 'pis' ); ?></h4>
 
 			<p><em><?php _e( 'Use <code>CTRL+clic</code> to select/deselect multiple items.', 'pis' ); ?></em></p>
 
@@ -414,8 +421,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						</option>
 					<?php endforeach; ?>
 				</select>
-			</p>
-			<p>
+				<br />
 				<em>
 					<?php printf( __(
 						'Note that in order to use image sizes different from the WordPress standards, add them to your functions.php. See the %1$sCodex%2$s for further information.', 'pis'),
@@ -444,12 +450,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php _e( 'Do not show any text', 'pis' ); ?>
 					</option>
 				</select>
-			</p>
-			<p>
+				<br />
 				<em>
 					<?php _e( 'Shortcodes will be stripped.', 'pis' );?>
 				</em>
-			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'exc_length' ); ?>">
 					<?php _e( 'Length of the excerpt (in words)', 'pis' ); ?>
@@ -473,6 +477,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<input class="checkbox" type="checkbox" <?php checked( $display_date ); ?> value="1" id="<?php echo $this->get_field_id( 'display_date' ); ?>" name="<?php echo $this->get_field_name( 'display_date' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'display_date' ); ?>">
 					<?php _e( 'Display the date of the post', 'pis' ); ?>
+				</label>
+			</p>
+			<p>
+				<input class="checkbox" type="checkbox" <?php checked( $linkify_date ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_date' ); ?>" name="<?php echo $this->get_field_name( 'linkify_date' ); ?>" />
+				<label for="<?php echo $this->get_field_id( 'linkify_date' ); ?>">
+					<?php _e( 'Link the date to the post', 'pis' ); ?>
 				</label>
 			</p>
 			<p>
@@ -567,11 +577,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Use this text for archive link', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'archive_text' ); ?>" name="<?php echo $this->get_field_name( 'archive_text' ); ?>" type="text" value="<?php echo $instance['archive_text']; ?>" />
-			</p>
-			<p>
+				<br />
 				<em>
 					<?php _e( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' ); ?>
 				</em>
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'nopost_text' ); ?>">
+					<?php _e( 'Use this text when there are no posts', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'nopost_text' ); ?>" name="<?php echo $this->get_field_name( 'nopost_text' ); ?>" type="text" value="<?php echo $instance['nopost_text']; ?>" />
 			</p>
 
 		</div>

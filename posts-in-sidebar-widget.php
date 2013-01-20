@@ -212,7 +212,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php _e( 'None', 'pis' ); ?>
 					</option>
 					<?php
-						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned. 
+						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
 						foreach ( $authors as $author ) :
 					?>
 						<option <?php selected( $author->user_nicename, $my_author); ?> value="<?php echo $author->user_nicename; ?>">

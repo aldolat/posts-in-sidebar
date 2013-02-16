@@ -2,14 +2,16 @@
 /**
  * Plugin Name: Posts in Sidebar
  * Description:  Publish a list of posts in your sidebar
- * Plugin URI: http://www.aldolat.it/wordpress/wordpress-plugins/posts-in-sidebar/
+ * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Version: 1.3
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
- *
+ */
+
+/*
  * Copyright (C) 2009, 2012  Aldo Latino  (email : aldolat@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -275,7 +277,7 @@ function pis_posts_in_sidebar( $args ) {
 					}
 				} ?>
 
-				<?php if ( $archive_text == '' ) 
+				<?php if ( $archive_text == '' )
 					$archive_text = __( 'More posts &rarr;', 'pis' ); ?>
 
 				<?php if ( isset( $term_link ) ) { ?>

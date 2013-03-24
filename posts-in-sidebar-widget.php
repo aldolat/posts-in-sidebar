@@ -50,7 +50,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		echo $before_widget;
 		if ( $title ) echo $before_title . $title . $after_title;
-		if ( $intro ) echo '<p class="pis-intro">' . $intro . '</p>';
+		if ( $instance['intro'] ) echo '<p class="pis-intro">' . $instance['intro'] . '</p>';
 		pis_posts_in_sidebar( array(
 			'author'        => $instance['author'],
 			'cat'           => $instance['cat'],
@@ -93,14 +93,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		$instance['title']         = strip_tags( $new_instance['title'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
 		$allowed_html = array(
 			'a' => array(
-				'href' => array(),
-				'title' => array()
+				'href'  => array(),
+				'title' => array(),
 			),
 			'em' => array(),
-			'strong' => array()
+			'strong' => array(),
 		);
 		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
 		$instance['author']        = $new_instance['author'];
@@ -203,17 +203,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<p>
-				<label for="<?php echo $this->get_field_id('intro'); ?>">
-					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
-				</label>
-				<textarea class="widefat" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>" value="<?php echo $instance['intro']; ?>" rows="5" cols="10" />
-			</p>
-
-			<p>
 				<label for="<?php echo $this->get_field_id('title'); ?>">
 					<?php _e( 'Title', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			</p>
+
+			 <p>
+				<label for="<?php echo $this->get_field_id('intro'); ?>">
+					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
+				</label>
+				<textarea class="widefat" style="resize: vertical; width: 100%; height: 80px;" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>"><?php echo $instance['intro']; ?></textarea>
+				<br /><em><?php printf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code> (with <code>href</code> and <code>title</code>), <code>strong</code>, <code>em</code>' ); ?></em>
 			</p>
 
 			<hr />

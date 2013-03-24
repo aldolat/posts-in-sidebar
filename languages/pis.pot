@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 1.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2013-03-24 17:42+0100\n"
-"PO-Revision-Date: 2013-03-24 17:43+0100\n"
+"POT-Creation-Date: 2013-03-24 18:39+0100\n"
+"PO-Revision-Date: 2013-03-24 18:39+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,142 +49,147 @@ msgstr ""
 msgid "The title of the widget"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:207
-msgid "Introductory text for the widget"
-msgstr ""
-
-#: .././posts-in-sidebar-widget.php:214 .././posts-in-sidebar-widget.php:294
+#: .././posts-in-sidebar-widget.php:207 .././posts-in-sidebar-widget.php:295
 msgid "Title"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:221
+#: .././posts-in-sidebar-widget.php:214
+msgid "Introductory text for the widget"
+msgstr ""
+
+#: .././posts-in-sidebar-widget.php:217
+#, php-format
+msgid "Allowed HTML: %s. Other tags will be stripped."
+msgstr ""
+
+#: .././posts-in-sidebar-widget.php:222
 msgid "Get these posts"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:225
+#: .././posts-in-sidebar-widget.php:226
 msgid "Author"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:230 .././posts-in-sidebar-widget.php:248
-#: .././posts-in-sidebar-widget.php:267
+#: .././posts-in-sidebar-widget.php:231 .././posts-in-sidebar-widget.php:249
+#: .././posts-in-sidebar-widget.php:268
 msgid "None"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:244
+#: .././posts-in-sidebar-widget.php:245
 msgid "Category"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:262
+#: .././posts-in-sidebar-widget.php:263
 msgid "Tag"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:281
+#: .././posts-in-sidebar-widget.php:282
 msgid "How many posts to display"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:287
+#: .././posts-in-sidebar-widget.php:288
 msgid "Order by"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:291
+#: .././posts-in-sidebar-widget.php:292
 msgid "Date"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:297
+#: .././posts-in-sidebar-widget.php:298
 msgid "ID"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:300
+#: .././posts-in-sidebar-widget.php:301
 msgid "Modified"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:303
+#: .././posts-in-sidebar-widget.php:304
 msgid "Random"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:309
+#: .././posts-in-sidebar-widget.php:310
 msgid "Order"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:313
+#: .././posts-in-sidebar-widget.php:314
 msgid "Ascending"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:316
+#: .././posts-in-sidebar-widget.php:317
 msgid "Descending"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:322
+#: .././posts-in-sidebar-widget.php:323
 msgid "Number of posts to skip"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:328
+#: .././posts-in-sidebar-widget.php:329
 msgid "Post status"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:342
+#: .././posts-in-sidebar-widget.php:343
 msgid "Post meta key"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:348
+#: .././posts-in-sidebar-widget.php:349
 msgid "Post meta value"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:355
+#: .././posts-in-sidebar-widget.php:356
 msgid "Ignore sticky posts"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:357
+#: .././posts-in-sidebar-widget.php:358
 msgid ""
 "Sticky posts are automatically ignored if you set up an author or a taxonomy "
 "in this widget."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:364
+#: .././posts-in-sidebar-widget.php:365
 msgid "Exclude these posts"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:366
+#: .././posts-in-sidebar-widget.php:367
 msgid "Use <code>CTRL+clic</code> to select/deselect multiple items."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:370
+#: .././posts-in-sidebar-widget.php:371
 msgid "Exclude posts from these categories"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:383
+#: .././posts-in-sidebar-widget.php:384
 msgid "Exclude posts from these tags"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:396
+#: .././posts-in-sidebar-widget.php:397
 msgid "The title of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:401
+#: .././posts-in-sidebar-widget.php:402
 msgid "Display the title of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:407
+#: .././posts-in-sidebar-widget.php:408
 msgid "Link the title to the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:413
+#: .././posts-in-sidebar-widget.php:414
 msgid "Show an arrow after the title"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:419
+#: .././posts-in-sidebar-widget.php:420
 msgid "The featured image of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:424
+#: .././posts-in-sidebar-widget.php:425
 msgid "Display the featured image of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:429
+#: .././posts-in-sidebar-widget.php:430
 msgid "Size of the thumbnail"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:445
+#: .././posts-in-sidebar-widget.php:446
 #, php-format
 msgid ""
 "Note that in order to use image sizes different from the WordPress "
@@ -192,132 +197,132 @@ msgid ""
 "information."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:448
+#: .././posts-in-sidebar-widget.php:449
 msgid "You can also use a plugin that could help you in doing it."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:454
+#: .././posts-in-sidebar-widget.php:455
 msgid "The text of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:458
+#: .././posts-in-sidebar-widget.php:459
 msgid "What type of text to display"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:462
+#: .././posts-in-sidebar-widget.php:463
 msgid "The excerpt"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:465
+#: .././posts-in-sidebar-widget.php:466
 msgid "The entire content"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:468
+#: .././posts-in-sidebar-widget.php:469
 msgid "Do not show any text"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:473
+#: .././posts-in-sidebar-widget.php:474
 msgid "Shortcodes will be stripped."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:477
+#: .././posts-in-sidebar-widget.php:478
 msgid "Length of the excerpt (in words)"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:484
+#: .././posts-in-sidebar-widget.php:485
 msgid "Show an arrow after the excerpt"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:492
+#: .././posts-in-sidebar-widget.php:493
 msgid "The date and the comments of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:497
+#: .././posts-in-sidebar-widget.php:498
 msgid "Display the date of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:503
+#: .././posts-in-sidebar-widget.php:504
 msgid "Link the date to the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:509
+#: .././posts-in-sidebar-widget.php:510
 msgid "Display the number of comments"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:515
+#: .././posts-in-sidebar-widget.php:516
 msgid "The categories of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:520
+#: .././posts-in-sidebar-widget.php:521
 msgid "Show the categories of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:525
+#: .././posts-in-sidebar-widget.php:526
 msgid "Text before categories list"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:531
+#: .././posts-in-sidebar-widget.php:532
 msgid "Use this separator between categories"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:534 .././posts-in-sidebar-widget.php:564
+#: .././posts-in-sidebar-widget.php:535 .././posts-in-sidebar-widget.php:565
 msgid "A space will be added after the separator."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:539
+#: .././posts-in-sidebar-widget.php:540
 msgid "The tags of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:544
+#: .././posts-in-sidebar-widget.php:545
 msgid "Show the tags of the post"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:549
+#: .././posts-in-sidebar-widget.php:550
 msgid "Text before tags list"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:555
+#: .././posts-in-sidebar-widget.php:556
 msgid "Use this hashtag"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:561
+#: .././posts-in-sidebar-widget.php:562
 msgid "Use this separator between tags"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:569
+#: .././posts-in-sidebar-widget.php:570
 msgid "The link to the archive"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:574
+#: .././posts-in-sidebar-widget.php:575
 msgid "Show the link to the taxonomy archive"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:579
+#: .././posts-in-sidebar-widget.php:580
 msgid "Link to"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:583
+#: .././posts-in-sidebar-widget.php:584
 msgid "Author Archive"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:586
+#: .././posts-in-sidebar-widget.php:587
 msgid "Category Archive"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:589
+#: .././posts-in-sidebar-widget.php:590
 msgid "Tag Archive"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:595
+#: .././posts-in-sidebar-widget.php:596
 msgid "Use this text for archive link"
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:600
+#: .././posts-in-sidebar-widget.php:601
 msgid ""
 "Please, note that if you don't select any taxonomy, the link won't appear."
 msgstr ""
 
-#: .././posts-in-sidebar-widget.php:605
+#: .././posts-in-sidebar-widget.php:606
 msgid "Use this text when there are no posts"
 msgstr ""
 

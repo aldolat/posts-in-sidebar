@@ -50,6 +50,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		echo $before_widget;
 		if ( $title ) echo $before_title . $title . $after_title;
+		if ( $instance['intro'] ) echo '<p class="pis-intro">' . $instance['intro'] . '</p>';
 		pis_posts_in_sidebar( array(
 			'author'        => $instance['author'],
 			'cat'           => $instance['cat'],
@@ -92,7 +93,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		$instance['title']         = strip_tags( $new_instance['title'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$allowed_html = array(
+			'a' => array(
+				'href'  => array(),
+				'title' => array(),
+			),
+			'em' => array(),
+			'strong' => array(),
+		);
+		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
 		$instance['author']        = $new_instance['author'];
 		$instance['cat']           = $new_instance['cat'];
 		$instance['tag']           = $new_instance['tag'];
@@ -137,6 +147,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title'         => __( 'Posts', 'pis' ),
+			'intro'         => '',
 			'author'        => '',
 			'cat'           => '',
 			'tag'           => '',
@@ -196,6 +207,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Title', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			</p>
+
+			 <p>
+				<label for="<?php echo $this->get_field_id('intro'); ?>">
+					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
+				</label>
+				<textarea class="widefat" style="resize: vertical; width: 100%; height: 80px;" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>"><?php echo $instance['intro']; ?></textarea>
+				<br /><em><?php printf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code> (with <code>href</code> and <code>title</code>), <code>strong</code>, <code>em</code>' ); ?></em>
 			</p>
 
 			<hr />

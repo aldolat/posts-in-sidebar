@@ -1,6 +1,6 @@
 # Posts in Sidebar #
 **Contributors:** aldolat  
-**Donate link:** http://www.aldolat.it/wordpress/wordpress-plugins/posts-in-sidebar/  
+**Donate link:** http://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.5  

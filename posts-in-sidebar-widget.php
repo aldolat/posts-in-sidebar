@@ -50,6 +50,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		echo $before_widget;
 		if ( $title ) echo $before_title . $title . $after_title;
+		if ( $intro ) echo '<p class="pis-intro">' . $intro . '</p>';
 		pis_posts_in_sidebar( array(
 			'author'        => $instance['author'],
 			'cat'           => $instance['cat'],
@@ -93,6 +94,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title']         = strip_tags( $new_instance['title'] );
+		$allowed_html = array(
+			'a' => array(
+				'href' => array(),
+				'title' => array()
+			),
+			'em' => array(),
+			'strong' => array()
+		);
+		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
 		$instance['author']        = $new_instance['author'];
 		$instance['cat']           = $new_instance['cat'];
 		$instance['tag']           = $new_instance['tag'];
@@ -137,6 +147,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title'         => __( 'Posts', 'pis' ),
+			'intro'         => '',
 			'author'        => '',
 			'cat'           => '',
 			'tag'           => '',
@@ -190,6 +201,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<div style="float: left; width: 31%; margin-left: 2%;">
 
 			<h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+
+			<p>
+				<label for="<?php echo $this->get_field_id('intro'); ?>">
+					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
+				</label>
+				<textarea class="widefat" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>" value="<?php echo $instance['intro']; ?>" rows="5" cols="10" />
+			</p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('title'); ?>">

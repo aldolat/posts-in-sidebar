@@ -5,14 +5,14 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.4
+ * Version: 1.5
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
  */
 
 /*
- * Copyright (C) 2009, 2012  Aldo Latino  (email : aldolat@gmail.com)
+ * Copyright (C) 2009, 2013  Aldo Latino  (email : aldolat@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -45,6 +45,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 3. The widget displays three posts from a particular category. At the bottom you can view the link to the taxonomy which we retrieved the posts from.
 
 == Changelog ==
+
+= 1.5 =
+
+* New: Now the title of the widget can be linked to a user-defined URL (feature request from Mike).
 
 = 1.4 =
 

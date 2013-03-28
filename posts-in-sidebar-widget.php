@@ -49,7 +49,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
-		if ( $title ) echo $before_title . $title . $after_title;
+		if ( $title && $instance['title_link'] ) {
+			echo $before_title . '<a class="pis-title-link" href="' . $instance['title_link'] . '">' . $title . '</a>' . $after_title;
+		} else if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
 		if ( $instance['intro'] ) echo '<p class="pis-intro">' . $instance['intro'] . '</p>';
 		pis_posts_in_sidebar( array(
 			'author'        => $instance['author'],
@@ -94,6 +98,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = esc_url( $new_instance['title_link'] );
 		$allowed_html = array(
 			'a' => array(
 				'href'  => array(),
@@ -147,6 +152,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title'         => __( 'Posts', 'pis' ),
+			'title_link'    => '',
 			'intro'         => '',
 			'author'        => '',
 			'cat'           => '',
@@ -207,6 +213,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Title', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id('title_link'); ?>">
+					<?php _e( 'Link for the title of the widget', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id('title_link'); ?>" name="<?php echo $this->get_field_name('title_link'); ?>" type="text" value="<?php echo $instance['title_link']; ?>" />
 			</p>
 
 			 <p>

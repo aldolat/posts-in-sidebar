@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.5.1  
-**Stable tag:** 1.5  
+**Stable tag:** 1.6  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -51,6 +51,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 
 ## Changelog ##
+
+### 1.6 ###
+
+* New: if in single post, the user can now stylize the current post in the sidebar (feature request from lleroy).
 
 ### 1.5 ###
 

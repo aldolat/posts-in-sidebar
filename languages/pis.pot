@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 1.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2013-03-28 21:24+0100\n"
-"PO-Revision-Date: 2013-03-28 21:24+0100\n"
+"POT-Creation-Date: 2013-04-17 19:38+0100\n"
+"PO-Revision-Date: 2013-04-17 19:39+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgid "Tags:"
 msgstr ""
 
 #: .././posts-in-sidebar-widget.php:190 .././posts-in-sidebar.php:71
-#: .././posts-in-sidebar.php:274
+#: .././posts-in-sidebar.php:288
 msgid "More posts &rarr;"
 msgstr ""
 
@@ -330,34 +330,34 @@ msgstr ""
 msgid "Use this text when there are no posts"
 msgstr ""
 
-#: .././posts-in-sidebar.php:111 .././posts-in-sidebar.php:131
-#: .././posts-in-sidebar.php:183
+#: .././posts-in-sidebar.php:125 .././posts-in-sidebar.php:145
+#: .././posts-in-sidebar.php:197
 #, php-format
 msgid "Permalink to %s"
 msgstr ""
 
-#: .././posts-in-sidebar.php:162
+#: .././posts-in-sidebar.php:176
 msgid "Read the full post"
 msgstr ""
 
-#: .././posts-in-sidebar.php:216
+#: .././posts-in-sidebar.php:230
 msgid "Leave a comment"
 msgstr ""
 
-#: .././posts-in-sidebar.php:216
+#: .././posts-in-sidebar.php:230
 msgid "1 Comment"
 msgstr ""
 
-#: .././posts-in-sidebar.php:216
+#: .././posts-in-sidebar.php:230
 msgid "% Comments"
 msgstr ""
 
-#: .././posts-in-sidebar.php:257 .././posts-in-sidebar.php:263
+#: .././posts-in-sidebar.php:271 .././posts-in-sidebar.php:277
 #, php-format
 msgid "Display all posts archived as %s"
 msgstr ""
 
-#: .././posts-in-sidebar.php:269
+#: .././posts-in-sidebar.php:283
 #, php-format
 msgid "Display all posts by %s"
 msgstr ""

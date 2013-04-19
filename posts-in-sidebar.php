@@ -109,8 +109,8 @@ function pis_posts_in_sidebar( $args ) {
 			<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 
 				<?php // Assign the class 'current-post' if this is the post of the main loop ?>
-				<?php if ( is_single() && $single_post_id == $post->ID ) { 
-					$postclass = 'current-post pis-li'; 
+				<?php if ( is_single() && $single_post_id == $post->ID ) {
+					$postclass = 'current-post pis-li';
 				} else {
 					$postclass = 'pis-li';
 				}

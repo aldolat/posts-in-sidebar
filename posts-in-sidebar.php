@@ -51,7 +51,7 @@ function pis_posts_in_sidebar( $args ) {
 		'display_title' => true,
 		'link_on_title' => true,
 		'display_date'  => false,
-		'linkify_date'  => true,
+		'linkify_date'  => false,
 		'display_image' => false,
 		'image_size'    => 'thumbnail',
 		'excerpt'       => 'excerpt', // can be "excerpt" or "content"

@@ -170,7 +170,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_title' => true,
 			'link_on_title' => true,
 			'display_date'  => false,
-			'linkify_date'  => true,
+			'linkify_date'  => false,
 			'display_image' => false,
 			'image_size'    => 'thumbnail',
 			'excerpt'       => 'excerpt',

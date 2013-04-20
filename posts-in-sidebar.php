@@ -197,7 +197,7 @@ function pis_posts_in_sidebar( $args ) {
 									<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php esc_attr_e( sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
 										<?php echo get_the_date(); ?>
 									</a>
-								<?php } else { 
+								<?php } else {
 									echo get_the_date();
 								} ?>
 							</span>

@@ -3,8 +3,8 @@
 **Donate link:** http://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
-**Tested up to:** 3.5.1  
-**Stable tag:** 1.6.1  
+**Tested up to:** 3.6  
+**Stable tag:** 1.6.2  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -51,6 +51,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 
 ## Changelog ##
+
+### 1.6.2 ###
+
+* Small code improvements.
 
 ### 1.6.1 ###
 

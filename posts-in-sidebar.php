@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.6.1
+ * Version: 1.6.2
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -109,7 +109,7 @@ function pis_posts_in_sidebar( $args ) {
 			<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 
 				<?php // Assign the class 'current-post' if this is the post of the main loop ?>
-				<?php if ( is_single() && $single_post_id == $post->ID ) {
+				<?php if ( is_single() && $single_post_id == $linked_posts->post->ID ) {
 					$postclass = 'current-post pis-li';
 				} else {
 					$postclass = 'pis-li';

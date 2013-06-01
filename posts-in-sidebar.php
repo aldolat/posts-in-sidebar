@@ -129,7 +129,8 @@ function pis_posts_in_sidebar( $args ) {
 					<?php if ( $display_title ) { ?>
 						<p class="pis-title">
 							<?php if ( $link_on_title ) { ?>
-								<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php esc_attr_e( sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
+								<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+								<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 							<?php } ?>
 									<?php the_title(); ?>
 									<?php if ( $arrow ) { ?>
@@ -149,12 +150,11 @@ function pis_posts_in_sidebar( $args ) {
 							<?php /* The thumbnail */ ?>
 							<?php if ( $display_image ) {
 								if ( has_post_thumbnail() ) { ?>
-									<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php esc_attr_e( sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
+									<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 										<?php the_post_thumbnail(
 											$image_size,
 											array( 'class' => 'pis-thumbnail-img' )
-										); ?>
-									</a>
+										); ?></a>
 								<?php } // Close The thumbnail
 							} ?>
 

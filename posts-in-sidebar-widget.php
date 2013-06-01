@@ -60,6 +60,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'author'         => $instance['author'],
 			'cat'            => $instance['cat'],
 			'tag'            => $instance['tag'],
+			'post_format'    => $instance['post_format'],
 			'number'         => $instance['number'],
 			'orderby'        => $instance['orderby'],
 			'order'          => $instance['order'],
@@ -116,6 +117,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['author']         = $new_instance['author'];
 		$instance['cat']            = $new_instance['cat'];
 		$instance['tag']            = $new_instance['tag'];
+		$instance['post_format']    = $new_instance['post_format'];
 		$instance['number']         = intval( strip_tags( $new_instance['number'] ) );
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
 		$instance['orderby']        = $new_instance['orderby'];
@@ -166,6 +168,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'author'         => '',
 			'cat'            => '',
 			'tag'            => '',
+			'post_format'    => '',
 			'number'         => get_option( 'posts_per_page' ),
 			'orderby'        => 'date',
 			'order'          => 'DESC',
@@ -320,6 +323,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<?php echo $my_tag->name; ?>
 						</option>
 					<?php endforeach; ?>
+				</select>
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id('post_format'); ?>">
+					<?php _e( 'Post format', 'pis' ); ?>
+				</label>
+				<select name="<?php echo $this->get_field_name('post_format'); ?>">
+					<option <?php selected( '', $instance['post_format']); ?> value="">
+						<?php _e( 'Any', 'pis' ); ?>
+					</option>
+					<?php $post_formats = get_terms( 'post_format' );
+					if ( $post_formats ) {
+						foreach ( $post_formats as $post_format ) { ?>
+							<option <?php selected( $post_format->slug, $instance['post_format']); ?> value="<?php echo $post_format->slug ?>">
+								<?php echo $post_format->name; ?>
+							</option>
+						<?php }
+					} ?>
 				</select>
 			</p>
 

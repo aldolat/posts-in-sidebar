@@ -56,43 +56,45 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 		if ( $instance['intro'] ) echo '<p class="pis-intro">' . $instance['intro'] . '</p>';
 		pis_posts_in_sidebar( array(
-			'post_type'     => $instance['post_type'],
-			'author'        => $instance['author'],
-			'cat'           => $instance['cat'],
-			'tag'           => $instance['tag'],
-			'number'        => $instance['number'],
-			'orderby'       => $instance['orderby'],
-			'order'         => $instance['order'],
-			'cat_not_in'    => $instance['cat_not_in'],
-			'tag_not_in'    => $instance['tag_not_in'],
-			'offset_number' => $instance['offset_number'],
-			'post_status'   => $instance['post_status'],
-			'post_meta_key' => $instance['post_meta_key'],
-			'post_meta_val' => $instance['post_meta_val'],
-			'ignore_sticky' => $instance['ignore_sticky'],
-			'display_title' => $instance['display_title'],
-			'link_on_title' => $instance['link_on_title'],
-			'display_date'  => $instance['display_date'],
-			'linkify_date'  => $instance['linkify_date'],
-			'display_image' => $instance['display_image'],
-			'image_size'    => $instance['image_size'],
-			'excerpt'       => $instance['excerpt'],
-			'arrow'         => $instance['arrow'],
-			'exc_length'    => $instance['exc_length'],
-			'the_more'      => $instance['the_more'],
-			'exc_arrow'     => $instance['exc_arrow'],
-			'comments'      => $instance['comments'],
-			'categories'    => $instance['categories'],
-			'categ_text'    => $instance['categ_text'],
-			'categ_sep'     => $instance['categ_sep'],
-			'tags'          => $instance['tags'],
-			'tags_text'     => $instance['tags_text'],
-			'hashtag'       => $instance['hashtag'],
-			'tag_sep'       => $instance['tag_sep'],
-			'archive_link'  => $instance['archive_link'],
-			'link_to'       => $instance['link_to'],
-			'archive_text'  => $instance['archive_text'],
-			'nopost_text'   => $instance['nopost_text'],
+			'post_type'      => $instance['post_type'],
+			'author'         => $instance['author'],
+			'cat'            => $instance['cat'],
+			'tag'            => $instance['tag'],
+			'number'         => $instance['number'],
+			'orderby'        => $instance['orderby'],
+			'order'          => $instance['order'],
+			'cat_not_in'     => $instance['cat_not_in'],
+			'tag_not_in'     => $instance['tag_not_in'],
+			'offset_number'  => $instance['offset_number'],
+			'post_status'    => $instance['post_status'],
+			'post_meta_key'  => $instance['post_meta_key'],
+			'post_meta_val'  => $instance['post_meta_val'],
+			'ignore_sticky'  => $instance['ignore_sticky'],
+			'display_title'  => $instance['display_title'],
+			'link_on_title'  => $instance['link_on_title'],
+			'display_image'  => $instance['display_image'],
+			'image_size'     => $instance['image_size'],
+			'excerpt'        => $instance['excerpt'],
+			'arrow'          => $instance['arrow'],
+			'exc_length'     => $instance['exc_length'],
+			'the_more'       => $instance['the_more'],
+			'exc_arrow'      => $instance['exc_arrow'],
+			'display_author' => $instance['display_author'],
+			'linkify_author' => $instance['linkify_author'],
+			'display_date'   => $instance['display_date'],
+			'linkify_date'   => $instance['linkify_date'],
+			'comments'       => $instance['comments'],
+			'categories'     => $instance['categories'],
+			'categ_text'     => $instance['categ_text'],
+			'categ_sep'      => $instance['categ_sep'],
+			'tags'           => $instance['tags'],
+			'tags_text'      => $instance['tags_text'],
+			'hashtag'        => $instance['hashtag'],
+			'tag_sep'        => $instance['tag_sep'],
+			'archive_link'   => $instance['archive_link'],
+			'link_to'        => $instance['link_to'],
+			'archive_text'   => $instance['archive_text'],
+			'nopost_text'    => $instance['nopost_text'],
 		));
 		echo $after_widget;
 	}
@@ -109,106 +111,112 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'em' => array(),
 			'strong' => array(),
 		);
-		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
-		$instance['post_type']     = $new_instance['post_type'];
-		$instance['author']        = $new_instance['author'];
-		$instance['cat']           = $new_instance['cat'];
-		$instance['tag']           = $new_instance['tag'];
-		$instance['number']        = intval( strip_tags( $new_instance['number'] ) );
+		$instance['intro']          = wp_kses( $new_instance['intro'], $allowed_html );
+		$instance['post_type']      = $new_instance['post_type'];
+		$instance['author']         = $new_instance['author'];
+		$instance['cat']            = $new_instance['cat'];
+		$instance['tag']            = $new_instance['tag'];
+		$instance['number']         = intval( strip_tags( $new_instance['number'] ) );
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
-		$instance['orderby']       = $new_instance['orderby'];
-		$instance['order']         = $new_instance['order'];
-		$instance['cat_not_in']    = $new_instance['cat_not_in'];
-		$instance['tag_not_in']    = $new_instance['tag_not_in'];
-		$instance['offset_number'] = absint( strip_tags( $new_instance['offset_number'] ) );
+		$instance['orderby']        = $new_instance['orderby'];
+		$instance['order']          = $new_instance['order'];
+		$instance['cat_not_in']     = $new_instance['cat_not_in'];
+		$instance['tag_not_in']     = $new_instance['tag_not_in'];
+		$instance['offset_number']  = absint( strip_tags( $new_instance['offset_number'] ) );
 			if( $instance['offset_number'] == 0 || ! is_numeric( $instance['offset_number'] ) ) $instance['offset_number'] = '';
-		$instance['post_status']   = $new_instance['post_status'];
-		$instance['post_meta_key'] = strip_tags( $new_instance['post_meta_key'] );
-		$instance['post_meta_val'] = strip_tags( $new_instance['post_meta_val'] );
-		$instance['ignore_sticky'] = $new_instance['ignore_sticky'];
-		$instance['display_title'] = $new_instance['display_title'];
-		$instance['link_on_title'] = $new_instance['link_on_title'];
-		$instance['display_date']  = $new_instance['display_date'];
-		$instance['linkify_date']  = $new_instance['linkify_date'];
-		$instance['display_image'] = $new_instance['display_image'];
-		$instance['image_size']    = $new_instance['image_size'];
-		$instance['excerpt']       = $new_instance['excerpt'];
-		$instance['exc_length']    = absint( strip_tags( $new_instance['exc_length'] ) );
+		$instance['post_status']    = $new_instance['post_status'];
+		$instance['post_meta_key']  = strip_tags( $new_instance['post_meta_key'] );
+		$instance['post_meta_val']  = strip_tags( $new_instance['post_meta_val'] );
+		$instance['ignore_sticky']  = $new_instance['ignore_sticky'];
+		$instance['display_title']  = $new_instance['display_title'];
+		$instance['link_on_title']  = $new_instance['link_on_title'];
+		$instance['display_image']  = $new_instance['display_image'];
+		$instance['image_size']     = $new_instance['image_size'];
+		$instance['excerpt']        = $new_instance['excerpt'];
+		$instance['exc_length']     = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
-		$instance['the_more']      = strip_tags( $new_instance['the_more'] );
-		$instance['arrow']         = $new_instance['arrow'];
-		$instance['exc_arrow']     = strip_tags( $new_instance['exc_arrow'] );
-		$instance['comments']      = strip_tags( $new_instance['comments'] );
-		$instance['categories']    = $new_instance['categories'];
-		$instance['categ_text']    = strip_tags( $new_instance['categ_text'] );
-		$instance['categ_sep']     = strip_tags( $new_instance['categ_sep'] );
-		$instance['tags']          = $new_instance['tags'];
-		$instance['tags_text']     = strip_tags( $new_instance['tags_text'] );
-		$instance['hashtag']       = strip_tags( $new_instance['hashtag'] );
-		$instance['tag_sep']       = strip_tags( $new_instance['tag_sep'] );
-		$instance['archive_link']  = $new_instance['archive_link'];
-		$instance['link_to']       = $new_instance['link_to'];
-		$instance['archive_text']  = strip_tags( $new_instance['archive_text'] );
-		$instance['nopost_text']   = strip_tags( $new_instance['nopost_text'] );
+		$instance['the_more']       = strip_tags( $new_instance['the_more'] );
+		$instance['arrow']          = $new_instance['arrow'];
+		$instance['exc_arrow']      = strip_tags( $new_instance['exc_arrow'] );
+		$instance['display_author'] = $new_instance['display_author'];
+		$instance['linkify_author'] = $new_instance['linkify_author'];
+		$instance['display_date']   = $new_instance['display_date'];
+		$instance['linkify_date']   = $new_instance['linkify_date'];
+		$instance['comments']       = strip_tags( $new_instance['comments'] );
+		$instance['categories']     = $new_instance['categories'];
+		$instance['categ_text']     = strip_tags( $new_instance['categ_text'] );
+		$instance['categ_sep']      = strip_tags( $new_instance['categ_sep'] );
+		$instance['tags']           = $new_instance['tags'];
+		$instance['tags_text']      = strip_tags( $new_instance['tags_text'] );
+		$instance['hashtag']        = strip_tags( $new_instance['hashtag'] );
+		$instance['tag_sep']        = strip_tags( $new_instance['tag_sep'] );
+		$instance['archive_link']   = $new_instance['archive_link'];
+		$instance['link_to']        = $new_instance['link_to'];
+		$instance['archive_text']   = strip_tags( $new_instance['archive_text'] );
+		$instance['nopost_text']    = strip_tags( $new_instance['nopost_text'] );
 		return $instance;
 	}
 
 	function form($instance) {
 		$defaults = array(
-			'title'         => __( 'Posts', 'pis' ),
-			'title_link'    => '',
-			'intro'         => '',
-			'post_type'     => 'post',
-			'author'        => '',
-			'cat'           => '',
-			'tag'           => '',
-			'number'        => get_option( 'posts_per_page' ),
-			'orderby'       => 'date',
-			'order'         => 'DESC',
-			'cat_not_in'    => '',
-			'tag_not_in'    => '',
-			'offset_number' => '',
-			'post_status'   => 'publish',
-			'post_meta_key' => '',
-			'post_meta_val' => '',
-			'ignore_sticky' => false,
-			'display_title' => true,
-			'link_on_title' => true,
-			'display_date'  => false,
-			'linkify_date'  => false,
-			'display_image' => false,
-			'image_size'    => 'thumbnail',
-			'excerpt'       => 'excerpt',
-			'arrow'         => false,
-			'exc_length'    => 20,
-			'the_more'      => __( 'Read more&hellip;', 'pis' ),
-			'exc_arrow'     => false,
-			'comments'      => false,
-			'categories'    => false,
-			'categ_text'    => __( 'Category:', 'pis' ),
-			'categ_sep'     => ',',
-			'tags'          => false,
-			'tags_text'     => __( 'Tags:', 'pis' ),
-			'hashtag'       => '#',
-			'tag_sep'       => '',
-			'archive_link'  => false,
-			'link_to'       => 'category',
-			'archive_text'  => __( 'More posts &rarr;', 'pis' ),
-			'nopost_text'   => __( 'No posts yet.', 'pis' ),
+			'title'          => __( 'Posts', 'pis' ),
+			'title_link'     => '',
+			'intro'          => '',
+			'post_type'      => 'post',
+			'author'         => '',
+			'cat'            => '',
+			'tag'            => '',
+			'number'         => get_option( 'posts_per_page' ),
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'cat_not_in'     => '',
+			'tag_not_in'     => '',
+			'offset_number'  => '',
+			'post_status'    => 'publish',
+			'post_meta_key'  => '',
+			'post_meta_val'  => '',
+			'ignore_sticky'  => false,
+			'display_title'  => true,
+			'link_on_title'  => true,
+			'display_image'  => false,
+			'image_size'     => 'thumbnail',
+			'excerpt'        => 'excerpt',
+			'arrow'          => false,
+			'exc_length'     => 20,
+			'the_more'       => __( 'Read more&hellip;', 'pis' ),
+			'exc_arrow'      => false,
+			'display_author' => false,
+			'linkify_author' => false,
+			'display_date'   => false,
+			'linkify_date'   => false,
+			'comments'       => false,
+			'categories'     => false,
+			'categ_text'     => __( 'Category:', 'pis' ),
+			'categ_sep'      => ',',
+			'tags'           => false,
+			'tags_text'      => __( 'Tags:', 'pis' ),
+			'hashtag'        => '#',
+			'tag_sep'        => '',
+			'archive_link'   => false,
+			'link_to'        => 'category',
+			'archive_text'   => __( 'More posts &rarr;', 'pis' ),
+			'nopost_text'    => __( 'No posts yet.', 'pis' ),
 		);
-		$instance      = wp_parse_args( (array) $instance, $defaults );
-		$ignore_sticky = (bool) $instance['ignore_sticky'];
-		$display_title = (bool) $instance['display_title'];
-		$link_on_title = (bool) $instance['link_on_title'];
-		$display_date  = (bool) $instance['display_date'];
-		$linkify_date  = (bool) $instance['linkify_date'];
-		$display_image = (bool) $instance['display_image'];
-		$arrow         = (bool) $instance['arrow'];
-		$exc_arrow     = (bool) $instance['exc_arrow'];
-		$comments      = (bool) $instance['comments'];
-		$categories    = (bool) $instance['categories'];
-		$tags          = (bool) $instance['tags'];
-		$archive_link  = (bool) $instance['archive_link'];
+		$instance       = wp_parse_args( (array) $instance, $defaults );
+		$ignore_sticky  = (bool) $instance['ignore_sticky'];
+		$display_title  = (bool) $instance['display_title'];
+		$link_on_title  = (bool) $instance['link_on_title'];
+		$display_image  = (bool) $instance['display_image'];
+		$arrow          = (bool) $instance['arrow'];
+		$exc_arrow      = (bool) $instance['exc_arrow'];
+		$display_author = (bool) $instance['display_author'];
+		$linkify_author = (bool) $instance['linkify_author'];
+		$display_date   = (bool) $instance['display_date'];
+		$linkify_date   = (bool) $instance['linkify_date'];
+		$comments       = (bool) $instance['comments'];
+		$categories     = (bool) $instance['categories'];
+		$tags           = (bool) $instance['tags'];
+		$archive_link   = (bool) $instance['archive_link'];
 		?>
 		<div style="float: left; width: 31%; margin-left: 2%;">
 
@@ -536,7 +544,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div style="float: left; width: 31%; margin-left: 2%;">
 
-			<h4><?php _e( 'The date and the comments of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
+
+			<p>
+				<input class="checkbox" type="checkbox" <?php checked( $display_author ); ?> value="1" id="<?php echo $this->get_field_id( 'display_author' ); ?>" name="<?php echo $this->get_field_name( 'display_author' ); ?>" />
+				<label for="<?php echo $this->get_field_id( 'display_author' ); ?>">
+					<?php _e( 'Display the author of the post', 'pis' ); ?>
+				</label>
+			</p>
+			<p>
+				<input class="checkbox" type="checkbox" <?php checked( $linkify_author ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_author' ); ?>" name="<?php echo $this->get_field_name( 'linkify_author' ); ?>" />
+				<label for="<?php echo $this->get_field_id( 'linkify_author' ); ?>">
+					<?php _e( 'Link the author to his archive', 'pis' ); ?>
+				</label>
+			</p>
 
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $display_date ); ?> value="1" id="<?php echo $this->get_field_id( 'display_date' ); ?>" name="<?php echo $this->get_field_name( 'display_date' ); ?>" />

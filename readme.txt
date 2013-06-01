@@ -48,6 +48,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 = 1.7 =
 
+* New: The widget can display the author of the post.
 * New: Now the user can choose which type of posts to display: posts, pages, custom post types, etc.
 * New: The widget can display the full content (as in single posts).
 * New: Now the user can add a custom "Read more" text.

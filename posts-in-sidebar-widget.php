@@ -110,7 +110,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'strong' => array(),
 		);
 		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
-		$instance['post_type']     => $new_instance['post_type'];
+		$instance['post_type']     = $new_instance['post_type'];
 		$instance['author']        = $new_instance['author'];
 		$instance['cat']           = $new_instance['cat'];
 		$instance['tag']           = $new_instance['tag'];
@@ -245,6 +245,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Post type', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('post_type'); ?>">
+					<option <?php selected( 'any', $instance['post_type'] ); ?> value="any">
+						<?php _e( 'Any', 'pis' ); ?>
+				 	</option>
+					<?php $wp_post_types = (array) get_post_types( array( 'exclude_from_search' => false ), 'objects' );
+					foreach ( $wp_post_types as $wp_post_type ) { ?>
+					 	<option <?php selected( $wp_post_type->name, $instance['post_type'] ); ?> value="<?php echo $wp_post_type->name; ?>">
+							<?php echo $wp_post_type->labels->singular_name; ?>
+					 	</option>
+					<?php } ?>
 				</select>
 			</p>
 
@@ -255,7 +264,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<select name="<?php echo $this->get_field_name('author'); ?>">
 					<?php $my_author = $instance['author']; ?>
 					<option <?php selected( 'NULL', $my_author); ?> value="NULL">
-						<?php _e( 'None', 'pis' ); ?>
+						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php
 						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
@@ -273,7 +282,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</label>
 				<select name="<?php echo $this->get_field_name('cat'); ?>">
 					<option <?php selected( 'NULL', $instance['cat']); ?> value="NULL">
-						<?php _e( 'None', 'pis' ); ?>
+						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php
 						$my_cats = get_categories( array( 'hide_empty' => 0 ) );
@@ -290,15 +299,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Tag', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('tag'); ?>">
-					<?php $my_tagx = $instance['tag']; ?>
-					<option <?php selected( 'NULL', $my_tagx); ?> value="NULL">
-						<?php _e( 'None', 'pis' ); ?>
+					<option <?php selected( 'NULL', $instance['tag']); ?> value="NULL">
+						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php
 						$my_tags = get_tags( array( 'hide_empty' => 0 ) );
 						foreach( $my_tags as $my_tag ) :
 					?>
-						<option <?php selected( $my_tag->slug, $my_tagx); ?> value="<?php echo $my_tag->slug; ?>">
+						<option <?php selected( $my_tag->slug, $instance['tag']); ?> value="<?php echo $my_tag->slug; ?>">
 							<?php echo $my_tag->name; ?>
 						</option>
 					<?php endforeach; ?>
@@ -357,12 +365,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</label>
 				<select name="<?php echo $this->get_field_name('post_status'); ?>">
 					<?php $statuses = get_post_stati( '', 'objects' );
-						foreach( $statuses as $status ) { ?>
-							<option <?php selected( $status->name, $instance['post_status']); ?> value="<?php echo $status->name; ?>">
-								<?php _e( $status->label, 'pis' ); ?>
-							</option>
-						<?php }
-					?>
+					foreach( $statuses as $status ) { ?>
+						<option <?php selected( $status->name, $instance['post_status']); ?> value="<?php echo $status->name; ?>">
+							<?php echo $status->label; ?>
+						</option>
+					<?php } ?>
+					<option <?php selected( 'any', $instance['post_status']); ?> value="any">
+						<?php _e( 'Any', 'pis' ); ?>
+					</option>
 				</select>
 			</p>
 			<p>

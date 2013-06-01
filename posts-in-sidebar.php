@@ -201,7 +201,11 @@ function pis_posts_in_sidebar( $args ) {
 						<?php if ( $display_author ) { ?>
 							<span class="pis-author">
 								<?php if ( $linkify_author ) { ?>
-									<a class="pis-author-link" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="<?php esc_attr_e( sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() ) ); ?>" rel="bookmark">
+									<?php
+									$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
+									$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
+									?>
+									<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="bookmark">
 										<?php echo get_the_author(); ?>
 									</a>
 								<?php } else {
@@ -217,7 +221,8 @@ function pis_posts_in_sidebar( $args ) {
 							<?php } ?>
 							<span class="pis-date">
 								<?php if ( $linkify_date ) { ?>
-									<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php esc_attr_e( sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
+									<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+									<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
 										<?php echo get_the_date(); ?>
 									</a>
 								<?php } else {

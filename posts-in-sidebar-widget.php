@@ -284,6 +284,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php endforeach; ?>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('cat'); ?>">
 					<?php _e( 'Category', 'pis' ); ?>
@@ -302,6 +303,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php endforeach; ?>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('tag'); ?>">
 					<?php _e( 'Tag', 'pis' ); ?>
@@ -320,12 +322,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php endforeach; ?>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('number'); ?>">
 					<?php _e( 'How many posts to display', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo esc_attr( $instance['number'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('orderby'); ?>">
 					<?php _e( 'Order by', 'pis' ); ?>
@@ -348,6 +352,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					</option>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('order'); ?>">
 					<?php _e( 'Order', 'pis' ); ?>
@@ -361,12 +366,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					</option>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('offset_number'); ?>">
 					<?php _e( 'Number of posts to skip', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('offset_number'); ?>" name="<?php echo $this->get_field_name('offset_number'); ?>" type="text" value="<?php echo esc_attr( $instance['offset_number'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('post_status'); ?>">
 					<?php _e( 'Post status', 'pis' ); ?>
@@ -383,18 +390,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					</option>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('post_meta_key'); ?>">
 					<?php _e( 'Post meta key', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_key'); ?>" name="<?php echo $this->get_field_name('post_meta_key'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_key'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('post_meta_val'); ?>">
 					<?php _e( 'Post meta value', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_val'); ?>" name="<?php echo $this->get_field_name('post_meta_val'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_val'] ); ?>" />
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $ignore_sticky ); ?> value="1" id="<?php echo $this->get_field_id( 'ignore_sticky' ); ?>" name="<?php echo $this->get_field_name( 'ignore_sticky' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'ignore_sticky' ); ?>">
@@ -409,7 +419,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'Exclude these posts', 'pis' ); ?></h4>
 
-			<p><em><?php _e( 'Use <code>CTRL+clic</code> to select/deselect multiple items.', 'pis' ); ?></em></p>
+			<p>
+				<em>
+					<?php _e( 'Use <code>CTRL+clic</code> to select/deselect multiple items.', 'pis' ); ?>
+				</em>
+			</p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('cat_not_in'); ?>">
@@ -447,12 +461,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Display the title of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $link_on_title ); ?> value="1" id="<?php echo $this->get_field_id( 'link_on_title' ); ?>" name="<?php echo $this->get_field_name( 'link_on_title' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'link_on_title' ); ?>">
 					<?php _e( 'Link the title to the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'arrow' ); ?>" name="<?php echo $this->get_field_name( 'arrow' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'arrow' ); ?>">
@@ -470,6 +486,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Display the featured image of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('image_size'); ?>">
 					<?php _e( 'Size of the thumbnail', 'pis' ); ?>
@@ -517,22 +534,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php _e( 'Do not show any text', 'pis' ); ?>
 					</option>
 				</select>
-				<br />
-				<em>
-					<?php _e( 'Shortcodes will be stripped.', 'pis' );?>
-				</em>
+			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'exc_length' ); ?>">
 					<?php _e( 'Length of the auto-generated excerpt (in words)', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo esc_attr( $instance['exc_length'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'the_more' ); ?>">
 					<?php _e( 'Text for More link', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'the_more' ); ?>" name="<?php echo $this->get_field_name( 'the_more' ); ?>" type="text" value="<?php echo esc_attr( $instance['the_more'] ); ?>" />
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $exc_arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'exc_arrow' ); ?>" name="<?php echo $this->get_field_name( 'exc_arrow' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'exc_arrow' ); ?>">
@@ -552,6 +569,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Display the author of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $linkify_author ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_author' ); ?>" name="<?php echo $this->get_field_name( 'linkify_author' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'linkify_author' ); ?>">
@@ -565,12 +583,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Display the date of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $linkify_date ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_date' ); ?>" name="<?php echo $this->get_field_name( 'linkify_date' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'linkify_date' ); ?>">
 					<?php _e( 'Link the date to the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $comments ); ?> value="1" id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'comments' ); ?>">
@@ -588,12 +608,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Show the categories of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('categ_text'); ?>">
 					<?php _e( 'Text before categories list', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('categ_text'); ?>" name="<?php echo $this->get_field_name('categ_text'); ?>" type="text" value="<?php echo esc_attr( $instance['categ_text'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'categ_sep' ); ?>">
 					<?php _e( 'Use this separator between categories', 'pis' ); ?>
@@ -612,18 +634,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Show the tags of the post', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('tags_text'); ?>">
 					<?php _e( 'Text before tags list', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id('tags_text'); ?>" name="<?php echo $this->get_field_name('tags_text'); ?>" type="text" value="<?php echo $instance['tags_text']; ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'hashtag' ); ?>">
 					<?php _e( 'Use this hashtag', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'hashtag' ); ?>" name="<?php echo $this->get_field_name( 'hashtag' ); ?>" type="text" value="<?php echo esc_attr( $instance['hashtag'] ); ?>" />
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'tag_sep' ); ?>">
 					<?php _e( 'Use this separator between tags', 'pis' ); ?>
@@ -642,6 +667,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Show the link to the taxonomy archive', 'pis' ); ?>
 				</label>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id('link_to'); ?>">
 					<?php _e( 'Link to', 'pis' ); ?>
@@ -658,6 +684,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					</option>
 				</select>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'archive_text' ); ?>">
 					<?php _e( 'Use this text for archive link', 'pis' ); ?>
@@ -668,6 +695,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' ); ?>
 				</em>
 			</p>
+
 			<p>
 				<label for="<?php echo $this->get_field_id( 'nopost_text' ); ?>">
 					<?php _e( 'Use this text when there are no posts', 'pis' ); ?>

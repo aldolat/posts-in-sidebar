@@ -215,14 +215,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('title'); ?>">
 					<?php _e( 'Title', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 			</p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('title_link'); ?>">
 					<?php _e( 'Link for the title of the widget', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('title_link'); ?>" name="<?php echo $this->get_field_name('title_link'); ?>" type="text" value="<?php echo $instance['title_link']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('title_link'); ?>" name="<?php echo $this->get_field_name('title_link'); ?>" type="text" value="<?php echo esc_url( $instance['title_link'] ); ?>" />
 			</p>
 
 			 <p>
@@ -297,7 +297,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('number'); ?>">
 					<?php _e( 'How many posts to display', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $instance['number']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo esc_attr( $instance['number'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('orderby'); ?>">
@@ -338,7 +338,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('offset_number'); ?>">
 					<?php _e( 'Number of posts to skip', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('offset_number'); ?>" name="<?php echo $this->get_field_name('offset_number'); ?>" type="text" value="<?php echo $instance['offset_number']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('offset_number'); ?>" name="<?php echo $this->get_field_name('offset_number'); ?>" type="text" value="<?php echo esc_attr( $instance['offset_number'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('post_status'); ?>">
@@ -358,13 +358,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('post_meta_key'); ?>">
 					<?php _e( 'Post meta key', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_key'); ?>" name="<?php echo $this->get_field_name('post_meta_key'); ?>" type="text" value="<?php echo $instance['post_meta_key']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_key'); ?>" name="<?php echo $this->get_field_name('post_meta_key'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_key'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('post_meta_val'); ?>">
 					<?php _e( 'Post meta value', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_val'); ?>" name="<?php echo $this->get_field_name('post_meta_val'); ?>" type="text" value="<?php echo $instance['post_meta_val']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_val'); ?>" name="<?php echo $this->get_field_name('post_meta_val'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_val'] ); ?>" />
 			</p>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $ignore_sticky ); ?> value="1" id="<?php echo $this->get_field_id( 'ignore_sticky' ); ?>" name="<?php echo $this->get_field_name( 'ignore_sticky' ); ?>" />
@@ -493,7 +493,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'exc_length' ); ?>">
 					<?php _e( 'Length of the excerpt (in words)', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo $instance['exc_length']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo esc_attr( $instance['exc_length'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'the_more' ); ?>">
@@ -547,13 +547,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('categ_text'); ?>">
 					<?php _e( 'Text before categories list', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('categ_text'); ?>" name="<?php echo $this->get_field_name('categ_text'); ?>" type="text" value="<?php echo $instance['categ_text']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('categ_text'); ?>" name="<?php echo $this->get_field_name('categ_text'); ?>" type="text" value="<?php echo esc_attr( $instance['categ_text'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'categ_sep' ); ?>">
 					<?php _e( 'Use this separator between categories', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'categ_sep' ); ?>" name="<?php echo $this->get_field_name( 'categ_sep' ); ?>" type="text" value="<?php echo $instance['categ_sep']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'categ_sep' ); ?>" name="<?php echo $this->get_field_name( 'categ_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['categ_sep'] ); ?>" />
 				<em><?php _e( 'A space will be added after the separator.', 'pis' ); ?></em>
 			</p>
 
@@ -577,13 +577,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'hashtag' ); ?>">
 					<?php _e( 'Use this hashtag', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'hashtag' ); ?>" name="<?php echo $this->get_field_name( 'hashtag' ); ?>" type="text" value="<?php echo $instance['hashtag']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'hashtag' ); ?>" name="<?php echo $this->get_field_name( 'hashtag' ); ?>" type="text" value="<?php echo esc_attr( $instance['hashtag'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'tag_sep' ); ?>">
 					<?php _e( 'Use this separator between tags', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'tag_sep' ); ?>" name="<?php echo $this->get_field_name( 'tag_sep' ); ?>" type="text" value="<?php echo $instance['tag_sep']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'tag_sep' ); ?>" name="<?php echo $this->get_field_name( 'tag_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['tag_sep'] ); ?>" />
 				<br /><em><?php _e( 'A space will be added after the separator.', 'pis' ); ?></em>
 			</p>
 
@@ -617,7 +617,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'archive_text' ); ?>">
 					<?php _e( 'Use this text for archive link', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'archive_text' ); ?>" name="<?php echo $this->get_field_name( 'archive_text' ); ?>" type="text" value="<?php echo $instance['archive_text']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'archive_text' ); ?>" name="<?php echo $this->get_field_name( 'archive_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['archive_text'] ); ?>" />
 				<br />
 				<em>
 					<?php _e( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' ); ?>
@@ -627,7 +627,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'nopost_text' ); ?>">
 					<?php _e( 'Use this text when there are no posts', 'pis' ); ?>
 				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'nopost_text' ); ?>" name="<?php echo $this->get_field_name( 'nopost_text' ); ?>" type="text" value="<?php echo $instance['nopost_text']; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'nopost_text' ); ?>" name="<?php echo $this->get_field_name( 'nopost_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['nopost_text'] ); ?>" />
 			</p>
 
 		</div>

@@ -55,8 +55,8 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 ### 1.7 ###
 
 * New: Now the user can add a custom "Read more" text.
-* Code improvements.
 * Added French translation by Thérèse Lachance.
+* Code improvements and sanitization.
 
 ### 1.6 ###
 

@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.6.2
+ * Version: 1.7
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -57,6 +57,7 @@ function pis_posts_in_sidebar( $args ) {
 		'excerpt'       => 'excerpt', // can be "excerpt" or "content"
 		'arrow'         => false,
 		'exc_length'    => 20,      // In words
+		'the_more'      => __( 'Read more&hellip;', 'pis' ),
 		'exc_arrow'     => false,
 		'comments'      => false,
 		'categories'    => false,
@@ -170,15 +171,16 @@ function pis_posts_in_sidebar( $args ) {
 								}
 								echo $excerpt_text; ?>
 
-								<?php /* The arrow */ ?>
-								<?php if ( $exc_arrow ) { ?>
-									&nbsp;<span class="pis-arrow">
+								<?php /* The Read more and the Arrow */ ?>
+								<?php if ( $the_more || $exc_arrow ) {
+									if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
+									<span class="pis-more">
 										<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-											&rarr;
+											<?php echo $the_more . ' ' . $the_arrow; ?>
 										</a>
 									</span>
-								<?php } ?>
-							<?php } // Close The post content ?>
+								<?php }
+							} // Close The post content ?>
 
 						</p>
 

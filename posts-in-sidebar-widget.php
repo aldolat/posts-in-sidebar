@@ -78,6 +78,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'excerpt'       => $instance['excerpt'],
 			'arrow'         => $instance['arrow'],
 			'exc_length'    => $instance['exc_length'],
+			'the_more'      => $instance['the_more'],
 			'exc_arrow'     => $instance['exc_arrow'],
 			'comments'      => $instance['comments'],
 			'categories'    => $instance['categories'],
@@ -97,7 +98,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title']      = strip_tags( $new_instance['title'] );
 		$instance['title_link'] = esc_url( $new_instance['title_link'] );
 		$allowed_html = array(
 			'a' => array(
@@ -132,6 +133,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['excerpt']       = $new_instance['excerpt'];
 		$instance['exc_length']    = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
+		$instance['the_more']      = strip_tags( $new_instance['the_more'] );
 		$instance['arrow']         = $new_instance['arrow'];
 		$instance['exc_arrow']     = strip_tags( $new_instance['exc_arrow'] );
 		$instance['comments']      = strip_tags( $new_instance['comments'] );
@@ -176,6 +178,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'excerpt'       => 'excerpt',
 			'arrow'         => false,
 			'exc_length'    => 20,
+			'the_more'      => __( 'Read more&hellip;', 'pis' ),
 			'exc_arrow'     => false,
 			'comments'      => false,
 			'categories'    => false,
@@ -491,6 +494,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Length of the excerpt (in words)', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo $instance['exc_length']; ?>" />
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'the_more' ); ?>">
+					<?php _e( 'Text for Read more', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'the_more' ); ?>" name="<?php echo $this->get_field_name( 'the_more' ); ?>" type="text" value="<?php echo esc_attr( $instance['the_more'] ); ?>" />
 			</p>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $exc_arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'exc_arrow' ); ?>" name="<?php echo $this->get_field_name( 'exc_arrow' ); ?>" />

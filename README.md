@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.6  
-**Stable tag:** 1.6.2  
+**Stable tag:** 1.7  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -52,12 +52,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ## Changelog ##
 
-### 1.6.2 ###
+### 1.7 ###
 
-* Small code improvements.
-
-### 1.6.1 ###
-
+* New: Now the user can add a custom "Read more" text.
+* Code improvements.
 * Added French translation by Thérèse Lachance.
 
 ### 1.6 ###

@@ -56,6 +56,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 		if ( $instance['intro'] ) echo '<p class="pis-intro">' . $instance['intro'] . '</p>';
 		pis_posts_in_sidebar( array(
+			'post_type'     => $instance['post_type'],
 			'author'        => $instance['author'],
 			'cat'           => $instance['cat'],
 			'tag'           => $instance['tag'],
@@ -109,6 +110,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'strong' => array(),
 		);
 		$instance['intro']         = wp_kses( $new_instance['intro'], $allowed_html );
+		$instance['post_type']     => $new_instance['post_type'];
 		$instance['author']        = $new_instance['author'];
 		$instance['cat']           = $new_instance['cat'];
 		$instance['tag']           = $new_instance['tag'];
@@ -156,6 +158,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title'         => __( 'Posts', 'pis' ),
 			'title_link'    => '',
 			'intro'         => '',
+			'post_type'     => 'post',
 			'author'        => '',
 			'cat'           => '',
 			'tag'           => '',
@@ -236,6 +239,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<hr />
 
 			<h4><?php _e( 'Get these posts', 'pis' ); ?></h4>
+
+			<p>
+				<label for="<?php echo $this->get_field_id('post_type'); ?>">
+					<?php _e( 'Post type', 'pis' ); ?>
+				</label>
+				<select name="<?php echo $this->get_field_name('post_type'); ?>">
+				</select>
+			</p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('author'); ?>">

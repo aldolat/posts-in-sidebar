@@ -35,6 +35,7 @@
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
+		'post_type'     => 'post',
 		'author'        => NULL,   // Author nicename, NOT name
 		'cat'           => NULL,   // Category slugs, comma separated
 		'tag'           => NULL,   // Tag slugs, comma separated
@@ -81,6 +82,7 @@ function pis_posts_in_sidebar( $args ) {
 
 	// Build the array to get posts
 	$params = array(
+		'post_type'          => $post_type,
 		'author_name'        => $author, // Use nicenames.
 		'category_name'      => $cat,
 		'tag'                => $tag,

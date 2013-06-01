@@ -230,7 +230,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
 				</label>
 				<textarea class="widefat" style="resize: vertical; width: 100%; height: 80px;" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>"><?php echo $instance['intro']; ?></textarea>
-				<br /><em><?php printf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code> (with <code>href</code> and <code>title</code>), <code>strong</code>, <code>em</code>' ); ?></em>
+				<br /><em><?php printf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' ); ?></em>
 			</p>
 
 			<hr />
@@ -475,11 +475,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'What type of text to display', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('excerpt'); ?>">
-					<option <?php selected( 'excerpt', $instance['excerpt']); ?> value="excerpt">
-						<?php _e( 'The excerpt', 'pis' ); ?>
+					<option <?php selected( 'full_content', $instance['excerpt']); ?> value="full_content">
+						<?php _e( 'The full content', 'pis' ); ?>
 					</option>
 					<option <?php selected( 'content', $instance['excerpt']); ?> value="content">
-						<?php _e( 'The entire content', 'pis' ); ?>
+						<?php _e( 'The text of the content', 'pis' ); ?>
+					</option>
+					<option <?php selected( 'excerpt', $instance['excerpt']); ?> value="excerpt">
+						<?php _e( 'The excerpt', 'pis' ); ?>
 					</option>
 					<option <?php selected( 'none', $instance['excerpt']); ?> value="none">
 						<?php _e( 'Do not show any text', 'pis' ); ?>
@@ -491,13 +494,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</em>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'exc_length' ); ?>">
-					<?php _e( 'Length of the excerpt (in words)', 'pis' ); ?>
+					<?php _e( 'Length of the auto-generated excerpt (in words)', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo esc_attr( $instance['exc_length'] ); ?>" />
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'the_more' ); ?>">
-					<?php _e( 'Text for Read more', 'pis' ); ?>
+					<?php _e( 'Text for More link', 'pis' ); ?>
 				</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'the_more' ); ?>" name="<?php echo $this->get_field_name( 'the_more' ); ?>" type="text" value="<?php echo esc_attr( $instance['the_more'] ); ?>" />
 			</p>

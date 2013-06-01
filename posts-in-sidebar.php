@@ -153,9 +153,11 @@ function pis_posts_in_sidebar( $args ) {
 							} ?>
 
 							<?php /* The text */ ?>
-							<?php if ( $excerpt == 'content' ) {
+							<?php if ( $excerpt == 'full_content' ) {
+								the_content();
+							} else if ( $excerpt == 'content' ) {
 								echo strip_shortcodes( $linked_posts->post->post_content );
-							} elseif ( $excerpt == 'excerpt' || $excerpt == '1' /* This condition takes care of the boolean value coming from version 1.1 */ ) {
+							} else if ( $excerpt == 'excerpt' || $excerpt == '1' ) { /* The latter condition takes care of the boolean value coming from version 1.1 */
 								// If we have a user-defined excerpt...
 								if ( $linked_posts->post->post_excerpt ) {
 									$excerpt_text = strip_tags( $linked_posts->post->post_excerpt );
@@ -171,7 +173,7 @@ function pis_posts_in_sidebar( $args ) {
 								}
 								echo $excerpt_text; ?>
 
-								<?php /* The Read more and the Arrow */ ?>
+								<?php /* The 'Read more' and the Arrow */ ?>
 								<?php if ( $the_more || $exc_arrow ) {
 									if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
 									<span class="pis-more">
@@ -180,7 +182,7 @@ function pis_posts_in_sidebar( $args ) {
 										</a>
 									</span>
 								<?php }
-							} // Close The post content ?>
+							} // Close The text ?>
 
 						</p>
 

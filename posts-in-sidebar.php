@@ -35,7 +35,7 @@
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
-		'post_type'     => 'post',
+		'post_type'     => 'post', // post, page, media, or any custom post type
 		'author'        => NULL,   // Author nicename, NOT name
 		'cat'           => NULL,   // Category slugs, comma separated
 		'tag'           => NULL,   // Tag slugs, comma separated

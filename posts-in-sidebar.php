@@ -54,7 +54,7 @@ function pis_posts_in_sidebar( $args ) {
 		'linkify_date'  => false,
 		'display_image' => false,
 		'image_size'    => 'thumbnail',
-		'excerpt'       => 'excerpt', // can be "excerpt" or "content"
+		'excerpt'       => 'excerpt', // can be "full_content", "content", "excerpt", "none"
 		'arrow'         => false,
 		'exc_length'    => 20,      // In words
 		'the_more'      => __( 'Read more&hellip;', 'pis' ),

@@ -692,24 +692,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<p>
 				<label for="<?php echo $this->get_field_id('link_to'); ?>">
-					<?php _e( 'Link to', 'pis' ); ?>
+					<?php _e( 'Link to the archive of', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('link_to'); ?>">
 					<option <?php selected( 'author', $instance['link_to']); ?> value="author">
-						<?php _e( 'Author Archive', 'pis' ); ?>
+						<?php _e( 'Author', 'pis' ); ?>
 					</option>
 					<option <?php selected( 'category', $instance['link_to']); ?> value="category">
-						<?php _e( 'Category Archive', 'pis' ); ?>
+						<?php _e( 'Category', 'pis' ); ?>
 					</option>
 					<option <?php selected( 'tag', $instance['link_to']); ?> value="tag">
-						<?php _e( 'Tag Archive', 'pis' ); ?>
+						<?php _e( 'Tag', 'pis' ); ?>
 					</option>
 					<?php $custom_post_types = (array) get_post_types( array(
-						'_builtin' => false,
+						'_builtin'            => false,
+						'exclude_from_search' => false,
 					), 'objects' );
 					foreach ( $custom_post_types as $custom_post_type ) { ?>
 				 	<option <?php selected( $custom_post_type->name, $instance['link_to'] ); ?> value="<?php echo $custom_post_type->name; ?>">
-						<?php echo $custom_post_type->labels->singular_name; ?>
+						<?php printf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ); ?>
 				 	</option>
 					<?php } ?>
 				</select>

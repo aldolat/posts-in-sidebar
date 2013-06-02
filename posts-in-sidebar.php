@@ -294,6 +294,8 @@ function pis_posts_in_sidebar( $args ) {
 			<?php /* The link to the entire archive */ ?>
 			<?php if ( $archive_link ) {
 
+				$wp_post_type = array( 'post', 'page', 'media', 'any' );
+
 				if ( $link_to == 'author' && isset( $author ) ) {
 					$author_infos = get_user_by( 'slug', $author );
 					if ( $author_infos ) {
@@ -312,10 +314,10 @@ function pis_posts_in_sidebar( $args ) {
 						$term_link = get_tag_link( $term_identity->term_id );
 						$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_identity->name );
 					}
-				} elseif ( $post_type != 'post' && $post_type != 'page' && $post_type != 'media' && $post_type != 'any' ) {
+				} elseif ( ! in_array( $post_type, $wp_post_type ) ) {
 					$term_link = get_post_type_archive_link( $link_to );
-					$obj = get_post_type_object( $link_to );
-					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $obj->labels->name );
+					$post_type_object = get_post_type_object( $link_to );
+					$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $post_type_object->labels->name );
 				}
 
 				if ( $archive_text == '' ) {

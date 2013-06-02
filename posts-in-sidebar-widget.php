@@ -712,7 +712,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				 	<option <?php selected( $custom_post_type->name, $instance['link_to'] ); ?> value="<?php echo $custom_post_type->name; ?>">
 						<?php printf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ); ?>
 				 	</option>
-					<?php } ?>
+					<?php }
+					if ( $post_formats ) {
+					foreach ( $post_formats as $post_format ) { ?>
+					<option <?php selected( $post_format->slug, $instance['link_to']); ?> value="<?php echo $post_format->slug ?>">
+						<?php printf( __( 'Post format: %s', 'pis' ), $post_format->name ); ?>
+					</option>
+					<?php }
+					} ?>
 				</select>
 			</p>
 

@@ -704,6 +704,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<option <?php selected( 'tag', $instance['link_to']); ?> value="tag">
 						<?php _e( 'Tag Archive', 'pis' ); ?>
 					</option>
+					<?php $custom_post_types = (array) get_post_types( array(
+						'_builtin' => false,
+					), 'objects' );
+					foreach ( $custom_post_types as $custom_post_type ) { ?>
+				 	<option <?php selected( $custom_post_type->name, $instance['link_to'] ); ?> value="<?php echo $custom_post_type->name; ?>">
+						<?php echo $custom_post_type->labels->singular_name; ?>
+				 	</option>
+					<?php } ?>
 				</select>
 			</p>
 

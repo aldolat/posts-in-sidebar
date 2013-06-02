@@ -294,7 +294,13 @@ function pis_posts_in_sidebar( $args ) {
 			<?php /* The link to the entire archive */ ?>
 			<?php if ( $archive_link ) {
 
-				if ( $link_to == 'category' && isset( $cat ) ) {
+				if ( $link_to == 'author' && isset( $author ) ) {
+					$author_infos = get_user_by( 'slug', $author );
+					if ( $author_infos ) {
+						$term_link = get_author_posts_url( $author_infos->ID, $author );
+						$title_text = sprintf( __( 'Display all posts by %s', 'pis' ), $author_infos->display_name );
+					}
+				} elseif ( $link_to == 'category' && isset( $cat ) ) {
 					$term_identity = get_term_by( 'slug', $cat, 'category' );
 					if ( $term_identity ) {
 						$term_link = get_category_link( $term_identity->term_id );
@@ -306,20 +312,19 @@ function pis_posts_in_sidebar( $args ) {
 						$term_link = get_tag_link( $term_identity->term_id );
 						$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_identity->name );
 					}
-				} elseif ( $link_to == 'author' && isset( $author ) ) {
-					$author_infos = get_user_by( 'slug', $author );
-					if ( $author_infos ) {
-						$term_link = get_author_posts_url( $author_infos->ID, $author );
-						$title_text = sprintf( __( 'Display all posts by %s', 'pis' ), $author_infos->display_name );
-					}
-				} ?>
+				} elseif ( $post_type != 'post' && $post_type != 'page' && $post_type != 'media' && $post_type != 'any' ) {
+					$term_link = get_post_type_archive_link( $link_to );
+					$obj = get_post_type_object( $link_to );
+					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $obj->labels->name );
+				}
 
-				<?php if ( $archive_text == '' )
-					$archive_text = __( 'More posts &rarr;', 'pis' ); ?>
+				if ( $archive_text == '' ) {
+					$archive_text = __( 'More posts &rarr;', 'pis' );
+				}
 
-				<?php if ( isset( $term_link ) ) { ?>
+				if ( isset( $term_link ) ) { ?>
 					<p class="archive-link">
-						<a href="<?php echo $term_link; ?>" title="<?php esc_attr_e( $title_text ); ?>" rel="bookmark">
+						<a href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
 							<?php echo $archive_text; ?>
 						</a>
 					</p>

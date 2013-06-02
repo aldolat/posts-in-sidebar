@@ -55,6 +55,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 ### 1.8 ###
 
 * New: added post formats as option to get posts.
+* New: added option for link to custom post type archive.
 
 ### 1.7 ###
 

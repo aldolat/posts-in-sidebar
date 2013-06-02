@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2013-06-01 12:24:45+00:00\n"
-"PO-Revision-Date: 2013-06-01 14:10+0200\n"
+"POT-Creation-Date: 2013-06-02 13:22:14+00:00\n"
+"PO-Revision-Date: 2013-06-02 15:24+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -21,140 +21,144 @@ msgstr ""
 msgid "Display a list of posts in a widget"
 msgstr "Visualizza un elenco di post in un widget"
 
-#. #-#-#-#-#  pis.pot (Posts in Sidebar 1.7)  #-#-#-#-#
+#. #-#-#-#-#  pis.pot (Posts in Sidebar 1.8)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: posts-in-sidebar-widget.php:43
 msgid "Posts in Sidebar"
 msgstr "Posts in Sidebar"
 
-#: posts-in-sidebar-widget.php:162
+#: posts-in-sidebar-widget.php:164
 msgid "Posts"
 msgstr "Post"
 
-#: posts-in-sidebar-widget.php:186 posts-in-sidebar.php:59
+#: posts-in-sidebar-widget.php:189 posts-in-sidebar.php:60
 msgid "Read more&hellip;"
 msgstr "Leggi il seguito&hellip;"
 
-#: posts-in-sidebar-widget.php:194 posts-in-sidebar.php:67
+#: posts-in-sidebar-widget.php:197 posts-in-sidebar.php:68
 msgid "Category:"
 msgstr "Categoria:"
 
-#: posts-in-sidebar-widget.php:197 posts-in-sidebar.php:70
+#: posts-in-sidebar-widget.php:200 posts-in-sidebar.php:71
 msgid "Tags:"
 msgstr "Tag:"
 
-#: posts-in-sidebar-widget.php:202 posts-in-sidebar.php:75
-#: posts-in-sidebar.php:316
+#: posts-in-sidebar-widget.php:205 posts-in-sidebar.php:76
+#: posts-in-sidebar.php:328
 msgid "More posts &rarr;"
 msgstr "Altri post &rarr;"
 
-#: posts-in-sidebar-widget.php:203 posts-in-sidebar.php:76
+#: posts-in-sidebar-widget.php:206 posts-in-sidebar.php:77
 msgid "No posts yet."
 msgstr "Ancora nessun post."
 
-#: posts-in-sidebar-widget.php:223
+#: posts-in-sidebar-widget.php:226
 msgid "The title of the widget"
 msgstr "Titolo del widget"
 
-#: posts-in-sidebar-widget.php:227 posts-in-sidebar-widget.php:342
+#: posts-in-sidebar-widget.php:230 posts-in-sidebar-widget.php:364
 msgid "Title"
 msgstr "Titolo"
 
-#: posts-in-sidebar-widget.php:234
+#: posts-in-sidebar-widget.php:237
 msgid "Link for the title of the widget"
 msgstr "Link per il titolo del widget"
 
-#: posts-in-sidebar-widget.php:241
+#: posts-in-sidebar-widget.php:244
 msgid "Introductory text for the widget"
 msgstr "Testo introduttivo al widget"
 
-#: posts-in-sidebar-widget.php:244
+#: posts-in-sidebar-widget.php:247
 msgid "Allowed HTML: %s. Other tags will be stripped."
 msgstr "HTML consentito: %s. Gli altri tag verranno eliminati."
 
-#: posts-in-sidebar-widget.php:249
+#: posts-in-sidebar-widget.php:252
 msgid "Get these posts"
 msgstr "Preleva questi post"
 
-#: posts-in-sidebar-widget.php:253
+#: posts-in-sidebar-widget.php:256
 msgid "Post type"
 msgstr "Tipo di post"
 
-#: posts-in-sidebar-widget.php:257 posts-in-sidebar-widget.php:275
-#: posts-in-sidebar-widget.php:294 posts-in-sidebar-widget.php:313
-#: posts-in-sidebar-widget.php:389
+#: posts-in-sidebar-widget.php:260 posts-in-sidebar-widget.php:278
+#: posts-in-sidebar-widget.php:297 posts-in-sidebar-widget.php:316
+#: posts-in-sidebar-widget.php:335 posts-in-sidebar-widget.php:411
 msgid "Any"
 msgstr "Qualunque"
 
-#: posts-in-sidebar-widget.php:270
+#: posts-in-sidebar-widget.php:273 posts-in-sidebar-widget.php:699
 msgid "Author"
 msgstr "Autore"
 
-#: posts-in-sidebar-widget.php:290
+#: posts-in-sidebar-widget.php:293 posts-in-sidebar-widget.php:702
 msgid "Category"
 msgstr "Categoria"
 
-#: posts-in-sidebar-widget.php:309
+#: posts-in-sidebar-widget.php:312 posts-in-sidebar-widget.php:705
 msgid "Tag"
 msgstr "Tag"
 
-#: posts-in-sidebar-widget.php:328
+#: posts-in-sidebar-widget.php:331
+msgid "Post format"
+msgstr "Formato del post"
+
+#: posts-in-sidebar-widget.php:350
 msgid "How many posts to display"
 msgstr "Quanti post visualizzare"
 
-#: posts-in-sidebar-widget.php:335
+#: posts-in-sidebar-widget.php:357
 msgid "Order by"
 msgstr "Ordina per"
 
-#: posts-in-sidebar-widget.php:339
+#: posts-in-sidebar-widget.php:361
 msgid "Date"
 msgstr "Data di creazione"
 
-#: posts-in-sidebar-widget.php:345
+#: posts-in-sidebar-widget.php:367
 msgid "ID"
 msgstr "Numero identificativo"
 
-#: posts-in-sidebar-widget.php:348
+#: posts-in-sidebar-widget.php:370
 msgid "Modified"
 msgstr "Data di modifica"
 
-#: posts-in-sidebar-widget.php:351
+#: posts-in-sidebar-widget.php:373
 msgid "Random"
 msgstr "A caso"
 
-#: posts-in-sidebar-widget.php:358
+#: posts-in-sidebar-widget.php:380
 msgid "Order"
 msgstr "Ordine"
 
-#: posts-in-sidebar-widget.php:362
+#: posts-in-sidebar-widget.php:384
 msgid "Ascending"
 msgstr "Ascendente"
 
-#: posts-in-sidebar-widget.php:365
+#: posts-in-sidebar-widget.php:387
 msgid "Descending"
 msgstr "Discendente"
 
-#: posts-in-sidebar-widget.php:372
+#: posts-in-sidebar-widget.php:394
 msgid "Number of posts to skip"
 msgstr "Numero di post da saltare"
 
-#: posts-in-sidebar-widget.php:379
+#: posts-in-sidebar-widget.php:401
 msgid "Post status"
 msgstr "Stato del post"
 
-#: posts-in-sidebar-widget.php:396
+#: posts-in-sidebar-widget.php:418
 msgid "Post meta key"
 msgstr "Meta key del post"
 
-#: posts-in-sidebar-widget.php:403
+#: posts-in-sidebar-widget.php:425
 msgid "Post meta value"
 msgstr "Meta value del post"
 
-#: posts-in-sidebar-widget.php:411
+#: posts-in-sidebar-widget.php:433
 msgid "Ignore sticky posts"
 msgstr "Ignora i post in evidenza"
 
-#: posts-in-sidebar-widget.php:413
+#: posts-in-sidebar-widget.php:435
 msgid ""
 "Sticky posts are automatically ignored if you set up an author or a taxonomy "
 "in this widget."
@@ -162,51 +166,51 @@ msgstr ""
 "I post in evidenza sono automaticamente ignorati se si imposta l'autore o "
 "una tassonomia in questo widget."
 
-#: posts-in-sidebar-widget.php:420
+#: posts-in-sidebar-widget.php:442
 msgid "Exclude these posts"
 msgstr "Escludi questi post"
 
-#: posts-in-sidebar-widget.php:424
+#: posts-in-sidebar-widget.php:446
 msgid "Use <code>CTRL+clic</code> to select/deselect multiple items."
 msgstr "Usa <code>CTRL+clic</code> per selezionare/deselezionare più voci."
 
-#: posts-in-sidebar-widget.php:430
+#: posts-in-sidebar-widget.php:452
 msgid "Exclude posts from these categories"
 msgstr "Escludi i post con queste categorie"
 
-#: posts-in-sidebar-widget.php:443
+#: posts-in-sidebar-widget.php:465
 msgid "Exclude posts from these tags"
 msgstr "Escludi i post con questi tag"
 
-#: posts-in-sidebar-widget.php:456
+#: posts-in-sidebar-widget.php:478
 msgid "The title of the post"
 msgstr "Il titolo del post"
 
-#: posts-in-sidebar-widget.php:461
+#: posts-in-sidebar-widget.php:483
 msgid "Display the title of the post"
 msgstr "Mostra il titolo del post"
 
-#: posts-in-sidebar-widget.php:468
+#: posts-in-sidebar-widget.php:490
 msgid "Link the title to the post"
 msgstr "Metti il link nel titolo del post"
 
-#: posts-in-sidebar-widget.php:475
+#: posts-in-sidebar-widget.php:497
 msgid "Show an arrow after the title"
 msgstr "Mostra una freccia dopo il titolo"
 
-#: posts-in-sidebar-widget.php:481
+#: posts-in-sidebar-widget.php:503
 msgid "The featured image of the post"
 msgstr "L'immagine in evidenza del post"
 
-#: posts-in-sidebar-widget.php:486
+#: posts-in-sidebar-widget.php:508
 msgid "Display the featured image of the post"
 msgstr "Mostra l'immagine in evidenza del post"
 
-#: posts-in-sidebar-widget.php:492
+#: posts-in-sidebar-widget.php:514
 msgid "Size of the thumbnail"
 msgstr "Dimensioni dell'immagine"
 
-#: posts-in-sidebar-widget.php:507
+#: posts-in-sidebar-widget.php:529
 msgid ""
 "Note that in order to use image sizes different from the WordPress "
 "standards, add them to your functions.php. See the %1$sCodex%2$s for further "
@@ -216,180 +220,180 @@ msgstr ""
 "WordPress, esse vanno aggiunte nel file functions.php. Si legga il %1$sCodex"
 "%2$s per ulteriori informazioni."
 
-#: posts-in-sidebar-widget.php:511
+#: posts-in-sidebar-widget.php:533
 msgid "You can also use a plugin that could help you in doing it."
 msgstr "Un plugin potrebbe aiutarti a farlo."
 
-#: posts-in-sidebar-widget.php:517
+#: posts-in-sidebar-widget.php:539
 msgid "The text of the post"
 msgstr "Il testo del post"
 
-#: posts-in-sidebar-widget.php:521
+#: posts-in-sidebar-widget.php:543
 msgid "What type of text to display"
 msgstr "Che tipo di testo visualizzare"
 
-#: posts-in-sidebar-widget.php:525
+#: posts-in-sidebar-widget.php:547
 msgid "The full content"
 msgstr "L'intero contenuto"
 
-#: posts-in-sidebar-widget.php:528
+#: posts-in-sidebar-widget.php:550
 msgid "The text of the content"
 msgstr "Il testo del post"
 
-#: posts-in-sidebar-widget.php:531
+#: posts-in-sidebar-widget.php:553
 msgid "The excerpt"
 msgstr "Il riassunto del post"
 
-#: posts-in-sidebar-widget.php:534
+#: posts-in-sidebar-widget.php:556
 msgid "Do not show any text"
 msgstr "Non mostrare alcun testo"
 
-#: posts-in-sidebar-widget.php:541
+#: posts-in-sidebar-widget.php:563
 msgid "Length of the auto-generated excerpt (in words)"
 msgstr "Lunghezza del riassunto auto-generato (in parole)"
 
-#: posts-in-sidebar-widget.php:548
+#: posts-in-sidebar-widget.php:570
 msgid "Text for More link"
 msgstr "Testo per il link \"Leggi il seguito&hellip;\""
 
-#: posts-in-sidebar-widget.php:556
+#: posts-in-sidebar-widget.php:578
 msgid "Show an arrow after the excerpt"
 msgstr "Mostra una freccia dopo il riassunto"
 
-#: posts-in-sidebar-widget.php:564
+#: posts-in-sidebar-widget.php:586
 msgid "Author, date and comments"
 msgstr "Autore, data e commenti"
 
-#: posts-in-sidebar-widget.php:569
+#: posts-in-sidebar-widget.php:591
 msgid "Display the author of the post"
 msgstr "Mostra l'autore del post"
 
-#: posts-in-sidebar-widget.php:576
+#: posts-in-sidebar-widget.php:598
 msgid "Link the author to his archive"
 msgstr "Metti il link all'archivio dell'autore"
 
-#: posts-in-sidebar-widget.php:583
+#: posts-in-sidebar-widget.php:605
 msgid "Display the date of the post"
 msgstr "Mostra la data del post"
 
-#: posts-in-sidebar-widget.php:590
+#: posts-in-sidebar-widget.php:612
 msgid "Link the date to the post"
 msgstr "Metti il link nella data del post"
 
-#: posts-in-sidebar-widget.php:597
+#: posts-in-sidebar-widget.php:619
 msgid "Display the number of comments"
 msgstr "Mostra il numero dei commenti"
 
-#: posts-in-sidebar-widget.php:603
+#: posts-in-sidebar-widget.php:625
 msgid "The categories of the post"
 msgstr "Le categorie del post"
 
-#: posts-in-sidebar-widget.php:608
+#: posts-in-sidebar-widget.php:630
 msgid "Show the categories of the post"
 msgstr "Mostra le categorie del post"
 
-#: posts-in-sidebar-widget.php:614
+#: posts-in-sidebar-widget.php:636
 msgid "Text before categories list"
 msgstr "Testo prima dell'elenco delle categorie"
 
-#: posts-in-sidebar-widget.php:621
+#: posts-in-sidebar-widget.php:643
 msgid "Use this separator between categories"
 msgstr "Usa questo separatore fra le categorie"
 
-#: posts-in-sidebar-widget.php:624 posts-in-sidebar-widget.php:657
+#: posts-in-sidebar-widget.php:646 posts-in-sidebar-widget.php:679
 msgid "A space will be added after the separator."
 msgstr "Dopo il separatore verrà aggiunto uno spazio."
 
-#: posts-in-sidebar-widget.php:629
+#: posts-in-sidebar-widget.php:651
 msgid "The tags of the post"
 msgstr "I tag del post"
 
-#: posts-in-sidebar-widget.php:634
+#: posts-in-sidebar-widget.php:656
 msgid "Show the tags of the post"
 msgstr "Mostra i tag del post"
 
-#: posts-in-sidebar-widget.php:640
+#: posts-in-sidebar-widget.php:662
 msgid "Text before tags list"
 msgstr "Testo prima dell'elenco dei tag"
 
-#: posts-in-sidebar-widget.php:647
+#: posts-in-sidebar-widget.php:669
 msgid "Use this hashtag"
 msgstr "Usa questo hashtag"
 
-#: posts-in-sidebar-widget.php:654
+#: posts-in-sidebar-widget.php:676
 msgid "Use this separator between tags"
 msgstr "Usa questo separatore fra i tag"
 
-#: posts-in-sidebar-widget.php:662
+#: posts-in-sidebar-widget.php:684
 msgid "The link to the archive"
 msgstr "Il link all'archivio della tassonomia"
 
-#: posts-in-sidebar-widget.php:667
+#: posts-in-sidebar-widget.php:689
 msgid "Show the link to the taxonomy archive"
 msgstr "Mostra il link all'archivio della tassonomia"
 
-#: posts-in-sidebar-widget.php:673
-msgid "Link to"
-msgstr "Link a"
+#: posts-in-sidebar-widget.php:695
+msgid "Link to the archive of"
+msgstr "Link all'archivio di"
 
-#: posts-in-sidebar-widget.php:677
-msgid "Author Archive"
-msgstr "Archivio dell'autore"
+#: posts-in-sidebar-widget.php:713
+msgid "Post type: %s"
+msgstr "Tipo di post: %s"
 
-#: posts-in-sidebar-widget.php:680
-msgid "Category Archive"
-msgstr "Archivio della categoria"
+#: posts-in-sidebar-widget.php:719
+msgid "Post format: %s"
+msgstr "Formato del post: %s"
 
-#: posts-in-sidebar-widget.php:683
-msgid "Tag Archive"
-msgstr "Archivio del tag"
-
-#: posts-in-sidebar-widget.php:690
+#: posts-in-sidebar-widget.php:728
 msgid "Use this text for archive link"
 msgstr "Usa questo testo per il link all'archivio"
 
-#: posts-in-sidebar-widget.php:695
+#: posts-in-sidebar-widget.php:733
 msgid ""
 "Please, note that if you don't select any taxonomy, the link won't appear."
 msgstr ""
 "Si noti che, se non viene scelta alcuna tassonomia, il link non verrà "
 "mostrato."
 
-#: posts-in-sidebar-widget.php:701
+#: posts-in-sidebar-widget.php:739
 msgid "Use this text when there are no posts"
 msgstr "Usa questo testo quando non ci sono post"
 
-#: posts-in-sidebar.php:184
-msgid "Read the full post"
-msgstr "Leggi il post completo"
-
-#: posts-in-sidebar.php:205
-msgid "View all posts by %s"
-msgstr "Visualizza tutti i post di %s"
-
-#: posts-in-sidebar.php:224
+#: posts-in-sidebar.php:132 posts-in-sidebar.php:226
 msgid "Permalink to %s"
 msgstr "Permalink a %s"
 
-#: posts-in-sidebar.php:258
+#: posts-in-sidebar.php:186
+msgid "Read the full post"
+msgstr "Leggi il post completo"
+
+#: posts-in-sidebar.php:207
+msgid "View all posts by %s"
+msgstr "Visualizza tutti i post di %s"
+
+#: posts-in-sidebar.php:260
 msgid "Leave a comment"
 msgstr "Lascia un commento"
 
-#: posts-in-sidebar.php:258
+#: posts-in-sidebar.php:260
 msgid "1 Comment"
 msgstr "1 commento"
 
-#: posts-in-sidebar.php:258
+#: posts-in-sidebar.php:260
 msgid "% Comments"
 msgstr "% commenti"
 
-#: posts-in-sidebar.php:299 posts-in-sidebar.php:305
+#: posts-in-sidebar.php:303
+msgid "Display all posts by %s"
+msgstr "Visualizza tutti i post di %s"
+
+#: posts-in-sidebar.php:309 posts-in-sidebar.php:315 posts-in-sidebar.php:320
 msgid "Display all posts archived as %s"
 msgstr "Visualizza tutti i post archiviati come %s"
 
-#: posts-in-sidebar.php:311
-msgid "Display all posts by %s"
-msgstr "Visualizza tutti i post di %s"
+#: posts-in-sidebar.php:324
+msgid "Display all posts with post format %s"
+msgstr "Visualizza tutti i post con formato di post %s"
 
 #. Plugin URI of the plugin/theme
 msgid "http://dev.aldolat.it/projects/posts-in-sidebar/"
@@ -406,6 +410,18 @@ msgstr "Aldo Latino"
 #. Author URI of the plugin/theme
 msgid "http://www.aldolat.it/"
 msgstr "http://www.aldolat.it/"
+
+#~ msgid "Link to"
+#~ msgstr "Link a"
+
+#~ msgid "Author Archive"
+#~ msgstr "Archivio dell'autore"
+
+#~ msgid "Category Archive"
+#~ msgstr "Archivio della categoria"
+
+#~ msgid "Tag Archive"
+#~ msgstr "Archivio del tag"
 
 #~ msgid "Shortcodes will be stripped."
 #~ msgstr "Gli shortcode verranno eliminati."

@@ -318,7 +318,7 @@ function pis_posts_in_sidebar( $args ) {
 					$term_link = get_post_type_archive_link( $link_to );
 					$post_type_object = get_post_type_object( $link_to );
 					$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $post_type_object->labels->name );
-				} elseif ( term_exists( $link_to, 'post_format' ) ) {
+				} elseif ( term_exists( $link_to, 'post_format' ) && $link_to == $post_format ) {
 					$term_link = get_post_format_link( substr( $link_to, 12 ) );
 					$term_object = get_term_by( 'slug', $link_to, 'post_format' );
 					$title_text = sprintf( __( 'Display all posts with post format %s', 'pis' ), $term_object->name );

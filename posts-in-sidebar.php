@@ -212,7 +212,7 @@ function pis_posts_in_sidebar( $args ) {
 									$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
 									$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
 									?>
-									<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="bookmark">
+									<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
 										<?php echo get_the_author(); ?></a>
 								<?php } else {
 									echo get_the_author();

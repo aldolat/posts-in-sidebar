@@ -36,7 +36,7 @@ You have to edit your CSS file (usually `style.css`). You can target the image a
 
 = How can I add new size for my images? =
 
-You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.org/support/plugin/posts-in-sidebar) of this plugin, for more informations.
+You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.org/support/plugin/posts-in-sidebar) of this plugin, for more informations. Or you can use [a plugin](http://wordpress.org/plugins/simple-image-sizes/) that can do that for you.
 
 == Screenshots ==
 
@@ -51,6 +51,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 * New: added option for link to custom post type archive.
 * New: added post format as option to get posts.
 * New: added option for link to post format archive.
+* Other minor changes.
 
 = 1.7 =
 

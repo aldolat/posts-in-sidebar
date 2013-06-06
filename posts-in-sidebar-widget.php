@@ -81,10 +81,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'the_more'       => $instance['the_more'],
 			'exc_arrow'      => $instance['exc_arrow'],
 			'display_author' => $instance['display_author'],
+			'author_text'    => $instance['author_text'],
 			'linkify_author' => $instance['linkify_author'],
 			'display_date'   => $instance['display_date'],
+			'date_text'      => $instance['date_text'],
 			'linkify_date'   => $instance['linkify_date'],
 			'comments'       => $instance['comments'],
+			'comments_text'  => $instance['comments_text'],
+			'utility_sep'    => $instance['utility_sep'],
 			'categories'     => $instance['categories'],
 			'categ_text'     => $instance['categ_text'],
 			'categ_sep'      => $instance['categ_sep'],
@@ -132,19 +136,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['ignore_sticky']  = $new_instance['ignore_sticky'];
 		$instance['display_title']  = $new_instance['display_title'];
 		$instance['link_on_title']  = $new_instance['link_on_title'];
+		$instance['arrow']          = $new_instance['arrow'];
 		$instance['display_image']  = $new_instance['display_image'];
 		$instance['image_size']     = $new_instance['image_size'];
 		$instance['excerpt']        = $new_instance['excerpt'];
 		$instance['exc_length']     = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
 		$instance['the_more']       = strip_tags( $new_instance['the_more'] );
-		$instance['arrow']          = $new_instance['arrow'];
-		$instance['exc_arrow']      = strip_tags( $new_instance['exc_arrow'] );
+		$instance['exc_arrow']      = $new_instance['exc_arrow'];
 		$instance['display_author'] = $new_instance['display_author'];
+		$instance['author_text']    = strip_tags( $new_instance['author_text'] );
 		$instance['linkify_author'] = $new_instance['linkify_author'];
 		$instance['display_date']   = $new_instance['display_date'];
+		$instance['date_text']      = strip_tags( $new_instance['date_text'] );
 		$instance['linkify_date']   = $new_instance['linkify_date'];
-		$instance['comments']       = strip_tags( $new_instance['comments'] );
+		$instance['comments']       = $new_instance['comments'];
+		$instance['comments_text']  = strip_tags( $new_instance['comments_text'] );
+		$instance['utility_sep']    = strip_tags( $new_instance['utility_sep'] );
 		$instance['categories']     = $new_instance['categories'];
 		$instance['categ_text']     = strip_tags( $new_instance['categ_text'] );
 		$instance['categ_sep']      = strip_tags( $new_instance['categ_sep'] );
@@ -181,18 +189,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ignore_sticky'  => false,
 			'display_title'  => true,
 			'link_on_title'  => true,
+			'arrow'          => false,
 			'display_image'  => false,
 			'image_size'     => 'thumbnail',
 			'excerpt'        => 'excerpt',
-			'arrow'          => false,
 			'exc_length'     => 20,
 			'the_more'       => __( 'Read more&hellip;', 'pis' ),
 			'exc_arrow'      => false,
 			'display_author' => false,
+			'author_text'    => __( 'By', 'pis' ),
 			'linkify_author' => false,
 			'display_date'   => false,
+			'date_text'      => __( 'Published on', 'pis' ),
 			'linkify_date'   => false,
 			'comments'       => false,
+			'comments_text'  => __( 'Comments:', 'pis' ),
+			'utility_sep'    => '&middot;',
 			'categories'     => false,
 			'categ_text'     => __( 'Category:', 'pis' ),
 			'categ_sep'      => ',',
@@ -526,11 +538,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 				<br />
 				<em>
-					<?php printf( __(
-						'Note that in order to use image sizes different from the WordPress standards, add them to your functions.php. See the %1$sCodex%2$s for further information.', 'pis'),
-						'<a href="http://codex.wordpress.org/Function_Reference/add_image_size">', '</a>'
+					<?php printf(
+						__( 'Note that in order to use image sizes different from the WordPress standards, add them to your %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'pis' ),
+						'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
 					); ?>
-					<?php _e( 'You can also use a plugin that could help you in doing it.', 'pis' ); ?>
+					<?php printf(
+						__( 'You can also use %1$sa plugin%2$s that could help you in doing it.', 'pis' ),
+						'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
+					); ?>
 				</em>
 			</p>
 
@@ -593,6 +608,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			</p>
 
 			<p>
+				<label for="<?php echo $this->get_field_id( 'author_text' ); ?>">
+					<?php _e( 'Use this text before author\'s name', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'author_text' ); ?>" name="<?php echo $this->get_field_name( 'author_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['author_text'] ); ?>" />
+			</p>
+
+			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $linkify_author ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_author' ); ?>" name="<?php echo $this->get_field_name( 'linkify_author' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'linkify_author' ); ?>">
 					<?php _e( 'Link the author to his archive', 'pis' ); ?>
@@ -607,6 +629,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			</p>
 
 			<p>
+				<label for="<?php echo $this->get_field_id( 'date_text' ); ?>">
+					<?php _e( 'Use this text before date', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'date_text' ); ?>" name="<?php echo $this->get_field_name( 'date_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['date_text'] ); ?>" />
+			</p>
+
+			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $linkify_date ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_date' ); ?>" name="<?php echo $this->get_field_name( 'linkify_date' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'linkify_date' ); ?>">
 					<?php _e( 'Link the date to the post', 'pis' ); ?>
@@ -618,6 +647,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'comments' ); ?>">
 					<?php _e( 'Display the number of comments', 'pis' ); ?>
 				</label>
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id( 'comments_text' ); ?>">
+					<?php _e( 'Use this text before the comments number', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'comments_text' ); ?>" name="<?php echo $this->get_field_name( 'comments_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['comments_text'] ); ?>" />
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id( 'utility_sep' ); ?>">
+					<?php _e( 'Use this separator between author, date and comments', 'pis' ); ?>
+				</label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'utility_sep' ); ?>" name="<?php echo $this->get_field_name( 'utility_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['utility_sep'] ); ?>" />
+				<em><?php _e( 'A space will be added before and after the separator.', 'pis' ); ?></em>
 			</p>
 
 			<hr />

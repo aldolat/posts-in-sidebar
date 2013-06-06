@@ -52,18 +52,22 @@ function pis_posts_in_sidebar( $args ) {
 		'ignore_sticky'  => false,
 		'display_title'  => true,
 		'link_on_title'  => true,
+		'arrow'          => false,
 		'display_image'  => false,
 		'image_size'     => 'thumbnail',
 		'excerpt'        => 'excerpt', // can be "full_content", "content", "excerpt", "none"
-		'arrow'          => false,
 		'exc_length'     => 20,      // In words
 		'the_more'       => __( 'Read more&hellip;', 'pis' ),
 		'exc_arrow'      => false,
 		'display_author' => false,
+		'author_text'    => __( 'By', 'pis' ),
 		'linkify_author' => false,
 		'display_date'   => false,
+		'date_text'      => __( 'Published on', 'pis' ),
 		'linkify_date'   => false,
 		'comments'       => false,
+		'comments_text'  => __( 'Comments:', 'pis' ),
+		'utility_sep'    => '&middot;',
 		'categories'     => false,
 		'categ_text'     => __( 'Category:', 'pis' ),
 		'categ_sep'      => ',',
@@ -85,21 +89,21 @@ function pis_posts_in_sidebar( $args ) {
 
 	// Build the array to get posts
 	$params = array(
-		'post_type'          => $post_type,
-		'author_name'        => $author, // Use nicenames.
-		'category_name'      => $cat,
-		'tag'                => $tag,
-		'post_format'        => $post_format,
-		'posts_per_page'     => $number,
-		'orderby'            => $orderby,
-		'order'              => $order,
-		'category__not_in'   => $cat_not_in,
-		'tag__not_in'        => $tag_not_in,
-		'offset'             => $offset_number,
-		'post_status'        => $post_status,
-		'meta_key'           => $post_meta_key,
-		'meta_value'         => $post_meta_val,
-		'ignore_sticky_posts'=> $ignore_sticky
+		'post_type'           => $post_type,
+		'author_name'         => $author, // Use nicenames.
+		'category_name'       => $cat,
+		'tag'                 => $tag,
+		'post_format'         => $post_format,
+		'posts_per_page'      => $number,
+		'orderby'             => $orderby,
+		'order'               => $order,
+		'category__not_in'    => $cat_not_in,
+		'tag__not_in'         => $tag_not_in,
+		'offset'              => $offset_number,
+		'post_status'         => $post_status,
+		'meta_key'            => $post_meta_key,
+		'meta_value'          => $post_meta_val,
+		'ignore_sticky_posts' => $ignore_sticky
 	);
 	$linked_posts = new WP_Query( $params ); ?>
 
@@ -184,7 +188,7 @@ function pis_posts_in_sidebar( $args ) {
 									if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
 									<span class="pis-more">
 										<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-											<?php echo $the_more . ' ' . $the_arrow; ?>
+											<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
 										</a>
 									</span>
 								<?php }
@@ -202,14 +206,14 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The author */ ?>
 						<?php if ( $display_author ) { ?>
 							<span class="pis-author">
-								<?php if ( $linkify_author ) { ?>
+								<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
+								if ( $linkify_author ) { ?>
 									<?php
 									$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
 									$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
 									?>
 									<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="bookmark">
-										<?php echo get_the_author(); ?>
-									</a>
+										<?php echo get_the_author(); ?></a>
 								<?php } else {
 									echo get_the_author();
 								} ?>
@@ -219,14 +223,14 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The date */ ?>
 						<?php if ( $display_date ) { ?>
 							<?php if ( $display_author ) { ?>
-								<span class="pis-separator"> - </span>
+								<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 							<?php } ?>
 							<span class="pis-date">
-								<?php if ( $linkify_date ) { ?>
+								<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
+								if ( $linkify_date ) { ?>
 									<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
 									<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
-										<?php echo get_the_date(); ?>
-									</a>
+										<?php echo get_the_date(); ?></a>
 								<?php } else {
 									echo get_the_date();
 								} ?>
@@ -254,10 +258,11 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The comments */ ?>
 						<?php if ( $comments ) { ?>
 							<?php if ( $display_author || $display_date ) { ?>
-								<span class="pis-separator"> - </span>
+								<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 							<?php } ?>
 							<span class="pis-comments">
-								<?php comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
+								<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
+								comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
 							</span>
 						<?php } ?>
 
@@ -270,8 +275,7 @@ function pis_posts_in_sidebar( $args ) {
 						$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
 						if ( $list_of_categories ) { ?>
 							<p class="pis-categories-links">
-								<?php if ( $categ_text ) $categ_text_out = $categ_text . '&nbsp;'; ?>
-								<?php echo $categ_text_out; ?><?php echo $list_of_categories; ?>
+								<?php if ( $categ_text ) echo $categ_text . '&nbsp;'; ?><?php echo $list_of_categories; ?>
 							</p>
 						<?php }
 					} ?>
@@ -281,8 +285,7 @@ function pis_posts_in_sidebar( $args ) {
 						$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 						if ( $list_of_tags ) { ?>
 							<p class="pis-tags-links">
-								<?php if ( $tags_text ) $tags_text_out = $tags_text . '&nbsp;'; ?>
-								<?php echo $tags_text_out; ?><?php echo $list_of_tags; ?>
+								<?php if ( $tags_text ) echo $tags_text . '&nbsp;'; ?><?php echo $list_of_tags; ?>
 							</p>
 						<?php }
 					} ?>

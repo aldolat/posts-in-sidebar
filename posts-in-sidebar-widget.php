@@ -305,14 +305,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Category', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('cat'); ?>">
-					<option <?php selected( 'NULL', $instance['cat']); ?> value="NULL">
+					<option <?php selected( 'NULL', $instance['cat'] ); ?> value="NULL">
 						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php
 						$my_cats = get_categories( array( 'hide_empty' => 0 ) );
 						foreach( $my_cats as $my_cat ) :
 					?>
-						<option <?php selected( $my_cat->slug, $instance['cat']); ?> value="<?php echo $my_cat->slug; ?>">
+						<option <?php selected( $my_cat->slug, $instance['cat'] ); ?> value="<?php echo $my_cat->slug; ?>">
 							<?php echo $my_cat->cat_name; ?>
 						</option>
 					<?php endforeach; ?>
@@ -324,14 +324,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Tag', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('tag'); ?>">
-					<option <?php selected( 'NULL', $instance['tag']); ?> value="NULL">
+					<option <?php selected( 'NULL', $instance['tag'] ); ?> value="NULL">
 						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php
 						$my_tags = get_tags( array( 'hide_empty' => 0 ) );
 						foreach( $my_tags as $my_tag ) :
 					?>
-						<option <?php selected( $my_tag->slug, $instance['tag']); ?> value="<?php echo $my_tag->slug; ?>">
+						<option <?php selected( $my_tag->slug, $instance['tag'] ); ?> value="<?php echo $my_tag->slug; ?>">
 							<?php echo $my_tag->name; ?>
 						</option>
 					<?php endforeach; ?>
@@ -343,13 +343,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Post format', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('post_format'); ?>">
-					<option <?php selected( '', $instance['post_format']); ?> value="">
+					<option <?php selected( '', $instance['post_format'] ); ?> value="">
 						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 					<?php $post_formats = get_terms( 'post_format' );
 					if ( $post_formats ) {
 						foreach ( $post_formats as $post_format ) { ?>
-							<option <?php selected( $post_format->slug, $instance['post_format']); ?> value="<?php echo $post_format->slug ?>">
+							<option <?php selected( $post_format->slug, $instance['post_format'] ); ?> value="<?php echo $post_format->slug ?>">
 								<?php echo $post_format->name; ?>
 							</option>
 						<?php }
@@ -369,19 +369,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Order by', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('orderby'); ?>">
-					<option <?php selected( 'date', $instance['orderby']); ?> value="date">
+					<option <?php selected( 'date', $instance['orderby'] ); ?> value="date">
 						<?php _e( 'Date', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'title', $instance['orderby']); ?> value="title">
+					<option <?php selected( 'title', $instance['orderby'] ); ?> value="title">
 						<?php _e( 'Title', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'id', $instance['orderby']); ?> value="id">
+					<option <?php selected( 'id', $instance['orderby'] ); ?> value="id">
 						<?php _e( 'ID', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'modified', $instance['orderby']); ?> value="modified">
+					<option <?php selected( 'modified', $instance['orderby'] ); ?> value="modified">
 						<?php _e( 'Modified', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'rand', $instance['orderby']); ?> value="rand">
+					<option <?php selected( 'rand', $instance['orderby'] ); ?> value="rand">
 						<?php _e( 'Random', 'pis' ); ?>
 					</option>
 				</select>
@@ -392,10 +392,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Order', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('order'); ?>">
-					<option <?php selected( 'ASC', $instance['order']); ?> value="ASC">
+					<option <?php selected( 'ASC', $instance['order'] ); ?> value="ASC">
 						<?php _e( 'Ascending', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'DESC', $instance['order']); ?> value="DESC">
+					<option <?php selected( 'DESC', $instance['order'] ); ?> value="DESC">
 						<?php _e( 'Descending', 'pis' ); ?>
 					</option>
 				</select>
@@ -415,11 +415,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<select name="<?php echo $this->get_field_name('post_status'); ?>">
 					<?php $statuses = get_post_stati( '', 'objects' );
 					foreach( $statuses as $status ) { ?>
-						<option <?php selected( $status->name, $instance['post_status']); ?> value="<?php echo $status->name; ?>">
+						<option <?php selected( $status->name, $instance['post_status'] ); ?> value="<?php echo $status->name; ?>">
 							<?php echo $status->label; ?>
 						</option>
 					<?php } ?>
-					<option <?php selected( 'any', $instance['post_status']); ?> value="any">
+					<option <?php selected( 'any', $instance['post_status'] ); ?> value="any">
 						<?php _e( 'Any', 'pis' ); ?>
 					</option>
 				</select>
@@ -558,16 +558,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'What type of text to display', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('excerpt'); ?>">
-					<option <?php selected( 'full_content', $instance['excerpt']); ?> value="full_content">
+					<option <?php selected( 'full_content', $instance['excerpt'] ); ?> value="full_content">
 						<?php _e( 'The full content', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'content', $instance['excerpt']); ?> value="content">
+					<option <?php selected( 'content', $instance['excerpt'] ); ?> value="content">
 						<?php _e( 'The text of the content', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'excerpt', $instance['excerpt']); ?> value="excerpt">
+					<option <?php selected( 'excerpt', $instance['excerpt'] ); ?> value="excerpt">
 						<?php _e( 'The excerpt', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'none', $instance['excerpt']); ?> value="none">
+					<option <?php selected( 'none', $instance['excerpt'] ); ?> value="none">
 						<?php _e( 'Do not show any text', 'pis' ); ?>
 					</option>
 				</select>
@@ -739,13 +739,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Link to the archive of', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('link_to'); ?>">
-					<option <?php selected( 'author', $instance['link_to']); ?> value="author">
+					<option <?php selected( 'author', $instance['link_to'] ); ?> value="author">
 						<?php _e( 'Author', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'category', $instance['link_to']); ?> value="category">
+					<option <?php selected( 'category', $instance['link_to'] ); ?> value="category">
 						<?php _e( 'Category', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'tag', $instance['link_to']); ?> value="tag">
+					<option <?php selected( 'tag', $instance['link_to'] ); ?> value="tag">
 						<?php _e( 'Tag', 'pis' ); ?>
 					</option>
 					<?php $custom_post_types = (array) get_post_types( array(
@@ -759,7 +759,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php }
 					if ( $post_formats ) {
 					foreach ( $post_formats as $post_format ) { ?>
-					<option <?php selected( $post_format->slug, $instance['link_to']); ?> value="<?php echo $post_format->slug ?>">
+					<option <?php selected( $post_format->slug, $instance['link_to'] ); ?> value="<?php echo $post_format->slug ?>">
 						<?php printf( __( 'Post format: %s', 'pis' ), $post_format->name ); ?>
 					</option>
 					<?php }

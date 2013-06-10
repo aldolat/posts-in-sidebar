@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.8
+ * Version: 1.8.1
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -275,7 +275,9 @@ function pis_posts_in_sidebar( $args ) {
 						$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
 						if ( $list_of_categories ) { ?>
 							<p class="pis-categories-links">
-								<?php if ( $categ_text ) echo $categ_text . '&nbsp;'; ?><?php echo $list_of_categories; ?>
+								<?php if ( $categ_text ) {
+									echo $categ_text . '&nbsp;' . apply_filters(  'pis_category_filter', $list_of_categories );
+								} ?>
 							</p>
 						<?php }
 					} ?>
@@ -285,7 +287,9 @@ function pis_posts_in_sidebar( $args ) {
 						$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 						if ( $list_of_tags ) { ?>
 							<p class="pis-tags-links">
-								<?php if ( $tags_text ) echo $tags_text . '&nbsp;'; ?><?php echo $list_of_tags; ?>
+								<?php if ( $tags_text ) {
+									echo $tags_text . '&nbsp;' . apply_filters( 'pis_tag_filter', $list_of_tags );
+								} ?>
 							</p>
 						<?php }
 					} ?>
@@ -349,8 +353,8 @@ function pis_posts_in_sidebar( $args ) {
 						<?php echo $nopost_text; ?>
 					</p>
 				</li>
-
 			<?php } ?>
+
 		<?php endif; ?>
 
 		<?php /* Reset this custom query */ ?>

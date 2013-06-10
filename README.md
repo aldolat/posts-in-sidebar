@@ -52,6 +52,11 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ## Changelog ##
 
+### 1.8.1 ###
+
+* NEW: Added `apply_filters` to some points so you can modify the output (more in the blog post).
+* Minor bug fixings.
+
 ### 1.8 ###
 
 * New: added post format as option to get posts.

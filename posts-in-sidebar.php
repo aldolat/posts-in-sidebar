@@ -343,12 +343,14 @@ function pis_posts_in_sidebar( $args ) {
 		<?php /* If we have no posts yet */ ?>
 		<?php else : ?>
 
-			<li class="pis-li pis-noposts">
-				<p class="noposts">
-					<?php echo $nopost_text; ?>
-				</p>
-			</li>
+			<?php if ( $nopost_text ) { ?>
+				<li class="pis-li pis-noposts">
+					<p class="noposts">
+						<?php echo $nopost_text; ?>
+					</p>
+				</li>
 
+			<?php } ?>
 		<?php endif; ?>
 
 		<?php /* Reset this custom query */ ?>
@@ -364,7 +366,7 @@ function pis_posts_in_sidebar( $args ) {
  *
  * @since 1.1
  */
-include( 'posts-in-sidebar-widget.php' );
+include_once( 'posts-in-sidebar-widget.php' );
 
 
 /**

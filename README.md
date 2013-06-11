@@ -54,7 +54,8 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.8.1 ###
 
-* NEW: Added `apply_filters` to some points so you can modify the output (more in the blog post).
+* NEW: Added `apply_filters`.
+* FIX: HTML structure for the archive link is now W3C valid.
 * Minor bug fixings.
 
 ### 1.8 ###

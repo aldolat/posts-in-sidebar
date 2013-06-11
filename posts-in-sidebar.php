@@ -107,7 +107,7 @@ function pis_posts_in_sidebar( $args ) {
 	);
 	$linked_posts = new WP_Query( $params ); ?>
 
-	<ul class="pis-ul">
+
 		<?php // If in a single post, get the ID of the post of the main loop ?>
 		<?php if ( is_single() ) {
 			global $post;
@@ -117,186 +117,189 @@ function pis_posts_in_sidebar( $args ) {
 		<?php /* The Loop */ ?>
 		<?php if ( $linked_posts->have_posts() ) : ?>
 
-			<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
+			<ul class="pis-ul">
 
-				<?php // Assign the class 'current-post' if this is the post of the main loop ?>
-				<?php if ( is_single() && $single_post_id == $linked_posts->post->ID ) {
-					$postclass = 'current-post pis-li';
-				} else {
-					$postclass = 'pis-li';
-				}
-				?>
+				<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 
-				<li class="<?php echo $postclass; ?>">
+					<?php // Assign the class 'current-post' if this is the post of the main loop ?>
+					<?php if ( is_single() && $single_post_id == $linked_posts->post->ID ) {
+						$postclass = 'current-post pis-li';
+					} else {
+						$postclass = 'pis-li';
+					} ?>
 
-					<?php /* The title */ ?>
-					<?php if ( $display_title ) { ?>
-						<p class="pis-title">
-							<?php if ( $link_on_title ) { ?>
-								<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-								<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
-							<?php } ?>
-									<?php the_title(); ?>
-									<?php if ( $arrow ) { ?>
-										&nbsp;<span class="pis-arrow">&rarr;</span>
-									<?php } ?>
-							<?php if ( $link_on_title ) { ?>
-								</a>
-							<?php } ?>
-						</p>
-					<?php } // Close Display title ?>
+					<li class="<?php echo $postclass; ?>">
 
-					<?php /* The post content */ ?>
-					<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) { ?>
+						<?php /* The title */ ?>
+						<?php if ( $display_title ) { ?>
+							<p class="pis-title">
+								<?php if ( $link_on_title ) { ?>
+									<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+									<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+								<?php } ?>
+										<?php the_title(); ?>
+										<?php if ( $arrow ) { ?>
+											&nbsp;<span class="pis-arrow">&rarr;</span>
+										<?php } ?>
+								<?php if ( $link_on_title ) { ?>
+									</a>
+								<?php } ?>
+							</p>
+						<?php } // Close Display title ?>
 
-						<p class="pis-excerpt">
+						<?php /* The post content */ ?>
+						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) { ?>
 
-							<?php /* The thumbnail */ ?>
-							<?php if ( $display_image ) {
-								if ( has_post_thumbnail() ) { ?>
-									<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
-										<?php the_post_thumbnail(
-											$image_size,
-											array( 'class' => 'pis-thumbnail-img' )
-										); ?></a>
-								<?php } // Close The thumbnail
-							} ?>
+							<p class="pis-excerpt">
 
-							<?php /* The text */ ?>
-							<?php if ( $excerpt == 'full_content' ) {
-								the_content();
-							} else if ( $excerpt == 'content' ) {
-								echo strip_shortcodes( $linked_posts->post->post_content );
-							} else if ( $excerpt == 'excerpt' || $excerpt == '1' ) { /* The latter condition takes care of the boolean value coming from version 1.1 */
-								// If we have a user-defined excerpt...
-								if ( $linked_posts->post->post_excerpt ) {
-									$excerpt_text = strip_tags( $linked_posts->post->post_excerpt );
-								} else {
-								// ... else generate an excerpt
-
-									/* Excerpt in words */
-									$excerpt_text = wp_trim_words( strip_shortcodes( $linked_posts->post->post_content ), $exc_length, '&hellip;' );
-
-									/* BONUS: Excerpt in characters */
-									// $excerpt_text = substr( strip_tags( $linked_posts->post->post_content ), 0, $exc_length ) . '&hellip;';
-
-								}
-								echo $excerpt_text; ?>
-
-								<?php /* The 'Read more' and the Arrow */ ?>
-								<?php if ( $the_more || $exc_arrow ) {
-									if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
-									<span class="pis-more">
-										<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-											<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
-										</a>
-									</span>
-								<?php }
-							} // Close The text ?>
-
-						</p>
-
-					<?php }	// Close The content ?>
-
-					<?php /* The date and the comments */ ?>
-					<?php if ( $display_author || $display_date || $comments ) { ?>
-						<p class="pis-utility">
-					<?php } ?>
-
-						<?php /* The author */ ?>
-						<?php if ( $display_author ) { ?>
-							<span class="pis-author">
-								<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
-								if ( $linkify_author ) { ?>
-									<?php
-									$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
-									$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
-									?>
-									<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
-										<?php echo get_the_author(); ?></a>
-								<?php } else {
-									echo get_the_author();
+								<?php /* The thumbnail */ ?>
+								<?php if ( $display_image ) {
+									if ( has_post_thumbnail() ) { ?>
+										<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+											<?php the_post_thumbnail(
+												$image_size,
+												array( 'class' => 'pis-thumbnail-img' )
+											); ?></a>
+									<?php } // Close The thumbnail
 								} ?>
-							</span>
+
+								<?php /* The text */ ?>
+								<?php if ( $excerpt == 'full_content' ) {
+									the_content();
+								} else if ( $excerpt == 'content' ) {
+									echo strip_shortcodes( $linked_posts->post->post_content );
+								} else if ( $excerpt == 'excerpt' || $excerpt == '1' ) { /* The latter condition takes care of the boolean value coming from version 1.1 */
+									// If we have a user-defined excerpt...
+									if ( $linked_posts->post->post_excerpt ) {
+										$excerpt_text = strip_tags( $linked_posts->post->post_excerpt );
+									} else {
+									// ... else generate an excerpt
+
+										/* Excerpt in words */
+										$excerpt_text = wp_trim_words( strip_shortcodes( $linked_posts->post->post_content ), $exc_length, '&hellip;' );
+
+										/* BONUS: Excerpt in characters */
+										// $excerpt_text = substr( strip_tags( $linked_posts->post->post_content ), 0, $exc_length ) . '&hellip;';
+
+									}
+									echo $excerpt_text; ?>
+
+									<?php /* The 'Read more' and the Arrow */ ?>
+									<?php if ( $the_more || $exc_arrow ) {
+										if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
+										<span class="pis-more">
+											<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
+												<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
+											</a>
+										</span>
+									<?php }
+								} // Close The text ?>
+
+							</p>
+
+						<?php }	// Close The content ?>
+
+						<?php /* The date and the comments */ ?>
+						<?php if ( $display_author || $display_date || $comments ) { ?>
+							<p class="pis-utility">
 						<?php } ?>
 
-						<?php /* The date */ ?>
-						<?php if ( $display_date ) { ?>
+							<?php /* The author */ ?>
 							<?php if ( $display_author ) { ?>
-								<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+								<span class="pis-author">
+									<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
+									if ( $linkify_author ) { ?>
+										<?php
+										$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
+										$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
+										?>
+										<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
+											<?php echo get_the_author(); ?></a>
+									<?php } else {
+										echo get_the_author();
+									} ?>
+								</span>
 							<?php } ?>
-							<span class="pis-date">
-								<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
-								if ( $linkify_date ) { ?>
-									<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-									<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
-										<?php echo get_the_date(); ?></a>
-								<?php } else {
-									echo get_the_date();
-								} ?>
-							</span>
 
-							<?php
-							/*
-							BONUS 1: The date as archived into the database
-							<p class="pis-date">
-								<a href="<?php the_permalink(); ?>">
-									<?php echo $linked_posts->post->post_date; ?>
-								</a>
+							<?php /* The date */ ?>
+							<?php if ( $display_date ) { ?>
+								<?php if ( $display_author ) { ?>
+									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+								<?php } ?>
+								<span class="pis-date">
+									<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
+									if ( $linkify_date ) { ?>
+										<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+										<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
+											<?php echo get_the_date(); ?></a>
+									<?php } else {
+										echo get_the_date();
+									} ?>
+								</span>
+
+								<?php
+								/*
+								BONUS 1: The date as archived into the database
+								<p class="pis-date">
+									<a href="<?php the_permalink(); ?>">
+										<?php echo $linked_posts->post->post_date; ?>
+									</a>
+								</p>
+
+								BONUS 2: The date as archived into the database, and displayed into a localized form
+								<p class="pis-date">
+									<a href="<?php the_permalink(); ?>">
+										<?php echo date_i18n( get_option( 'date_format' ), strtotime( $linked_posts->post->post_date ), false ); ?>
+									</a>
+								</p>
+								*/ ?>
+
+							<?php } ?>
+
+							<?php /* The comments */ ?>
+							<?php if ( $comments ) { ?>
+								<?php if ( $display_author || $display_date ) { ?>
+									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+								<?php } ?>
+								<span class="pis-comments">
+									<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
+									comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
+								</span>
+							<?php } ?>
+
+						<?php if ( $display_author || $display_date || $comments ) { ?>
 							</p>
-
-							BONUS 2: The date as archived into the database, and displayed into a localized form
-							<p class="pis-date">
-								<a href="<?php the_permalink(); ?>">
-									<?php echo date_i18n( get_option( 'date_format' ), strtotime( $linked_posts->post->post_date ), false ); ?>
-								</a>
-							</p>
-							*/ ?>
-
 						<?php } ?>
 
-						<?php /* The comments */ ?>
-						<?php if ( $comments ) { ?>
-							<?php if ( $display_author || $display_date ) { ?>
-								<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
-							<?php } ?>
-							<span class="pis-comments">
-								<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
-								comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
-							</span>
-						<?php } ?>
+						<?php /* The categories */ ?>
+						<?php if ( $categories ) {
+							$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
+							if ( $list_of_categories ) { ?>
+								<p class="pis-categories-links">
+									<?php if ( $categ_text ) {
+										echo $categ_text . '&nbsp;' . apply_filters(  'pis_category_filter', $list_of_categories );
+									} ?>
+								</p>
+							<?php }
+						} ?>
 
-					<?php if ( $display_author || $display_date || $comments ) { ?>
-						</p>
-					<?php } ?>
+						<?php /* The tags */ ?>
+						<?php if ( $tags ) {
+							$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
+							if ( $list_of_tags ) { ?>
+								<p class="pis-tags-links">
+									<?php if ( $tags_text ) {
+										echo $tags_text . '&nbsp;' . apply_filters( 'pis_tag_filter', $list_of_tags );
+									} ?>
+								</p>
+							<?php }
+						} ?>
 
-					<?php /* The categories */ ?>
-					<?php if ( $categories ) {
-						$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
-						if ( $list_of_categories ) { ?>
-							<p class="pis-categories-links">
-								<?php if ( $categ_text ) {
-									echo $categ_text . '&nbsp;' . apply_filters(  'pis_category_filter', $list_of_categories );
-								} ?>
-							</p>
-						<?php }
-					} ?>
+					</li>
 
-					<?php /* The tags */ ?>
-					<?php if ( $tags ) {
-						$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
-						if ( $list_of_tags ) { ?>
-							<p class="pis-tags-links">
-								<?php if ( $tags_text ) {
-									echo $tags_text . '&nbsp;' . apply_filters( 'pis_tag_filter', $list_of_tags );
-								} ?>
-							</p>
-						<?php }
-					} ?>
+				<?php endwhile; ?>
 
-				</li>
-
-			<?php endwhile; ?>
+			</ul>
 
 			<?php /* The link to the entire archive */ ?>
 			<?php if ( $archive_link ) {
@@ -348,11 +351,13 @@ function pis_posts_in_sidebar( $args ) {
 		<?php else : ?>
 
 			<?php if ( $nopost_text ) { ?>
-				<li class="pis-li pis-noposts">
-					<p class="noposts">
-						<?php echo $nopost_text; ?>
-					</p>
-				</li>
+				<ul class="pis-ul">
+					<li class="pis-li pis-noposts">
+						<p class="noposts">
+							<?php echo $nopost_text; ?>
+						</p>
+					</li>
+				</ul>
 			<?php } ?>
 
 		<?php endif; ?>

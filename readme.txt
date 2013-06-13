@@ -14,6 +14,18 @@ Adds a widget to display a list of posts in sidebar. The list can be created usi
 
 This plugin creates a new widget for your sidebar. In this widget you can display a list of post from a given author and/or category and/or tag. You can also display the featured image, the tags and also a link to the archive page. A bunch of useful options are also available.
 
+= Credits =
+
+I would like to say *Thank You* to all the people who helped me in making this plugin better, and in particular (in chronological order, from older to newer):
+
+* [Jeff](http://profiles.wordpress.org/specialk/) for helping me in revisioning this plugin;
+* [sjmsing](http://wordpress.org/support/profile/sjmsing) for a feature request;
+* AlirezaJamali for the Persian translation;
+* [Mike Churcher](http://wordpress.org/support/profile/mike-churcher) for a couple of feature requests;
+* [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request;
+* Thérèse Lachance for the first French translation;
+* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation.
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
@@ -133,7 +145,3 @@ No notice to display.
 = 1.0 =
 
 No notice to display.
-
-== Credits ==
-
-I would like to say *Thank You* to all the people who helped me, in particular [Jeff](http://profiles.wordpress.org/specialk/ "Jeff's profile page") for helping me in revisioning this plugin.

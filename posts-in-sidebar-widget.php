@@ -175,21 +175,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['nopost_text']       = strip_tags( $new_instance['nopost_text'] );
 		$instance['margin_unit']       = $new_instance['margin_unit'];
 		$instance['intro_margin']      = strip_tags( $new_instance['intro_margin'] );
-			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = '';
+			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
 		$instance['title_margin']      = strip_tags( $new_instance['title_margin'] );
-			if ( ! is_numeric( $new_instance['title_margin'] ) ) $instance['title_margin'] = '';
+			if ( ! is_numeric( $new_instance['title_margin'] ) ) $instance['title_margin'] = NULL;
 		$instance['excerpt_margin']    = strip_tags( $new_instance['excerpt_margin'] );
-			if ( ! is_numeric( $new_instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = '';
+			if ( ! is_numeric( $new_instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = NULL;
 		$instance['utility_margin']    = strip_tags( $new_instance['utility_margin'] );
-			if ( ! is_numeric( $new_instance['utility_margin'] ) ) $instance['utility_margin'] = '';
+			if ( ! is_numeric( $new_instance['utility_margin'] ) ) $instance['utility_margin'] = NULL;
 		$instance['categories_margin'] = strip_tags( $new_instance['categories_margin'] );
-			if ( ! is_numeric( $new_instance['categories_margin'] ) ) $instance['categories_margin'] = '';
+			if ( ! is_numeric( $new_instance['categories_margin'] ) ) $instance['categories_margin'] = NULL;
 		$instance['tags_margin']       = strip_tags( $new_instance['tags_margin'] );
-			if ( ! is_numeric( $new_instance['tags_margin'] ) ) $instance['tags_margin'] = '';
+			if ( ! is_numeric( $new_instance['tags_margin'] ) ) $instance['tags_margin'] = NULL;
 		$instance['archive_margin']    = strip_tags( $new_instance['archive_margin'] );
-			if ( ! is_numeric( $new_instance['archive_margin'] ) ) $instance['archive_margin'] = '';
+			if ( ! is_numeric( $new_instance['archive_margin'] ) ) $instance['archive_margin'] = NULL;
 		$instance['noposts_margin']    = strip_tags( $new_instance['noposts_margin'] );
-			if ( ! is_numeric( $new_instance['noposts_margin'] ) ) $instance['noposts_margin'] = '';
+			if ( ! is_numeric( $new_instance['noposts_margin'] ) ) $instance['noposts_margin'] = NULL;
 		return $instance;
 	}
 
@@ -243,14 +243,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_text'      => __( 'More posts &rarr;', 'pis' ),
 			'nopost_text'       => __( 'No posts yet.', 'pis' ),
 			'margin_unit'       => 'px',
-			'intro_margin'      => '',
-			'title_margin'      => '',
-			'excerpt_margin'    => '',
-			'utility_margin'    => '',
-			'categories_margin' => '',
-			'tags_margin'       => '',
-			'archive_margin'    => '',
-			'noposts_margin'    => '',
+			'intro_margin'      => NULL,
+			'title_margin'      => NULL,
+			'excerpt_margin'    => NULL,
+			'utility_margin'    => NULL,
+			'categories_margin' => NULL,
+			'tags_margin'       => NULL,
+			'archive_margin'    => NULL,
+			'noposts_margin'    => NULL,
 		);
 		$instance       = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky  = (bool) $instance['ignore_sticky'];

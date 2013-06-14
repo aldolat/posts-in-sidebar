@@ -75,6 +75,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_on_title'     => $instance['link_on_title'],
 			'display_image'     => $instance['display_image'],
 			'image_size'        => $instance['image_size'],
+			'image_align'       => $instance['image_align'],
 			'excerpt'           => $instance['excerpt'],
 			'arrow'             => $instance['arrow'],
 			'exc_length'        => $instance['exc_length'],
@@ -148,6 +149,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['arrow']             = $new_instance['arrow'];
 		$instance['display_image']     = $new_instance['display_image'];
 		$instance['image_size']        = $new_instance['image_size'];
+		$instance['image_align']       = $new_instance['image_align'];
 		$instance['excerpt']           = $new_instance['excerpt'];
 		$instance['exc_length']        = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
@@ -218,6 +220,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'arrow'             => false,
 			'display_image'     => false,
 			'image_size'        => 'thumbnail',
+			'image_align'       => 'no_change',
 			'excerpt'           => 'excerpt',
 			'exc_length'        => 20,
 			'the_more'          => __( 'Read more&hellip;', 'pis' ),
@@ -582,6 +585,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
 					); ?>
 				</em>
+			</p>
+
+			<p>
+				<label for="<?php echo $this->get_field_id('image_align'); ?>">
+					<?php _e( 'Align image', 'pis' ); ?>
+				</label>
+				<select name="<?php echo $this->get_field_name('image_align'); ?>">
+					<option <?php selected( 'no_change', $instance['image_align'] ); ?> value="no_change">
+						<?php _e( 'Do not change', 'pis' ); ?>
+					</option>
+					<option <?php selected( 'float_left', $instance['image_align'] ); ?> value="float_left">
+						<?php _e( 'Float left', 'pis' ); ?>
+					</option>
+					<option <?php selected( 'float_right', $instance['image_align'] ); ?> value="float_right">
+						<?php _e( 'Float Right', 'pis' ); ?>
+					</option>
+					<option <?php selected( 'Center', $instance['image_align'] ); ?> value="Center">
+						<?php _e( 'Align center', 'pis' ); ?>
+					</option>
+				</select>
 			</p>
 
 			<hr />

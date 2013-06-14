@@ -58,6 +58,7 @@ function pis_posts_in_sidebar( $args ) {
 		'arrow'             => false,
 		'display_image'     => false,
 		'image_size'        => 'thumbnail',
+		'image_align'       => 'no_change',
 		'excerpt'           => 'excerpt', // can be "full_content", "content", "excerpt", "none"
 		'exc_length'        => 20,      // In words
 		'the_more'          => __( 'Read more&hellip;', 'pis' ),
@@ -173,6 +174,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php /* The thumbnail */ ?>
 								<?php if ( $display_image ) {
 									if ( has_post_thumbnail() ) { ?>
+										<?php // Insert switch( $image_align ) ?>
 										<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 											<?php the_post_thumbnail(
 												$image_size,

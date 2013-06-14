@@ -37,50 +37,60 @@ define( 'PIS_VERSION', '1.8.1' );
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
-		'post_type'      => 'post', // post, page, media, or any custom post type
-		'author'         => NULL,   // Author nicename, NOT name
-		'cat'            => NULL,   // Category slugs, comma separated
-		'tag'            => NULL,   // Tag slugs, comma separated
-		'post_format'    => '',
-		'number'         => get_option( 'posts_per_page' ),
-		'orderby'        => 'date',
-		'order'          => 'DESC',
-		'cat_not_in'     => '',
-		'tag_not_in'     => '',
-		'offset_number'  => '',
-		'post_status'    => 'publish',
-		'post_meta_key'  => '',
-		'post_meta_val'  => '',
-		'ignore_sticky'  => false,
-		'display_title'  => true,
-		'link_on_title'  => true,
-		'arrow'          => false,
-		'display_image'  => false,
-		'image_size'     => 'thumbnail',
-		'excerpt'        => 'excerpt', // can be "full_content", "content", "excerpt", "none"
-		'exc_length'     => 20,      // In words
-		'the_more'       => __( 'Read more&hellip;', 'pis' ),
-		'exc_arrow'      => false,
-		'display_author' => false,
-		'author_text'    => __( 'By', 'pis' ),
-		'linkify_author' => false,
-		'display_date'   => false,
-		'date_text'      => __( 'Published on', 'pis' ),
-		'linkify_date'   => false,
-		'comments'       => false,
-		'comments_text'  => __( 'Comments:', 'pis' ),
-		'utility_sep'    => '&middot;',
-		'categories'     => false,
-		'categ_text'     => __( 'Category:', 'pis' ),
-		'categ_sep'      => ',',
-		'tags'           => false,
-		'tags_text'      => __( 'Tags:', 'pis' ),
-		'hashtag'        => '#',
-		'tag_sep'        => '',
-		'archive_link'   => false,
-		'link_to'        => 'category',
-		'archive_text'   => __( 'More posts &rarr;', 'pis' ),
-		'nopost_text'    => __( 'No posts yet.', 'pis' ),
+		'intro'             => '',
+		'post_type'         => 'post', // post, page, media, or any custom post type
+		'author'            => NULL,   // Author nicename, NOT name
+		'cat'               => NULL,   // Category slugs, comma separated
+		'tag'               => NULL,   // Tag slugs, comma separated
+		'post_format'       => '',
+		'number'            => get_option( 'posts_per_page' ),
+		'orderby'           => 'date',
+		'order'             => 'DESC',
+		'cat_not_in'        => '',
+		'tag_not_in'        => '',
+		'offset_number'     => '',
+		'post_status'       => 'publish',
+		'post_meta_key'     => '',
+		'post_meta_val'     => '',
+		'ignore_sticky'     => false,
+		'display_title'     => true,
+		'link_on_title'     => true,
+		'arrow'             => false,
+		'display_image'     => false,
+		'image_size'        => 'thumbnail',
+		'excerpt'           => 'excerpt', // can be "full_content", "content", "excerpt", "none"
+		'exc_length'        => 20,      // In words
+		'the_more'          => __( 'Read more&hellip;', 'pis' ),
+		'exc_arrow'         => false,
+		'display_author'    => false,
+		'author_text'       => __( 'By', 'pis' ),
+		'linkify_author'    => false,
+		'display_date'      => false,
+		'date_text'         => __( 'Published on', 'pis' ),
+		'linkify_date'      => false,
+		'comments'          => false,
+		'comments_text'     => __( 'Comments:', 'pis' ),
+		'utility_sep'       => '&middot;',
+		'categories'        => false,
+		'categ_text'        => __( 'Category:', 'pis' ),
+		'categ_sep'         => ',',
+		'tags'              => false,
+		'tags_text'         => __( 'Tags:', 'pis' ),
+		'hashtag'           => '#',
+		'tag_sep'           => '',
+		'archive_link'      => false,
+		'link_to'           => 'category',
+		'archive_text'      => __( 'More posts &rarr;', 'pis' ),
+		'nopost_text'       => __( 'No posts yet.', 'pis' ),
+		'margin_unit'       => 'px',
+		'intro_margin'      => '',
+		'title_margin'      => '',
+		'excerpt_margin'    => '',
+		'utility_margin'    => '',
+		'categories_margin' => '',
+		'tags_margin'       => '',
+		'archive_margin'    => '',
+		'noposts_margin'    => '',
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -118,6 +128,11 @@ function pis_posts_in_sidebar( $args ) {
 		<?php /* The Loop */ ?>
 		<?php if ( $linked_posts->have_posts() ) : ?>
 
+			<?php if ( $intro ) { ?>
+				<?php if ( $intro_margin || $intro_margin == 0 ) $intro_style = ' style="margin-bottom: ' . $intro_margin . $margin_unit . ';"'; ?>
+				<p class="pis-intro"<?php echo $intro_style; ?>><?php echo $intro; ?></p>
+			<?php } ?>
+
 			<ul class="pis-ul">
 
 				<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
@@ -133,7 +148,8 @@ function pis_posts_in_sidebar( $args ) {
 
 						<?php /* The title */ ?>
 						<?php if ( $display_title ) { ?>
-							<p class="pis-title">
+							<?php if ( $title_margin || $title_margin == 0 ) $title_style = ' style="margin-bottom: ' . $title_margin . $margin_unit . ';"'; ?>
+							<p class="pis-title"<?php echo $title_style; ?>>
 								<?php if ( $link_on_title ) { ?>
 									<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
 									<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
@@ -151,7 +167,8 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The post content */ ?>
 						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) { ?>
 
-							<p class="pis-excerpt">
+							<?php if ( $excerpt_margin || $excerpt_margin == 0 ) $excerpt_style = ' style="margin-bottom: ' . $excerpt_margin . $margin_unit . ';"'; ?>
+							<p class="pis-excerpt"<?php echo $excerpt_style; ?>>
 
 								<?php /* The thumbnail */ ?>
 								<?php if ( $display_image ) {
@@ -200,9 +217,10 @@ function pis_posts_in_sidebar( $args ) {
 
 						<?php }	// Close The content ?>
 
-						<?php /* The date and the comments */ ?>
+						<?php /* The author, the date and the comments */ ?>
 						<?php if ( $display_author || $display_date || $comments ) { ?>
-							<p class="pis-utility">
+							<?php if ( $utility_margin || $utility_margin == 0 ) $utility_style = ' style="margin-bottom: ' . $utility_margin . $margin_unit . ';"'; ?>
+							<p class="pis-utility"<?php echo $utility_style; ?>>
 						<?php } ?>
 
 							<?php /* The author */ ?>
@@ -276,7 +294,8 @@ function pis_posts_in_sidebar( $args ) {
 						<?php if ( $categories ) {
 							$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
 							if ( $list_of_categories ) { ?>
-								<p class="pis-categories-links">
+								<?php if ( $categories_margin || $categories_margin == 0 ) $categories_style = ' style="margin-bottom: ' . $categories_margin . $margin_unit . ';"'; ?>
+								<p class="pis-categories-links"<?php echo $categories_style; ?>>
 									<?php if ( $categ_text ) {
 										echo $categ_text . '&nbsp;' . apply_filters(  'pis_category_filter', $list_of_categories );
 									} ?>
@@ -288,7 +307,8 @@ function pis_posts_in_sidebar( $args ) {
 						<?php if ( $tags ) {
 							$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 							if ( $list_of_tags ) { ?>
-								<p class="pis-tags-links">
+								<?php if ( $tags_margin || $tags_margin == 0 ) $tags_style = ' style="margin-bottom: ' . $tags_margin . $margin_unit . ';"'; ?>
+								<p class="pis-tags-links"<?php echo $categories_style; ?>>
 									<?php if ( $tags_text ) {
 										echo $tags_text . '&nbsp;' . apply_filters( 'pis_tag_filter', $list_of_tags );
 									} ?>
@@ -341,7 +361,8 @@ function pis_posts_in_sidebar( $args ) {
 				}
 
 				if ( isset( $term_link ) ) { ?>
-					<p class="archive-link">
+					<?php if ( $archive_margin || $archive_margin == 0 ) $archive_style = ' style="margin-bottom: ' . $archive_margin . $margin_unit . ';"'; ?>
+					<p class="archive-link"<?php echo $archive_style; ?>>
 						<a href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
 							<?php echo $archive_text; ?>
 						</a>
@@ -355,7 +376,8 @@ function pis_posts_in_sidebar( $args ) {
 			<?php if ( $nopost_text ) { ?>
 				<ul class="pis-ul">
 					<li class="pis-li pis-noposts">
-						<p class="noposts">
+						<?php if ( $noposts_margin || $noposts_margin == 0 ) $noposts_style = ' style="margin-bottom: ' . $noposts_margin . $margin_unit . ';"'; ?>
+						<p class="noposts"<?php echo $noposts_style; ?>>
 							<?php echo $nopost_text; ?>
 						</p>
 					</li>

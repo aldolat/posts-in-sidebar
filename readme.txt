@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.8.1
+Stable tag: 1.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -58,9 +58,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
-= 1.8.1 =
+= 1.9 =
 
-* NEW: Added `apply_filters`.
+* NEW: Added `apply_filters` where needed.
+* NEW: The featured image can be aligned with text.
 * FIX: HTML structure for the archive link is now W3C valid.
 * Minor bug fixings.
 

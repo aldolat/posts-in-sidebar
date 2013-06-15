@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.8.1
+ * Version: 1.9
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,7 +28,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.8.1' );
+define( 'PIS_VERSION', '1.9' );
 
 /**
  * The core function
@@ -131,7 +131,10 @@ function pis_posts_in_sidebar( $args ) {
 
 			<?php if ( $intro ) { ?>
 				<?php if ( ! is_null( $intro_margin ) ) $intro_style = ' style="margin-bottom: ' . $intro_margin . $margin_unit . ';"'; ?>
-				<p class="pis-intro"<?php echo $intro_style; ?>><?php echo $intro; ?></p>
+				<?php /* <p class="pis-intro"<?php echo $intro_style; ?>><?php echo $intro; ?></p> */ ?>
+				<p <?php echo pis_class( 'pis-intro', apply_filters( 'pis_intro_class', $class ) ) . $intro_style; ?>>
+					<?php echo $intro; ?>
+				</p>
 			<?php } ?>
 
 			<ul class="pis-ul">
@@ -150,7 +153,7 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The title */ ?>
 						<?php if ( $display_title ) { ?>
 							<?php if ( ! is_null( $title_margin ) ) $title_style = ' style="margin-bottom: ' . $title_margin . $margin_unit . ';"'; ?>
-							<p class="pis-title"<?php echo $title_style; ?>>
+							<p <?php echo pis_class( 'pis-title', apply_filters( 'pis_title_class', $class ) ) . $title_style; ?>>
 								<?php if ( $link_on_title ) { ?>
 									<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
 									<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
@@ -169,7 +172,7 @@ function pis_posts_in_sidebar( $args ) {
 						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) { ?>
 
 							<?php if ( ! is_null( $excerpt_margin ) ) $excerpt_style = ' style="margin-bottom: ' . $excerpt_margin . $margin_unit . ';"'; ?>
-							<p class="pis-excerpt"<?php echo $excerpt_style; ?>>
+							<p <?php echo pis_class( 'pis-excerpt', apply_filters( 'pis_excerpt_class', $class ) ) . $excerpt_style; ?>>
 
 								<?php /* The thumbnail */ ?>
 								<?php if ( $display_image ) {
@@ -197,7 +200,7 @@ function pis_posts_in_sidebar( $args ) {
 													'class' => 'pis-thumbnail-img' . $class
 												)
 											); ?></a>
-									<?php } // Close The thumbnail
+									<?php } // Close if ( has_post_thumbnail )  */
 								} ?>
 
 								<?php /* The text */ ?>
@@ -239,7 +242,7 @@ function pis_posts_in_sidebar( $args ) {
 						<?php /* The author, the date and the comments */ ?>
 						<?php if ( $display_author || $display_date || $comments ) { ?>
 							<?php if ( ! is_null( $utility_margin ) ) $utility_style = ' style="margin-bottom: ' . $utility_margin . $margin_unit . ';"'; ?>
-							<p class="pis-utility"<?php echo $utility_style; ?>>
+							<p <?php echo pis_class( 'pis-utility', apply_filters( 'pis_utility_class', $class ) ) . $utility_style; ?>>
 						<?php } ?>
 
 							<?php /* The author */ ?>
@@ -314,10 +317,10 @@ function pis_posts_in_sidebar( $args ) {
 							$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
 							if ( $list_of_categories ) { ?>
 								<?php if ( ! is_null( $categories_margin ) ) $categories_style = ' style="margin-bottom: ' . $categories_margin . $margin_unit . ';"'; ?>
-								<p class="pis-categories-links"<?php echo $categories_style; ?>>
-									<?php if ( $categ_text ) {
-										echo $categ_text . '&nbsp;' . apply_filters(  'pis_category_filter', $list_of_categories );
-									} ?>
+								<p <?php echo pis_class( 'pis-categories-links', apply_filters( 'pis_categories_class', $class ) ) . $categories_style; ?>>
+									<?php if ( $categ_text ) $categ_text .= '&nbsp';
+									echo $categ_text . apply_filters(  'pis_category_filter', $list_of_categories );
+									?>
 								</p>
 							<?php }
 						} ?>
@@ -327,10 +330,10 @@ function pis_posts_in_sidebar( $args ) {
 							$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 							if ( $list_of_tags ) { ?>
 								<?php if ( ! is_null( $tags_margin ) ) $tags_style = ' style="margin-bottom: ' . $tags_margin . $margin_unit . ';"'; ?>
-								<p class="pis-tags-links"<?php echo $tags_style; ?>>
-									<?php if ( $tags_text ) {
-										echo $tags_text . '&nbsp;' . apply_filters( 'pis_tag_filter', $list_of_tags );
-									} ?>
+								<p <?php echo pis_class( 'pis-tags-links', apply_filters( 'pis_tags_class', $class ) ) . $tags_style; ?>>
+									<?php if ( $tags_text ) $tags_text .= '&nbsp;';
+									echo $tags_text . apply_filters( 'pis_tag_filter', $list_of_tags );
+									?>
 								</p>
 							<?php }
 						} ?>
@@ -381,8 +384,8 @@ function pis_posts_in_sidebar( $args ) {
 
 				if ( isset( $term_link ) ) { ?>
 					<?php if ( ! is_null( $archive_margin ) ) $archive_style = ' style="margin-bottom: ' . $archive_margin . $margin_unit . ';"'; ?>
-					<p class="archive-link"<?php echo $archive_style; ?>>
-						<a href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
+					<p <?php echo pis_class( 'pis-archive-link', apply_filters( 'pis_archive_class', $class ) ) . $archive_style; ?>>
+						<a <?php echo pis_class( '', apply_filters( 'pis_archive_link_class', $class ) ) ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
 							<?php echo $archive_text; ?>
 						</a>
 					</p>
@@ -396,7 +399,7 @@ function pis_posts_in_sidebar( $args ) {
 				<ul class="pis-ul">
 					<li class="pis-li pis-noposts">
 						<?php if ( ! is_null( $noposts_margin ) ) $noposts_style = ' style="margin-bottom: ' . $noposts_margin . $margin_unit . ';"'; ?>
-						<p class="noposts"<?php echo $noposts_style; ?>>
+						<p <?php echo pis_class( 'noposts', apply_filters( 'pis_noposts_class', $class ) ) . $noposts_style; ?>>
 							<?php echo $nopost_text; ?>
 						</p>
 					</li>
@@ -411,6 +414,20 @@ function pis_posts_in_sidebar( $args ) {
 		<?php echo '<!-- Generated by Posts in Sidebar v' . PIS_VERSION . ' -->'; ?>
 
 <?php }
+
+
+/**
+ * Return the class for the HTML element
+ *
+ * @since 1.9
+ */
+function pis_class( $default = '', $class = '' ) {
+	if( $class ) $class = esc_attr( sanitize_html_class( $class ) );
+	$classes = $default . ' ' . $class;
+	if ( ! empty( $classes ) )
+		$output = 'class="' . ltrim( $classes ) . '"';
+	return $output;
+}
 
 
 /**

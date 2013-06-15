@@ -137,7 +137,7 @@ function pis_posts_in_sidebar( $args ) {
 				</p>
 			<?php } ?>
 
-			<ul class="pis-ul">
+			<ul <?php echo pis_class( 'pis-ul', apply_filters( 'pis_ul_class', $class ) ); ?>>
 
 				<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 
@@ -148,7 +148,7 @@ function pis_posts_in_sidebar( $args ) {
 						$postclass = 'pis-li';
 					} ?>
 
-					<li class="<?php echo $postclass; ?>">
+					<li <?php echo pis_class( $postclass, apply_filters( 'pis_li_class', $class ) ); ?>>
 
 						<?php /* The title */ ?>
 						<?php if ( $display_title ) { ?>
@@ -156,7 +156,7 @@ function pis_posts_in_sidebar( $args ) {
 							<p <?php echo pis_class( 'pis-title', apply_filters( 'pis_title_class', $class ) ) . $title_style; ?>>
 								<?php if ( $link_on_title ) { ?>
 									<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-									<a class="pis-title-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+									<a <?php echo pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', $class ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 								<?php } ?>
 										<?php the_title(); ?>
 										<?php if ( $arrow ) { ?>
@@ -180,24 +180,23 @@ function pis_posts_in_sidebar( $args ) {
 										<?php
 										switch ( $image_align ) {
 											case 'left' :
-												$class = ' alignleft';
+												$image_style = ' alignleft';
 												break;
 											case 'right':
-												$class = ' alignright';
+												$image_style = ' alignright';
 												break;
 											case 'center':
-												$class = ' aligncenter';
+												$image_style = ' aligncenter';
 												break;
 											default:
-												$class = '';
+												$image_style = '';
 												break;
-										}
-										?>
-										<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+										} ?>
+										<a <?php echo pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', $class ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 											<?php the_post_thumbnail(
 												$image_size,
 												array(
-													'class' => 'pis-thumbnail-img' . $class
+													'class' => 'pis-thumbnail-img' . $image_style
 												)
 											); ?></a>
 									<?php } // Close if ( has_post_thumbnail )  */
@@ -247,7 +246,7 @@ function pis_posts_in_sidebar( $args ) {
 
 							<?php /* The author */ ?>
 							<?php if ( $display_author ) { ?>
-								<span class="pis-author">
+								<span <?php echo pis_class( 'pis-author', apply_filters( 'pis_author_class', $class ) ); ?>>
 									<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
 									if ( $linkify_author ) { ?>
 										<?php
@@ -267,7 +266,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php if ( $display_author ) { ?>
 									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 								<?php } ?>
-								<span class="pis-date">
+								<span <?php echo pis_class( 'pis-date', apply_filters( 'pis_date_class', $class ) ); ?>>
 									<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
 									if ( $linkify_date ) { ?>
 										<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
@@ -302,7 +301,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php if ( $display_author || $display_date ) { ?>
 									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 								<?php } ?>
-								<span class="pis-comments">
+								<span <?php echo pis_class( 'pis-comments', apply_filters( 'pis_comments_class', $class ) ); ?>>
 									<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
 									comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
 								</span>
@@ -385,7 +384,7 @@ function pis_posts_in_sidebar( $args ) {
 				if ( isset( $term_link ) ) { ?>
 					<?php if ( ! is_null( $archive_margin ) ) $archive_style = ' style="margin-bottom: ' . $archive_margin . $margin_unit . ';"'; ?>
 					<p <?php echo pis_class( 'pis-archive-link', apply_filters( 'pis_archive_class', $class ) ) . $archive_style; ?>>
-						<a <?php echo pis_class( '', apply_filters( 'pis_archive_link_class', $class ) ) ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
+						<a <?php echo pis_class( '', apply_filters( 'pis_archive_link_class', $class ) ); ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
 							<?php echo $archive_text; ?>
 						</a>
 					</p>
@@ -396,8 +395,8 @@ function pis_posts_in_sidebar( $args ) {
 		<?php else : ?>
 
 			<?php if ( $nopost_text ) { ?>
-				<ul class="pis-ul">
-					<li class="pis-li pis-noposts">
+				<ul <?php echo pis_class( 'pis-ul', apply_filters( 'pis_ul_class', $class ) ); ?>>
+					<li <?php echo pis_class( 'pis-li pis-noposts', apply_filters( 'pis_nopost_class', $class ) ); ?>>
 						<?php if ( ! is_null( $noposts_margin ) ) $noposts_style = ' style="margin-bottom: ' . $noposts_margin . $margin_unit . ';"'; ?>
 						<p <?php echo pis_class( 'noposts', apply_filters( 'pis_noposts_class', $class ) ) . $noposts_style; ?>>
 							<?php echo $nopost_text; ?>
@@ -420,13 +419,43 @@ function pis_posts_in_sidebar( $args ) {
  * Return the class for the HTML element
  *
  * @since 1.9
+ *
+ * @param string $default One or more classes, defined by plugin's developer, to add to the class list.
+ * @param string|array $class One or more classes, defined by the user, to add to the class list.
+ * @return string $output List of classes.
  */
 function pis_class( $default = '', $class = '' ) {
-	if( $class ) $class = esc_attr( sanitize_html_class( $class ) );
-	$classes = $default . ' ' . $class;
-	if ( ! empty( $classes ) )
-		$output = 'class="' . ltrim( $classes ) . '"';
-	return $output;
+
+	// Define $classes as array
+	$classes = array();
+
+	// If $default is not empy, add the value ad an element of the array
+	if( ! empty( $default ) )
+		$classes[] = $default;
+
+	// If $class is not empty, transform it into an array and add the elements to the array
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) $class = preg_split( '#\s+#', $class );
+		$classes = array_merge( $classes, $class );
+	}
+
+	// Escape evil chars in $classes
+	$classes = array_map( 'esc_attr', $classes );
+
+	// Remove null or empty or space-only-filled elements from the array
+	foreach ( $classes as $key => $value ) {
+		if ( is_null( $value ) || $value == '' || $value == ' ' ) {
+			unset( $classes[ $key ] );
+		}
+	}
+
+	// Convert the array into string
+	$classes = implode( ' ', $classes );
+
+	// Complete the final output
+	$classes = 'class="' . $classes . '"';
+
+	return $classes;
 }
 
 

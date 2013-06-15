@@ -592,16 +592,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php _e( 'Align image', 'pis' ); ?>
 				</label>
 				<select name="<?php echo $this->get_field_name('image_align'); ?>">
-					<option <?php selected( 'no_change', $instance['image_align'] ); ?> value="no_change">
+					<option <?php selected( 'nochange', $instance['image_align'] ); ?> value="nochange">
 						<?php _e( 'Do not change', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'float_left', $instance['image_align'] ); ?> value="float_left">
+					<option <?php selected( 'left', $instance['image_align'] ); ?> value="left">
 						<?php _e( 'Float left', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'float_right', $instance['image_align'] ); ?> value="float_right">
-						<?php _e( 'Float Right', 'pis' ); ?>
+					<option <?php selected( 'right', $instance['image_align'] ); ?> value="right">
+						<?php _e( 'Float right', 'pis' ); ?>
 					</option>
-					<option <?php selected( 'Center', $instance['image_align'] ); ?> value="Center">
+					<option <?php selected( 'center', $instance['image_align'] ); ?> value="center">
 						<?php _e( 'Align center', 'pis' ); ?>
 					</option>
 				</select>

@@ -174,11 +174,28 @@ function pis_posts_in_sidebar( $args ) {
 								<?php /* The thumbnail */ ?>
 								<?php if ( $display_image ) {
 									if ( has_post_thumbnail() ) { ?>
-										<?php // Insert switch( $image_align ) ?>
+										<?php
+										switch ( $image_align ) {
+											case 'left' :
+												$class = ' alignleft';
+												break;
+											case 'right':
+												$class = ' alignright';
+												break;
+											case 'center':
+												$class = ' aligncenter';
+												break;
+											default:
+												$class = '';
+												break;
+										}
+										?>
 										<a class="pis-thumbnail-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 											<?php the_post_thumbnail(
 												$image_size,
-												array( 'class' => 'pis-thumbnail-img' )
+												array(
+													'class' => 'pis-thumbnail-img' . $class
+												)
 											); ?></a>
 									<?php } // Close The thumbnail
 								} ?>

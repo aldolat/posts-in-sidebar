@@ -66,9 +66,11 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.9 ###
 
-* NEW: Added `apply_filters` where needed.
+* NEW: The space after each line can be defined via widget interface.
 * NEW: The featured image can be aligned with text.
+* NEW: Added `apply_filters` where needed.
 * FIX: HTML structure for the archive link is now W3C valid.
+* Updated French translation.
 * Minor bug fixings.
 
 ### 1.8 ###

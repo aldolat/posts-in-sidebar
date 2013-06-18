@@ -131,7 +131,6 @@ function pis_posts_in_sidebar( $args ) {
 
 			<?php if ( $intro ) { ?>
 				<?php if ( ! is_null( $intro_margin ) ) $intro_style = ' style="margin-bottom: ' . $intro_margin . $margin_unit . ';"'; ?>
-				<?php /* <p class="pis-intro"<?php echo $intro_style; ?>><?php echo $intro; ?></p> */ ?>
 				<p <?php echo pis_class( 'pis-intro', apply_filters( 'pis_intro_class', $class ) ) . $intro_style; ?>>
 					<?php echo $intro; ?>
 				</p>

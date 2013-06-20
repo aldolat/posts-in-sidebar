@@ -463,7 +463,7 @@ function pis_class( $default = '', $class = '' ) {
  *
  * @since 1.1
  */
-include_once( 'posts-in-sidebar-widget.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'posts-in-sidebar-widget.php' );
 
 
 /**

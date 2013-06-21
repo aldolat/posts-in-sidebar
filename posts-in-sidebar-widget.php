@@ -29,14 +29,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function PIS_Posts_In_Sidebar() {
 		/* Widget settings. */
 		$widget_ops = array(
-			'classname' => 'posts-in-sidebar',
-			'description' => __( 'Display a list of posts in a widget', 'pis' )
+			'classname'   => 'posts-in-sidebar',
+			'description' => __( 'Display a list of posts in a widget', 'pis' ),
 		);
 
 		/* Widget control settings. */
 		$control_ops = array(
-			'width' => 700,
-			'id_base' => 'pis_posts_in_sidebar'
+			'width'   => 700,
+			'id_base' => 'pis_posts_in_sidebar',
 		);
 
 		/* Create the widget. */
@@ -848,9 +848,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4><?php _e( 'Paragraph margins', 'pis' ); ?></h4>
+			<h4><?php _e( 'Paragraph bottom margins', 'pis' ); ?></h4>
 
-			<p><em><?php _e( 'Ths section defines the bottom margin for each paragraph of the widget.', 'pis' ); ?></em></p>
+			<p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('margin_unit'); ?>">

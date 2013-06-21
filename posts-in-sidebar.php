@@ -71,7 +71,7 @@ function pis_posts_in_sidebar( $args ) {
 		'linkify_date'      => false,
 		'comments'          => false,
 		'comments_text'     => __( 'Comments:', 'pis' ),
-		'utility_sep'       => '&middot;',
+		'utility_sep'       => '|',
 		'categories'        => false,
 		'categ_text'        => __( 'Category:', 'pis' ),
 		'categ_sep'         => ',',
@@ -317,7 +317,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php if ( ! is_null( $categories_margin ) ) $categories_style = ' style="margin-bottom: ' . $categories_margin . $margin_unit . ';"'; ?>
 								<p <?php pis_class( 'pis-categories-links', apply_filters( 'pis_categories_class', $class ) ) . $categories_style; ?>>
 									<?php if ( $categ_text ) $categ_text .= '&nbsp';
-									echo $categ_text . apply_filters(  'pis_category_filter', $list_of_categories );
+									echo $categ_text . apply_filters(  'pis_categories_list', $list_of_categories );
 									?>
 								</p>
 							<?php }
@@ -330,7 +330,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php if ( ! is_null( $tags_margin ) ) $tags_style = ' style="margin-bottom: ' . $tags_margin . $margin_unit . ';"'; ?>
 								<p <?php pis_class( 'pis-tags-links', apply_filters( 'pis_tags_class', $class ) ) . $tags_style; ?>>
 									<?php if ( $tags_text ) $tags_text .= '&nbsp;';
-									echo $tags_text . apply_filters( 'pis_tag_filter', $list_of_tags );
+									echo $tags_text . apply_filters( 'pis_tags_list', $list_of_tags );
 									?>
 								</p>
 							<?php }

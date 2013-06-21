@@ -233,7 +233,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'linkify_date'      => false,
 			'comments'          => false,
 			'comments_text'     => __( 'Comments:', 'pis' ),
-			'utility_sep'       => '&middot;',
+			'utility_sep'       => '|',
 			'categories'        => false,
 			'categ_text'        => __( 'Category:', 'pis' ),
 			'categ_sep'         => ',',

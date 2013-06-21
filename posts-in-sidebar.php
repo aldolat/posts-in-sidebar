@@ -159,7 +159,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php } ?>
 										<?php the_title(); ?>
 										<?php if ( $arrow ) { ?>
-											&nbsp;<span class="pis-arrow">&rarr;</span>
+											&nbsp;<span <?php pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ) ); ?>>&rarr;</span>
 										<?php } ?>
 								<?php if ( $link_on_title ) { ?>
 									</a>
@@ -195,7 +195,7 @@ function pis_posts_in_sidebar( $args ) {
 											<?php the_post_thumbnail(
 												$image_size,
 												array(
-													'class' => 'pis-thumbnail-img' . $image_style
+													'class' => pis_class( 'pis-thumbnail-img', apply_filters( 'pis_thumbnail_class', $class ), false ) . $image_style,
 												)
 											); ?></a>
 									<?php } // Close if ( has_post_thumbnail )  */
@@ -224,8 +224,8 @@ function pis_posts_in_sidebar( $args ) {
 
 									<?php /* The 'Read more' and the Arrow */ ?>
 									<?php if ( $the_more || $exc_arrow ) {
-										if ( $exc_arrow ) $the_arrow = '<span class="pis-arrow">&rarr;</span>'; ?>
-										<span class="pis-more">
+										if ( $exc_arrow ) $the_arrow = '<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ), false ) . '>&rarr;</span>'; ?>
+										<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', $class ) ); ?>>
 											<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
 												<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
 											</a>
@@ -252,7 +252,7 @@ function pis_posts_in_sidebar( $args ) {
 										$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
 										$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
 										?>
-										<a class="pis-author-link" href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
+										<a <?php pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', $class ) ); ?> href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
 											<?php echo get_the_author(); ?></a>
 									<?php } else {
 										echo get_the_author();
@@ -263,13 +263,13 @@ function pis_posts_in_sidebar( $args ) {
 							<?php /* The date */ ?>
 							<?php if ( $display_date ) { ?>
 								<?php if ( $display_author ) { ?>
-									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+									<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', $class ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 								<?php } ?>
 								<span <?php pis_class( 'pis-date', apply_filters( 'pis_date_class', $class ) ); ?>>
 									<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
 									if ( $linkify_date ) { ?>
 										<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-										<a class="pis-date-link" href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
+										<a <?php pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', $class ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
 											<?php echo get_the_date(); ?></a>
 									<?php } else {
 										echo get_the_date();
@@ -298,7 +298,7 @@ function pis_posts_in_sidebar( $args ) {
 							<?php /* The comments */ ?>
 							<?php if ( $comments ) { ?>
 								<?php if ( $display_author || $display_date ) { ?>
-									<span class="pis-separator">&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+									<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', $class ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
 								<?php } ?>
 								<span <?php pis_class( 'pis-comments', apply_filters( 'pis_comments_class', $class ) ); ?>>
 									<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
@@ -423,7 +423,7 @@ function pis_posts_in_sidebar( $args ) {
  * @param string|array $class One or more classes, defined by the user, to add to the class list.
  * @return string $output List of classes.
  */
-function pis_class( $default = '', $class = '' ) {
+function pis_class( $default = '', $class = '', $echo = true ) {
 
 	// Define $classes as array
 	$classes = array();
@@ -454,7 +454,10 @@ function pis_class( $default = '', $class = '' ) {
 	// Complete the final output
 	$classes = 'class="' . $classes . '"';
 
-	echo $classes;
+	if ( true === $echo )
+		echo apply_filters( 'pis_classes', $classes );
+	else
+		return apply_filters( 'pis_classes', $classes );
 }
 
 

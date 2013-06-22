@@ -243,7 +243,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'tag_sep'           => '',
 			'archive_link'      => false,
 			'link_to'           => 'category',
-			'archive_text'      => __( 'More posts &rarr;', 'pis' ),
+			'archive_text'      => '',
 			'nopost_text'       => __( 'No posts yet.', 'pis' ),
 			'margin_unit'       => 'px',
 			'intro_margin'      => NULL,

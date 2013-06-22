@@ -12,7 +12,7 @@ Adds a widget to display a list of posts in sidebar. The list can be created usi
 
 == Description ==
 
-This plugin creates a new widget for your sidebar. In this widget you can display a list of post from a given author and/or category and/or tag. You can also display the featured image, the tags and also a link to the archive page. A bunch of useful options are also available.
+This plugin creates a new widget for your sidebar. In this widget you can display a list of post using author, category, tag, post format, custom post type, and so on. You can also display the featured image, the tags and also a link to the archive page. A bunch of useful options are also available.
 
 = Credits =
 

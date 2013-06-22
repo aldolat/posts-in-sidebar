@@ -81,7 +81,7 @@ function pis_posts_in_sidebar( $args ) {
 		'tag_sep'           => '',
 		'archive_link'      => false,
 		'link_to'           => 'category',
-		'archive_text'      => __( 'More posts &rarr;', 'pis' ),
+		'archive_text'      => '',
 		'nopost_text'       => __( 'No posts yet.', 'pis' ),
 		'margin_unit'       => 'px',
 		'intro_margin'      => NULL,
@@ -376,8 +376,9 @@ function pis_posts_in_sidebar( $args ) {
 					$title_text = sprintf( __( 'Display all posts with post format %s', 'pis' ), $term_object->name );
 				}
 
+				// If the user has choosen to display the archive link but the text has not been setup, show this text
 				if ( $archive_text == '' ) {
-					$archive_text = __( 'More posts &rarr;', 'pis' );
+					$archive_text = $title_text;
 				}
 
 				if ( isset( $term_link ) ) { ?>

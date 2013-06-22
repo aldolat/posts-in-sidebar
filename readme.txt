@@ -63,8 +63,11 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 == Screenshots ==
 
 1. The widget panel
-2. Three widgets in action. *Top widget*: a single post with all the informations. *Middle widget*: a single post with few informations. *Bottom widget*: a single post displayed only with the featured image.
-3. The widget displays three posts from a particular category. At the bottom you can view the link to the taxonomy which we retrieved the posts from.
+2. A simple output of the widget: title, excerpt and link to the entire archive.
+3. Displaying the featured image, floating left.
+4. The same image as before, but in larger size.
+5. The introductory text for the widget.
+6. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
 

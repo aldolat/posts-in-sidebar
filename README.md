@@ -14,6 +14,16 @@ Adds a widget to display a list of posts in sidebar. The list can be created usi
 
 This plugin creates a new widget for your sidebar. In this widget you can display a list of post using author, category, tag, post format, custom post type, and so on. You can also display the featured image, the tags and also a link to the archive page. A bunch of useful options are also available.
 
+### Documentation, Help & Bugs ###
+
+The plugin's documentation is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/wiki). Please refer to it before asking for support.
+
+If you need help, please use [WordPress forum](http://wordpress.org/support/plugin/posts-in-sidebar). Do not send private email unless it is really necessary.
+
+If you have found a bug, please report it on [GitHub](https://github.com/aldolat/posts-in-sidebar/issues).
+
+This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-sidebar). If you wrote an enhancement and would share it with the world, please send me a [Pull request](https://github.com/aldolat/posts-in-sidebar/pulls).
+
 ### Credits ###
 
 I would like to say *Thank You* to all the people who helped me in making this plugin better, and in particular (in chronological order, from older to newer):

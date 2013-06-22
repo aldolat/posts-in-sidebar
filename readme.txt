@@ -8,7 +8,7 @@ Stable tag: 1.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Adds a widget to display a list of posts in sidebar. The list can be created using author and/or category and/or tag.
+This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
 == Description ==
 

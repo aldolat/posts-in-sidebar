@@ -63,22 +63,22 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 ## Screenshots ##
 
 ### 1. The widget panel ###
-![1. The widget panel](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-1.png?rev=730061)
+![1. The widget panel](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/widget-panel.png)
 
 ### 2. A simple output of the widget: title, excerpt and link to the entire archive. ###
-![2. A simple output of the widget: title, excerpt and link to the entire archive.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-2.png?rev=730061)
+![2. A simple output of the widget: title, excerpt and link to the entire archive.](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/screenshot-2.png)
 
 ### 3. Displaying the featured image, floating left. ###
-![3. Displaying the featured image, floating left.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-3.png?rev=730061)
+![3. Displaying the featured image, floating left.](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/screenshot-3.png)
 
 ### 4. The same image as before, but in larger size. ###
-![4. The same image as before, but in larger size.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-4.png?rev=730061)
+![4. The same image as before, but in larger size.](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/screenshot-4.png)
 
 ### 5. The introductory text for the widget. ###
-![5. The introductory text for the widget.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-5.png?rev=730061)
+![5. The introductory text for the widget.](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/screenshot-5.png)
 
 ### 6. Displaying the full set of items (categories, date, author, tags, and so on). ###
-![6. Displaying the full set of items (categories, date, author, tags, and so on).](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-6.png?rev=730061)
+![6. Displaying the full set of items (categories, date, author, tags, and so on).](https://raw.github.com/wiki/aldolat/posts-in-sidebar/images/screenshot-6.png)
 
 
 ## Changelog ##

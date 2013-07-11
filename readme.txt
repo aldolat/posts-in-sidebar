@@ -35,6 +35,7 @@ I would like to say *Thank You* to all the people who helped me in making this p
 * [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request;
 * Thérèse Lachance for the first French translation;
 * [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation.
+* Ahrale for the Hebrew translation.
 
 == Installation ==
 
@@ -70,6 +71,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 6. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 2.0 (in development) =
+
+* NEW: added Hebrew translation, thanks to Ahrale.
 
 = 1.9 =
 

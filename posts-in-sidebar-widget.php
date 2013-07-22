@@ -651,7 +651,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $exc_arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'exc_arrow' ); ?>" name="<?php echo $this->get_field_name( 'exc_arrow' ); ?>" />
 				<label for="<?php echo $this->get_field_id( 'exc_arrow' ); ?>">
-					<?php _e( 'Show an arrow after the excerpt', 'pis' ); ?>
+					<?php _e( 'Show an arrow after the "Read more" link', 'pis' ); ?>
 				</label>
 			</p>
 

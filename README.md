@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.6  
-**Stable tag:** 1.9  
+**Stable tag:** 1.10  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -84,9 +84,12 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ## Changelog ##
 
-### 2.0 (in development) ###
+### 1.10 ###
 
+* FIX: If the post is password protected, now the post password form is displayed.
+* NEW: Now the user-defined excerpt can display a paragraph break.
 * NEW: added Hebrew translation, thanks to Ahrale.
+* Other monir changes.
 
 ### 1.9 ###
 

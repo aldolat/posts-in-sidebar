@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 1.9\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2013-06-22 18:19:56+00:00\n"
+"POT-Creation-Date: 2013-07-22 20:05:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -274,7 +274,7 @@ msgid "Text for More link"
 msgstr ""
 
 #: posts-in-sidebar-widget.php:654
-msgid "Show an arrow after the excerpt"
+msgid "Show an arrow after the \"Read more\" link"
 msgstr ""
 
 #: posts-in-sidebar-widget.php:660
@@ -440,39 +440,39 @@ msgstr ""
 msgid "No-posts margin"
 msgstr ""
 
-#: posts-in-sidebar.php:157 posts-in-sidebar.php:271
+#: posts-in-sidebar.php:157 posts-in-sidebar.php:283
 msgid "Permalink to %s"
 msgstr ""
 
-#: posts-in-sidebar.php:229
+#: posts-in-sidebar.php:240
 msgid "Read the full post"
 msgstr ""
 
-#: posts-in-sidebar.php:252
+#: posts-in-sidebar.php:264
 msgid "View all posts by %s"
 msgstr ""
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "Leave a comment"
 msgstr ""
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "1 Comment"
 msgstr ""
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "% Comments"
 msgstr ""
 
-#: posts-in-sidebar.php:355
+#: posts-in-sidebar.php:367
 msgid "Display all posts by %s"
 msgstr ""
 
-#: posts-in-sidebar.php:361 posts-in-sidebar.php:367 posts-in-sidebar.php:372
+#: posts-in-sidebar.php:373 posts-in-sidebar.php:379 posts-in-sidebar.php:384
 msgid "Display all posts archived as %s"
 msgstr ""
 
-#: posts-in-sidebar.php:376
+#: posts-in-sidebar.php:388
 msgid "Display all posts with post format %s"
 msgstr ""
 

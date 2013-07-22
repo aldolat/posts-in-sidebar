@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2013-06-22 18:19:56+00:00\n"
-"PO-Revision-Date: 2013-06-22 20:28+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2013-07-22 20:05:51+00:00\n"
+"PO-Revision-Date: 2013-07-22 22:08+0200\n"
+"Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
@@ -281,11 +281,11 @@ msgstr "Lunghezza del riassunto auto-generato (in parole)"
 
 #: posts-in-sidebar-widget.php:646
 msgid "Text for More link"
-msgstr "Testo per il link \"Leggi il seguito&hellip;\""
+msgstr "Testo per il link \"Leggi il seguito\""
 
 #: posts-in-sidebar-widget.php:654
-msgid "Show an arrow after the excerpt"
-msgstr "Mostra una freccia dopo il riassunto"
+msgid "Show an arrow after the \"Read more\" link"
+msgstr "Mostra una freccia dopo il link \"Leggi il seguito\""
 
 #: posts-in-sidebar-widget.php:660
 msgid "Author, date and comments"
@@ -454,39 +454,39 @@ msgstr "Margine dell'archivio"
 msgid "No-posts margin"
 msgstr "Margine per nessun post"
 
-#: posts-in-sidebar.php:157 posts-in-sidebar.php:271
+#: posts-in-sidebar.php:157 posts-in-sidebar.php:283
 msgid "Permalink to %s"
 msgstr "Permalink a %s"
 
-#: posts-in-sidebar.php:229
+#: posts-in-sidebar.php:240
 msgid "Read the full post"
 msgstr "Leggi il post completo"
 
-#: posts-in-sidebar.php:252
+#: posts-in-sidebar.php:264
 msgid "View all posts by %s"
 msgstr "Visualizza tutti i post di %s"
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "Leave a comment"
 msgstr "Lascia un commento"
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "1 Comment"
 msgstr "1 commento"
 
-#: posts-in-sidebar.php:305
+#: posts-in-sidebar.php:317
 msgid "% Comments"
 msgstr "% commenti"
 
-#: posts-in-sidebar.php:355
+#: posts-in-sidebar.php:367
 msgid "Display all posts by %s"
 msgstr "Visualizza tutti i post di %s"
 
-#: posts-in-sidebar.php:361 posts-in-sidebar.php:367 posts-in-sidebar.php:372
+#: posts-in-sidebar.php:373 posts-in-sidebar.php:379 posts-in-sidebar.php:384
 msgid "Display all posts archived as %s"
 msgstr "Visualizza tutti i post archiviati come %s"
 
-#: posts-in-sidebar.php:376
+#: posts-in-sidebar.php:388
 msgid "Display all posts with post format %s"
 msgstr "Visualizza tutti i post con formato di post %s"
 

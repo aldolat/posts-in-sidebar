@@ -288,23 +288,6 @@ function pis_posts_in_sidebar( $args ) {
 									} ?>
 								</span>
 
-								<?php
-								/*
-								BONUS 1: The date as archived into the database
-								<p class="pis-date">
-									<a href="<?php the_permalink(); ?>">
-										<?php echo $linked_posts->post->post_date; ?>
-									</a>
-								</p>
-
-								BONUS 2: The date as archived into the database, and displayed into a localized form
-								<p class="pis-date">
-									<a href="<?php the_permalink(); ?>">
-										<?php echo date_i18n( get_option( 'date_format' ), strtotime( $linked_posts->post->post_date ), false ); ?>
-									</a>
-								</p>
-								*/ ?>
-
 							<?php } ?>
 
 							<?php /* The comments */ ?>

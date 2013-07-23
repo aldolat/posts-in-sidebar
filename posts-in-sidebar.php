@@ -384,7 +384,7 @@ function pis_posts_in_sidebar( $args ) {
 				if ( isset( $term_link ) ) { ?>
 					<?php if ( ! is_null( $archive_margin ) ) $archive_style = ' style="margin-bottom: ' . $archive_margin . $margin_unit . ';"'; ?>
 					<p <?php echo pis_class( 'pis-archive-link', apply_filters( 'pis_archive_class', $class ), false ) . $archive_style; ?>>
-						<a <?php pis_class( '', apply_filters( 'pis_archive_link_class', $class ) ); ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
+						<a <?php pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', $class ) ); ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
 							<?php echo $archive_text; ?>
 						</a>
 					</p>

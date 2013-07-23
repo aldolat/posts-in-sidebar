@@ -86,10 +86,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.10 ###
 
-* FIX: If the post is password protected, now the post password form is displayed.
-* NEW: Now the user-defined excerpt can display a paragraph break.
-* NEW: added Hebrew translation, thanks to Ahrale.
-* Other monir changes.
+* FIX: If the post is password protected, now the post password form is displayed before showing the post.
+* NEW: Now the user-defined excerpt can display a paragraph break, if any.
+* NEW: Added Hebrew translation, thanks to Ahrale.
+* Other minor changes.
 
 ### 1.9 ###
 
@@ -165,6 +165,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 * First release of the plugin.
 
 ## Upgrade Notice ##
+
+### 1.10 ###
+
+Bugfix for password-protected posts.
 
 ### 1.2 ###
 

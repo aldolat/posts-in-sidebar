@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.10
+ * Version: 1.11
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,7 +28,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.10' );
+define( 'PIS_VERSION', '1.11' );
 
 /**
  * The core function
@@ -195,7 +195,7 @@ function pis_posts_in_sidebar( $args ) {
 											<?php the_post_thumbnail(
 												$image_size,
 												array(
-													'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', $thumb_class ),
+													'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', $thumb_class ) . $image_style,
 												)
 											); ?></a>
 									<?php } // Close if ( has_post_thumbnail )  */

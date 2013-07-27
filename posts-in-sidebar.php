@@ -285,15 +285,17 @@ function pis_posts_in_sidebar( $args ) {
 							<?php } ?>
 
 							<?php /* The comments */ ?>
-							<?php if ( $comments ) { ?>
-								<?php if ( $display_author || $display_date ) { ?>
-									<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', $class ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+							<?php if ( ! post_password_required() ) : ?>
+								<?php if ( $comments ) { ?>
+									<?php if ( $display_author || $display_date ) { ?>
+										<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', $class ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+									<?php } ?>
+									<span <?php pis_class( 'pis-comments', apply_filters( 'pis_comments_class', $class ) ); ?>>
+										<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
+										comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
+									</span>
 								<?php } ?>
-								<span <?php pis_class( 'pis-comments', apply_filters( 'pis_comments_class', $class ) ); ?>>
-									<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
-									comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
-								</span>
-							<?php } ?>
+							<?php endif; ?>
 
 						<?php if ( $display_author || $display_date || $comments ) { ?>
 							</p>

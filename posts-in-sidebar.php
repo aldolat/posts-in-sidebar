@@ -130,7 +130,9 @@ function pis_posts_in_sidebar( $args ) {
 		<?php if ( $linked_posts->have_posts() ) : ?>
 
 			<?php if ( $intro ) { ?>
-				<p <?php echo pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class', false ); ?>><?php echo $intro; ?></p>
+				<p <?php echo pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class', false ); ?>>
+					<?php echo pis_break_text( $intro ); ?>
+				</p>
 			<?php } ?>
 
 			<ul <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', $class ) ); ?>>
@@ -217,8 +219,7 @@ function pis_posts_in_sidebar( $args ) {
 										case 'excerpt':
 											// If we have a user-defined excerpt...
 											if ( $linked_posts->post->post_excerpt ) {
-												// Convert cross-platform newlines into HTML '<br />'
-												$user_excerpt = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $linked_posts->post->post_excerpt );
+												$user_excerpt = pis_break_text( $linked_posts->post->post_excerpt );
 												echo $user_excerpt;
 											} else {
 											// ... else generate an excerpt
@@ -471,11 +472,32 @@ function pis_paragraph( $margin, $unit, $class, $class_filter, $class_echo ) {
 
 
 /**
+* Return the given text with paragraph breaks (HTML <br />).
+*
+* @since 1.12
+* @param string $text The text to be checked.
+* @return string $text The checked text with paragraph breaks.
+*/
+function pis_break_text( $text ) {
+	// Convert cross-platform newlines into HTML '<br />'
+	$text = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $text );
+	return $text;
+}
+
+/**
  * Include the widget
  *
  * @since 1.1
  */
 include_once( plugin_dir_path( __FILE__ ) . 'posts-in-sidebar-widget.php' );
+
+
+/**
+ * Include the widget form functions
+ *
+ * @since 1.12
+ */
+include_once( plugin_dir_path( __FILE__ ) . 'widget-form-functions.php' );
 
 
 /**

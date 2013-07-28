@@ -275,27 +275,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>">
-					<?php _e( 'Title', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Title', 'pis' ), $this->get_field_id('title'), $this->get_field_name('title'), $instance['title'], $comment = '' ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('title_link'); ?>">
-					<?php _e( 'Link for the title of the widget', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('title_link'); ?>" name="<?php echo $this->get_field_name('title_link'); ?>" type="text" value="<?php echo esc_url( $instance['title_link'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Link for the title of the widget', 'pis' ), $this->get_field_id('title_link'), $this->get_field_name('title_link'), esc_url( $instance['title_link'] ), $comment = '' ); ?>
 
-			 <p>
-				<label for="<?php echo $this->get_field_id('intro'); ?>">
-					<?php _e( 'Introductory text for the widget', 'pis' ); ?>
-				</label>
-				<textarea class="widefat" style="resize: vertical; width: 100%; height: 80px;" id="<?php echo $this->get_field_id('intro'); ?>" name="<?php echo $this->get_field_name('intro'); ?>"><?php echo $instance['intro']; ?></textarea>
-				<br /><em><?php printf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' ); ?></em>
-			</p>
+			<?php pis_form_textarea(
+				__( 'Introductory text for the widget', 'pis' ),
+				$this->get_field_id('intro'),
+				$this->get_field_name('intro'),
+				$instance['intro'],
+				$style = 'resize: vertical; width: 100%; height: 80px;',
+				$comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' ) );
+			?>
 
 			<hr />
 

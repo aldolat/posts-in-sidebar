@@ -242,7 +242,7 @@ function pis_posts_in_sidebar( $args ) {
 								</p>
 
 							<?php }	// Close The content ?>
-						<?php endif; // Close if post password required?>
+						<?php endif; // Close if post password required ?>
 
 						<?php /* The author, the date and the comments */ ?>
 						<?php if ( $display_author || $display_date || $comments ) { ?>

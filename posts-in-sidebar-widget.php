@@ -613,6 +613,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<option <?php selected( 'full_content', $instance['excerpt'] ); ?> value="full_content">
 						<?php _e( 'The full content', 'pis' ); ?>
 					</option>
+					<option <?php selected( 'rich_content', $instance['excerpt'] ); ?> value="rich_content">
+						<?php _e( 'The rich content', 'pis' ); ?>
+					</option>
 					<option <?php selected( 'content', $instance['excerpt'] ); ?> value="content">
 						<?php _e( 'The text of the content', 'pis' ); ?>
 					</option>

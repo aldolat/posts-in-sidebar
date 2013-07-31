@@ -275,9 +275,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
-			<?php pis_form_input_text( __( 'Title', 'pis' ), $this->get_field_id('title'), $this->get_field_name('title'), $instance['title'], $comment = '' ); ?>
+			<?php pis_form_input_text( __( 'Title', 'pis' ), $this->get_field_id('title'), $this->get_field_name('title'), esc_attr( $instance['title'] ) ); ?>
 
-			<?php pis_form_input_text( __( 'Link for the title of the widget', 'pis' ), $this->get_field_id('title_link'), $this->get_field_name('title_link'), esc_url( $instance['title_link'] ), $comment = '' ); ?>
+			<?php pis_form_input_text( __( 'Link for the title of the widget', 'pis' ), $this->get_field_id('title_link'), $this->get_field_name('title_link'), esc_url( $instance['title_link'] ) ); ?>
 
 			<?php pis_form_textarea(
 				__( 'Introductory text for the widget', 'pis' ),
@@ -386,12 +386,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('number'); ?>">
-					<?php _e( 'How many posts to display', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo esc_attr( $instance['number'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'How many posts to display', 'pis' ), $this->get_field_id('number'), $this->get_field_name('number'), esc_attr( $instance['number'] ) ); ?>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('orderby'); ?>">
@@ -430,12 +425,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('offset_number'); ?>">
-					<?php _e( 'Number of posts to skip', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('offset_number'); ?>" name="<?php echo $this->get_field_name('offset_number'); ?>" type="text" value="<?php echo esc_attr( $instance['offset_number'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Number of posts to skip', 'pis' ), $this->get_field_id('offset_number'), $this->get_field_name('offset_number'), esc_attr( $instance['offset_number'] ) ); ?>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('post_status'); ?>">
@@ -454,27 +444,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('post_meta_key'); ?>">
-					<?php _e( 'Post meta key', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_key'); ?>" name="<?php echo $this->get_field_name('post_meta_key'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_key'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Post meta key', 'pis' ), $this->get_field_id('post_meta_key'), $this->get_field_name('post_meta_key'), esc_attr( $instance['post_meta_key'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('post_meta_val'); ?>">
-					<?php _e( 'Post meta value', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('post_meta_val'); ?>" name="<?php echo $this->get_field_name('post_meta_val'); ?>" type="text" value="<?php echo esc_attr( $instance['post_meta_val'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Post meta value', 'pis' ), $this->get_field_id('post_meta_val'), $this->get_field_name('post_meta_val'), esc_attr( $instance['post_meta_val'] ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $ignore_sticky ); ?> value="1" id="<?php echo $this->get_field_id( 'ignore_sticky' ); ?>" name="<?php echo $this->get_field_name( 'ignore_sticky' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'ignore_sticky' ); ?>">
-					<?php _e( 'Ignore sticky posts', 'pis' ); ?>
-				</label>
-				<br /><em><?php _e( 'Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ); ?></em>
-			</p>
+			<?php pis_form_checkbox( __( 'Ignore sticky posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ) ); ?>
 
 			<hr />
 
@@ -518,37 +492,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The title of the post', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $display_title ); ?> value="1" id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'display_title' ); ?>">
-					<?php _e( 'Display the title of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Display the title of the post', 'pis' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $link_on_title ); ?> value="1" id="<?php echo $this->get_field_id( 'link_on_title' ); ?>" name="<?php echo $this->get_field_name( 'link_on_title' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'link_on_title' ); ?>">
-					<?php _e( 'Link the title to the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Link the title to the post', 'pis' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'arrow' ); ?>" name="<?php echo $this->get_field_name( 'arrow' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'arrow' ); ?>">
-					<?php _e( 'Show an arrow after the title', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Show an arrow after the title', 'pis' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>
 
 			<hr />
 
 			<h4><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $display_image ); ?> value="1" id="<?php echo $this->get_field_id( 'display_image' ); ?>" name="<?php echo $this->get_field_name( 'display_image' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'display_image' ); ?>">
-					<?php _e( 'Display the featured image of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('image_size'); ?>">
@@ -628,26 +582,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'exc_length' ); ?>">
-					<?php _e( 'Length of the auto-generated excerpt (in words)', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'exc_length' ); ?>" name="<?php echo $this->get_field_name( 'exc_length' ); ?>" type="text" value="<?php echo esc_attr( $instance['exc_length'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Length of the auto-generated excerpt (in words)', 'pis' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'the_more' ); ?>">
-					<?php _e( 'Text for More link', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'the_more' ); ?>" name="<?php echo $this->get_field_name( 'the_more' ); ?>" type="text" value="<?php echo esc_attr( $instance['the_more'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Text for More link', 'pis' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $exc_arrow ); ?> value="1" id="<?php echo $this->get_field_id( 'exc_arrow' ); ?>" name="<?php echo $this->get_field_name( 'exc_arrow' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'exc_arrow' ); ?>">
-					<?php _e( 'Show an arrow after the "Read more" link', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Show an arrow after the "Read more" link', 'pis' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), checked( $exc_arrow, true, false ) ); ?>
 
 			<hr />
 

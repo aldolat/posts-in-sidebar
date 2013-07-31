@@ -35,3 +35,16 @@ function pis_form_textarea( $label, $id, $name, $text,  $style = '', $comment = 
 	<?php if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }
+
+/**
+ * Create a form checkbox to be used with the widget.
+ *
+ * @since 1.12
+ */
+function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
+	echo '<p>';
+	echo '<input class="checkbox" type="checkbox" ' . $checked . ' id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" />&nbsp;';
+	pis_form_label( $label, $id );
+	if ( $comment ) echo '<br /><em>' . $comment . '</em>';
+	echo '</p>';
+}

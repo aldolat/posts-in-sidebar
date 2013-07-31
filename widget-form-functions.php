@@ -48,3 +48,21 @@ function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }
+
+/**
+ * Create a form select to be used with the widget.
+ *
+ * @since 1.12
+ */
+function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) {
+	echo '<p>';
+	pis_form_label( $label, $id );
+	echo '<select name="' . $name . '">';
+		foreach ( $options as $option ) {
+			$selected = selected( $option['value'], $value, false );
+			echo '<option ' . $selected . ' value="' . $option['value'] . '">' . $option['desc'] . '</option>';
+		}
+	echo '</select>';
+	if ( $comment ) echo '<br /><em>' . $comment . '</em>';
+	echo '</p>';
+}

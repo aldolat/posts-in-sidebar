@@ -195,7 +195,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance) {
+	function form( $instance ) {
 		$defaults = array(
 			'title'             => __( 'Posts', 'pis' ),
 			'title_link'        => '',
@@ -559,28 +559,40 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('excerpt'); ?>">
-					<?php _e( 'What type of text to display', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('excerpt'); ?>">
-					<option <?php selected( 'full_content', $instance['excerpt'] ); ?> value="full_content">
-						<?php _e( 'The full content', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'rich_content', $instance['excerpt'] ); ?> value="rich_content">
-						<?php _e( 'The rich content', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'content', $instance['excerpt'] ); ?> value="content">
-						<?php _e( 'The text of the content', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'excerpt', $instance['excerpt'] ); ?> value="excerpt">
-						<?php _e( 'The excerpt', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'none', $instance['excerpt'] ); ?> value="none">
-						<?php _e( 'Do not show any text', 'pis' ); ?>
-					</option>
-				</select>
-			</p>
+			<?php $content_types = array(
+				'full_content' => array(
+					'name'  => 'full_content',
+					'value' => 'full_content',
+					'desc'  => __( 'The full content', 'pis' )
+				),
+				'rich_content' => array(
+					'name'  => 'rich_content',
+					'value' => 'rich_content',
+					'desc'  => __( 'The rich content', 'pis' )
+				),
+				'content' => array(
+					'name'  => 'content',
+					'value' => 'content',
+					'desc'  => __( 'The text of the content', 'pis' )
+				),
+				'excerpt' => array(
+					'name'  => 'excerpt',
+					'value' => 'excerpt',
+					'desc'  => __( 'The excerpt', 'pis' )
+				),
+				'none' => array(
+					'name'  => 'none',
+					'value' => 'none',
+					'desc'  => __( 'Do not show any text', 'pis' )
+				),
+			);
+			pis_form_select(
+				__( 'What type of text to display', 'pis' ),
+				$this->get_field_id('excerpt'),
+				$this->get_field_name('excerpt'),
+				$content_types,
+				$instance['excerpt']
+			); ?>
 
 			<?php pis_form_input_text( __( 'Length of the auto-generated excerpt (in words)', 'pis' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ) ); ?>
 

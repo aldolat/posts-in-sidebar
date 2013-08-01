@@ -292,99 +292,125 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'Get these posts', 'pis' ); ?></h4>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('post_type'); ?>">
-					<?php _e( 'Post type', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('post_type'); ?>">
-					<option <?php selected( 'any', $instance['post_type'] ); ?> value="any">
-						<?php _e( 'Any', 'pis' ); ?>
-				 	</option>
-					<?php $wp_post_types = (array) get_post_types( array( 'exclude_from_search' => false ), 'objects' );
-					foreach ( $wp_post_types as $wp_post_type ) { ?>
-					 	<option <?php selected( $wp_post_type->name, $instance['post_type'] ); ?> value="<?php echo $wp_post_type->name; ?>">
-							<?php echo $wp_post_type->labels->singular_name; ?>
-					 	</option>
-					<?php } ?>
-				</select>
-			</p>
+			<?php // ================= Post types
+			$options = array(
+				array(
+					'name'  => 'any',
+					'value' => 'any',
+					'desc'  => __( 'Any', 'pis' ),
+				)
+			);
+			$wp_post_types = (array) get_post_types( array( 'exclude_from_search' => false ), 'objects' );
+			foreach ( $wp_post_types as $wp_post_type ) {
+				$options[] = array(
+					'name'  => $wp_post_type->name,
+					'value' => $wp_post_type->name,
+					'desc'  => $wp_post_type->labels->singular_name,
+				);
+			}
+			pis_form_select(
+				__( 'Post type', 'pis' ),
+				$this->get_field_id('post_type'),
+				$this->get_field_name('post_type'),
+				$options,
+				$instance['post_type']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('author'); ?>">
-					<?php _e( 'Author', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('author'); ?>">
-					<?php $my_author = $instance['author']; ?>
-					<option <?php selected( 'NULL', $my_author); ?> value="NULL">
-						<?php _e( 'Any', 'pis' ); ?>
-					</option>
-					<?php
-						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
-						foreach ( $authors as $author ) :
-					?>
-						<option <?php selected( $author->user_nicename, $my_author); ?> value="<?php echo $author->user_nicename; ?>">
-							<?php echo $author->display_name; ?>
-						</option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			<?php // ================= Author
+			$options = array(
+				array(
+					'name'  => 'NULL',
+					'value' => 'NULL',
+					'desc'  => __( 'Any', 'pis' )
+				)
+			);
+			$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
+			foreach ( $authors as $author ) {
+				$options[] = array(
+					'name'  => $author->user_nicename,
+					'value' => $author->user_nicename,
+					'desc'  => $author->display_name,
+				);
+			}
+			pis_form_select(
+				__( 'Author', 'pis' ),
+				$this->get_field_id('author'),
+				$this->get_field_name('author'),
+				$options,
+				$instance['author']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('cat'); ?>">
-					<?php _e( 'Category', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('cat'); ?>">
-					<option <?php selected( 'NULL', $instance['cat'] ); ?> value="NULL">
-						<?php _e( 'Any', 'pis' ); ?>
-					</option>
-					<?php
-						$my_cats = get_categories( array( 'hide_empty' => 0 ) );
-						foreach( $my_cats as $my_cat ) :
-					?>
-						<option <?php selected( $my_cat->slug, $instance['cat'] ); ?> value="<?php echo $my_cat->slug; ?>">
-							<?php echo $my_cat->cat_name; ?>
-						</option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			<?php // ================= Category
+			$options = array(
+				array(
+					'name'  => 'NULL',
+					'value' => 'NULL',
+					'desc'  => __( 'Any', 'pis' )
+				)
+			);
+			$my_cats = get_categories( array( 'hide_empty' => 0 ) );
+			foreach( $my_cats as $my_cat ) {
+				$options[] = array(
+					'name'  => $my_cat->slug,
+					'value' => $my_cat->slug,
+					'desc'  => $my_cat->cat_name,
+				);
+			}
+			pis_form_select(
+				__( 'Category', 'pis' ),
+				$this->get_field_id('cat'),
+				$this->get_field_name('cat'),
+				$options,
+				$instance['cat']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('tag'); ?>">
-					<?php _e( 'Tag', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('tag'); ?>">
-					<option <?php selected( 'NULL', $instance['tag'] ); ?> value="NULL">
-						<?php _e( 'Any', 'pis' ); ?>
-					</option>
-					<?php
-						$my_tags = get_tags( array( 'hide_empty' => 0 ) );
-						foreach( $my_tags as $my_tag ) :
-					?>
-						<option <?php selected( $my_tag->slug, $instance['tag'] ); ?> value="<?php echo $my_tag->slug; ?>">
-							<?php echo $my_tag->name; ?>
-						</option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			<?php // ================= Tag
+			$options = array(
+				array(
+					'name'  => 'NULL',
+					'value' => 'NULL',
+					'desc'  => __( 'Any', 'pis' )
+				)
+			);
+			$my_tags = get_tags( array( 'hide_empty' => 0 ) );
+			foreach( $my_tags as $my_tag ) {
+				$options[] = array(
+					'name'  => $my_tag->slug,
+					'value' => $my_tag->slug,
+					'desc'  => $my_tag->name,
+				);
+			}
+			pis_form_select(
+				__( 'Tag', 'pis' ),
+				$this->get_field_id('tag'),
+				$this->get_field_name('tag'),
+				$options,
+				$instance['tag']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('post_format'); ?>">
-					<?php _e( 'Post format', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('post_format'); ?>">
-					<option <?php selected( '', $instance['post_format'] ); ?> value="">
-						<?php _e( 'Any', 'pis' ); ?>
-					</option>
-					<?php $post_formats = get_terms( 'post_format' );
-					if ( $post_formats ) {
-						foreach ( $post_formats as $post_format ) { ?>
-							<option <?php selected( $post_format->slug, $instance['post_format'] ); ?> value="<?php echo $post_format->slug ?>">
-								<?php echo $post_format->name; ?>
-							</option>
-						<?php }
-					} ?>
-				</select>
-			</p>
+			<?php // ================= Post format
+			$options = array(
+				array(
+					'name'  => 'NULL',
+					'value' => 'NULL',
+					'desc'  => __( 'Any', 'pis' )
+				)
+			);
+			$post_formats = get_terms( 'post_format' );
+			foreach ( $post_formats as $post_format ) {
+				$options[] = array(
+					'name'  => $post_format->slug,
+					'value' => $post_format->slug,
+					'desc'  => $post_format->name,
+				);
+			}
+			pis_form_select(
+				__( 'Post format', 'pis' ),
+				$this->get_field_id('tag'),
+				$this->get_field_name('tag'),
+				$options,
+				$instance['tag']
+			); ?>
 
 			<?php pis_form_input_text( __( 'How many posts to display', 'pis' ), $this->get_field_id('number'), $this->get_field_name('number'), esc_attr( $instance['number'] ) ); ?>
 
@@ -445,22 +471,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text( __( 'Number of posts to skip', 'pis' ), $this->get_field_id('offset_number'), $this->get_field_name('offset_number'), esc_attr( $instance['offset_number'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('post_status'); ?>">
-					<?php _e( 'Post status', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('post_status'); ?>">
-					<?php $statuses = get_post_stati( '', 'objects' );
-					foreach( $statuses as $status ) { ?>
-						<option <?php selected( $status->name, $instance['post_status'] ); ?> value="<?php echo $status->name; ?>">
-							<?php echo $status->label; ?>
-						</option>
-					<?php } ?>
-					<option <?php selected( 'any', $instance['post_status'] ); ?> value="any">
-						<?php _e( 'Any', 'pis' ); ?>
-					</option>
-				</select>
-			</p>
+			<?php // ================= Post status
+			$options = array();
+			$statuses = get_post_stati( '', 'objects' );
+			foreach( $statuses as $status ) {
+				$options[] = array(
+					'name'  => $status->name,
+					'value' => $status->name,
+					'desc'  => $status->label,
+				);
+			}
+			pis_form_select(
+				__( 'Post status', 'pis' ),
+				$this->get_field_id('post_status'),
+				$this->get_field_name('post_status'),
+				$options,
+				$instance['post_status']
+			); ?>
 
 			<?php pis_form_input_text( __( 'Post meta key', 'pis' ), $this->get_field_id('post_meta_key'), $this->get_field_name('post_meta_key'), esc_attr( $instance['post_meta_key'] ) ); ?>
 
@@ -522,23 +549,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('image_size'); ?>">
-					<?php _e( 'Size of the thumbnail', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('image_size'); ?>">
-					<?php $my_size = $instance['image_size']; ?>
-					<?php
-						$sizes = (array) get_intermediate_image_sizes();
-						foreach ( $sizes as $size ) :
-					?>
-						<option <?php selected( $size, $my_size); ?> value="<?php echo $size; ?>">
-							<?php echo $size; ?>
-						</option>
-					<?php endforeach; ?>
-				</select>
-				<br />
-			</p>
+			<?php // ================= Image sizes
+			$options = array();
+			$sizes = (array) get_intermediate_image_sizes();
+			foreach ( $sizes as $size ) {
+				$options[] = array(
+					'name'  => $size,
+					'value' => $size,
+					'desc'  => $size,
+				);
+			}
+			pis_form_select(
+				__( 'Size of the thumbnail', 'pis' ),
+				$this->get_field_id('image_size'),
+				$this->get_field_name('image_size'),
+				$options,
+				$instance['image_size']
+			); ?>
 
 			<?php $options = array(
 				'nochange' => array(
@@ -602,7 +629,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				'content' => array(
 					'name'  => 'content',
 					'value' => 'content',
-					'desc'  => __( 'The text of the content', 'pis' )
+					'desc'  => __( 'The simple text', 'pis' )
 				),
 				'excerpt' => array(
 					'name'  => 'excerpt',

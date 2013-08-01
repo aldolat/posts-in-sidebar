@@ -74,7 +74,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 = 1.12-dev =
 
-* FIX: added option for rich content.
+* NEW: added option for rich content.
 * Code improvements.
 
 = 1.11 =

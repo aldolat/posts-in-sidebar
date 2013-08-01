@@ -31,7 +31,7 @@ function pis_form_textarea( $label, $id, $name, $text,  $style = '', $comment = 
 	echo '<p>';
 	pis_form_label( $label, $id );
 	if ( $style ) $style = ' style="' . $style . '"';
-	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10" class="widefat"' . esc_attr( $style ) . '>' . esc_html( $text ) . '</textarea>'; ?>
+	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10" class="widefat"' . $style . '>' . esc_html( $text ) . '</textarea>'; ?>
 	<?php if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }
@@ -60,7 +60,7 @@ function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) 
 	echo '<select name="' . $name . '">';
 		foreach ( $options as $option ) {
 			$selected = selected( $option['value'], $value, false );
-			echo '<option ' . $selected . ' value="' . $option['value'] . '">' . $option['desc'] . '</option>';
+			echo '<option ' . $selected . ' value="' . esc_attr( $option['value'] ) . '">' . esc_attr( $option['desc'] ) . '</option>';
 		}
 	echo '</select>';
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';

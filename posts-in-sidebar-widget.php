@@ -388,42 +388,60 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text( __( 'How many posts to display', 'pis' ), $this->get_field_id('number'), $this->get_field_name('number'), esc_attr( $instance['number'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('orderby'); ?>">
-					<?php _e( 'Order by', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('orderby'); ?>">
-					<option <?php selected( 'date', $instance['orderby'] ); ?> value="date">
-						<?php _e( 'Date', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'title', $instance['orderby'] ); ?> value="title">
-						<?php _e( 'Title', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'id', $instance['orderby'] ); ?> value="id">
-						<?php _e( 'ID', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'modified', $instance['orderby'] ); ?> value="modified">
-						<?php _e( 'Modified', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'rand', $instance['orderby'] ); ?> value="rand">
-						<?php _e( 'Random', 'pis' ); ?>
-					</option>
-				</select>
-			</p>
+			<?php $options = array(
+				'date' => array(
+					'name'  => 'date',
+					'value' => 'date',
+					'desc'  => __( 'Date', 'pis' )
+				),
+				'title' => array(
+					'name'  => 'title',
+					'value' => 'title',
+					'desc'  => __( 'Title', 'pis' )
+				),
+				'id' => array(
+					'name'  => 'id',
+					'value' => 'id',
+					'desc'  => __( 'ID', 'pis' )
+				),
+				'modified' => array(
+					'name'  => 'modified',
+					'value' => 'modified',
+					'desc'  => __( 'Modified', 'pis' )
+				),
+				'rand' => array(
+					'name'  => 'rand',
+					'value' => 'rand',
+					'desc'  => __( 'Random', 'pis' )
+				),
+			);
+			pis_form_select(
+				__( 'Order by', 'pis' ),
+				$this->get_field_id('orderby'),
+				$this->get_field_name('orderby'),
+				$options,
+				$instance['orderby']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('order'); ?>">
-					<?php _e( 'Order', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('order'); ?>">
-					<option <?php selected( 'ASC', $instance['order'] ); ?> value="ASC">
-						<?php _e( 'Ascending', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'DESC', $instance['order'] ); ?> value="DESC">
-						<?php _e( 'Descending', 'pis' ); ?>
-					</option>
-				</select>
-			</p>
+			<?php $options = array(
+				'asc' => array(
+					'name'  => 'asc',
+					'value' => 'ASC',
+					'desc'  => __( 'Ascending', 'pis' )
+				),
+				'desc' => array(
+					'name'  => 'desc',
+					'value' => 'DESC',
+					'desc'  => __( 'Descending', 'pis' )
+				),
+			);
+			pis_form_select(
+				__( 'Order', 'pis' ),
+				$this->get_field_id('order'),
+				$this->get_field_name('order'),
+				$options,
+				$instance['order']
+			); ?>
 
 			<?php pis_form_input_text( __( 'Number of posts to skip', 'pis' ), $this->get_field_id('offset_number'), $this->get_field_name('offset_number'), esc_attr( $instance['offset_number'] ) ); ?>
 
@@ -448,7 +466,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text( __( 'Post meta value', 'pis' ), $this->get_field_id('post_meta_val'), $this->get_field_name('post_meta_val'), esc_attr( $instance['post_meta_val'] ) ); ?>
 
-			<?php pis_form_checkbox( __( 'Ignore sticky posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ) ); ?>
+			<?php pis_form_checkbox( __( 'Ignore sticky posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
 
 			<hr />
 
@@ -522,25 +540,36 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<br />
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('image_align'); ?>">
-					<?php _e( 'Align image', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('image_align'); ?>">
-					<option <?php selected( 'nochange', $instance['image_align'] ); ?> value="nochange">
-						<?php _e( 'Do not change', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'left', $instance['image_align'] ); ?> value="left">
-						<?php _e( 'Float left', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'right', $instance['image_align'] ); ?> value="right">
-						<?php _e( 'Float right', 'pis' ); ?>
-					</option>
-					<option <?php selected( 'center', $instance['image_align'] ); ?> value="center">
-						<?php _e( 'Align center', 'pis' ); ?>
-					</option>
-				</select>
-			</p>
+			<?php $options = array(
+				'nochange' => array(
+					'name'  => 'nochange',
+					'value' => 'nochange',
+					'desc'  => __( 'Do not change', 'pis' )
+				),
+				'left' => array(
+					'name'  => 'left',
+					'value' => 'left',
+					'desc'  => __( 'Float left', 'pis' )
+				),
+				'right' => array(
+					'name'  => 'right',
+					'value' => 'right',
+					'desc'  => __( 'Float right', 'pis' )
+				),
+				'center' => array(
+					'name'  => 'center',
+					'value' => 'center',
+					'desc'  => __( 'Align center', 'pis' )
+				),
+
+			);
+			pis_form_select(
+				__( 'Align image', 'pis' ),
+				$this->get_field_id('image_align'),
+				$this->get_field_name('image_align'),
+				$options,
+				$instance['image_align']
+			); ?>
 
 			<p>
 				<em>
@@ -559,7 +588,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
-			<?php $content_types = array(
+			<?php $options = array(
 				'full_content' => array(
 					'name'  => 'full_content',
 					'value' => 'full_content',
@@ -590,7 +619,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				__( 'What type of text to display', 'pis' ),
 				$this->get_field_id('excerpt'),
 				$this->get_field_name('excerpt'),
-				$content_types,
+				$options,
 				$instance['excerpt']
 			); ?>
 
@@ -604,69 +633,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $display_author ); ?> value="1" id="<?php echo $this->get_field_id( 'display_author' ); ?>" name="<?php echo $this->get_field_name( 'display_author' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'display_author' ); ?>">
-					<?php _e( 'Display the author of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Display the author of the post', 'pis' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'author_text' ); ?>">
-					<?php _e( 'Use this text before author\'s name', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'author_text' ); ?>" name="<?php echo $this->get_field_name( 'author_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['author_text'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Use this text before author\'s name', 'pis' ), $this->get_field_id( 'author_text' ), $this->get_field_name( 'author_text' ), esc_attr( $instance['author_text'] ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $linkify_author ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_author' ); ?>" name="<?php echo $this->get_field_name( 'linkify_author' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'linkify_author' ); ?>">
-					<?php _e( 'Link the author to his archive', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Link the author to his archive', 'pis' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), checked( $linkify_author, true, false ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $display_date ); ?> value="1" id="<?php echo $this->get_field_id( 'display_date' ); ?>" name="<?php echo $this->get_field_name( 'display_date' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'display_date' ); ?>">
-					<?php _e( 'Display the date of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Display the date of the post', 'pis' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), checked( $display_date, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'date_text' ); ?>">
-					<?php _e( 'Use this text before date', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'date_text' ); ?>" name="<?php echo $this->get_field_name( 'date_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['date_text'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Use this text before date', 'pis' ), $this->get_field_id( 'date_text' ), $this->get_field_name( 'date_text' ), esc_attr( $instance['date_text'] ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $linkify_date ); ?> value="1" id="<?php echo $this->get_field_id( 'linkify_date' ); ?>" name="<?php echo $this->get_field_name( 'linkify_date' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'linkify_date' ); ?>">
-					<?php _e( 'Link the date to the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Link the date to the post', 'pis' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), checked( $linkify_date, true, false ) ); ?>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $comments ); ?> value="1" id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'comments' ); ?>">
-					<?php _e( 'Display the number of comments', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Display the number of comments', 'pis' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), checked( $comments, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'comments_text' ); ?>">
-					<?php _e( 'Use this text before the comments number', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'comments_text' ); ?>" name="<?php echo $this->get_field_name( 'comments_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['comments_text'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Use this text before the comments number', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'utility_sep' ); ?>">
-					<?php _e( 'Use this separator between author, date and comments', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'utility_sep' ); ?>" name="<?php echo $this->get_field_name( 'utility_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['utility_sep'] ); ?>" />
-				<em><?php _e( 'A space will be added before and after the separator.', 'pis' ); ?></em>
-			</p>
+			<?php pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
 
 		</div>
 
@@ -674,71 +657,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $categories ); ?> value="1" id="<?php echo $this->get_field_id( 'categories' ); ?>" name="<?php echo $this->get_field_name( 'categories' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'categories' ); ?>">
-					<?php _e( 'Show the categories of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Show the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('categ_text'); ?>">
-					<?php _e( 'Text before categories list', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('categ_text'); ?>" name="<?php echo $this->get_field_name('categ_text'); ?>" type="text" value="<?php echo esc_attr( $instance['categ_text'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Text before categories list', 'pis' ), $this->get_field_id( 'categ_text' ), $this->get_field_name( 'categ_text' ), esc_attr( $instance['categ_text'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'categ_sep' ); ?>">
-					<?php _e( 'Use this separator between categories', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'categ_sep' ); ?>" name="<?php echo $this->get_field_name( 'categ_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['categ_sep'] ); ?>" />
-				<em><?php _e( 'A space will be added after the separator.', 'pis' ); ?></em>
-			</p>
+			<?php pis_form_input_text( __( 'Use this separator between categories', 'pis' ), $this->get_field_id( 'categ_sep' ), $this->get_field_name( 'categ_sep' ), esc_attr( $instance['categ_sep'] ), __( 'A space will be added after the separator.', 'pis' ) ); ?>
 
 			<hr />
 
 			<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $tags ); ?> value="1" id="<?php echo $this->get_field_id( 'tags' ); ?>" name="<?php echo $this->get_field_name( 'tags' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'tags' ); ?>">
-					<?php _e( 'Show the tags of the post', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('tags_text'); ?>">
-					<?php _e( 'Text before tags list', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id('tags_text'); ?>" name="<?php echo $this->get_field_name('tags_text'); ?>" type="text" value="<?php echo $instance['tags_text']; ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Text before tags list', 'pis' ), $this->get_field_id( 'tags_text' ), $this->get_field_name( 'tags_text' ), esc_attr( $instance['tags_text'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'hashtag' ); ?>">
-					<?php _e( 'Use this hashtag', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'hashtag' ); ?>" name="<?php echo $this->get_field_name( 'hashtag' ); ?>" type="text" value="<?php echo esc_attr( $instance['hashtag'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Use this hashtag', 'pis' ), $this->get_field_id( 'hashtag' ), $this->get_field_name( 'hashtag' ), esc_attr( $instance['hashtag'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'tag_sep' ); ?>">
-					<?php _e( 'Use this separator between tags', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'tag_sep' ); ?>" name="<?php echo $this->get_field_name( 'tag_sep' ); ?>" type="text" value="<?php echo esc_attr( $instance['tag_sep'] ); ?>" />
-				<br /><em><?php _e( 'A space will be added after the separator.', 'pis' ); ?></em>
-			</p>
+			<?php pis_form_input_text( __( 'Use this separator between tags', 'pis' ), $this->get_field_id( 'tag_sep' ), $this->get_field_name( 'tag_sep' ), esc_attr( $instance['tag_sep'] ), __( 'A space will be added after the separator.', 'pis' ) ); ?>
 
 			<hr />
 
 			<h4><?php _e( 'The link to the archive', 'pis' ); ?></h4>
 
-			<p>
-				<input class="checkbox" type="checkbox" <?php checked( $archive_link ); ?> value="1" id="<?php echo $this->get_field_id( 'archive_link' ); ?>" name="<?php echo $this->get_field_name( 'archive_link' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'archive_link' ); ?>">
-					<?php _e( 'Show the link to the taxonomy archive', 'pis' ); ?>
-				</label>
-			</p>
+			<?php pis_form_checkbox( __( 'Show the link to the taxonomy archive', 'pis' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
 
 			<p>
 				<label for="<?php echo $this->get_field_id('link_to'); ?>">
@@ -773,23 +714,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</select>
 			</p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'archive_text' ); ?>">
-					<?php _e( 'Use this text for archive link', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'archive_text' ); ?>" name="<?php echo $this->get_field_name( 'archive_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['archive_text'] ); ?>" />
-				<br />
-				<em>
-					<?php _e( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' ); ?>
-				</em>
-			</p>
+			<?php pis_form_input_text( __( 'Use this text for archive link', 'pis' ), $this->get_field_id( 'archive_text' ), $this->get_field_name( 'archive_text' ), esc_attr( $instance['archive_text'] ), __( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'nopost_text' ); ?>">
-					<?php _e( 'Use this text when there are no posts', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'nopost_text' ); ?>" name="<?php echo $this->get_field_name( 'nopost_text' ); ?>" type="text" value="<?php echo esc_attr( $instance['nopost_text'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
 
 			<hr />
 
@@ -797,81 +724,51 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
 
-			<p>
-				<label for="<?php echo $this->get_field_id('margin_unit'); ?>">
-					<?php _e( 'Unit for margins', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('margin_unit'); ?>">
-					<option <?php selected( 'px', $instance['margin_unit'] ); ?> value="px">
-						px
-					</option>
-					<option <?php selected( '%', $instance['margin_unit'] ); ?> value="%">
-						%
-					</option>
-					<option <?php selected( 'em', $instance['margin_unit'] ); ?> value="em">
-						em
-					</option>
-					<option <?php selected( 'rem', $instance['margin_unit'] ); ?> value="rem">
-						rem
-					</option>
-				</select>
-			</p>
+			<?php $options = array(
+				'px' => array(
+					'name'  => 'px',
+					'value' => 'px',
+					'desc'  => 'px'
+				),
+				'%' => array(
+					'name'  => '%',
+					'value' => '%',
+					'desc'  => '%'
+				),
+				'em' => array(
+					'name'  => 'em',
+					'value' => 'em',
+					'desc'  => 'em'
+				),
+				'rem' => array(
+					'name'  => 'rem',
+					'value' => 'rem',
+					'desc'  => 'rem'
+				),
+			);
+			pis_form_select(
+				__( 'Unit for margins', 'pis' ),
+				$this->get_field_id('margin_unit'),
+				$this->get_field_name('margin_unit'),
+				$options,
+				$instance['margin_unit']
+			); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'intro_margin' ); ?>">
-					<?php _e( 'Introduction margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'intro_margin' ); ?>" name="<?php echo $this->get_field_name( 'intro_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['intro_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Introduction margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'title_margin' ); ?>">
-					<?php _e( 'Title margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title_margin' ); ?>" name="<?php echo $this->get_field_name( 'title_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['title_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Title margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'excerpt_margin' ); ?>">
-					<?php _e( 'Excerpt margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'excerpt_margin' ); ?>" name="<?php echo $this->get_field_name( 'excerpt_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['excerpt_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'utility_margin' ); ?>">
-					<?php _e( 'Utility margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'utility_margin' ); ?>" name="<?php echo $this->get_field_name( 'utility_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['utility_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Utility margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'categories_margin' ); ?>">
-					<?php _e( 'Categories margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'categories_margin' ); ?>" name="<?php echo $this->get_field_name( 'categories_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['categories_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Categories margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'tags_margin' ); ?>">
-					<?php _e( 'Tags margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'tags_margin' ); ?>" name="<?php echo $this->get_field_name( 'tags_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['tags_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Tags margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'archive_margin' ); ?>">
-					<?php _e( 'Archive margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'archive_margin' ); ?>" name="<?php echo $this->get_field_name( 'archive_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['archive_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'Archive margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
 
-			<p>
-				<label for="<?php echo $this->get_field_id( 'noposts_margin' ); ?>">
-					<?php _e( 'No-posts margin', 'pis' ); ?>
-				</label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'noposts_margin' ); ?>" name="<?php echo $this->get_field_name( 'noposts_margin' ); ?>" type="text" value="<?php echo esc_attr( $instance['noposts_margin'] ); ?>" />
-			</p>
+			<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
 
 		</div>
 

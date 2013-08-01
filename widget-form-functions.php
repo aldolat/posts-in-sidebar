@@ -1,5 +1,11 @@
 <?php
 /**
+ * The forms for the widget panel
+ *
+ * @package PostsInSidebar
+ */
+
+/**
  * Create a form label to be used with the widget.
  *
  * @since 1.12

@@ -66,7 +66,7 @@ function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) 
 	echo '<select name="' . $name . '">';
 		foreach ( $options as $option ) {
 			$selected = selected( $option['value'], $value, false );
-			echo '<option ' . $selected . ' value="' . esc_attr( $option['value'] ) . '">' . esc_attr( $option['desc'] ) . '</option>';
+			echo '<option ' . $selected . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['desc'] ) . '</option>';
 		}
 	echo '</select>';
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';

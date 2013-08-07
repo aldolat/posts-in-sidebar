@@ -34,8 +34,9 @@ I would like to say *Thank You* to all the people who helped me in making this p
 * [Mike Churcher](http://wordpress.org/support/profile/mike-churcher) for a couple of feature requests;
 * [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request;
 * Thérèse Lachance for the first French translation;
-* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation.
-* Ahrale for the Hebrew translation.
+* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation;
+* Ahrale for the Hebrew translation;
+* [Irma](http://wordpress.org/support/profile/studiozubli) for a feature request.
 
 ## Installation ##
 
@@ -87,6 +88,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 ### 1.12-dev ###
 
 * NEW: added option for rich content.
+* NEW: added option for displaying the custom fields value/key of the post.
 * Code improvements.
 
 ### 1.11 ###

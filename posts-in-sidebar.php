@@ -336,6 +336,19 @@ function pis_posts_in_sidebar( $args ) {
 							<?php }
 						} ?>
 
+						<?php /* The post meta */ ?>
+						<?php if ( $custom_field ) {
+							$the_custom_field = get_post_meta( $linked_posts->post->ID, $meta, false );
+							if ( $the_custom_field ) {
+								if ( $custom_field_key )
+									$key = '<span class="pis-key">' . $meta . '</span>' . apply_filters( 'pis_key_divider', '<span class="pis-cf-divider">:</span> ' );
+								$cf_value = '<span class="pis-custom-field-value">' . $the_custom_field[0] . '</span>'; ?>
+								<p <?php echo pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class', false ); ?>>
+									<?php echo $key . $cf_value; ?>
+								</p>
+							<?php }
+						} ?>
+
 					</li>
 
 				<?php endwhile; ?>
@@ -492,6 +505,22 @@ function pis_break_text( $text ) {
 	// Convert cross-platform newlines into HTML '<br />'
 	$text = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $text );
 	return $text;
+}
+
+
+function pis_meta() {
+	global $wpdb;
+	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
+	$keys = $wpdb->get_col( "
+		SELECT meta_key
+		FROM $wpdb->postmeta
+		GROUP BY meta_key
+		HAVING meta_key NOT LIKE '\_%'
+		ORDER BY meta_key
+		LIMIT $limit" );
+	if ( $keys )
+		natcasesort($keys);
+	return $keys;
 }
 
 /**

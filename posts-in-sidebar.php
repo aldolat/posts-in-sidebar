@@ -79,6 +79,11 @@ function pis_posts_in_sidebar( $args ) {
 		'tags_text'         => __( 'Tags:', 'pis' ),
 		'hashtag'           => '#',
 		'tag_sep'           => '',
+		'custom_field'      => false,
+		'custom_field_txt'  => '',
+		'meta'              => '',
+		'custom_field_key'  => false,
+		'custom_field_sep'  => ':',
 		'archive_link'      => false,
 		'link_to'           => 'category',
 		'archive_text'      => '',
@@ -340,11 +345,13 @@ function pis_posts_in_sidebar( $args ) {
 						<?php if ( $custom_field ) {
 							$the_custom_field = get_post_meta( $linked_posts->post->ID, $meta, false );
 							if ( $the_custom_field ) {
+								if ( $custom_field_txt )
+									$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . '</span>';
 								if ( $custom_field_key )
-									$key = '<span class="pis-key">' . $meta . '</span>' . apply_filters( 'pis_key_divider', '<span class="pis-cf-divider">:</span> ' );
+									$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
 								$cf_value = '<span class="pis-custom-field-value">' . $the_custom_field[0] . '</span>'; ?>
 								<p <?php echo pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class', false ); ?>>
-									<?php echo $key . $cf_value; ?>
+									<?php echo $cf_text . $key . $cf_value; ?>
 								</p>
 							<?php }
 						} ?>

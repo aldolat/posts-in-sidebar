@@ -20,8 +20,9 @@ function pis_form_label( $label, $id ) {
  * @since 1.12
  * @uses pis_form_label
  */
-function pis_form_input_text( $label, $id, $name, $value, $comment = '' ) {
-	echo '<p>';
+function pis_form_input_text( $label, $id, $name, $value, $comment = '', $style = '' ) {
+	if ( $style ) $style = ' style="' . $style . '" ';
+	echo '<p' . $style . '>';
 	pis_form_label( $label, $id );
 	echo '<input type="text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="widefat" />';
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';

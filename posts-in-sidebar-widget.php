@@ -98,8 +98,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'hashtag'             => $instance['hashtag'],
 			'tag_sep'             => $instance['tag_sep'],
 			'custom_field'        => $instance['custom_field'],
+			'custom_field_txt'    => $instance['custom_field_txt'],
 			'meta'                => $instance['meta'],
 			'custom_field_key'    => $instance['custom_field_key'],
+			'custom_field_sep'    => $instance['custom_field_sep'],
 			'archive_link'        => $instance['archive_link'],
 			'link_to'             => $instance['link_to'],
 			'archive_text'        => $instance['archive_text'],
@@ -176,8 +178,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['hashtag']           = strip_tags( $new_instance['hashtag'] );
 		$instance['tag_sep']           = strip_tags( $new_instance['tag_sep'] );
 		$instance['custom_field']      = $new_instance['custom_field'];
+		$instance['custom_field_txt']  = strip_tags( $new_instance['custom_field_txt'] );
 		$instance['meta']              = strip_tags( $new_instance['meta'] );
 		$instance['custom_field_key']  = $new_instance['custom_field_key'];
+		$instance['custom_field_sep']  = strip_tags( $new_instance['custom_field_sep'] );
 		$instance['archive_link']      = $new_instance['archive_link'];
 		$instance['link_to']           = $new_instance['link_to'];
 		$instance['archive_text']      = strip_tags( $new_instance['archive_text'] );
@@ -251,8 +255,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'hashtag'             => '#',
 			'tag_sep'             => '',
 			'custom_field'        => false,
+			'custom_field_txt'    => '',
 			'meta'                => '',
 			'custom_field_key'    => false,
+			'custom_field_sep'    => ':',
 			'archive_link'        => false,
 			'link_to'             => 'category',
 			'archive_text'        => '',
@@ -286,7 +292,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$custom_field_key = (bool) $instance['custom_field_key'];
 		$archive_link     = (bool) $instance['archive_link'];
 		?>
-		<div style="float: left; width: 31%; margin-left: 2%;">
+		<div style="float: left; width: 31%; margin-right: 2%;">
 
 			<h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
@@ -548,7 +554,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<div style="float: left; width: 31%; margin-left: 2%;">
+		<div style="float: left; width: 31%; margin-right: 2%;">
 
 			<h4><?php _e( 'The title of the post', 'pis' ); ?></h4>
 
@@ -695,7 +701,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<div style="float: left; width: 31%; margin-left: 2%;">
+		<div style="float: left; width: 31%; margin-right: 2%;">
 
 			<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
@@ -723,6 +729,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
 
+			<?php pis_form_input_text( __( 'Text before the custom field', 'pis' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ) ); ?>
+
 			<?php
 			$options = array();
 			$metas = (array) pis_meta();
@@ -744,6 +752,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			); ?>
 
 			<?php pis_form_checkbox( __( 'Also display the key of the custom field', 'pis' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
+
+			<?php pis_form_input_text( __( 'Use this separator between meta key and value', 'pis' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ) ); ?>
 
 			<hr />
 
@@ -788,61 +798,64 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
 
-			<hr />
-
-			<h4><?php _e( 'Paragraph bottom margins', 'pis' ); ?></h4>
-
-			<p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
-
-			<?php $options = array(
-				'px' => array(
-					'name'  => 'px',
-					'value' => 'px',
-					'desc'  => 'px'
-				),
-				'%' => array(
-					'name'  => '%',
-					'value' => '%',
-					'desc'  => '%'
-				),
-				'em' => array(
-					'name'  => 'em',
-					'value' => 'em',
-					'desc'  => 'em'
-				),
-				'rem' => array(
-					'name'  => 'rem',
-					'value' => 'rem',
-					'desc'  => 'rem'
-				),
-			);
-			pis_form_select(
-				__( 'Unit for margins', 'pis' ),
-				$this->get_field_id('margin_unit'),
-				$this->get_field_name('margin_unit'),
-				$options,
-				$instance['margin_unit']
-			); ?>
-
-			<?php pis_form_input_text( __( 'Introduction margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Title margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Utility margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Categories margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Tags margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Custom field margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'Archive margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
-
-			<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
-
 		</div>
+
+		<div class="clear"></div>
+
+		<hr />
+
+		<h4><?php _e( 'Paragraph bottom margins', 'pis' ); ?></h4>
+
+		<p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
+
+		<?php $options = array(
+			'px' => array(
+				'name'  => 'px',
+				'value' => 'px',
+				'desc'  => 'px'
+			),
+			'%' => array(
+				'name'  => '%',
+				'value' => '%',
+				'desc'  => '%'
+			),
+			'em' => array(
+				'name'  => 'em',
+				'value' => 'em',
+				'desc'  => 'em'
+			),
+			'rem' => array(
+				'name'  => 'rem',
+				'value' => 'rem',
+				'desc'  => 'rem'
+			),
+		);
+		pis_form_select(
+			__( 'Unit for margins', 'pis' ),
+			$this->get_field_id('margin_unit'),
+			$this->get_field_name('margin_unit'),
+			$options,
+			$instance['margin_unit']
+		); ?>
+
+		<?php pis_form_input_text( __( 'Introduction margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'Title margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ), '', 'float:left; width:31%;' ); ?>
+
+		<?php pis_form_input_text( __( 'Utility margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'Categories margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'Tags margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ), '', 'float:left; width:31%;' ); ?>
+
+		<?php pis_form_input_text( __( 'Custom field margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'Archive margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ), '', 'float:left; width:31%; margin-right:2%' ); ?>
+
+		<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ), '', 'float:left; width:31%;' ); ?>
+
 
 		<div class="clear"></div>
 

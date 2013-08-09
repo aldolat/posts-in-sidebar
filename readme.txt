@@ -73,7 +73,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
-= 1.12-dev =
+= 1.12 =
 
 * NEW: added option for rich content.
 * NEW: added option for displaying the custom fields value/key of the post.

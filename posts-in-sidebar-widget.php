@@ -856,7 +856,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ), '', 'float:left; width:31%;' ); ?>
 
-
 		<div class="clear"></div>
 
 		<?php

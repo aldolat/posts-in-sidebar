@@ -88,6 +88,7 @@ function pis_posts_in_sidebar( $args ) {
 		'link_to'           => 'category',
 		'archive_text'      => '',
 		'nopost_text'       => __( 'No posts yet.', 'pis' ),
+		'remove_bullets'    => false,
 		'margin_unit'       => 'px',
 		'intro_margin'      => NULL,
 		'title_margin'      => NULL,
@@ -140,7 +141,8 @@ function pis_posts_in_sidebar( $args ) {
 				</p>
 			<?php } ?>
 
-			<ul <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', $class ) ); ?>>
+			<?php if ( $remove_bullets ) $bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"' ?>
+			<ul <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', $class ) ); echo $bullets_style; ?>>
 
 				<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 

@@ -89,6 +89,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 * NEW: added option for rich content.
 * NEW: added option for displaying the custom fields value/key of the post.
+* NEW: added option for removing bullets and extra left space for the list elements.
 * Code improvements.
 
 ### 1.11 ###

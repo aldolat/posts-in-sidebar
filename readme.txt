@@ -73,6 +73,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
+= 1.13-dev =
+
+* Updated Hebrew translation.
+
 = 1.12 =
 
 * NEW: added option for rich content.

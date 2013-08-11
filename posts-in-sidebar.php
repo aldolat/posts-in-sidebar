@@ -89,9 +89,12 @@ function pis_posts_in_sidebar( $args ) {
 		'archive_text'      => '',
 		'nopost_text'       => __( 'No posts yet.', 'pis' ),
 		'remove_bullets'    => false,
+		'left_arrow'        => false,
 		'margin_unit'       => 'px',
 		'intro_margin'      => NULL,
 		'title_margin'      => NULL,
+		'side_image_margin' => NULL,
+		'bottom_image_margin' => NULL,
 		'excerpt_margin'    => NULL,
 		'utility_margin'    => NULL,
 		'categories_margin' => NULL,
@@ -164,7 +167,8 @@ function pis_posts_in_sidebar( $args ) {
 								<?php } ?>
 										<?php the_title(); ?>
 										<?php if ( $arrow ) { ?>
-											&nbsp;<span <?php pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ) ); ?>>&rarr;</span>
+											<?php $left_arrow ? $the_arrow = '&larr;' : $the_arrow = '&rarr;' ?>
+											&nbsp;<span <?php pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ) ); ?>><?php echo $the_arrow; ?></span>
 										<?php } ?>
 								<?php if ( $link_on_title ) { ?>
 									</a>
@@ -185,24 +189,40 @@ function pis_posts_in_sidebar( $args ) {
 											switch ( $image_align ) {
 												case 'left' :
 													$image_class = ' alignleft';
+													if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+														$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+														$image_style = str_replace( ' margin-right: px;', '', $image_style);
+														$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+													}
 													break;
 												case 'right':
 													$image_class = ' alignright';
+													if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+														$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+														$image_style = str_replace( ' margin-left: px;', '', $image_style);
+														$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+													}
 													break;
 												case 'center':
 													$image_class = ' aligncenter';
+													if ( ! is_null( $bottom_image_margin ) )
+														$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
 													break;
 												default:
 													$image_class = '';
 													break;
 											} ?>
 											<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', $class ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
-												<?php the_post_thumbnail(
+												<?php $image_html = get_the_post_thumbnail(
+													$linked_posts->post->ID,
 													$image_size,
 													array(
 														'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', $thumb_class ) . $image_class,
 													)
-												); ?></a>
+												);
+												$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
+												echo $image_html;
+												?></a>
 										<?php } // Close if ( has_post_thumbnail )  */
 									} // Close if ( $display_image ) ?>
 
@@ -247,7 +267,7 @@ function pis_posts_in_sidebar( $args ) {
 
 											/* The 'Read more' and the Arrow */ ?>
 											<?php if ( $the_more || $exc_arrow ) {
-												if ( $exc_arrow ) $the_arrow = '<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ), false ) . '>&rarr;</span>'; ?>
+												if ( $exc_arrow ) $the_arrow = '<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ), false ) . '>' . $the_arrow . '</span>'; ?>
 												<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', $class ) ); ?>>
 													<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
 														<?php echo $the_more . '&nbsp;' . $the_arrow; ?>

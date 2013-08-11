@@ -87,7 +87,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.13-dev ###
 
-* Updated Hebrew translation.
+* NEW: Added option for setting the space around the image (props by Ahrale).
+* NEW: The arrow can now be from right to left (props by Ahrale).
+* Updated Hebrew translation (thanks to Ahrale).
+* Minor enhancements.
 
 ### 1.12 ###
 

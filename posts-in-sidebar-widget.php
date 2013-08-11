@@ -107,9 +107,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_text'        => $instance['archive_text'],
 			'nopost_text'         => $instance['nopost_text'],
 			'remove_bullets'      => $instance['remove_bullets'],
+			'left_arrow'          => $instance['left_arrow'],
 			'margin_unit'         => $instance['margin_unit'],
 			'intro_margin'        => $instance['intro_margin'],
 			'title_margin'        => $instance['title_margin'],
+			'side_image_margin'   => $instance['side_image_margin'],
+			'bottom_image_margin' => $instance['bottom_image_margin'],
 			'excerpt_margin'      => $instance['excerpt_margin'],
 			'utility_margin'      => $instance['utility_margin'],
 			'categories_margin'   => $instance['categories_margin'],
@@ -188,11 +191,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['archive_text']      = strip_tags( $new_instance['archive_text'] );
 		$instance['nopost_text']       = strip_tags( $new_instance['nopost_text'] );
 		$instance['remove_bullets']    = $new_instance['remove_bullets'];
+		$instance['left_arrow']        = $new_instance['left_arrow'];
 		$instance['margin_unit']       = $new_instance['margin_unit'];
 		$instance['intro_margin']      = strip_tags( $new_instance['intro_margin'] );
 			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
 		$instance['title_margin']      = strip_tags( $new_instance['title_margin'] );
 			if ( ! is_numeric( $new_instance['title_margin'] ) ) $instance['title_margin'] = NULL;
+		$instance['side_image_margin'] = $new_instance['side_image_margin'];
+			if ( ! is_numeric( $new_instance['side_image_margin'] ) ) $instance['side_image_margin'] = NULL;
+		$instance['bottom_image_margin'] = $new_instance['bottom_image_margin'];
+			if ( ! is_numeric( $new_instance['bottom_image_margin'] ) ) $instance['bottom_image_margin'] = NULL;
 		$instance['excerpt_margin']    = strip_tags( $new_instance['excerpt_margin'] );
 			if ( ! is_numeric( $new_instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = NULL;
 		$instance['utility_margin']    = strip_tags( $new_instance['utility_margin'] );
@@ -236,6 +244,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_image'       => false,
 			'image_size'          => 'thumbnail',
 			'image_align'         => 'no_change',
+			'side_image_margin'   => NULL,
+			'bottom_image_margin' => NULL,
 			'excerpt'             => 'excerpt',
 			'exc_length'          => 20,
 			'the_more'            => __( 'Read more&hellip;', 'pis' ),
@@ -266,6 +276,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_text'        => '',
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
 			'remove_bullets'      => false,
+			'left_arrow'          => false,
 			'margin_unit'         => 'px',
 			'intro_margin'        => NULL,
 			'title_margin'        => NULL,
@@ -295,6 +306,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$custom_field_key = (bool) $instance['custom_field_key'];
 		$archive_link     = (bool) $instance['archive_link'];
 		$remove_bullets   = (bool) $instance['remove_bullets'];
+		$left_arrow       = (bool) $instance['left_arrow'];
 		?>
 		<div style="float: left; width: 31%; margin-right: 2%;">
 
@@ -804,7 +816,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4><?php _e( 'Extras', 'pis' ); ?></h4>
 
-			<?php pis_form_checkbox( __( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ), $this->get_field_id( 'remove_bullets' ), $this->get_field_name( 'remove_bullets' ), checked( $remove_bullets, true, false ), __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to edit your CSS file manually.', 'pis' ) ); ?>
+			<?php pis_form_checkbox(
+				__( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ),
+				$this->get_field_id( 'remove_bullets' ),
+				$this->get_field_name( 'remove_bullets' ),
+				checked( $remove_bullets, true, false ),
+				sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
+			); ?>
+
+			<?php pis_form_checkbox( sprintf( __( 'Make the arrow from right to left (%s)', 'pis' ), '&larr;' ), $this->get_field_id( 'left_arrow' ), $this->get_field_name( 'left_arrow' ), checked( $left_arrow, true, false ) ); ?>
 
 		</div>
 
@@ -852,12 +872,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text( __( 'Title margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
 
-			<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
+			<?php pis_form_input_text( __( 'Left/Right image margin', 'pis' ), $this->get_field_id( 'side_image_margin' ), $this->get_field_name( 'side_image_margin' ), esc_attr( $instance['side_image_margin'] ) ); ?>
+
+			<?php pis_form_input_text( __( 'Bottom image margin', 'pis' ), $this->get_field_id( 'bottom_image_margin' ), $this->get_field_name( 'bottom_image_margin' ), esc_attr( $instance['bottom_image_margin'] ) ); ?>
 
 		</div>
 
 
 		<div style="float: left; width: 31%; margin-right: 2%">
+
+			<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
 
 			<?php pis_form_input_text( __( 'Utility margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
 

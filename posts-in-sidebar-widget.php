@@ -107,7 +107,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_text'        => $instance['archive_text'],
 			'nopost_text'         => $instance['nopost_text'],
 			'remove_bullets'      => $instance['remove_bullets'],
-			'left_arrow'          => $instance['left_arrow'],
 			'margin_unit'         => $instance['margin_unit'],
 			'intro_margin'        => $instance['intro_margin'],
 			'title_margin'        => $instance['title_margin'],
@@ -120,6 +119,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field_margin' => $instance['custom_field_margin'],
 			'archive_margin'      => $instance['archive_margin'],
 			'noposts_margin'      => $instance['noposts_margin'],
+			'custom_styles'       => $instance['custom_styles'],
 		));
 		echo $after_widget;
 	}
@@ -191,7 +191,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['archive_text']      = strip_tags( $new_instance['archive_text'] );
 		$instance['nopost_text']       = strip_tags( $new_instance['nopost_text'] );
 		$instance['remove_bullets']    = $new_instance['remove_bullets'];
-		$instance['left_arrow']        = $new_instance['left_arrow'];
 		$instance['margin_unit']       = $new_instance['margin_unit'];
 		$instance['intro_margin']      = strip_tags( $new_instance['intro_margin'] );
 			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
@@ -215,6 +214,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( ! is_numeric( $new_instance['archive_margin'] ) ) $instance['archive_margin'] = NULL;
 		$instance['noposts_margin']    = strip_tags( $new_instance['noposts_margin'] );
 			if ( ! is_numeric( $new_instance['noposts_margin'] ) ) $instance['noposts_margin'] = NULL;
+		$instance['custom_styles']    = strip_tags( $new_instance['custom_styles'] );
 		return $instance;
 	}
 
@@ -276,7 +276,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_text'        => '',
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
 			'remove_bullets'      => false,
-			'left_arrow'          => false,
 			'margin_unit'         => 'px',
 			'intro_margin'        => NULL,
 			'title_margin'        => NULL,
@@ -287,6 +286,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field_margin' => NULL,
 			'archive_margin'      => NULL,
 			'noposts_margin'      => NULL,
+			'custom_styles'       => '',
 		);
 		$instance         = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky    = (bool) $instance['ignore_sticky'];
@@ -306,7 +306,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$custom_field_key = (bool) $instance['custom_field_key'];
 		$archive_link     = (bool) $instance['archive_link'];
 		$remove_bullets   = (bool) $instance['remove_bullets'];
-		$left_arrow       = (bool) $instance['left_arrow'];
 		?>
 		<div style="float: left; width: 31%; margin-right: 2%;">
 
@@ -322,8 +321,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name('intro'),
 				$instance['intro'],
 				$style = 'resize: vertical; width: 100%; height: 80px;',
-				$comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' ) );
-			?>
+				$comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+			); ?>
 
 			<hr />
 
@@ -824,17 +823,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
 			); ?>
 
-			<?php pis_form_checkbox( sprintf( __( 'Make the arrow from right to left (%s)', 'pis' ), '&larr;' ), $this->get_field_id( 'left_arrow' ), $this->get_field_name( 'left_arrow' ), checked( $left_arrow, true, false ) ); ?>
-
 		</div>
 
 		<div class="clear"></div>
 
 		<hr />
 
-		<h4><?php _e( 'Paragraph bottom margins', 'pis' ); ?></h4>
+		<h4><?php _e( 'Elements margins', 'pis' ); ?></h4>
 
-		<p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
+		<p><em><?php _e( 'This section defines the margin for each line of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ); ?></em></p>
 
 		<?php $options = array(
 			'px' => array(
@@ -901,6 +898,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
 
 		</div>
+
+		<div class="clear"></div>
+
+		<hr />
+
+		<h4><?php _e( 'Custom styles', 'pis' ); ?></h4>
+
+		<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
+
+		<?php pis_form_textarea(
+			__( 'Custom styles', 'pis' ),
+			$this->get_field_id('custom_styles'),
+			$this->get_field_name('custom_styles'),
+			$instance['custom_styles'],
+			$style = 'resize: vertical; width: 100%; height: 80px;'
+		); ?>
 
 		<div class="clear"></div>
 

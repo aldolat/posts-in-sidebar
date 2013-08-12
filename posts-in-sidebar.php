@@ -59,8 +59,8 @@ function pis_posts_in_sidebar( $args ) {
 		'display_image'     => false,
 		'image_size'        => 'thumbnail',
 		'image_align'       => 'no_change',
-		'excerpt'           => 'excerpt', // can be "full_content", "content", "excerpt", "none"
-		'exc_length'        => 20,      // In words
+		'excerpt'           => 'excerpt', // can be "full_content", "rich_content", "content", "excerpt", "none"
+		'exc_length'        => 20,        // In words
 		'the_more'          => __( 'Read more&hellip;', 'pis' ),
 		'exc_arrow'         => false,
 		'display_author'    => false,
@@ -89,7 +89,6 @@ function pis_posts_in_sidebar( $args ) {
 		'archive_text'      => '',
 		'nopost_text'       => __( 'No posts yet.', 'pis' ),
 		'remove_bullets'    => false,
-		'left_arrow'        => false,
 		'margin_unit'       => 'px',
 		'intro_margin'      => NULL,
 		'title_margin'      => NULL,
@@ -167,7 +166,7 @@ function pis_posts_in_sidebar( $args ) {
 								<?php } ?>
 										<?php the_title(); ?>
 										<?php if ( $arrow ) { ?>
-											<?php $left_arrow ? $the_arrow = '&larr;' : $the_arrow = '&rarr;' ?>
+											<?php is_rtl() ? $the_arrow = '&larr;' : $the_arrow = '&rarr;' ?>
 											&nbsp;<span <?php pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', $class ) ); ?>><?php echo $the_arrow; ?></span>
 										<?php } ?>
 								<?php if ( $link_on_title ) { ?>
@@ -566,6 +565,35 @@ include_once( plugin_dir_path( __FILE__ ) . 'posts-in-sidebar-widget.php' );
  * @since 1.12
  */
 include_once( plugin_dir_path( __FILE__ ) . 'widget-form-functions.php' );
+
+
+/**
+ * Add the custom styles to wp_head hook.
+ *
+ * @since 1.13
+ */
+function pis_add_styles_to_head() {
+	// Get the options from the database.
+	$custom_styles = (array) get_option( 'widget_pis_posts_in_sidebar' );
+
+	// Define $styles as an array.
+	$styles = array();
+
+	// Get all the values of "custom_styles" key into $styles.
+	foreach ( $custom_styles as $key => $value ) {
+		$styles[] = $value['custom_styles'];
+	}
+
+	// Remove any empty elements from the array
+	$styles = array_filter( $styles );
+
+	// Make the array as string.
+	$styles = implode( "\n", $styles );
+
+	// Print the output if it's not empty.
+	if ( $styles ) echo '<style type="text/css">' . $styles . '</style>';
+}
+add_action( 'wp_head', 'pis_add_styles_to_head' );
 
 
 /**

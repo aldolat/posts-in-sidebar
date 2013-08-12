@@ -87,8 +87,9 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.13-dev ###
 
+* NEW: Added option for adding user defined styles (props by Ahrale).
 * NEW: Added option for setting the space around the image (props by Ahrale).
-* NEW: The arrow can now be from right to left (props by Ahrale).
+* NEW: Added check for rtl languages (the arrow can now be from right to left, props by Ahrale).
 * Updated Hebrew translation (thanks to Ahrale).
 * Minor enhancements.
 

@@ -273,7 +273,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field_sep'    => ':',
 			'archive_link'        => false,
 			'link_to'             => 'category',
-			'archive_text'        => '',
+			'archive_text'        => __( 'Display all posts', 'pis' ),
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
 			'remove_bullets'      => false,
 			'margin_unit'         => 'px',
@@ -750,7 +750,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$options = array();
 			$metas = (array) pis_meta();
 			foreach ( $metas as $meta ) {
-				if ( ! is_protected_meta( $key, 'post' ) ) {
+				if ( ! is_protected_meta( $meta, 'post' ) ) {
 					$options[] = array(
 						'name'  => $meta,
 						'value' => $meta,

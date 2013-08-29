@@ -471,6 +471,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					'value' => 'modified',
 					'desc'  => __( 'Modified', 'pis' )
 				),
+				'menu_order' => array(
+					'name'  => 'menu_order',
+					'value' => 'menu_order',
+					'desc'  => __( 'Menu order', 'pis' )
+				),
+				'comment_count' => array(
+					'name'  => 'comment_count',
+					'value' => 'comment_count',
+					'desc'  => __( 'Comment count', 'pis' )
+				),
 				'rand' => array(
 					'name'  => 'rand',
 					'value' => 'rand',

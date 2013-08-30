@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.12
+Stable tag: 1.13
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,7 @@ I would like to say *Thank You* to all the people who helped me in making this p
 * [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation;
 * Ahrale for the Hebrew translation;
 * [Irma](http://wordpress.org/support/profile/studiozubli) for a feature request.
+* [hypn0ticnet](http://wordpress.org/support/profile/hypn0ticnet) for a feature request.
 
 == Installation ==
 
@@ -73,7 +74,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
-= 1.13-dev =
+= 1.13 =
 
 * NEW: Added option for adding user defined styles (props by Ahrale).
 * NEW: Added option for setting the space around the image (props by Ahrale).

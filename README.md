@@ -86,6 +86,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ## Changelog ##
 
+### 1.14-dev ###
+
+* Updated Hebrew translation, thanks to [Ahrale](http://atar4u.com).
+
 ### 1.13 ###
 
 * NEW: Added option for adding user defined styles (props by Ahrale).

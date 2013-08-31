@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: posts in sidebar\n"
+"Project-Id-Version: Posts in Sidebar 1.13\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ahrale <contact@atar4u.com>\n"
@@ -14,6 +14,84 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "Language: Hebrew עברית he_IL\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#
+# <p><em><?php _e( 'This section defines the margin for each line of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ); ?></em></p>
+#
+# wpml-name: ccca7a05bc09ca8ca68eb5b5bbcdff4b
+msgid ""
+"This section defines the margin for each line of the widget. Leave blank if "
+"you don't want to add any local style."
+msgstr ""
+"כאן ניתן לקבוע את השוליים עבור כל שורה בוידג'ט. ניתן להשאיר ריק אם אינך רוצה "
+"התאמה מיוחדת."
+
+#
+# <h4><?php _e( 'Elements margins', 'pis' ); ?></h4>
+#
+# wpml-name: eca28919240d467542aa18d5bb324aa5
+msgid "Elements margins"
+msgstr "שוליים של אלמנטים"
+
+#
+# <h4><?php _e( 'Custom styles', 'pis' ); ?></h4>
+#
+# wpml-name: 856ba67470300f8246b140de9a27555d
+msgid "Custom styles"
+msgstr "התאמת עיצוב"
+
+#
+# <p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
+#
+# wpml-name: a4a4c6062701f18a8508903cc944f3eb
+msgid "In this field you can add your own styles, for example: %s"
+msgstr "בשדה זה תוכל להוסיף עיצובים משלך, למשל %s"
+
+#
+# <?php pis_form_input_text( __( 'Bottom image margin', 'pis' ), $this->get_field_id( 'bottom_image_margin' ), $this->get_field_name( 'bottom_image_margin' ), esc_attr( $instance['bottom_image_margin'] ) ); ?>
+#
+# wpml-name: a4342054f189bcf20f48426b0433e8a8
+msgid "Bottom image margin"
+msgstr "שוליים של תמונת כפתור"
+
+#
+# <?php pis_form_input_text( __( 'Left/Right image margin', 'pis' ), $this->get_field_id( 'side_image_margin' ), $this->get_field_name( 'side_image_margin' ), esc_attr( $instance['side_image_margin'] ) ); ?>
+#
+# wpml-name: d9c2635732deaa0a10b17ae5511623db
+msgid "Left/Right image margin"
+msgstr "שוליים שמאלימין של תמונה"
+
+# checked( $remove_bullets, true, false ),
+# sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
+# ); ?>
+# wpml-name: 1aba8184d7478ccf7acf8040dbbea968
+msgid ""
+"If the plugin doesn't remove the bullets and/or the extra left space, you "
+"have to %1$sedit your CSS file%2$s manually."
+msgstr ""
+"אם התוסף אינו מסיר את הכדורים ו/או את את המרווח המיותר, עליך %1$s לערוך את "
+"קובץ ה CSS שלך %2$s ידנית."
+
+# 'value' => 'comment_count',
+# 'desc'  => __( 'Comment count', 'pis' )
+# ),
+# wpml-name: 5226ba2730c7d08d29206ab4688bc04c
+msgid "Comment count"
+msgstr "ספירת תגובות"
+
+# 'value' => 'menu_order',
+# 'desc'  => __( 'Menu order', 'pis' )
+# ),
+# wpml-name: 075aca328011bcabd443fd73a9fa7c14
+msgid "Menu order"
+msgstr "סדר התפריט"
+
+# 'link_to'             => 'category',
+# 'archive_text'        => __( 'Display all posts', 'pis' ),
+# 'nopost_text'         => __( 'No posts yet.', 'pis' ),
+# wpml-name: bdf5d46f122ac95cd48e971c99f9e6a4
+msgid "Display all posts"
+msgstr "הצגת כל הפוסטים"
 
 #
 # <h4><?php _e( 'Extras', 'pis' ); ?></h4>
@@ -37,7 +115,7 @@ msgid "Custom field margin"
 msgstr "השוליים של השדה"
 
 #
-# <?php pis_form_checkbox( __( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ), $this->get_field_id( 'remove_bullets' ), $this->get_field_name( 'remove_bullets' ), checked( $remove_bullets, true, false ), __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to edit your CSS file manually.', 'pis' ) ); ?>
+# <?php pis_form_input_text( __( 'Custom field margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
 #
 # wpml-name: 721c181618ceb92d71e097e730c29470
 msgid ""
@@ -46,9 +124,9 @@ msgid ""
 msgstr ""
 "אם התוסף אינו מסיר את כדורי הרשימה או המרווח, תוכל לערוך את ה CSS באופן ידני"
 
-#
-# <?php pis_form_checkbox( __( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ), $this->get_field_id( 'remove_bullets' ), $this->get_field_name( 'remove_bullets' ), checked( $remove_bullets, true, false ), __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to edit your CSS file manually.', 'pis' ) ); ?>
-#
+# <?php pis_form_checkbox(
+# __( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ),
+# $this->get_field_id( 'remove_bullets' ),
 # wpml-name: a4fa5b982d2e8f5a6f209bcc51733a0f
 msgid ""
 "Try to remove the bullets and the extra left space from the list elements"
@@ -173,9 +251,9 @@ msgstr "שוליים של הקדמה"
 msgid "Unit for margins"
 msgstr "יחידת שוליים"
 
-#
-# <h4><?php _e( 'Paragraph bottom margins', 'pis' ); ?></h4>
-#
+# pis_form_select(
+# __( 'Unit for margins', 'pis' ),
+# $this->get_field_id('margin_unit'),
 # wpml-name: 153425da6362fe4a7e10df230846225b
 msgid "Paragraph bottom margins"
 msgstr "שוליים תחתונים של פסקה"
@@ -731,7 +809,7 @@ msgid "The title of the widget"
 msgstr "הכותרת של הוידג'ט"
 
 #
-# <p><em><?php printf( __( 'This section defines the %1$sbottom margin%2$s for each paragraph of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ), '<strong>', '</strong>' ); ?></em></p>
+# <h4><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 #
 # wpml-name: 3f117e32eae03df7cf889148ac325949
 msgid ""
@@ -775,8 +853,8 @@ msgstr ""
 "אותם לקובץ %3$sfunctions.php%4$s שלך. ראה את %1$sהקודקס%2$s למידע נוסף."
 
 # $style = 'resize: vertical; width: 100%; height: 80px;',
-# $comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' ) );
-# ?>
+# $comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+# ); ?>
 # wpml-name: 72364b10fa1be67d5966525fb1178240
 msgid "Allowed HTML: %s. Other tags will be stripped."
 msgstr "HTML מותר: %s. תגיות אחרות תוסרנה."
@@ -802,7 +880,7 @@ msgstr "פוסטים בסרגל הצד"
 msgid "Display a list of posts in a widget"
 msgstr "הצגת רשימת פוסטים בוידג'ט"
 
-# <span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', $class ) ); ?>>
+# <span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ) ); ?>>
 # <a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
 # <?php echo $the_more . '&nbsp;' . $the_arrow; ?>
 # wpml-name: 79772d26e1262cc3146963f80f67c834
@@ -860,12 +938,12 @@ msgstr "הצגת כל הפוסטים של %s"
 
 # if ( $linkify_date ) { ?>
 # <?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-# <a <?php pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', $class ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
+# <a <?php pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
 # wpml-name: 94dfd55f99428ec6bdb899360cb20542
 msgid "Permalink to %s"
 msgstr "קישור ישיר ל %s"
 
-# 'archive_text'        => '',
+# 'archive_text'        => __( 'Display all posts', 'pis' ),
 # 'nopost_text'         => __( 'No posts yet.', 'pis' ),
 # 'remove_bullets'      => false,
 # wpml-name: 67f0f3978dc0787f709f3a2589c38ff3

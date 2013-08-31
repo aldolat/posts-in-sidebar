@@ -28,16 +28,16 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 I would like to say *Thank You* to all the people who helped me in making this plugin better, and in particular (in chronological order, from older to newer):
 
-* [Jeff](http://profiles.wordpress.org/specialk/) for helping me in revisioning this plugin;
-* [sjmsing](http://wordpress.org/support/profile/sjmsing) for a feature request;
-* AlirezaJamali for the Persian translation;
-* [Mike Churcher](http://wordpress.org/support/profile/mike-churcher) for a couple of feature requests;
-* [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request;
-* Thérèse Lachance for the first French translation;
-* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation;
-* Ahrale for the Hebrew translation;
-* [Irma](http://wordpress.org/support/profile/studiozubli) for a feature request.
-* [hypn0ticnet](http://wordpress.org/support/profile/hypn0ticnet) for a feature request.
+* [Jeff](http://profiles.wordpress.org/specialk/) for helping me in revisioning this plugin
+* [sjmsing](http://wordpress.org/support/profile/sjmsing) for a feature request
+* AlirezaJamali for the Persian translation
+* [Mike Churcher](http://wordpress.org/support/profile/mike-churcher) for a couple of feature requests
+* [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request
+* Thérèse Lachance for the first French translation
+* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation
+* [Ahrale](http://atar4u.com) for the Hebrew translation
+* [Irma](http://wordpress.org/support/profile/studiozubli) for a feature request
+* [hypn0ticnet](http://wordpress.org/support/profile/hypn0ticnet) for a feature request
 
 == Installation ==
 
@@ -76,7 +76,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 = 1.14-dev =
 
-* Updated Hebrew translation, thanks to [Ahrale](http://atar4u.com).
+* Updated Hebrew translation, thanks to Ahrale.
 
 = 1.13 =
 

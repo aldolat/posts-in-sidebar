@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.13
+Stable tag: 1.14
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,8 +74,9 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
-= 1.14-dev =
+= 1.14 =
 
+* FIX: fetching posts from tags now works correctly.
 * Updated Hebrew translation, thanks to Ahrale.
 
 = 1.13 =

@@ -427,8 +427,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= Post format
 			$options = array(
 				array(
-					'name'  => 'NULL',
-					'value' => 'NULL',
+					'name'  => '',
+					'value' => '',
 					'desc'  => __( 'Any', 'pis' )
 				)
 			);
@@ -442,10 +442,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			}
 			pis_form_select(
 				__( 'Post format', 'pis' ),
-				$this->get_field_id('tag'),
-				$this->get_field_name('tag'),
+				$this->get_field_id('post_format'),
+				$this->get_field_name('post_format'),
 				$options,
-				$instance['tag']
+				$instance['post_format']
 			); ?>
 
 			<?php pis_form_input_text( __( 'How many posts to display', 'pis' ), $this->get_field_id('number'), $this->get_field_name('number'), esc_attr( $instance['number'] ) ); ?>

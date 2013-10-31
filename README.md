@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.6  
-**Stable tag:** 1.14  
+**Stable tag:** 1.14.1-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -85,6 +85,11 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 
 ## Changelog ##
+
+### 1.14.1 ###
+
+* FIX: There are no more empty spaces after "Category" or "Tags" text.
+* Deleted unused options in widgets dropdown menus.
 
 ### 1.14 ###
 

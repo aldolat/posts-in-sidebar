@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.14
+ * Version: 1.14.1-dev
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,7 +28,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.14' );
+define( 'PIS_VERSION', '1.14.1-dev' );
 
 /**
  * The core function
@@ -347,9 +347,8 @@ function pis_posts_in_sidebar( $args ) {
 							$list_of_categories = get_the_category_list( $categ_sep . ' ', '', $linked_posts->post->ID );
 							if ( $list_of_categories ) { ?>
 								<p <?php echo pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ); ?>>
-									<?php if ( $categ_text ) $categ_text .= '&nbsp';
-									echo $categ_text . apply_filters(  'pis_categories_list', $list_of_categories );
-									?>
+									<?php if ( $categ_text ) echo $categ_text . '&nbsp';
+									echo apply_filters(  'pis_categories_list', $list_of_categories ); ?>
 								</p>
 							<?php }
 						} ?>
@@ -359,8 +358,8 @@ function pis_posts_in_sidebar( $args ) {
 							$list_of_tags = get_the_term_list( $linked_posts->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 							if ( $list_of_tags ) { ?>
 								<p <?php echo pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ); ?>>
-									<?php if ( $tags_text ) $tags_text .= '&nbsp;';
-									echo $tags_text . apply_filters( 'pis_tags_list', $list_of_tags );
+									<?php if ( $tags_text ) echo $tags_text . '&nbsp;';
+									echo apply_filters( 'pis_tags_list', $list_of_tags );
 									?>
 								</p>
 							<?php }

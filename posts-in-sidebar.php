@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.14.1-dev
+ * Version: 1.15-dev
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,7 +28,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.14.1-dev' );
+define( 'PIS_VERSION', '1.15-dev' );
 
 /**
  * The core function
@@ -88,6 +88,7 @@ function pis_posts_in_sidebar( $args ) {
 		'link_to'           => 'category',
 		'archive_text'      => __( 'Display all posts', 'pis' ),
 		'nopost_text'       => __( 'No posts yet.', 'pis' ),
+		'list_element'      => 'ul',
 		'remove_bullets'    => false,
 		'margin_unit'       => 'px',
 		'intro_margin'      => NULL,
@@ -143,8 +144,8 @@ function pis_posts_in_sidebar( $args ) {
 				</p>
 			<?php } ?>
 
-			<?php if ( $remove_bullets ) $bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"'; else $bullets_style = ''; ?>
-			<ul <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style; ?>>
+			<?php if ( $remove_bullets && $list_element == 'ul' ) $bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"'; else $bullets_style = ''; ?>
+			<<?php echo $list_element; ?> <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style; ?>>
 
 				<?php while( $linked_posts->have_posts() ) : $linked_posts->the_post(); ?>
 
@@ -388,7 +389,7 @@ function pis_posts_in_sidebar( $args ) {
 
 				<?php endwhile; ?>
 
-			</ul>
+			</<?php echo $list_element; ?>>
 			<!-- / ul#pis-ul -->
 
 			<?php /* The link to the entire archive */ ?>

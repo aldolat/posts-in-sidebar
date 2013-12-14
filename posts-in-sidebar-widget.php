@@ -35,7 +35,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		/* Widget control settings. */
 		$control_ops = array(
-			'width'   => 700,
+			'width'   => 800,
 			'id_base' => 'pis_posts_in_sidebar',
 		);
 
@@ -106,6 +106,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'             => $instance['link_to'],
 			'archive_text'        => $instance['archive_text'],
 			'nopost_text'         => $instance['nopost_text'],
+			'list_element'        => $instance['list_element'],
 			'remove_bullets'      => $instance['remove_bullets'],
 			'margin_unit'         => $instance['margin_unit'],
 			'intro_margin'        => $instance['intro_margin'],
@@ -190,6 +191,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['link_to']           = $new_instance['link_to'];
 		$instance['archive_text']      = strip_tags( $new_instance['archive_text'] );
 		$instance['nopost_text']       = strip_tags( $new_instance['nopost_text'] );
+		$instance['list_element']      = $new_instance['list_element'];
 		$instance['remove_bullets']    = $new_instance['remove_bullets'];
 		$instance['margin_unit']       = $new_instance['margin_unit'];
 		$instance['intro_margin']      = strip_tags( $new_instance['intro_margin'] );
@@ -275,6 +277,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'             => 'category',
 			'archive_text'        => __( 'Display all posts', 'pis' ),
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
+			'list_element'        => 'ul',
 			'remove_bullets'      => false,
 			'margin_unit'         => 'px',
 			'intro_margin'        => NULL,
@@ -843,6 +846,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
 
 			<h4><?php _e( 'Extras', 'pis' ); ?></h4>
+
+			<?php // ================= Type of HTML for list of posts
+			$options = array(
+				'ul' => array(
+					'value' => 'ul',
+					'desc'  => __( 'Unordered list (ul)', 'pis' )
+				),
+				'ol' => array(
+					'value' => 'ol',
+					'desc'  => __( 'Ordered list (ol)', 'pis' )
+				),
+			);
+			pis_form_select(
+				__( 'What type of list for the posts', 'pis' ),
+				$this->get_field_id('list_element'),
+				$this->get_field_name('list_element'),
+				$options,
+				$instance['list_element']
+			); ?>
 
 			<?php // ================= Remove bullets and left space
 			pis_form_checkbox(

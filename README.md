@@ -3,8 +3,8 @@
 **Donate link:** http://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
-**Tested up to:** 3.6  
-**Stable tag:** 1.15-dev  
+**Tested up to:** 3.8  
+**Stable tag:** 1.15  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -88,9 +88,12 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 ### 1.15 ###
 
+* NEW: The posts can be retrieved using the ID (props by Matt).
 * NEW: The list of posts can now be displayed in a numbered list (props by Sean).
+* NEW: The excerpt can be displayed up to the "more" tag (props by EvertVd).
 * FIX: There are no more empty spaces after "Category" or "Tags" text.
 * Deleted unused options in widgets dropdown menus.
+* Minor refinements.
 
 ### 1.14 ###
 

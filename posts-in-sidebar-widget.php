@@ -57,6 +57,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		pis_posts_in_sidebar( array(
 			'intro'               => $instance['intro'],
 			'post_type'           => $instance['post_type'],
+			'posts_id'            => $instance['posts_id'],
 			'author'              => $instance['author'],
 			'cat'                 => $instance['cat'],
 			'tag'                 => $instance['tag'],
@@ -139,6 +140,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		);
 		$instance['intro']             = wp_kses( $new_instance['intro'], $allowed_html );
 		$instance['post_type']         = $new_instance['post_type'];
+		$instance['posts_id']          = strip_tags( $new_instance['posts_id'] );
 		$instance['author']            = $new_instance['author'];
 		$instance['cat']               = $new_instance['cat'];
 		$instance['tag']               = $new_instance['tag'];
@@ -226,6 +228,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_link'          => '',
 			'intro'               => '',
 			'post_type'           => 'post',
+			'posts_id'            => '',
 			'author'              => '',
 			'cat'                 => '',
 			'tag'                 => '',
@@ -352,6 +355,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$options,
 				$instance['post_type']
 			); ?>
+
+			<?php // ================= Posts ID
+			pis_form_input_text( __( 'ID of the posts to retrieve', 'pis' ), $this->get_field_id('posts_id'), $this->get_field_name('posts_id'), esc_attr( $instance['posts_id'] ) ); ?>
 
 			<?php // ================= Author
 			$options = array(
@@ -666,6 +672,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				'content' => array(
 					'value' => 'content',
 					'desc'  => __( 'The simple text', 'pis' )
+				),
+				'more_excerpt' => array(
+					'value' => 'more_excerpt',
+					'desc'  => __( 'The excerpt up to "more" tag', 'pis' )
 				),
 				'excerpt' => array(
 					'value' => 'excerpt',

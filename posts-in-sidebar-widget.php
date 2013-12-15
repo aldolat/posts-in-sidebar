@@ -49,11 +49,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
+
+		// Add a new container if the "Container Class" is not empty
+		if ( $instance['container_class'] ) {
+			echo '<div class="' . $instance['container_class'] . '">';
+		}
+
 		if ( $title && $instance['title_link'] ) {
 			echo $before_title . '<a class="pis-title-link" href="' . $instance['title_link'] . '">' . $title . '</a>' . $after_title;
 		} else if ( $title ) {
 			echo $before_title . $title . $after_title;
 		}
+
 		pis_posts_in_sidebar( array(
 			'intro'               => $instance['intro'],
 			'post_type'           => $instance['post_type'],
@@ -123,6 +130,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'noposts_margin'      => $instance['noposts_margin'],
 			'custom_styles'       => $instance['custom_styles'],
 		));
+
+		if ( $instance['container_class'] ) {
+			echo '</div>';
+		}
+
 		echo $after_widget;
 	}
 
@@ -193,6 +205,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['link_to']           = $new_instance['link_to'];
 		$instance['archive_text']      = strip_tags( $new_instance['archive_text'] );
 		$instance['nopost_text']       = strip_tags( $new_instance['nopost_text'] );
+		$instance['container_class']   = strip_tags( $new_instance['container_class'] );
 		$instance['list_element']      = $new_instance['list_element'];
 		$instance['remove_bullets']    = $new_instance['remove_bullets'];
 		$instance['margin_unit']       = $new_instance['margin_unit'];
@@ -280,6 +293,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'             => 'category',
 			'archive_text'        => __( 'Display all posts', 'pis' ),
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
+			'container_class'     => '',
 			'list_element'        => 'ul',
 			'remove_bullets'      => false,
 			'margin_unit'         => 'px',
@@ -862,6 +876,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
 
 			<h4><?php _e( 'Extras', 'pis' ); ?></h4>
+
+			<?php // ================= Container Class
+			pis_form_input_text(
+				__( 'Custom CSS Class for container', 'pis' ),
+				$this->get_field_id('container_class'),
+				$this->get_field_name('container_class'),
+				esc_attr( $instance['container_class'] )
+			); ?>
 
 			<?php // ================= Type of HTML for list of posts
 			$options = array(

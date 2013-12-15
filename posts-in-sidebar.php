@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.15
+ * Version: 1.15.1
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,7 +28,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.15' );
+define( 'PIS_VERSION', '1.15.1' );
 
 /**
  * The core function
@@ -149,6 +149,10 @@ function pis_posts_in_sidebar( $args ) {
 				</p>
 			<?php } ?>
 
+			<?php
+				// When updating from 1.14, the $list_element variable is empty.
+				if ( ! $list_element ) $list_element = 'ul';
+			?>
 			<?php if ( $remove_bullets && $list_element == 'ul' ) $bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"'; else $bullets_style = ''; ?>
 			<<?php echo $list_element; ?> <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style; ?>>
 

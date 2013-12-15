@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.3  
 **Tested up to:** 3.8  
-**Stable tag:** 1.15  
+**Stable tag:** 1.15.1  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -85,6 +85,10 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 
 ## Changelog ##
+
+### 1.15.1 ###
+
+* FIX: The HTML for ul is now fixed.
 
 ### 1.15 ###
 

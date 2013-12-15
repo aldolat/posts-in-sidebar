@@ -92,6 +92,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 * NEW: The list of posts can now be displayed in a numbered list (props by Sean).
 * NEW: The excerpt can be displayed up to the "more" tag (props by EvertVd).
 * FIX: There are no more empty spaces after "Category" or "Tags" text.
+* The widget panel has been slightly enlarged.
 * Deleted unused options in widgets dropdown menus.
 * Minor refinements.
 

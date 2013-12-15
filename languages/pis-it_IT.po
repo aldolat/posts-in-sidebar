@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
 "POT-Creation-Date: 2013-12-15 08:16:10+00:00\n"
-"PO-Revision-Date: 2013-12-15 09:24+0100\n"
+"PO-Revision-Date: 2013-12-15 09:38+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -460,7 +460,7 @@ msgstr "Extra"
 
 #: posts-in-sidebar-widget.php:864
 msgid "Unordered list (ul)"
-msgstr "Lista non ordinata (ul)"
+msgstr "Lista non numerata (ul)"
 
 #: posts-in-sidebar-widget.php:868
 msgid "Ordered list (ol)"

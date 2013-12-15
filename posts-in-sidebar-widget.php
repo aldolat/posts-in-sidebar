@@ -357,7 +357,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			); ?>
 
 			<?php // ================= Posts ID
-			pis_form_input_text( __( 'ID of the posts to retrieve', 'pis' ), $this->get_field_id('posts_id'), $this->get_field_name('posts_id'), esc_attr( $instance['posts_id'] ) ); ?>
+			pis_form_input_text(
+				__( 'ID of the posts to retrieve', 'pis' ),
+				$this->get_field_id('posts_id'),
+				$this->get_field_name('posts_id'),
+				esc_attr( $instance['posts_id'] ),
+				sprintf( __( 'Comma separated values. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+			); ?>
 
 			<?php // ================= Author
 			$options = array(

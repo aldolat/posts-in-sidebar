@@ -134,7 +134,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The following 'widget_id' variable will be used in the main function
 			// to check if a cached version of the query already exists
 			// for every instance of the widget.
-			'widget_id'           => $this->id,
+			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
 		));
 
 		if ( $instance['container_class'] ) {

@@ -927,10 +927,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			); ?>
 
 			<?php // ================= Cache for the query
-			pis_form_checkbox( __( 'Use a cache to speed up my site (in seconds)', 'pis' ),
+			pis_form_checkbox( __( 'Use a cache to serve the output (in seconds)', 'pis' ),
 				$this->get_field_id( 'cached' ),
 				$this->get_field_name( 'cached' ),
-				checked( $cached, true, false )
+				checked( $cached, true, false ),
+				__( 'This option, if activated, will increase the performance.', 'pis' )
 			); ?>
 
 			<?php // ================= Cache duration

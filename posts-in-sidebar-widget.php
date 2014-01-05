@@ -240,7 +240,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['custom_styles']     = strip_tags( $new_instance['custom_styles'] );
 		$instance['cached']            = $new_instance['cached'];
 		$instance['cache_time']        = strip_tags( $new_instance['cache_time'] );
-			if ( ! is_numeric( $new_instance['cache_time'] ) || $new_instance['cache_time'] == 0 ) $instance['cache_time'] = 3600;
+			// If cache time is not a numeric value OR is 0, then reset cache. Also set cache time to 3600 if cache is active.
+			if ( ! is_numeric( $new_instance['cache_time'] ) || $new_instance['cache_time'] == 0 ) {
+				delete_transient( $this->id . '_query_cache' );
+				if ( $instance['cached'] ) {
+					$instance['cache_time'] = 3600;
+				} else {
+					$instance['cache_time'] = '';
+				}
+			}
 		$instance['widget_id']         = $this->id; // This option is stored only for uninstall purposes. See uninstall.php for further information.
 		return $instance;
 	}
@@ -318,7 +326,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'noposts_margin'      => NULL,
 			'custom_styles'       => '',
 			'cached'              => false,
-			'cache_time'          => 3600,
+			'cache_time'          => '',
 		);
 		$instance         = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky    = (bool) $instance['ignore_sticky'];
@@ -888,6 +896,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= No posts text
 			pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
 
+			<hr />
+
 			<h4><?php _e( 'Extras', 'pis' ); ?></h4>
 
 			<?php // ================= Container Class
@@ -926,8 +936,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
 			); ?>
 
+			<hr />
+
+			<h4><?php _e( 'Cache', 'pis' ); ?></h4>
+
 			<?php // ================= Cache for the query
-			pis_form_checkbox( __( 'Use a cache to serve the output (in seconds)', 'pis' ),
+			pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
 				$this->get_field_id( 'cached' ),
 				$this->get_field_name( 'cached' ),
 				checked( $cached, true, false ),
@@ -936,11 +950,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Cache duration
 			pis_form_input_text(
-				__( 'How much should last the cache?', 'pis' ),
+				__( 'Duration of the cache (in seconds)', 'pis' ),
 				$this->get_field_id('cache_time'),
 				$this->get_field_name('cache_time'),
 				esc_attr( $instance['cache_time'] ),
-				sprintf( __( 'E.g., %s for one hour of cache.', 'pis' ), '<code>3600</code>' )
+				sprintf( __( 'E.g., %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
 			); ?>
 
 		</div>

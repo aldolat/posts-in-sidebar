@@ -102,7 +102,7 @@ function pis_posts_in_sidebar( $args ) {
 		'tags_margin'       => NULL,
 		'archive_margin'    => NULL,
 		'noposts_margin'    => NULL,
-		'cached'            => true,
+		'cached'            => false,
 		'cache_time'        => 3600,
 		'widget_id'         => '',
 	);

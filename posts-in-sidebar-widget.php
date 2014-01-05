@@ -317,7 +317,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_margin'      => NULL,
 			'noposts_margin'      => NULL,
 			'custom_styles'       => '',
-			'cached'              => true,
+			'cached'              => false,
 			'cache_time'          => 3600,
 		);
 		$instance         = wp_parse_args( (array) $instance, $defaults );

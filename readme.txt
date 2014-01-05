@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.16-dev
+Stable tag: 1.16
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,7 +74,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 
 == Changelog ==
 
-= 1.16-dev =
+= 1.16 =
 
 * NEW: Added a field to define a class for a container.
 * NEW: Now the user can define a cache when retrieving posts from database.

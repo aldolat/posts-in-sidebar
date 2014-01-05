@@ -77,6 +77,7 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 = 1.16-dev =
 
 * NEW: Added a field to define a class for a container.
+* NEW: Now the user can define a cache when retrieving posts from database.
 
 = 1.15.1 =
 

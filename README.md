@@ -66,22 +66,22 @@ You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.
 ## Screenshots ##
 
 ###1. The widget panel###
-![The widget panel](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-1.png)
+![The widget panel](http://ps.w.org/posts-in-sidebar/assets/screenshot-1.png)
 
 ###2. A simple output of the widget: title, excerpt and link to the entire archive.###
-![A simple output of the widget: title, excerpt and link to the entire archive.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-2.png)
+![A simple output of the widget: title, excerpt and link to the entire archive.](http://ps.w.org/posts-in-sidebar/assets/screenshot-2.png)
 
 ###3. Displaying the featured image, floating left.###
-![Displaying the featured image, floating left.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-3.png)
+![Displaying the featured image, floating left.](http://ps.w.org/posts-in-sidebar/assets/screenshot-3.png)
 
 ###4. The same image as before, but in larger size.###
-![The same image as before, but in larger size.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-4.png)
+![The same image as before, but in larger size.](http://ps.w.org/posts-in-sidebar/assets/screenshot-4.png)
 
 ###5. The introductory text for the widget.###
-![The introductory text for the widget.](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-5.png)
+![The introductory text for the widget.](http://ps.w.org/posts-in-sidebar/assets/screenshot-5.png)
 
 ###6. Displaying the full set of items (categories, date, author, tags, and so on).###
-![Displaying the full set of items (categories, date, author, tags, and so on).](http://s-plugins.wordpress.org/posts-in-sidebar/assets/screenshot-6.png)
+![Displaying the full set of items (categories, date, author, tags, and so on).](http://ps.w.org/posts-in-sidebar/assets/screenshot-6.png)
 
 
 ## Changelog ##

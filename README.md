@@ -79,6 +79,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 1.16.1 ###
 
 * NEW: The cache can be flushed now.
+* Updated Hebrew translation.
 
 ### 1.16 ###
 

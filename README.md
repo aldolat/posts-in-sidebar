@@ -51,17 +51,7 @@ This section describes how to install the plugin and get it working.
 
 ## Frequently Asked Questions ##
 
-### May I retrieve posts using category and tag? ###
-
-Yes. you can retrieve posts using author archive and/or category archive and/or tag archive.
-
-### How can I float my images? ###
-
-You have to edit your CSS file (usually `style.css`). You can target the image adding a new style like this at the end of your CSS file: `.pis-excerpt img { float: left; margin-right: 10px; }`
-
-### How can I add new size for my images? ###
-
-You have to edit your `functions.php` file. [Ask in the forum](http://wordpress.org/support/plugin/posts-in-sidebar) of this plugin, for more informations. Or you can use [a plugin](http://wordpress.org/plugins/simple-image-sizes/) that can do that for you.
+Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on GitHub.
 
 ## Screenshots ##
 

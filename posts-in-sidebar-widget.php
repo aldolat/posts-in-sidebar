@@ -21,6 +21,7 @@ add_action( 'widgets_init', 'pis_load_widgets' );
 /**
  * Create the widget
  *
+ * @package PostsInSidebar
  * @since 1.0
  */
 

@@ -9,10 +9,8 @@
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
- */
-
-/*
- * Copyright (C) 2009, 2013  Aldo Latino  (email : aldolat@gmail.com)
+ *
+ * Copyright (C) 2009, 2014  Aldo Latino  (email : aldolat@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +24,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PostsInSidebar
+ * @version 1.16.2-dev
+ * @author Aldo Latino <aldolat@gmail.com>
+ * @copyright Copyright (c) 2009 - 2014, Aldo Latino
+ * @link http://dev.aldolat.it/projects/posts-in-sidebar/
+ * @license http://www.gnu.org/licenses/gpl.html
  */
 
+/**
+ * Define the version of the plugin.
+ */
 define( 'PIS_VERSION', '1.16.2-dev' );
 
 /**

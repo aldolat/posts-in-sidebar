@@ -6,18 +6,26 @@
  */
 
 /**
- * Create a form label to be used with the widget.
+ * Create a form label to be used in the widget panel.
  *
  * @since 1.12
+ * @param string $label The label to display.
+ * @param string $id The id of the label.
  */
 function pis_form_label( $label, $id ) {
 	echo '<label for="' . esc_attr( $id ) . '">' . $label . '</label>';
 }
 
 /**
- * Create a form text input to be used with the widget.
+ * Create a form text input to be used in the widget panel.
  *
  * @since 1.12
+ * @param string $label The label to display.
+ * @param string $id The id of the label.
+ * @param string $name The name of the input form.
+ * @param string $value The values of the input form.
+ * @param string $comment An optional comment to display. It is displayed below the input form.
+ * @param string $style An optional inline style.
  * @uses pis_form_label
  */
 function pis_form_input_text( $label, $id, $name, $value, $comment = '', $style = '' ) {
@@ -30,8 +38,14 @@ function pis_form_input_text( $label, $id, $name, $value, $comment = '', $style 
 }
 
 /**
- * Create a form textarea to be used with the widget.
+ * Create a form textarea to be used in the widget panel.
  *
+ * @param string $label The label to display.
+ * @param string $id The id of the label.
+ * @param string $name The name of the textarea form.
+ * @param string $text The text to display.
+ * @param string $style An optional inline style.
+ * @param string $comment An optional comment to display. It is displayed below the textarea form.
  * @since 1.12
  */
 function pis_form_textarea( $label, $id, $name, $text,  $style = '', $comment = '' ) {
@@ -44,8 +58,13 @@ function pis_form_textarea( $label, $id, $name, $text,  $style = '', $comment = 
 }
 
 /**
- * Create a form checkbox to be used with the widget.
+ * Create a form checkbox to be used in the widget panel.
  *
+ * @param string $label The label to display.
+ * @param string $id The id of the label.
+ * @param string $name The name of the checkbox form.
+ * @param string $checked If the option is checked.
+ * @param string $comment An optional comment to display. It is displayed below the checkbox form.
  * @since 1.12
  */
 function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
@@ -57,8 +76,14 @@ function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
 }
 
 /**
- * Create a form select to be used with the widget.
+ * Create a form select to be used in the widget panel.
  *
+ * @param string $label The label to display.
+ * @param string $id The id of the label.
+ * @param string $name The name of the select form.
+ * @param string $options The options to display.
+ * @param string $value The values of the select form.
+ * @param string $comment An optional comment to display. It is displayed below the select form.
  * @since 1.12
  */
 function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) {

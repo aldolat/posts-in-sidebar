@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.16.1
+ * Version: 1.17-dev
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -28,18 +28,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-define( 'PIS_VERSION', '1.16.1' );
+define( 'PIS_VERSION', '1.17-dev' );
 
 /**
- * The core function
+ * The core function.
  *
  * @since 1.0
+ * @param mixed $args The options for the main function.
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
 		'intro'             => '',
 		'post_type'         => 'post', // post, page, media, or any custom post type
-		'post_ids'          => '',   // Post/Pages IDs.
+		'post_ids'          => '',     // Post/Pages IDs.
 		'author'            => NULL,   // Author nicename, NOT name
 		'cat'               => NULL,   // Category slugs, comma separated
 		'tag'               => NULL,   // Tag slugs, comma separated
@@ -60,7 +61,7 @@ function pis_posts_in_sidebar( $args ) {
 		'display_image'     => false,
 		'image_size'        => 'thumbnail',
 		'image_align'       => 'no_change',
-		'excerpt'           => 'excerpt', // can be "full_content", "rich_content", "content", "excerpt", "none"
+		'excerpt'           => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
 		'exc_length'        => 20,        // In words
 		'the_more'          => __( 'Read more&hellip;', 'pis' ),
 		'exc_arrow'         => false,
@@ -267,14 +268,14 @@ function pis_posts_in_sidebar( $args ) {
 
 									case 'full_content':
 										the_content();
-										break;
+									break;
 
 									case 'rich_content':
 										$content = $pis_query->post->post_content;
 										// Honor any paragraph break
 										$content = pis_break_text( $content );
 										echo apply_filters( 'pis_rich_content', $content );
-										break;
+									break;
 
 									case 'content':
 										// Remove shortcodes
@@ -284,7 +285,7 @@ function pis_posts_in_sidebar( $args ) {
 										// Honor any paragraph break
 										$content = pis_break_text( $content );
 										echo apply_filters( 'pis_content', $content );
-										break;
+									break;
 
 									case 'more_excerpt':
 										$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
@@ -296,21 +297,8 @@ function pis_posts_in_sidebar( $args ) {
 										}
 										echo apply_filters( 'pis_more_excerpt_text', $excerpt_text );
 
-										/* The 'Read more' and the Arrow */
-										if ( $the_more || $exc_arrow ) {
-											if ( $exc_arrow ) {
-												$the_arrow = pis_arrow();
-											} else {
-												$the_arrow = '';
-											} ?>
-											<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ) ); ?>>
-												<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-													<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
-												</a>
-											</span>
-										<?php }
-
-										break;
+										pis_more_arrow( $the_more, $exc_arrow );
+									break;
 
 									case 'excerpt':
 										// If we have a user-defined excerpt...
@@ -325,19 +313,8 @@ function pis_posts_in_sidebar( $args ) {
 											echo apply_filters( 'pis_excerpt_text', $excerpt_text );
 										}
 
-										/* The 'Read more' and the Arrow */
-										if ( $the_more || $exc_arrow ) {
-											if ( $exc_arrow ) {
-												$the_arrow = pis_arrow();
-											} else {
-												$the_arrow = '';
-											} ?>
-											<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ) ); ?>>
-												<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-													<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
-												</a>
-											</span>
-										<?php }
+										pis_more_arrow( $the_more, $exc_arrow );
+									break;
 								}
 								// Close The text ?>
 
@@ -518,13 +495,13 @@ function pis_posts_in_sidebar( $args ) {
 
 
 /**
- * Return the class for the HTML element
+ * Return the class for the HTML element.
  *
  * @since 1.9
  *
  * @param string $default One or more classes, defined by plugin's developer, to add to the class list.
  * @param string|array $class One or more classes, defined by the user, to add to the class list.
- * @param boolean $echo If the function should echo or not the output.
+ * @param boolean $echo If the function should echo or not the output. Default true.
  * @return string $output List of classes.
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
@@ -598,7 +575,12 @@ function pis_break_text( $text ) {
 	return $text;
 }
 
-
+/**
+ * Return the array containing the custom fields of the post.
+ *
+ * @since 1.12
+ * @return array The custom fields of the post.
+ */
 function pis_meta() {
 	global $wpdb;
 	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
@@ -636,8 +618,11 @@ function pis_arrow() {
  *
  * @since 1.15
  * @uses pis_arrow()
+ * @param string $the_more The text to be displayed for "Continue reading". Default empty.
+ * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
+ * @return string The HTML arrow linked to the post.
  */
-function pis_more_arrow( $the_more, $exc_arrow ) {
+function pis_more_arrow( $the_more = '', $exc_arrow = false ) {
 	if ( $the_more || $exc_arrow ) {
 		if ( $exc_arrow ) {
 			$the_arrow = pis_arrow();
@@ -673,6 +658,7 @@ include_once( plugin_dir_path( __FILE__ ) . 'widget-form-functions.php' );
  * Add the custom styles to wp_head hook.
  *
  * @since 1.13
+ * @return The HTML for custom styles in the HEAD section.
  */
 function pis_add_styles_to_head() {
 	// Get the options from the database.

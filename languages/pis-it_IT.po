@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
 "POT-Creation-Date: 2014-01-11 17:33:37+00:00\n"
-"PO-Revision-Date: 2014-01-11 18:35+0100\n"
+"PO-Revision-Date: 2014-01-11 18:46+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -503,7 +503,7 @@ msgstr "Lista ordinata"
 
 #: posts-in-sidebar-widget.php:925
 msgid "Use this type of list for the posts"
-msgstr "usa questo tipo di lista per i post"
+msgstr "Usa questo tipo di lista per i post"
 
 #: posts-in-sidebar-widget.php:934
 msgid ""

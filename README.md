@@ -80,7 +80,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * Code optimization.
 * The class for the custom container class is now sanitized.
-* The custom container receives now only a CSS class.
+* The custom container receives now only a single CSS class.
 
 ### 1.16.1 ###
 

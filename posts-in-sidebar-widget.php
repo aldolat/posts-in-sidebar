@@ -85,6 +85,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_image'       => $instance['display_image'],
 			'image_size'          => $instance['image_size'],
 			'image_align'         => $instance['image_align'],
+			'image_before_title'  => $instance['image_before_title'],
 			'excerpt'             => $instance['excerpt'],
 			'arrow'               => $instance['arrow'],
 			'exc_length'          => $instance['exc_length'],
@@ -182,6 +183,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['display_image']     = $new_instance['display_image'];
 		$instance['image_size']        = $new_instance['image_size'];
 		$instance['image_align']       = $new_instance['image_align'];
+		$instance['image_before_title']= $new_instance['image_before_title'];
 		$instance['excerpt']           = $new_instance['excerpt'];
 		$instance['exc_length']        = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
@@ -281,6 +283,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_image'       => false,
 			'image_size'          => 'thumbnail',
 			'image_align'         => 'no_change',
+			'image_before_title'  => false,
 			'side_image_margin'   => NULL,
 			'bottom_image_margin' => NULL,
 			'excerpt'             => 'excerpt',
@@ -329,25 +332,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'cached'              => false,
 			'cache_time'          => '',
 		);
-		$instance         = wp_parse_args( (array) $instance, $defaults );
-		$ignore_sticky    = (bool) $instance['ignore_sticky'];
-		$display_title    = (bool) $instance['display_title'];
-		$link_on_title    = (bool) $instance['link_on_title'];
-		$display_image    = (bool) $instance['display_image'];
-		$arrow            = (bool) $instance['arrow'];
-		$exc_arrow        = (bool) $instance['exc_arrow'];
-		$display_author   = (bool) $instance['display_author'];
-		$linkify_author   = (bool) $instance['linkify_author'];
-		$display_date     = (bool) $instance['display_date'];
-		$linkify_date     = (bool) $instance['linkify_date'];
-		$comments         = (bool) $instance['comments'];
-		$categories       = (bool) $instance['categories'];
-		$tags             = (bool) $instance['tags'];
-		$custom_field     = (bool) $instance['custom_field'];
-		$custom_field_key = (bool) $instance['custom_field_key'];
-		$archive_link     = (bool) $instance['archive_link'];
-		$remove_bullets   = (bool) $instance['remove_bullets'];
-		$cached           = (bool) $instance['cached'];
+		$instance           = wp_parse_args( (array) $instance, $defaults );
+		$ignore_sticky      = (bool) $instance['ignore_sticky'];
+		$display_title      = (bool) $instance['display_title'];
+		$link_on_title      = (bool) $instance['link_on_title'];
+		$display_image      = (bool) $instance['display_image'];
+		$image_before_title = (bool) $instance['image_before_title'];
+		$arrow              = (bool) $instance['arrow'];
+		$exc_arrow          = (bool) $instance['exc_arrow'];
+		$display_author     = (bool) $instance['display_author'];
+		$linkify_author     = (bool) $instance['linkify_author'];
+		$display_date       = (bool) $instance['display_date'];
+		$linkify_date       = (bool) $instance['linkify_date'];
+		$comments           = (bool) $instance['comments'];
+		$categories         = (bool) $instance['categories'];
+		$tags               = (bool) $instance['tags'];
+		$custom_field       = (bool) $instance['custom_field'];
+		$custom_field_key   = (bool) $instance['custom_field_key'];
+		$archive_link       = (bool) $instance['archive_link'];
+		$remove_bullets     = (bool) $instance['remove_bullets'];
+		$cached             = (bool) $instance['cached'];
 		?>
 		<div style="float: left; width: 31%; margin-right: 2%;">
 
@@ -696,6 +700,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					); ?>
 				</em>
 			</p>
+
+			<?php // ================= Positioning image bfore title
+			pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
 
 			<hr />
 

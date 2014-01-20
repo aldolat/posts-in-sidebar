@@ -46,74 +46,75 @@ define( 'PIS_VERSION', '1.16.2-dev' );
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
-		'intro'             => '',
-		'post_type'         => 'post', // post, page, media, or any custom post type
-		'post_ids'          => '',     // Post/Pages IDs.
-		'author'            => NULL,   // Author nicename, NOT name
-		'cat'               => NULL,   // Category slugs, comma separated
-		'tag'               => NULL,   // Tag slugs, comma separated
-		'post_format'       => '',
-		'number'            => get_option( 'posts_per_page' ),
-		'orderby'           => 'date',
-		'order'             => 'DESC',
-		'cat_not_in'        => '',
-		'tag_not_in'        => '',
-		'offset_number'     => '',
-		'post_status'       => 'publish',
-		'post_meta_key'     => '',
-		'post_meta_val'     => '',
-		'ignore_sticky'     => false,
-		'display_title'     => true,
-		'link_on_title'     => true,
-		'arrow'             => false,
-		'display_image'     => false,
-		'image_size'        => 'thumbnail',
-		'image_align'       => 'no_change',
-		'excerpt'           => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
-		'exc_length'        => 20,        // In words
-		'the_more'          => __( 'Read more&hellip;', 'pis' ),
-		'exc_arrow'         => false,
-		'display_author'    => false,
-		'author_text'       => __( 'By', 'pis' ),
-		'linkify_author'    => false,
-		'display_date'      => false,
-		'date_text'         => __( 'Published on', 'pis' ),
-		'linkify_date'      => false,
-		'comments'          => false,
-		'comments_text'     => __( 'Comments:', 'pis' ),
-		'utility_sep'       => '|',
-		'categories'        => false,
-		'categ_text'        => __( 'Category:', 'pis' ),
-		'categ_sep'         => ',',
-		'tags'              => false,
-		'tags_text'         => __( 'Tags:', 'pis' ),
-		'hashtag'           => '#',
-		'tag_sep'           => '',
-		'custom_field'      => false,
-		'custom_field_txt'  => '',
-		'meta'              => '',
-		'custom_field_key'  => false,
-		'custom_field_sep'  => ':',
-		'archive_link'      => false,
-		'link_to'           => 'category',
-		'archive_text'      => __( 'Display all posts', 'pis' ),
-		'nopost_text'       => __( 'No posts yet.', 'pis' ),
-		'list_element'      => 'ul',
-		'remove_bullets'    => false,
-		'margin_unit'       => 'px',
-		'intro_margin'      => NULL,
-		'title_margin'      => NULL,
-		'side_image_margin' => NULL,
+		'intro'               => '',
+		'post_type'           => 'post', // post, page, media, or any custom post type
+		'post_ids'            => '',     // Post/Pages IDs.
+		'author'              => NULL,   // Author nicename, NOT name
+		'cat'                 => NULL,   // Category slugs, comma separated
+		'tag'                 => NULL,   // Tag slugs, comma separated
+		'post_format'         => '',
+		'number'              => get_option( 'posts_per_page' ),
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+		'cat_not_in'          => '',
+		'tag_not_in'          => '',
+		'offset_number'       => '',
+		'post_status'         => 'publish',
+		'post_meta_key'       => '',
+		'post_meta_val'       => '',
+		'ignore_sticky'       => false,
+		'display_title'       => true,
+		'link_on_title'       => true,
+		'arrow'               => false,
+		'display_image'       => false,
+		'image_size'          => 'thumbnail',
+		'image_align'         => 'no_change',
+		'image_before_title'  => false,
+		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
+		'exc_length'          => 20,        // In words
+		'the_more'            => __( 'Read more&hellip;', 'pis' ),
+		'exc_arrow'           => false,
+		'display_author'      => false,
+		'author_text'         => __( 'By', 'pis' ),
+		'linkify_author'      => false,
+		'display_date'        => false,
+		'date_text'           => __( 'Published on', 'pis' ),
+		'linkify_date'        => false,
+		'comments'            => false,
+		'comments_text'       => __( 'Comments:', 'pis' ),
+		'utility_sep'         => '|',
+		'categories'          => false,
+		'categ_text'          => __( 'Category:', 'pis' ),
+		'categ_sep'           => ',',
+		'tags'                => false,
+		'tags_text'           => __( 'Tags:', 'pis' ),
+		'hashtag'             => '#',
+		'tag_sep'             => '',
+		'custom_field'        => false,
+		'custom_field_txt'    => '',
+		'meta'                => '',
+		'custom_field_key'    => false,
+		'custom_field_sep'    => ':',
+		'archive_link'        => false,
+		'link_to'             => 'category',
+		'archive_text'        => __( 'Display all posts', 'pis' ),
+		'nopost_text'         => __( 'No posts yet.', 'pis' ),
+		'list_element'        => 'ul',
+		'remove_bullets'      => false,
+		'margin_unit'         => 'px',
+		'intro_margin'        => NULL,
+		'title_margin'        => NULL,
+		'side_image_margin'   => NULL,
 		'bottom_image_margin' => NULL,
-		'excerpt_margin'    => NULL,
-		'utility_margin'    => NULL,
-		'categories_margin' => NULL,
-		'tags_margin'       => NULL,
-		'archive_margin'    => NULL,
-		'noposts_margin'    => NULL,
-		'cached'            => false,
-		'cache_time'        => 3600,
-		'widget_id'         => '',
+		'excerpt_margin'      => NULL,
+		'utility_margin'      => NULL,
+		'categories_margin'   => NULL,
+		'tags_margin'         => NULL,
+		'archive_margin'      => NULL,
+		'noposts_margin'      => NULL,
+		'cached'              => false,
+		'cache_time'          => 3600,
+		'widget_id'           => '',
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -197,6 +198,50 @@ function pis_posts_in_sidebar( $args ) {
 
 				<li <?php pis_class( $postclass, apply_filters( 'pis_li_class', '' ) ); ?>>
 
+					<?php /* The thumbnail before the title */ ?>
+					<?php if ( $image_before_title && has_post_thumbnail() ) : ?>
+						<?php switch ( $image_align ) {
+							case 'left' :
+								$image_class = ' alignleft';
+								if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+									$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+									$image_style = str_replace( ' margin-right: px;', '', $image_style);
+									$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+								}
+							break;
+							case 'right':
+								$image_class = ' alignright';
+								if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+									$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+									$image_style = str_replace( ' margin-left: px;', '', $image_style);
+									$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+								}
+							break;
+							case 'center':
+								$image_class = ' aligncenter';
+								if ( ! is_null( $bottom_image_margin ) )
+									$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+							break;
+							default:
+								$image_class = '';
+							break;
+						} ?>
+						<p class="pis-thumbnail">
+							<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+								<?php $image_html = get_the_post_thumbnail(
+									$pis_query->post->ID,
+									$image_size,
+									array(
+										'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+									)
+								);
+								$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
+								echo $image_html;
+								?>
+							</a>
+						</p>
+					<?php endif; // Close if ( $image_before_title && has_post_thumbnail ) ?>
+
 					<?php /* The title */ ?>
 					<?php if ( $display_title ) { ?>
 						<p <?php echo pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ); ?>>
@@ -216,15 +261,16 @@ function pis_posts_in_sidebar( $args ) {
 
 					<?php /* The post content */ ?>
 					<?php if ( ! post_password_required() ) : ?>
-						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) { ?>
+						
+						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) : ?>
 
 							<p <?php echo pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ); ?>>
 
-								<?php /* The thumbnail */ ?>
-								<?php if ( $display_image ) {
-									if ( has_post_thumbnail() ) { ?>
-										<?php
-										switch ( $image_align ) {
+								<?php if ( ! $image_before_title ) : ?>
+
+									<?php /* The thumbnail */ ?>
+									<?php if ( $display_image && has_post_thumbnail() ) : ?>
+										<?php switch ( $image_align ) {
 											case 'left' :
 												$image_class = ' alignleft';
 												if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
@@ -232,7 +278,7 @@ function pis_posts_in_sidebar( $args ) {
 													$image_style = str_replace( ' margin-right: px;', '', $image_style);
 													$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
 												}
-												break;
+											break;
 											case 'right':
 												$image_class = ' alignright';
 												if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
@@ -240,15 +286,15 @@ function pis_posts_in_sidebar( $args ) {
 													$image_style = str_replace( ' margin-left: px;', '', $image_style);
 													$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
 												}
-												break;
+											break;
 											case 'center':
 												$image_class = ' aligncenter';
 												if ( ! is_null( $bottom_image_margin ) )
 													$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
-												break;
+											break;
 											default:
 												$image_class = '';
-												break;
+											break;
 										} ?>
 										<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 											<?php $image_html = get_the_post_thumbnail(
@@ -261,8 +307,9 @@ function pis_posts_in_sidebar( $args ) {
 											$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
 											echo $image_html;
 											?></a>
-									<?php } // Close if ( has_post_thumbnail )  */
-								} // Close if ( $display_image ) ?>
+									<?php endif; // Close if ( $display_image && has_post_thumbnail ) ?>
+
+								<?php endif; // Close if $image_before_title ?>
 
 								<?php /* The text */ ?>
 								<?php /*
@@ -272,7 +319,7 @@ function pis_posts_in_sidebar( $args ) {
 									"More excerpt" = the excerpt up to the point of the "more" tag (inserted by the user).
 									"Excerpt"      = the excerpt as defined by the user or generated by WordPress.
 								*/ ?>
-								<?php switch ( $excerpt ) {
+								<?php switch ( $excerpt ) :
 
 									case 'full_content':
 										the_content();
@@ -323,12 +370,14 @@ function pis_posts_in_sidebar( $args ) {
 
 										pis_more_arrow( $the_more, $exc_arrow );
 									break;
-								}
+
+								endswitch;
 								// Close The text ?>
 
 							</p>
 
-						<?php }	// Close The content ?>
+						<?php endif; // Close if $display_image ?>
+
 					<?php endif; // Close if post password required ?>
 
 					<?php /* The author, the date and the comments */ ?>

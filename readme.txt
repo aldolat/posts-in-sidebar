@@ -66,6 +66,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 1.16.2-dev =
 
+* NEW: Added option to display image before post title.
 * Code optimization.
 * The class for the custom container class is now sanitized.
 * The custom container receives now only a single CSS class.

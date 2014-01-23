@@ -2,9 +2,9 @@
 **Contributors:** aldolat  
 **Donate link:** http://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget  
-**Requires at least:** 3.3  
+**Requires at least:** 3.5  
 **Tested up to:** 3.8  
-**Stable tag:** 1.16.2-dev  
+**Stable tag:** 1.17-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -76,9 +76,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-### 1.16.2-dev ###
+### 1.17-dev ###
 
+* NEW: Added option to exclude posts with certain IDs.
 * NEW: Added option to display image before post title.
+* NEW: Completed options for Order by parameter.
 * Code optimization.
 * The class for the custom container class is now sanitized.
 * The custom container receives now only a single CSS class.

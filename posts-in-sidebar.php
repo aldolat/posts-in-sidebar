@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.16.2-dev
+ * Version: 1.17-dev
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -48,7 +48,7 @@ function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
 		'intro'               => '',
 		'post_type'           => 'post', // post, page, media, or any custom post type
-		'post_ids'            => '',     // Post/Pages IDs.
+		'posts_id'            => '',     // Post/Pages IDs.
 		'author'              => NULL,   // Author nicename, NOT name
 		'cat'                 => NULL,   // Category slugs, comma separated
 		'tag'                 => NULL,   // Tag slugs, comma separated
@@ -56,6 +56,7 @@ function pis_posts_in_sidebar( $args ) {
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
 		'order'               => 'DESC',
+		'post_not_in'         => '',
 		'cat_not_in'          => '',
 		'tag_not_in'          => '',
 		'offset_number'       => '',
@@ -124,7 +125,8 @@ function pis_posts_in_sidebar( $args ) {
 	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
 
 	// $post__in accepts only an array
-	if ( $posts_id ) $posts_id = explode( ',', $posts_id ); else $posts_id = NULL;
+	if ( $posts_id )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
+	if ( $post_not_in ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
 
 	// Build the array to get posts
 	$params = array(
@@ -137,6 +139,7 @@ function pis_posts_in_sidebar( $args ) {
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,
 		'order'               => $order,
+		'post__not_in'        => $post_not_in, // Use id.
 		'category__not_in'    => $cat_not_in,
 		'tag__not_in'         => $tag_not_in,
 		'offset'              => $offset_number,

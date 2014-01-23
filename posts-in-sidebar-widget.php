@@ -73,6 +73,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number'              => $instance['number'],
 			'orderby'             => $instance['orderby'],
 			'order'               => $instance['order'],
+			'post_not_in'         => $instance['post_not_in'],
 			'cat_not_in'          => $instance['cat_not_in'],
 			'tag_not_in'          => $instance['tag_not_in'],
 			'offset_number'       => $instance['offset_number'],
@@ -169,6 +170,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
 		$instance['orderby']           = $new_instance['orderby'];
 		$instance['order']             = $new_instance['order'];
+		$instance['post_not_in']       = strip_tags( $new_instance['post_not_in'] );
 		$instance['cat_not_in']        = $new_instance['cat_not_in'];
 		$instance['tag_not_in']        = $new_instance['tag_not_in'];
 		$instance['offset_number']     = absint( strip_tags( $new_instance['offset_number'] ) );
@@ -270,6 +272,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number'              => get_option( 'posts_per_page' ),
 			'orderby'             => 'date',
 			'order'               => 'DESC',
+			'post_not_in'         => '',
 			'cat_not_in'          => '',
 			'tag_not_in'          => '',
 			'offset_number'       => '',
@@ -498,33 +501,61 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Post order by
 			$options = array(
-				'date' => array(
-					'value' => 'date',
-					'desc'  => __( 'Date', 'pis' )
-				),
-				'title' => array(
-					'value' => 'title',
-					'desc'  => __( 'Title', 'pis' )
+				'none' => array(
+					'value' => 'none',
+					'desc'  => __( 'None', 'pis' )
 				),
 				'id' => array(
 					'value' => 'id',
 					'desc'  => __( 'ID', 'pis' )
 				),
+				'author' => array(
+					'value' => 'author',
+					'desc'  => __( 'Author', 'pis' )
+				),
+				'title' => array(
+					'value' => 'title',
+					'desc'  => __( 'Title', 'pis' )
+				),
+				'name' => array(
+					'value' => 'name',
+					'desc'  => __( 'Name (post slug)', 'pis' )
+				),
+				'date' => array(
+					'value' => 'date',
+					'desc'  => __( 'Date', 'pis' )
+				),
 				'modified' => array(
 					'value' => 'modified',
 					'desc'  => __( 'Modified', 'pis' )
 				),
-				'menu_order' => array(
-					'value' => 'menu_order',
-					'desc'  => __( 'Menu order', 'pis' )
+				'parent' => array(
+					'value' => 'parent',
+					'desc'  => __( 'Parent', 'pis' )
+				),
+				'rand' => array(
+					'value' => 'rand',
+					'desc'  => __( 'Random', 'pis' )
 				),
 				'comment_count' => array(
 					'value' => 'comment_count',
 					'desc'  => __( 'Comment count', 'pis' )
 				),
-				'rand' => array(
-					'value' => 'rand',
-					'desc'  => __( 'Random', 'pis' )
+				'menu_order' => array(
+					'value' => 'menu_order',
+					'desc'  => __( 'Menu order', 'pis' )
+				),
+				'meta_value' => array(
+					'value' => 'meta_value',
+					'desc'  => __( 'Meta value', 'pis' )
+				),
+				'meta_value_num' => array(
+					'value' => 'meta_value_num',
+					'desc'  => __( 'Meta value number', 'pis' )
+				),
+				'post__in' => array(
+					'value' => 'post__in',
+					'desc'  => __( 'Preserve ID order', 'pis' )
 				),
 			);
 			pis_form_select(
@@ -592,6 +623,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php printf( __( 'Use %1$sCTRL+clic%2$s to select/deselect multiple items.', 'pis' ), '<code>', '</code>' ); ?>
 				</em>
 			</p>
+
+			<?php // ================= Exclude posts that have these ids.
+			pis_form_input_text(
+				__( 'Exclude posts with these ids', 'pis' ),
+				$this->get_field_id('post_not_in'),
+				$this->get_field_name('post_not_in'),
+				esc_attr( $instance['post_not_in'] ),
+				sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+			); ?>
 
 			<?php // ================= Exclude posts from categories ?>
 			<p>

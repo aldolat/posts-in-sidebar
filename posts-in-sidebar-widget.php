@@ -502,7 +502,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id('number'),
 				$this->get_field_name('number'),
 				esc_attr( $instance['number'] ),
-				sprintf( __( 'The value %s shows all the posts.' ), '<code>-1</code>' )
+				sprintf( __( 'The value %s shows all the posts.', 'pis' ), '<code>-1</code>' )
 			); ?>
 
 			<?php // ================= Post order by

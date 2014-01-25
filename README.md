@@ -219,6 +219,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Upgrade Notice ##
 
+### 1.17 ###
+
+This version requires WordPress 3.5 (for "post__in" option in "Order by" field).
+
 ### 1.10 ###
 
 Bugfix for password-protected posts.

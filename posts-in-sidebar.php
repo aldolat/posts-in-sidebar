@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.17-dev
+ * Version: 1.17
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -36,7 +36,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '1.16.2-dev' );
+define( 'PIS_VERSION', '1.17' );
 
 /**
  * The core function.

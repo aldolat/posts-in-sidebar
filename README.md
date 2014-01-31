@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.5  
 **Tested up to:** 3.8  
-**Stable tag:** 1.17  
+**Stable tag:** 1.18-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 

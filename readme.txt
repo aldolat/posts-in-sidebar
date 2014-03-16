@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.18-dev
+Stable tag: 1.18
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 6. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 1.18 =
+
+* NEW: The section with author, date, and comments can now be displayed before the post's excerpt.
+* Various small improvements.
 
 = 1.17 =
 

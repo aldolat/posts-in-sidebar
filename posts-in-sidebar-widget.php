@@ -164,16 +164,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_type']           = $new_instance['post_type'];
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
 		$instance['author']              = $new_instance['author'];
-		$instance['cat']                 = $new_instance['cat'];
-		$instance['tag']                 = $new_instance['tag'];
+		$instance['cat']                 = strip_tags( $new_instance['cat'] );
+		$instance['tag']                 = strip_tags( $new_instance['tag'] );
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
 		$instance['orderby']             = $new_instance['orderby'];
 		$instance['order']               = $new_instance['order'];
 		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
-		$instance['cat_not_in']          = $new_instance['cat_not_in'];
-		$instance['tag_not_in']          = $new_instance['tag_not_in'];
+		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
+		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
 		$instance['offset_number']       = absint( strip_tags( $new_instance['offset_number'] ) );
 			if( $instance['offset_number'] == 0 || ! is_numeric( $instance['offset_number'] ) ) $instance['offset_number'] = '';
 		$instance['post_status']         = $new_instance['post_status'];
@@ -360,9 +360,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$remove_bullets      = (bool) $instance['remove_bullets'];
 		$cached              = (bool) $instance['cached'];
 		?>
-		<div style="float: left; width: 31%; margin-right: 2%;">
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+		<style>
+			.pis-gray-title {
+				background-color: #ddd; padding: 3px 5px;
+			}
+			.pis-column {
+				float: left; width: 31%; margin-right: 2%;
+			}
+			.pis-column-last {
+				float: left; width: 31%;
+			}
+		</style>
+
+		<div class="pis-column">
+
+			<h4 class="pis-gray-title"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<?php pis_form_input_text( __( 'Title', 'pis' ), $this->get_field_id('title'), $this->get_field_name('title'), esc_attr( $instance['title'] ) ); ?>
 
@@ -379,7 +392,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Posts retrieving', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'Posts retrieving', 'pis' ); ?></h4>
 
 			<?php // ================= Post types
 			$options = array(
@@ -434,48 +447,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$instance['author']
 			); ?>
 
+
 			<?php // ================= Category
-			$options = array(
-				array(
-					'value' => 'NULL',
-					'desc'  => __( 'Any', 'pis' )
-				)
-			);
-			$my_cats = get_categories( array( 'hide_empty' => 0 ) );
-			foreach( $my_cats as $my_cat ) {
-				$options[] = array(
-					'value' => $my_cat->slug,
-					'desc'  => $my_cat->cat_name,
-				);
-			}
-			pis_form_select(
+			pis_form_input_text(
 				__( 'Get posts with this category', 'pis' ),
 				$this->get_field_id('cat'),
 				$this->get_field_name('cat'),
-				$options,
-				$instance['cat']
+				esc_attr( $instance['cat'] ),
+				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
 			); ?>
 
 			<?php // ================= Tag
-			$options = array(
-				array(
-					'value' => 'NULL',
-					'desc'  => __( 'Any', 'pis' )
-				)
-			);
-			$my_tags = get_tags( array( 'hide_empty' => 0 ) );
-			foreach( $my_tags as $my_tag ) {
-				$options[] = array(
-					'value' => $my_tag->slug,
-					'desc'  => $my_tag->name,
-				);
-			}
-			pis_form_select(
+			pis_form_input_text(
 				__( 'Get posts with this tag', 'pis' ),
 				$this->get_field_id('tag'),
 				$this->get_field_name('tag'),
-				$options,
-				$instance['tag']
+				esc_attr( $instance['tag'] ),
+				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
 			); ?>
 
 			<?php // ================= Post format
@@ -626,7 +614,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
 
 			<?php // ================= Exclude posts that have these ids.
 			pis_form_input_text(
@@ -637,45 +625,37 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
 			); ?>
 
-			<?php // ================= Exclude posts from categories ?>
-			<p>
-				<label for="<?php echo $this->get_field_id('cat_not_in'); ?>">
-					<?php _e( 'Exclude posts from these categories', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('cat_not_in'); ?>[]" multiple="multiple" style="width: 100%;">
-					<?php foreach( $my_cats as $my_category ) : ?>
-						<option <?php selected( in_array( $my_category->term_id, (array)$instance['cat_not_in'] ) ); ?> value="<?php echo $my_category->term_id; ?>">
-							<?php echo $my_category->cat_name; ?>
-						</option>
-					<?php endforeach; ?>
-				</select><br />
-				<em>
-					<?php printf( __( 'Use %1$sCTRL+clic%2$s to select/deselect multiple items.', 'pis' ), '<code>', '</code>' ); ?>
-				</em>
-			</p>
+			<?php // ================= Exclude posts from categories
+			if ( is_array( $instance['cat_not_in'] ) )
+				$var = implode( ',', $instance['cat_not_in'] );
+			else
+				$var = $instance['cat_not_in'];
+			pis_form_input_text(
+				__( 'Exclude posts from these categories', 'pis' ),
+				$this->get_field_id('cat_not_in'),
+				$this->get_field_name('cat_not_in'),
+				esc_attr( $var ),
+				__( 'Insert IDs separated by commas.', 'pis' )
+			); ?>
 
-			<?php // ================= Exclude posts from tags ?>
-			<p>
-				<label for="<?php echo $this->get_field_id('tag_not_in'); ?>">
-					<?php _e( 'Exclude posts from these tags', 'pis' ); ?>
-				</label>
-				<select name="<?php echo $this->get_field_name('tag_not_in'); ?>[]" multiple="multiple" style="width: 100%;">
-					<?php foreach( $my_tags as $mytag ) : ?>
-						<option <?php selected( in_array( $mytag->term_id, (array)$instance['tag_not_in'] ) ); ?> value="<?php echo $mytag->term_id; ?>">
-							<?php echo $mytag->name; ?>
-						</option>
-					<?php endforeach; ?>
-				</select><br />
-				<em>
-					<?php printf( __( 'Use %1$sCTRL+clic%2$s to select/deselect multiple items.', 'pis' ), '<code>', '</code>' ); ?>
-				</em>
-			</p>
+			<?php // ================= Exclude posts from tags
+			if ( is_array( $instance['tag_not_in'] ) )
+				$var = implode( ',', $instance['tag_not_in'] );
+			else
+				$var = $instance['tag_not_in'];
+			pis_form_input_text(
+				__( 'Exclude posts from these tags', 'pis' ),
+				$this->get_field_id('tag_not_in'),
+				$this->get_field_name('tag_not_in'),
+				esc_attr( $var ),
+				__( 'Insert IDs separated by commas.', 'pis' )
+			); ?>
 
 		</div>
 
-		<div style="float: left; width: 31%; margin-right: 2%;">
+		<div class="pis-column">
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The title of the post', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The title of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Title of the post
 			pis_form_checkbox( __( 'Display the title of the post', 'pis' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
@@ -688,7 +668,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Featured image
 			pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
@@ -756,7 +736,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The text of the post', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Type of text
 			$options = array(
@@ -804,7 +784,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
 
 			<?php // ================= Author
 			pis_form_checkbox( __( 'Display the author of the post', 'pis' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
@@ -838,9 +818,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<div style="float: left; width: 31%; margin-right: 2%;">
+		<div class="pis-column">
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The categories of the post', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Post categories
 			pis_form_checkbox( __( 'Display the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
@@ -853,7 +833,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The tags of the post', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The tags of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Post tags
 			pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
@@ -869,7 +849,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The custom field', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The custom field', 'pis' ); ?></h4>
 
 			<?php // ================= Display custom field
 			pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
@@ -904,7 +884,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'The link to the archive', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'The link to the archive', 'pis' ); ?></h4>
 
 			<?php // ================= Taxonomy archive link
 			pis_form_checkbox( __( 'Display the link to the taxonomy archive', 'pis' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
@@ -959,7 +939,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Extras', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'Extras', 'pis' ); ?></h4>
 
 			<?php // ================= Container Class
 			pis_form_input_text(
@@ -1001,7 +981,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Cache', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'Cache', 'pis' ); ?></h4>
 
 			<?php // ================= Cache for the query
 			pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
@@ -1026,7 +1006,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<hr />
 
-		<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Elements margins', 'pis' ); ?></h4>
+		<h4 class="pis-gray-title"><?php _e( 'Elements margins', 'pis' ); ?></h4>
 
 		<p><em><?php _e( 'This section defines the margin for each line of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ); ?></em></p>
 
@@ -1061,21 +1041,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<?php // ================= Margins ?>
 
-		<div style="float: left; width: 31%; margin-right: 2%">
+		<div class="pis-column">
 			<?php pis_form_input_text( __( 'Introduction margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Title margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Left/Right image margin', 'pis' ), $this->get_field_id( 'side_image_margin' ), $this->get_field_name( 'side_image_margin' ), esc_attr( $instance['side_image_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Bottom image margin', 'pis' ), $this->get_field_id( 'bottom_image_margin' ), $this->get_field_name( 'bottom_image_margin' ), esc_attr( $instance['bottom_image_margin'] ) ); ?>
 		</div>
 
-		<div style="float: left; width: 31%; margin-right: 2%">
+		<div class="pis-column">
 			<?php pis_form_input_text( __( 'Excerpt margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Utility margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Categories margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Tags margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
 		</div>
 
-		<div style="float: left; width: 31%;">
+		<div class="pis-column-last">
 			<?php pis_form_input_text( __( 'Custom field margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Archive margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'No-posts margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
@@ -1085,7 +1065,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<hr />
 
-		<h4 style="background-color: #D8E7D0; padding: 3px 5px;"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+		<h4 class="pis-gray-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
 
 		<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
 

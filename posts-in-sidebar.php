@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.18
+ * Version: 2.0
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -36,7 +36,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '1.18' );
+define( 'PIS_VERSION', '2.0' );
 
 /**
  * The core function.
@@ -47,18 +47,18 @@ define( 'PIS_VERSION', '1.18' );
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
 		'intro'               => '',
-		'post_type'           => 'post', // post, page, media, or any custom post type
-		'posts_id'            => '',     // Post/Pages IDs.
-		'author'              => NULL,   // Author nicename, NOT name
-		'cat'                 => NULL,   // Category slugs, comma separated
-		'tag'                 => NULL,   // Tag slugs, comma separated
+		'post_type'           => 'post',    // post, page, media, or any custom post type
+		'posts_id'            => '',        // Post/Pages IDs, comma separated
+		'author'              => NULL,      // Author nicename, NOT name
+		'cat'                 => NULL,      // Category slugs, comma separated
+		'tag'                 => NULL,      // Tag slugs, comma separated
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
 		'order'               => 'DESC',
 		'post_not_in'         => '',
-		'cat_not_in'          => '',
-		'tag_not_in'          => '',
+		'cat_not_in'          => '',        // Category ID, comma separated
+		'tag_not_in'          => '',        // Tag ID, comma separated
 		'offset_number'       => '',
 		'post_status'         => 'publish',
 		'post_meta_key'       => '',
@@ -125,24 +125,26 @@ function pis_posts_in_sidebar( $args ) {
 	$cat      == 'NULL' ? $cat      = '' : $cat      = $cat;
 	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
 
-	// $post__in accepts only an array
+	// Some params accept only an array
 	if ( $posts_id )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
 	if ( $post_not_in ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
+	if ( $cat_not_in )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
+	if ( $tag_not_in )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
 
 	// Build the array to get posts
 	$params = array(
 		'post_type'           => $post_type,
-		'post__in'            => $posts_id,
-		'author_name'         => $author, // Use nicenames.
-		'category_name'       => $cat,
-		'tag'                 => $tag,
+		'post__in'            => $posts_id,    // Uses ids
+		'author_name'         => $author,      // Uses nicenames
+		'category_name'       => $cat,         // Uses category slugs
+		'tag'                 => $tag,         // Uses tag slugs 
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,
 		'order'               => $order,
-		'post__not_in'        => $post_not_in, // Use id.
-		'category__not_in'    => $cat_not_in,
-		'tag__not_in'         => $tag_not_in,
+		'post__not_in'        => $post_not_in, // Uses ids
+		'category__not_in'    => $cat_not_in,  // Uses ids
+		'tag__not_in'         => $tag_not_in,  // uses ids
 		'offset'              => $offset_number,
 		'post_status'         => $post_status,
 		'meta_key'            => $post_meta_key,

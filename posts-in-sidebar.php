@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 2.0
+ * Version: 1.19
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package PostsInSidebar
- * @version 1.16.2-dev
+ * @version 1.19
  * @author Aldo Latino <aldolat@gmail.com>
  * @copyright Copyright (c) 2009 - 2014, Aldo Latino
  * @link http://dev.aldolat.it/projects/posts-in-sidebar/
@@ -36,7 +36,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '2.0' );
+define( 'PIS_VERSION', '1.19' );
 
 /**
  * The core function.
@@ -126,10 +126,10 @@ function pis_posts_in_sidebar( $args ) {
 	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
 
 	// Some params accept only an array
-	if ( $posts_id )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
-	if ( $post_not_in ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
-	if ( $cat_not_in )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
-	if ( $tag_not_in )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
+	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
+	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
 
 	// Build the array to get posts
 	$params = array(

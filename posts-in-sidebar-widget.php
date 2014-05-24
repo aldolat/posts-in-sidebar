@@ -450,7 +450,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Category
 			pis_form_input_text(
-				__( 'Get posts with this category', 'pis' ),
+				__( 'Get posts with these categories', 'pis' ),
 				$this->get_field_id('cat'),
 				$this->get_field_name('cat'),
 				esc_attr( $instance['cat'] ),
@@ -459,7 +459,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Tag
 			pis_form_input_text(
-				__( 'Get posts with this tag', 'pis' ),
+				__( 'Get posts with these tags', 'pis' ),
 				$this->get_field_id('tag'),
 				$this->get_field_name('tag'),
 				esc_attr( $instance['tag'] ),

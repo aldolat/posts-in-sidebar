@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posts in Sidebar package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 2.0\n"
+"Project-Id-Version: Posts in Sidebar 1.19\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2014-05-24 19:15:51+00:00\n"
+"POT-Creation-Date: 2014-05-24 19:47:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Display a list of posts in a widget"
 msgstr ""
 
-#. #-#-#-#-#  pis.pot (Posts in Sidebar 2.0)  #-#-#-#-#
+#. #-#-#-#-#  pis.pot (Posts in Sidebar 1.19)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: posts-in-sidebar-widget.php:44
 msgid "Posts in Sidebar"
@@ -106,7 +106,7 @@ msgid "Get posts by this author"
 msgstr ""
 
 #: posts-in-sidebar-widget.php:453
-msgid "Get posts with this category"
+msgid "Get posts with these categories"
 msgstr ""
 
 #: posts-in-sidebar-widget.php:457
@@ -116,7 +116,7 @@ msgid ""
 msgstr ""
 
 #: posts-in-sidebar-widget.php:462
-msgid "Get posts with this tag"
+msgid "Get posts with these tags"
 msgstr ""
 
 #: posts-in-sidebar-widget.php:466

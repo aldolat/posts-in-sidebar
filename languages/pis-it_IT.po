@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2014-05-24 19:15:51+00:00\n"
-"PO-Revision-Date: 2014-05-24 21:20+0200\n"
+"POT-Creation-Date: 2014-05-24 19:47:40+00:00\n"
+"PO-Revision-Date: 2014-05-24 21:48+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Display a list of posts in a widget"
 msgstr "Visualizza un elenco di post in un widget"
 
-#. #-#-#-#-#  pis.pot (Posts in Sidebar 2.0)  #-#-#-#-#
+#. #-#-#-#-#  pis.pot (Posts in Sidebar 1.19)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: posts-in-sidebar-widget.php:44
 msgid "Posts in Sidebar"
@@ -113,8 +113,8 @@ msgid "Get posts by this author"
 msgstr "Preleva i post di questo autore"
 
 #: posts-in-sidebar-widget.php:453
-msgid "Get posts with this category"
-msgstr "Preleva post con questa categoria"
+msgid "Get posts with these categories"
+msgstr "Preleva post con queste categorie"
 
 #: posts-in-sidebar-widget.php:457
 msgid ""
@@ -126,8 +126,8 @@ msgstr ""
 "esempio: %2$s%3$s."
 
 #: posts-in-sidebar-widget.php:462
-msgid "Get posts with this tag"
-msgstr "Preleva post con questo tag"
+msgid "Get posts with these tags"
+msgstr "Preleva post con questi tag"
 
 #: posts-in-sidebar-widget.php:466
 msgid ""
@@ -135,8 +135,8 @@ msgid ""
 "tags, use %1$s (a plus) between terms, for example:%2$s%3$s."
 msgstr ""
 "Inserire abbreviazioni (slug) separate da virgola. Per visualizzare i post "
-"che hanno tutti i tag, utilizzare %1$s (un più) tra i termini, per esempio: %"
-"2$s%3$s."
+"che hanno tutti i tag, utilizzare %1$s (un più) tra i termini, per esempio: "
+"%2$s%3$s."
 
 #: posts-in-sidebar-widget.php:484
 msgid "Get posts with this post format"

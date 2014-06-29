@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.19
+ * Version: 1.20
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package PostsInSidebar
- * @version 1.19
+ * @version 1.20
  * @author Aldo Latino <aldolat@gmail.com>
  * @copyright Copyright (c) 2009 - 2014, Aldo Latino
  * @link http://dev.aldolat.it/projects/posts-in-sidebar/
@@ -36,7 +36,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '1.19' );
+define( 'PIS_VERSION', '1.20' );
 
 /**
  * The core function.

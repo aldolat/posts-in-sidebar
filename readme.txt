@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.19
+Stable tag: 1.20
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,18 +26,7 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 = Credits =
 
-I would like to say *Thank You* to all the people who helped me in making this plugin better, and in particular (in chronological order, from older to newer):
-
-* [Jeff](http://profiles.wordpress.org/specialk/) for helping me in revisioning this plugin
-* [sjmsing](http://wordpress.org/support/profile/sjmsing) for a feature request
-* AlirezaJamali for the Persian translation
-* [Mike Churcher](http://wordpress.org/support/profile/mike-churcher) for a couple of feature requests
-* [lleroy](http://wordpress.org/support/profile/lleroy) for a feature request
-* Thérèse Lachance for the first French translation
-* [cilya](http://wordpress.org/support/profile/cilya) for the revised French translation
-* [Ahrale](http://atar4u.com) for the Hebrew translation
-* [Irma](http://wordpress.org/support/profile/studiozubli) for a feature request
-* [hypn0ticnet](http://wordpress.org/support/profile/hypn0ticnet) for a feature request
+I would like to say *Thank You* to all the people who helped me in making this plugin better.
 
 == Installation ==
 
@@ -63,6 +52,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 6. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 1.20 =
+
+* FIX: Now the dropdown menu for post type selection correctly displays all the public post types (thanks to pathuri).
 
 = 1.19 =
 

@@ -395,19 +395,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<h4 class="pis-gray-title"><?php _e( 'Posts retrieving', 'pis' ); ?></h4>
 
 			<?php // ================= Post types
+
+			$args = array(
+				'public' => true,
+			);
+			$post_types = (array) get_post_types( $args, 'objects', 'and' );
+
 			$options = array(
 				array(
 					'value' => 'any',
 					'desc'  => __( 'Any', 'pis' ),
 				)
 			);
-			$wp_post_types = (array) get_post_types( array( 'exclude_from_search' => false ), 'objects' );
-			foreach ( $wp_post_types as $wp_post_type ) {
+			foreach ( $post_types as $post_type ) {
 				$options[] = array(
-					'value' => $wp_post_type->name,
-					'desc'  => $wp_post_type->labels->singular_name,
+					'value' => $post_type->name,
+					'desc'  => $post_type->labels->singular_name,
 				);
 			}
+
 			pis_form_select(
 				__( 'Post type', 'pis' ),
 				$this->get_field_id('post_type'),

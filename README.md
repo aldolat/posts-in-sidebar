@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.5  
 **Tested up to:** 3.9.1  
-**Stable tag:** 1.20  
+**Stable tag:** 1.21  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -64,6 +64,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 1.21 ###
+
+* Added an alert in the widget admin if the current theme doesn't support the Post Thumbnail feature.
 
 ### 1.20 ###
 

@@ -371,6 +371,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			.pis-column-last {
 				float: left; width: 31%;
 			}
+			.pis-alert {
+				color: #777;
+				font-weight: bold;
+			}
 		</style>
 
 		<div class="pis-column">
@@ -675,6 +679,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<hr />
 
 			<h4 class="pis-gray-title"><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
+
+			<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
+				<p class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'pis' ); ?></p>
+			<?php } ?>
 
 			<?php // ================= Featured image
 			pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>

@@ -67,6 +67,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.21 ###
 
+* NEW: Added an option to exclude the current post in single post page or the current page in single page.
 * Added an alert in the widget admin if the current theme doesn't support the Post Thumbnail feature.
 
 ### 1.20 ###

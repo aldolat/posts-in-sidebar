@@ -73,6 +73,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number'              => $instance['number'],
 			'orderby'             => $instance['orderby'],
 			'order'               => $instance['order'],
+			'exclude_current_post'=> $instance['exclude_current_post'],
 			'post_not_in'         => $instance['post_not_in'],
 			'cat_not_in'          => $instance['cat_not_in'],
 			'tag_not_in'          => $instance['tag_not_in'],
@@ -171,6 +172,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
 		$instance['orderby']             = $new_instance['orderby'];
 		$instance['order']               = $new_instance['order'];
+		$instance['exclude_current_post']= $new_instance['exclude_current_post'];
 		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
 		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
 		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
@@ -274,6 +276,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number'              => get_option( 'posts_per_page' ),
 			'orderby'             => 'date',
 			'order'               => 'DESC',
+			'exclude_current_post'=> false,
 			'post_not_in'         => '',
 			'cat_not_in'          => '',
 			'tag_not_in'          => '',
@@ -340,6 +343,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		);
 		$instance            = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky       = (bool) $instance['ignore_sticky'];
+		$exclude_current_post= (bool) $instance['exclude_current_post'];
 		$display_title       = (bool) $instance['display_title'];
 		$link_on_title       = (bool) $instance['link_on_title'];
 		$display_image       = (bool) $instance['display_image'];
@@ -625,6 +629,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<hr />
 
 			<h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
+
+			<?php // ================= Ignore sticky post
+			pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
 
 			<?php // ================= Exclude posts that have these ids.
 			pis_form_input_text(

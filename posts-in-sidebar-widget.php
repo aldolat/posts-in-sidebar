@@ -624,13 +624,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			pis_form_input_text( __( 'Get post with this meta value', 'pis' ), $this->get_field_id('post_meta_val'), $this->get_field_name('post_meta_val'), esc_attr( $instance['post_meta_val'] ) ); ?>
 
 			<?php // ================= Ignore sticky post
-			pis_form_checkbox( __( 'Ignore sticky posts status', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
+			pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
 
 			<hr />
 
 			<h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
 
-			<?php // ================= Ignore sticky post
+			<?php // ================= Exclude current post
 			pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
 
 			<?php // ================= Exclude posts that have these ids.

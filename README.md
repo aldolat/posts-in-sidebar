@@ -65,6 +65,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
+### 1.22 ###
+
+* Updated the Hebrew translation (thanks to Ahrale).
+
 ### 1.21 ###
 
 * NEW: Added an option to exclude the current post in single post page or the current page in single page.

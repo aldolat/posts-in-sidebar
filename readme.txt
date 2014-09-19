@@ -56,6 +56,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 1.22 =
 
 * Updated the Hebrew translation (thanks to Ahrale).
+* Added Serbo-Croatian language (thanks to Borisa Djuraskovic).
 
 = 1.21 =
 

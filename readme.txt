@@ -28,6 +28,15 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 I would like to say *Thank You* to all the people who helped me in making this plugin better.
 
+= Translations of the plugin =
+
+This plugin has been translated into these languages:
+
+* Persian, thanks to AlirezaJamali
+* French, thanks to Thérèse Lachance and [cilya](https://profiles.wordpress.org/cilya)
+* Hebrew, thanks to [Ahrale](http://www.atar4u.com)
+* Serbo-Croatian, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/)
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.

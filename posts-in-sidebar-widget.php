@@ -781,6 +781,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					'value' => 'excerpt',
 					'desc'  => __( 'The excerpt', 'pis' )
 				),
+				'only_read_more' => array(
+					'value' => 'only_read_more',
+					'desc'  => __( 'Display only the Read more link', 'pis' )
+				),
 				'none' => array(
 					'value' => 'none',
 					'desc'  => __( 'Do not show any text', 'pis' )

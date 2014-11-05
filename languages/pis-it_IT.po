@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/posts-in-sidebar\n"
-"POT-Creation-Date: 2014-08-11 16:55:50+00:00\n"
-"PO-Revision-Date: 2014-08-11 19:07+0200\n"
+"POT-Creation-Date: 2014-11-05 20:02:09+00:00\n"
+"PO-Revision-Date: 2014-11-05 21:55+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -158,7 +158,7 @@ msgstr "Niente"
 msgid "ID"
 msgstr "Numero identificativo"
 
-#: posts-in-sidebar-widget.php:526 posts-in-sidebar-widget.php:917
+#: posts-in-sidebar-widget.php:526 posts-in-sidebar-widget.php:921
 msgid "Author"
 msgstr "Autore"
 
@@ -235,15 +235,18 @@ msgid "Get post with this meta value"
 msgstr "Preleva i post con questo valore meta"
 
 #: posts-in-sidebar-widget.php:627
-msgid "Ignore sticky posts status"
-msgstr "Ignora i post in evidenza"
+msgid "Do not display sticky posts on top of other posts"
+msgstr "Non visualizzare i post in evidenza in cima agli altri post"
 
 #: posts-in-sidebar-widget.php:627
 msgid ""
-"Sticky posts are automatically ignored if you set up an author or a taxonomy "
-"in this widget."
+"If you activate this option, sticky posts will be managed as other posts. "
+"Sticky post status will be automatically ignored if you set up an author or "
+"a taxonomy in this widget."
 msgstr ""
-"I post in evidenza sono automaticamente ignorati se si imposta l'autore o "
+"Se si attiva questa opzione, i post in evidenza saranno gestiti come gli "
+"altri post. I post in evidenza sono automaticamente trattati come gli altri "
+"post se si imposta l'autore o "
 "una tassonomia in questo widget."
 
 #: posts-in-sidebar-widget.php:631
@@ -373,189 +376,193 @@ msgid "The excerpt"
 msgstr "Il riassunto del post"
 
 #: posts-in-sidebar-widget.php:786
+msgid "Display only the Read more link"
+msgstr "Mostra solo il link \"Leggi&hellip;\""
+
+#: posts-in-sidebar-widget.php:790
 msgid "Do not show any text"
 msgstr "Non mostrare alcun testo"
 
-#: posts-in-sidebar-widget.php:790
+#: posts-in-sidebar-widget.php:794
 msgid "Display this type of text"
 msgstr "Mostra questo tipo di testo"
 
-#: posts-in-sidebar-widget.php:798
+#: posts-in-sidebar-widget.php:802
 msgid "The WordPress generated excerpt length will be (in words)"
 msgstr "La lunghezza del riassunto generato da WordPress sarà (in parole)"
 
-#: posts-in-sidebar-widget.php:801
+#: posts-in-sidebar-widget.php:805
 msgid "Use this text for More link"
 msgstr "Usa questo testo per il link \"Leggi il seguito\""
 
-#: posts-in-sidebar-widget.php:804
+#: posts-in-sidebar-widget.php:808
 msgid "Display an arrow after the \"Read more\" link"
 msgstr "Mostra una freccia dopo il link \"Leggi il seguito\""
 
-#: posts-in-sidebar-widget.php:808
+#: posts-in-sidebar-widget.php:812
 msgid "Author, date and comments"
 msgstr "Autore, data e commenti"
 
-#: posts-in-sidebar-widget.php:811
+#: posts-in-sidebar-widget.php:815
 msgid "Display the author of the post"
 msgstr "Mostra l'autore del post"
 
-#: posts-in-sidebar-widget.php:814
+#: posts-in-sidebar-widget.php:818
 msgid "Use this text before author's name"
 msgstr "Usa questo testo prima del nome dell'autore"
 
-#: posts-in-sidebar-widget.php:817
+#: posts-in-sidebar-widget.php:821
 msgid "Link the author to his archive"
 msgstr "Metti il link all'archivio dell'autore"
 
-#: posts-in-sidebar-widget.php:820
+#: posts-in-sidebar-widget.php:824
 msgid "Display the date of the post"
 msgstr "Mostra la data del post"
 
-#: posts-in-sidebar-widget.php:823
+#: posts-in-sidebar-widget.php:827
 msgid "Use this text before date"
 msgstr "Usa questo testo prima della data"
 
-#: posts-in-sidebar-widget.php:826
+#: posts-in-sidebar-widget.php:830
 msgid "Link the date to the post"
 msgstr "Metti il link nella data del post"
 
-#: posts-in-sidebar-widget.php:829
+#: posts-in-sidebar-widget.php:833
 msgid "Display the number of comments"
 msgstr "Mostra il numero dei commenti"
 
-#: posts-in-sidebar-widget.php:832
+#: posts-in-sidebar-widget.php:836
 msgid "Use this text before comments number"
 msgstr "Usa questo testo prima del numero dei commenti"
 
-#: posts-in-sidebar-widget.php:835
+#: posts-in-sidebar-widget.php:839
 msgid "Use this separator between author, date and comments"
 msgstr "Usa questo separatore fra autore, data e commenti"
 
-#: posts-in-sidebar-widget.php:835
+#: posts-in-sidebar-widget.php:839
 msgid "A space will be added before and after the separator."
 msgstr "Prima e dopo il separatore verrà aggiunto uno spazio."
 
-#: posts-in-sidebar-widget.php:838
+#: posts-in-sidebar-widget.php:842
 msgid "Display this section after the title of the post"
 msgstr "Visualizza questa sezione dopo il titolo del post"
 
-#: posts-in-sidebar-widget.php:844
+#: posts-in-sidebar-widget.php:848
 msgid "The categories of the post"
 msgstr "Le categorie del post"
 
-#: posts-in-sidebar-widget.php:847
+#: posts-in-sidebar-widget.php:851
 msgid "Display the categories of the post"
 msgstr "Mostra le categorie del post"
 
-#: posts-in-sidebar-widget.php:850
+#: posts-in-sidebar-widget.php:854
 msgid "Use this text before categories list"
 msgstr "Usa questo testo prima dell'elenco delle categorie"
 
-#: posts-in-sidebar-widget.php:853
+#: posts-in-sidebar-widget.php:857
 msgid "Use this separator between categories"
 msgstr "Usa questo separatore fra le categorie"
 
-#: posts-in-sidebar-widget.php:853 posts-in-sidebar-widget.php:869
+#: posts-in-sidebar-widget.php:857 posts-in-sidebar-widget.php:873
 msgid "A space will be added after the separator."
 msgstr "Dopo il separatore verrà aggiunto uno spazio."
 
-#: posts-in-sidebar-widget.php:857
+#: posts-in-sidebar-widget.php:861
 msgid "The tags of the post"
 msgstr "I tag del post"
 
-#: posts-in-sidebar-widget.php:860
+#: posts-in-sidebar-widget.php:864
 msgid "Show the tags of the post"
 msgstr "Mostra i tag del post"
 
-#: posts-in-sidebar-widget.php:863
+#: posts-in-sidebar-widget.php:867
 msgid "Use this text before tags list"
 msgstr "Usa questo testo prima dell'elenco dei tag"
 
-#: posts-in-sidebar-widget.php:866
+#: posts-in-sidebar-widget.php:870
 msgid "Use this hashtag"
 msgstr "Usa questo hashtag"
 
-#: posts-in-sidebar-widget.php:869
+#: posts-in-sidebar-widget.php:873
 msgid "Use this separator between tags"
 msgstr "Usa questo separatore fra i tag"
 
-#: posts-in-sidebar-widget.php:873
+#: posts-in-sidebar-widget.php:877
 msgid "The custom field"
 msgstr "I campi personalizzati"
 
-#: posts-in-sidebar-widget.php:876
+#: posts-in-sidebar-widget.php:880
 msgid "Display the custom field of the post"
 msgstr "Mostra il campo personalizzato del post"
 
-#: posts-in-sidebar-widget.php:879
+#: posts-in-sidebar-widget.php:883
 msgid "Use this text before the custom field"
 msgstr "Usa questo testo prima del campo personalizzato"
 
-#: posts-in-sidebar-widget.php:893
+#: posts-in-sidebar-widget.php:897
 msgid "Display this custom field"
 msgstr "Mostra questo campo personalizzato"
 
-#: posts-in-sidebar-widget.php:901
+#: posts-in-sidebar-widget.php:905
 msgid "Also display the key of the custom field"
 msgstr "Mostra anche il nome del campo personalizzato"
 
-#: posts-in-sidebar-widget.php:904
+#: posts-in-sidebar-widget.php:908
 msgid "Use this separator between meta key and value"
 msgstr "Usa questo separatore fra il nome e il valore"
 
-#: posts-in-sidebar-widget.php:908
+#: posts-in-sidebar-widget.php:912
 msgid "The link to the archive"
 msgstr "Il link all'archivio della tassonomia"
 
-#: posts-in-sidebar-widget.php:911
+#: posts-in-sidebar-widget.php:915
 msgid "Display the link to the taxonomy archive"
 msgstr "Mostra il link all'archivio della tassonomia"
 
-#: posts-in-sidebar-widget.php:921
+#: posts-in-sidebar-widget.php:925
 msgid "Category"
 msgstr "Categoria"
 
-#: posts-in-sidebar-widget.php:925
+#: posts-in-sidebar-widget.php:929
 msgid "Tag"
 msgstr "Tag"
 
-#: posts-in-sidebar-widget.php:935
+#: posts-in-sidebar-widget.php:939
 msgid "Post type: %s"
 msgstr "Tipo di post: %s"
 
-#: posts-in-sidebar-widget.php:942
+#: posts-in-sidebar-widget.php:946
 msgid "Post format: %s"
 msgstr "Formato del post: %s"
 
-#: posts-in-sidebar-widget.php:947
+#: posts-in-sidebar-widget.php:951
 msgid "Link to the archive of"
 msgstr "Link all'archivio di"
 
-#: posts-in-sidebar-widget.php:956
+#: posts-in-sidebar-widget.php:960
 msgid "Use this text for archive link"
 msgstr "Usa questo testo per il link all'archivio"
 
-#: posts-in-sidebar-widget.php:956
+#: posts-in-sidebar-widget.php:960
 msgid ""
 "Please, note that if you don't select any taxonomy, the link won't appear."
 msgstr ""
 "Si noti che, se non viene scelta alcuna tassonomia, il link non verrà "
 "mostrato."
 
-#: posts-in-sidebar-widget.php:959
+#: posts-in-sidebar-widget.php:963
 msgid "Use this text when there are no posts"
 msgstr "Usa questo testo quando non ci sono post"
 
-#: posts-in-sidebar-widget.php:963
+#: posts-in-sidebar-widget.php:967
 msgid "Extras"
 msgstr "Extra"
 
-#: posts-in-sidebar-widget.php:967
+#: posts-in-sidebar-widget.php:971
 msgid "Add a global container with this CSS class"
 msgstr "Aggiungi un contenitore globale con questa classe CSS"
 
-#: posts-in-sidebar-widget.php:972
+#: posts-in-sidebar-widget.php:976
 msgid ""
 "The plugin will add a new %s container with this class. You can enter only "
 "one class and the name could contain only letters, hyphens and underscores. "
@@ -567,24 +574,24 @@ msgstr ""
 "bassi. Il nuovo contenitore racchiuderà tutto il widget, dal titolo fino "
 "all'ultima riga."
 
-#: posts-in-sidebar-widget.php:979
+#: posts-in-sidebar-widget.php:983
 msgid "Unordered list"
 msgstr "Lista non numerata"
 
-#: posts-in-sidebar-widget.php:983
+#: posts-in-sidebar-widget.php:987
 msgid "Ordered list"
 msgstr "Lista ordinata"
 
-#: posts-in-sidebar-widget.php:987
+#: posts-in-sidebar-widget.php:991
 msgid "Use this type of list for the posts"
 msgstr "Usa questo tipo di lista per i post"
 
-#: posts-in-sidebar-widget.php:996
+#: posts-in-sidebar-widget.php:1000
 msgid ""
 "Try to remove the bullets and the extra left space from the list elements"
 msgstr "Prova a eliminare dagli elenchi i pallini e lo spazio a sinistra"
 
-#: posts-in-sidebar-widget.php:1000
+#: posts-in-sidebar-widget.php:1004
 msgid ""
 "If the plugin doesn't remove the bullets and/or the extra left space, you "
 "have to %1$sedit your CSS file%2$s manually."
@@ -592,23 +599,23 @@ msgstr ""
 "Se il plugin non rimuove i pallini e/o lo spazio aggiuntivo a sinistra,, "
 "bisognerà %1$smodificare il file CSS%2$s manualmente."
 
-#: posts-in-sidebar-widget.php:1005
+#: posts-in-sidebar-widget.php:1009
 msgid "Cache"
 msgstr "Cache"
 
-#: posts-in-sidebar-widget.php:1008
+#: posts-in-sidebar-widget.php:1012
 msgid "Use a cache to serve the output"
 msgstr "Usa una cache per servire l'output"
 
-#: posts-in-sidebar-widget.php:1012
+#: posts-in-sidebar-widget.php:1016
 msgid "This option, if activated, will increase the performance."
 msgstr "Se attivata, questa opzione aumenterà le performance."
 
-#: posts-in-sidebar-widget.php:1017
+#: posts-in-sidebar-widget.php:1021
 msgid "The cache will be used for (in seconds)"
 msgstr "La cache sarà utilizzata per (in secondi)"
 
-#: posts-in-sidebar-widget.php:1021
+#: posts-in-sidebar-widget.php:1025
 msgid ""
 "For example, %1$s for one hour of cache. To reset the cache, enter %2$s and "
 "save the widget."
@@ -616,11 +623,11 @@ msgstr ""
 "Per esempio, %1$s per un'ora di cache. Per azzerare la cache, inserire %2$s "
 "e salvare il widget."
 
-#: posts-in-sidebar-widget.php:1030
+#: posts-in-sidebar-widget.php:1034
 msgid "Elements margins"
 msgstr "Margini degli elementi"
 
-#: posts-in-sidebar-widget.php:1032
+#: posts-in-sidebar-widget.php:1036
 msgid ""
 "This section defines the margin for each line of the widget. Leave blank if "
 "you don't want to add any local style."
@@ -628,11 +635,11 @@ msgstr ""
 "Questa sezione definisce il margine di ogni linea del widget. Lasciare vuoto "
 "se non si intende aggiungere alcuno stile locale."
 
-#: posts-in-sidebar-widget.php:1054
+#: posts-in-sidebar-widget.php:1058
 msgid "Unit for margins"
 msgstr "Unità per i margini"
 
-#: posts-in-sidebar-widget.php:1061
+#: posts-in-sidebar-widget.php:1065
 msgid ""
 "Enter here only the value without any unit, e.g. enter %1$s if you want a "
 "space of 10px or enter %2$s if you don't want any space."
@@ -641,55 +648,55 @@ msgstr ""
 "si desidera uno spazio di 10px o inserire %2$s se non si desidera alcuno "
 "spazio."
 
-#: posts-in-sidebar-widget.php:1066
+#: posts-in-sidebar-widget.php:1070
 msgid "Introduction margin"
 msgstr "Margine dell'introduzione"
 
-#: posts-in-sidebar-widget.php:1067
+#: posts-in-sidebar-widget.php:1071
 msgid "Title margin"
 msgstr "Margine del titolo"
 
-#: posts-in-sidebar-widget.php:1068
+#: posts-in-sidebar-widget.php:1072
 msgid "Left/Right image margin"
 msgstr "Margine sinistro/destro dell'immagine"
 
-#: posts-in-sidebar-widget.php:1069
+#: posts-in-sidebar-widget.php:1073
 msgid "Bottom image margin"
 msgstr "Margine inferiore dell'immagine"
 
-#: posts-in-sidebar-widget.php:1073
+#: posts-in-sidebar-widget.php:1077
 msgid "Excerpt margin"
 msgstr "Margine del riassunto"
 
-#: posts-in-sidebar-widget.php:1074
+#: posts-in-sidebar-widget.php:1078
 msgid "Utility margin"
 msgstr "Margine della riga utilità"
 
-#: posts-in-sidebar-widget.php:1075
+#: posts-in-sidebar-widget.php:1079
 msgid "Categories margin"
 msgstr "Margine delle categorie"
 
-#: posts-in-sidebar-widget.php:1076
+#: posts-in-sidebar-widget.php:1080
 msgid "Tags margin"
 msgstr "Margine dei tag"
 
-#: posts-in-sidebar-widget.php:1080
+#: posts-in-sidebar-widget.php:1084
 msgid "Custom field margin"
 msgstr "Margine del campo personalizzato"
 
-#: posts-in-sidebar-widget.php:1081
+#: posts-in-sidebar-widget.php:1085
 msgid "Archive margin"
 msgstr "Margine dell'archivio"
 
-#: posts-in-sidebar-widget.php:1082
+#: posts-in-sidebar-widget.php:1086
 msgid "No-posts margin"
 msgstr "Margine per nessun post"
 
-#: posts-in-sidebar-widget.php:1089 posts-in-sidebar-widget.php:1095
+#: posts-in-sidebar-widget.php:1093 posts-in-sidebar-widget.php:1099
 msgid "Custom styles"
 msgstr "Stili personalizzati"
 
-#: posts-in-sidebar-widget.php:1091
+#: posts-in-sidebar-widget.php:1095
 msgid "In this field you can add your own styles, for example: %s"
 msgstr ""
 "In questo campo è possibile inserire i propri stili personalizzati, ad "
@@ -747,6 +754,9 @@ msgstr "Aldo Latino"
 #. Author URI of the plugin/theme
 msgid "http://www.aldolat.it/"
 msgstr "http://www.aldolat.it/"
+
+#~ msgid "Ignore sticky posts status"
+#~ msgstr "Ignora i post in evidenza"
 
 #~ msgid "Use %1$sCTRL+clic%2$s to select/deselect multiple items."
 #~ msgstr "Usa %1$sCTRL+clic%2$s per selezionare/deselezionare più voci."

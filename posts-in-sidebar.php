@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.22
+ * Version: 1.23
  * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package PostsInSidebar
- * @version 1.21
+ * @version 1.23
  * @author Aldo Latino <aldolat@gmail.com>
  * @copyright Copyright (c) 2009 - 2014, Aldo Latino
  * @link http://dev.aldolat.it/projects/posts-in-sidebar/
@@ -36,7 +36,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '1.22' );
+define( 'PIS_VERSION', '1.23' );
 
 /**
  * The core function.
@@ -562,7 +562,9 @@ function pis_add_styles_to_head() {
 
 	// Get all the values of "custom_styles" key into $styles.
 	foreach ( $custom_styles as $key => $value ) {
-		$styles[] = $value['custom_styles'];
+		if ( isset( $value['custom_styles'] ) ) {
+			$styles[] = $value['custom_styles'];
+		}
 	}
 
 	// Remove any empty elements from the array

@@ -140,6 +140,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// to check if a cached version of the query already exists
 			// for every instance of the widget.
 			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
+			'debug_query'         => $instance['debug_query'],
+			'debug_params'        => $instance['debug_params'],
 		));
 
 		if ( $instance['container_class'] ) {
@@ -259,14 +261,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				}
 			}
 		$instance['widget_id']           = $this->id; // This option is stored only for uninstall purposes. See uninstall.php for further information.
+		$instance['debug_query']         = $new_instance['debug_query'];
+		$instance['debug_params']        = $new_instance['debug_params'];
 		return $instance;
 	}
 
 	function form( $instance ) {
 		$defaults = array(
+			// The title of the widget
 			'title'               => __( 'Posts', 'pis' ),
 			'title_link'          => '',
 			'intro'               => '',
+
+			// Posts retrieving
 			'post_type'           => 'post',
 			'posts_id'            => '',
 			'author'              => '',
@@ -276,6 +283,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number'              => get_option( 'posts_per_page' ),
 			'orderby'             => 'date',
 			'order'               => 'DESC',
+
+			// Posts exclusion
 			'exclude_current_post'=> false,
 			'post_not_in'         => '',
 			'cat_not_in'          => '',
@@ -285,20 +294,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
 			'ignore_sticky'       => false,
+
+			// The title of the post
 			'display_title'       => true,
 			'link_on_title'       => true,
 			'arrow'               => false,
+
+			// The featured image of the post
 			'display_image'       => false,
 			'image_size'          => 'thumbnail',
 			'image_align'         => 'no_change',
 			'image_before_title'  => false,
-			'side_image_margin'   => NULL,
-			'bottom_image_margin' => NULL,
+
+			// The text of the post
 			'excerpt'             => 'excerpt',
 			'exc_length'          => 20,
 			'the_more'            => __( 'Read more&hellip;', 'pis' ),
 			'exc_arrow'           => false,
-			'utility_after_title' => false,
+
+			// Author, date and comments
 			'display_author'      => false,
 			'author_text'         => __( 'By', 'pis' ),
 			'linkify_author'      => false,
@@ -308,28 +322,51 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'comments'            => false,
 			'comments_text'       => __( 'Comments:', 'pis' ),
 			'utility_sep'         => '|',
+			'utility_after_title' => false,
+
+			// The categories of the post
 			'categories'          => false,
 			'categ_text'          => __( 'Category:', 'pis' ),
 			'categ_sep'           => ',',
+
+			// The tags of the post
 			'tags'                => false,
 			'tags_text'           => __( 'Tags:', 'pis' ),
 			'hashtag'             => '#',
 			'tag_sep'             => '',
+
+			// The custom field
 			'custom_field'        => false,
 			'custom_field_txt'    => '',
 			'meta'                => '',
 			'custom_field_key'    => false,
 			'custom_field_sep'    => ':',
+
+			// The link to the archive
 			'archive_link'        => false,
 			'link_to'             => 'category',
 			'archive_text'        => __( 'Display all posts', 'pis' ),
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
+
+			// Extras
 			'container_class'     => '',
 			'list_element'        => 'ul',
 			'remove_bullets'      => false,
+
+			// Cache
+			'cached'              => false,
+			'cache_time'          => '',
+
+			// Debug
+			'debug_query'         => false,
+			'debug_params'        => false,
+
+			// Elements margins
 			'margin_unit'         => 'px',
 			'intro_margin'        => NULL,
 			'title_margin'        => NULL,
+			'side_image_margin'   => NULL,
+			'bottom_image_margin' => NULL,
 			'excerpt_margin'      => NULL,
 			'utility_margin'      => NULL,
 			'categories_margin'   => NULL,
@@ -338,8 +375,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_margin'      => NULL,
 			'noposts_margin'      => NULL,
 			'custom_styles'       => '',
-			'cached'              => false,
-			'cache_time'          => '',
 		);
 		$instance            = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky       = (bool) $instance['ignore_sticky'];
@@ -363,6 +398,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$archive_link        = (bool) $instance['archive_link'];
 		$remove_bullets      = (bool) $instance['remove_bullets'];
 		$cached              = (bool) $instance['cached'];
+		$debug_query         = (bool) $instance['debug_query'];
+		$debug_params        = (bool) $instance['debug_params'];
 		?>
 
 		<style>
@@ -1023,6 +1060,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name('cache_time'),
 				esc_attr( $instance['cache_time'] ),
 				sprintf( __( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
+			); ?>
+
+			<hr />
+
+			<h4 class="pis-gray-title"><?php _e( 'Debugging', 'pis' ); ?></h4>
+
+			<p><?php _e( 'Use this options for debugging purposes only.', 'pis' ); ?></p>
+
+			<?php // ================= Debug query: display the query for the widget
+			pis_form_checkbox(
+				__( 'Display the query for the widget', 'pis' ),
+				$this->get_field_id( 'debug_query' ),
+				$this->get_field_name( 'debug_query' ),
+				checked( $debug_query, true, false )
+			); ?>
+
+			<?php // ================= Debug query: display the complete set of parameters for the widget
+			pis_form_checkbox(
+				__( 'Display the complete set of parameters for the widget', 'pis' ),
+				$this->get_field_id( 'debug_params' ),
+				$this->get_field_name( 'debug_params' ),
+				checked( $debug_params, true, false )
 			); ?>
 
 		</div>

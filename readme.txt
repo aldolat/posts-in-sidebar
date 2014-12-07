@@ -64,6 +64,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 1.23 =
 
+* Added debugging tools.
 * Fixed one undefined index notice.
 * Code improvements.
 

@@ -49,9 +49,9 @@ function pis_posts_in_sidebar( $args ) {
 		'intro'               => '',
 		'post_type'           => 'post',    // post, page, media, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
-		'author'              => NULL,      // Author nicename, NOT name
-		'cat'                 => NULL,      // Category slugs, comma separated
-		'tag'                 => NULL,      // Tag slugs, comma separated
+		'author'              => '',        // Author nicename, NOT name
+		'cat'                 => '',        // Category slugs, comma separated
+		'tag'                 => '',        // Tag slugs, comma separated
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
@@ -122,15 +122,11 @@ function pis_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
-	$author   == 'NULL' ? $author   = '' : $author   = $author;
-	$cat      == 'NULL' ? $cat      = '' : $cat      = $cat;
-	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
-
 	// Some params accept only an array
-	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
-	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
+	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
+	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
 	if ( ( is_single() || is_page() ) && $exclude_current_post ) {
 		$post_not_in[] = get_the_id();

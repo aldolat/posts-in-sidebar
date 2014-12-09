@@ -418,7 +418,7 @@ function pis_posts_in_sidebar( $args ) {
 	<?php } ?>
 
 	<?php if ( $debug_query ) { ?>
-		<p><strong><?php _e( 'The arguments for the query:', 'pis' ); ?></strong></p>
+		<p><strong><?php _e( 'The parameters for the query:', 'pis' ); ?></strong></p>
 		<pre><?php print_r($params); ?></pre>
 		<hr />
 	<?php } ?>

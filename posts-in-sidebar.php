@@ -1,37 +1,31 @@
 <?php
 /**
  * Plugin Name: Posts in Sidebar
- * Description:  Publish a list of posts in your sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
+ * Description: Publish a list of posts in your sidebar
+ * Version: 1.23
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.23
- * License: GPLv3 or later
  * Text Domain: pis
  * Domain Path: /languages/
- *
- * Copyright (C) 2009, 2014  Aldo Latino  (email : aldolat@gmail.com)
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
- * @package PostsInSidebar
- * @version 1.23
- * @author Aldo Latino <aldolat@gmail.com>
- * @copyright Copyright (c) 2009 - 2014, Aldo Latino
- * @link http://dev.aldolat.it/projects/posts-in-sidebar/
- * @license http://www.gnu.org/licenses/gpl.html
+ * License: GPLv3 or later
  */
+
+/* Copyright (C) 2009, 2014  Aldo Latino  (email : aldolat@gmail.com)
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /**
  * Define the version of the plugin.

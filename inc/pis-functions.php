@@ -1,0 +1,382 @@
+<?php
+/**
+ * Return the class for the HTML element.
+ *
+ * @since 1.9
+ *
+ * @param string $default One or more classes, defined by plugin's developer, to add to the class list.
+ * @param string|array $class One or more classes, defined by the user, to add to the class list.
+ * @param boolean $echo If the function should echo or not the output. Default true.
+ * @return string $output List of classes.
+ */
+function pis_class( $default = '', $class = '', $echo = true ) {
+
+	// Define $classes as array
+	$classes = array();
+
+	// If $default is not empy, add the value ad an element of the array
+	if( ! empty( $default ) )
+		$classes[] = $default;
+
+	// If $class is not empty, transform it into an array and add the elements to the array
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) $class = preg_split( '#\s+#', $class );
+		$classes = array_merge( $classes, $class );
+	}
+
+	// Escape evil chars in $classes
+	$classes = array_map( 'esc_attr', $classes );
+
+	// Remove null or empty or space-only-filled elements from the array
+	foreach ( $classes as $key => $value ) {
+		if ( is_null( $value ) || $value == '' || $value == ' ' ) {
+			unset( $classes[ $key ] );
+		}
+	}
+
+	// Convert the array into string
+	$classes = implode( ' ', $classes );
+
+	// Complete the final output
+	$classes = 'class="' . $classes . '"';
+
+	if ( true === $echo )
+		echo apply_filters( 'pis_classes', $classes );
+	else
+		return apply_filters( 'pis_classes', $classes );
+}
+
+
+/**
+ * Return the paragraph class with inline style
+ *
+ * @since 1.12
+ *
+ * @param string $margin The margin of the paragraph.
+ * @param string $unit The unit measure to be used.
+ * @param string $class The default class defined by the plugin's developer.
+ * @param string $class_filter The name of the class filter.
+ * @param boolean $class_echo If the pis_class() function should echo or not the output.
+ * @return string $output The class and the inline style.
+ * @uses pis_class()
+ */
+function pis_paragraph( $margin, $unit, $class, $class_filter ) {
+	( ! is_null( $margin ) ) ? $style = ' style="margin-bottom: ' . $margin . $unit . ';"' : $style = '';
+	$output = pis_class( $class, apply_filters( $class_filter, '' ) ) . $style;
+	return $output;
+}
+
+
+/**
+* Return the given text with paragraph breaks (HTML <br />).
+*
+* @since 1.12
+* @param string $text The text to be checked.
+* @return string $text The checked text with paragraph breaks.
+*/
+function pis_break_text( $text ) {
+	// Convert cross-platform newlines into HTML '<br />'
+	$text = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $text );
+	return $text;
+}
+
+/**
+ * Return the array containing the custom fields of the post.
+ *
+ * @since 1.12
+ * @return array The custom fields of the post.
+ */
+function pis_meta() {
+	global $wpdb;
+	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
+	$keys = $wpdb->get_col( "
+		SELECT meta_key
+		FROM $wpdb->postmeta
+		GROUP BY meta_key
+		HAVING meta_key NOT LIKE '\_%'
+		ORDER BY meta_key
+		LIMIT $limit" );
+	if ( $keys )
+		natcasesort($keys);
+	return $keys;
+}
+
+
+/**
+ * Generate an HTML arrow.
+ *
+ * @since 1.15
+ * @return string $output The HTML arrow.
+ * @uses pis_class()
+ */
+function pis_arrow() {
+	$the_arrow = '&rarr;';
+	if ( is_rtl() ) $the_arrow = '&larr;';
+
+	$output = '&nbsp;<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', '' ), false ) . '>' . $the_arrow . '</span>';
+
+	return $output;
+}
+
+
+/**
+ * Generate the output for the more and/or the HTML arrow.
+ *
+ * @since 1.15
+ * @uses pis_arrow()
+ * @param string $the_more The text to be displayed for "Continue reading". Default empty.
+ * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
+ * @return string The HTML arrow linked to the post.
+ */
+function pis_more_arrow( $the_more = '', $exc_arrow = false ) {
+	if ( $the_more || $exc_arrow ) {
+		if ( $exc_arrow ) {
+			$the_arrow = pis_arrow();
+		} else {
+			$the_arrow = '';
+		} ?>
+		<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ) ); ?>>
+			<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
+				<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
+			</a>
+		</span>
+	<?php }
+}
+
+
+/**
+ * Add the custom styles to wp_head hook.
+ *
+ * @since 1.13
+ * @return The HTML for custom styles in the HEAD section.
+ */
+function pis_add_styles_to_head() {
+	// Get the options from the database.
+	$custom_styles = (array) get_option( 'widget_pis_posts_in_sidebar' );
+
+	// Define $styles as an array.
+	$styles = array();
+
+	// Get all the values of "custom_styles" key into $styles.
+	foreach ( $custom_styles as $key => $value ) {
+		if ( isset( $value['custom_styles'] ) ) {
+			$styles[] = $value['custom_styles'];
+		}
+	}
+
+	// Remove any empty elements from the array
+	$styles = array_filter( $styles );
+
+	// Make the array as string.
+	$styles = implode( "\n", $styles );
+
+	// Print the output if it's not empty.
+	if ( $styles ) echo '<style type="text/css">' . $styles . '</style>';
+}
+add_action( 'wp_head', 'pis_add_styles_to_head' );
+
+
+/**
+ * Add the utilities section: author, date of the post and comments.
+ *
+ * @since 1.18
+ * @return The HTML for the section.
+ * @uses pis_paragraph()
+ * @uses pis_class()
+ */
+function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text ) { ?>
+	<?php if ( $display_author || $display_date || $comments ) { ?>
+		<p <?php echo pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ); ?>>
+	<?php } ?>
+
+		<?php /* The author */ ?>
+		<?php if ( $display_author ) { ?>
+			<span <?php pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ) ); ?>>
+				<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
+				if ( $linkify_author ) { ?>
+					<?php
+					$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
+					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
+					?>
+					<a <?php pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ) ); ?> href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
+						<?php echo get_the_author(); ?></a>
+				<?php } else {
+					echo get_the_author();
+				} ?>
+			</span>
+		<?php } ?>
+
+		<?php /* The date */ ?>
+		<?php if ( $display_date ) : ?>
+			<?php if ( $display_author ) { ?>
+				<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+			<?php } ?>
+			<span <?php pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ) ); ?>>
+				<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
+				if ( $linkify_date ) { ?>
+					<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+					<a <?php pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
+						<?php echo get_the_date(); ?></a>
+				<?php } else {
+					echo get_the_date();
+				} ?>
+			</span>
+
+		<?php endif; ?>
+
+		<?php /* The comments */ ?>
+		<?php if ( ! post_password_required() ) : ?>
+			<?php if ( $comments ) { ?>
+				<?php if ( $display_author || $display_date ) { ?>
+					<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
+				<?php } ?>
+				<span <?php pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ) ); ?>>
+					<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
+					comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
+				</span>
+			<?php } ?>
+		<?php endif; ?>
+
+	<?php if ( $display_author || $display_date || $comments ) : ?>
+		</p>
+	<?php endif; ?>
+<?php }
+
+
+/**
+ * Add the thumbnail of the post.
+ *
+ * @since 1.18
+ * @return The HTML for the thumbnail.
+ */
+function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false ) {
+	if ( $thumb_wrap ) {
+		$open_wrap = '<p class="pis-thumbnail">';
+		$close_wrap = '</p>';
+	} else {
+		$open_wrap = '';
+		$close_wrap = '';
+	}
+
+	switch ( $image_align ) {
+		case 'left' :
+			$image_class = ' alignleft';
+			$image_style = '';
+			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+				$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+				$image_style = str_replace( ' margin-right: px;', '', $image_style);
+				$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+			}
+		break;
+		case 'right':
+			$image_class = ' alignright';
+			$image_style = '';
+			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
+				$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+				$image_style = str_replace( ' margin-left: px;', '', $image_style);
+				$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+			}
+		break;
+		case 'center':
+			$image_class = ' aligncenter';
+			$image_style = '';
+			if ( ! is_null( $bottom_image_margin ) )
+				$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+		break;
+		default:
+			$image_class = '';
+			$image_style = '';
+		break;
+	} ?>
+	<?php echo $open_wrap; ?>
+	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+		<?php $image_html = get_the_post_thumbnail(
+			$pis_query->post->ID,
+			$image_size,
+			array(
+				'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+			)
+		);
+		$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
+		echo $image_html;
+		?></a>		
+	<?php echo $close_wrap;
+}
+
+
+/**
+ * Add the text of the post in form of excerpt, full post, and so on.
+ *
+ * @since 1.18
+ * @return The HTML for the text of the post.
+ * @uses pis_break_text()
+ * @uses pis_more_arrow()
+ */
+function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow ) {
+	/*
+		"Full content"   = the content of the post as displayed in the page.
+		"Rich content"   = the content with inline images, titles and more (shortcodes will be executed).
+		"Content"        = the full text of the content, whitout any ornament (shortcodes will be stripped).
+		"More excerpt"   = the excerpt up to the point of the "more" tag (inserted by the user).
+		"Excerpt"        = the excerpt as defined by the user or generated by WordPress.
+		"Only Read more" = no excerpt, only the Read more link
+	*/
+	switch ( $excerpt ) :
+
+		case 'full_content':
+			the_content();
+		break;
+
+		case 'rich_content':
+			$content = $pis_query->post->post_content;
+			// Honor any paragraph break
+			$content = pis_break_text( $content );
+			echo apply_filters( 'pis_rich_content', $content );
+		break;
+
+		case 'content':
+			// Remove shortcodes
+			$content = strip_shortcodes( $pis_query->post->post_content );
+			// remove any HTML tag
+			$content = wp_kses( $content, array() );
+			// Honor any paragraph break
+			$content = pis_break_text( $content );
+			echo apply_filters( 'pis_content', $content );
+		break;
+
+		case 'more_excerpt':
+			$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
+			$testformore = strpos( $excerpt_text, '<!--more-->' );
+			if ( $testformore ) {
+				$excerpt_text = substr( $excerpt_text, 0, $testformore );
+			} else {
+				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+			}
+			echo apply_filters( 'pis_more_excerpt_text', $excerpt_text );
+			pis_more_arrow( $the_more, $exc_arrow );
+		break;
+
+		case 'excerpt':
+			// If we have a user-defined excerpt...
+			if ( $pis_query->post->post_excerpt ) {
+				// Honor any paragraph break
+				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
+				echo apply_filters( 'pis_user_excerpt', $user_excerpt );
+			} else {
+			// ... else generate an excerpt
+				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
+				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+				echo apply_filters( 'pis_excerpt_text', $excerpt_text );
+			}
+			pis_more_arrow( $the_more, $exc_arrow );
+		break;
+
+		case 'only_read_more':
+			$excerpt_text = '';
+			echo apply_filters( 'pis_only_read_more', $excerpt_text );
+			pis_more_arrow( $the_more, $exc_arrow );
+		break;
+
+	endswitch;
+	// Close The text
+}

@@ -76,6 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.23 ###
 
+* Moved plugin's functions into separate file.
 * Added debugging tools.
 * Fixed one undefined index notice.
 * Code improvements.

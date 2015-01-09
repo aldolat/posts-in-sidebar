@@ -54,22 +54,22 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ## Screenshots ##
 
 ### 1. The widget panel ###
-![The widget panel](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-1.png)
+![1. The widget panel](http://ps.w.org/posts-in-sidebar/assets/screenshot-1.png)
 
 ### 2. A simple output of the widget: title, excerpt and link to the entire archive. ###
-![A simple output of the widget: title, excerpt and link to the entire archive.](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-2.png)
+![2. A simple output of the widget: title, excerpt and link to the entire archive.](http://ps.w.org/posts-in-sidebar/assets/screenshot-2.png)
 
 ### 3. Displaying the featured image, floating left. ###
-![Displaying the featured image, floating left.](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-3.png)
+![3. Displaying the featured image, floating left.](http://ps.w.org/posts-in-sidebar/assets/screenshot-3.png)
 
 ### 4. The same image as before, but in larger size. ###
-![The same image as before, but in larger size.](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-4.png)
+![4. The same image as before, but in larger size.](http://ps.w.org/posts-in-sidebar/assets/screenshot-4.png)
 
 ### 5. The introductory text for the widget. ###
-![The introductory text for the widget.](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-5.png)
+![5. The introductory text for the widget.](http://ps.w.org/posts-in-sidebar/assets/screenshot-5.png)
 
 ### 6. Displaying the full set of items (categories, date, author, tags, and so on). ###
-![Displaying the full set of items (categories, date, author, tags, and so on).](https://github.com/aldolat/posts-in-sidebar/wiki/images/screenshot-6.png)
+![6. Displaying the full set of items (categories, date, author, tags, and so on).](http://ps.w.org/posts-in-sidebar/assets/screenshot-6.png)
 
 
 ## Changelog ##

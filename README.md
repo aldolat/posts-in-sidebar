@@ -80,6 +80,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * Moved plugin's functions into separate file.
 * Added debugging tools.
 * Fixed one undefined index notice.
+* Updated the Hebrew translation (thanks to Ahrale).
 * Code improvements.
 
 ### 1.22 ###

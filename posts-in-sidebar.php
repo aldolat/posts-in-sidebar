@@ -237,10 +237,14 @@ function pis_posts_in_sidebar( $args ) {
 				<li <?php pis_class( $postclass, apply_filters( 'pis_li_class', '' ) ); ?>>
 
 					<?php /* The thumbnail before the title */ ?>
-					<?php if ( $display_image && $image_before_title && has_post_thumbnail() ) {
-						$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-						pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = true );
-					} ?>
+					<?php if ( $image_before_title ) : ?>
+
+						<?php if ( $display_image && has_post_thumbnail() ) {
+							$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = true );
+						} ?>
+
+					<?php endif; // Close if $image_before_title ?>
 
 					<?php /* The title */ ?>
 					<?php if ( $display_title ) { ?>

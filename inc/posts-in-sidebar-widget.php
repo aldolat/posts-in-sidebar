@@ -47,6 +47,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args );
 
+		/**
+		 * If the user doesn't enter any text in noposts field, the widget won't be displayed.
+		 * 
+		 * @since 1.23
+		 */
+		if ( ! $instance['nopost_text'] )
+			return;
+
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
@@ -1074,7 +1082,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<h4 class="pis-gray-title"><?php _e( 'Text when no posts found', 'pis' ); ?></h4>
 
 			<?php // ================= No posts text
-			pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ), $this->get_field_id( 'nopost_text' ), $this->get_field_name( 'nopost_text' ), esc_attr( $instance['nopost_text'] ) ); ?>
+			pis_form_input_text(
+				__( 'Use this text when there are no posts', 'pis' ),
+				$this->get_field_id( 'nopost_text' ),
+				$this->get_field_name( 'nopost_text' ),
+				esc_attr( $instance['nopost_text'] ),
+				__( 'If the field is blank, the whole widget won\'t be displayed at all if no posts are found.', 'pis' )
+			); ?>
 
 		</div>
 

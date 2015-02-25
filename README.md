@@ -76,7 +76,8 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.23 ###
 
-* NEW: the widget can be hidden now if no posts are found.
+* NEW: the widget can be hidden now if no posts are found (props by der_velli).
+* NEW: Added the option to display the full size of the featured image (props by Ilaria).
 * Moved plugin's functions files into subfolder.
 * Moved plugin's functions into separate file.
 * Added debugging tools.

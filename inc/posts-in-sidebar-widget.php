@@ -815,6 +815,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= Image sizes
 			$options = array();
 			$sizes = (array) get_intermediate_image_sizes();
+			$sizes[] = 'full';
 			foreach ( $sizes as $size ) {
 				$options[] = array(
 					'value' => $size,

@@ -560,7 +560,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= Author
 			$options = array(
 				array(
-					'value' => '',
+					'value' => 'NULL',
 					'desc'  => __( 'Any', 'pis' )
 				)
 			);

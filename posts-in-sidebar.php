@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 1.23
+ * Version: 1.24
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -30,7 +30,7 @@
 /**
  * Define the version of the plugin.
  */
-define( 'PIS_VERSION', '1.23' );
+define( 'PIS_VERSION', '1.24' );
 
 /**
  * The core function.
@@ -151,11 +151,15 @@ function pis_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
+	$author   == 'NULL' ? $author   = '' : $author   = $author;
+	$cat      == 'NULL' ? $cat      = '' : $cat      = $cat;
+	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
+
 	// Some params accept only an array
-	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
-	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
+	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
+	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
 
 	// Get the ID of the current post.
 	// This will be used in case the user do not want to display the same post in the main body and in the sidebar.

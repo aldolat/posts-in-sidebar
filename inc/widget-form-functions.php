@@ -30,11 +30,12 @@ function pis_form_label( $label, $id ) {
  * @param string $style An optional inline style.
  * @uses pis_form_label
  */
-function pis_form_input_text( $label, $id, $name, $value, $comment = '', $style = '' ) {
+function pis_form_input_text( $label, $id, $name, $value, $placeholder = '', $comment = '', $style = '' ) {
 	if ( $style ) $style = ' style="' . $style . '" ';
 	echo '<p' . $style . '>';
 	pis_form_label( $label, $id );
-	echo '<input type="text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="widefat" />';
+	if ( $placeholder ) $placeholder = ' placeholder="' . $placeholder . '"';
+	echo '<input type="text" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '"' . $placeholder . ' class="widefat" />';
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }
@@ -51,11 +52,12 @@ function pis_form_input_text( $label, $id, $name, $value, $comment = '', $style 
  * @param string $comment An optional comment to display. It is displayed below the textarea form.
  * @since 1.12
  */
-function pis_form_textarea( $label, $id, $name, $text,  $style = '', $comment = '' ) {
+function pis_form_textarea( $label, $id, $name, $text, $placeholder = '', $style = '', $comment = '' ) {
 	echo '<p>';
 	pis_form_label( $label, $id );
+	if ( $placeholder ) $placeholder = ' placeholder="' . $placeholder . '"';
 	if ( $style ) $style = ' style="' . $style . '"';
-	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10" class="widefat"' . $style . '>' . esc_html( $text ) . '</textarea>'; ?>
+	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10"' . $placeholder . ' class="widefat"' . $style . '>' . esc_html( $text ) . '</textarea>'; ?>
 	<?php if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }

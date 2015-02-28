@@ -77,6 +77,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 1.24 ###
 
 * FIX: resolved "No posts" issue when upgrading from 1.22 version.
+* Updated Hebrew (thanks to Ahrale) and Italian translations.
 
 ### 1.23 ###
 

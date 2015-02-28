@@ -249,7 +249,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
  * @since 1.18
  * @return The HTML for the thumbnail.
  */
-function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false ) {
+function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '' ) {
 	if ( $thumb_wrap ) {
 		$open_wrap = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
@@ -290,13 +290,17 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 	} ?>
 	<?php echo $open_wrap; ?>
 	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
-		<?php $image_html = get_the_post_thumbnail(
-			$pis_query->post->ID,
-			$image_size,
-			array(
-				'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
-			)
-		);
+		<?php if ( $custom_image_url ) {
+			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
+		} else {
+			$image_html = get_the_post_thumbnail(
+				$pis_query->post->ID,
+				$image_size,
+				array(
+					'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+				)
+			);
+		}
 		$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
 		echo $image_html;
 		?></a>		

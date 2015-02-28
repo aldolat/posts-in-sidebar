@@ -121,6 +121,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_size'          => $instance['image_size'],
 			'image_align'         => $instance['image_align'],
 			'image_before_title'  => $instance['image_before_title'],
+			'custom_image_url'    => $instance['custom_image_url'],
 
 			// The text of the post
 			'excerpt'             => $instance['excerpt'],
@@ -214,7 +215,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// The title of the widget
 		$instance['title']      = strip_tags( $new_instance['title'] );
-		$instance['title_link'] = esc_url( $new_instance['title_link'] );
+		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 		$allowed_html = array(
 			'a' => array(
 				'href'  => array(),
@@ -259,6 +260,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['image_size']          = $new_instance['image_size'];
 		$instance['image_align']         = $new_instance['image_align'];
 		$instance['image_before_title']  = $new_instance['image_before_title'];
+		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
 
 		// The text of the post
 		$instance['excerpt']             = $new_instance['excerpt'];
@@ -397,6 +399,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_size'          => 'thumbnail',
 			'image_align'         => 'no_change',
 			'image_before_title'  => false,
+			'custom_image_url'    => '',
 
 			// The text of the post
 			'excerpt'             => 'excerpt',
@@ -518,7 +521,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<?php pis_form_input_text( __( 'Title', 'pis' ), $this->get_field_id('title'), $this->get_field_name('title'), esc_attr( $instance['title'] ) ); ?>
 
-		<?php pis_form_input_text( __( 'Link the title of the widget to this URL', 'pis' ), $this->get_field_id('title_link'), $this->get_field_name('title_link'), esc_url( $instance['title_link'] ) ); ?>
+		<?php pis_form_input_text( __( 'Link the title of the widget to this URL', 'pis' ), $this->get_field_id('title_link'), $this->get_field_name('title_link'), esc_url( strip_tags( $instance['title_link'] ) ) ); ?>
 
 		<?php pis_form_textarea(
 			__( 'Place this text after the title', 'pis' ),
@@ -886,8 +889,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</em>
 			</p>
 
-			<?php // ================= Positioning image bfore title
+			<?php // ================= Positioning image before title
 			pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
+
+			<?php // ================= Custom image URL
+			pis_form_input_text(
+				__( 'Use this image instead of the standard featured image', 'pis' ),
+				$this->get_field_id( 'custom_image_url' ),
+				$this->get_field_name( 'custom_image_url' ),
+				esc_url( strip_tags( $instance['custom_image_url'] ) ),
+				__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the sidebar.', 'pis' )
+			); ?>
 
 			<hr />
 

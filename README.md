@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.5  
 **Tested up to:** 4.1  
-**Stable tag:** 1.24  
+**Stable tag:** 1.25  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -73,6 +73,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 1.25 ###
+
+* NEW: Added an option to use a custom image instead of the standard featured image.
 
 ### 1.24 ###
 

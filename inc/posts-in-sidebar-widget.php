@@ -55,6 +55,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! $instance['nopost_text'] )
 			return;
 
+		/**
+		 * Declare some indexes to avoid PHP notice
+		 * 
+		 * @since 1.24
+		 */
+		if ( ! isset( $instance['debug_query'] ) ) {
+			$instance['debug_query'] = false;
+		}
+		if ( ! isset( $instance['debug_params'] ) ) {
+			$instance['debug_params'] = false;
+		}
+		if ( ! isset( $instance['debug_query_number'] ) ) {
+			$instance['debug_query_number'] = false;
+		}
+
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;

@@ -937,7 +937,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name( 'custom_image_url' ),
 				esc_url( strip_tags( $instance['custom_image_url'] ) ),
 				'http://example.com/image.jpg',
-				__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the sidebar.', 'pis' )
+				__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget.', 'pis' )
 			); ?>
 
 			<hr />

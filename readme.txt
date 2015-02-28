@@ -65,6 +65,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 1.25 =
 
 * NEW: Added an option to use a custom image instead of the standard featured image.
+* Added placeholders in HTML fields.
 
 = 1.24 =
 

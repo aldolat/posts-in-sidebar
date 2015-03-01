@@ -46,9 +46,9 @@ function pis_posts_in_sidebar( $args ) {
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, media, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
-		'author'              => '',        // Author nicename, NOT name
-		'cat'                 => '',        // Category slugs, comma separated
-		'tag'                 => '',        // Tag slugs, comma separated
+		'author'              => NULL,        // Author nicename, NOT name
+		'cat'                 => NULL,        // Category slugs, comma separated
+		'tag'                 => NULL,        // Tag slugs, comma separated
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',

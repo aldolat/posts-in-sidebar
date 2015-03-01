@@ -532,7 +532,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$this->get_field_id('title_link'),
 			$this->get_field_name('title_link'),
 			esc_url( strip_tags( $instance['title_link'] ) ),
-			'http://'
+			'http://example.com/readings-series/'
 		); ?>
 
 		<?php pis_form_textarea(

@@ -1317,7 +1317,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$this->get_field_id('custom_styles'),
 			$this->get_field_name('custom_styles'),
 			$instance['custom_styles'],
-			'p.pis-title { text-align: center; }',
+			'#' . $this->id . ' p.pis-title { text-align: center; }',
 			$style = 'resize: vertical; width: 100%; height: 80px;'
 		); ?>
 

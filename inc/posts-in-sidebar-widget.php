@@ -48,14 +48,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		extract( $args );
 
 		/**
-		 * If the user doesn't enter any text in noposts field, the widget won't be displayed.
-		 * 
-		 * @since 1.23
-		 */
-		if ( ! $instance['nopost_text'] )
-			return;
-
-		/**
 		 * Declare some indexes to avoid PHP notice
 		 * 
 		 * @since 1.24
@@ -166,6 +158,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Text when no posts found
 			'nopost_text'         => $instance['nopost_text'],
+			'hide_widget'         => $instance['hide_widget'],
 
 			// Extras
 			'list_element'        => $instance['list_element'],
@@ -306,6 +299,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Text when no posts found
 		$instance['nopost_text']         = strip_tags( $new_instance['nopost_text'] );
+		$instance['hide_widget']         = $new_instance['hide_widget'];
 
 		// Extras
 		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
@@ -444,6 +438,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Text when no posts found
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
+			'hide_widget'         => false,
 
 			// Extras
 			'container_class'     => '',
@@ -494,6 +489,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$custom_field        = (bool) $instance['custom_field'];
 		$custom_field_key    = (bool) $instance['custom_field_key'];
 		$archive_link        = (bool) $instance['archive_link'];
+		$hide_widget         = (bool) $instance['hide_widget'];
 		$remove_bullets      = (bool) $instance['remove_bullets'];
 		$cached              = (bool) $instance['cached'];
 		$debug_query         = (bool) $instance['debug_query'];
@@ -1167,16 +1163,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'Text when no posts found', 'pis' ); ?></h4>
+			<h4 class="pis-gray-title"><?php _e( 'When no posts are found', 'pis' ); ?></h4>
 
-			<?php // ================= No posts text
+			<?php // ================= When no posts are found
+			// Text when no posts found
 			pis_form_input_text(
 				__( 'Use this text when there are no posts', 'pis' ),
 				$this->get_field_id( 'nopost_text' ),
 				$this->get_field_name( 'nopost_text' ),
 				esc_attr( $instance['nopost_text'] ),
-				'No posts yet.',
-				__( 'If the field is blank, the whole widget won\'t be displayed at all if no posts are found.', 'pis' )
+				'No posts yet.'
+			); ?>
+
+			<?php
+			// Hide the widget if no posts found
+			pis_form_checkbox(
+				__( 'Completely hide the widget if no posts are found', 'pis' ),
+				$this->get_field_id( 'hide_widget' ),
+				$this->get_field_name( 'hide_widget' ),
+				checked( $hide_widget, true, false )
 			); ?>
 
 		</div>

@@ -46,9 +46,9 @@ function pis_posts_in_sidebar( $args ) {
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, media, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
-		'author'              => NULL,        // Author nicename, NOT name
-		'cat'                 => NULL,        // Category slugs, comma separated
-		'tag'                 => NULL,        // Tag slugs, comma separated
+		'author'              => NULL,      // Author nicename, NOT name
+		'cat'                 => NULL,      // Category slugs, comma separated
+		'tag'                 => NULL,      // Tag slugs, comma separated
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
@@ -118,8 +118,9 @@ function pis_posts_in_sidebar( $args ) {
 		'link_to'             => 'category',
 		'archive_text'        => __( 'Display all posts', 'pis' ),
 
-		// Text when no posts found
+		// When no posts found
 		'nopost_text'         => __( 'No posts yet.', 'pis' ),
+		'hide_widget'         => false,
 
 		// Extras
 		'list_element'        => 'ul',
@@ -398,14 +399,12 @@ function pis_posts_in_sidebar( $args ) {
 	<?php /* If we have no posts yet */ ?>
 	<?php else : ?>
 
-		<?php if ( $nopost_text ) { ?>
-			<ul <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); ?>>
-				<li <?php pis_class( 'pis-li pis-noposts', apply_filters( 'pis_nopost_class', '' ) ); ?>>
-					<p <?php echo pis_paragraph( $noposts_margin, $margin_unit, 'noposts', 'pis_noposts_class' ); ?>>
-						<?php echo $nopost_text; ?>
-					</p>
-				</li>
-			</ul>
+		<?php if ( $hide_widget ) {
+			echo '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
+		} elseif ( $nopost_text ) { ?>
+			<p <?php echo pis_paragraph( $noposts_margin, $margin_unit, 'pis-noposts noposts', 'pis_noposts_class' ); ?>>
+				<?php echo $nopost_text; ?>
+			</p>
 		<?php } ?>
 
 	<?php endif; ?>

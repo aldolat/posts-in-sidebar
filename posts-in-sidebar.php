@@ -399,13 +399,14 @@ function pis_posts_in_sidebar( $args ) {
 	<?php /* If we have no posts yet */ ?>
 	<?php else : ?>
 
-		<?php if ( $hide_widget ) {
-			echo '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
-		} elseif ( $nopost_text ) { ?>
+		<?php if ( $nopost_text ) { ?>
 			<p <?php echo pis_paragraph( $noposts_margin, $margin_unit, 'pis-noposts noposts', 'pis_noposts_class' ); ?>>
 				<?php echo $nopost_text; ?>
 			</p>
 		<?php } ?>
+		<?php if ( $hide_widget ) {
+			echo '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
+		} ?>
 
 	<?php endif; ?>
 

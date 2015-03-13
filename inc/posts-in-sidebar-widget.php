@@ -536,7 +536,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$this->get_field_id('intro'),
 			$this->get_field_name('intro'),
 			$instance['intro'],
-			sprintf( __( 'These posts are part of my %1$sReadings series%2$s.', 'pis' ), '<strong>&ldquo;', '&rdquo;</strong>'),
+			__( 'These posts are part of my Readings series.', 'pis' ),
 			$style = 'resize: vertical; width: 100%; height: 80px;',
 			$comment = sprintf( __( 'Allowed HTML: %s. Other tags will be stripped.', 'pis' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
 		); ?>
@@ -778,7 +778,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id('post_meta_key'),
 				$this->get_field_name('post_meta_key'),
 				esc_attr( $instance['post_meta_key'] ),
-				'meta-key'
+				__( 'meta-key', 'pis' )
 			); ?>
 
 			<?php // ================= Post meta value
@@ -787,7 +787,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id('post_meta_val'),
 				$this->get_field_name('post_meta_val'),
 				esc_attr( $instance['post_meta_val'] ),
-				'meta-value'
+				__( 'meta-value', 'pis' )
 			); ?>
 
 			<?php // ================= Ignore sticky post
@@ -1075,7 +1075,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
 
 			<?php // ================= Custom fields text
-			pis_form_input_text( __( 'Use this text before the custom field', 'pis' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), __( 'Custom field:' ) ); ?>
+			pis_form_input_text( __( 'Use this text before the custom field', 'pis' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), __( 'Custom field:', 'pis' ) ); ?>
 
 			<?php // ================= Which custom field
 			$options = array();
@@ -1172,7 +1172,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id( 'nopost_text' ),
 				$this->get_field_name( 'nopost_text' ),
 				esc_attr( $instance['nopost_text'] ),
-				'No posts yet.'
+				__( 'No posts yet.', 'pis' )
 			); ?>
 
 			<?php

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 1.25\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-03-13 19:06:25+00:00\n"
+"POT-Creation-Date: 2015-03-13 20:29:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -86,7 +86,8 @@ msgstr ""
 msgid "Display all posts"
 msgstr ""
 
-#: inc/posts-in-sidebar-widget.php:440 posts-in-sidebar.php:122
+#: inc/posts-in-sidebar-widget.php:440 inc/posts-in-sidebar-widget.php:1175
+#: posts-in-sidebar.php:122
 msgid "No posts yet."
 msgstr ""
 
@@ -111,7 +112,7 @@ msgid "Place this text after the title"
 msgstr ""
 
 #: inc/posts-in-sidebar-widget.php:539
-msgid "These posts are part of my %1$sReadings series%2$s."
+msgid "These posts are part of my Readings series."
 msgstr ""
 
 #: inc/posts-in-sidebar-widget.php:541
@@ -257,8 +258,16 @@ msgstr ""
 msgid "Get post with this meta key"
 msgstr ""
 
+#: inc/posts-in-sidebar-widget.php:781
+msgid "meta-key"
+msgstr ""
+
 #: inc/posts-in-sidebar-widget.php:786
 msgid "Get post with this meta value"
+msgstr ""
+
+#: inc/posts-in-sidebar-widget.php:790
+msgid "meta-value"
 msgstr ""
 
 #: inc/posts-in-sidebar-widget.php:794

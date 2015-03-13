@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-03-13 19:06:25+00:00\n"
-"PO-Revision-Date: 2015-03-13 20:07+0100\n"
+"POT-Creation-Date: 2015-03-13 20:29:30+00:00\n"
+"PO-Revision-Date: 2015-03-13 21:28+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -91,7 +91,8 @@ msgstr "Tag:"
 msgid "Display all posts"
 msgstr "Visualizza tutti i post"
 
-#: inc/posts-in-sidebar-widget.php:440 posts-in-sidebar.php:122
+#: inc/posts-in-sidebar-widget.php:440 inc/posts-in-sidebar-widget.php:1175
+#: posts-in-sidebar.php:122
 msgid "No posts yet."
 msgstr "Ancora nessun post."
 
@@ -116,8 +117,8 @@ msgid "Place this text after the title"
 msgstr "Metti questo testo dopo il titolo"
 
 #: inc/posts-in-sidebar-widget.php:539
-msgid "These posts are part of my %1$sReadings series%2$s."
-msgstr "Questi post fanno parte della %1$2Serie Letture%2$s."
+msgid "These posts are part of my Readings series."
+msgstr "Questi post fanno parte della serie Letture."
 
 #: inc/posts-in-sidebar-widget.php:541
 msgid "Allowed HTML: %s. Other tags will be stripped."
@@ -270,9 +271,17 @@ msgstr "Preleva i post con questo stato"
 msgid "Get post with this meta key"
 msgstr "Preleva i post con questa chiave meta"
 
+#: inc/posts-in-sidebar-widget.php:781
+msgid "meta-key"
+msgstr "chiave"
+
 #: inc/posts-in-sidebar-widget.php:786
 msgid "Get post with this meta value"
 msgstr "Preleva i post con questo valore meta"
+
+#: inc/posts-in-sidebar-widget.php:790
+msgid "meta-value"
+msgstr "valore"
 
 #: inc/posts-in-sidebar-widget.php:794
 msgid "Do not display sticky posts on top of other posts"
@@ -659,7 +668,7 @@ msgid ""
 "If the plugin doesn't remove the bullets and/or the extra left space, you "
 "have to %1$sedit your CSS file%2$s manually."
 msgstr ""
-"Se il plugin non rimuove i pallini e/o lo spazio aggiuntivo a sinistra,, "
+"Se il plugin non rimuove i pallini e/o lo spazio aggiuntivo a sinistra, "
 "bisognerà %1$smodificare il file CSS%2$s manualmente."
 
 #: inc/posts-in-sidebar-widget.php:1234

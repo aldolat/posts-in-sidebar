@@ -233,14 +233,26 @@ function pis_posts_in_sidebar( $args ) {
 
 			<?php while( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
 
-				<?php // Assign the class 'current-post' if this is the post of the main loop ?>
-				<?php if ( is_single() && $single_post_id == $pis_query->post->ID ) {
-					$postclass = 'current-post pis-li';
-				} else {
-					$postclass = 'pis-li';
-				} ?>
+				<?php
+				/**
+				 * Assign the class 'current-post' if this is the post of the main loop.
+				 * 
+				 */
+				$current_post_class = ''; 
+				if ( is_single() && $single_post_id == $pis_query->post->ID ) {
+					$current_post_class = ' current-post';
+				} 
 
-				<li <?php pis_class( $postclass, apply_filters( 'pis_li_class', '' ) ); ?>>
+				/**
+				 * Assign the class 'sticky' if the post is sticky.
+				 * @since 1.25
+				 */
+				 $sticky_class = '';
+				 if ( is_sticky() ) {
+				 	$sticky_class = ' sticky';
+				 } ?>
+
+				<li <?php pis_class( 'pis-li' . $current_post_class . $sticky_class, apply_filters( 'pis_li_class', '' ) ); ?>>
 
 					<?php /* The thumbnail before the title */ ?>
 					<?php if ( $image_before_title ) : ?>

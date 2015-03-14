@@ -114,6 +114,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_align'         => $instance['image_align'],
 			'image_before_title'  => $instance['image_before_title'],
 			'custom_image_url'    => $instance['custom_image_url'],
+			'custom_img_no_thumb' => $instance['custom_img_no_thumb'],
 
 			// The text of the post
 			'excerpt'             => $instance['excerpt'],
@@ -254,6 +255,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['image_align']         = $new_instance['image_align'];
 		$instance['image_before_title']  = $new_instance['image_before_title'];
 		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
+		$instance['custom_img_no_thumb'] = $new_instance['custom_img_no_thumb'];
 
 		// The text of the post
 		$instance['excerpt']             = $new_instance['excerpt'];
@@ -394,6 +396,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_align'         => 'no_change',
 			'image_before_title'  => false,
 			'custom_image_url'    => '',
+			'custom_img_no_thumb' => true,
 
 			// The text of the post
 			'excerpt'             => 'excerpt',
@@ -477,6 +480,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$display_image       = (bool) $instance['display_image'];
 		$image_before_title  = (bool) $instance['image_before_title'];
 		$arrow               = (bool) $instance['arrow'];
+		$custom_img_no_thumb = (bool) $instance['custom_img_no_thumb'];
 		$exc_arrow           = (bool) $instance['exc_arrow'];
 		$utility_after_title = (bool) $instance['utility_after_title'];
 		$display_author      = (bool) $instance['display_author'];
@@ -926,6 +930,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= Positioning image before title
 			pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
 
+			<hr />
+
+			<h4 class="pis-gray-title"><?php _e( 'Customized featured image', 'pis' ); ?></h4>
+
 			<?php // ================= Custom image URL
 			pis_form_input_text(
 				__( 'Use this image instead of the standard featured image', 'pis' ),
@@ -933,8 +941,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name( 'custom_image_url' ),
 				esc_url( strip_tags( $instance['custom_image_url'] ) ),
 				'http://example.com/image.jpg',
-				__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget.', 'pis' )
+				__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you active the checkbox below.', 'pis' )
 			); ?>
+
+			<?php // ================= Use custom image URL only if the post thumbnail is not defined.
+			pis_form_checkbox( __( 'Use custom image URL only if the post thumbnail is not defined.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
+
 
 			<hr />
 

@@ -76,7 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.25 ###
 
-* NEW: Added an option to use a custom image instead of the standard featured image.
+* NEW: Added options to use a custom image instead of the standard featured image (props by joaogsr).
 * NEW: Added class "sticky" if a post is sticky (props by acrok).
 * CHANGE: Added a checkbox to completely hide the widget if no posts are found (instead of removing the "no posts text" in order to do this).
 * Added placeholders in HTML fields.

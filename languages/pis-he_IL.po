@@ -9,11 +9,476 @@ msgstr ""
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ahrale <contact@atar4u.com>\n"
-"Language-Team: Ahrale | Atar4U..com <contact@atar4u.com>\n"
+"Language-Team: Ahrale | Atar4U.com <contact@atar4u.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.7.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+# wpml-name: 4dbb02b79809212907c809c6c3ae0fbb
+#: <h4 class="pis-gray-title"><?php _e( 'When no posts are found', 'pis' );
+#: ?></h4>
+msgctxt "a5f4db885c90d25a2a3124104a18944a"
+msgid "When no posts are found"
+msgstr "כאשר לא נמצאים אף פוסטים"
+
+# wpml-name: 8129a8b07cf11e2baf7f47d1ce9f0800
+#: <h4 class="pis-gray-title"><?php _e( 'Customized featured image', 'pis' );
+#: ?></h4>
+msgctxt "7a241b6610692de1757db8b263df8e7c"
+msgid "Customized featured image"
+msgstr "תמונה ראשית בהתאמה אישית"
+
+# wpml-name: a309ab6c619a0c39b2e7c909c954ce59
+#: <?php pis_form_input_text( __( 'Archive bottom margin', 'pis' ),
+#: $this->get_field_id( 'archive_margin' $this->get_field_name( esc_attr(
+#: $instance['archive_margin'] ) ); ?> 'No-posts 'noposts_margin'
+#: $instance['noposts_margin'] </div>
+msgctxt "254c07c55f8abf3bd213922e5c6e4466"
+msgid "No-posts bottom margin"
+msgstr "שוליים תחתונים של אין פוסטים"
+
+# wpml-name: fdef234d6716cfd0df62c96ac71af29b
+#: <?php pis_form_input_text( __( 'Custom field bottom margin', 'pis' ),
+#: $this->get_field_id( 'custom_field_margin' $this->get_field_name( esc_attr(
+#: $instance['custom_field_margin'] ) ); ?> 'Archive 'archive_margin'
+#: $instance['archive_margin'] 'No-posts 'noposts_margin'
+#: $instance['noposts_margin']
+msgctxt "a01aade6ca9b0dbdcc224735ae4078aa"
+msgid "Archive bottom margin"
+msgstr "שוליים תחתונים של ארכיון"
+
+# wpml-name: f105d1ef7befe71b8f03c92f7c50d99a
+#: <div class="pis-column-last"> <?php pis_form_input_text( __( 'Custom field
+#: bottom margin', 'pis' ), $this->get_field_id( 'custom_field_margin'
+#: $this->get_field_name( esc_attr( $instance['custom_field_margin'] ) ); ?>
+#: 'Archive 'archive_margin' $instance['archive_margin']
+msgctxt "a5a6c71c12357c754a4821a82ca9c928"
+msgid "Custom field bottom margin"
+msgstr "שוליים תחתונים של שדות"
+
+# wpml-name: daa36a019bf2f23421b0b0c43c1afd10
+#: <?php pis_form_input_text( __( 'Categories bottom margin', 'pis' ),
+#: $this->get_field_id( 'categories_margin' $this->get_field_name( esc_attr(
+#: $instance['categories_margin'] ) ); ?> 'Tags 'tags_margin'
+#: $instance['tags_margin'] </div>
+msgctxt "694a70421bd7f4f96ff295e94cc88105"
+msgid "Tags bottom margin"
+msgstr "שוליים תחתונים של תגיות"
+
+# wpml-name: 6aaaa0a22306e176f93fd6c3747ad4da
+#: <?php pis_form_input_text( __( 'Utility bottom margin', 'pis' ),
+#: $this->get_field_id( 'utility_margin' $this->get_field_name( esc_attr(
+#: $instance['utility_margin'] ) ); ?> 'Categories 'categories_margin'
+#: $instance['categories_margin'] 'Tags 'tags_margin' $instance['tags_margin']
+msgctxt "ea7931390cc5f07bc84c35c7b7fcf07f"
+msgid "Categories bottom margin"
+msgstr "שוליים תחתונים של קטגוריות"
+
+# wpml-name: 5228878f2f7552c2c31d6165a7a4977a
+#: <?php pis_form_input_text( __( 'Excerpt bottom margin', 'pis' ),
+#: $this->get_field_id( 'excerpt_margin' $this->get_field_name( esc_attr(
+#: $instance['excerpt_margin'] ) ); ?> 'Utility 'utility_margin'
+#: $instance['utility_margin'] 'Categories 'categories_margin'
+#: $instance['categories_margin']
+msgctxt "4eb61516351229e1d769ba93e678a9d5"
+msgid "Utility bottom margin"
+msgstr "שוליים תחתונים של שירות"
+
+# wpml-name: 03b60ef16f450db7f27ca432a50a4333
+#: <div class="pis-column"> <?php pis_form_input_text( __( 'Excerpt bottom
+#: margin', 'pis' ), $this->get_field_id( 'excerpt_margin'
+#: $this->get_field_name( esc_attr( $instance['excerpt_margin'] ) ); ?>
+#: 'Utility 'utility_margin' $instance['utility_margin']
+msgctxt "e13f5d71e616d9bca1852f0b19d45aea"
+msgid "Excerpt bottom margin"
+msgstr "שוליים תחתונים של מובאה"
+
+# wpml-name: d0994c772f50f449630534df0ddf95f7
+#: <?php pis_form_input_text( __( 'Image left &amp; right margin', 'pis' ),
+#: $this->get_field_id( 'side_image_margin' $this->get_field_name( esc_attr(
+#: $instance['side_image_margin'] ) ); ?> bottom 'bottom_image_margin'
+#: $instance['bottom_image_margin'] </div>
+msgctxt "1ee5cfd064c308551b91dadeffb0973b"
+msgid "Image bottom margin"
+msgstr "שוליים תחתונים של תמונה"
+
+# wpml-name: 18a0749ffbc2e00151ace273f82eea8b
+#: <?php pis_form_input_text( __( 'Title bottom margin', 'pis' ),
+#: $this->get_field_id( 'title_margin' $this->get_field_name( esc_attr(
+#: $instance['title_margin'] ) ); ?> 'Image left &amp; right
+#: 'side_image_margin' $instance['side_image_margin'] 'bottom_image_margin'
+#: $instance['bottom_image_margin']
+msgctxt "6dcdc45cc36793e065f88d9e30133675"
+msgid "Image left &amp; right margin"
+msgstr "שוליים ימין ושמאל של תמונה"
+
+# wpml-name: 03cd135d09e236dfc38a2ac323bc8151
+#: <?php pis_form_input_text( __( 'Introduction bottom margin', 'pis' ),
+#: $this->get_field_id( 'intro_margin' $this->get_field_name( esc_attr(
+#: $instance['intro_margin'] ) ); ?> 'Title 'title_margin'
+#: $instance['title_margin'] 'Image left &amp; right 'side_image_margin'
+#: $instance['side_image_margin']
+msgctxt "57be41a540834cd797cec8966f80ac22"
+msgid "Title bottom margin"
+msgstr "שוליים תחתונים של כותרת"
+
+# wpml-name: e928914439f6d8663a590d5130c6c042
+#: <div class="pis-column"> <?php pis_form_input_text( __( 'Introduction
+#: bottom margin', 'pis' ), $this->get_field_id( 'intro_margin'
+#: $this->get_field_name( esc_attr( $instance['intro_margin'] ) ); ?> 'Title
+#: 'title_margin' $instance['title_margin']
+msgctxt "4754a605f8335d8196d3db4871366a6f"
+msgid "Introduction bottom margin"
+msgstr "שוליים תחתונים של הקדמה"
+
+# wpml-name: 37c8a8d30fd02e659d16976ef4a857ad
+#: pis_form_checkbox( __( 'Completely hide the widget if no posts are found',
+#: 'pis' ), $this->get_field_id( 'hide_widget'
+msgctxt "b870fbcc78df3166b37fb89153614683"
+msgid "Completely hide the widget if no posts are found"
+msgstr "הסתר לחלוטין את הוידג'ט אם אין אף פוסט"
+
+# wpml-name: 207515a7d401cef64726000aa01956a8
+#: <?php // ================= Custom fields text pis_form_input_text( __( 'Use
+#: this before the custom field', 'pis' ), $this->get_field_id(
+#: 'custom_field_txt' $this->get_field_name( esc_attr(
+#: $instance['custom_field_txt'] 'Custom field:', ) ); ?>
+msgctxt "981458b4954715958afeb7bfaca123ef"
+msgid "Custom field:"
+msgstr "שדה:"
+
+# wpml-name: 7a728abc855c1320aecc4b6bd09223bb
+#: <?php // ================= Use custom image URL only if the post thumbnail
+#: is not defined. pis_form_checkbox( __( 'Use defined.', 'pis' ),
+#: $this->get_field_id( 'custom_img_no_thumb' $this->get_field_name( checked(
+#: $custom_img_no_thumb, true, false ) ); ?>
+msgctxt "47e38ca0a899992347a49ead694e7ade"
+msgid "Use custom image URL only if the post thumbnail is not defined."
+msgstr "השתמש בכתובת URL של תמונה רק אם לא הוגדרה תמונה ממוזערת של הפוסט."
+
+# wpml-name: e585a740fa85314666dc491f525e1873
+#: 'http://example.com/image.jpg', __( 'Paste here the URL of image. Note that
+#: same image will be used for all posts in widget, unless you active checkbox
+#: below.', 'pis' ) ); ?>
+msgctxt "c68f534f55f4a3e411f3619cf9c72f18"
+msgid "Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you active the checkbox below."
+msgstr "הדבק כאן את כתובת ה URL של התמונה. שים לב שאותה תמונה תשמש עבור כל הפוסטים בוידג'ט, אלא אם תסומן תיבת הסימון שלהלן."
+
+# wpml-name: 790dd1b983e362a1a027facfbf5664b5
+#: pis_form_input_text( __( 'Use this image instead of the standard featured
+#: image', 'pis' ), $this->get_field_id( 'custom_image_url'
+msgctxt "4981d2ccb48b39e5dd33b189a17edaef"
+msgid "Use this image instead of the standard featured image"
+msgstr "השתמש בתמונה זו במקום התמונה הראשית הסטנדרטית"
+
+# wpml-name: 3c316a2f7455283e5a8847ecc6f836ec
+#: esc_attr( $instance['post_meta_val'] ), __( 'meta-value', 'pis' ) ); ?>
+msgctxt "2ecd4bdc687d2369f8bdcf20fceeec54"
+msgid "meta-value"
+msgstr "ערך-תיאור"
+
+# wpml-name: 70b3476e72be9b0276b7c968743e2787
+#: esc_attr( $instance['post_meta_key'] ), __( 'meta-key', 'pis' ) ); ?>
+msgctxt "b9a23d2e65eaf58c00562e9e2de97663"
+msgid "meta-key"
+msgstr "מפתח-תיאור"
+
+# wpml-name: 2e17b47c6438a2a4273e5bca5461c817
+#: esc_attr( $instance['tag'] ), __( 'best-sellers', 'pis' sprintf( 'Insert
+#: slugs separated by commas. To display posts that have all of the tags, use
+#: %1$s (a plus) between terms, for example:%2$s%3$s.', '<code>+</code>', '<br
+#: />', '<code>staff+news+our-works</code>' )
+msgctxt "75b51f36c6a3f86d1d6ca0200d122d41"
+msgid "best-sellers"
+msgstr "רבי-מכר"
+
+# wpml-name: 85a5977bdaca28077e04bc949b99c617
+#: esc_attr( $instance['cat'] ), __( 'books, ebooks', 'pis' sprintf( 'Insert
+#: slugs separated by commas. To display posts that have all of the
+#: categories, use %1$s (a plus) between terms, for example:%2$s%3$s.',
+#: '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+msgctxt "9de0880566cfdb01f072e276cfb179ef"
+msgid "books, ebooks"
+msgstr "ספרים, ספרים דיגיטליים"
+
+# wpml-name: 2f16b7d13e8cbd0234476b3f8c4edf26
+#: $instance['intro'], __( 'These posts are part of my Readings series.',
+#: 'pis' ), $style = 'resize: vertical; width: 100%; height: 80px;',
+msgctxt "46423a24f0af9cabb7bee431a5d682de"
+msgid "These posts are part of my Readings series."
+msgstr "פוסטים אלו הם חלק מערכות הקריאה שלי."
+
+# wpml-name: 50986bce5294874ef370f78fe443e335
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "df55c315516efde5e14e58a594f78986"
+msgid "From the archive"
+msgstr "מן הארכיון"
+
+# wpml-name: 4d0eb3482a6583c12cb450c81a5609dc
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "ae6d54e062e26ac3426199c96d5fe7d3"
+msgid "Get posts with this category"
+msgstr "הצג פוסטים מקטגוריות אלו"
+
+# wpml-name: 0e27c32285d711124654e9166a618f88
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "d4c6c2dcca88270cfa50b927e2661f27"
+msgid "Get posts with this tag"
+msgstr "הצג פוסטים עם תגיות אלו"
+
+# wpml-name: 3134499fed475a4b930d9ce93ac6623f
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "152d5216085f21b7b31f2893b4f433ff"
+msgid "Ignore sticky posts status"
+msgstr "תתעלם ממצב פוסטים דביקים"
+
+# wpml-name: fbc76facb81c08672c3f4f67b60d9863
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "ec0ffd90f160e62721cf399ed107299d"
+msgid "Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget."
+msgstr "אם קובעים מחבר או טקסונומיה בוידג'ט זה, הוא מתעלם אוטומטית מפוסטים דביקים."
+
+# wpml-name: 37bcaa6d7cea7cb357e9bf16a4708fcc
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "6ef1c7e28d2434215a654e6ebee1b81f"
+msgid "Use %1$sCTRL+clic%2$s to select/deselect multiple items."
+msgstr "השתמש ב %1$sCTRL+קליק%2$s כדי לבחור או לבטל בחירה של פריטים מרובים."
+
+# wpml-name: 49ad500e092ef3a77842071d00c0ae97
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "0ecaa17c28b916b724b088287b5b0615"
+msgid "The plugin will add a new %s container with this class. You can enter only one class and the name could contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title up to the last line."
+msgstr "התוסף יוסיף מיכל %sעם מחלקה זו. אפשר להזין רק מחלקה אחת והשם יכול להכיל רק אותיות, מקפים וקוים תחתונים. המיכל החדש יחול על כל הוידג'ט מהכותרת ועד השורה האחרונה."
+
+# wpml-name: e6582d47b2dcef07b9ce78b898b3bece
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "771943b18156c8f35ef29ed615b67822"
+msgid "Duration of the cache (in seconds)"
+msgstr "משך זכרון המטמון (בשניות)"
+
+# wpml-name: e94fbf4d86887821f2347a3558ffafbd
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "65e83ecc561bf7f52d1083e2694ecb8c"
+msgid "What type of list for the posts"
+msgstr "איזה סוג רשימה עבור הפוסטים"
+
+# wpml-name: 335698bebdad81202287181b4d3aabf6
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "c98441cbd22544c154ea0233546d2608"
+msgid "Ordered list (ol)"
+msgstr "רשימה מסודרת (ol)"
+
+# wpml-name: 7f124d6859ebc4a4f56dc73f75d6177a
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "2ee6affb78acc8b91d45af84e5866eec"
+msgid "Unordered list (ul)"
+msgstr "רשימה לא מסודרת (ul)"
+
+# wpml-name: 3ee9f16e82f692a0eeb9bd3c483e0c35
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "10abe3ea9ef7cd33e5eff83d930edf09"
+msgid "Custom CSS Class for container"
+msgstr "עיצוב CSS עבור המיכל"
+
+# wpml-name: 782505d48676110c70a2f4bddfa96d0a
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "8b9012cc72f0e0f4f1ff19a2ef285b99"
+msgid "ID of the posts to retrieve"
+msgstr "מזהה הפוסט לאחזור"
+
+# wpml-name: b3f12313841096cdf54643ce2fc31fa3
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "c82ebd80e01339e3203d053bc69383b4"
+msgid "Text before the custom field"
+msgstr "טקסט שיוצג לפני השדה"
+
+# wpml-name: da0a05885048ca7f730b4f5e5f710ad7
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "caa405429dd03b9397a3a401cb91d9bb"
+msgid "Show an arrow after the \"Read more\" link"
+msgstr "הצג חץ אחרי קישור המשך קריאה"
+
+# wpml-name: 153425da6362fe4a7e10df230846225b
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "3b96cc15f283871cc9d0390f49afb0ff"
+msgid "Paragraph bottom margins"
+msgstr "שוליים תחתונים של פסקה"
+
+# wpml-name: 94aef30cad5629a4f5d88bbf36e72026
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "d44f8941c6ac7c4537b89026a61972c9"
+msgid "Show the link to the taxonomy archive"
+msgstr "הצג את הקישור לארכיון התגיות"
+
+# wpml-name: ba0d8619e6797d64e4aabdc66ab2a370
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "afcbd729d6226a8f2232347e9b5d6c24"
+msgid "Text before tags list"
+msgstr "טקסט לפני רשימת התגיות"
+
+# wpml-name: c15d82bd1f8c447ff902b49b6815e402
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "0e031b5488a6c881c3812aa8510faabb"
+msgid "Text before categories list"
+msgstr "טקסט שיוצג לפני רשימת הקטגוריות"
+
+# wpml-name: 4f5addf6752dfd1f56728440d18f9350
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "e386c276f005caea5f5ba1a5cb0543b9"
+msgid "Show the categories of the post"
+msgstr "הצגת הקטגוריות של הפוסט"
+
+# wpml-name: f6a18aad66c55db78126db2f58ffe151
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "abc3f09ce6b52d5326176409997b9e41"
+msgid "Use this text before the comments number"
+msgstr "השתמש בטקסט זה לפני מספר התגובות"
+
+# wpml-name: 18af26122edc7536d2085ca825d8b8e0
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "8023f73425615008a4036982a89d14d9"
+msgid "Show an arrow after the excerpt"
+msgstr "הצג חץ בסוף המובאה"
+
+# wpml-name: ecdc46d4196b1e7313b852a6bbe4f2bf
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "550c83fe9a9a8a038309fa1ca85c4c6a"
+msgid "Text for More link"
+msgstr "טקסט לקישור המשך קריאה"
+
+# wpml-name: 7282e9aabfff918dfce6b785663f709c
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "57fe17234b654d212a91463f8d9a9802"
+msgid "Length of the auto-generated excerpt (in words)"
+msgstr "אורך המובאה (מספר המילים)"
+
+# wpml-name: bf7c0ec1a4f16220f468a8af1de644a6
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "09be31b6e8ce7a3dcb8956678ed77f4f"
+msgid "The text of the content"
+msgstr "את הטקסט של התוכן"
+
+# wpml-name: e4e50785cd1879f2a7c2ce6224ac6d1d
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "054284ba6fd28f26816e33605282a987"
+msgid "What type of text to display"
+msgstr "איזה סוג טקסט להציג"
+
+# wpml-name: d5f99d7d9fdc1af3e236ae1833287bc6
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "d203a103d2a4bf132242100832507f85"
+msgid "Align center"
+msgstr "למרכז"
+
+# wpml-name: 181915edcdd2c9aae84ad086eb4d2c25
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "384e08e98ef590b36a7464647f09951f"
+msgid "Float right"
+msgstr "לימין"
+
+# wpml-name: 9cb7b9f5ca23d9eb8cdd1634e9d11cc5
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "163a4fbe89306d974d013ea2d8607969"
+msgid "Float left"
+msgstr "לשמאל"
+
+# wpml-name: 41aa71055fa2da29cf62e2d8e26dd87a
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "f5f7b74c74b68c50fd53a7454a919c41"
+msgid "Align image"
+msgstr "יישור התמונה"
+
+# wpml-name: 39a7b9cd59f514df093572f305ef89ee
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "6ea3a2da65fb7c9bd5f121795c8ebe2b"
+msgid "Size of the thumbnail"
+msgstr "גודל התמונה הממוזערת"
+
+# wpml-name: 827ed449f425839f0be9350c965d30c5
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "3fe20db0c96210a023475f418beb7895"
+msgid "Use <code>CTRL+clic</code> to select/deselect multiple items."
+msgstr "השתמש ב <code>CTRL+clic</code> כדי לבחור/לבטל בחירת פריטים מרובים."
+
+# wpml-name: 1775b323b055ccaf811b90e252866c1c
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "d2e9446c006e897ce10bfc168be5f6e6"
+msgid "Exclude these posts"
+msgstr "אל תכלול פוסטים אלו"
+
+# wpml-name: 96f1d9992763764817c1fbbd4b217cb2
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "4c1ab94c3540a1d5fc498dc24e24ba6f"
+msgid "Ignore sticky posts"
+msgstr "התעלם מפוסטים דביקים"
+
+# wpml-name: eb18ef8357b77bac93fb7a3a9daa0323
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "4d406cd8fcb8fd90f54ef602b31c84ed"
+msgid "Post meta value"
+msgstr "ערך תיאור הפוסט"
+
+# wpml-name: 9f85e07a3d6f5497c7491dbd06f231ed
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "50bcbf2381ae145b7d669aa49b195b28"
+msgid "Post meta key"
+msgstr "מפתח תיאור פוסט"
+
+# wpml-name: 9a267b323623b4886ac96d8cb8ef877e
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "4e28c293bce805a3073472a32a9b50e6"
+msgid "Post status"
+msgstr "מצב הפוסט"
+
+# wpml-name: d5e1cb361cb9d095a83b48f817f9b7bb
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "344ed90a6a355f81404ec1764a8e3660"
+msgid "Number of posts to skip"
+msgstr "מספר הפוסטים לדילוג"
+
+# wpml-name: a240fa27925a635b08dc28c9e4f9216d
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "6f707b5f3f9db34de8882944052ee917"
+msgid "Order"
+msgstr "סדר"
+
+# wpml-name: 01fda57aa6c7e9f07f5aa36b108e95cb
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "8575b4a2bfff5d96db9f38d92f7b8cfe"
+msgid "Order by"
+msgstr "סדר לפי"
+
+# wpml-name: cd62ca48afb4a0bb16e251f7ce7d5a02
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "5d59743f63527713b3f7c59cb79f987f"
+msgid "How many posts to display"
+msgstr "כמה פוסטים להציג"
+
+# wpml-name: daa48c3d9a04c2320323ab95d0ea1761
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "a011e6de41a13869a140bf92875bc744"
+msgid "Post format"
+msgstr "פורמט פוסט"
+
+# wpml-name: 575c771cbb6f145ba97bd31716b0a4d2
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "f9b60f41464f157a369b29a32bde7935"
+msgid "Get these posts"
+msgstr "הצג פוסטים אלו"
+
+# wpml-name: 9d794c3ad42f08d04705ef099d066626
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "202e99bb4c32a3588a4211a4d704bccc"
+msgid "Introductory text for the widget"
+msgstr "טקסט מקדים לוידג'ט"
+
+# wpml-name: 3e048b0a75059ad635f66c03b02ae1cd
+#: esc_attr( $instance['title'] ), __( 'From the archive', 'pis' ) ); ?>
+msgctxt "f1cdf863633ff0336edfb06662bd103c"
+msgid "Link for the title of the widget"
+msgstr "הקישור עבור כותרת הוידג'ט"
 
 # wpml-name: 4c73e3d7b864aa6e6169a6e9a7f65e4c
 #: <?php if ( $debug_query_number ) { ?> <p><strong><?php _e( 'The total
@@ -47,6 +512,29 @@ msgctxt "95ac0cb1b1de0d8802fceb6acd1e64c8"
 msgid "%1$s queries in %2$s seconds"
 msgstr "%1$s שאילתות ב %2$s שניות"
 
+# wpml-name: 3f0f7c566338e8ab0a32e65f8e647c8d
+#: $term_object = get_term_by( 'slug', $link_to, 'post_format' ); $title_text
+#: sprintf( __( 'Display all posts with post format %s', 'pis' ),
+#: $term_object->name }
+msgctxt "5b6da86572d3148e6bcd4b731149a848"
+msgid "Display all posts with post format %s"
+msgstr "הצגת כל הפוסטים בפורמט %s"
+
+# wpml-name: 19022210284cca3e1433b6bb1c3cb73c
+#: $term_link = get_tag_link( $term_identity->term_id ); $title_text sprintf(
+#: __( 'Display all posts archived as %s', 'pis' ), $term_identity->name }
+msgctxt "fa487b3ac6a1e127b6250d3acf0955d7"
+msgid "Display all posts archived as %s"
+msgstr "הצגת כל הפוסטים בארכיון %s"
+
+# wpml-name: 2d75572f72d4ce945d46aea95c4f89e6
+#: $term_link = get_author_posts_url( $author_infos->ID, $author );
+#: $title_text sprintf( __( 'Display all posts by %s', 'pis' ),
+#: $author_infos->display_name }
+msgctxt "aa7424a446978cb0ba790bd479d23b90"
+msgid "Display all posts by %s"
+msgstr "הצגת כל הפוסטים של %s"
+
 # wpml-name: a7203a896ab2a82fe53f68358c3dc40c
 #: <p><strong><?php _e( 'Use this options for debugging purposes only. Please
 #: note that the informations will be displayed publicly on your site.', 'pis'
@@ -60,554 +548,6 @@ msgstr "השתמש באפשרויות אלו למטרת ניפוי שגיאות 
 msgctxt "183ecfe40177b678285b0759b409049b"
 msgid "Debugging"
 msgstr "ניפוי שגיאות"
-
-# wpml-name: c20bf5f9396c3cd9af587a9f99880045
-#: <h4 class="pis-gray-title"><?php _e( 'Text when no posts found', 'pis' );
-#: ?></h4>
-msgctxt "7d0f1dff6d0f03c0f5c3c01889da341b"
-msgid "Text when no posts found"
-msgstr "טקסט כאשר לא נמצאו פוסטים"
-
-# wpml-name: df05261534c44265dbff9235bf97c1a2
-#: pis_form_checkbox( __( 'Display the total number of queries, including
-#: WordPress, current theme and all active plugins', 'pis' ),
-#: $this->get_field_id( 'debug_query_number'
-msgctxt "33f5832230fbf54d8729d040526f38b5"
-msgid "Display the total number of queries, including WordPress, current theme and all active plugins"
-msgstr "מציג את המספר הכולל של שאילתות, כולל וורדפרס, ערכת נושא נוכחית וכל התוספים הפעילים"
-
-# wpml-name: 79e25207569f2ccad1b574ace5921348
-#: pis_form_checkbox( __( 'Display the complete set of parameters for widget',
-#: 'pis' ), $this->get_field_id( 'debug_params'
-msgctxt "ca103152ed14c3bb7afedb75133429bd"
-msgid "Display the complete set of parameters for the widget"
-msgstr "מציג את הסט השלם של פרמטרים עבור הוידג'ט"
-
-# wpml-name: c1d8bdb49c27eba0a1794746cb79afa0
-#: pis_form_checkbox( __( 'Display the query for widget', 'pis' ),
-#: $this->get_field_id( 'debug_query'
-msgctxt "d8804554f6ff2571f7797fb7175d6e1d"
-msgid "Display the query for the widget"
-msgstr "מציג את השאילתה עבור הוידג'ט"
-
-# wpml-name: fe22377199a54ea91fab7d4eb137770d
-#: sprintf( __( 'Enter the name of your container (for example, %1$s). The
-#: plugin will add a new %2$s with this class. You can enter only one class
-#: and may contain letters, hyphens underscores. enclose all widget, from
-#: title to last line.', 'pis' ), '<code>my-container</code>',
-#: '<code>div</code>' ) ); ?>
-msgctxt "fc2ad2c7cae1240ddec72115954a99a3"
-msgid "Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line."
-msgstr "הזן את שם המיכל (למשל, %1$s). התוסף יוסיף מיכל %2$s חדש עם מחלקה זו. ניתן להזין מחלקה אחת בלבד והשם יכול לכלול רק אותיות מקפים וקו תחתון. המיכל החדש יסגור את כל הוידג'טמן הכתורת ועד לשורה האחרונה."
-
-# wpml-name: 3bb747c972056529ebc702f4c611e13f
-#: esc_attr( $instance['nopost_text'] ), __( 'If the field is blank, whole
-#: widget won\'t be displayed at all if no posts are found.', 'pis' ) ); ?>
-msgctxt "3036ecdb18912c897b9668772d1c0c8c"
-msgid "If the field is blank, the whole widget won't be displayed at all if no posts are found."
-msgstr "אם השדה ריק, כל הוידג'ט לא יוצג כלל אם לא נמצאו פוסטים."
-
-# wpml-name: e68e59361edf20ecf98b32ca3beeeb0a
-#: 'value' => 'only_read_more', 'desc' __( 'Display only the Read more link',
-#: 'pis' ) ),
-msgctxt "08b42e32c9d59279ccefeb15c40ada56"
-msgid "Display only the Read more link"
-msgstr "הצג רק את קישור קרא עוד"
-
-# wpml-name: fcc82541e02d8b3edd33a0615aa2ed3f
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "fead51fc2e8861f2b573b9c13b463e63"
-msgid "If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget."
-msgstr "אם אתה מפעיל אפשרות זו, פוסטים דביקים ינוהלו כפוסטים אחרים. אם אתה מגדיר מחבר או טקסונומיה בוידג'ט זה, תהיה התעלמות אוטומטית ממצב פוסט דביק."
-
-# wpml-name: dcee02dab1ed38ea1e5e48403a64739a
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "0834e405761643416f635637aad27354"
-msgid "Do not display sticky posts on top of other posts"
-msgstr "אל תציג פוסטים דביקים מעל פוסטים אחרים"
-
-# wpml-name: 3e048b0a75059ad635f66c03b02ae1cd
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "9c77ef401d53f4153f8d34069e2f5004"
-msgid "Link for the title of the widget"
-msgstr "הקישור עבור כותרת הוידג'ט"
-
-# wpml-name: 9d794c3ad42f08d04705ef099d066626
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "569389da506532d1ab258fa521440939"
-msgid "Introductory text for the widget"
-msgstr "טקסט מקדים לוידג'ט"
-
-# wpml-name: 575c771cbb6f145ba97bd31716b0a4d2
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "2f8d04e1bc4cfb7182e82d03b44db828"
-msgid "Get these posts"
-msgstr "הצג פוסטים אלו"
-
-# wpml-name: daa48c3d9a04c2320323ab95d0ea1761
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "7410670ac694c2c66d2bc9a94f2915d6"
-msgid "Post format"
-msgstr "פורמט פוסט"
-
-# wpml-name: cd62ca48afb4a0bb16e251f7ce7d5a02
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "307b06d6ef453b86505fda35308c8d48"
-msgid "How many posts to display"
-msgstr "כמה פוסטים להציג"
-
-# wpml-name: 01fda57aa6c7e9f07f5aa36b108e95cb
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "bad0209b689f99c94eec816c5a0f2eb4"
-msgid "Order by"
-msgstr "סדר לפי"
-
-# wpml-name: a240fa27925a635b08dc28c9e4f9216d
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "18699afbe25f443a6428b765bbd3b779"
-msgid "Order"
-msgstr "סדר"
-
-# wpml-name: d5e1cb361cb9d095a83b48f817f9b7bb
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "e6113d44d890fb4c18a9fe8511ecef42"
-msgid "Number of posts to skip"
-msgstr "מספר הפוסטים לדילוג"
-
-# wpml-name: 9a267b323623b4886ac96d8cb8ef877e
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "e2b607fc5a3b5f18e9ade4e5820ee85c"
-msgid "Post status"
-msgstr "מצב הפוסט"
-
-# wpml-name: 9f85e07a3d6f5497c7491dbd06f231ed
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "325c5318653b23eab156898a8100b1cb"
-msgid "Post meta key"
-msgstr "מפתח תיאור פוסט"
-
-# wpml-name: eb18ef8357b77bac93fb7a3a9daa0323
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "a1eeff53861959c636a66664dcc121ab"
-msgid "Post meta value"
-msgstr "ערך תיאור הפוסט"
-
-# wpml-name: 96f1d9992763764817c1fbbd4b217cb2
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "9d59745f8716295cb1cc1ff94690d40a"
-msgid "Ignore sticky posts"
-msgstr "התעלם מפוסטים דביקים"
-
-# wpml-name: 1775b323b055ccaf811b90e252866c1c
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "82d590f7f3c441b93d5417e96959dfb6"
-msgid "Exclude these posts"
-msgstr "אל תכלול פוסטים אלו"
-
-# wpml-name: 827ed449f425839f0be9350c965d30c5
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "d6cf41470c47c42bef4fb7e97482cbd4"
-msgid "Use <code>CTRL+clic</code> to select/deselect multiple items."
-msgstr "השתמש ב <code>CTRL+clic</code> כדי לבחור/לבטל בחירת פריטים מרובים."
-
-# wpml-name: 39a7b9cd59f514df093572f305ef89ee
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "d54c9526180b20c1781d7eaaca42d472"
-msgid "Size of the thumbnail"
-msgstr "גודל התמונה הממוזערת"
-
-# wpml-name: 41aa71055fa2da29cf62e2d8e26dd87a
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "822aacd5a333ef9ff33505cd8e3f95ba"
-msgid "Align image"
-msgstr "יישור התמונה"
-
-# wpml-name: 9cb7b9f5ca23d9eb8cdd1634e9d11cc5
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "6ffbea351a17325efd413f0bb8c9837b"
-msgid "Float left"
-msgstr "לשמאל"
-
-# wpml-name: 181915edcdd2c9aae84ad086eb4d2c25
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "0bc444e0fa266c08068f807301973be0"
-msgid "Float right"
-msgstr "לימין"
-
-# wpml-name: d5f99d7d9fdc1af3e236ae1833287bc6
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "cf897c4d8e6ed39be3958c49019f0893"
-msgid "Align center"
-msgstr "למרכז"
-
-# wpml-name: e4e50785cd1879f2a7c2ce6224ac6d1d
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "c3c9bb32f74753313eeca290737a3b42"
-msgid "What type of text to display"
-msgstr "איזה סוג טקסט להציג"
-
-# wpml-name: bf7c0ec1a4f16220f468a8af1de644a6
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "2a3248e06da0b8fba311120d8c00ea52"
-msgid "The text of the content"
-msgstr "את הטקסט של התוכן"
-
-# wpml-name: 7282e9aabfff918dfce6b785663f709c
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "129710244672d16f60197b322b25af39"
-msgid "Length of the auto-generated excerpt (in words)"
-msgstr "אורך המובאה (מספר המילים)"
-
-# wpml-name: ecdc46d4196b1e7313b852a6bbe4f2bf
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "716fc7d8496d618076e1b4b2ba7eb49d"
-msgid "Text for More link"
-msgstr "טקסט לקישור המשך קריאה"
-
-# wpml-name: 18af26122edc7536d2085ca825d8b8e0
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "8b86c6dd1b6409cb1a8224b07ecef480"
-msgid "Show an arrow after the excerpt"
-msgstr "הצג חץ בסוף המובאה"
-
-# wpml-name: f6a18aad66c55db78126db2f58ffe151
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "91c2eb69893d096252dc89d5a68d94fa"
-msgid "Use this text before the comments number"
-msgstr "השתמש בטקסט זה לפני מספר התגובות"
-
-# wpml-name: 4f5addf6752dfd1f56728440d18f9350
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "279008850367f0f9c72e291d43ad518c"
-msgid "Show the categories of the post"
-msgstr "הצגת הקטגוריות של הפוסט"
-
-# wpml-name: c15d82bd1f8c447ff902b49b6815e402
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "6d16d04a7018d136ac6528b28673d68a"
-msgid "Text before categories list"
-msgstr "טקסט שיוצג לפני רשימת הקטגוריות"
-
-# wpml-name: ba0d8619e6797d64e4aabdc66ab2a370
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "f403f4ac7af590bf16182c05e2ca2d8d"
-msgid "Text before tags list"
-msgstr "טקסט לפני רשימת התגיות"
-
-# wpml-name: 94aef30cad5629a4f5d88bbf36e72026
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "da9205b62189d27a7d295b5fb5bdb6b2"
-msgid "Show the link to the taxonomy archive"
-msgstr "הצג את הקישור לארכיון התגיות"
-
-# wpml-name: 153425da6362fe4a7e10df230846225b
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "b58ad28d66b5cd8a5a9d3e5b092f0eea"
-msgid "Paragraph bottom margins"
-msgstr "שוליים תחתונים של פסקה"
-
-# wpml-name: da0a05885048ca7f730b4f5e5f710ad7
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "c3c68d0b43221467e2bf03a625a4fc83"
-msgid "Show an arrow after the \"Read more\" link"
-msgstr "הצג חץ אחרי קישור המשך קריאה"
-
-# wpml-name: b3f12313841096cdf54643ce2fc31fa3
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "b3ccf87f9cb81e7a663cf78c2a6244ed"
-msgid "Text before the custom field"
-msgstr "טקסט שיוצג לפני השדה"
-
-# wpml-name: 782505d48676110c70a2f4bddfa96d0a
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "b756b16fe118f53ad8ff5b9544fb3db5"
-msgid "ID of the posts to retrieve"
-msgstr "מזהה הפוסט לאחזור"
-
-# wpml-name: 3ee9f16e82f692a0eeb9bd3c483e0c35
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "2b48fa3f30368881f73aa09261271814"
-msgid "Custom CSS Class for container"
-msgstr "עיצוב CSS עבור המיכל"
-
-# wpml-name: 7f124d6859ebc4a4f56dc73f75d6177a
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "00b84dfbaf2ed7837202332c80a6a8f6"
-msgid "Unordered list (ul)"
-msgstr "רשימה לא מסודרת (ul)"
-
-# wpml-name: 335698bebdad81202287181b4d3aabf6
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "4b95f28426cdb17a751a32b627930a57"
-msgid "Ordered list (ol)"
-msgstr "רשימה מסודרת (ol)"
-
-# wpml-name: e94fbf4d86887821f2347a3558ffafbd
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "511c3e40e9212dbc13f7fef06ac4d4d3"
-msgid "What type of list for the posts"
-msgstr "איזה סוג רשימה עבור הפוסטים"
-
-# wpml-name: e6582d47b2dcef07b9ce78b898b3bece
-#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
-#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
-#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
-#: 'If you activate this option, will be managed as posts. Sticky status
-#: automatically ignored if set up an author or a taxonomy in widget.', ) );
-#: ?>
-msgctxt "a916a68392b29b41b663ac3780d63546"
-msgid "Duration of the cache (in seconds)"
-msgstr "משך זכרון המטמון (בשניות)"
-
-# wpml-name: a5435c64b2eb8d0218c763a624e7e94e
-#: <?php if ( ! current_theme_supports( 'post-thumbnails' ) { ?> <p
-#: class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail
-#: feature. No image will be displayed.', 'pis' ); ?></p> }
-msgctxt "2e78287bc7c18405a5f373d9dd201bdf"
-msgid "Your theme does not support the Post Thumbnail feature. No image will be displayed."
-msgstr "ערכת הנושא שלך אינה תומכת בתכונה של תמונת פוסט. לא תוצג תמונה."
-
-# wpml-name: 34d4cb2488c80f40e5ec299ee517f6e8
-#: esc_attr( $var ), __( 'Insert IDs separated by commas.', 'pis' ) ); ?>
-msgctxt "4c2a964c353dcc206c465a7430860bd5"
-msgid "Insert IDs separated by commas."
-msgstr "Iהזן מזהים מופרדים בפסיק."
-
-# wpml-name: 8de357f158acebcc48703eede36b3c77
-#: <?php // ================= Exclude current post pis_form_checkbox( __(
-#: 'Automatically exclude the in single or page page', 'pis' ),
-#: $this->get_field_id( 'exclude_current_post' $this->get_field_name( checked(
-#: $exclude_current_post, true, false ) ); ?>
-msgctxt "f8fad9a4dd6e08538aa939a02b9b90c0"
-msgid "Automatically exclude the current post in single post or the current page in single page"
-msgstr "אוטומטיח, אל תכלול את הפוסט הנוכחי בתצוגת פוסט יחיד או דף יחיד."
-
-# wpml-name: 99df57ba97f711990739225adab3ecd7
-#: esc_attr( $instance['tag'] ), sprintf( __( 'Insert slugs separated by
-#: commas. To display posts that have all of the tags, use %1$s (a plus)
-#: between terms, for example:%2$s%3$s.', 'pis' '<code>+</code>', '<br />',
-#: '<code>staff+news+our-works</code>' ) ); ?>
-msgctxt "e7a75f0c916e3771aaf9df60d5126afa"
-msgid "Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s."
-msgstr "Iהזן את הסלאגים מופרדים בפסיק. כדי להציג פוסטים שיש להם את כל התגיות, השתמש ב %1$s (פלוס) בין התנאים, למשל:%2$s%3$s."
-
-# wpml-name: 4f47e6ba9de30ec81318469069c2421b
-#: pis_form_input_text( __( 'Get posts with these tags', 'pis' ),
-#: $this->get_field_id('tag'),
-msgctxt "39f7f123192773a2135af40945f43bfa"
-msgid "Get posts with these tags"
-msgstr "הצג פוסטים עם תגיות אלו"
-
-# wpml-name: b0b174b52da09a986186c5f79e34e2e4
-#: esc_attr( $instance['cat'] ), sprintf( __( 'Insert slugs separated by
-#: commas. To display posts that have all of the categories, use %1$s (a plus)
-#: between terms, for example:%2$s%3$s.', 'pis' '<code>+</code>', '<br />',
-#: '<code>staff+news+our-works</code>' ) ); ?>
-msgctxt "667da590f260a440788d1f88a17c0ae0"
-msgid "Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s."
-msgstr "הזן את הסלאגים מופרדים בפסיק. כדי להציג פוסטים שיש להם את כל הקטגוריות, השתמש ב%1$s (פלוס) בין התנאים, למשל:%2$s%3$s."
-
-# wpml-name: e07b37499460cea711d96ed2b317497c
-#: pis_form_input_text( __( 'Get posts with these categories', 'pis' ),
-#: $this->get_field_id('cat'),
-msgctxt "df1ffa02a72e60bfe37e35e389740858"
-msgid "Get posts with these categories"
-msgstr "הצג פוסטים מקטגוריות אלו"
 
 # wpml-name: ccca7a05bc09ca8ca68eb5b5bbcdff4b
 #: <p><em><?php _e( 'This section defines the margin for each line of widget.
@@ -634,6 +574,13 @@ msgstr "מטמון"
 msgctxt "96abc5e77c53f9d17e30837c736c2556"
 msgid "Extras"
 msgstr "תוספות"
+
+# wpml-name: c20bf5f9396c3cd9af587a9f99880045
+#: <hr /> <h4 class="pis-gray-title"><?php _e( 'The custom field', 'pis' );
+#: ?></h4>
+msgctxt "4d1f03b575d8c0fa0dc96dd49ab2d60b"
+msgid "Text when no posts found"
+msgstr "טקסט כאשר לא נמצאו פוסטים"
 
 # wpml-name: 75e365efccf8f7bb245d7c6dbbfcbeaf
 #: <h4 class="pis-gray-title"><?php _e( 'The link to the archive', 'pis' );
@@ -676,6 +623,14 @@ msgctxt "22ef516a0e3e68476ce9e7343021aa51"
 msgid "The text of the post"
 msgstr "הטקסט של הפוסט"
 
+# wpml-name: a5435c64b2eb8d0218c763a624e7e94e
+#: <?php if ( ! current_theme_supports( 'post-thumbnails' ) { ?> <p
+#: class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail
+#: feature. No image will be displayed.', 'pis' ); ?></p> }
+msgctxt "2e78287bc7c18405a5f373d9dd201bdf"
+msgid "Your theme does not support the Post Thumbnail feature. No image will be displayed."
+msgstr "ערכת הנושא שלך אינה תומכת בתכונה של תמונת פוסט. לא תוצג תמונה."
+
 # wpml-name: b335f05eecb08a15866eac5b669a5ac5
 #: <h4 class="pis-gray-title"><?php _e( 'The featured image of the post',
 #: 'pis' ); ?></h4>
@@ -689,20 +644,6 @@ msgstr "התמונה הראשית של הפוסט"
 msgctxt "9a48c6aa24821b0b93a3060764c1b28e"
 msgid "The title of the post"
 msgstr "כותרת הפוסט"
-
-# wpml-name: b5d03375216af932d5e37ca02b214c3d
-#: pis_form_input_text( __( 'Exclude posts from these tags', 'pis' ),
-#: $this->get_field_id('tag_not_in'),
-msgctxt "ae7b00626228bcfbad8c80183b67cf44"
-msgid "Exclude posts from these tags"
-msgstr "אל תכלול פוסטים עם התגיות שלהלן"
-
-# wpml-name: 9bcdc9c7c659b88aa1ef2de5678ccaa3
-#: pis_form_input_text( __( 'Exclude posts from these categories', 'pis' ),
-#: $this->get_field_id('cat_not_in'),
-msgctxt "4fdd014f01b73727efb4c677932b5b59"
-msgid "Exclude posts from these categories"
-msgstr "אל תכלול פוסטים מן הקטגוריות שלהן"
 
 # wpml-name: 88ad916470fd38ba43250d87cee85688
 #: <h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
@@ -723,10 +664,31 @@ msgctxt "229cd44e93730b303f872248bb1cfed9"
 msgid "The title of the widget"
 msgstr "הכותרת של הוידג'ט"
 
+# wpml-name: df05261534c44265dbff9235bf97c1a2
+#: pis_form_checkbox( __( 'Display the total number of queries, including
+#: WordPress, current theme and all active plugins', 'pis' ),
+#: $this->get_field_id( 'debug_query_number'
+msgctxt "33f5832230fbf54d8729d040526f38b5"
+msgid "Display the total number of queries, including WordPress, current theme and all active plugins"
+msgstr "מציג את המספר הכולל של שאילתות, כולל וורדפרס, ערכת נושא נוכחית וכל התוספים הפעילים"
+
+# wpml-name: 79e25207569f2ccad1b574ace5921348
+#: pis_form_checkbox( __( 'Display the complete set of parameters for widget',
+#: 'pis' ), $this->get_field_id( 'debug_params'
+msgctxt "ca103152ed14c3bb7afedb75133429bd"
+msgid "Display the complete set of parameters for the widget"
+msgstr "מציג את הסט השלם של פרמטרים עבור הוידג'ט"
+
+# wpml-name: c1d8bdb49c27eba0a1794746cb79afa0
+#: pis_form_checkbox( __( 'Display the query for widget', 'pis' ),
+#: $this->get_field_id( 'debug_query'
+msgctxt "d8804554f6ff2571f7797fb7175d6e1d"
+msgid "Display the query for the widget"
+msgstr "מציג את השאילתה עבור הוידג'ט"
+
 # wpml-name: 856ba67470300f8246b140de9a27555d
-#: pis_form_textarea( __( 'Custom styles', 'pis' ),
-#: $this->get_field_id('custom_styles'),
-msgctxt "14ab53d9c78f13125e0d9d616fbfd909"
+#: <h4 class="pis-gray-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+msgctxt "888395a48595e84ae4c43c61376e9232"
 msgid "Custom styles"
 msgstr "התאמת עיצוב"
 
@@ -739,105 +701,79 @@ msgid "In this field you can add your own styles, for example: %s"
 msgstr "בשדה זה תוכל להוסיף עיצובים משלך, למשל %s"
 
 # wpml-name: 19c1f00aa5f8915add85677c6e479c16
-#: <?php pis_form_input_text( __( 'Archive margin', 'pis' ),
-#: $this->get_field_id( 'archive_margin' $this->get_field_name( esc_attr(
-#: $instance['archive_margin'] ) ); ?> 'No-posts 'noposts_margin'
-#: $instance['noposts_margin'] </div>
-msgctxt "eca2d11488482ce4e61777ab5d071001"
+#: sprintf( __( 'Enter the name of your container (for example, %1$s). The
+#: plugin will add a new %2$s with this class. You can enter only one class
+#: and may contain letters, hyphens underscores. enclose all widget, from
+#: title to last line.', 'pis' ), '<code>my-container</code>',
+#: '<code>div</code>' ) ); ?>
+msgctxt "cb30fd31765be07d2cc4fa0d7187c741"
 msgid "No-posts margin"
 msgstr "שוליים של אין פוסטים"
 
 # wpml-name: 462c7ab42e47934359b95049cf92b676
-#: <?php pis_form_input_text( __( 'Custom field margin', 'pis' ),
-#: $this->get_field_id( 'custom_field_margin' $this->get_field_name( esc_attr(
-#: $instance['custom_field_margin'] ) ); ?> 'Archive 'archive_margin'
-#: $instance['archive_margin'] 'No-posts 'noposts_margin'
-#: $instance['noposts_margin']
-msgctxt "9b6e01c88fe60e2be77b0236aa7cf33d"
+#: 'posts-container', sprintf( __( 'Enter the name of your container (for
+#: example, %1$s). The plugin will add a new %2$s with this class. You can
+#: enter only one class and may contain letters, hyphens underscores. enclose
+#: all widget, from title to last line.', 'pis' ),
+#: '<code>my-container</code>', '<code>div</code>' )
+msgctxt "a7d6325d48fd019a9ea549b27aedbe35"
 msgid "Archive margin"
 msgstr "שוליים של ארכיון"
 
 # wpml-name: 48ec007a675e24223572beebad63ee80
-#: <div class="pis-column-last"> <?php pis_form_input_text( __( 'Custom field
-#: margin', 'pis' ), $this->get_field_id( 'custom_field_margin'
-#: $this->get_field_name( esc_attr( $instance['custom_field_margin'] ) ); ?>
-#: 'Archive 'archive_margin' $instance['archive_margin']
-msgctxt "877c97d24ae998ccd83baab66050b648"
+#: esc_attr( $instance['container_class'] ), 'posts-container', sprintf(
+msgctxt "c932b54ade6ec12360fd03cb0e8b8394"
 msgid "Custom field margin"
 msgstr "השוליים של השדה"
 
 # wpml-name: d8464f7c9fb6b60c2b281c2a8a36fe45
-#: <?php pis_form_input_text( __( 'Categories margin', 'pis' ),
-#: $this->get_field_id( 'categories_margin' $this->get_field_name( esc_attr(
-#: $instance['categories_margin'] ) ); ?> 'Tags 'tags_margin'
-#: $instance['tags_margin'] </div>
-msgctxt "8767a793004edd603d916dd7213c8de0"
+#: pis_form_input_text( __( 'Add a global container with this CSS class',
+#: 'pis' ), $this->get_field_id('container_class'),
+msgctxt "a3104568221688540cb7287b37fbf9e5"
 msgid "Tags margin"
 msgstr "שוליים של תגיות"
 
 # wpml-name: 669378bb7c531aae4a0a15cd8d301e8e
-#: <?php pis_form_input_text( __( 'Utility margin', 'pis' ),
-#: $this->get_field_id( 'utility_margin' $this->get_field_name( esc_attr(
-#: $instance['utility_margin'] ) ); ?> 'Categories 'categories_margin'
-#: $instance['categories_margin'] 'Tags 'tags_margin' $instance['tags_margin']
-msgctxt "1e8fb3c38e53c80742594a00cd059121"
+#: <?php // ================= Container Class pis_form_input_text( __( 'Add a
+#: global container with this CSS class', 'pis' ),
+msgctxt "c2f5f6eb7d40b6e300c76277373e5d8c"
 msgid "Categories margin"
 msgstr "שוליים של קטגוריה"
 
 # wpml-name: 5b2e14fcee31e5a9253c0d1d30873d87
-#: <?php pis_form_input_text( __( 'Excerpt margin', 'pis' ),
-#: $this->get_field_id( 'excerpt_margin' $this->get_field_name( esc_attr(
-#: $instance['excerpt_margin'] ) ); ?> 'Utility 'utility_margin'
-#: $instance['utility_margin'] 'Categories 'categories_margin'
-#: $instance['categories_margin']
-msgctxt "fc537157b1e8aa15495d3c7ee830d819"
+#: <?php // ================= Container Class pis_form_input_text(
+msgctxt "03dd5f92ef48df00b38344974447d327"
 msgid "Utility margin"
 msgstr "שוליים של שירות"
 
 # wpml-name: f191b6b3f4ac1691be1a598d2bae3236
-#: <div class="pis-column"> <?php pis_form_input_text( __( 'Excerpt margin',
-#: 'pis' ), $this->get_field_id( 'excerpt_margin' $this->get_field_name(
-#: esc_attr( $instance['excerpt_margin'] ) ); ?> 'Utility 'utility_margin'
-#: $instance['utility_margin']
-msgctxt "f76e80abdf46ee9a6a0b3753128de1aa"
+#: <h4 class="pis-gray-title"><?php _e( 'Extras', 'pis' ); ?></h4> <?php //
+#: ================= Container Class
+msgctxt "7b4de20bef307fb6f94e4381513038e6"
 msgid "Excerpt margin"
 msgstr "שוליים של המובאה"
 
 # wpml-name: a4342054f189bcf20f48426b0433e8a8
-#: <?php pis_form_input_text( __( 'Left/Right image margin', 'pis' ),
-#: $this->get_field_id( 'side_image_margin' $this->get_field_name( esc_attr(
-#: $instance['side_image_margin'] ) ); ?> 'Bottom 'bottom_image_margin'
-#: $instance['bottom_image_margin'] </div>
-msgctxt "d161d2c2482f07ea562a2b334e2b1ea2"
+#: </div> <div class="clear"></div>
+msgctxt "1f4f944663ff4a1e5453acfd4d6fb9e4"
 msgid "Bottom image margin"
 msgstr "שוליים של תמונת כפתור"
 
 # wpml-name: d9c2635732deaa0a10b17ae5511623db
-#: <?php pis_form_input_text( __( 'Title margin', 'pis' ),
-#: $this->get_field_id( 'title_margin' $this->get_field_name( esc_attr(
-#: $instance['title_margin'] ) ); ?> 'Left/Right image 'side_image_margin'
-#: $instance['side_image_margin'] 'Bottom 'bottom_image_margin'
-#: $instance['bottom_image_margin']
-msgctxt "4de01aa096cc4b4f1dbeab69828b36c2"
+#: </div>
+msgctxt "dfb21590f7183911b416565b07971349"
 msgid "Left/Right image margin"
 msgstr "שוליים שמאלימין של תמונה"
 
 # wpml-name: 81aea4aa201789725adf9c0c47b3eca4
-#: <?php pis_form_input_text( __( 'Introduction margin', 'pis' ),
-#: $this->get_field_id( 'intro_margin' $this->get_field_name( esc_attr(
-#: $instance['intro_margin'] ) ); ?> 'Title 'title_margin'
-#: $instance['title_margin'] 'Left/Right image 'side_image_margin'
-#: $instance['side_image_margin']
-msgctxt "e63acabc66fc2acc3d6460e638119e43"
+#: ); ?> </div>
+msgctxt "3278abb6413ecc35dbe448a0ad5f3f08"
 msgid "Title margin"
 msgstr "שוליים של הכותרת"
 
 # wpml-name: 2d2acb42ae58539e9c3b559f7f383ab7
-#: <div class="pis-column"> <?php pis_form_input_text( __( 'Introduction
-#: margin', 'pis' ), $this->get_field_id( 'intro_margin'
-#: $this->get_field_name( esc_attr( $instance['intro_margin'] ) ); ?> 'Title
-#: 'title_margin' $instance['title_margin']
-msgctxt "2f425dba9c7780f775e58b16a4e5d24b"
+#: checked( $hide_widget, true, false ) ); ?>
+msgctxt "6d75c510391faf42c35e812d6fd05464"
 msgid "Introduction margin"
 msgstr "שוליים של הקדמה"
 
@@ -857,10 +793,10 @@ msgid "Unit for margins"
 msgstr "יחידת שוליים"
 
 # wpml-name: 5d27e0aef8b34e142619be77ae6389ae
-#: esc_attr( $instance['cache_time'] ), sprintf( __( 'For example, %1$s for
-#: one hour of cache. To reset the cache, enter %2$s and save widget.', 'pis'
-#: '<code>3600</code>', '<code>0</code>' ) ); ?>
-msgctxt "3dc52d8a03a26204b0544606c006dda6"
+#: '3600', sprintf( __( 'For example, %1$s for one hour of cache. To reset the
+#: cache, enter %2$s and save widget.', 'pis' ), '<code>3600</code>',
+#: '<code>0</code>' ) ); ?>
+msgctxt "656216fb98abb35af15f7251bd6c3d23"
 msgid "For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget."
 msgstr "למשל, %1$s לשעה של זכרון מטמון. כדי לאפס את המטמון, הזן %2$s ושמור את הוידג'ט."
 
@@ -920,11 +856,15 @@ msgctxt "cadeccda735ad86901166451736dd037"
 msgid "Unordered list"
 msgstr "רשימה לא מסודרת"
 
-# wpml-name: 49ad500e092ef3a77842071d00c0ae97
-#: 'value' => 'ul', 'desc' __( 'Unordered list', 'pis' ) ),
-msgctxt "a0d76b30aaab79760cca9ef771de5eb1"
-msgid "The plugin will add a new %s container with this class. You can enter only one class and the name could contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title up to the last line."
-msgstr "התוסף יוסיף מיכל %sעם מחלקה זו. אפשר להזין רק מחלקה אחת והשם יכול להכיל רק אותיות, מקפים וקוים תחתונים. המיכל החדש יחול על כל הוידג'ט מהכותרת ועד השורה האחרונה."
+# wpml-name: fe22377199a54ea91fab7d4eb137770d
+#: sprintf( __( 'Enter the name of your container (for example, %1$s). The
+#: plugin will add a new %2$s with this class. You can enter only one class
+#: and may contain letters, hyphens underscores. enclose all widget, from
+#: title to last line.', 'pis' ), '<code>my-container</code>',
+#: '<code>div</code>' ) ); ?>
+msgctxt "fc2ad2c7cae1240ddec72115954a99a3"
+msgid "Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line."
+msgstr "הזן את שם המיכל (למשל, %1$s). התוסף יוסיף מיכל %2$s חדש עם מחלקה זו. ניתן להזין מחלקה אחת בלבד והשם יכול לכלול רק אותיות מקפים וקו תחתון. המיכל החדש יסגור את כל הוידג'טמן הכתורת ועד לשורה האחרונה."
 
 # wpml-name: 3f1ce8888b86ac643307bd6ca0e86a84
 #: pis_form_input_text( __( 'Add a global container with this CSS class',
@@ -932,6 +872,15 @@ msgstr "התוסף יוסיף מיכל %sעם מחלקה זו. אפשר להזי
 msgctxt "559591eb7f3eed9813211d0c605d7c98"
 msgid "Add a global container with this CSS class"
 msgstr "הוסף מיכל כללי עם מחלקת CSS זו"
+
+# wpml-name: 3bb747c972056529ebc702f4c611e13f
+#: pis_form_input_text( __( 'Use this text before the custom field', 'pis' ),
+#: $this->get_field_id( 'custom_field_txt' $this->get_field_name( esc_attr(
+#: $instance['custom_field_txt'] 'Custom field:', ) ); ?> <?php //
+#: ================= Which field
+msgctxt "d48d3b0525a6acdc9a44cdd58a84fa54"
+msgid "If the field is blank, the whole widget won't be displayed at all if no posts are found."
+msgstr "אם השדה ריק, כל הוידג'ט לא יוצג כלל אם לא נמצאו פוסטים."
 
 # wpml-name: 01705813b3829f132a4d74ebd033526b
 #: pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ),
@@ -941,20 +890,16 @@ msgid "Use this text when there are no posts"
 msgstr "השתמש בטקסט זה כאשר אין פוסטים"
 
 # wpml-name: 6a164dd1e4bc9a064d7f8e8f81cc8aca
-#: <?php // ================= Archive link text pis_form_input_text( __( 'Use
-#: this for archive link', 'pis' ), $this->get_field_id( 'archive_text'
-#: $this->get_field_name( esc_attr( $instance['archive_text'] 'Please, note
-#: that if you don\'t select any taxonomy, the won\'t appear.', ) ); ?>
-msgctxt "3e6859d45b7b5911f59a112e8dae942e"
+#: __( 'Display all posts', 'pis' ), 'Please, note that if you don\'t select
+#: any taxonomy, the link won\'t appear.', ) ); ?>
+msgctxt "9e0a0e470aea386e0d8d4c772d5ac4e4"
 msgid "Please, note that if you don't select any taxonomy, the link won't appear."
 msgstr "נא לשים לב שאם לא בוחרים טקסונומיה, הקישור לא יופיע."
 
 # wpml-name: bade3ed1eff26669c57fb5e7f4a39d45
-#: <?php // ================= Archive link text pis_form_input_text( __( 'Use
-#: this for archive link', 'pis' ), $this->get_field_id( 'archive_text'
-#: $this->get_field_name( esc_attr( $instance['archive_text'] 'Please, note
-#: that if you don\'t select any taxonomy, the won\'t appear.', ) ); ?>
-msgctxt "5604d48f24f4a05c42aa520125478fac"
+#: pis_form_input_text( __( 'Use this text for archive link', 'pis' ),
+#: $this->get_field_id( 'archive_text'
+msgctxt "d05d350aec70db89f1d2ddca239d0b81"
 msgid "Use this text for archive link"
 msgstr "השתמש בטקסט זה עבור קישור לארכיון"
 
@@ -1004,8 +949,8 @@ msgstr "הצג את הקישור לארכיון הטקסונומיה"
 #: <?php // ================= Custom field separator pis_form_input_text( __(
 #: 'Use this between meta key and value', 'pis' ), $this->get_field_id(
 #: 'custom_field_sep' $this->get_field_name( esc_attr(
-#: $instance['custom_field_sep'] ) ); ?>
-msgctxt "253a63314adf0c4c8c34e8a57dfbecb9"
+#: $instance['custom_field_sep'] ':' ); ?>
+msgctxt "fac00a2221ea3d26b8bc945236864120"
 msgid "Use this separator between meta key and value"
 msgstr "השתמש במפריד זה בין מפתח תיאור וערך"
 
@@ -1029,8 +974,8 @@ msgstr "הצג את השדה הזה"
 #: <?php // ================= Custom fields text pis_form_input_text( __( 'Use
 #: this before the custom field', 'pis' ), $this->get_field_id(
 #: 'custom_field_txt' $this->get_field_name( esc_attr(
-#: $instance['custom_field_txt'] ) ); ?>
-msgctxt "db4c4c0c02e82c231655de29b0a1ea41"
+#: $instance['custom_field_txt'] 'Custom field:', ) ); ?>
+msgctxt "c733733b4e0c3604f90276b3b76cb121"
 msgid "Use this text before the custom field"
 msgstr "השתמש בטקסט זה לפני השדה האישי"
 
@@ -1043,27 +988,25 @@ msgid "Display the custom field of the post"
 msgstr "הצג את השדה של הפוסט"
 
 # wpml-name: e2ea98026b3207fea56e0d1fb002b43b
-#: <?php // ================= Tags separator pis_form_input_text( __( 'Use
-#: this between tags', 'pis' ), $this->get_field_id( 'tag_sep'
-#: $this->get_field_name( esc_attr( $instance['tag_sep'] 'A space will be
-#: added after the separator.', ) ); ?>
-msgctxt "de89554a5de1d841ccd3d9bcce6ca1af"
+#: pis_form_input_text( __( 'Use this separator between tags', 'pis' ),
+#: $this->get_field_id( 'tag_sep'
+msgctxt "7e7232ef8d6b06a082e6b8fbaf63fa4b"
 msgid "Use this separator between tags"
 msgstr "השתמש במפריד זה בין התגיות"
 
 # wpml-name: d8299e14fccf23727dc37047c42a9acb
 #: <?php // ================= Hashtag pis_form_input_text( __( 'Use this
 #: hashtag', 'pis' ), $this->get_field_id( 'hashtag' $this->get_field_name(
-#: esc_attr( $instance['hashtag'] ) ); ?>
-msgctxt "3ecbc53cea1307d9b54e31eb70214185"
+#: esc_attr( $instance['hashtag'] '#' ); ?>
+msgctxt "3b60e44fcf0ffdc6779afd9ea8a4ce14"
 msgid "Use this hashtag"
 msgstr "השתמש ברשתית"
 
 # wpml-name: 71fd2f84e785d1bdc0ea1966d7c25c6d
 #: <?php // ================= Tags text pis_form_input_text( __( 'Use this
 #: before tags list', 'pis' ), $this->get_field_id( 'tags_text'
-#: $this->get_field_name( esc_attr( $instance['tags_text'] ) ); ?>
-msgctxt "c5495138f2ea5cbf8be2b841d211c210"
+#: $this->get_field_name( esc_attr( $instance['tags_text'] 'Tags:', ) ); ?>
+msgctxt "17e087bc584e19b5cdbfdfeeef212ba9"
 msgid "Use this text before tags list"
 msgstr "השתמש בטקסט זה לפני רשימת התגיות"
 
@@ -1076,28 +1019,24 @@ msgid "Show the tags of the post"
 msgstr "הצגת התגיות של הפוסט"
 
 # wpml-name: efddc13301e83a545535741ab8bc9622
-#: <?php // ================= Categories separator pis_form_input_text( __(
-#: 'Use this between categories', 'pis' ), $this->get_field_id( 'categ_sep'
-#: $this->get_field_name( esc_attr( $instance['categ_sep'] 'A space will be
-#: added after the separator.', ) ); ?>
-msgctxt "167a5edd0466cfa03b3ec717f217838d"
+#: ',', __( 'A space will be added after the separator.', 'pis' ) ); ?>
+msgctxt "9da2344518a945d5c175a49e9f481125"
 msgid "A space will be added after the separator."
 msgstr "יתווסף רווח לפני ואחרי המפריד."
 
 # wpml-name: a2fe62090a351580b9ca6f8f03bd766b
-#: <?php // ================= Categories separator pis_form_input_text( __(
-#: 'Use this between categories', 'pis' ), $this->get_field_id( 'categ_sep'
-#: $this->get_field_name( esc_attr( $instance['categ_sep'] 'A space will be
-#: added after the separator.', ) ); ?>
-msgctxt "5519654b9f98f2ded16616ae79a27895"
+#: pis_form_input_text( __( 'Use this separator between categories', 'pis' ),
+#: $this->get_field_id( 'categ_sep'
+msgctxt "07a31ae5e07cea62b7743cab2d5a2da5"
 msgid "Use this separator between categories"
 msgstr "השתמש במפריד זה בין הקטגוריות"
 
 # wpml-name: 4496be730dd3ffdeec92e241f05d01e2
 #: <?php // ================= Categories text pis_form_input_text( __( 'Use
 #: this before categories list', 'pis' ), $this->get_field_id( 'categ_text'
-#: $this->get_field_name( esc_attr( $instance['categ_text'] ) ); ?>
-msgctxt "dc9549e681a2963913924f8a3be16aee"
+#: $this->get_field_name( esc_attr( $instance['categ_text'] 'Category:', ) );
+#: ?>
+msgctxt "11b4c356303da73933a3381b67904fa3"
 msgid "Use this text before categories list"
 msgstr "השתמש בטקסט זה לפני רשימת הקטגוריות"
 
@@ -1121,26 +1060,27 @@ msgstr "הצג מקטע זה אחרי כותרת הפוסט"
 # wpml-name: 1b7bdf42b45807052a8a00b738bc9a75
 #: <?php // ================= Utility separator pis_form_input_text( __( 'Use
 #: this between author, date and comments', 'pis' ), $this->get_field_id(
-#: 'utility_sep' $this->get_field_name( esc_attr( $instance['utility_sep'] 'A
-#: space will be added before after the separator.', ) ); ?>
-msgctxt "46e7cfbd2673d1036666e34779bb31e6"
+#: 'utility_sep' $this->get_field_name( esc_attr( $instance['utility_sep']
+#: '|', 'A space will be added before after the separator.', ) ); ?>
+msgctxt "3147dd09bd4a46c8075192c55ff58a6e"
 msgid "A space will be added before and after the separator."
 msgstr "יתווסף מרווח לפני ואחרי המפריד."
 
 # wpml-name: fd413914067ff04523f98e0bb06fdbac
 #: <?php // ================= Utility separator pis_form_input_text( __( 'Use
 #: this between author, date and comments', 'pis' ), $this->get_field_id(
-#: 'utility_sep' $this->get_field_name( esc_attr( $instance['utility_sep'] 'A
-#: space will be added before after the separator.', ) ); ?>
-msgctxt "3135b63dac621ed0e9423db0d19b3a42"
+#: 'utility_sep' $this->get_field_name( esc_attr( $instance['utility_sep']
+#: '|', 'A space will be added before after the separator.', ) ); ?>
+msgctxt "b29aeabf4a229bee632ea8b908eb288f"
 msgid "Use this separator between author, date and comments"
 msgstr "השתמש במפריד זה בין מהמחבר לתאריך ולתגובות"
 
 # wpml-name: f99970e27e189c48d062b816f673c647
 #: <?php // ================= Comments text pis_form_input_text( __( 'Use this
 #: before comments number', 'pis' ), $this->get_field_id( 'comments_text'
-#: $this->get_field_name( esc_attr( $instance['comments_text'] ) ); ?>
-msgctxt "d00f30662d9960331008ae0d3c685319"
+#: $this->get_field_name( esc_attr( $instance['comments_text'] 'Comments:', )
+#: ); ?>
+msgctxt "5d408e65625458bd6f57e7807dda134b"
 msgid "Use this text before comments number"
 msgstr "השתמש בטקסט זה לפני מספר התגובות"
 
@@ -1163,8 +1103,9 @@ msgstr "לקשר את התאריך לפוסט"
 # wpml-name: 85e6e3817ccb51943ad0f251647a048e
 #: <?php // ================= Date text pis_form_input_text( __( 'Use this
 #: before date', 'pis' ), $this->get_field_id( 'date_text'
-#: $this->get_field_name( esc_attr( $instance['date_text'] ) ); ?>
-msgctxt "fb79fc206881deab3a298e738bd442fa"
+#: $this->get_field_name( esc_attr( $instance['date_text'] 'Published on', )
+#: ); ?>
+msgctxt "b616b9c91c53a5fa033fe2f847c47a58"
 msgid "Use this text before date"
 msgstr "השתמש בטקסט זה לפני התאריך"
 
@@ -1187,8 +1128,8 @@ msgstr "לקשר את שם המחבר לארכיון שלו"
 # wpml-name: 85ea95c2342890e2acbd6e5d40b69021
 #: <?php // ================= Author text pis_form_input_text( __( 'Use this
 #: before author\'s name', 'pis' ), $this->get_field_id( 'author_text'
-#: $this->get_field_name( esc_attr( $instance['author_text'] ) ); ?>
-msgctxt "f0e670a434bbc3167489faa2a961844c"
+#: $this->get_field_name( esc_attr( $instance['author_text'] 'By', ) ); ?>
+msgctxt "0defd56fc5324334274acd3261ea5f4f"
 msgid "Use this text before author's name"
 msgstr "השתמש בטקסט זה לפני שם המחבר"
 
@@ -1211,8 +1152,9 @@ msgstr "הצג חץ אחרי הקישור להמשך קריאה"
 # wpml-name: 608eb363d52663dd5037d818d0e39a9b
 #: <?php // ================= More link text pis_form_input_text( __( 'Use
 #: this for link', 'pis' ), $this->get_field_id( 'the_more'
-#: $this->get_field_name( esc_attr( $instance['the_more'] ) ); ?>
-msgctxt "057ac5ac58d2c54758d37c11ec5d87b3"
+#: $this->get_field_name( esc_attr( $instance['the_more'] 'Read more&hellip;',
+#: ) ); ?>
+msgctxt "0d5a9db18c562cf513dc9ee7d10d4bf9"
 msgid "Use this text for More link"
 msgstr "השתמש בטקסט זה לקישור המשך קריאה"
 
@@ -1220,8 +1162,8 @@ msgstr "השתמש בטקסט זה לקישור המשך קריאה"
 #: <?php // ================= Excerpt length pis_form_input_text( __( 'The
 #: WordPress generated excerpt will be (in words)', 'pis' ),
 #: $this->get_field_id( 'exc_length' $this->get_field_name( esc_attr(
-#: $instance['exc_length'] ) ); ?>
-msgctxt "760b527c28bd9677de207ba484f630c4"
+#: $instance['exc_length'] '20' ); ?>
+msgctxt "4a47e7c421b6b917a4641dfeb3e05006"
 msgid "The WordPress generated excerpt length will be (in words)"
 msgstr "אורך המובאה יהיה (במילים)"
 
@@ -1237,6 +1179,13 @@ msgstr "הצג סוג זה של טקסט"
 msgctxt "a4498399070ac40d33ed847fe63fe86a"
 msgid "Do not show any text"
 msgstr "לא להציג טקסט"
+
+# wpml-name: e68e59361edf20ecf98b32ca3beeeb0a
+#: 'value' => 'only_read_more', 'desc' __( 'Display only the Read more link',
+#: 'pis' ) ),
+msgctxt "08b42e32c9d59279ccefeb15c40ada56"
+msgid "Display only the Read more link"
+msgstr "הצג רק את קישור קרא עוד"
 
 # wpml-name: 2b6d716eda3290ae1d9b82d8ad232eec
 #: 'value' => 'excerpt', 'desc' __( 'The excerpt', 'pis' ) ),
@@ -1270,11 +1219,11 @@ msgid "The full content"
 msgstr "את התוכן המלא"
 
 # wpml-name: 4c2d87a2499298c7257f4879a0c0f67a
-#: <?php // ================= Positioning image bfore title pis_form_checkbox(
-#: __( 'Display the before of post', 'pis' ), $this->get_field_id(
+#: <?php // ================= Positioning image before title
+#: pis_form_checkbox( __( 'Display the of post', 'pis' ), $this->get_field_id(
 #: 'image_before_title' $this->get_field_name( checked( $image_before_title,
 #: true, false ) ); ?>
-msgctxt "5540192507052a5a8f65c5570fc419fe"
+msgctxt "4a0a2938cd3328dc7de19ab4080c2ed4"
 msgid "Display the image before the title of the post"
 msgstr "הצג את התמונה לפני כותרת הפוסט"
 
@@ -1367,13 +1316,25 @@ msgctxt "5acd655966106d7a24cea6cee0b7c35d"
 msgid "Display the title of the post"
 msgstr "הצגת כותרת הפוסט"
 
-# wpml-name: 37bcaa6d7cea7cb357e9bf16a4708fcc
-#: <?php // ================= Title of the post pis_form_checkbox( __(
-#: 'Display title post', 'pis' ), $this->get_field_id( 'display_title'
-#: $this->get_field_name( checked( $display_title, true, false ) ); ?>
-msgctxt "857c10c43903c423cf4e80b0cfd10970"
-msgid "Use %1$sCTRL+clic%2$s to select/deselect multiple items."
-msgstr "השתמש ב %1$sCTRL+קליק%2$s כדי לבחור או לבטל בחירה של פריטים מרובים."
+# wpml-name: b5d03375216af932d5e37ca02b214c3d
+#: pis_form_input_text( __( 'Exclude posts from these tags', 'pis' ),
+#: $this->get_field_id('tag_not_in'),
+msgctxt "ae7b00626228bcfbad8c80183b67cf44"
+msgid "Exclude posts from these tags"
+msgstr "אל תכלול פוסטים עם התגיות שלהלן"
+
+# wpml-name: 34d4cb2488c80f40e5ec299ee517f6e8
+#: '7, 11', __( 'Insert IDs separated by commas.', 'pis' ) ); ?>
+msgctxt "3d18866abcea52ae1e179caa49e19543"
+msgid "Insert IDs separated by commas."
+msgstr "Iהזן מזהים מופרדים בפסיק."
+
+# wpml-name: 9bcdc9c7c659b88aa1ef2de5678ccaa3
+#: pis_form_input_text( __( 'Exclude posts from these categories', 'pis' ),
+#: $this->get_field_id('cat_not_in'),
+msgctxt "4fdd014f01b73727efb4c677932b5b59"
+msgid "Exclude posts from these categories"
+msgstr "אל תכלול פוסטים מן הקטגוריות שלהן"
 
 # wpml-name: d8a2fa93da55d4ebe75cdf61e5bbd54c
 #: pis_form_input_text( __( 'Exclude posts with these IDs', 'pis' ),
@@ -1382,35 +1343,48 @@ msgctxt "54d888ca106125e848324703778af3d0"
 msgid "Exclude posts with these IDs"
 msgstr "אל תכלול פוסטים עם המזהים שלהלן"
 
-# wpml-name: fbc76facb81c08672c3f4f67b60d9863
-#: pis_form_input_text( __( 'Exclude posts with these IDs', 'pis' ),
-#: $this->get_field_id('post_not_in'),
-msgctxt "d466ff958064ca92d135b36575d89e01"
-msgid "Sticky posts are automatically ignored if you set up an author or a taxonomy in this widget."
-msgstr "אם קובעים מחבר או טקסונומיה בוידג'ט זה, הוא מתעלם אוטומטית מפוסטים דביקים."
+# wpml-name: 8de357f158acebcc48703eede36b3c77
+#: <?php // ================= Exclude current post pis_form_checkbox( __(
+#: 'Automatically exclude the in single or page page', 'pis' ),
+#: $this->get_field_id( 'exclude_current_post' $this->get_field_name( checked(
+#: $exclude_current_post, true, false ) ); ?>
+msgctxt "f8fad9a4dd6e08538aa939a02b9b90c0"
+msgid "Automatically exclude the current post in single post or the current page in single page"
+msgstr "אוטומטיח, אל תכלול את הפוסט הנוכחי בתצוגת פוסט יחיד או דף יחיד."
 
-# wpml-name: 3134499fed475a4b930d9ce93ac6623f
-#: pis_form_input_text( __( 'Exclude posts with these IDs', 'pis' ),
-#: $this->get_field_id('post_not_in'),
-msgctxt "5b93195798a6e5090df6ee89172bc60b"
-msgid "Ignore sticky posts status"
-msgstr "תתעלם ממצב פוסטים דביקים"
+# wpml-name: fcc82541e02d8b3edd33a0615aa2ed3f
+#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
+#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
+#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
+#: 'If you activate this option, will be managed as posts. Sticky status
+#: automatically ignored if set up an author or a taxonomy in widget.', ) );
+#: ?>
+msgctxt "fead51fc2e8861f2b573b9c13b463e63"
+msgid "If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget."
+msgstr "אם אתה מפעיל אפשרות זו, פוסטים דביקים ינוהלו כפוסטים אחרים. אם אתה מגדיר מחבר או טקסונומיה בוידג'ט זה, תהיה התעלמות אוטומטית ממצב פוסט דביק."
+
+# wpml-name: dcee02dab1ed38ea1e5e48403a64739a
+#: <?php // ================= Ignore sticky post pis_form_checkbox( __( 'Do
+#: not display posts on top of other posts', 'pis' ), $this->get_field_id(
+#: 'ignore_sticky' $this->get_field_name( checked( $ignore_sticky, true, false
+#: 'If you activate this option, will be managed as posts. Sticky status
+#: automatically ignored if set up an author or a taxonomy in widget.', ) );
+#: ?>
+msgctxt "0834e405761643416f635637aad27354"
+msgid "Do not display sticky posts on top of other posts"
+msgstr "אל תציג פוסטים דביקים מעל פוסטים אחרים"
 
 # wpml-name: 4857a5985844c22f226310544c518c6f
-#: <?php // ================= Post meta value pis_form_input_text( __( 'Get
-#: post with this value', 'pis' ), $this->get_field_id('post_meta_val'),
-#: $this->get_field_name('post_meta_val'), esc_attr(
-#: $instance['post_meta_val'] ) ); ?>
-msgctxt "01ff31964543c2c595d21049170092f1"
+#: pis_form_input_text( __( 'Get post with this meta value', 'pis' ),
+#: $this->get_field_id('post_meta_val'),
+msgctxt "df64b79deb42b53983dc43e05cccb4b8"
 msgid "Get post with this meta value"
 msgstr "הצג פוסטים עם ערך התיאור שלהלן"
 
 # wpml-name: 4ce136c874a3857d614537ee8409636f
-#: <?php // ================= Post meta key pis_form_input_text( __( 'Get post
-#: with this key', 'pis' ), $this->get_field_id('post_meta_key'),
-#: $this->get_field_name('post_meta_key'), esc_attr(
-#: $instance['post_meta_key'] ) ); ?>
-msgctxt "286a18d07f0e507005627ff2eacbc4fa"
+#: pis_form_input_text( __( 'Get post with this meta key', 'pis' ),
+#: $this->get_field_id('post_meta_key'),
+msgctxt "70f323d7ed93d42daf3221c1017d7cce"
 msgid "Get post with this meta key"
 msgstr "הצג פוסטים עם מפתח התיאור שלהלן"
 
@@ -1422,11 +1396,9 @@ msgid "Get posts with this post status"
 msgstr "הצג פוסטים בסטטוס זה"
 
 # wpml-name: f8ac41d23ba0b31c63ceb6242e78dcfa
-#: <?php // ================= Number of posts to skip pis_form_input_text( __(
-#: 'Skip this number posts', 'pis' ), $this->get_field_id('offset_number'),
-#: $this->get_field_name('offset_number'), esc_attr(
-#: $instance['offset_number'] ) ); ?>
-msgctxt "d9e51f60462fe60d026d5b190ab6a494"
+#: pis_form_input_text( __( 'Skip this number of posts', 'pis' ),
+#: $this->get_field_id('offset_number'),
+msgctxt "bc4ad20b9d12d40396ceb7c5c4b16f29"
 msgid "Skip this number of posts"
 msgstr "דלג על מספר זה של פוסטים"
 
@@ -1535,9 +1507,9 @@ msgid "None"
 msgstr "ללא"
 
 # wpml-name: ddd448345607b7cd5b456e97c4bbdcd4
-#: esc_attr( $instance['number'] ), sprintf( __( 'The value %s shows all the
-#: posts.', 'pis' '<code>-1</code>' ) ); ?>
-msgctxt "0bcc9574522e9dbab64af6a9b497195a"
+#: '3', sprintf( __( 'The value %s shows all the posts.', 'pis' ),
+#: '<code>-1</code>' ) ); ?>
+msgctxt "3bed464bfe6231e7815dcfb6abaa3858"
 msgid "The value %s shows all the posts."
 msgstr "הערך %s מציג את כל הפוסטים."
 
@@ -1555,18 +1527,36 @@ msgctxt "bca30816ce917bdfde023de191e9866e"
 msgid "Get posts with this post format"
 msgstr "הצג פוסטים בפורמט זה"
 
-# wpml-name: 0e27c32285d711124654e9166a618f88
-#: pis_form_select( __( 'Get posts with this post format', 'pis' ),
-#: $this->get_field_id('post_format'),
-msgctxt "c0d405b421f2e4b5251d5ca38e4770b4"
-msgid "Get posts with this tag"
+# wpml-name: 99df57ba97f711990739225adab3ecd7
+#: __( 'best-sellers', 'pis' ), sprintf( 'Insert slugs separated by commas. To
+#: display posts that have all of the tags, use %1$s (a plus) between terms,
+#: for example:%2$s%3$s.', '<code>+</code>', '<br />',
+#: '<code>staff+news+our-works</code>' ) ); ?>
+msgctxt "4d9838f1b47703e0541163e1266de80d"
+msgid "Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s."
+msgstr "Iהזן את הסלאגים מופרדים בפסיק. כדי להציג פוסטים שיש להם את כל התגיות, השתמש ב %1$s (פלוס) בין התנאים, למשל:%2$s%3$s."
+
+# wpml-name: 4f47e6ba9de30ec81318469069c2421b
+#: pis_form_input_text( __( 'Get posts with these tags', 'pis' ),
+#: $this->get_field_id('tag'),
+msgctxt "39f7f123192773a2135af40945f43bfa"
+msgid "Get posts with these tags"
 msgstr "הצג פוסטים עם תגיות אלו"
 
-# wpml-name: 4d0eb3482a6583c12cb450c81a5609dc
-#: pis_form_select( __( 'Get posts with this post format', 'pis' ),
-#: $this->get_field_id('post_format'),
-msgctxt "094614d6448aec96542006f9de820258"
-msgid "Get posts with this category"
+# wpml-name: b0b174b52da09a986186c5f79e34e2e4
+#: __( 'books, ebooks', 'pis' ), sprintf( 'Insert slugs separated by commas.
+#: To display posts that have all of the categories, use %1$s (a plus) between
+#: terms, for example:%2$s%3$s.', '<code>+</code>', '<br />',
+#: '<code>staff+news+our-works</code>' ) ); ?>
+msgctxt "58d62ee4811388c42c6539de71fef940"
+msgid "Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s."
+msgstr "הזן את הסלאגים מופרדים בפסיק. כדי להציג פוסטים שיש להם את כל הקטגוריות, השתמש ב%1$s (פלוס) בין התנאים, למשל:%2$s%3$s."
+
+# wpml-name: e07b37499460cea711d96ed2b317497c
+#: pis_form_input_text( __( 'Get posts with these categories', 'pis' ),
+#: $this->get_field_id('cat'),
+msgctxt "df1ffa02a72e60bfe37e35e389740858"
+msgid "Get posts with these categories"
 msgstr "הצג פוסטים מקטגוריות אלו"
 
 # wpml-name: 6d0db9224f6d493f33bfc9b57c08e715
@@ -1577,11 +1567,11 @@ msgid "Get posts by this author"
 msgstr "הצג פוסטים של מחבר זה"
 
 # wpml-name: 7a23210a706ae22b7da84c4f5064b1b1
-#: esc_attr( $instance['posts_id'] ), sprintf( __( 'Insert IDs separated by
-#: commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' '<a
+#: '5, 29, 523, 4519', sprintf( __( 'Insert IDs separated by commas. To easily
+#: find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a
 #: href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/"
 #: target="_blank">', '</a>' ) ); ?>
-msgctxt "68bf03fa28d822f858c4995b3cddf307"
+msgctxt "73fe9a30bd8dc5be130ed0c80e27013c"
 msgid "Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s."
 msgstr "Iהוסף מזהים מופרדים בפסיק. כדי למצוא בקלות את המזהים, התקן את התוסף הזה %1$s%2$s."
 
@@ -1600,8 +1590,8 @@ msgid "Post type"
 msgstr "סוג מאמר"
 
 # wpml-name: ed36a1ef76a59ee3f15180e0441188ad
-#: 'value' => 'any', 'desc' __( 'Any', 'pis' ), )
-msgctxt "7933e91a9ffb00cc21a373f1c09486cf"
+#: 'value' => '', 'desc' __( 'Any', 'pis' )
+msgctxt "36ca1bc22e8861b3802fe827f9bb222b"
 msgid "Any"
 msgstr "כלשהו"
 
@@ -1623,19 +1613,69 @@ msgstr "הצג טקסט זה אחרי הכותרת"
 # wpml-name: caf837a63a25515da32d016e20e30af3
 #: <?php pis_form_input_text( __( 'Link the title of widget to this URL',
 #: 'pis' ), $this->get_field_id('title_link'),
-#: $this->get_field_name('title_link'), esc_url( $instance['title_link'] ) );
-#: ?>
-msgctxt "45c2254d9e0c4ad284a770e445c70602"
+msgctxt "26fe151ddcf89419e4368580c29fc2ac"
 msgid "Link the title of the widget to this URL"
 msgstr "קשר את כותרת הוידג'ט לכתובת URL זו"
 
 # wpml-name: b78a3223503896721cca1303f776159b
-#: <?php pis_form_input_text( __( 'Title', 'pis' ),
-#: $this->get_field_id('title'), $this->get_field_name('title'), esc_attr(
-#: $instance['title'] ) ); ?>
-msgctxt "917b48d3dec68f1db1945f22b6313cdf"
+#: 'value' => 'title', 'desc' __( 'Title', 'pis' ) ),
+msgctxt "10e92bea4c8e51fa130486f83c0a026f"
 msgid "Title"
 msgstr "כותרת"
+
+# wpml-name: 67f0f3978dc0787f709f3a2589c38ff3
+#: // When no posts found 'nopost_text' => __( 'No yet.', 'pis' ),
+#: 'hide_widget' false,
+msgctxt "4a3ed7a27fdba32f26983b7f26e8f149"
+msgid "No posts yet."
+msgstr "אין עדיין אף פוסט."
+
+# wpml-name: bdf5d46f122ac95cd48e971c99f9e6a4
+#: 'link_to' => 'category', 'archive_text' __( 'Display all posts', 'pis' ),
+msgctxt "04345f4d1e868f44f055f3ea77b39fff"
+msgid "Display all posts"
+msgstr "הצגת כל הפוסטים"
+
+# wpml-name: 32b502f33a535f75dcbf63f6753c631e
+#: 'tags' => false, 'tags_text' __( 'Tags:', 'pis' ), 'hashtag' '#',
+msgctxt "b9d7c3fd70a449f27d6aa3bfa0adf45b"
+msgid "Tags:"
+msgstr "תגיות:"
+
+# wpml-name: 56a8a9eb05f9014da51a4f9b57322ac7
+#: 'categories' => false, 'categ_text' __( 'Category:', 'pis' ), 'categ_sep'
+#: ',',
+msgctxt "5fd82764fd9725efd41e4cc6015c0f1d"
+msgid "Category:"
+msgstr "קטגוריה:"
+
+# wpml-name: c14a0ca9550a8b311dbf7acbb3e6cac4
+#: 'comments' => false, 'comments_text' __( 'Comments:', 'pis' ),
+#: 'utility_sep' '|',
+msgctxt "c7b012eed04c2c734e2222fecac43fc6"
+msgid "Comments:"
+msgstr "תגובות:"
+
+# wpml-name: ddbc197c69b2e4a35afeeb269ed25808
+#: 'display_date' => false, 'date_text' __( 'Published on', 'pis' ),
+#: 'linkify_date'
+msgctxt "1d519dd57f089619953b4dde45fb8742"
+msgid "Published on"
+msgstr "פורסם ב"
+
+# wpml-name: 53e5aa2c97fef1555d2511de8218c544
+#: 'display_author' => false, 'author_text' __( 'By', 'pis' ),
+#: 'linkify_author'
+msgctxt "e1d88a51abba86f487d63015c4fb004d"
+msgid "By"
+msgstr "על-ידי"
+
+# wpml-name: 7da014ac9e0263de785a7b676705da72
+#: 'exc_length' => 20, // In words 'the_more' __( 'Read more&hellip;', 'pis'
+#: ), 'exc_arrow' false,
+msgctxt "00be50c8ccbdf94f4c05d33b62c2cf86"
+msgid "Read more&hellip;"
+msgstr "קרא עוד…"
 
 # wpml-name: 5dc52ca9ffdc26147075682c92a0a853
 #: // The title of the widget 'title' => __( 'Posts', 'pis' ), 'title_link'
@@ -1690,6 +1730,17 @@ msgctxt "cba37e90be7a04aa866cac9abf2db04b"
 msgid "Leave a comment"
 msgstr "להגיב"
 
+# wpml-name: 94dfd55f99428ec6bdb899360cb20542
+#: <?php if ( $display_image && has_post_thumbnail() || $custom_image_url ) {
+#: $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute(
+#: 'echo=0' ); pis_the_thumbnail( $display_image, $image_align,
+#: $side_image_margin, $bottom_image_margin, $margin_unit, $title_link,
+#: $pis_query, $image_size, $thumb_wrap true, $custom_image_url,
+#: $custom_img_no_thumb
+msgctxt "3754bdbcdec5aeb97f57910a14fdb5f5"
+msgid "Permalink to %s"
+msgstr "קישור ישיר ל %s"
+
 # wpml-name: bbe2a383542bdb320d4c98cc752491c3
 #: <?php $author_title = sprintf( __( 'View all posts by %s', 'pis' ),
 #: get_the_author() ); $author_link get_author_posts_url( get_the_author_meta(
@@ -1697,90 +1748,3 @@ msgstr "להגיב"
 msgctxt "59acf8df8d1080c58d8b2d3b84434114"
 msgid "View all posts by %s"
 msgstr "הצגת כל הפוסטים של %s"
-
-# wpml-name: 3f0f7c566338e8ab0a32e65f8e647c8d
-#: $term_object = get_term_by( 'slug', $link_to, 'post_format' ); $title_text
-#: sprintf( __( 'Display all posts with post format %s', 'pis' ),
-#: $term_object->name }
-msgctxt "5b6da86572d3148e6bcd4b731149a848"
-msgid "Display all posts with post format %s"
-msgstr "הצגת כל הפוסטים בפורמט %s"
-
-# wpml-name: 19022210284cca3e1433b6bb1c3cb73c
-#: $term_link = get_category_link( $term_identity->term_id ); $title_text
-#: sprintf( __( 'Display all posts archived as %s', 'pis' ),
-#: $term_identity->name }
-msgctxt "92aafa1a9fbd54a92d2843217585f27c"
-msgid "Display all posts archived as %s"
-msgstr "הצגת כל הפוסטים בארכיון %s"
-
-# wpml-name: 2d75572f72d4ce945d46aea95c4f89e6
-#: $term_link = get_author_posts_url( $author_infos->ID, $author );
-#: $title_text sprintf( __( 'Display all posts by %s', 'pis' ),
-#: $author_infos->display_name }
-msgctxt "aa7424a446978cb0ba790bd479d23b90"
-msgid "Display all posts by %s"
-msgstr "הצגת כל הפוסטים של %s"
-
-# wpml-name: 94dfd55f99428ec6bdb899360cb20542
-#: if ( $linkify_date ) { ?> <?php $date_title = sprintf( __( 'Permalink to
-#: %s', 'pis' ), the_title_attribute( 'echo=0' ); <a pis_class(
-#: 'pis-date-link', apply_filters( 'pis_date_link_class', '' href="<?php
-#: the_permalink(); ?>" title="<?php echo esc_attr( rel="bookmark">
-msgctxt "ea0636307d90c8c65a13d236dc38d018"
-msgid "Permalink to %s"
-msgstr "קישור ישיר ל %s"
-
-# wpml-name: 67f0f3978dc0787f709f3a2589c38ff3
-#: // Text when no posts found 'nopost_text' => __( 'No yet.', 'pis' ),
-msgctxt "4b2664bfe5cf1458fd6759e0eacd8f69"
-msgid "No posts yet."
-msgstr "אין עדיין אף פוסט."
-
-# wpml-name: bdf5d46f122ac95cd48e971c99f9e6a4
-#: 'link_to' => 'category', 'archive_text' __( 'Display all posts', 'pis' ),
-msgctxt "04345f4d1e868f44f055f3ea77b39fff"
-msgid "Display all posts"
-msgstr "הצגת כל הפוסטים"
-
-# wpml-name: 32b502f33a535f75dcbf63f6753c631e
-#: 'tags' => false, 'tags_text' __( 'Tags:', 'pis' ), 'hashtag' '#',
-msgctxt "b9d7c3fd70a449f27d6aa3bfa0adf45b"
-msgid "Tags:"
-msgstr "תגיות:"
-
-# wpml-name: 56a8a9eb05f9014da51a4f9b57322ac7
-#: 'categories' => false, 'categ_text' __( 'Category:', 'pis' ), 'categ_sep'
-#: ',',
-msgctxt "5fd82764fd9725efd41e4cc6015c0f1d"
-msgid "Category:"
-msgstr "קטגוריה:"
-
-# wpml-name: c14a0ca9550a8b311dbf7acbb3e6cac4
-#: 'comments' => false, 'comments_text' __( 'Comments:', 'pis' ),
-#: 'utility_sep' '|',
-msgctxt "c7b012eed04c2c734e2222fecac43fc6"
-msgid "Comments:"
-msgstr "תגובות:"
-
-# wpml-name: ddbc197c69b2e4a35afeeb269ed25808
-#: 'display_date' => false, 'date_text' __( 'Published on', 'pis' ),
-#: 'linkify_date'
-msgctxt "1d519dd57f089619953b4dde45fb8742"
-msgid "Published on"
-msgstr "פורסם ב"
-
-# wpml-name: 53e5aa2c97fef1555d2511de8218c544
-#: 'display_author' => false, 'author_text' __( 'By', 'pis' ),
-#: 'linkify_author'
-msgctxt "e1d88a51abba86f487d63015c4fb004d"
-msgid "By"
-msgstr "על-ידי"
-
-# wpml-name: 7da014ac9e0263de785a7b676705da72
-#: 'exc_length' => 20, 'the_more' __( 'Read more&hellip;', 'pis' ),
-#: 'exc_arrow' false,
-msgctxt "f3656fdeb0a17b221d420d9b769f4701"
-msgid "Read more&hellip;"
-msgstr "קרא עוד…"
-

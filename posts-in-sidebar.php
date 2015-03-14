@@ -236,7 +236,8 @@ function pis_posts_in_sidebar( $args ) {
 				<?php
 				/**
 				 * Assign the class 'current-post' if this is the post of the main loop.
-				 * 
+				 *
+				 * @since 1.6
 				 */
 				$current_post_class = ''; 
 				if ( is_single() && $single_post_id == $pis_query->post->ID ) {
@@ -245,6 +246,7 @@ function pis_posts_in_sidebar( $args ) {
 
 				/**
 				 * Assign the class 'sticky' if the post is sticky.
+				 *
 				 * @since 1.25
 				 */
 				 $sticky_class = '';

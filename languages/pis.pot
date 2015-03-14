@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 1.25\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-03-14 13:24:49+00:00\n"
+"POT-Creation-Date: 2015-03-14 13:40:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -150,6 +150,10 @@ msgstr ""
 msgid "Get posts with these categories"
 msgstr ""
 
+#: inc/posts-in-sidebar-widget.php:621
+msgid "books, ebooks"
+msgstr ""
+
 #: inc/posts-in-sidebar-widget.php:622
 msgid ""
 "Insert slugs separated by commas. To display posts that have all of the "
@@ -158,6 +162,10 @@ msgstr ""
 
 #: inc/posts-in-sidebar-widget.php:627
 msgid "Get posts with these tags"
+msgstr ""
+
+#: inc/posts-in-sidebar-widget.php:631
+msgid "best-sellers"
 msgstr ""
 
 #: inc/posts-in-sidebar-widget.php:632

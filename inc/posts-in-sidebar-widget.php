@@ -618,7 +618,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id('cat'),
 				$this->get_field_name('cat'),
 				esc_attr( $instance['cat'] ),
-				'books, ebooks',
+				__( 'books, ebooks', 'pis' ),
 				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
 			); ?>
 
@@ -628,7 +628,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id('tag'),
 				$this->get_field_name('tag'),
 				esc_attr( $instance['tag'] ),
-				'best-sellers',
+				__( 'best-sellers', 'pis' ),
 				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
 			); ?>
 

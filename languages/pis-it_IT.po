@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-03-14 13:24:49+00:00\n"
-"PO-Revision-Date: 2015-03-14 14:30+0100\n"
+"POT-Creation-Date: 2015-03-14 13:40:15+00:00\n"
+"PO-Revision-Date: 2015-03-14 14:41+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -157,6 +157,10 @@ msgstr "Preleva i post di questo autore"
 msgid "Get posts with these categories"
 msgstr "Preleva post con queste categorie"
 
+#: inc/posts-in-sidebar-widget.php:621
+msgid "books, ebooks"
+msgstr "libri, ebook"
+
 #: inc/posts-in-sidebar-widget.php:622
 msgid ""
 "Insert slugs separated by commas. To display posts that have all of the "
@@ -169,6 +173,10 @@ msgstr ""
 #: inc/posts-in-sidebar-widget.php:627
 msgid "Get posts with these tags"
 msgstr "Preleva post con questi tag"
+
+#: inc/posts-in-sidebar-widget.php:631
+msgid "best-sellers"
+msgstr "best-seller"
 
 #: inc/posts-in-sidebar-widget.php:632
 msgid ""
@@ -419,8 +427,8 @@ msgstr ""
 #: inc/posts-in-sidebar-widget.php:948
 msgid "Use custom image URL only if the post thumbnail is not defined."
 msgstr ""
-"Usare l'URL dell'immagine personalizzata solo se l'immagine in evidenza non è "
-"definita."
+"Usare l'URL dell'immagine personalizzata solo se l'immagine in evidenza non "
+"è definita."
 
 #: inc/posts-in-sidebar-widget.php:953
 msgid "The text of the post"

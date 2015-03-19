@@ -367,6 +367,16 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 		break;
 
 		case 'excerpt':
+			/**
+			 * Check if the Relevanssi plugin is active and restore the user-defined excerpt in place of the plugin-generated excerpt.
+			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
+			 * 
+			 * @since 1.26
+			 */
+			if ( function_exists( 'relevanssi_do_excerpt' ) && isset( $pis_query->post->original_excerpt ) ) {
+				$pis_query->post->post_excerpt = $pis_query->post->original_excerpt;
+			}
+
 			// If we have a user-defined excerpt...
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break

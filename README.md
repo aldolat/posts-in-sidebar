@@ -76,6 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.26 ###
 
+* Compatibility with Relevantssi plugin (props by KTS915).
 * Updated the Hebrew translation (thanks to Ahrale).
 
 ### 1.25 ###

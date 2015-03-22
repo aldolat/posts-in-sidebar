@@ -368,7 +368,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 
 		case 'excerpt':
 			/**
-			 * Check if the Relevanssi plugin is active and restore the user-defined excerpt in place of the plugin-generated excerpt.
+			 * Check if the Relevanssi plugin is active and restore the user-defined excerpt in place of the Relevanssi-generated excerpt.
 			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
 			 * 
 			 * @since 1.26

@@ -278,7 +278,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// The categories of the post
 		$instance['categories']          = isset( $new_instance['categories'] ) ? 1 : 0;
-		//$instance['the_post_thumbnail'] = ( isset( $new_instance['the_post_thumbnail'] ) ? 1 : 0 );
 		$instance['categ_text']          = strip_tags( $new_instance['categ_text'] );
 		$instance['categ_sep']           = strip_tags( $new_instance['categ_sep'] );
 

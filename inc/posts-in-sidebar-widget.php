@@ -1,25 +1,6 @@
 <?php
-
 /**
- * The widget
- *
- * @package PostsInSidebar
- */
-
-/**
- * Register the widget
- *
- * @since 1.0
- */
-
-function pis_load_widgets() {
-	register_widget( 'PIS_Posts_In_Sidebar' );
-}
-add_action( 'widgets_init', 'pis_load_widgets' );
-
-
-/**
- * Create the widget
+ * Create the widget.
  *
  * @package PostsInSidebar
  * @since 1.0
@@ -27,7 +8,14 @@ add_action( 'widgets_init', 'pis_load_widgets' );
 
 class PIS_Posts_In_Sidebar extends WP_Widget {
 
+	/**
+	 * Create the widget's base settings.
+	 * Uses PHP4 constructor method.
+	 * 
+	 * @since 1.0
+	 */
 	function PIS_Posts_In_Sidebar() {
+
 		/* Widget settings. */
 		$widget_ops = array(
 			'classname'   => 'posts-in-sidebar',
@@ -44,11 +32,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$this->WP_Widget( 'pis_posts_in_sidebar', __( 'Posts in Sidebar', 'pis' ), $widget_ops, $control_ops );
 	}
 
+	/**
+	 * Display the content of the widget in the front-end.
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 * @since 1.0
+	 */
 	function widget( $args, $instance ) {
+		/**
+		 * Extract $args array keys into single variables.
+		 * Some of these are:
+		 * 		$args['before_widget']
+		 * 		$args['after_widget']
+		 * 		$args['before_title']
+		 * 		$args['after_title']
+		 * 
+		 * @since 1.0
+		 */
 		extract( $args );
 
 		/**
-		 * Declare some indexes to avoid PHP notice
+		 * Declare some indexes to avoid PHP notice. 
 		 * 
 		 * @since 1.24
 		 */
@@ -204,6 +209,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		echo $after_widget;
 	}
 
+	/**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
@@ -320,7 +335,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					$instance['cache_time'] = '';
 				}
 			}
-		$instance['widget_id']           = $this->id; // This option is stored only for uninstall purposes. See uninstall.php for further information.
+		// This option is stored only for uninstall purposes. See uninstall.php for further information.
+		$instance['widget_id']           = $this->id;
 
 		// Elements margins
 		$instance['margin_unit']         = $new_instance['margin_unit'];
@@ -356,6 +372,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Display the options form on admin.
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance Previously saved values from database.
+	 * @since 1.0
+	 */
 	function form( $instance ) {
 		$defaults = array(
 			// The title of the widget

@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 1.26
+ * Version: 1.27
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -11,7 +11,7 @@
  * License: GPLv3 or later
  */
 
-/* Copyright (C) 2009, 2014  Aldo Latino  (email : aldolat@gmail.com)
+/* Copyright (C) 2009, 2015  Aldo Latino  (email : aldolat@gmail.com)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -27,10 +27,80 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 /**
- * Define the version of the plugin.
+ * Launch Posts in Sidebar.
+ * 
+ * @since 1.27
  */
-define( 'PIS_VERSION', '1.26' );
+add_action( 'plugins_loaded', 'pis_setup' );
+
+
+/**
+ * Setup Posts in Sidebar.
+ * 
+ * @since 1.27
+ */
+function pis_setup() {
+
+	/* Define the version of the plugin. */
+	define( 'PIS_VERSION', '1.27' );
+
+	/**
+	 * Make plugin available for i18n.
+	 * Translations must be archived in the /languages/ directory.
+	 * The name of each translation file must be, for example:
+	 *
+	 * ITALIAN:
+	 * pis-it_IT.po
+	 * pis-it_IT.mo
+	 *
+	 * GERMAN:
+	 * pis-de_DE.po
+	 * pis-de_DE.po
+	 *
+	 * and so on.
+	 *
+	 * @since 0.1
+	 */
+	load_plugin_textdomain( 'pis', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
+
+	/**
+	 * Load the plugin's functions.
+	 *
+	 * @since 1.23
+	 */
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-functions.php' );
+
+	/* Load Posts in Sidebar's widgets. */
+	add_action( 'widgets_init', 'pis_load_widgets' );
+}
+
+
+/**
+ * Register the widget
+ *
+ * @since 1.0
+ */
+function pis_load_widgets() {
+
+	/**
+	 * Load the widget's form functions.
+	 *
+	 * @since 1.12
+	 */
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/widget-form-functions.php' );
+
+	/**
+	 * Load the widget's PHP file.
+	 *
+	 * @since 1.1
+	 */
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/posts-in-sidebar-widget.php' );
+
+	register_widget( 'PIS_Posts_In_Sidebar' );
+}
+
 
 /**
  * The core function.
@@ -465,53 +535,6 @@ function pis_posts_in_sidebar( $args ) {
 
 <?php }
 
-
-/**
- * Include the plugin functions.
- *
- * @since 1.23
- */
-include_once( plugin_dir_path( __FILE__ ) . 'inc/pis-functions.php' );
-
-
-/**
- * Include the widget.
- *
- * @since 1.1
- */
-include_once( plugin_dir_path( __FILE__ ) . 'inc/posts-in-sidebar-widget.php' );
-
-
-/**
- * Include the widget form functions.
- *
- * @since 1.12
- */
-include_once( plugin_dir_path( __FILE__ ) . 'inc/widget-form-functions.php' );
-
-
-/**
- * Make plugin available for i18n
- *
- * Translations must be archived in the /languages/ directory
- * The name of each translation file must be:
- *
- * ITALIAN:
- * pis-it_IT.po
- * pis-it_IT.mo
- *
- * GERMAN:
- * pis-de_DE.po
- * pis-de_DE.po
- *
- * and so on.
- *
- * @since 0.1
- */
-function pis_load_languages() {
-	load_plugin_textdomain( 'pis', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
-}
-add_action( 'plugins_loaded', 'pis_load_languages' );
 
 /***********************************************************************
  *                            CODE IS POETRY

@@ -116,9 +116,9 @@ function pis_posts_in_sidebar( $args ) {
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, media, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
-		'author'              => NULL,      // Author nicename, NOT name
-		'cat'                 => NULL,      // Category slugs, comma separated
-		'tag'                 => NULL,      // Tag slugs, comma separated
+		'author'              => '',        // Author nicename
+		'cat'                 => '',        // Category slugs, comma separated
+		'tag'                 => '',        // Tag slugs, comma separated
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
@@ -224,15 +224,11 @@ function pis_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
-	$author   == 'NULL' ? $author   = '' : $author   = $author;
-	$cat      == 'NULL' ? $cat      = '' : $cat      = $cat;
-	$tag      == 'NULL' ? $tag      = '' : $tag      = $tag;
-
 	// Some params accept only an array
-	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = NULL;
-	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = NULL;
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = NULL;
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = NULL;
+	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
+	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
 	// Get the ID of the current post.
 	// This will be used in case the user do not want to display the same post in the main body and in the sidebar.
@@ -444,19 +440,19 @@ function pis_posts_in_sidebar( $args ) {
 
 			$wp_post_type = array( 'post', 'page', 'media', 'any' );
 
-			if ( $link_to == 'author' && isset( $author ) ) {
+			if ( 'author' == $link_to && isset( $author ) ) {
 				$author_infos = get_user_by( 'slug', $author );
 				if ( $author_infos ) {
 					$term_link = get_author_posts_url( $author_infos->ID, $author );
 					$title_text = sprintf( __( 'Display all posts by %s', 'pis' ), $author_infos->display_name );
 				}
-			} elseif ( $link_to == 'category' && isset( $cat ) ) {
+			} elseif ( 'category' == $link_to && isset( $cat ) ) {
 				$term_identity = get_term_by( 'slug', $cat, 'category' );
 				if ( $term_identity ) {
 					$term_link = get_category_link( $term_identity->term_id );
 					$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_identity->name );
 				}
-			} elseif ( $link_to == 'tag' && isset( $tag ) ) {
+			} elseif ( 'tag' == $link_to && isset( $tag ) ) {
 				$term_identity = get_term_by( 'slug', $tag, 'post_tag' );
 				if ( $term_identity ) {
 					$term_link = get_tag_link( $term_identity->term_id );

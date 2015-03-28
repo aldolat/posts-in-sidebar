@@ -52,21 +52,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		extract( $args );
 
-		/**
-		 * Declare some indexes to avoid PHP notice. 
-		 * 
-		 * @since 1.24
-		 */
-		if ( ! isset( $instance['debug_query'] ) ) {
-			$instance['debug_query'] = false;
-		}
-		if ( ! isset( $instance['debug_params'] ) ) {
-			$instance['debug_params'] = false;
-		}
-		if ( ! isset( $instance['debug_query_number'] ) ) {
-			$instance['debug_query_number'] = false;
-		}
-
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
@@ -251,80 +236,81 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_status']         = $new_instance['post_status'];
 		$instance['post_meta_key']       = strip_tags( $new_instance['post_meta_key'] );
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
-		$instance['ignore_sticky']       = $new_instance['ignore_sticky'];
+		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 
 		// Posts exclusion
-		$instance['exclude_current_post']= $new_instance['exclude_current_post'];
+		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
 		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
 		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
 
 		// The title of the post
-		$instance['display_title']       = $new_instance['display_title'];
-		$instance['link_on_title']       = $new_instance['link_on_title'];
-		$instance['arrow']               = $new_instance['arrow'];
+		$instance['display_title']       = isset( $new_instance['display_title'] ) ? 1 : 0;
+		$instance['link_on_title']       = isset( $new_instance['link_on_title'] ) ? 1 : 0;
+		$instance['arrow']               = isset( $new_instance['arrow'] ) ? 1 : 0;
 
 		// The featured image of the post
-		$instance['display_image']       = $new_instance['display_image'];
+		$instance['display_image']       = isset( $new_instance['display_image'] ) ? 1 : 0;
 		$instance['image_size']          = $new_instance['image_size'];
 		$instance['image_align']         = $new_instance['image_align'];
-		$instance['image_before_title']  = $new_instance['image_before_title'];
+		$instance['image_before_title']  = isset( $new_instance['image_before_title'] ) ? 1 : 0;
 		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
-		$instance['custom_img_no_thumb'] = $new_instance['custom_img_no_thumb'];
+		$instance['custom_img_no_thumb'] = isset( $new_instance['custom_img_no_thumb'] ) ? 1 : 0;
 
 		// The text of the post
 		$instance['excerpt']             = $new_instance['excerpt'];
 		$instance['exc_length']          = absint( strip_tags( $new_instance['exc_length'] ) );
 			if( $instance['exc_length'] == '' || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
 		$instance['the_more']            = strip_tags( $new_instance['the_more'] );
-		$instance['exc_arrow']           = $new_instance['exc_arrow'];
+		$instance['exc_arrow']           = isset( $new_instance['exc_arrow'] ) ? 1 : 0;
 
 		// Author, date and comments
-		$instance['display_author']      = $new_instance['display_author'];
+		$instance['display_author']      = isset( $new_instance['display_author'] ) ? 1 : 0;
 		$instance['author_text']         = strip_tags( $new_instance['author_text'] );
-		$instance['linkify_author']      = $new_instance['linkify_author'];
-		$instance['display_date']        = $new_instance['display_date'];
+		$instance['linkify_author']      = isset( $new_instance['linkify_author'] ) ? 1 : 0;
+		$instance['display_date']        = isset( $new_instance['display_date'] ) ? 1 : 0;
 		$instance['date_text']           = strip_tags( $new_instance['date_text'] );
-		$instance['linkify_date']        = $new_instance['linkify_date'];
-		$instance['comments']            = $new_instance['comments'];
+		$instance['linkify_date']        = isset( $new_instance['linkify_date'] ) ? 1 : 0;
+		$instance['comments']            = isset( $new_instance['comments'] ) ? 1 : 0;
 		$instance['comments_text']       = strip_tags( $new_instance['comments_text'] );
 		$instance['utility_sep']         = strip_tags( $new_instance['utility_sep'] );
-		$instance['utility_after_title'] = $new_instance['utility_after_title'];
+		$instance['utility_after_title'] = isset( $new_instance['utility_after_title'] ) ? 1 : 0;
 
 		// The categories of the post
-		$instance['categories']          = $new_instance['categories'];
+		$instance['categories']          = isset( $new_instance['categories'] ) ? 1 : 0;
+		//$instance['the_post_thumbnail'] = ( isset( $new_instance['the_post_thumbnail'] ) ? 1 : 0 );
 		$instance['categ_text']          = strip_tags( $new_instance['categ_text'] );
 		$instance['categ_sep']           = strip_tags( $new_instance['categ_sep'] );
 
 		// The tags of the post
-		$instance['tags']                = $new_instance['tags'];
+		$instance['tags']                = isset( $new_instance['tags'] ) ? 1 : 0;
 		$instance['tags_text']           = strip_tags( $new_instance['tags_text'] );
 		$instance['hashtag']             = strip_tags( $new_instance['hashtag'] );
 		$instance['tag_sep']             = strip_tags( $new_instance['tag_sep'] );
 
 		// The custom field
-		$instance['custom_field']        = $new_instance['custom_field'];
+		$instance['custom_field']        = isset( $new_instance['custom_field'] ) ? 1 : 0;
 		$instance['custom_field_txt']    = strip_tags( $new_instance['custom_field_txt'] );
 		$instance['meta']                = strip_tags( $new_instance['meta'] );
-		$instance['custom_field_key']    = $new_instance['custom_field_key'];
+		$instance['custom_field_key']    = isset( $new_instance['custom_field_key'] ) ? 1 : 0;
 		$instance['custom_field_sep']    = strip_tags( $new_instance['custom_field_sep'] );
 
 		// The link to the archive
-		$instance['archive_link']        = $new_instance['archive_link'];
+		$instance['archive_link']        = isset( $new_instance['archive_link'] ) ? 1 : 0;
 		$instance['link_to']             = $new_instance['link_to'];
 		$instance['archive_text']        = strip_tags( $new_instance['archive_text'] );
 
 		// Text when no posts found
 		$instance['nopost_text']         = strip_tags( $new_instance['nopost_text'] );
-		$instance['hide_widget']         = $new_instance['hide_widget'];
+		$instance['hide_widget']         = isset( $new_instance['hide_widget'] ) ? 1 : 0;
 
 		// Extras
 		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
 		$instance['list_element']        = $new_instance['list_element'];
-		$instance['remove_bullets']      = $new_instance['remove_bullets'];
+		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
 
 		// Cache
-		$instance['cached']              = $new_instance['cached'];
+		$instance['cached']              = isset( $new_instance['cached'] ) ? 1 : 0;
 		$instance['cache_time']          = strip_tags( $new_instance['cache_time'] );
 			// If cache time is not a numeric value OR is 0, then reset cache. Also set cache time to 3600 if cache is active.
 			if ( ! is_numeric( $new_instance['cache_time'] ) || $new_instance['cache_time'] == 0 ) {
@@ -365,9 +351,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['custom_styles']       = strip_tags( $new_instance['custom_styles'] );
 
 		// Debug
-		$instance['debug_query']         = $new_instance['debug_query'];
-		$instance['debug_params']        = $new_instance['debug_params'];
-		$instance['debug_query_number']  = $new_instance['debug_query_number'];
+		$instance['debug_query']         = isset( $new_instance['debug_query'] ) ? 1 : 0;
+		$instance['debug_params']        = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['debug_query_number']  = isset( $new_instance['debug_query_number'] ) ? 1 : 0;
 
 		return $instance;
 	}

@@ -1179,8 +1179,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_id( 'archive_text' ),
 				$this->get_field_name( 'archive_text' ),
 				esc_attr( $instance['archive_text'] ),
-				__( 'Display all posts', 'pis' ),
-				__( 'Please, note that if you don\'t select any taxonomy, the link won\'t appear.', 'pis' )
+				__( 'Display all posts by %s', 'pis' ),
+				sprintf( __( 'Use %s to display the name of the taxonomy. Also, note that if you haven\'t selected any taxonomy, the link won\'t appear.', 'pis' ), '<code>%s</code>' )
 			); ?>
 
 			<hr />

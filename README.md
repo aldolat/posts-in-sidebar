@@ -74,6 +74,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
+### 1.27 ###
+
+* NEW: Now it's possible to display the name of the taxonomy in the archive link.
+* FIX: resolved multiple PHP notices.
+
 ### 1.26 ###
 
 * Compatibility with Relevantssi plugin (props by KTS915).

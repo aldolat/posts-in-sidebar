@@ -452,20 +452,20 @@ function pis_posts_in_sidebar( $args ) {
 				if ( $term_identity ) {
 					$term_link = get_category_link( $term_identity->term_id );
 					$term_name = $term_identity->name;
-					$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_name );
+					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_name );
 				}
 			} elseif ( 'tag' == $link_to && isset( $tag ) ) {
 				$term_identity = get_term_by( 'slug', $tag, 'post_tag' );
 				if ( $term_identity ) {
 					$term_link = get_tag_link( $term_identity->term_id );
 					$term_name = $term_identity->name;
-					$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_identity->name );
+					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_identity->name );
 				}
 			} elseif ( ! in_array( $post_type, $wp_post_type ) ) {
 				$term_link = get_post_type_archive_link( $link_to );
 				$post_type_object = get_post_type_object( $link_to );
 				$term_name = $post_type_object->labels->name;
-				$title_text = sprintf( __( 'Display all posts archived as %s', 'pis' ), $term_name );
+				$title_text = sprintf( __( 'Display all %s', 'pis' ), $term_name );
 			} elseif ( term_exists( $link_to, 'post_format' ) && $link_to == $post_format ) {
 				$term_link = get_post_format_link( substr( $link_to, 12 ) );
 				$term_object = get_term_by( 'slug', $link_to, 'post_format' );

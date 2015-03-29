@@ -274,6 +274,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Upgrade Notice ##
 
+### 1.27 ###
+
+This version resolves multiple PHP notices.
+
 ### 1.24 ###
 
 Bugfix for the issue when upgrading from 1.22 to 1.23.

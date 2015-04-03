@@ -295,8 +295,12 @@ function pis_posts_in_sidebar( $args ) {
 			// When updating from 1.14, the $list_element variable is empty.
 			if ( ! $list_element ) $list_element = 'ul';
 		?>
-		<?php if ( $remove_bullets && $list_element == 'ul' ) $bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"'; else $bullets_style = ''; ?>
-		<<?php echo $list_element; ?> <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style; ?>>
+		<?php if ( $remove_bullets && 'ul' == $list_element ) {
+			$bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"';
+		} else {
+			$bullets_style = '';
+		} ?>
+		<?php echo '<' . $list_element; ?> <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style . '>'; ?>
 
 			<?php while( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
 
@@ -432,7 +436,7 @@ function pis_posts_in_sidebar( $args ) {
 
 			<?php endwhile; ?>
 
-		</<?php echo $list_element; ?>>
+		<?php echo '</' . $list_element . '>'; ?>
 		<!-- / ul#pis-ul -->
 
 		<?php /* The link to the entire archive */ ?>

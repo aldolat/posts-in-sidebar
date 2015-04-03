@@ -507,7 +507,7 @@ function pis_posts_in_sidebar( $args ) {
 
 	<?php if ( $debug_query || $debug_params || $debug_query_number ) { ?>
 		<hr />
-		<h3>Debugging</h3>
+		<h3><?php printf( __( 'Debugging (%s)', 'pis' ), PIS_VERSION ); ?></h3>
 	<?php } ?>
 
 	<?php if ( $debug_query ) { ?>

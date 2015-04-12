@@ -247,6 +247,16 @@ function pis_posts_in_sidebar( $args ) {
 		$post_not_in[] = get_the_id();
 	}
 
+	/**
+	 * If $post_type is 'attachment', $post_status must be 'inherit'.
+	 *
+	 * @see https://codex.wordpress.org/Class_Reference/WP_Query#Type_Parameters
+	 * @since 1.28
+	 */
+	if ( 'attachment' == $post_type ) {
+		$post_status = 'inherit';
+	}
+
 	// Build the array to get posts
 	$params = array(
 		'post_type'           => $post_type,

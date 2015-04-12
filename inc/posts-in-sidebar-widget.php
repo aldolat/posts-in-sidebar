@@ -230,6 +230,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 * for posts by author with 'NULL' nicename. We have to convert this wrong value into an empty value.
 			 * This conversion should be safe because $author, $cat, and $tag must be all lowercase
 			 * (according to WordPress slugs management) and, for example, a 'NULL' (uppercase) author nicename couldn't exist.
+			 * 
+			 * @since 1.28
 			 */
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';

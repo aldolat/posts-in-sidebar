@@ -224,6 +224,17 @@ function pis_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
+	/**
+	 * Check if $author or $cat or $tag are equal to 'NULL' (string).
+	 * If so, make them empty.
+	 * For more informations, see inc/posts-in-sidebar-widget.php, function update().
+	 * 
+	 * @since 1.28
+	 */
+	if ( 'NULL' == $author ) $author = '';
+	if ( 'NULL' == $cat ) $cat = '';
+	if ( 'NULL' == $tag ) $tag = '';
+
 	// Some params accept only an array
 	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
 	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';

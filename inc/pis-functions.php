@@ -291,23 +291,23 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 	<?php echo $open_wrap; ?>
 	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 		<?php
-		/**
-		 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used for all posts, even those who have a post-featured image)
-		 * OR
-		 * if custom image URL is defined AND the custom image should be used if the post-thumbnail is not defined (in this case the custom image will be used only if the post-featured image is not defined).
-		 */
-		if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
-			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
+		if ( 'attachment' == $post_type ) {
+			$image_html = wp_get_attachment_image(
+				$pis_query->post->ID,
+				$image_size,
+				false,
+				array(
+					'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+				)
+			);
 		} else {
-			if ( 'attachment' == $post_type ) {
-				$image_html = wp_get_attachment_image(
-					$pis_query->post->ID,
-					$image_size,
-					false,
-					array(
-						'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
-					)
-				);
+			/**
+			 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
+			 * OR
+			 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who have a post-featured image).
+			 */
+			if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
+				$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
 			} else {
 				$image_html = get_the_post_thumbnail(
 					$pis_query->post->ID,

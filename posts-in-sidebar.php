@@ -383,7 +383,7 @@ function pis_posts_in_sidebar( $args ) {
 					<?php /* The post content */ ?>
 					<?php if ( ! post_password_required() ) : ?>
 						
-						<?php if ( ( $display_image && has_post_thumbnail() ) || 'none' != $excerpt ) : ?>
+						<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) : ?>
 
 							<p <?php echo pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ); ?>>
 

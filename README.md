@@ -76,8 +76,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.28 ###
 
-* Now the plugin correctly displays attachment post type.
 * Added check for "NULL" (as string) value in certain variables.
+* FIX: Now the plugin correctly displays attachment post type.
+* FIX: Custom featured images are now displayed when the user choose no text to display.
 
 ### 1.27 ###
 

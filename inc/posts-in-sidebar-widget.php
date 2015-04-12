@@ -967,7 +967,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			); ?>
 
 			<?php // ================= Use custom image URL only if the post thumbnail is not defined.
-			pis_form_checkbox( __( 'Use custom image URL only if the post thumbnail is not defined.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
+			pis_form_checkbox( __( 'Use custom image URL only if the post has not a featured image.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
 
 
 			<hr />

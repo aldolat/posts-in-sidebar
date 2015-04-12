@@ -76,7 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.28 ###
 
-* Added check for NULL value (as string) in certain variables.
+* Added check for "NULL" (as string) value in certain variables.
 
 ### 1.27 ###
 

@@ -249,7 +249,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
  * @since 1.18
  * @return The HTML for the thumbnail.
  */
-function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb ) {
+function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb, $post_type ) {
 	if ( $thumb_wrap ) {
 		$open_wrap = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
@@ -299,13 +299,24 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 		if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
 			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
 		} else {
-			$image_html = get_the_post_thumbnail(
-				$pis_query->post->ID,
-				$image_size,
-				array(
-					'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
-				)
-			);
+			if ( 'attachment' == $post_type ) {
+				$image_html = wp_get_attachment_image(
+					$pis_query->post->ID,
+					$image_size,
+					false,
+					array(
+						'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+					)
+				);
+			} else {
+				$image_html = get_the_post_thumbnail(
+					$pis_query->post->ID,
+					$image_size,
+					array(
+						'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+					)
+				);
+			}
 		}
 		$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
 		echo $image_html;

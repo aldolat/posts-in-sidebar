@@ -223,9 +223,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
+			/**
+			 * For historical reasons (for example, see version 1.18 of this plugin),
+			 * the variables $author, $cat, and $tag could have a value of 'NULL' (as string, not the costant NULL).
+			 * This means that in the database we could have this value, so that WordPress will search, for example,
+			 * for posts by author with 'NULL' nicename. We have to convert this wrong value into an empty value.
+			 * This conversion should be safe because $author, $cat, and $tag must be all lowercase
+			 * (according to WordPress slugs management) and, for example, a 'NULL' (uppercase) author nicename couldn't exist.
+			 */
 		$instance['author']              = $new_instance['author'];
+			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
 		$instance['cat']                 = strip_tags( $new_instance['cat'] );
+			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
+			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
 			if( $instance['number'] == 0 || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );

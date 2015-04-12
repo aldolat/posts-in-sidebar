@@ -291,6 +291,12 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 	<?php echo $open_wrap; ?>
 	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
 		<?php
+		/**
+		 * If the post type is an attachment (an image, or any other attachment),
+		 * the construct is different.
+		 *
+		 * @since 1.28
+		 */
 		if ( 'attachment' == $post_type ) {
 			$image_html = wp_get_attachment_image(
 				$pis_query->post->ID,
@@ -304,7 +310,7 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 			/**
 			 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
 			 * OR
-			 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who have a post-featured image).
+			 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
 			 */
 			if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
 				$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';

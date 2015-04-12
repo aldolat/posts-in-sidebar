@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 1.27
+ * Version: 1.28
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -44,7 +44,7 @@ add_action( 'plugins_loaded', 'pis_setup' );
 function pis_setup() {
 
 	/* Define the version of the plugin. */
-	define( 'PIS_VERSION', '1.27' );
+	define( 'PIS_VERSION', '1.28' );
 
 	/**
 	 * Make plugin available for i18n.

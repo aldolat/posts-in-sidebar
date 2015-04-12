@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 1.27
+Stable tag: 1.28
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,6 +61,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 6. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 1.28 =
+
+* Added check for NULL value (as string) in certain variables.
 
 = 1.27 =
 
@@ -261,6 +265,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * First release of the plugin.
 
 == Upgrade Notice ==
+
+= 1.28 =
+
+This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widgets of this plugin.
 
 = 1.27 =
 

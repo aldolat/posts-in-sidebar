@@ -64,6 +64,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 1.28 =
 
+* Now the plugin correctly displays attachment post type.
 * Added check for "NULL" (as string) value in certain variables.
 
 = 1.27 =

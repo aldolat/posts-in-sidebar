@@ -114,7 +114,7 @@ function pis_posts_in_sidebar( $args ) {
 		'intro'               => '',
 
 		// Posts retrieving
-		'post_type'           => 'post',    // post, page, media, or any custom post type
+		'post_type'           => 'post',    // post, page, attachment, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'cat'                 => '',        // Category slugs, comma separated

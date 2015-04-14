@@ -16,6 +16,45 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+# wpml-name: de0e41d40ae2e5cc422b84a19d75cb0d
+#: <hr /> <h3><?php printf( __( 'Debugging (%s)', 'pis' ), PIS_VERSION );
+#: ?></h3> <?php } ?>
+msgctxt "7fd8ff23bd99db0207838d082f379a72"
+msgid "Debugging (%s)"
+msgstr "איתור שגיאות (%s)"
+
+# wpml-name: fd6869c40c945664da3f7424cd8821b0
+#: $term_name = $post_type_object->labels->name; $title_text sprintf( __(
+#: 'Display all %s', 'pis' ), ); } elseif ( term_exists( $link_to,
+#: 'post_format' ) && $link_to == $post_format {
+msgctxt "913c44e81be85d77489dae4887eead1b"
+msgid "Display all %s"
+msgstr "הצג את כל ה %s"
+
+# wpml-name: b8e8bf194e855333700ac790156a786d
+#: $term_name = $term_identity->name; $title_text sprintf( __( 'Display all
+#: posts archived under %s', 'pis' ), ); }
+msgctxt "70e7e28bffeed8870f17a698cc72b2bf"
+msgid "Display all posts archived under %s"
+msgstr "הצג את כל הפוסטים שבארכיון %s"
+
+# wpml-name: 1ff6f298f19dc69f289a40171b5764f2
+#: __( 'Display all posts by %s', 'pis' ), sprintf( 'Use %s to display the
+#: name of taxonomy. Also, note that if you haven\'t selected any taxonomy,
+#: link won\'t appear.', '<code>%s</code>' ) ); ?>
+msgctxt "c60ce57b64e5530449d7331aaf8acccf"
+msgid "Use %s to display the name of the taxonomy. Also, note that if you haven't selected any taxonomy, the link won't appear."
+msgstr "השתמש ב %s כדי להציג את שם הטקסונומיה. נא לשים לב שאם לא בחרת אף טקסונומיה, הקישור לא יופיע."
+
+# wpml-name: edbc24404d59e8763744f08b653275d9
+#: <?php // ================= Use custom image URL only if the post thumbnail
+#: is not defined. pis_form_checkbox( __( 'Use has a featured image.', 'pis'
+#: ), $this->get_field_id( 'custom_img_no_thumb' $this->get_field_name(
+#: checked( $custom_img_no_thumb, true, false ) ); ?>
+msgctxt "616bc17306095ba91d279e6f31fe43a9"
+msgid "Use custom image URL only if the post has not a featured image."
+msgstr "נא להשתמש בכתובת URL מותאמת אישית של תמונה רק אם אין לפוסט תמונה ראשית."
+
 # wpml-name: 4dbb02b79809212907c809c6c3ae0fbb
 #: <h4 class="pis-gray-title"><?php _e( 'When no posts are found', 'pis' );
 #: ?></h4>
@@ -150,11 +189,11 @@ msgid "Custom field:"
 msgstr "שדה:"
 
 # wpml-name: 7a728abc855c1320aecc4b6bd09223bb
-#: <?php // ================= Use custom image URL only if the post thumbnail
-#: is not defined. pis_form_checkbox( __( 'Use defined.', 'pis' ),
-#: $this->get_field_id( 'custom_img_no_thumb' $this->get_field_name( checked(
-#: $custom_img_no_thumb, true, false ) ); ?>
-msgctxt "47e38ca0a899992347a49ead694e7ade"
+#: <?php // ================= Custom fields text pis_form_input_text( __( 'Use
+#: this before the custom field', 'pis' ), $this->get_field_id(
+#: 'custom_field_txt' $this->get_field_name( esc_attr(
+#: $instance['custom_field_txt'] 'Custom field:', ) ); ?>
+msgctxt "74a6945b05122f59610c7f991bf863f8"
 msgid "Use custom image URL only if the post thumbnail is not defined."
 msgstr "השתמש בכתובת URL של תמונה רק אם לא הוגדרה תמונה ממוזערת של הפוסט."
 
@@ -513,25 +552,24 @@ msgid "%1$s queries in %2$s seconds"
 msgstr "%1$s שאילתות ב %2$s שניות"
 
 # wpml-name: 3f0f7c566338e8ab0a32e65f8e647c8d
-#: $term_object = get_term_by( 'slug', $link_to, 'post_format' ); $title_text
-#: sprintf( __( 'Display all posts with post format %s', 'pis' ),
-#: $term_object->name }
-msgctxt "5b6da86572d3148e6bcd4b731149a848"
+#: $term_name = $term_object->name; $title_text sprintf( __( 'Display all
+#: posts with post format %s', 'pis' ), ); }
+msgctxt "4725111f01676a96f8e8a0216cd546f6"
 msgid "Display all posts with post format %s"
 msgstr "הצגת כל הפוסטים בפורמט %s"
 
 # wpml-name: 19022210284cca3e1433b6bb1c3cb73c
-#: $term_link = get_tag_link( $term_identity->term_id ); $title_text sprintf(
-#: __( 'Display all posts archived as %s', 'pis' ), $term_identity->name }
-msgctxt "fa487b3ac6a1e127b6250d3acf0955d7"
+#: $term_name = $term_object->name; $title_text sprintf( __( 'Display all
+#: posts with post format %s', 'pis' ), ); }
+msgctxt "5f77448a198a051d9dc2535c2565b9b5"
 msgid "Display all posts archived as %s"
 msgstr "הצגת כל הפוסטים בארכיון %s"
 
 # wpml-name: 2d75572f72d4ce945d46aea95c4f89e6
-#: $term_link = get_author_posts_url( $author_infos->ID, $author );
-#: $title_text sprintf( __( 'Display all posts by %s', 'pis' ),
-#: $author_infos->display_name }
-msgctxt "aa7424a446978cb0ba790bd479d23b90"
+#: esc_attr( $instance['archive_text'] ), __( 'Display all posts by %s', 'pis'
+#: sprintf( 'Use %s to display the name of taxonomy. Also, note that if you
+#: haven\'t selected any taxonomy, link won\'t appear.', '<code>%s</code>' )
+msgctxt "2a432d8a91c3447a0f0ca3f3d99e53a4"
 msgid "Display all posts by %s"
 msgstr "הצגת כל הפוסטים של %s"
 
@@ -576,9 +614,8 @@ msgid "Extras"
 msgstr "תוספות"
 
 # wpml-name: c20bf5f9396c3cd9af587a9f99880045
-#: <hr /> <h4 class="pis-gray-title"><?php _e( 'The custom field', 'pis' );
-#: ?></h4>
-msgctxt "4d1f03b575d8c0fa0dc96dd49ab2d60b"
+#: <h4 class="pis-gray-title"><?php _e( 'Extras', 'pis' ); ?></h4>
+msgctxt "0c63d330465f475c52564f30858048fe"
 msgid "Text when no posts found"
 msgstr "טקסט כאשר לא נמצאו פוסטים"
 
@@ -687,8 +724,9 @@ msgid "Display the query for the widget"
 msgstr "מציג את השאילתה עבור הוידג'ט"
 
 # wpml-name: 856ba67470300f8246b140de9a27555d
-#: <h4 class="pis-gray-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
-msgctxt "888395a48595e84ae4c43c61376e9232"
+#: pis_form_textarea( __( 'Custom styles', 'pis' ),
+#: $this->get_field_id('custom_styles'),
+msgctxt "14ab53d9c78f13125e0d9d616fbfd909"
 msgid "Custom styles"
 msgstr "התאמת עיצוב"
 
@@ -701,79 +739,90 @@ msgid "In this field you can add your own styles, for example: %s"
 msgstr "בשדה זה תוכל להוסיף עיצובים משלך, למשל %s"
 
 # wpml-name: 19c1f00aa5f8915add85677c6e479c16
-#: sprintf( __( 'Enter the name of your container (for example, %1$s). The
-#: plugin will add a new %2$s with this class. You can enter only one class
-#: and may contain letters, hyphens underscores. enclose all widget, from
-#: title to last line.', 'pis' ), '<code>my-container</code>',
-#: '<code>div</code>' ) ); ?>
-msgctxt "cb30fd31765be07d2cc4fa0d7187c741"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "c5fdd32e198036fbf16e3187dad29154"
 msgid "No-posts margin"
 msgstr "שוליים של אין פוסטים"
 
 # wpml-name: 462c7ab42e47934359b95049cf92b676
-#: 'posts-container', sprintf( __( 'Enter the name of your container (for
-#: example, %1$s). The plugin will add a new %2$s with this class. You can
-#: enter only one class and may contain letters, hyphens underscores. enclose
-#: all widget, from title to last line.', 'pis' ),
-#: '<code>my-container</code>', '<code>div</code>' )
-msgctxt "a7d6325d48fd019a9ea549b27aedbe35"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "8ea5a2391169cdc9a7d68321d2b52bcf"
 msgid "Archive margin"
 msgstr "שוליים של ארכיון"
 
 # wpml-name: 48ec007a675e24223572beebad63ee80
-#: esc_attr( $instance['container_class'] ), 'posts-container', sprintf(
-msgctxt "c932b54ade6ec12360fd03cb0e8b8394"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "3626d802bfae3fdad1b2834066cc8110"
 msgid "Custom field margin"
 msgstr "השוליים של השדה"
 
 # wpml-name: d8464f7c9fb6b60c2b281c2a8a36fe45
-#: pis_form_input_text( __( 'Add a global container with this CSS class',
-#: 'pis' ), $this->get_field_id('container_class'),
-msgctxt "a3104568221688540cb7287b37fbf9e5"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "c18a7bd3908c4a93dc57f3b557c3209d"
 msgid "Tags margin"
 msgstr "שוליים של תגיות"
 
 # wpml-name: 669378bb7c531aae4a0a15cd8d301e8e
-#: <?php // ================= Container Class pis_form_input_text( __( 'Add a
-#: global container with this CSS class', 'pis' ),
-msgctxt "c2f5f6eb7d40b6e300c76277373e5d8c"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "04c74ad96d7882a972e594121a2ffe35"
 msgid "Categories margin"
 msgstr "שוליים של קטגוריה"
 
 # wpml-name: 5b2e14fcee31e5a9253c0d1d30873d87
-#: <?php // ================= Container Class pis_form_input_text(
-msgctxt "03dd5f92ef48df00b38344974447d327"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "b079ad16d6915b6dda96c05c3331fbf2"
 msgid "Utility margin"
 msgstr "שוליים של שירות"
 
 # wpml-name: f191b6b3f4ac1691be1a598d2bae3236
-#: <h4 class="pis-gray-title"><?php _e( 'Extras', 'pis' ); ?></h4> <?php //
-#: ================= Container Class
-msgctxt "7b4de20bef307fb6f94e4381513038e6"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "9d11d0c9c5b2709dec7bba2d9fef48b7"
 msgid "Excerpt margin"
 msgstr "שוליים של המובאה"
 
 # wpml-name: a4342054f189bcf20f48426b0433e8a8
-#: </div> <div class="clear"></div>
-msgctxt "1f4f944663ff4a1e5453acfd4d6fb9e4"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "e70f66dbcb5babdcc0979707b9fe6066"
 msgid "Bottom image margin"
 msgstr "שוליים של תמונת כפתור"
 
 # wpml-name: d9c2635732deaa0a10b17ae5511623db
-#: </div>
-msgctxt "dfb21590f7183911b416565b07971349"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "e093651e450b58ea61ad18dcb6e63fb0"
 msgid "Left/Right image margin"
 msgstr "שוליים שמאלימין של תמונה"
 
 # wpml-name: 81aea4aa201789725adf9c0c47b3eca4
-#: ); ?> </div>
-msgctxt "3278abb6413ecc35dbe448a0ad5f3f08"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "3be7499674236e44dd288af6999145a3"
 msgid "Title margin"
 msgstr "שוליים של הכותרת"
 
 # wpml-name: 2d2acb42ae58539e9c3b559f7f383ab7
-#: checked( $hide_widget, true, false ) ); ?>
-msgctxt "6d75c510391faf42c35e812d6fd05464"
+#: <p><em><?php printf( __( 'In this field you can add your own styles, for
+#: example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' );
+#: ?></em></p>
+msgctxt "6525819a977aa9553a60aa541a220734"
 msgid "Introduction margin"
 msgstr "שוליים של הקדמה"
 
@@ -874,11 +923,9 @@ msgid "Add a global container with this CSS class"
 msgstr "הוסף מיכל כללי עם מחלקת CSS זו"
 
 # wpml-name: 3bb747c972056529ebc702f4c611e13f
-#: pis_form_input_text( __( 'Use this text before the custom field', 'pis' ),
-#: $this->get_field_id( 'custom_field_txt' $this->get_field_name( esc_attr(
-#: $instance['custom_field_txt'] 'Custom field:', ) ); ?> <?php //
-#: ================= Which field
-msgctxt "d48d3b0525a6acdc9a44cdd58a84fa54"
+#: pis_form_input_text( __( 'Add a global container with this CSS class',
+#: 'pis' ), $this->get_field_id('container_class'),
+msgctxt "a97cab6c92cd2924917e4ff15ad1fe79"
 msgid "If the field is blank, the whole widget won't be displayed at all if no posts are found."
 msgstr "אם השדה ריק, כל הוידג'ט לא יוצג כלל אם לא נמצאו פוסטים."
 
@@ -890,9 +937,9 @@ msgid "Use this text when there are no posts"
 msgstr "השתמש בטקסט זה כאשר אין פוסטים"
 
 # wpml-name: 6a164dd1e4bc9a064d7f8e8f81cc8aca
-#: __( 'Display all posts', 'pis' ), 'Please, note that if you don\'t select
-#: any taxonomy, the link won\'t appear.', ) ); ?>
-msgctxt "9e0a0e470aea386e0d8d4c772d5ac4e4"
+#: pis_form_input_text( __( 'Use this text when there are no posts', 'pis' ),
+#: $this->get_field_id( 'nopost_text'
+msgctxt "99d6550ae30e23f42df6c67ee3357fd1"
 msgid "Please, note that if you don't select any taxonomy, the link won't appear."
 msgstr "נא לשים לב שאם לא בוחרים טקסונומיה, הקישור לא יופיע."
 
@@ -1324,8 +1371,8 @@ msgid "Exclude posts from these tags"
 msgstr "אל תכלול פוסטים עם התגיות שלהלן"
 
 # wpml-name: 34d4cb2488c80f40e5ec299ee517f6e8
-#: '7, 11', __( 'Insert IDs separated by commas.', 'pis' ) ); ?>
-msgctxt "3d18866abcea52ae1e179caa49e19543"
+#: '3, 31', __( 'Insert IDs separated by commas.', 'pis' ) ); ?>
+msgctxt "32f6feae3eecf5d53351647f7983382e"
 msgid "Insert IDs separated by commas."
 msgstr "Iהזן מזהים מופרדים בפסיק."
 
@@ -1590,8 +1637,8 @@ msgid "Post type"
 msgstr "סוג מאמר"
 
 # wpml-name: ed36a1ef76a59ee3f15180e0441188ad
-#: 'value' => '', 'desc' __( 'Any', 'pis' )
-msgctxt "36ca1bc22e8861b3802fe827f9bb222b"
+#: 'value' => 'any', 'desc' __( 'Any', 'pis' ), )
+msgctxt "7933e91a9ffb00cc21a373f1c09486cf"
 msgid "Any"
 msgstr "כלשהו"
 
@@ -1618,15 +1665,16 @@ msgid "Link the title of the widget to this URL"
 msgstr "קשר את כותרת הוידג'ט לכתובת URL זו"
 
 # wpml-name: b78a3223503896721cca1303f776159b
-#: 'value' => 'title', 'desc' __( 'Title', 'pis' ) ),
-msgctxt "10e92bea4c8e51fa130486f83c0a026f"
+#: <?php pis_form_input_text( __( 'Title', 'pis' ),
+#: $this->get_field_id('title'),
+msgctxt "7d624277722a8828bc11ec6aa7ef61af"
 msgid "Title"
 msgstr "כותרת"
 
 # wpml-name: 67f0f3978dc0787f709f3a2589c38ff3
-#: // When no posts found 'nopost_text' => __( 'No yet.', 'pis' ),
+#: // Text when no posts found 'nopost_text' => __( 'No yet.', 'pis' ),
 #: 'hide_widget' false,
-msgctxt "4a3ed7a27fdba32f26983b7f26e8f149"
+msgctxt "4b2664bfe5cf1458fd6759e0eacd8f69"
 msgid "No posts yet."
 msgstr "אין עדיין אף פוסט."
 
@@ -1671,9 +1719,9 @@ msgid "By"
 msgstr "על-ידי"
 
 # wpml-name: 7da014ac9e0263de785a7b676705da72
-#: 'exc_length' => 20, // In words 'the_more' __( 'Read more&hellip;', 'pis'
-#: ), 'exc_arrow' false,
-msgctxt "00be50c8ccbdf94f4c05d33b62c2cf86"
+#: 'exc_length' => 20, 'the_more' __( 'Read more&hellip;', 'pis' ),
+#: 'exc_arrow' false,
+msgctxt "f3656fdeb0a17b221d420d9b769f4701"
 msgid "Read more&hellip;"
 msgstr "קרא עוד…"
 
@@ -1731,13 +1779,11 @@ msgid "Leave a comment"
 msgstr "להגיב"
 
 # wpml-name: 94dfd55f99428ec6bdb899360cb20542
-#: <?php if ( $display_image && has_post_thumbnail() || $custom_image_url ) {
-#: $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute(
-#: 'echo=0' ); pis_the_thumbnail( $display_image, $image_align,
-#: $side_image_margin, $bottom_image_margin, $margin_unit, $title_link,
-#: $pis_query, $image_size, $thumb_wrap true, $custom_image_url,
-#: $custom_img_no_thumb
-msgctxt "3754bdbcdec5aeb97f57910a14fdb5f5"
+#: if ( $linkify_date ) { ?> <?php $date_title = sprintf( __( 'Permalink to
+#: %s', 'pis' ), the_title_attribute( 'echo=0' ); <a pis_class(
+#: 'pis-date-link', apply_filters( 'pis_date_link_class', '' href="<?php
+#: the_permalink(); ?>" title="<?php echo esc_attr( rel="bookmark">
+msgctxt "ea0636307d90c8c65a13d236dc38d018"
 msgid "Permalink to %s"
 msgstr "קישור ישיר ל %s"
 

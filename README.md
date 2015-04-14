@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 3.5  
 **Tested up to:** 4.2  
-**Stable tag:** 1.28  
+**Stable tag:** 1.29-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -73,6 +73,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 1.29 ###
+
+* Updated the Hebrew translation (thanks to Ahrale).
 
 ### 1.28 ###
 

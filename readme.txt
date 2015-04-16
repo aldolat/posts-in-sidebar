@@ -65,6 +65,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 1.29 =
 
 * Updated the Hebrew translation (thanks to Ahrale).
+* The debug section displays the the URL of the site and WordPress version.
 
 = 1.28 =
 

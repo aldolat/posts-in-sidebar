@@ -532,7 +532,13 @@ function pis_posts_in_sidebar( $args ) {
 
 	<?php if ( $debug_query || $debug_params || $debug_query_number ) { ?>
 		<hr />
-		<h3><?php printf( __( 'Debugging (%s)', 'pis' ), PIS_VERSION ); ?></h3>
+		<h3><?php printf( __( '%s Debug', 'pis' ), 'Posts in Sidebar' ); ?></h3>
+		<p>
+			<?php global $wp_version;
+			printf( __( 'Site URL: %s', 'pis' ), site_url() . '<br>' );
+			printf( __( 'WP version: %s', 'pis' ), $wp_version . '<br>' );
+			printf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' ); ?>
+		</p>
 	<?php } ?>
 
 	<?php if ( $debug_query ) { ?>

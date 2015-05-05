@@ -514,6 +514,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'utility_margin'      => NULL,
 			'categories_margin'   => NULL,
 			'tags_margin'         => NULL,
+			'terms_margin'        => NULL,
 			'custom_field_margin' => NULL,
 			'archive_margin'      => NULL,
 			'noposts_margin'      => NULL,

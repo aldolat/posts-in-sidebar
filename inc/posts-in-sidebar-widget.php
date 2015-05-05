@@ -86,6 +86,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => $instance['post_meta_key'],
 			'post_meta_val'       => $instance['post_meta_val'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
+			// Custom taxonomies
+			'custom_tax'	      => $instance['custom_tax'],
+			'custom_terms'        => $instance['custom_terms'],
+			'terms_operator'      => $instance['terms_operator'],
 
 			// Posts exclusion
 			'exclude_current_post'=> $instance['exclude_current_post'],
@@ -135,6 +139,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'hashtag'             => $instance['hashtag'],
 			'tag_sep'             => $instance['tag_sep'],
 
+			// The custom taxonomies of the post
+			'display_custom_tax'  => $instance['display_custom_tax'],
+			'term_hashtag'        => $instance['term_hashtag'],
+			'term_sep'            => $instance['term_sep'],
+
 			// The custom field
 			'custom_field'        => $instance['custom_field'],
 			'custom_field_txt'    => $instance['custom_field_txt'],
@@ -176,6 +185,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'utility_margin'      => $instance['utility_margin'],
 			'categories_margin'   => $instance['categories_margin'],
 			'tags_margin'         => $instance['tags_margin'],
+			'terms_margin'        => $instance['terms_margin'],
 			'custom_field_margin' => $instance['custom_field_margin'],
 			'archive_margin'      => $instance['archive_margin'],
 			'noposts_margin'      => $instance['noposts_margin'],
@@ -250,6 +260,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_meta_key']       = strip_tags( $new_instance['post_meta_key'] );
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
+		// Custom taxonomies
+		$instance['custom_tax']          = strip_tags( $new_instance['custom_tax'] );
+		$instance['custom_terms']        = strip_tags( $new_instance['custom_terms'] );
+		$instance['terms_operator']      = $new_instance['terms_operator']; // This is a dropdown menu, so it is not sanitized
 
 		// Posts exclusion
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
@@ -299,6 +313,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['tags_text']           = strip_tags( $new_instance['tags_text'] );
 		$instance['hashtag']             = strip_tags( $new_instance['hashtag'] );
 		$instance['tag_sep']             = strip_tags( $new_instance['tag_sep'] );
+
+		// The custom taxonomies of the post
+		$instance['display_custom_tax']  = isset( $new_instance['display_custom_tax'] ) ? 1 : 0;
+		$instance['term_hashtag']        = strip_tags( $new_instance['term_hashtag'] );
+		$instance['term_sep']            = strip_tags( $new_instance['term_sep'] );
 
 		// The custom field
 		$instance['custom_field']        = isset( $new_instance['custom_field'] ) ? 1 : 0;
@@ -354,6 +373,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( ! is_numeric( $new_instance['categories_margin'] ) ) $instance['categories_margin'] = NULL;
 		$instance['tags_margin']         = strip_tags( $new_instance['tags_margin'] );
 			if ( ! is_numeric( $new_instance['tags_margin'] ) ) $instance['tags_margin'] = NULL;
+		$instance['terms_margin']        = strip_tags( $new_instance['terms_margin'] );
+			if ( ! is_numeric( $new_instance['terms_margin'] ) ) $instance['terms_margin'] = NULL;
 		$instance['custom_field_margin'] = strip_tags( $new_instance['custom_field_margin'] );
 			if ( ! is_numeric( $new_instance['custom_field_margin'] ) ) $instance['custom_field_margin'] = NULL;
 		$instance['archive_margin']      = strip_tags( $new_instance['archive_margin'] );
@@ -400,6 +421,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
 			'ignore_sticky'       => false,
+			// Custom taxonomies
+			'custom_tax'          => '',
+			'custom_terms'        => '',
+			'terms_operator'      => 'IN',
 
 			// Posts exclusion
 			'exclude_current_post'=> false,
@@ -448,6 +473,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'tags_text'           => __( 'Tags:', 'pis' ),
 			'hashtag'             => '#',
 			'tag_sep'             => '',
+
+			// The custom taxonomies of the post
+			'display_custom_tax'  => false,
+			'term_hashtag'        => '',
+			'term_sep'            => ',',
 
 			// The custom field
 			'custom_field'        => false,
@@ -512,6 +542,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$comments            = (bool) $instance['comments'];
 		$categories          = (bool) $instance['categories'];
 		$tags                = (bool) $instance['tags'];
+		$display_custom_tax  = (bool) $instance['display_custom_tax'];
 		$custom_field        = (bool) $instance['custom_field'];
 		$custom_field_key    = (bool) $instance['custom_field_key'];
 		$archive_link        = (bool) $instance['archive_link'];
@@ -821,6 +852,53 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
+			<strong><?php _e( 'Custom taxonomies', 'pis' ); ?></strong>
+
+			<?php // ================= Custom taxonomies
+			pis_form_input_text(
+				__( 'Custom taxonomy', 'pis' ),
+				$this->get_field_id('custom_tax'),
+				$this->get_field_name('custom_tax'),
+				esc_attr( $instance['custom_tax'] ),
+				__( 'movie-genre', 'pis' ),
+				__( 'Insert the slug of the taxonomy.', 'pis' )
+			); ?>
+
+			<?php // ================= Terms of the custom taxonomies
+			pis_form_input_text(
+				__( 'Custom terms', 'pis' ),
+				$this->get_field_id('custom_terms'),
+				$this->get_field_name('custom_terms'),
+				esc_attr( $instance['custom_terms'] ),
+				__( 'action,sci-fi', 'pis' ),
+				__( 'Insert the slugs of the terms, separated by comma.', 'pis' )
+			); ?>
+
+			<?php // ================= Terms operator
+			$options = array(
+				'in' => array(
+					'value' => 'IN',
+					'desc'  => 'IN'
+				),
+				'not_in' => array(
+					'value' => 'NOT IN',
+					'desc'  => 'NOT IN'
+				),
+				'and' => array(
+					'value' => 'AND',
+					'desc'  => 'AND'
+				),
+			);
+			pis_form_select(
+				__( 'Terms operator', 'pis' ),
+				$this->get_field_id('terms_operator'),
+				$this->get_field_name('terms_operator'),
+				$options,
+				$instance['terms_operator']
+			); ?>
+
+			<hr />
+
 			<h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
 
 			<?php // ================= Exclude current post
@@ -1103,6 +1181,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
+			<h4 class="pis-gray-title"><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
+
+			<?php // ================= Custom taxonomies
+			pis_form_checkbox( __( 'Show the custom taxonomies of the post', 'pis' ),
+			$this->get_field_id( 'display_custom_tax' ),
+			$this->get_field_name( 'display_custom_tax' ),
+			checked( $display_custom_tax, true, false ) ); ?>
+
+			<?php // ================= Terms hashtag
+			pis_form_input_text( __( 'Use this hashtag for terms', 'pis' ), $this->get_field_id( 'term_hashtag' ), $this->get_field_name( 'term_hashtag' ), esc_attr( $instance['term_hashtag'] ), '#' ); ?>
+
+			<?php // ================= Terms separator
+			pis_form_input_text(
+				__( 'Use this separator between terms', 'pis' ),
+				$this->get_field_id( 'term_sep' ),
+				$this->get_field_name( 'term_sep' ),
+				esc_attr( $instance['term_sep'] ),
+				',',
+				__( 'A space will be added after the separator.', 'pis' )
+			); ?>
+
+			<hr />
+
 			<h4 class="pis-gray-title"><?php _e( 'The custom field', 'pis' ); ?></h4>
 
 			<?php // ================= Display custom field
@@ -1337,6 +1438,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		</div>
 
 		<div class="pis-column-last">
+			<?php pis_form_input_text( __( 'Terms bottom margin', 'pis' ), $this->get_field_id( 'terms_margin' ), $this->get_field_name( 'terms_margin' ), esc_attr( $instance['terms_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Custom field bottom margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'Archive bottom margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
 			<?php pis_form_input_text( __( 'No-posts bottom margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>

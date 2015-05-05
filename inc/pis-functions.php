@@ -417,3 +417,33 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 	endswitch;
 	// Close The text
 }
+
+
+/**
+ * Display the custom taxonomies of the current post.
+ * 
+ * @since 1.29
+ * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
+ */
+// get taxonomies terms links
+function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $terms_margin, $margin_unit ) {
+	// get post by post id
+	$post = get_post( $postID );
+
+	// get post type by post
+	$post_type = $post->post_type;
+
+	// get post type taxonomies
+	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+	foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
+		// get the terms related to post
+		$list_of_terms = get_the_term_list( $postID, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
+		if ( $list_of_terms ) { ?>
+			<p <?php echo pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ); ?>>
+				<span class="pis-tax-name"><?php echo $taxonomy->label; ?></span>:&nbsp;
+				<?php echo apply_filters( 'pis_terms_list', $list_of_terms ); ?>
+			</p>
+		<?php }
+	}
+}

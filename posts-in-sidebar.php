@@ -128,6 +128,10 @@ function pis_posts_in_sidebar( $args ) {
 		'post_meta_key'       => '',
 		'post_meta_val'       => '',
 		'ignore_sticky'       => false,
+		// Custom taxonomies
+		'custom_tax'	      => '',
+		'custom_terms'        => '',
+		'terms_operator'      => 'IN',
 
 		// Posts exclusion
 		'exclude_current_post'=> false,
@@ -177,6 +181,11 @@ function pis_posts_in_sidebar( $args ) {
 		'hashtag'             => '#',
 		'tag_sep'             => '',
 
+		// The custom taxonomies of the post
+		'display_custom_tax'  => false,
+		'term_hashtag'        => '',
+		'term_sep'            => ',',
+
 		// The custom field
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
@@ -212,6 +221,7 @@ function pis_posts_in_sidebar( $args ) {
 		'utility_margin'      => NULL,
 		'categories_margin'   => NULL,
 		'tags_margin'         => NULL,
+		'terms_margin'        => NULL,
 		'archive_margin'      => NULL,
 		'noposts_margin'      => NULL,
 
@@ -241,6 +251,21 @@ function pis_posts_in_sidebar( $args ) {
 	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
+	// $tax_query must be an array of array
+	if ( '' == $custom_tax && '' == $custom_terms ) {
+		$tax_query = '';
+	} else {
+		$terms = explode( ',', $custom_terms );
+		$tax_query = array(
+			array(
+				'taxonomy' => $custom_tax,
+				'field'    => 'slug',
+				'terms'    => $terms, // This must be an array
+				'operator'  => $terms_operator,
+			)
+		);
+	}
+
 	// Get the ID of the current post.
 	// This will be used in case the user do not want to display the same post in the main body and in the sidebar.
 	if ( ( is_single() || is_page() ) && $exclude_current_post ) {
@@ -264,6 +289,7 @@ function pis_posts_in_sidebar( $args ) {
 		'author_name'         => $author,      // Uses nicenames
 		'category_name'       => $cat,         // Uses category slugs
 		'tag'                 => $tag,         // Uses tag slugs 
+		'tax_query'           => $tax_query,   // Uses an array of array
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,
@@ -432,6 +458,11 @@ function pis_posts_in_sidebar( $args ) {
 								?>
 							</p>
 						<?php }
+					} ?>
+
+					<?php /* Custom taxonomies */ ?>
+					<?php if ( $display_custom_tax ) {
+						echo pis_custom_taxonomies_terms_links( $pis_query->post->ID, $term_hashtag, $term_sep, $terms_margin, $margin_unit );
 					} ?>
 
 					<?php /* The post meta */ ?>

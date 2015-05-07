@@ -119,6 +119,7 @@ function pis_posts_in_sidebar( $args ) {
 		'author'              => '',        // Author nicename
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
+		'post_parent_in'      => '',
 		'post_format'         => '',
 		'number'              => get_option( 'posts_per_page' ),
 		'orderby'             => 'date',
@@ -251,6 +252,11 @@ function pis_posts_in_sidebar( $args ) {
 	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
+	// $post_parent_in must be an array
+	if ( '' != $post_parent_in ) {
+		$post_parent_in = explode( ',', $post_parent_in );
+	}
+
 	// $tax_query must be an array of array
 	if ( '' == $custom_tax && '' == $custom_terms ) {
 		$tax_query = '';
@@ -290,6 +296,7 @@ function pis_posts_in_sidebar( $args ) {
 		'category_name'       => $cat,         // Uses category slugs
 		'tag'                 => $tag,         // Uses tag slugs 
 		'tax_query'           => $tax_query,   // Uses an array of array
+		'post_parent__in'     => $post_parent_in,
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,

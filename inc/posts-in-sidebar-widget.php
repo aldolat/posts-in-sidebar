@@ -77,6 +77,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'author'              => $instance['author'],
 			'cat'                 => $instance['cat'],
 			'tag'                 => $instance['tag'],
+			'post_parent_in'      => $instance['post_parent_in'],
 			'post_format'         => $instance['post_format'],
 			'number'              => $instance['number'],
 			'orderby'             => $instance['orderby'],
@@ -164,7 +165,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'list_element'        => $instance['list_element'],
 			'remove_bullets'      => $instance['remove_bullets'],
 
-
 			// Cache
 			'cached'              => $instance['cached'],
 			'cache_time'          => $instance['cache_time'],
@@ -249,6 +249,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
 			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
+		$instance['post_parent_in']      = strip_tags( $new_instance['post_parent_in'] );
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
 			if ( 0 == $instance['number'] || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
@@ -412,6 +413,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'author'              => '',
 			'cat'                 => '',
 			'tag'                 => '',
+			'post_parent_in'      => '',
 			'post_format'         => '',
 			'number'              => get_option( 'posts_per_page' ),
 			'orderby'             => 'date',
@@ -684,6 +686,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				esc_attr( $instance['tag'] ),
 				__( 'best-sellers', 'pis' ),
 				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+			); ?>
+
+			<?php // ================= Post parent
+			pis_form_input_text(
+				__( 'Get posts whose parent is in these IDs', 'pis' ),
+				$this->get_field_id('post_parent_in'),
+				$this->get_field_name('post_parent_in'),
+				esc_attr( $instance['post_parent_in'] ),
+				__( '2, 5, 12, 14, 20', 'pis' ),
+				__( 'Insert IDs separated by commas.' )
 			); ?>
 
 			<?php // ================= Post format

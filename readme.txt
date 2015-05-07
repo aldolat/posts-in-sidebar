@@ -2,7 +2,7 @@
 Contributors: aldolat
 Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
-Requires at least: 3.5
+Requires at least: 3.6
 Tested up to: 4.2
 Stable tag: 1.29-dev
 License: GPLv3 or later

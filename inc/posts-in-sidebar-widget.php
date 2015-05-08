@@ -86,6 +86,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_status'         => $instance['post_status'],
 			'post_meta_key'       => $instance['post_meta_key'],
 			'post_meta_val'       => $instance['post_meta_val'],
+			'search'              => $instance['search'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
 			// Custom taxonomies
 			'custom_tax'	      => $instance['custom_tax'],
@@ -260,6 +261,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_status']         = $new_instance['post_status'];
 		$instance['post_meta_key']       = strip_tags( $new_instance['post_meta_key'] );
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
+		$instance['search']              = strip_tags( $new_instance['search'] );
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 		// Custom taxonomies
 		$instance['custom_tax']          = strip_tags( $new_instance['custom_tax'] );
@@ -422,6 +424,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_status'         => 'publish',
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
+			'search'              => '',
 			'ignore_sticky'       => false,
 			// Custom taxonomies
 			'custom_tax'          => '',
@@ -858,6 +861,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name('post_meta_val'),
 				esc_attr( $instance['post_meta_val'] ),
 				__( 'meta-value', 'pis' )
+			); ?>
+
+			<?php // ================= Search
+			pis_form_input_text(
+				__( 'Get post from this search', 'pis' ),
+				$this->get_field_id('search'),
+				$this->get_field_name('search'),
+				esc_attr( $instance['search'] ),
+				__( 'words to search', 'pis' )
 			); ?>
 
 			<?php // ================= Ignore sticky post

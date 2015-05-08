@@ -128,6 +128,7 @@ function pis_posts_in_sidebar( $args ) {
 		'post_status'         => 'publish',
 		'post_meta_key'       => '',
 		'post_meta_val'       => '',
+		'search'              => '',
 		'ignore_sticky'       => false,
 		// Custom taxonomies
 		'custom_tax'	      => '',
@@ -308,6 +309,7 @@ function pis_posts_in_sidebar( $args ) {
 		'post_status'         => $post_status,
 		'meta_key'            => $post_meta_key,
 		'meta_value'          => $post_meta_val,
+		's'                   => $search,
 		'ignore_sticky_posts' => $ignore_sticky
 	);
 

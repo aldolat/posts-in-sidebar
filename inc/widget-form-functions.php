@@ -96,7 +96,7 @@ function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
 function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) {
 	echo '<p>';
 	pis_form_label( $label, $id );
-	echo '<select name="' . $name . '">';
+	echo '&nbsp;<select name="' . $name . '">';
 		foreach ( $options as $option ) {
 			$selected = selected( $option['value'], $value, false );
 			echo '<option ' . $selected . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['desc'] ) . '</option>';

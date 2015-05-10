@@ -2,8 +2,8 @@
 **Contributors:** aldolat  
 **Donate link:** http://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget  
-**Requires at least:** 3.6  
-**Tested up to:** 4.2  
+**Requires at least:** 4.1  
+**Tested up to:** 4.3  
 **Stable tag:** 1.29-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
@@ -76,9 +76,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 1.29 ###
 
+* NEW: Support for taxonomy complex queries.
 * NEW: Support for search for posts containing a string.
 * NEW: Support for getting posts that are children of other posts.
 * NEW: Support for custom taxonomies.
+* Now the plugin requires WordPress 4.1.
 * Updated the Hebrew translation (thanks to Ahrale).
 * The debug section displays the URL of the site and WordPress version.
 

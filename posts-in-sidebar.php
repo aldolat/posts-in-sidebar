@@ -130,11 +130,33 @@ function pis_posts_in_sidebar( $args ) {
 		'post_meta_val'       => '',
 		'search'              => '',
 		'ignore_sticky'       => false,
-		// Custom taxonomies
-		'custom_tax'	      => '',
-		'custom_field_terms'  => 'slug',
-		'custom_terms'        => '',
-		'terms_operator'      => 'IN',
+
+		// Taxonomies
+		'relation'            => '',
+
+		'taxonomy_aa'         => '',
+		'field_aa'            => 'slug',
+		'terms_aa'            => '',
+		'operator_aa'         => 'IN',
+
+		'relation_a'          => '',
+
+		'taxonomy_ab'         => '',
+		'field_ab'            => 'slug',
+		'terms_ab'            => '',
+		'operator_ab'         => 'IN',
+
+		'taxonomy_ba'         => '',
+		'field_ba'            => 'slug',
+		'terms_ba'            => '',
+		'operator_ba'         => 'IN',
+
+		'relation_b'          => '',
+
+		'taxonomy_bb'         => '',
+		'field_bb'            => 'slug',
+		'terms_bb'            => '',
+		'operator_bb'         => 'IN',
 
 		// Posts exclusion
 		'exclude_current_post'=> false,
@@ -266,18 +288,144 @@ function pis_posts_in_sidebar( $args ) {
 	/**
 	 * $tax_query must be an array of array.
 	 */
-	if ( '' == $custom_tax && '' == $custom_terms ) {
+	if ( '' == $taxonomy_aa && '' == $terms_aa ) {
 		$tax_query = '';
 	} else {
-		$terms = explode( ',', $custom_terms );
-		$tax_query = array(
-			array(
-				'taxonomy' => $custom_tax,
-				'field'    => $custom_field_terms,
-				'terms'    => $terms, // This must be an array
-				'operator'  => $terms_operator,
-			)
-		);
+		// Convert terms into arrays
+		$terms_aa = explode( ',', $terms_aa );
+		if ( $terms_ab ) $terms_ab = explode( ',', $terms_ab );
+		if ( $terms_ba ) $terms_ba = explode( ',', $terms_ba );
+		if ( $terms_bb ) $terms_bb = explode( ',', $terms_bb );
+
+		// Let's figure out the tax_query to build
+		if ( $taxonomy_aa && !$taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				),
+				array(
+					'taxonomy' => $taxonomy_ba,
+					'field'    => $field_ba,
+					'terms'    => $terms_ba, // This must be an array
+					'operator' => $operator_ba,
+				)
+			);
+		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				),
+				array(
+					'taxonomy' => $taxonomy_ba,
+					'field'    => $field_ba,
+					'terms'    => $terms_ba, // This must be an array
+					'operator' => $operator_ba,
+				)
+			);
+		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && $taxonomy_bb ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				),
+				array(
+					'relation_b' => $relation_b,
+					array (
+						'taxonomy' => $taxonomy_ba,
+						'field'    => $field_ba,
+						'terms'    => $terms_ba, // This must be an array
+						'operator' => $operator_ba,
+					),
+					array (
+						'taxonomy' => $taxonomy_bb,
+						'field'    => $field_bb,
+						'terms'    => $terms_bb, // This must be an array
+						'operator' => $operator_bb,
+					)
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				),
+				array(
+					'relation_b' => $relation_b,
+					array (
+						'taxonomy' => $taxonomy_ba,
+						'field'    => $field_ba,
+						'terms'    => $terms_ba, // This must be an array
+						'operator' => $operator_ba,
+					),
+					array (
+						'taxonomy' => $taxonomy_bb,
+						'field'    => $field_bb,
+						'terms'    => $terms_bb, // This must be an array
+						'operator' => $operator_bb,
+					)
+				)
+			);
+		}
 	}
 
 	/**

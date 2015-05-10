@@ -88,11 +88,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_val'       => $instance['post_meta_val'],
 			'search'              => $instance['search'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
-			// Custom taxonomies
-			'custom_tax'	      => $instance['custom_tax'],
-			'custom_field_terms'  => $instance['custom_field_terms'],
-			'custom_terms'        => $instance['custom_terms'],
-			'terms_operator'      => $instance['terms_operator'],
+
+			// Taxonomies
+			'relation'            => $instance['relation'],
+
+			'taxonomy_aa'         => $instance['taxonomy_aa'],
+			'field_aa'            => $instance['field_aa'],
+			'terms_aa'            => $instance['terms_aa'],
+			'operator_aa'         => $instance['operator_aa'],
+
+			'relation_a'          => $instance['relation_a'],
+
+			'taxonomy_ab'         => $instance['taxonomy_ab'],
+			'field_ab'            => $instance['field_ab'],
+			'terms_ab'            => $instance['terms_ab'],
+			'operator_ab'         => $instance['operator_ab'],
+
+			'taxonomy_ba'         => $instance['taxonomy_ba'],
+			'field_ba'            => $instance['field_ba'],
+			'terms_ba'            => $instance['terms_ba'],
+			'operator_ba'         => $instance['operator_ba'],
+
+			'relation_b'          => $instance['relation_b'],
+
+			'taxonomy_bb'         => $instance['taxonomy_bb'],
+			'field_bb'            => $instance['field_bb'],
+			'terms_bb'            => $instance['terms_bb'],
+			'operator_bb'         => $instance['operator_bb'],
 
 			// Posts exclusion
 			'exclude_current_post'=> $instance['exclude_current_post'],
@@ -264,11 +286,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['search']              = strip_tags( $new_instance['search'] );
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
-		// Custom taxonomies
-		$instance['custom_tax']          = strip_tags( $new_instance['custom_tax'] );
-		$instance['custom_field_terms']  = $new_instance['custom_field_terms'];
-		$instance['custom_terms']        = strip_tags( $new_instance['custom_terms'] );
-		$instance['terms_operator']      = $new_instance['terms_operator']; // This is a dropdown menu, so it is not sanitized
+
+		// Taxonomies
+		$instance['relation']            = $new_instance['relation'];
+
+		$instance['taxonomy_aa']         = strip_tags( $new_instance['taxonomy_aa'] );
+		$instance['field_aa']            = $new_instance['field_aa'];
+		$instance['terms_aa']            = strip_tags( $new_instance['terms_aa'] );
+		$instance['operator_aa']         = $new_instance['operator_aa'];
+
+		$instance['relation_a']          = $new_instance['relation_a'];
+
+		$instance['taxonomy_ab']         = strip_tags( $new_instance['taxonomy_ab'] );
+		$instance['field_ab']            = $new_instance['field_ab'];
+		$instance['terms_ab']            = strip_tags( $new_instance['terms_ab'] );
+		$instance['operator_ab']         = $new_instance['operator_ab'];
+
+		$instance['taxonomy_ba']         = strip_tags( $new_instance['taxonomy_ba'] );
+		$instance['field_ba']            = $new_instance['field_ba'];
+		$instance['terms_ba']            = strip_tags( $new_instance['terms_ba'] );
+		$instance['operator_ba']         = $new_instance['operator_ba'];
+
+		$instance['relation_b']          = $new_instance['relation_b'];
+
+		$instance['taxonomy_bb']         = strip_tags( $new_instance['taxonomy_bb'] );
+		$instance['field_bb']            = $new_instance['field_bb'];
+		$instance['terms_bb']            = strip_tags( $new_instance['terms_bb'] );
+		$instance['operator_bb']         = $new_instance['operator_bb'];
 
 		// Posts exclusion
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
@@ -428,11 +472,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_val'       => '',
 			'search'              => '',
 			'ignore_sticky'       => false,
-			// Custom taxonomies
-			'custom_tax'          => '',
-			'custom_field_terms'  => 'slug',
-			'custom_terms'        => '',
-			'terms_operator'      => 'IN',
+			
+			// Taxonomies
+			'relation'            => '',
+
+			'taxonomy_aa'         => '',
+			'field_aa'            => 'slug',
+			'terms_aa'            => '',
+			'operator_aa'         => 'IN',
+
+			'relation_a'          => '',
+
+			'taxonomy_ab'         => '',
+			'field_ab'            => 'slug',
+			'terms_ab'            => '',
+			'operator_ab'         => 'IN',
+
+			'taxonomy_ba'         => '',
+			'field_ba'            => 'slug',
+			'terms_ba'            => '',
+			'operator_ba'         => 'IN',
+
+			'relation_b'          => '',
+
+			'taxonomy_bb'         => '',
+			'field_bb'            => 'slug',
+			'terms_bb'            => '',
+			'operator_bb'         => 'IN',
 
 			// Posts exclusion
 			'exclude_current_post'=> false,
@@ -565,13 +631,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<style>
 			.pis-gray-title {
-				background-color: #ddd; padding: 3px 5px;
+				background-color: #ddd;
+				padding: 3px 5px;
+				clear: left;
+			}
+			.pis-2cols .pis-gray-title {
+				margin-top: 0;
 			}
 			.pis-column {
-				float: left; width: 31%; margin-right: 2%;
+				float: left;
+				width: 31%;
+				margin-right: 2%;
 			}
 			.pis-column-last {
-				float: left; width: 31%;
+				float: left;
+				width: 31%;
+			}
+			.pis-2cols {
+				width: 99%;
+				padding: 1%;
+			}
+			.pis-2cols .pis-column {
+				width: 48%;
+			}
+			.pis-column-gray {
+				background-color: #f5f5f5;
 			}
 			.pis-alert {
 				color: #777;
@@ -609,9 +693,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<hr />
 
-		<div class="pis-column">
+		<h4 class="pis-gray-title"><?php _e( 'Getting posts', 'pis' ); ?></h4>
 
-			<h4 class="pis-gray-title"><?php _e( 'Posts retrieving', 'pis' ); ?></h4>
+		<div class="pis-column">
 
 			<?php // ================= Post types
 
@@ -673,7 +757,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$instance['author']
 			); ?>
 
-
 			<?php // ================= Category
 			pis_form_input_text(
 				__( 'Get posts with these categories', 'pis' ),
@@ -696,71 +779,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<strong><?php _e( 'Custom taxonomies', 'pis' ); ?></strong>
+		</div>
 
-			<?php // ================= Custom taxonomies
-			pis_form_input_text(
-				__( 'Custom taxonomy', 'pis' ),
-				$this->get_field_id('custom_tax'),
-				$this->get_field_name('custom_tax'),
-				esc_attr( $instance['custom_tax'] ),
-				__( 'movie-genre', 'pis' ),
-				__( 'Insert the slug of the taxonomy.', 'pis' )
-			); ?>
-
-			<?php // ================= Custom field of the terms
-			$options = array(
-				'term_id' => array(
-					'value' => 'term_id',
-					'desc'  => __( 'Term ID', 'pis' )
-				),
-				'slug' => array(
-					'value' => 'slug',
-					'desc'  => __( 'Slug', 'pis' )
-				),
-				'name' => array(
-					'value' => 'name',
-					'desc'  => __( 'Name', 'pis' )
-				),
-			);
-			pis_form_select(
-				__( 'Field', 'pis' ),
-				$this->get_field_id('custom_field_terms'),
-				$this->get_field_name('custom_field_terms'),
-				$options,
-				$instance['custom_field_terms']
-			); ?>
-
-			<?php // ================= Terms of the custom taxonomies
-			pis_form_input_text(
-				__( 'Custom terms', 'pis' ),
-				$this->get_field_id('custom_terms'),
-				$this->get_field_name('custom_terms'),
-				esc_attr( $instance['custom_terms'] ),
-				__( 'action,sci-fi', 'pis' ),
-				__( 'Insert IDs, slugs, or names of the terms, separated by comma.', 'pis' )
-			); ?>
-
-			<?php // ================= Terms operator
-			$options = array(
-				'in' => array(
-					'value' => 'IN',
-					'desc'  => 'IN'
-				),
-				'and' => array(
-					'value' => 'AND',
-					'desc'  => 'AND'
-				),
-			);
-			pis_form_select(
-				__( 'Terms operator', 'pis' ),
-				$this->get_field_id('terms_operator'),
-				$this->get_field_name('terms_operator'),
-				$options,
-				$instance['terms_operator']
-			); ?>
-
-			<hr />
+		<div class="pis-column">
 
 			<?php // ================= Post parent
 			pis_form_input_text(
@@ -793,6 +814,59 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$options,
 				$instance['post_format']
 			); ?>
+
+			<?php // ================= Post status
+			$options = array();
+			$statuses = get_post_stati( '', 'objects' );
+			foreach( $statuses as $status ) {
+				$options[] = array(
+					'value' => $status->name,
+					'desc'  => $status->label,
+				);
+			}
+			pis_form_select(
+				__( 'Get posts with this post status', 'pis' ),
+				$this->get_field_id('post_status'),
+				$this->get_field_name('post_status'),
+				$options,
+				$instance['post_status']
+			); ?>
+
+			<?php // ================= Post meta key
+			pis_form_input_text(
+				__( 'Get post with this meta key', 'pis' ),
+				$this->get_field_id('post_meta_key'),
+				$this->get_field_name('post_meta_key'),
+				esc_attr( $instance['post_meta_key'] ),
+				__( 'meta-key', 'pis' )
+			); ?>
+
+			<?php // ================= Post meta value
+			pis_form_input_text(
+				__( 'Get post with this meta value', 'pis' ),
+				$this->get_field_id('post_meta_val'),
+				$this->get_field_name('post_meta_val'),
+				esc_attr( $instance['post_meta_val'] ),
+				__( 'meta-value', 'pis' )
+			); ?>
+
+			<?php // ================= Search
+			pis_form_input_text(
+				__( 'Get post from this search', 'pis' ),
+				$this->get_field_id('search'),
+				$this->get_field_name('search'),
+				esc_attr( $instance['search'] ),
+				__( 'words to search', 'pis' )
+			); ?>
+
+			<?php // ================= Ignore sticky post
+			pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
+
+			<hr />
+
+		</div>
+
+		<div class="pis-column-last">
 
 			<?php // ================= Posts quantity
 			pis_form_input_text(
@@ -899,56 +973,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				'5'
 			); ?>
 
-			<?php // ================= Post status
-			$options = array();
-			$statuses = get_post_stati( '', 'objects' );
-			foreach( $statuses as $status ) {
-				$options[] = array(
-					'value' => $status->name,
-					'desc'  => $status->label,
-				);
-			}
-			pis_form_select(
-				__( 'Get posts with this post status', 'pis' ),
-				$this->get_field_id('post_status'),
-				$this->get_field_name('post_status'),
-				$options,
-				$instance['post_status']
-			); ?>
-
-			<?php // ================= Post meta key
-			pis_form_input_text(
-				__( 'Get post with this meta key', 'pis' ),
-				$this->get_field_id('post_meta_key'),
-				$this->get_field_name('post_meta_key'),
-				esc_attr( $instance['post_meta_key'] ),
-				__( 'meta-key', 'pis' )
-			); ?>
-
-			<?php // ================= Post meta value
-			pis_form_input_text(
-				__( 'Get post with this meta value', 'pis' ),
-				$this->get_field_id('post_meta_val'),
-				$this->get_field_name('post_meta_val'),
-				esc_attr( $instance['post_meta_val'] ),
-				__( 'meta-value', 'pis' )
-			); ?>
-
-			<?php // ================= Search
-			pis_form_input_text(
-				__( 'Get post from this search', 'pis' ),
-				$this->get_field_id('search'),
-				$this->get_field_name('search'),
-				esc_attr( $instance['search'] ),
-				__( 'words to search', 'pis' )
-			); ?>
-
-			<?php // ================= Ignore sticky post
-			pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
-
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'Posts exclusion', 'pis' ); ?></h4>
+			<h4><?php _e( 'Excluding posts', 'pis' ); ?></h4>
 
 			<?php // ================= Exclude current post
 			pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
@@ -991,11 +1018,256 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				__( 'Insert IDs separated by commas.', 'pis' )
 			); ?>
 
+			<hr />
+
 		</div>
+
+		<div class="pis-column pis-2cols pis-column-gray">
+
+			<h4 style="margin-top: 0;"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
+
+			<?php // ================= Taxonomy relation between aa and bb
+			$options = array(
+				'empty' => array(
+					'value' => '',
+					'desc'  => ''
+				),
+				'and' => array(
+					'value' => 'AND',
+					'desc'  => 'AND'
+				),
+				'or' => array(
+					'value' => 'OR',
+					'desc'  => 'OR'
+				),
+			);
+			pis_form_select(__( 'Relation between Column A and Column B', 'pis' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], __( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'pis' ) ); ?>
+
+			<hr />
+
+			<div class="pis-column">
+
+				<h4><?php _e( 'Column A', 'pis' ); ?></h4>
+
+				<?php // ================= Taxonomy aa
+				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+
+				<?php // ================= Field aa
+				$options = array(
+					'term_id' => array(
+						'value' => 'term_id',
+						'desc'  => __( 'Term ID', 'pis' )
+					),
+					'slug' => array(
+						'value' => 'slug',
+						'desc'  => __( 'Slug', 'pis' )
+					),
+					'name' => array(
+						'value' => 'name',
+						'desc'  => __( 'Name', 'pis' )
+					),
+				);
+				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+
+				<?php // ================= Terms aa
+				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+
+				<?php // ================= Operator aa
+				$options = array(
+					'in' => array(
+						'value' => 'IN',
+						'desc'  => 'IN'
+					),
+					'not_in' => array(
+						'value' => 'NOT IN',
+						'desc'  => 'NOT IN'
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+				);
+				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+
+				<hr />
+
+				<?php // ================= Taxonomy relation between aa and ab
+				$options = array(
+					'empty' => array(
+						'value' => '',
+						'desc'  => ''
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+					'or' => array(
+						'value' => 'OR',
+						'desc'  => 'OR'
+					),
+				);
+				pis_form_select(__( 'Relation between above and below taxonomies', 'pis' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
+
+				<hr />
+
+				<?php // ================= Taxonomy ab
+				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+
+				<?php // ================= Field ab
+				$options = array(
+					'term_id' => array(
+						'value' => 'term_id',
+						'desc'  => __( 'Term ID', 'pis' )
+					),
+					'slug' => array(
+						'value' => 'slug',
+						'desc'  => __( 'Slug', 'pis' )
+					),
+					'name' => array(
+						'value' => 'name',
+						'desc'  => __( 'Name', 'pis' )
+					),
+				);
+				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+
+				<?php // ================= Terms ab
+				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+
+				<?php // ================= Operator ab
+				$options = array(
+					'in' => array(
+						'value' => 'IN',
+						'desc'  => 'IN'
+					),
+					'not_in' => array(
+						'value' => 'NOT IN',
+						'desc'  => 'NOT IN'
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+				);
+				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+
+			</div>
+
+			<div class="pis-column">
+
+				<h4><?php _e( 'Column B', 'pis' ); ?></h4>
+
+				<?php // ================= Taxonomy ba
+				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+
+				<?php // ================= Field ba
+				$options = array(
+					'term_id' => array(
+						'value' => 'term_id',
+						'desc'  => __( 'Term ID', 'pis' )
+					),
+					'slug' => array(
+						'value' => 'slug',
+						'desc'  => __( 'Slug', 'pis' )
+					),
+					'name' => array(
+						'value' => 'name',
+						'desc'  => __( 'Name', 'pis' )
+					),
+				);
+				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+
+				<?php // ================= Terms ba
+				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+
+				<?php // ================= Operator ba
+				$options = array(
+					'in' => array(
+						'value' => 'IN',
+						'desc'  => 'IN'
+					),
+					'not_in' => array(
+						'value' => 'NOT IN',
+						'desc'  => 'NOT IN'
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+				);
+				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+
+				<hr />
+
+				<?php // ================= Taxonomy relation between ba and bb
+				$options = array(
+					'empty' => array(
+						'value' => '',
+						'desc'  => ''
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+					'or' => array(
+						'value' => 'OR',
+						'desc'  => 'OR'
+					),
+				);
+				pis_form_select(__( 'Relation between above and below taxonomies', 'pis' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
+
+				<hr />
+
+				<?php // ================= Taxonomy bb
+				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'recipe', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+
+				<?php // ================= Field bb
+				$options = array(
+					'term_id' => array(
+						'value' => 'term_id',
+						'desc'  => __( 'Term ID', 'pis' )
+					),
+					'slug' => array(
+						'value' => 'slug',
+						'desc'  => __( 'Slug', 'pis' )
+					),
+					'name' => array(
+						'value' => 'name',
+						'desc'  => __( 'Name', 'pis' )
+					),
+				);
+				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+
+				<?php // ================= Terms bb
+				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'pomodoro,onion', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+
+				<?php // ================= Operator bb
+				$options = array(
+					'in' => array(
+						'value' => 'IN',
+						'desc'  => 'IN'
+					),
+					'not_in' => array(
+						'value' => 'NOT IN',
+						'desc'  => 'NOT IN'
+					),
+					'and' => array(
+						'value' => 'AND',
+						'desc'  => 'AND'
+					),
+				);
+				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+
+			</div>
+
+		</div>
+
+		<div class="clear"></div>
+
+		<h4 class="pis-gray-title"><?php _e( 'Displaying posts', 'pis' ); ?></h4>
 
 		<div class="pis-column">
 
-			<h4 class="pis-gray-title"><?php _e( 'The title of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'The title of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Title of the post
 			pis_form_checkbox( __( 'Display the title of the post', 'pis' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
@@ -1008,7 +1280,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
 
 			<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
 				<p class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'pis' ); ?></p>
@@ -1081,7 +1353,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'Customized featured image', 'pis' ); ?></h4>
+			<h4><?php _e( 'Customized featured image', 'pis' ); ?></h4>
 
 			<?php // ================= Custom image URL
 			pis_form_input_text(
@@ -1099,7 +1371,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The text of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Type of text
 			$options = array(
@@ -1151,7 +1423,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
+		</div>
+
+		<div class="pis-column">
+
+			<h4><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
 
 			<?php // ================= Author
 			pis_form_checkbox( __( 'Display the author of the post', 'pis' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
@@ -1183,11 +1459,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			<?php // ================= Author
 			pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
 
-		</div>
+			<hr />
 
-		<div class="pis-column">
-
-			<h4 class="pis-gray-title"><?php _e( 'The categories of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Post categories
 			pis_form_checkbox( __( 'Display the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
@@ -1207,7 +1481,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The tags of the post', 'pis' ); ?></h4>
+			<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Post tags
 			pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
@@ -1230,7 +1504,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
+		</div>
+
+		<div class="pis-column-last">
+
+			<h4><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
 
 			<?php // ================= Custom taxonomies
 			pis_form_checkbox( __( 'Show the custom taxonomies of the post', 'pis' ),
@@ -1253,7 +1531,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The custom field', 'pis' ); ?></h4>
+			<h4><?php _e( 'The custom field', 'pis' ); ?></h4>
 
 			<?php // ================= Display custom field
 			pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
@@ -1288,7 +1566,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'The link to the archive', 'pis' ); ?></h4>
+			<h4><?php _e( 'The link to the archive', 'pis' ); ?></h4>
 
 			<?php // ================= Taxonomy archive link
 			pis_form_checkbox( __( 'Display the link to the taxonomy archive', 'pis' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
@@ -1347,7 +1625,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'When no posts are found', 'pis' ); ?></h4>
+			<h4><?php _e( 'When no posts are found', 'pis' ); ?></h4>
 
 			<?php // ================= When no posts are found
 			// Text when no posts found
@@ -1367,6 +1645,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name( 'hide_widget' ),
 				checked( $hide_widget, true, false )
 			); ?>
+
+			<hr />
 
 		</div>
 

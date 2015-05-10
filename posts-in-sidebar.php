@@ -132,6 +132,7 @@ function pis_posts_in_sidebar( $args ) {
 		'ignore_sticky'       => false,
 		// Custom taxonomies
 		'custom_tax'	      => '',
+		'custom_field_terms'  => 'slug',
 		'custom_terms'        => '',
 		'terms_operator'      => 'IN',
 
@@ -247,18 +248,24 @@ function pis_posts_in_sidebar( $args ) {
 	if ( 'NULL' == $cat ) $cat = '';
 	if ( 'NULL' == $tag ) $tag = '';
 
-	// Some params accept only an array
+	/**
+	 * Some params accept only an array.
+	 */
 	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
 	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
 	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
-	// $post_parent_in must be an array
+	/**
+	 * $post_parent_in must be an array
+	 */
 	if ( '' != $post_parent_in ) {
 		$post_parent_in = explode( ',', $post_parent_in );
 	}
 
-	// $tax_query must be an array of array
+	/**
+	 * $tax_query must be an array of array.
+	 */
 	if ( '' == $custom_tax && '' == $custom_terms ) {
 		$tax_query = '';
 	} else {
@@ -266,15 +273,17 @@ function pis_posts_in_sidebar( $args ) {
 		$tax_query = array(
 			array(
 				'taxonomy' => $custom_tax,
-				'field'    => 'slug',
+				'field'    => $custom_field_terms,
 				'terms'    => $terms, // This must be an array
 				'operator'  => $terms_operator,
 			)
 		);
 	}
 
-	// Get the ID of the current post.
-	// This will be used in case the user do not want to display the same post in the main body and in the sidebar.
+	/**
+	 * Get the ID of the current post.
+	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
+	 */
 	if ( ( is_single() || is_page() ) && $exclude_current_post ) {
 		$post_not_in[] = get_the_id();
 	}

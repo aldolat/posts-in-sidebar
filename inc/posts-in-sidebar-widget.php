@@ -90,6 +90,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ignore_sticky'       => $instance['ignore_sticky'],
 			// Custom taxonomies
 			'custom_tax'	      => $instance['custom_tax'],
+			'custom_field_terms'  => $instance['custom_field_terms'],
 			'custom_terms'        => $instance['custom_terms'],
 			'terms_operator'      => $instance['terms_operator'],
 
@@ -265,6 +266,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 		// Custom taxonomies
 		$instance['custom_tax']          = strip_tags( $new_instance['custom_tax'] );
+		$instance['custom_field_terms']  = $new_instance['custom_field_terms'];
 		$instance['custom_terms']        = strip_tags( $new_instance['custom_terms'] );
 		$instance['terms_operator']      = $new_instance['terms_operator']; // This is a dropdown menu, so it is not sanitized
 
@@ -428,6 +430,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ignore_sticky'       => false,
 			// Custom taxonomies
 			'custom_tax'          => '',
+			'custom_field_terms'  => 'slug',
 			'custom_terms'        => '',
 			'terms_operator'      => 'IN',
 
@@ -691,6 +694,74 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
 			); ?>
 
+			<hr />
+
+			<strong><?php _e( 'Custom taxonomies', 'pis' ); ?></strong>
+
+			<?php // ================= Custom taxonomies
+			pis_form_input_text(
+				__( 'Custom taxonomy', 'pis' ),
+				$this->get_field_id('custom_tax'),
+				$this->get_field_name('custom_tax'),
+				esc_attr( $instance['custom_tax'] ),
+				__( 'movie-genre', 'pis' ),
+				__( 'Insert the slug of the taxonomy.', 'pis' )
+			); ?>
+
+			<?php // ================= Custom field of the terms
+			$options = array(
+				'term_id' => array(
+					'value' => 'term_id',
+					'desc'  => __( 'Term ID', 'pis' )
+				),
+				'slug' => array(
+					'value' => 'slug',
+					'desc'  => __( 'Slug', 'pis' )
+				),
+				'name' => array(
+					'value' => 'name',
+					'desc'  => __( 'Name', 'pis' )
+				),
+			);
+			pis_form_select(
+				__( 'Field', 'pis' ),
+				$this->get_field_id('custom_field_terms'),
+				$this->get_field_name('custom_field_terms'),
+				$options,
+				$instance['custom_field_terms']
+			); ?>
+
+			<?php // ================= Terms of the custom taxonomies
+			pis_form_input_text(
+				__( 'Custom terms', 'pis' ),
+				$this->get_field_id('custom_terms'),
+				$this->get_field_name('custom_terms'),
+				esc_attr( $instance['custom_terms'] ),
+				__( 'action,sci-fi', 'pis' ),
+				__( 'Insert IDs, slugs, or names of the terms, separated by comma.', 'pis' )
+			); ?>
+
+			<?php // ================= Terms operator
+			$options = array(
+				'in' => array(
+					'value' => 'IN',
+					'desc'  => 'IN'
+				),
+				'and' => array(
+					'value' => 'AND',
+					'desc'  => 'AND'
+				),
+			);
+			pis_form_select(
+				__( 'Terms operator', 'pis' ),
+				$this->get_field_id('terms_operator'),
+				$this->get_field_name('terms_operator'),
+				$options,
+				$instance['terms_operator']
+			); ?>
+
+			<hr />
+
 			<?php // ================= Post parent
 			pis_form_input_text(
 				__( 'Get posts whose parent is in these IDs', 'pis' ),
@@ -874,53 +945,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Ignore sticky post
 			pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
-
-			<hr />
-
-			<strong><?php _e( 'Custom taxonomies', 'pis' ); ?></strong>
-
-			<?php // ================= Custom taxonomies
-			pis_form_input_text(
-				__( 'Custom taxonomy', 'pis' ),
-				$this->get_field_id('custom_tax'),
-				$this->get_field_name('custom_tax'),
-				esc_attr( $instance['custom_tax'] ),
-				__( 'movie-genre', 'pis' ),
-				__( 'Insert the slug of the taxonomy.', 'pis' )
-			); ?>
-
-			<?php // ================= Terms of the custom taxonomies
-			pis_form_input_text(
-				__( 'Custom terms', 'pis' ),
-				$this->get_field_id('custom_terms'),
-				$this->get_field_name('custom_terms'),
-				esc_attr( $instance['custom_terms'] ),
-				__( 'action,sci-fi', 'pis' ),
-				__( 'Insert the slugs of the terms, separated by comma.', 'pis' )
-			); ?>
-
-			<?php // ================= Terms operator
-			$options = array(
-				'in' => array(
-					'value' => 'IN',
-					'desc'  => 'IN'
-				),
-				'not_in' => array(
-					'value' => 'NOT IN',
-					'desc'  => 'NOT IN'
-				),
-				'and' => array(
-					'value' => 'AND',
-					'desc'  => 'AND'
-				),
-			);
-			pis_form_select(
-				__( 'Terms operator', 'pis' ),
-				$this->get_field_id('terms_operator'),
-				$this->get_field_name('terms_operator'),
-				$options,
-				$instance['terms_operator']
-			); ?>
 
 			<hr />
 

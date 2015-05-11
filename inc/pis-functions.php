@@ -449,3 +449,155 @@ function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $
 		}
 	}
 }
+
+
+/**
+ * Build the query based on taxonomies.
+ * 
+ * @since 1.29
+ */
+function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb ) {
+	if ( '' == $taxonomy_aa && '' == $terms_aa ) {
+		$tax_query = '';
+	} else {
+		// Convert terms into arrays
+		$terms_aa = explode( ',', $terms_aa );
+		if ( $terms_ab ) $terms_ab = explode( ',', $terms_ab );
+		if ( $terms_ba ) $terms_ba = explode( ',', $terms_ba );
+		if ( $terms_bb ) $terms_bb = explode( ',', $terms_bb );
+
+		// Let's figure out the tax_query to build
+		if ( $taxonomy_aa && !$taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+			$tax_query = array(
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				),
+				array(
+					'taxonomy' => $taxonomy_ba,
+					'field'    => $field_ba,
+					'terms'    => $terms_ba, // This must be an array
+					'operator' => $operator_ba,
+				)
+			);
+		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				),
+				array(
+					'taxonomy' => $taxonomy_ba,
+					'field'    => $field_ba,
+					'terms'    => $terms_ba, // This must be an array
+					'operator' => $operator_ba,
+				)
+			);
+		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && $taxonomy_bb && !empty( $relation ) ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				),
+				array(
+					'relation_b' => $relation_b,
+					array (
+						'taxonomy' => $taxonomy_ba,
+						'field'    => $field_ba,
+						'terms'    => $terms_ba, // This must be an array
+						'operator' => $operator_ba,
+					),
+					array (
+						'taxonomy' => $taxonomy_bb,
+						'field'    => $field_bb,
+						'terms'    => $terms_bb, // This must be an array
+						'operator' => $operator_bb,
+					)
+				)
+			);
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && !empty( $relation ) ) {
+			$tax_query = array(
+				'relation' => $relation,
+				array(
+					'relation_a' => $relation_a,
+					array (
+						'taxonomy' => $taxonomy_aa,
+						'field'    => $field_aa,
+						'terms'    => $terms_aa, // This must be an array
+						'operator' => $operator_aa,
+					),
+					array (
+						'taxonomy' => $taxonomy_ab,
+						'field'    => $field_ab,
+						'terms'    => $terms_ab, // This must be an array
+						'operator' => $operator_ab,
+					)
+				),
+				array(
+					'relation_b' => $relation_b,
+					array (
+						'taxonomy' => $taxonomy_ba,
+						'field'    => $field_ba,
+						'terms'    => $terms_ba, // This must be an array
+						'operator' => $operator_ba,
+					),
+					array (
+						'taxonomy' => $taxonomy_bb,
+						'field'    => $field_bb,
+						'terms'    => $terms_bb, // This must be an array
+						'operator' => $operator_bb,
+					)
+				)
+			);
+		}
+	}
+	if ( isset( $tax_query ) )
+		return $tax_query;
+	else
+		return '';
+}

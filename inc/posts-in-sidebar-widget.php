@@ -661,6 +661,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				color: #777;
 				font-weight: bold;
 			}
+			.pis-center {
+				text-align: center;
+			}
 		</style>
 
 		<h4 class="pis-gray-title"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
@@ -1024,7 +1027,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-column pis-2cols pis-column-gray">
 
-			<h4 style="margin-top: 0;"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
+			<h4 class="pis-center"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
 
 			<?php // ================= Taxonomy relation between aa and bb
 			$options = array(
@@ -1041,16 +1044,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					'desc'  => 'OR'
 				),
 			);
-			pis_form_select(__( 'Relation between Column A and Column B', 'pis' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], __( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'pis' ) ); ?>
+			pis_form_select( __( 'Relation between Column A and Column B', 'pis' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], __( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'pis' ) ); ?>
 
 			<hr />
 
 			<div class="pis-column">
 
-				<h4><?php _e( 'Column A', 'pis' ); ?></h4>
+				<h4 class="pis-center"><?php _e( 'Column A', 'pis' ); ?></h4>
 
 				<?php // ================= Taxonomy aa
-				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+				pis_form_input_text( sprintf( __( '%1$sTaxonomy A1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
 				<?php // ================= Field aa
 				$options = array(
@@ -1070,7 +1073,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 				<?php // ================= Terms aa
-				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+				pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
 				<?php // ================= Operator aa
 				$options = array(
@@ -1087,7 +1090,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'AND'
 					),
 				);
-				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+				pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
 				<hr />
 
@@ -1106,12 +1109,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'OR'
 					),
 				);
-				pis_form_select(__( 'Relation between above and below taxonomies', 'pis' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
+				pis_form_select( __( 'Relation between A1 and A2 taxonomies', 'pis' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
 
 				<hr />
 
 				<?php // ================= Taxonomy ab
-				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+				pis_form_input_text( sprintf( __( '%1$sTaxonomy A2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
 				<?php // ================= Field ab
 				$options = array(
@@ -1131,7 +1134,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 				<?php // ================= Terms ab
-				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+				pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
 				<?php // ================= Operator ab
 				$options = array(
@@ -1148,16 +1151,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'AND'
 					),
 				);
-				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+				pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
 			</div>
 
 			<div class="pis-column">
 
-				<h4><?php _e( 'Column B', 'pis' ); ?></h4>
+				<h4 class="pis-center"><?php _e( 'Column B', 'pis' ); ?></h4>
 
 				<?php // ================= Taxonomy ba
-				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+				pis_form_input_text( sprintf( __( '%1$sTaxonomy B1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
 				<?php // ================= Field ba
 				$options = array(
@@ -1177,7 +1180,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 				<?php // ================= Terms ba
-				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+				pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
 				<?php // ================= Operator ba
 				$options = array(
@@ -1194,7 +1197,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'AND'
 					),
 				);
-				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+				pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
 				<hr />
 
@@ -1213,12 +1216,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'OR'
 					),
 				);
-				pis_form_select(__( 'Relation between above and below taxonomies', 'pis' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
+				pis_form_select( __( 'Relation between B1 and B2 taxonomies', 'pis' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
 
 				<hr />
 
 				<?php // ================= Taxonomy bb
-				pis_form_input_text( __( 'Taxonomy', 'pis' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'recipe', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+				pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'recipe', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
 				<?php // ================= Field bb
 				$options = array(
@@ -1238,7 +1241,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 				<?php // ================= Terms bb
-				pis_form_input_text(__( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'pomodoro,onion', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+				pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'pomodoro,onion', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
 				<?php // ================= Operator bb
 				$options = array(
@@ -1255,7 +1258,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						'desc'  => 'AND'
 					),
 				);
-				pis_form_select(__( 'Operator', 'pis' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+				pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
 			</div>
 

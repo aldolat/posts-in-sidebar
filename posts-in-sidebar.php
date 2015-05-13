@@ -158,6 +158,25 @@ function pis_posts_in_sidebar( $args ) {
 		'terms_bb'            => '',
 		'operator_bb'         => 'IN',
 
+		// Date query
+		'date_year'           => '',
+		'date_month'          => '',
+		'date_week'           => '',
+		'date_day'            => '',
+		'date_hour'           => '',
+		'date_minute'         => '',
+		'date_second'         => '',
+		'date_after_year'     => '',
+		'date_after_month'    => '',
+		'date_after_day'      => '',
+		'date_before_year'    => '',
+		'date_before_month'   => '',
+		'date_before_day'     => '',
+		'date_inclusive'      => '',
+		'date_compare'        => '',
+		'date_column'         => '',
+		'date_relation'       => '',
+		
 		// Posts exclusion
 		'exclude_current_post'=> false,
 		'post_not_in'         => '',
@@ -294,6 +313,39 @@ function pis_posts_in_sidebar( $args ) {
 	$tax_query = pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb );
 
 	/**
+	 * Build the array for date query.
+	 * It must be an array of array.
+	 * 
+	 * @since 1.29
+	 */
+	$date_query = array(
+		array(
+			'year'      => $date_year,
+			'month'     => $date_month,
+			'week'      => $date_week,
+			'day'       => $date_day,
+			'hour'      => $date_hour,
+			'minute'    => $date_minute,
+			'second'    => $date_second,
+			'after'     => array (
+				'year'  => $date_after_year,
+				'month' => $date_after_month,
+				'day'   => $date_after_day,
+			),
+			'before'    => array (
+				'year'  => $date_before_year,
+				'month' => $date_before_month,
+				'day'   => $date_before_day,
+			),
+			'inclusive' => $date_inclusive,
+			'compare'   => $date_compare,
+			'column'    => $date_column,
+			'relation'  => $date_relation
+		)
+	);
+	$date_query = pis_array_remove_empty( $date_query );
+
+	/**
 	 * Get the ID of the current post.
 	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
 	 */
@@ -319,6 +371,7 @@ function pis_posts_in_sidebar( $args ) {
 		'category_name'       => $cat,         // Uses category slugs
 		'tag'                 => $tag,         // Uses tag slugs 
 		'tax_query'           => $tax_query,   // Uses an array of array
+		'date_query'          => $date_query,  // Uses an array of array
 		'post_parent__in'     => $post_parent_in,
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,

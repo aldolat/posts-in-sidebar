@@ -601,3 +601,22 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 	else
 		return '';
 }
+
+
+/**
+ * Remove empty keys from an array recursively.
+ * 
+ * @since 1.29
+ * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
+ */
+function pis_array_remove_empty( $haystack ) {
+	foreach ( $haystack as $key => $value ) {
+		if ( is_array( $value ) ) {
+			$haystack[$key] = pis_array_remove_empty( $haystack[$key] );
+		}
+		if ( empty( $haystack[$key] ) ) {
+			unset( $haystack[$key] );
+		}
+	}
+	return $haystack;
+}

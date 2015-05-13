@@ -873,7 +873,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php // ================= Posts quantity
 			pis_form_input_text(
-				__( 'Display this number of posts', 'pis' ),
+				__( 'Get this number of posts', 'pis' ),
 				$this->get_field_id('number'),
 				$this->get_field_name('number'),
 				esc_attr( $instance['number'] ),

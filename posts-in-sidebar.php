@@ -343,7 +343,7 @@ function pis_posts_in_sidebar( $args ) {
 			'relation'  => $date_relation
 		)
 	);
-	$date_query = pis_array_remove_empty( $date_query );
+	$date_query = pis_array_remove_empty_keys( $date_query );
 
 	/**
 	 * Get the ID of the current post.

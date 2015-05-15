@@ -609,14 +609,14 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
  * @since 1.29
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
  */
-function pis_array_remove_empty( $haystack ) {
-	foreach ( $haystack as $key => $value ) {
+function pis_array_remove_empty_keys( $array ) {
+	foreach ( $array as $key => $value ) {
 		if ( is_array( $value ) ) {
-			$haystack[$key] = pis_array_remove_empty( $haystack[$key] );
+			$array[$key] = pis_array_remove_empty_keys( $array[$key] );
 		}
-		if ( empty( $haystack[$key] ) ) {
-			unset( $haystack[$key] );
+		if ( empty( $array[$key] ) ) {
+			unset( $array[$key] );
 		}
 	}
-	return $haystack;
+	return $array;
 }

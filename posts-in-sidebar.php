@@ -298,7 +298,7 @@ function pis_posts_in_sidebar( $args ) {
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
 
 	/**
-	 * $post_parent_in must be an array
+	 * $post_parent_in must be an array.
 	 */
 	if ( '' != $post_parent_in ) {
 		$post_parent_in = explode( ',', $post_parent_in );

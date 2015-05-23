@@ -757,7 +757,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			.pis-container {
 				display: none;
 			}
-			.pis-clicked + .pis-container {
+			.pis-container-open {
 				display: block;
 			}
 		</style>
@@ -765,9 +765,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable pis-clicked"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title pis-clickable"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
-			<div class="pis-container">
+			<div class="pis-container pis-container-open">
 
 				<?php pis_form_input_text(
 					__( 'Title', 'pis' ),

@@ -710,7 +710,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				clear: both;
 			}
 			.pis-section-gray {
-				background-color: #f5f5f5;
+				background-color: #E5EAED;
 				margin-top: 20px;
 			}
 			.pis-column {
@@ -728,12 +728,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			.pis-2col .pis-column {
 				width: 48%;
 			}
-			.pis-gray-title {
-				background-color: #ddd;
+			.pis-widget-title {
+				background-color: #0073AA;
+				color: #fff;
 				padding: 3px 5px;
 				clear: left;
+				text-align: center;
 			}
-			.pis-2col .pis-gray-title {
+			.pis-2col .pis-widget-title {
 				margin-top: 0;
 			}
 			.pis-alert {
@@ -747,7 +749,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<?php pis_form_input_text(
 				__( 'Title', 'pis' ),
@@ -781,7 +783,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Getting posts', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Getting posts', 'pis' ); ?></h4>
 
 			<div class="pis-column">
 
@@ -1621,7 +1623,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Displaying posts', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Displaying posts', 'pis' ); ?></h4>
 
 			<div class="pis-column">
 
@@ -2008,7 +2010,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Extras', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Extras', 'pis' ); ?></h4>
 
 			<?php // ================= Container Class
 			pis_form_input_text(
@@ -2055,7 +2057,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Cache', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Cache', 'pis' ); ?></h4>
 
 			<?php // ================= Cache for the query
 			pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
@@ -2081,7 +2083,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Elements margins', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Elements margins', 'pis' ); ?></h4>
 
 			<p><em><?php _e( 'This section defines the margin for each line of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ); ?></em></p>
 
@@ -2143,7 +2145,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		<div class="pis-section">
 
-			<h4 class="pis-gray-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
 
 			<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
 
@@ -2159,7 +2161,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<hr />
 
-			<h4 class="pis-gray-title"><?php _e( 'Debugging', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Debugging', 'pis' ); ?></h4>
 
 			<p><strong><?php _e( 'Use this options for debugging purposes only. Please note that the informations will be displayed publicly on your site.', 'pis' ); ?></strong></p>
 

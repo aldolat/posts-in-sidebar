@@ -43,7 +43,9 @@ add_action( 'plugins_loaded', 'pis_setup' );
  */
 function pis_setup() {
 
-	/* Define the version of the plugin. */
+	/**
+	 * Define the version of the plugin.
+	 */
 	define( 'PIS_VERSION', '1.29-dev' );
 
 	/**
@@ -72,8 +74,31 @@ function pis_setup() {
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-functions.php' );
 
-	/* Load Posts in Sidebar's widgets. */
+	/**
+	 * Load Posts in Sidebar's widgets.
+	 */
 	add_action( 'widgets_init', 'pis_load_widgets' );
+
+	/**
+	 * Load the script.
+	 * 
+	 * @since 1.29
+	 */
+	add_action( 'admin_enqueue_scripts', 'pis_load_scripts' );
+}
+
+
+/**
+ * Load the Javascript file.
+ * The file will be loaded only in the widgets admin page.
+ *
+ * @since 1.29
+ */
+function pis_load_scripts( $hook ) {
+ 	if ( $hook != 'widgets.php' ) {
+		return;
+	}
+	wp_enqueue_script( 'pis-js', plugins_url( 'js/pis.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 }
 
 

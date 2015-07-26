@@ -760,6 +760,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			}
 			.pis-container {
 				display: none;
+				overflow: hidden;
 			}
 			.pis-container-open {
 				display: block;

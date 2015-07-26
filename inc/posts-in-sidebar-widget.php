@@ -151,6 +151,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_size'          => $instance['image_size'],
 			'image_align'         => $instance['image_align'],
 			'image_before_title'  => $instance['image_before_title'],
+			'image_link'          => $instance['image_link'],
 			'custom_image_url'    => $instance['custom_image_url'],
 			'custom_img_no_thumb' => $instance['custom_img_no_thumb'],
 
@@ -381,6 +382,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['image_size']          = $new_instance['image_size'];
 		$instance['image_align']         = $new_instance['image_align'];
 		$instance['image_before_title']  = isset( $new_instance['image_before_title'] ) ? 1 : 0;
+		$instance['image_link']          = esc_url( strip_tags( $new_instance['image_link'] ) );
 		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
 		$instance['custom_img_no_thumb'] = isset( $new_instance['custom_img_no_thumb'] ) ? 1 : 0;
 
@@ -586,6 +588,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_size'          => 'thumbnail',
 			'image_align'         => 'no_change',
 			'image_before_title'  => false,
+			'image_link'          => '',
 			'custom_image_url'    => '',
 			'custom_img_no_thumb' => true,
 
@@ -1768,6 +1771,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<?php // ================= Positioning image before title
 					pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
+
+					<?php // ================= Image link
+					pis_form_input_text(
+						__( 'Link the image to this URL', 'pis' ),
+						$this->get_field_id( 'image_link' ),
+						$this->get_field_name( 'image_link' ),
+						esc_url( strip_tags( $instance['image_link'] ) ),
+						'http://example.com/mypage',
+						__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'pis' )
+					); ?>
 
 					<hr />
 

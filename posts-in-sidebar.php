@@ -218,6 +218,7 @@ function pis_posts_in_sidebar( $args ) {
 		'image_size'          => 'thumbnail',
 		'image_align'         => 'no_change',
 		'image_before_title'  => false,
+		'image_link'          => '',
 		'custom_image_url'    => '',
 		'custom_img_no_thumb' => true,
 
@@ -488,7 +489,7 @@ function pis_posts_in_sidebar( $args ) {
 
 						<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 							$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type );
+							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 						} ?>
 
 					<?php endif; // Close if $image_before_title ?>
@@ -527,7 +528,7 @@ function pis_posts_in_sidebar( $args ) {
 									<?php /* The thumbnail */ ?>
 									<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 										$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-										pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type );
+										pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 									} // Close if ( $display_image && has_post_thumbnail ) ?>
 
 								<?php endif; // Close if $image_before_title ?>

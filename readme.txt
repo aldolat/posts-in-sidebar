@@ -69,6 +69,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * NEW: Support for search for posts containing a string.
 * NEW: Support for getting posts that are children of other posts.
 * NEW: Support for custom taxonomies.
+* NEW: Added support for custom link in featured image (props by troy-f).
 * Now the widget sections are collapsible.
 * Now the plugin requires WordPress 4.1 (for nested taxonomy handling).
 * Updated the Hebrew translation (thanks to Ahrale).
@@ -279,6 +280,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * First release of the plugin.
 
 == Upgrade Notice ==
+
+= 1.29 =
+
+This version requires WordPress 4.1 (for nested taxonomy handling).
 
 = 1.28 =
 

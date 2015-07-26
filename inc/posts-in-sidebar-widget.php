@@ -734,7 +734,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			.pis-widget-title {
 				background-color: #0073AA;
 				color: #fff;
-				padding: 3px 5px;
+				padding: 5px 0;
 				clear: left;
 				text-align: center;
 			}
@@ -750,6 +750,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			}
 			.pis-clickable {
 				cursor: pointer;
+				margin: 0;
 			}
 			.pis-clickable:hover {
 				background-color: #2B8AB8;
@@ -768,7 +769,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title pis-clickable" style="margin-top: 15px;"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<div class="pis-container pis-container-open">
 
@@ -1395,8 +1396,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</div>
 
 				<div class="clear"></div>
-
-				<hr />
 
 				<!-- Date query -->
 				<div class="pis-section pis-section-gray pis-2col">

@@ -2,12 +2,12 @@
  * Posts in Sidebar javascript for admin UI
  */
 function pis_slidetoggle() {
-	jQuery('.pis-widget-title').click(function() {
+	jQuery('.pis-widget-title, .pis-title-center').click(function() {
 		jQuery(this).next().slideToggle('fast');
 	});
-	jQuery('.pis-title-center').click(function() {
+	/*jQuery('.pis-title-center').click(function() {
 		jQuery(this).next().slideToggle('fast');
-	});
+	});*/
 }
 
 jQuery(document).on('widget-added', function() { pis_slidetoggle(); });

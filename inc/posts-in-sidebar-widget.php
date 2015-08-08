@@ -10,11 +10,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 	/**
 	 * Create the widget's base settings.
-	 * Uses PHP4 constructor method.
+	 * Uses PHP5 constructor method.
 	 * 
+	 * @see https://developer.wordpress.org/reference/classes/wp_widget/__construct/
 	 * @since 1.0
 	 */
-	function PIS_Posts_In_Sidebar() {
+	public function __construct() {
 
 		/* Widget settings. */
 		$widget_ops = array(
@@ -28,8 +29,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'id_base' => 'pis_posts_in_sidebar',
 		);
 
-		/* Create the widget. */
-		$this->WP_Widget( 'pis_posts_in_sidebar', __( 'Posts in Sidebar', 'pis' ), $widget_ops, $control_ops );
+		/* The PHP5 widget contructor */
+		parent::__construct(
+			'pis_posts_in_sidebar',
+			__( 'Posts in Sidebar', 'pis' ),
+			$widget_ops,
+			$control_ops
+		);
 	}
 
 	/**
@@ -39,7 +45,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	 * @param array $instance
 	 * @since 1.0
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		/**
 		 * Extract $args array keys into single variables.
 		 * Some of these are:
@@ -258,7 +264,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		// The title of the widget
@@ -501,7 +507,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 * @since 1.0
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
 		$defaults = array(
 			// The title of the widget
 			'title'               => __( 'Posts', 'pis' ),

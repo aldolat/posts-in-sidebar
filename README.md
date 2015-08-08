@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 4.1  
 **Tested up to:** 4.3  
-**Stable tag:** 1.29-dev  
+**Stable tag:** 2.0-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -74,7 +74,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-### 1.29 ###
+### 2.0 ###
 
 * NEW: Support for date queries.
 * NEW: Support for taxonomy complex queries.
@@ -86,6 +86,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * Now the plugin requires WordPress 4.1 (for nested taxonomy handling).
 * Updated the Hebrew translation (thanks to Ahrale).
 * The debug section displays the URL of the site and WordPress version.
+* Switched to PHP5 __contruct() in creating the widget.
 
 ### 1.28 ###
 

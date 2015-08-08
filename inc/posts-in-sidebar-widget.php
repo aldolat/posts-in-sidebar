@@ -211,21 +211,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'nopost_text'         => $instance['nopost_text'],
 			'hide_widget'         => $instance['hide_widget'],
 
-			// Extras
-			'list_element'        => $instance['list_element'],
-			'remove_bullets'      => $instance['remove_bullets'],
-
-			// Cache
-			'cached'              => $instance['cached'],
-			'cache_time'          => $instance['cache_time'],
-			/*
-				The following 'widget_id' variable will be used in the main function
-				to check if a cached version of the query already exists
-				for every instance of the widget.
-			*/
-			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
-
-			// Elements margins
+			// Styles
 			'margin_unit'         => $instance['margin_unit'],
 			'intro_margin'        => $instance['intro_margin'],
 			'title_margin'        => $instance['title_margin'],
@@ -240,6 +226,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_margin'      => $instance['archive_margin'],
 			'noposts_margin'      => $instance['noposts_margin'],
 			'custom_styles'       => $instance['custom_styles'],
+
+			// Extras
+			'list_element'        => $instance['list_element'],
+			'remove_bullets'      => $instance['remove_bullets'],
+
+			// Cache
+			'cached'              => $instance['cached'],
+			'cache_time'          => $instance['cache_time'],
+			/*
+				The following 'widget_id' variable will be used in the main function
+				to check if a cached version of the query already exists
+				for every instance of the widget.
+			*/
+			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
 
 			// Debug
 			'debug_query'         => $instance['debug_query'],
@@ -443,27 +443,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['nopost_text']         = strip_tags( $new_instance['nopost_text'] );
 		$instance['hide_widget']         = isset( $new_instance['hide_widget'] ) ? 1 : 0;
 
-		// Extras
-		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
-		$instance['list_element']        = $new_instance['list_element'];
-		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
-
-		// Cache
-		$instance['cached']              = isset( $new_instance['cached'] ) ? 1 : 0;
-		$instance['cache_time']          = strip_tags( $new_instance['cache_time'] );
-			// If cache time is not a numeric value OR is 0, then reset cache. Also set cache time to 3600 if cache is active.
-			if ( ! is_numeric( $new_instance['cache_time'] ) || 0 == $new_instance['cache_time'] ) {
-				delete_transient( $this->id . '_query_cache' );
-				if ( $instance['cached'] ) {
-					$instance['cache_time'] = 3600;
-				} else {
-					$instance['cache_time'] = '';
-				}
-			}
-		// This option is stored only for uninstall purposes. See uninstall.php for further information.
-		$instance['widget_id']           = $this->id;
-
-		// Elements margins
+		// Styles
 		$instance['margin_unit']         = $new_instance['margin_unit'];
 		$instance['intro_margin']        = strip_tags( $new_instance['intro_margin'] );
 			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
@@ -490,6 +470,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['noposts_margin']      = strip_tags( $new_instance['noposts_margin'] );
 			if ( ! is_numeric( $new_instance['noposts_margin'] ) ) $instance['noposts_margin'] = NULL;
 		$instance['custom_styles']       = strip_tags( $new_instance['custom_styles'] );
+
+		// Extras
+		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
+		$instance['list_element']        = $new_instance['list_element'];
+		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
+
+		// Cache
+		$instance['cached']              = isset( $new_instance['cached'] ) ? 1 : 0;
+		$instance['cache_time']          = strip_tags( $new_instance['cache_time'] );
+			// If cache time is not a numeric value OR is 0, then reset cache. Also set cache time to 3600 if cache is active.
+			if ( ! is_numeric( $new_instance['cache_time'] ) || 0 == $new_instance['cache_time'] ) {
+				delete_transient( $this->id . '_query_cache' );
+				if ( $instance['cached'] ) {
+					$instance['cache_time'] = 3600;
+				} else {
+					$instance['cache_time'] = '';
+				}
+			}
+		// This option is stored only for uninstall purposes. See uninstall.php for further information.
+		$instance['widget_id']           = $this->id;
 
 		// Debug
 		$instance['debug_query']         = isset( $new_instance['debug_query'] ) ? 1 : 0;
@@ -648,16 +648,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'nopost_text'         => __( 'No posts yet.', 'pis' ),
 			'hide_widget'         => false,
 
-			// Extras
-			'container_class'     => '',
-			'list_element'        => 'ul',
-			'remove_bullets'      => false,
-
-			// Cache
-			'cached'              => false,
-			'cache_time'          => '',
-
-			// Elements margins
+			// Styles
 			'margin_unit'         => 'px',
 			'intro_margin'        => NULL,
 			'title_margin'        => NULL,
@@ -672,6 +663,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'archive_margin'      => NULL,
 			'noposts_margin'      => NULL,
 			'custom_styles'       => '',
+
+			// Extras
+			'container_class'     => '',
+			'list_element'        => 'ul',
+			'remove_bullets'      => false,
+
+			// Cache
+			'cached'              => false,
+			'cache_time'          => '',
 
 			// Debug
 			'debug_query'         => false,
@@ -712,7 +712,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title" style="margin-top: 15px;"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<div class="pis-container pis-container-open">
 
@@ -1995,89 +1995,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<!-- Extras -->
+		<!-- Styles -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php _e( 'Extras', 'pis' ); ?></h4>
-
-			<div class="pis-container">
-
-				<?php // ================= Container Class
-				pis_form_input_text(
-					__( 'Add a global container with this CSS class', 'pis' ),
-					$this->get_field_id('container_class'),
-					$this->get_field_name('container_class'),
-					esc_attr( $instance['container_class'] ),
-					'posts-container',
-					sprintf(
-						__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line.', 'pis' ), '<code>my-container</code>', '<code>div</code>' )
-				); ?>
-
-				<?php // ================= Type of HTML for list of posts
-				$options = array(
-					'ul' => array(
-						'value' => 'ul',
-						'desc'  => __( 'Unordered list', 'pis' )
-					),
-					'ol' => array(
-						'value' => 'ol',
-						'desc'  => __( 'Ordered list', 'pis' )
-					),
-				);
-				pis_form_select(
-					__( 'Use this type of list for the posts', 'pis' ),
-					$this->get_field_id('list_element'),
-					$this->get_field_name('list_element'),
-					$options,
-					$instance['list_element']
-				); ?>
-
-				<?php // ================= Remove bullets and left space
-				pis_form_checkbox(
-					__( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ),
-					$this->get_field_id( 'remove_bullets' ),
-					$this->get_field_name( 'remove_bullets' ),
-					checked( $remove_bullets, true, false ),
-					sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
-				); ?>
-
-			</div>
-
-		</div>
-
-		<!-- Cache -->
-		<div class="pis-section">
-
-			<h4 class="pis-widget-title"><?php _e( 'Cache', 'pis' ); ?></h4>
-
-			<div class="pis-container">
-
-				<?php // ================= Cache for the query
-				pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
-					$this->get_field_id( 'cached' ),
-					$this->get_field_name( 'cached' ),
-					checked( $cached, true, false ),
-					__( 'This option, if activated, will increase the performance.', 'pis' )
-				); ?>
-
-				<?php // ================= Cache duration
-				pis_form_input_text(
-					__( 'The cache will be used for (in seconds)', 'pis' ),
-					$this->get_field_id('cache_time'),
-					$this->get_field_name('cache_time'),
-					esc_attr( $instance['cache_time'] ),
-					'3600',
-					sprintf( __( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
-				); ?>
-
-			</div>
-
-		</div>
-
-		<!-- Elements margins -->
-		<div class="pis-section">
-
-			<h4 class="pis-widget-title"><?php _e( 'Elements margins', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Styles', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2135,27 +2056,106 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php pis_form_input_text( __( 'No-posts bottom margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
 				</div>
 
+				<!-- Custom styles -->
+				<div class="pis-section">
+
+					<h4 class="pis-widget-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+						<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
+
+						<?php // ================= Custom styles
+						pis_form_textarea(
+							__( 'Custom styles', 'pis' ),
+							$this->get_field_id('custom_styles'),
+							$this->get_field_name('custom_styles'),
+							$instance['custom_styles'],
+							'#' . $this->id . ' p.pis-title { text-align: center; }',
+							$style = 'resize: vertical; width: 100%; height: 80px;'
+						); ?>
+
+					</div>
+
+				</div>
+
+				<!-- Extras -->
+				<div class="pis-section">
+
+					<h4 class="pis-widget-title"><?php _e( 'Extras', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+						<?php // ================= Container Class
+						pis_form_input_text(
+							__( 'Add a global container with this CSS class', 'pis' ),
+							$this->get_field_id('container_class'),
+							$this->get_field_name('container_class'),
+							esc_attr( $instance['container_class'] ),
+							'posts-container',
+							sprintf(
+								__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line.', 'pis' ), '<code>my-container</code>', '<code>div</code>' )
+						); ?>
+
+						<?php // ================= Type of HTML for list of posts
+						$options = array(
+							'ul' => array(
+								'value' => 'ul',
+								'desc'  => __( 'Unordered list', 'pis' )
+							),
+							'ol' => array(
+								'value' => 'ol',
+								'desc'  => __( 'Ordered list', 'pis' )
+							),
+						);
+						pis_form_select(
+							__( 'Use this type of list for the posts', 'pis' ),
+							$this->get_field_id('list_element'),
+							$this->get_field_name('list_element'),
+							$options,
+							$instance['list_element']
+						); ?>
+
+						<?php // ================= Remove bullets and left space
+						pis_form_checkbox(
+							__( 'Try to remove the bullets and the extra left space from the list elements', 'pis' ),
+							$this->get_field_id( 'remove_bullets' ),
+							$this->get_field_name( 'remove_bullets' ),
+							checked( $remove_bullets, true, false ),
+							sprintf( __( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'pis' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
+						); ?>
+
+					</div>
+
+				</div>
+
 			</div>
 
 		</div>
 
-		<!-- Custom styles -->
+		<!-- Cache -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Cache', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
-				<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
+				<?php // ================= Cache for the query
+				pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
+					$this->get_field_id( 'cached' ),
+					$this->get_field_name( 'cached' ),
+					checked( $cached, true, false ),
+					__( 'This option, if activated, will increase the performance.', 'pis' )
+				); ?>
 
-				<?php // ================= Custom styles
-				pis_form_textarea(
-					__( 'Custom styles', 'pis' ),
-					$this->get_field_id('custom_styles'),
-					$this->get_field_name('custom_styles'),
-					$instance['custom_styles'],
-					'#' . $this->id . ' p.pis-title { text-align: center; }',
-					$style = 'resize: vertical; width: 100%; height: 80px;'
+				<?php // ================= Cache duration
+				pis_form_input_text(
+					__( 'The cache will be used for (in seconds)', 'pis' ),
+					$this->get_field_id('cache_time'),
+					$this->get_field_name('cache_time'),
+					esc_attr( $instance['cache_time'] ),
+					'3600',
+					sprintf( __( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
 				); ?>
 
 			</div>

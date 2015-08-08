@@ -279,16 +279,7 @@ function pis_posts_in_sidebar( $args ) {
 		'nopost_text'         => __( 'No posts yet.', 'pis' ),
 		'hide_widget'         => false,
 
-		// Extras
-		'list_element'        => 'ul',
-		'remove_bullets'      => false,
-
-		// Cache
-		'cached'              => false,
-		'cache_time'          => 3600,
-		'widget_id'           => '',
-
-		// Elements margins
+		// Styles
 		'margin_unit'         => 'px',
 		'intro_margin'        => NULL,
 		'title_margin'        => NULL,
@@ -301,6 +292,15 @@ function pis_posts_in_sidebar( $args ) {
 		'terms_margin'        => NULL,
 		'archive_margin'      => NULL,
 		'noposts_margin'      => NULL,
+
+		// Extras
+		'list_element'        => 'ul',
+		'remove_bullets'      => false,
+
+		// Cache
+		'cached'              => false,
+		'cache_time'          => 3600,
+		'widget_id'           => '',
 
 		// Debug
 		'debug_query'         => false,

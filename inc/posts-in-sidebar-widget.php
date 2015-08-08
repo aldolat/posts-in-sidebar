@@ -137,15 +137,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_before_month'   => $instance['date_before_month'],
 			'date_before_day'     => $instance['date_before_day'],
 			'date_inclusive'      => $instance['date_inclusive'],
-			'date_compare'        => $instance['date_compare'],
 			'date_column'         => $instance['date_column'],
-			'date_relation'       => $instance['date_relation'],
 
 			// Posts exclusion
 			'exclude_current_post'=> $instance['exclude_current_post'],
 			'post_not_in'         => $instance['post_not_in'],
 			'cat_not_in'          => $instance['cat_not_in'],
 			'tag_not_in'          => $instance['tag_not_in'],
+			'post_parent_not_in'  => $instance['post_parent_not_in'],
 
 			// The title of the post
 			'display_title'       => $instance['display_title'],
@@ -368,15 +367,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['date_before_day']     = strip_tags( $new_instance['date_before_day'] );
 			if ( 1 > $instance['date_before_day'] || 31 < $instance['date_before_day'] || ! is_numeric( $instance['date_before_day'] ) ) $instance['date_before_day'] = '';
 		$instance['date_inclusive']      = isset( $new_instance['date_inclusive'] ) ? 1 : 0 ;
-		$instance['date_compare']        = $new_instance['date_compare'];
 		$instance['date_column']         = $new_instance['date_column'];
-		$instance['date_relation']       = $new_instance['date_relation'];
 		
 		// Posts exclusion
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
 		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
 		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
+		$instance['post_parent_not_in']  = strip_tags( $new_instance['post_parent_not_in'] );
 
 		// The title of the post
 		$instance['display_title']       = isset( $new_instance['display_title'] ) ? 1 : 0;
@@ -574,15 +572,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_before_month'   => '',
 			'date_before_day'     => '',
 			'date_inclusive'      => '',
-			'date_compare'        => '',
 			'date_column'         => '',
-			'date_relation'       => '',
 
 			// Posts exclusion
 			'exclude_current_post'=> false,
 			'post_not_in'         => '',
 			'cat_not_in'          => '',
 			'tag_not_in'          => '',
+			'post_parent_not_in'  => '',
 
 			// The title of the post
 			'display_title'       => true,
@@ -1077,7 +1074,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name('post_not_in'),
 								esc_attr( $instance['post_not_in'] ),
 								'5, 29, 523, 4519',
-								sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+								__( 'Insert IDs separated by commas.', 'pis' )
+							); ?>
+
+							<?php // ================= Exclude posts whose parent is in these IDs.
+							pis_form_input_text(
+								__( 'Exclude posts whose parent is in these IDs', 'pis' ),
+								$this->get_field_id('post_parent_not_in'),
+								$this->get_field_name('post_parent_not_in'),
+								esc_attr( $instance['post_parent_not_in'] ),
+								'5, 29, 523, 4519',
+								__( 'Insert IDs separated by commas.', 'pis' )
 							); ?>
 
 						</div>
@@ -1099,6 +1106,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<h4 class="pis-widget-title"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
 
 					<div class="pis-container">
+
+						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy.
+						If you want to use only one taxonomy, use "Taxonomy A1" field.
+						If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category but not in the wisom tag), then use also Taxonomy B1 field.
+						If you have to put in relation more taxonomies, start using also the A2 and B2 fields
+						(e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1] AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
 
 						<?php // ================= Taxonomy relation between aa and bb
 						$options = array(
@@ -1292,7 +1305,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<hr />
 
 							<?php // ================= Taxonomy bb
-							pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'recipe', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+							pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'post_format', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
 							<?php // ================= Field bb
 							$options = array(
@@ -1312,7 +1325,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 							<?php // ================= Terms bb
-							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'pomodoro,onion', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'post-format-quote', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
 							<?php // ================= Operator bb
 							$options = array(
@@ -1417,7 +1430,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column clear">
 
-							<h5 class="pis-title-center"><?php _e( 'After section', 'pis' ); ?></h5>
+							<h5 class="pis-title-center"><?php _e( 'Get posts after this date', 'pis' ); ?></h5>
 
 							<?php pis_form_input_text(
 								__( 'Year', 'pis' ),
@@ -1450,7 +1463,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column pis-column-last">
 
-							<h5 class="pis-title-center"><?php _e( 'Before section', 'pis' ); ?></h5>
+							<h5 class="pis-title-center"><?php _e( 'Get posts before this date', 'pis' ); ?></h5>
 
 							<?php pis_form_input_text(
 								__( 'Year', 'pis' ),
@@ -1481,66 +1494,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
+						<h5 class="pis-title-center clear"><?php _e( 'Other options', 'pis' ); ?></h5>
+
 						<div class="pis-column">
 
 							<?php
-							pis_form_checkbox( __( 'Inclusive', 'pis' ), $this->get_field_id( 'date_inclusive' ), $this->get_field_name( 'date_inclusive' ), checked( $date_inclusive, true, false ) ); ?>
-
-							<?php
-							$options = array(
-								'empty' => array(
-									'value' => '',
-									'desc'  => ''
-								),
-								'equal' => array(
-									'value' => '=',
-									'desc'  => __( 'Equal to (=)', 'pis' )
-								),
-								'different' => array(
-									'value' => '!=',
-									'desc'  => __( 'Different (!=)', 'pis' )
-								),
-								'greater' => array(
-									'value' => '>',
-									'desc'  => __( 'Greater (>)', 'pis' )
-								),
-								'greater_equal' => array(
-									'value' => '>=',
-									'desc'  => __( 'Greater/Equal (>=)', 'pis' )
-								),
-								'minor' => array(
-									'value' => '<',
-									'desc'  => __( 'Minor (<)', 'pis' )
-								),
-								'minor_equal' => array(
-									'value' => '<=',
-									'desc'  => __( 'Minor/Equal (<=)', 'pis' )
-								),
-								'in' => array(
-									'value' => 'IN',
-									'desc'  => __( 'IN', 'pis' )
-								),
-								'not_in' => array(
-									'value' => 'NOT IN',
-									'desc'  => __( 'NOT IN', 'pis' )
-								),
-								'between' => array(
-									'value' => 'BETWEEN',
-									'desc'  => __( 'BETWEEN', 'pis' )
-								),
-								'not_between' => array(
-									'value' => 'NOT BETWEEN',
-									'desc'  => __( 'NOT BETWEEN', 'pis' )
-								)
-							);
-							pis_form_select(
-								__( 'Compare', 'pis' ),
-								$this->get_field_id('date_compare'),
-								$this->get_field_name('date_compare'),
-								$options,
-								$instance['date_compare'],
-								__( 'Determines what comparison operator to use.', 'pis' )
-							); ?>
+							pis_form_checkbox( __( 'Inclusive', 'pis' ), $this->get_field_id( 'date_inclusive' ), $this->get_field_name( 'date_inclusive' ), checked( $date_inclusive, true, false ), __( 'For after/before, whether exact value should be matched or not', 'pis' ) ); ?>
 
 						</div>
 
@@ -1576,30 +1535,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$options,
 								$instance['date_column'],
 								__( 'Column to query against.', 'pis' )
-							); ?>
-
-							<?php
-							$options = array(
-								'empty' => array(
-									'value' => '',
-									'desc'  => ''
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-								'or' => array(
-									'value' => 'OR',
-									'desc'  => 'OR'
-								)
-							);
-							pis_form_select(
-								__( 'Relation', 'pis' ),
-								$this->get_field_id('date_relation'),
-								$this->get_field_name('date_relation'),
-								$options,
-								$instance['date_relation'],
-								__( 'How the sub-arrays should be compared.', 'pis' )
 							); ?>
 
 						</div>

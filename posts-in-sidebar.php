@@ -205,15 +205,14 @@ function pis_posts_in_sidebar( $args ) {
 		'date_before_month'   => '',
 		'date_before_day'     => '',
 		'date_inclusive'      => '',
-		'date_compare'        => '',
 		'date_column'         => '',
-		'date_relation'       => '',
 		
 		// Posts exclusion
 		'exclude_current_post'=> false,
 		'post_not_in'         => '',
 		'cat_not_in'          => '',        // Category ID, comma separated
 		'tag_not_in'          => '',        // Tag ID, comma separated
+		'post_parent_not_in'  => '',
 
 		// The title of the post
 		'display_title'       => true,
@@ -329,13 +328,8 @@ function pis_posts_in_sidebar( $args ) {
 	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
 	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
-
-	/**
-	 * $post_parent_in must be an array.
-	 */
-	if ( '' != $post_parent_in ) {
-		$post_parent_in = explode( ',', $post_parent_in );
-	}
+	if ( $post_parent_in  && ! is_array( $post_parent_in ) )  $post_parent_in  = explode( ',', $post_parent_in );  else $post_parent_in  = '';
+	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = '';
 
 	/**
 	 * Build $tax_query parameter (if any).
@@ -371,12 +365,10 @@ function pis_posts_in_sidebar( $args ) {
 				'day'   => $date_before_day,
 			),
 			'inclusive' => $date_inclusive,
-			'compare'   => $date_compare,
 			'column'    => $date_column,
-			'relation'  => $date_relation
 		)
 	);
-	$date_query = pis_array_remove_empty_keys( $date_query );
+	$date_query = pis_array_remove_empty_keys( $date_query, true );
 
 	/**
 	 * Get the ID of the current post.
@@ -410,9 +402,10 @@ function pis_posts_in_sidebar( $args ) {
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,
 		'order'               => $order,
-		'post__not_in'        => $post_not_in, // Uses ids
-		'category__not_in'    => $cat_not_in,  // Uses ids
-		'tag__not_in'         => $tag_not_in,  // uses ids
+		'post__not_in'        => $post_not_in,        // Uses ids
+		'category__not_in'    => $cat_not_in,         // Uses ids
+		'tag__not_in'         => $tag_not_in,         // uses ids
+		'post_parent__not_in' => $post_parent_not_in, // uses ids
 		'offset'              => $offset_number,
 		'post_status'         => $post_status,
 		'meta_key'            => $post_meta_key,

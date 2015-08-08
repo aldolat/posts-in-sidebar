@@ -487,22 +487,20 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 					'operator' => $operator_aa,
 				)
 			);
-		} else if ( $taxonomy_aa && $taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
 			$tax_query = array(
+				'relation' => $relation,
 				array(
-					'relation_a' => $relation_a,
-					array (
-						'taxonomy' => $taxonomy_aa,
-						'field'    => $field_aa,
-						'terms'    => $terms_aa, // This must be an array
-						'operator' => $operator_aa,
-					),
-					array (
-						'taxonomy' => $taxonomy_ab,
-						'field'    => $field_ab,
-						'terms'    => $terms_ab, // This must be an array
-						'operator' => $operator_ab,
-					)
+					'taxonomy' => $taxonomy_aa,
+					'field'    => $field_aa,
+					'terms'    => $terms_aa, // This must be an array
+					'operator' => $operator_aa,
+				),
+				array(
+					'taxonomy' => $taxonomy_ba,
+					'field'    => $field_ba,
+					'terms'    => $terms_ba, // This must be an array
+					'operator' => $operator_ba,
 				)
 			);
 		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
@@ -522,22 +520,6 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 						'terms'    => $terms_ab, // This must be an array
 						'operator' => $operator_ab,
 					)
-				),
-				array(
-					'taxonomy' => $taxonomy_ba,
-					'field'    => $field_ba,
-					'terms'    => $terms_ba, // This must be an array
-					'operator' => $operator_ba,
-				)
-			);
-		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
-			$tax_query = array(
-				'relation' => $relation,
-				array(
-					'taxonomy' => $taxonomy_aa,
-					'field'    => $field_aa,
-					'terms'    => $terms_aa, // This must be an array
-					'operator' => $operator_aa,
 				),
 				array(
 					'taxonomy' => $taxonomy_ba,
@@ -620,7 +602,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
  * @since 1.29
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
  */
-function pis_array_remove_empty_keys( $array ) {
+function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 	foreach ( $array as $key => $value ) {
 		if ( is_array( $value ) ) {
 			$array[$key] = pis_array_remove_empty_keys( $array[$key] );
@@ -629,5 +611,10 @@ function pis_array_remove_empty_keys( $array ) {
 			unset( $array[$key] );
 		}
 	}
+
+	if ( empty( $array ) && $make_empty ) {
+		$array = '';
+	}
+
 	return $array;
 }

@@ -1107,11 +1107,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy.
-						If you want to use only one taxonomy, use "Taxonomy A1" field.
-						If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category but not in the wisom tag), then use also Taxonomy B1 field.
-						If you have to put in relation more taxonomies, start using also the A2 and B2 fields
-						(e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1] AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
+						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy. If you want to use only one taxonomy, use "Taxonomy A1" field. If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category but not in the wisdom tag), then use also Taxonomy B1 field. If you have to put in relation more taxonomies, start using also the A2 and B2 fields (e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1] AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
 
 						<?php // ================= Taxonomy relation between aa and bb
 						$options = array(

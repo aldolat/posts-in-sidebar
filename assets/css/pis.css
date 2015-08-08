@@ -1,0 +1,64 @@
+/*
+ * Posts in Sidebar CSS for admin UI
+ */
+.pis-section, .clear {
+	clear: both;
+}
+.pis-section:after, div.clear {
+	content: "";
+	display: table;
+	clear: both;
+}
+.pis-section-gray {
+	background-color: #E5EAED;
+	margin-top: 20px;
+}
+.pis-column {
+	float: left;
+	width: 31%;
+	margin-right: 2%;
+}
+.pis-column-last {
+	margin-right: 0;
+}
+.pis-2col {
+	width: 98%;
+	padding: 1%;
+}
+.pis-2col .pis-column {
+	width: 48%;
+}
+.pis-widget-title {
+	background-color: #0073AA;
+	color: #fff;
+	padding: 5px 0;
+	clear: left;
+	text-align: center;
+}
+.pis-2col .pis-widget-title {
+	margin-top: 0;
+}
+.pis-alert {
+	color: #777;
+	font-weight: bold;
+}
+.pis-title-center {
+	text-align: center;
+}
+.pis-clickable {
+	cursor: pointer;
+	margin: 0;
+}
+.pis-clickable:hover {
+	background-color: #2B8AB8;
+}
+.pis-title-center:hover {
+	background-color: transparent;
+}
+.pis-container {
+	display: none;
+	overflow: hidden;
+}
+.pis-container-open {
+	display: block;
+}

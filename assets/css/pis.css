@@ -1,64 +1,62 @@
 /*
  * Posts in Sidebar CSS for admin UI
  */
-.pis-section, .clear {
+
+/* Structure of the elements */
+.clear {
 	clear: both;
 }
-.pis-section:after, div.clear {
+.pis-section {
+	clear: both;
+	margin: 1em 0;
+}
+.pis-section:after {
 	content: "";
 	display: table;
 	clear: both;
 }
-.pis-section-gray {
-	background-color: #E5EAED;
-	margin-top: 20px;
+.pis-container {
+	display: none;
+	overflow: hidden;
+	border-left:1px solid #DDD;
+	border-right:1px solid #DDD;
+	border-bottom:1px solid #DDD;
+	padding:20px;
+	margin:-10px 0px 10px 0px;
+}
+.pis-container-open {
+	display: block;
 }
 .pis-column {
 	float: left;
 	width: 31%;
-	margin-right: 2%;
+	margin: 0 2% 1em 0;
 }
 .pis-column-last {
 	margin-right: 0;
 }
-.pis-2col {
-	width: 98%;
-	padding: 1%;
-}
+
 .pis-2col .pis-column {
 	width: 48%;
 }
+
+/* Typography */
 .pis-widget-title {
-	background-color: #0073AA;
-	color: #fff;
-	padding: 5px 0;
-	clear: left;
-	text-align: center;
+	clear: both;
+	padding:12px;
+	border:1px solid #DDD;
+	background-color:#FAFAFA;
+	margin:0px 0px 10px 0px;
+	font-size:1em;
+	cursor: pointer;
 }
-.pis-2col .pis-widget-title {
-	margin-top: 0;
-}
-.pis-alert {
-	color: #777;
-	font-weight: bold;
+.pis-widget-title:hover {
+	border-color:#9D9D9D;
 }
 .pis-title-center {
 	text-align: center;
 }
-.pis-clickable {
-	cursor: pointer;
-	margin: 0;
-}
-.pis-clickable:hover {
-	background-color: #2B8AB8;
-}
-.pis-title-center:hover {
-	background-color: transparent;
-}
-.pis-container {
-	display: none;
-	overflow: hidden;
-}
-.pis-container-open {
-	display: block;
+.pis-alert {
+	color: #777;
+	font-weight: bold;
 }

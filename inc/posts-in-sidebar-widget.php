@@ -712,7 +712,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable" style="margin-top: 15px;"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title" style="margin-top: 15px;"><?php _e( 'The title of the widget', 'pis' ); ?></h4>
 
 			<div class="pis-container pis-container-open">
 
@@ -746,12 +746,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Getting posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Getting posts', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Getting posts', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -1031,73 +1029,74 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<hr class="clear" />
+				<!-- Excluding posts -->
+				<div class="pis-section">
 
-				<h4 class="pis-title-center pis-clickable"><?php _e( 'Excluding posts', 'pis' ); ?></h4>
+					<h4 class="pis-widget-title"><?php _e( 'Excluding posts', 'pis' ); ?></h4>
 
-				<div class="pis-container">
+					<div class="pis-container">
 
-					<div class="pis-column">
+						<div class="pis-column">
 
-						<?php // ================= Exclude posts from categories
-						if ( is_array( $instance['cat_not_in'] ) )
-							$var = implode( ',', $instance['cat_not_in'] );
-						else
-							$var = $instance['cat_not_in'];
-						pis_form_input_text(
-							__( 'Exclude posts from these categories', 'pis' ),
-							$this->get_field_id('cat_not_in'),
-							$this->get_field_name('cat_not_in'),
-							esc_attr( $var ),
-							'3, 31',
-							__( 'Insert IDs separated by commas.', 'pis' )
-						); ?>
+							<?php // ================= Exclude posts from categories
+							if ( is_array( $instance['cat_not_in'] ) )
+								$var = implode( ',', $instance['cat_not_in'] );
+							else
+								$var = $instance['cat_not_in'];
+							pis_form_input_text(
+								__( 'Exclude posts from these categories', 'pis' ),
+								$this->get_field_id('cat_not_in'),
+								$this->get_field_name('cat_not_in'),
+								esc_attr( $var ),
+								'3, 31',
+								__( 'Insert IDs separated by commas.', 'pis' )
+							); ?>
 
-						<?php // ================= Exclude posts from tags
-						if ( is_array( $instance['tag_not_in'] ) )
-							$var = implode( ',', $instance['tag_not_in'] );
-						else
-							$var = $instance['tag_not_in'];
-						pis_form_input_text(
-							__( 'Exclude posts from these tags', 'pis' ),
-							$this->get_field_id('tag_not_in'),
-							$this->get_field_name('tag_not_in'),
-							esc_attr( $var ),
-							'7, 11',
-							__( 'Insert IDs separated by commas.', 'pis' )
-						); ?>
+							<?php // ================= Exclude posts from tags
+							if ( is_array( $instance['tag_not_in'] ) )
+								$var = implode( ',', $instance['tag_not_in'] );
+							else
+								$var = $instance['tag_not_in'];
+							pis_form_input_text(
+								__( 'Exclude posts from these tags', 'pis' ),
+								$this->get_field_id('tag_not_in'),
+								$this->get_field_name('tag_not_in'),
+								esc_attr( $var ),
+								'7, 11',
+								__( 'Insert IDs separated by commas.', 'pis' )
+							); ?>
 
-					</div>
+						</div>
 
-					<div class="pis-column">
+						<div class="pis-column">
 
-						<?php // ================= Exclude posts that have these ids.
-						pis_form_input_text(
-							__( 'Exclude posts with these IDs', 'pis' ),
-							$this->get_field_id('post_not_in'),
-							$this->get_field_name('post_not_in'),
-							esc_attr( $instance['post_not_in'] ),
-							'5, 29, 523, 4519',
-							sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
-						); ?>
+							<?php // ================= Exclude posts that have these ids.
+							pis_form_input_text(
+								__( 'Exclude posts with these IDs', 'pis' ),
+								$this->get_field_id('post_not_in'),
+								$this->get_field_name('post_not_in'),
+								esc_attr( $instance['post_not_in'] ),
+								'5, 29, 523, 4519',
+								sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+							); ?>
 
-					</div>
+						</div>
 
-					<div class="pis-column pis-column-last">
+						<div class="pis-column pis-column-last">
 
-						<?php // ================= Exclude current post
-						pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
+							<?php // ================= Exclude current post
+							pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
+
+						</div>
 
 					</div>
 
 				</div>
 
-				<hr class="clear" />
-
 				<!-- Taxonomy complex query -->
-				<div class="pis-section pis-section-gray pis-2col">
+				<div class="pis-section pis-2col">
 
-					<h4 class="pis-title-center pis-clickable"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
+					<h4 class="pis-widget-title"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
 
 					<div class="pis-container">
 
@@ -1338,12 +1337,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<div class="clear"></div>
-
 				<!-- Date query -->
-				<div class="pis-section pis-section-gray pis-2col">
+				<div class="pis-section pis-2col">
 
-					<h4 class="pis-title-center pis-clickable"><?php _e( 'Date query', 'pis' ); ?></h4>
+					<h4 class="pis-widget-title"><?php _e( 'Date query', 'pis' ); ?></h4>
 
 					<div class="pis-container">
 
@@ -1418,9 +1415,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<hr class="clear" />
-
-						<div class="pis-column">
+						<div class="pis-column clear">
 
 							<h5 class="pis-title-center"><?php _e( 'After section', 'pis' ); ?></h5>
 
@@ -1453,7 +1448,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<div class="pis-column">
+						<div class="pis-column pis-column-last">
 
 							<h5 class="pis-title-center"><?php _e( 'Before section', 'pis' ); ?></h5>
 
@@ -1485,8 +1480,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							); ?>
 
 						</div>
-
-						<hr class="clear" />
 
 						<div class="pis-column">
 
@@ -1619,12 +1612,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Displaying posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Displaying posts', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Displaying posts', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -1640,8 +1631,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<?php // ================= Arrow after the title
 					pis_form_checkbox( __( 'Show an arrow after the title', 'pis' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>
-
-					<hr />
 
 					<h4><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
 
@@ -1724,8 +1713,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'pis' )
 					); ?>
 
-					<hr />
-
 					<h4><?php _e( 'Customized featured image', 'pis' ); ?></h4>
 
 					<?php // ================= Custom image URL
@@ -1740,9 +1727,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<?php // ================= Use custom image URL only if the post thumbnail is not defined.
 					pis_form_checkbox( __( 'Use custom image URL only if the post has not a featured image.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
-
-
-					<hr />
 
 					<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
@@ -1830,8 +1814,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php // ================= Author
 					pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
 
-					<hr />
-
 					<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
 					<?php // ================= Post categories
@@ -1849,8 +1831,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						',',
 						__( 'A space will be added after the separator.', 'pis' )
 					); ?>
-
-					<hr />
 
 					<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
 
@@ -1898,8 +1878,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						__( 'A space will be added after the separator.', 'pis' )
 					); ?>
 
-					<hr />
-
 					<h4><?php _e( 'The custom field', 'pis' ); ?></h4>
 
 					<?php // ================= Display custom field
@@ -1932,8 +1910,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<?php // ================= Custom field separator
 					pis_form_input_text( __( 'Use this separator between meta key and value', 'pis' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
-
-					<hr />
 
 					<h4><?php _e( 'The link to the archive', 'pis' ); ?></h4>
 
@@ -1992,8 +1968,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						sprintf( __( 'Use %s to display the name of the taxonomy. Also, note that if you haven\'t selected any taxonomy, the link won\'t appear.', 'pis' ), '<code>%s</code>' )
 					); ?>
 
-					<hr />
-
 					<h4><?php _e( 'When no posts are found', 'pis' ); ?></h4>
 
 					<?php // ================= When no posts are found
@@ -2021,12 +1995,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Extras -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Extras', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Extras', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2073,12 +2045,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Cache -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Cache', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Cache', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2104,12 +2074,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Elements margins -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Elements margins', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Elements margins', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2171,12 +2139,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Custom styles -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Custom styles', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Custom styles', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2196,12 +2162,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<hr />
-
 		<!-- Debugging -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title pis-clickable"><?php _e( 'Debugging', 'pis' ); ?></h4>
+			<h4 class="pis-widget-title"><?php _e( 'Debugging', 'pis' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2234,8 +2198,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			</div>
 
 		</div>
-
-		<hr />
 
 		<?php
 	}

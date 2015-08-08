@@ -15,8 +15,8 @@ jQuery(document).ready(function() { pis_slidetoggle(); });
 */
 
 jQuery(document).ready(function($){
-	jQuery('body').on('click', '.pis-clickable', function( event ){
-		jQuery(this).toggleClass('down');
+	jQuery('body').on('click', '.pis-widget-title', function( event ){
+		jQuery(this).toggleClass('pis-container-open');
 		jQuery(this).next().slideToggle();
 	});
                

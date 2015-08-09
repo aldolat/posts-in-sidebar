@@ -823,6 +823,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$debug_query          = (bool) $instance['debug_query'];
 		$debug_params         = (bool) $instance['debug_params'];
 		$debug_query_number   = (bool) $instance['debug_query_number'];
+
+		/**
+		* When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
+		* See above for more informations (the long note on function update).
+		* 
+		* @since 2.0.3
+		*/
+		if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
+		if ( 'NULL' == $instance['cat'] )    $instance['cat']    = '';
+		if ( 'NULL' == $instance['tag'] )    $instance['tag']    = '';
 		?>
 
 		<!-- Widget title -->

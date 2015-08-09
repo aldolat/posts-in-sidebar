@@ -1,5 +1,15 @@
 <?php
 /**
+ * Prevent direct access to this file.
+ * 
+ * @since 2.0
+ */
+if ( ! defined( 'WPINC' ) ) {
+	exit( 'No script kiddies please!' );
+}
+
+
+/**
  * Return the class for the HTML element.
  *
  * @since 1.9

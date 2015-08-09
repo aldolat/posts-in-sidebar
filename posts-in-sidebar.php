@@ -29,6 +29,16 @@
 
 
 /**
+ * Prevent direct access to this file.
+ * 
+ * @since 2.0
+ */
+if ( ! defined( 'WPINC' ) ) {
+	exit( 'No script kiddies please!' );
+}
+
+
+/**
  * Launch Posts in Sidebar.
  * 
  * @since 1.27

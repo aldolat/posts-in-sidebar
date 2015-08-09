@@ -5,6 +5,15 @@
  * @package PostsInSidebar
  */
 
+/**
+ * Prevent direct access to this file.
+ * 
+ * @since 2.0
+ */
+if ( ! defined( 'WPINC' ) ) {
+	exit( 'No script kiddies please!' );
+}
+
 
 /**
  * Create a form label to be used in the widget panel.

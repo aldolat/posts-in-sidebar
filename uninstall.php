@@ -7,8 +7,9 @@
  */
 
 // Check for the 'WP_UNINSTALL_PLUGIN' constant, before executing
-if( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) )
-	exit();
+if( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit( 'No script kiddies please!' );
+}
 
 /*
  * Delete the transients, if any

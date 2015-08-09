@@ -76,6 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * Updated the Hebrew translation (thanks to Ahrale).
 * Added URL of the site and WordPress version in the debug section.
 * Switched to PHP5 __contruct() in creating the widget.
+* Fixed PHP notices when upgrading from previous versions.
 
 = 1.28 =
 

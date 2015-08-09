@@ -76,6 +76,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 2.0 ###
 
+* NEW: Support for multiple authors.
 * NEW: Support for date queries.
 * NEW: Support for taxonomy complex queries.
 * NEW: Support for search for posts containing a string.

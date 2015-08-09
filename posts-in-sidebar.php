@@ -149,6 +149,7 @@ function pis_posts_in_sidebar( $args ) {
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
+		'author_in'           => '',        // Aurthor IDs
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -208,6 +209,7 @@ function pis_posts_in_sidebar( $args ) {
 		'date_column'         => '',
 		
 		// Posts exclusion
+		'author_not_in'       => '',
 		'exclude_current_post'=> false,
 		'post_not_in'         => '',
 		'cat_not_in'          => '',        // Category ID, comma separated
@@ -328,6 +330,8 @@ function pis_posts_in_sidebar( $args ) {
 	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
 	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
 	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
+	if ( $author_in   && ! is_array( $author_in ) )   $author_in   = explode( ',', $author_in );   else $author_in   = '';
+	if ( $author_not_in   && ! is_array( $author_not_in ) )   $author_not_in   = explode( ',', $author_not_in );   else $author_not_in   = '';
 	if ( $post_parent_in  && ! is_array( $post_parent_in ) )  $post_parent_in  = explode( ',', $post_parent_in );  else $post_parent_in  = '';
 	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = '';
 
@@ -393,6 +397,7 @@ function pis_posts_in_sidebar( $args ) {
 		'post_type'           => $post_type,
 		'post__in'            => $posts_id,    // Uses ids
 		'author_name'         => $author,      // Uses nicenames
+		'author__in'          => $author_in,   // Uses ids
 		'category_name'       => $cat,         // Uses category slugs
 		'tag'                 => $tag,         // Uses tag slugs 
 		'tax_query'           => $tax_query,   // Uses an array of array
@@ -402,6 +407,7 @@ function pis_posts_in_sidebar( $args ) {
 		'posts_per_page'      => $number,
 		'orderby'             => $orderby,
 		'order'               => $order,
+		'author__not_in'      => $author_not_in,
 		'post__not_in'        => $post_not_in,        // Uses ids
 		'category__not_in'    => $cat_not_in,         // Uses ids
 		'tag__not_in'         => $tag_not_in,         // uses ids

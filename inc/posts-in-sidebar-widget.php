@@ -81,6 +81,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_type'           => $instance['post_type'],
 			'posts_id'            => $instance['posts_id'],
 			'author'              => $instance['author'],
+			'author_in'           => $instance['author_in'],
 			'cat'                 => $instance['cat'],
 			'tag'                 => $instance['tag'],
 			'post_parent_in'      => $instance['post_parent_in'],
@@ -140,6 +141,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_column'         => $instance['date_column'],
 
 			// Posts exclusion
+			'author_not_in'       => $instance['author_not_in'],
 			'exclude_current_post'=> $instance['exclude_current_post'],
 			'post_not_in'         => $instance['post_not_in'],
 			'cat_not_in'          => $instance['cat_not_in'],
@@ -294,6 +296,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 */
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
+		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
 		$instance['cat']                 = strip_tags( $new_instance['cat'] );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
@@ -370,6 +373,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['date_column']         = $new_instance['date_column'];
 		
 		// Posts exclusion
+		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
 		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
@@ -516,6 +520,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_type'           => 'post',
 			'posts_id'            => '',
 			'author'              => '',
+			'author_in'           => '',
 			'cat'                 => '',
 			'tag'                 => '',
 			'post_parent_in'      => '',
@@ -575,6 +580,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_column'         => '',
 
 			// Posts exclusion
+			'author_not_in'       => '',
 			'exclude_current_post'=> false,
 			'post_not_in'         => '',
 			'cat_not_in'          => '',
@@ -812,6 +818,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						$instance['author']
 					); ?>
 
+					<?php // ================= Multiple authors
+					pis_form_input_text(
+						__( 'Get posts by these authors', 'pis' ),
+						$this->get_field_id('author_in'),
+						$this->get_field_name('author_in'),
+						esc_attr( $instance['author_in'] ),
+						__( '1, 23, 45', 'pis' ),
+						__( 'Insert IDs separated by commas. ', 'pis' )
+					); ?>
+
 					<?php // ================= Category
 					pis_form_input_text(
 						__( 'Get posts with these categories', 'pis' ),
@@ -1035,6 +1051,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column">
 
+							<?php // ================= Exclude posts by these authors
+							if ( is_array( $instance['author_not_in'] ) )
+								$var = implode( ',', $instance['author_not_in'] );
+							else
+								$var = $instance['author_not_in'];
+							pis_form_input_text(
+								__( 'Exclude posts by these authors', 'pis' ),
+								$this->get_field_id('author_not_in'),
+								$this->get_field_name('author_not_in'),
+								esc_attr( $var ),
+								'1, 23, 45',
+								__( 'Insert IDs separated by commas.', 'pis' )
+							); ?>
+
 							<?php // ================= Exclude posts from categories
 							if ( is_array( $instance['cat_not_in'] ) )
 								$var = implode( ',', $instance['cat_not_in'] );
@@ -1048,6 +1078,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'3, 31',
 								__( 'Insert IDs separated by commas.', 'pis' )
 							); ?>
+
+						</div>
+
+						<div class="pis-column">
 
 							<?php // ================= Exclude posts from tags
 							if ( is_array( $instance['tag_not_in'] ) )
@@ -1063,10 +1097,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								__( 'Insert IDs separated by commas.', 'pis' )
 							); ?>
 
-						</div>
-
-						<div class="pis-column">
-
 							<?php // ================= Exclude posts that have these ids.
 							pis_form_input_text(
 								__( 'Exclude posts with these IDs', 'pis' ),
@@ -1077,6 +1107,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								__( 'Insert IDs separated by commas.', 'pis' )
 							); ?>
 
+						</div>
+
+						<div class="pis-column pis-column-last">
+
 							<?php // ================= Exclude posts whose parent is in these IDs.
 							pis_form_input_text(
 								__( 'Exclude posts whose parent is in these IDs', 'pis' ),
@@ -1086,10 +1120,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'5, 29, 523, 4519',
 								__( 'Insert IDs separated by commas.', 'pis' )
 							); ?>
-
-						</div>
-
-						<div class="pis-column pis-column-last">
 
 							<?php // ================= Exclude current post
 							pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>

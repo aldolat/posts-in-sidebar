@@ -77,6 +77,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 2.0.3 ###
 
 * The complete list of widget options is now fully displayed.
+* Other minor improvements.
 
 ### 2.0.2 ###
 

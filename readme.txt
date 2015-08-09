@@ -64,17 +64,17 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 2.0 =
 
-* NEW: Support for multiple authors.
+* NEW: Support for for getting and excluding posts by multiple authors.
 * NEW: Support for date queries.
 * NEW: Support for taxonomy complex queries.
-* NEW: Support for search for posts containing a string.
+* NEW: Support for queries based on search.
 * NEW: Support for getting and excluding posts that are children of other posts.
-* NEW: Support for custom taxonomies.
+* NEW: Support for custom taxonomies (props by multiple users).
 * NEW: Added support for custom link in featured image (props by troy-f).
-* Now the widget sections are collapsible.
-* Now the plugin requires WordPress 4.1 (for nested taxonomy handling).
+* NEW: Changed appearance for widget sections that are collapsible now.
+* WordPress 4.1 is required (for nested taxonomy handling).
 * Updated the Hebrew translation (thanks to Ahrale).
-* The debug section displays the URL of the site and WordPress version.
+* Added URL of the site and WordPress version in the debug section.
 * Switched to PHP5 __contruct() in creating the widget.
 
 = 1.28 =
@@ -283,7 +283,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Upgrade Notice ==
 
-= 1.29 =
+= 2.0 =
 
 This version requires WordPress 4.1 (for nested taxonomy handling).
 

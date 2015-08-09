@@ -406,6 +406,16 @@ function pis_posts_in_sidebar( $args ) {
 		$post_status = 'inherit';
 	}
 
+	/**
+	 * The 's' (search) parameter in the WP_Query must be NULL,
+	 * otherwise 'ignore_sticky_posts' parameter will not work.
+	 * Making 's' as empty variable does not fix.
+	 * So we declare it s NULL.
+	 * 
+	 * @since 2.0.3
+	 */
+	if ( empty( $search ) ) $search = NULL;
+
 	// Build the array to get posts
 	$params = array(
 		'post_type'           => $post_type,

@@ -64,6 +64,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 2.0.3 =
 
+* FIX: Fixed sticky posts.
 * The complete list of widget options is now fully displayed.
 * Other minor improvements.
 

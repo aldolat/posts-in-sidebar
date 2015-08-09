@@ -2024,7 +2024,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?></em></p>
+						<p><em>
+							<?php printf( __( 'In this field you can add your own styles, for example: %s', 'pis' ), '<code>.pis-excerpt { color: green; }</code>' ); ?>
+							<br>
+							<?php printf( __( 'To apply a style only to elements of this widget, prefix every style with this ID selector: %s', 'pis' ), '<code>#' . $this->id . '</code>' ); ?>
+							<br>
+							<?php printf( __( 'For example: %s', 'pis' ), '<pre><code>#' . $this->id . ' .pis-title { font-size: 18px !important; }</code></pre>' ); ?>
+						</em></p>
 
 						<?php // ================= Custom styles
 						pis_form_textarea(
@@ -2032,7 +2038,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('custom_styles'),
 							$this->get_field_name('custom_styles'),
 							$instance['custom_styles'],
-							'#' . $this->id . ' p.pis-title { text-align: center; }',
+							__( 'Insert here your CSS styles', 'pis' ),
 							$style = 'resize: vertical; width: 100%; height: 80px;'
 						); ?>
 

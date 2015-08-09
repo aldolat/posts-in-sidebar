@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 2.0.2
+ * Version: 2.0.3
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '2.0.2' );
+	define( 'PIS_VERSION', '2.0.3' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -153,6 +153,8 @@ function pis_load_widgets() {
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
 		// The title of the widget
+		'title'               => __( 'Posts', 'pis' ),
+		'title_link'          => '',
 		'intro'               => '',
 
 		// Posts retrieving
@@ -301,8 +303,10 @@ function pis_posts_in_sidebar( $args ) {
 		'categories_margin'   => NULL,
 		'tags_margin'         => NULL,
 		'terms_margin'        => NULL,
+		'custom_field_margin' => NULL,
 		'archive_margin'      => NULL,
 		'noposts_margin'      => NULL,
+		'custom_styles'       => '',
 
 		// Extras
 		'list_element'        => 'ul',
@@ -504,8 +508,8 @@ function pis_posts_in_sidebar( $args ) {
 					<?php if ( $image_before_title ) : ?>
 
 						<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-							$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+							$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 						} ?>
 
 					<?php endif; // Close if $image_before_title ?>
@@ -514,8 +518,8 @@ function pis_posts_in_sidebar( $args ) {
 					<?php if ( $display_title ) { ?>
 						<p <?php echo pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ); ?>>
 							<?php if ( $link_on_title ) { ?>
-								<?php $title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-								<a <?php pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+								<?php $post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
+								<a <?php pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $post_link ); ?>" rel="bookmark">
 							<?php } ?>
 									<?php the_title(); ?>
 									<?php if ( $arrow ) { ?>
@@ -543,8 +547,8 @@ function pis_posts_in_sidebar( $args ) {
 
 									<?php /* The thumbnail */ ?>
 									<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-										$title_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-										pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+										$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+										pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 									} // Close if ( $display_image && has_post_thumbnail ) ?>
 
 								<?php endif; // Close if $image_before_title ?>
@@ -700,13 +704,13 @@ function pis_posts_in_sidebar( $args ) {
 
 	<?php if ( $debug_query ) { ?>
 		<p><strong><?php _e( 'The parameters for the query:', 'pis' ); ?></strong></p>
-		<pre><?php print_r($params); ?></pre>
+		<pre><?php print_r( $params ); ?></pre>
 		<hr />
 	<?php } ?>
 
 	<?php if ( $debug_params ) { ?>
 		<p><strong><?php _e( 'The complete set of parameters of the widget:', 'pis' ); ?></strong></p>
-		<pre><?php print_r($args); ?></pre>
+		<pre><?php print_r( $args ); ?></pre>
 		<hr />
 	<?php } ?>
 

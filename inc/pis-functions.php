@@ -264,7 +264,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
  * @since 1.18
  * @return The HTML for the thumbnail.
  */
-function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $title_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb, $post_type, $image_link ) {
+function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb, $post_type, $image_link ) {
 	if ( $thumb_wrap ) {
 		$open_wrap = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
@@ -310,7 +310,7 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 		} else {
 			$the_image_link = get_permalink();
 		} ?>
-	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php echo esc_url( strip_tags( $the_image_link ) ); ?>" title="<?php echo esc_attr( $title_link ); ?>" rel="bookmark">
+	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php echo esc_url( strip_tags( $the_image_link ) ); ?>" title="<?php echo esc_attr( $post_link ); ?>" rel="bookmark">
 		<?php
 		/**
 		 * If the post type is an attachment (an image, or any other attachment),

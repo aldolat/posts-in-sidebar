@@ -638,19 +638,19 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
  * @param boolean $debug_query_number If the total number of the queries of the WordPress installation are to be displayed.
  * @param array $params The parameters of the query.
  * @param array $args The complete set of the widget options.
+ * @param boolean $cached If the cache is active.
  * 
  * @since 2.0.3
  */
-function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args ) {
+function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ) {
 	if ( $debug_query || $debug_params || $debug_query_number ) { ?>
 		<hr />
 		<h3><?php printf( __( '%s Debug', 'pis' ), 'Posts in Sidebar' ); ?></h3>
-		<p>
-			<?php global $wp_version;
+		<p><?php global $wp_version;
 			printf( __( 'Site URL: %s', 'pis' ), site_url() . '<br>' );
 			printf( __( 'WP version: %s', 'pis' ), $wp_version . '<br>' );
-			printf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' ); ?>
-		</p>
+			printf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' );
+			if ( $cached ) _e( 'Cache: active', 'pis' ); else _e( 'Cache: not active' ); ?></p>
 	<?php }
 
 	if ( $debug_query ) { ?>

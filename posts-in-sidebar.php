@@ -693,7 +693,7 @@ function pis_posts_in_sidebar( $args ) {
 	<?php wp_reset_postdata(); ?>
 
 	<?php /* Debugging */ ?>
-	<?php pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args ); ?>
+	<?php pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ); ?>
 
 	<?php /* Prints the version of Posts in Sidebar and if the cache is active. */ ?>
 	<?php pis_generated( $cached ) ?>

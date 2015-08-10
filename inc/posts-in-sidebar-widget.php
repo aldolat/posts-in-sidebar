@@ -93,7 +93,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['author_in'] ) )            $instance['author_in']            = '';
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
 		if ( ! isset( $instance['post_format'] ) )          $instance['post_format']          = '';
-		if ( ! isset( $instance['search'] ) )               $instance['search']               = '';
+		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
 		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = '';
@@ -426,6 +426,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_meta_key']       = strip_tags( $new_instance['post_meta_key'] );
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['search']              = strip_tags( $new_instance['search'] );
+			if ( '' == $instance['search'] ) $instance['search'] = NULL;
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 
 		// Taxonomies
@@ -645,7 +646,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_status'         => 'publish',
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
-			'search'              => '',
+			'search'              => NULL,
 			'ignore_sticky'       => false,
 			
 			// Taxonomies

@@ -562,29 +562,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// Styles
 		$instance['margin_unit']         = $new_instance['margin_unit'];
 		$instance['intro_margin']        = strip_tags( $new_instance['intro_margin'] );
-			if ( ! is_numeric( $new_instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
+			if ( ! is_numeric( $instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
 		$instance['title_margin']        = strip_tags( $new_instance['title_margin'] );
-			if ( ! is_numeric( $new_instance['title_margin'] ) ) $instance['title_margin'] = NULL;
+			if ( ! is_numeric( $instance['title_margin'] ) ) $instance['title_margin'] = NULL;
 		$instance['side_image_margin']   = $new_instance['side_image_margin'];
-			if ( ! is_numeric( $new_instance['side_image_margin'] ) ) $instance['side_image_margin'] = NULL;
+			if ( ! is_numeric( $instance['side_image_margin'] ) ) $instance['side_image_margin'] = NULL;
 		$instance['bottom_image_margin'] = $new_instance['bottom_image_margin'];
-			if ( ! is_numeric( $new_instance['bottom_image_margin'] ) ) $instance['bottom_image_margin'] = NULL;
+			if ( ! is_numeric( $instance['bottom_image_margin'] ) ) $instance['bottom_image_margin'] = NULL;
 		$instance['excerpt_margin']      = strip_tags( $new_instance['excerpt_margin'] );
-			if ( ! is_numeric( $new_instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = NULL;
+			if ( ! is_numeric( $instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = NULL;
 		$instance['utility_margin']      = strip_tags( $new_instance['utility_margin'] );
-			if ( ! is_numeric( $new_instance['utility_margin'] ) ) $instance['utility_margin'] = NULL;
+			if ( ! is_numeric( $instance['utility_margin'] ) ) $instance['utility_margin'] = NULL;
 		$instance['categories_margin']   = strip_tags( $new_instance['categories_margin'] );
-			if ( ! is_numeric( $new_instance['categories_margin'] ) ) $instance['categories_margin'] = NULL;
+			if ( ! is_numeric( $instance['categories_margin'] ) ) $instance['categories_margin'] = NULL;
 		$instance['tags_margin']         = strip_tags( $new_instance['tags_margin'] );
-			if ( ! is_numeric( $new_instance['tags_margin'] ) ) $instance['tags_margin'] = NULL;
+			if ( ! is_numeric( $instance['tags_margin'] ) ) $instance['tags_margin'] = NULL;
 		$instance['terms_margin']        = strip_tags( $new_instance['terms_margin'] );
-			if ( ! is_numeric( $new_instance['terms_margin'] ) ) $instance['terms_margin'] = NULL;
+			if ( ! is_numeric( $instance['terms_margin'] ) ) $instance['terms_margin'] = NULL;
 		$instance['custom_field_margin'] = strip_tags( $new_instance['custom_field_margin'] );
-			if ( ! is_numeric( $new_instance['custom_field_margin'] ) ) $instance['custom_field_margin'] = NULL;
+			if ( ! is_numeric( $instance['custom_field_margin'] ) ) $instance['custom_field_margin'] = NULL;
 		$instance['archive_margin']      = strip_tags( $new_instance['archive_margin'] );
-			if ( ! is_numeric( $new_instance['archive_margin'] ) ) $instance['archive_margin'] = NULL;
+			if ( ! is_numeric( $instance['archive_margin'] ) ) $instance['archive_margin'] = NULL;
 		$instance['noposts_margin']      = strip_tags( $new_instance['noposts_margin'] );
-			if ( ! is_numeric( $new_instance['noposts_margin'] ) ) $instance['noposts_margin'] = NULL;
+			if ( ! is_numeric( $instance['noposts_margin'] ) ) $instance['noposts_margin'] = NULL;
 		$instance['custom_styles']       = strip_tags( $new_instance['custom_styles'] );
 
 		// Extras

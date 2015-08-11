@@ -126,41 +126,41 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['date_before_year'] ) )     $instance['date_before_year']     = '';
 		if ( ! isset( $instance['date_before_month'] ) )    $instance['date_before_month']    = '';
 		if ( ! isset( $instance['date_before_day'] ) )      $instance['date_before_day']      = '';
-		if ( ! isset( $instance['date_inclusive'] ) )       $instance['date_inclusive']       = '';
+		if ( ! isset( $instance['date_inclusive'] ) )       $instance['date_inclusive']       = false;
 		if ( ! isset( $instance['date_column'] ) )          $instance['date_column']          = '';
 		if ( ! isset( $instance['author_not_in'] ) )        $instance['author_not_in']        = '';
-		if ( ! isset( $instance['exclude_current_post'] ) ) $instance['exclude_current_post'] = '';
+		if ( ! isset( $instance['exclude_current_post'] ) ) $instance['exclude_current_post'] = false;
 		if ( ! isset( $instance['post_not_in'] ) )          $instance['post_not_in']          = '';
 		if ( ! isset( $instance['cat_not_in'] ) )           $instance['cat_not_in']           = '';
 		if ( ! isset( $instance['tag_not_in'] ) )           $instance['tag_not_in']           = '';
 		if ( ! isset( $instance['post_parent_not_in'] ) )   $instance['post_parent_not_in']   = '';
 		if ( ! isset( $instance['image_align'] ) )          $instance['image_align']          = '';
-		if ( ! isset( $instance['image_before_title'] ) )   $instance['image_before_title']   = '';
+		if ( ! isset( $instance['image_before_title'] ) )   $instance['image_before_title']   = false;
 		if ( ! isset( $instance['image_link'] ) )           $instance['image_link']           = '';
 		if ( ! isset( $instance['custom_image_url'] ) )     $instance['custom_image_url']     = '';
-		if ( ! isset( $instance['custom_img_no_thumb'] ) )  $instance['custom_img_no_thumb']  = '';
+		if ( ! isset( $instance['custom_img_no_thumb'] ) )  $instance['custom_img_no_thumb']  = true;
 		if ( ! isset( $instance['the_more'] ) )             $instance['the_more']             = '';
-		if ( ! isset( $instance['display_author'] ) )       $instance['display_author']       = '';
+		if ( ! isset( $instance['display_author'] ) )       $instance['display_author']       = false;
 		if ( ! isset( $instance['author_text'] ) )          $instance['author_text']          = '';
-		if ( ! isset( $instance['linkify_author'] ) )       $instance['linkify_author']       = '';
+		if ( ! isset( $instance['linkify_author'] ) )       $instance['linkify_author']       = false;
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = '';
-		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = '';
+		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = '';
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '';
-		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = '';
-		if ( ! isset( $instance['categories'] ) )           $instance['categories']           = '';
+		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = false;
+		if ( ! isset( $instance['categories'] ) )           $instance['categories']           = false;
 		if ( ! isset( $instance['categ_text'] ) )           $instance['categ_text']           = '';
 		if ( ! isset( $instance['categ_sep'] ) )            $instance['categ_sep']            = '';
-		if ( ! isset( $instance['display_custom_tax'] ) )   $instance['display_custom_tax']   = '';
+		if ( ! isset( $instance['display_custom_tax'] ) )   $instance['display_custom_tax']   = false;
 		if ( ! isset( $instance['term_hashtag'] ) )         $instance['term_hashtag']         = '';
 		if ( ! isset( $instance['term_sep'] ) )             $instance['term_sep']             = '';
-		if ( ! isset( $instance['custom_field'] ) )         $instance['custom_field']         = '';
+		if ( ! isset( $instance['custom_field'] ) )         $instance['custom_field']         = false;
 		if ( ! isset( $instance['custom_field_txt'] ) )     $instance['custom_field_txt']     = '';
 		if ( ! isset( $instance['meta'] ) )                 $instance['meta']                 = '';
-		if ( ! isset( $instance['custom_field_key'] ) )     $instance['custom_field_key']     = '';
+		if ( ! isset( $instance['custom_field_key'] ) )     $instance['custom_field_key']     = false;
 		if ( ! isset( $instance['custom_field_sep'] ) )     $instance['custom_field_sep']     = '';
 		if ( ! isset( $instance['nopost_text'] ) )          $instance['nopost_text']          = '';
-		if ( ! isset( $instance['hide_widget'] ) )          $instance['hide_widget']          = '';
+		if ( ! isset( $instance['hide_widget'] ) )          $instance['hide_widget']          = false;
 		if ( ! isset( $instance['margin_unit'] ) )          $instance['margin_unit']          = '';
 		if ( ! isset( $instance['intro_margin'] ) )         $instance['intro_margin']         = NULL;
 		if ( ! isset( $instance['title_margin'] ) )         $instance['title_margin']         = NULL;
@@ -176,12 +176,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['noposts_margin'] ) )       $instance['noposts_margin']       = NULL;
 		if ( ! isset( $instance['custom_styles'] ) )        $instance['custom_styles']        = '';
 		if ( ! isset( $instance['list_element'] ) )         $instance['list_element']         = '';
-		if ( ! isset( $instance['remove_bullets'] ) )       $instance['remove_bullets']       = '';
-		if ( ! isset( $instance['cached'] ) )               $instance['cached']               = '';
+		if ( ! isset( $instance['remove_bullets'] ) )       $instance['remove_bullets']       = false;
+		if ( ! isset( $instance['cached'] ) )               $instance['cached']               = false;
 		if ( ! isset( $instance['cache_time'] ) )           $instance['cache_time']           = '';
-		if ( ! isset( $instance['debug_query'] ) )          $instance['debug_query']          = '';
-		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = '';
-		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = '';
+		if ( ! isset( $instance['debug_query'] ) )          $instance['debug_query']          = false;
+		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
+		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
 
 		/* 
 		 * Execute the main function in the front-end.
@@ -690,7 +690,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_before_year'    => '',
 			'date_before_month'   => '',
 			'date_before_day'     => '',
-			'date_inclusive'      => '',
+			'date_inclusive'      => false,
 			'date_column'         => '',
 
 			// Posts exclusion

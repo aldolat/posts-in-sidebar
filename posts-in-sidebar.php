@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '2.0.3' );
+	define( 'PIS_VERSION', '2.0.4' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -220,7 +220,7 @@ function pis_posts_in_sidebar( $args ) {
 		'date_before_year'    => '',
 		'date_before_month'   => '',
 		'date_before_day'     => '',
-		'date_inclusive'      => '',
+		'date_inclusive'      => false,
 		'date_column'         => '',
 		
 		// Posts exclusion

@@ -183,10 +183,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
 		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
 
-		/* 
+		/**
 		 * Execute the main function in the front-end.
+		 * Some parameters are passed only for the debugging list.
 		 */
 		pis_posts_in_sidebar( array(
+			// The custom container class
+			'container_class'     => $instance['container_class'],
+
 			// The title of the widget
 			'intro'               => $instance['intro'],
 

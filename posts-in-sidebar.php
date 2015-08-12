@@ -152,6 +152,9 @@ function pis_load_widgets() {
  */
 function pis_posts_in_sidebar( $args ) {
 	$defaults = array(
+		// The custom container class
+		'container_class'     => '',
+
 		// The title of the widget
 		'title'               => __( 'Posts', 'pis' ),
 		'title_link'          => '',

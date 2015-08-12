@@ -73,7 +73,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		echo $before_widget;
 
 		// Add a new container if the "Container Class" is not empty
-		if ( isset( $instance['container_class'] ) && ! empty( $container_class ) ) {
+		if ( isset( $instance['container_class'] ) && ! empty( $instance['container_class'] ) ) {
 			echo '<div class="' . $instance['container_class'] . '">';
 		}
 
@@ -361,7 +361,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'debug_query_number'  => $instance['debug_query_number'],
 		) );
 
-		if ( isset( $instance['container_class'] ) && ! empty( $container_class ) ) {
+		if ( isset( $instance['container_class'] ) && ! empty( $instance['container_class'] ) ) {
 			echo '</div>';
 		}
 

@@ -184,6 +184,5 @@ function pis_shortcode( $atts ) {
 	), $atts ) );
 
 	return pis_get_posts_in_sidebar( $atts );
-	//echo '<pre>'; print_r($atts); echo '</pre>';
 }
 add_shortcode('pissc', 'pis_shortcode');

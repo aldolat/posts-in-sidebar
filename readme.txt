@@ -53,12 +53,13 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Screenshots ==
 
-1. The widget panel
-2. A simple output of the widget: title, excerpt and link to the entire archive.
-3. Displaying the featured image, floating left.
-4. The same image as before, but in larger size.
-5. The introductory text for the widget.
-6. Displaying the full set of items (categories, date, author, tags, and so on).
+1. The widget panel (all sections are closed).
+2. The widget panel (all sections are open).
+3. A simple output of the widget: title, excerpt and link to the entire archive.
+4. Displaying the featured image, floating left.
+5. The same image as before, but in larger size.
+6. The introductory text for the widget.
+7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
 

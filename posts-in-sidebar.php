@@ -138,14 +138,14 @@ function pis_load_widgets() {
 	 *
 	 * @since 1.12
 	 */
-	require_once( plugin_dir_path( __FILE__ ) . 'inc/widget-form-functions.php' );
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-widget-form-functions.php' );
 
 	/**
 	 * Load the widget's PHP file.
 	 *
 	 * @since 1.1
 	 */
-	require_once( plugin_dir_path( __FILE__ ) . 'inc/posts-in-sidebar-widget.php' );
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-widget.php' );
 
 	register_widget( 'PIS_Posts_In_Sidebar' );
 }

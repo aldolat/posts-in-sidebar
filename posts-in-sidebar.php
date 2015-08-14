@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 2.0.4
+ * Version: 2.1
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: pis
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '2.0.4' );
+	define( 'PIS_VERSION', '2.1' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -88,6 +88,13 @@ function pis_setup() {
 	 * Load Posts in Sidebar's widgets.
 	 */
 	add_action( 'widgets_init', 'pis_load_widgets' );
+
+	/**
+	 * Load the shortcode.
+	 * 
+	 * @since 2.1
+	 */
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-shortcode.php' );
 
 	/**
 	 * Load the script.
@@ -149,8 +156,9 @@ function pis_load_widgets() {
  *
  * @since 1.0
  * @param mixed $args The options for the main function.
+ * @return string The HTML output.
  */
-function pis_posts_in_sidebar( $args ) {
+function pis_get_posts_in_sidebar( $args ) {
 	$defaults = array(
 		// The custom container class
 		'container_class'     => '',
@@ -457,37 +465,41 @@ function pis_posts_in_sidebar( $args ) {
 
 		$pis_query = new WP_Query( $params );
 
-	} ?>
+	}
 
-	<?php // If in a single post, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class. ?>
-	<?php if ( is_single() ) {
+	// If in a single post, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class.
+	if ( is_single() ) {
 		global $post;
 		$single_post_id = $post->ID;
-	} ?>
+	}
 
-	<?php /* The Loop */ ?>
-	<?php if ( $pis_query->have_posts() ) : ?>
+	/**
+	 * Define the main variable that will concatenate all the output;
+	 * 
+	 * @since 2.1
+	 */
+	$pis_output = '';
 
-		<?php if ( $intro ) { ?>
-			<p <?php echo pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ); ?>>
-				<?php echo pis_break_text( $intro ); ?>
-			</p>
-		<?php } ?>
+	/* The Loop */
+	if ( $pis_query->have_posts() ) {
 
-		<?php
-			// When updating from 1.14, the $list_element variable is empty.
-			if ( ! $list_element ) $list_element = 'ul';
-		?>
-		<?php if ( $remove_bullets && 'ul' == $list_element ) {
+		if ( $intro ) {
+			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
+		}
+
+		// When updating from 1.14, the $list_element variable is empty.
+		if ( ! $list_element ) $list_element = 'ul';
+
+		if ( $remove_bullets && 'ul' == $list_element ) {
 			$bullets_style = ' style="list-style-type:none; margin-left:0; padding-left:0;"';
 		} else {
 			$bullets_style = '';
-		} ?>
-		<?php echo '<' . $list_element; ?> <?php pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ) ); echo $bullets_style . '>'; ?>
+		}
+		$pis_output .= '<' . $list_element . ' ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
 
-			<?php while( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
+			while ( $pis_query->have_posts() ) {
+				$pis_query->the_post();
 
-				<?php
 				/**
 				 * Assign the class 'current-post' if this is the post of the main loop.
 				 *
@@ -506,103 +518,102 @@ function pis_posts_in_sidebar( $args ) {
 				 $sticky_class = '';
 				 if ( is_sticky() ) {
 				 	$sticky_class = ' sticky';
-				 } ?>
+				 }
 
-				<li <?php pis_class( 'pis-li' . $current_post_class . $sticky_class, apply_filters( 'pis_li_class', '' ) ); ?>>
+				$pis_output .= '<li ' . pis_class( 'pis-li' . $current_post_class . $sticky_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
-					<?php /* The thumbnail before the title */ ?>
-					<?php if ( $image_before_title ) : ?>
+					/* The thumbnail before the title */
+					if ( $image_before_title ) :
 
-						<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
+						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 							$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-							pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
-						} ?>
+							$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+						}
 
-					<?php endif; // Close if $image_before_title ?>
+					endif; // Close if $image_before_title
 
-					<?php /* The title */ ?>
-					<?php if ( $display_title ) { ?>
-						<p <?php echo pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ); ?>>
-							<?php if ( $link_on_title ) { ?>
-								<?php $post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-								<a <?php pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $post_link ); ?>" rel="bookmark">
-							<?php } ?>
-									<?php the_title(); ?>
-									<?php if ( $arrow ) { ?>
-										<?php echo pis_arrow(); ?>
-									<?php } ?>
-							<?php if ( $link_on_title ) { ?>
-								</a>
-							<?php } ?>
-						</p>
-					<?php } // Close Display title ?>
+					/* The title */
+					if ( $display_title ) {
+						$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+							if ( $link_on_title ) {
+								$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+								$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
+							}
+							$pis_output .= get_the_title();
+							if ( $arrow ) {
+								$pis_output .= pis_arrow();
+							}
+							if ( $link_on_title ) {
+								$pis_output .= '</a>';
+							}
+						$pis_output .= '</p>';
+					} // Close Display title
 
-					<?php /* The author, the date and the comments */ ?>
-					<?php if ( $utility_after_title ) {
-						pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
-					} ?>
+					/* The author, the date and the comments */
+					if ( $utility_after_title ) {
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
+					}
 
-					<?php /* The post content */ ?>
-					<?php if ( ! post_password_required() ) : ?>
+					/* The post content */
+					if ( ! post_password_required() ) :
 						
-						<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) : ?>
+						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
 
-							<p <?php echo pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ); ?>>
+							$pis_output .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
-								<?php if ( ! $image_before_title ) : ?>
+								if ( ! $image_before_title ) :
 
-									<?php /* The thumbnail */ ?>
-									<?php if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
+									/* The thumbnail */
+									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 										$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-										pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
-									} // Close if ( $display_image && has_post_thumbnail ) ?>
+										$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+									} // Close if ( $display_image && has_post_thumbnail )
 
-								<?php endif; // Close if $image_before_title ?>
+								endif; // Close if $image_before_title
 
-								<?php /* The text */ ?>
-								<?php pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow ); ?>
+								/* The text */
+								$pis_output .= pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow );
 
-							</p>
+							$pis_output .= '</p>';
 
-						<?php endif; // Close if $display_image ?>
+						endif; // Close if $display_image
 
-					<?php endif; // Close if post password required ?>
+					endif; // Close if post password required
 
-					<?php /* The author, the date and the comments */ ?>
-					<?php if ( ! $utility_after_title ) {
-						pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
-					} ?>
+					/* The author, the date and the comments */
+					if ( ! $utility_after_title ) {
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
+					}
 
-					<?php /* The categories */ ?>
-					<?php if ( $categories ) {
+					/* The categories */
+					if ( $categories ) {
 						$list_of_categories = get_the_term_list( $pis_query->post->ID, 'category', '', $categ_sep . ' ', '' );
-						if ( $list_of_categories ) { ?>
-							<p <?php echo pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ); ?>>
-								<?php if ( $categ_text ) echo $categ_text . '&nbsp';
-								echo apply_filters(  'pis_categories_list', $list_of_categories ); ?>
-							</p>
-						<?php }
-					} ?>
+						if ( $list_of_categories ) {
+							$pis_output .= '<p ' . pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ) . '>';
+								if ( $categ_text ) $pis_output .= $categ_text . '&nbsp';
+								$pis_output .= apply_filters(  'pis_categories_list', $list_of_categories );
+							$pis_output .= '</p>';
+						}
+					}
 
-					<?php /* The tags */ ?>
-					<?php if ( $tags ) {
+					/* The tags */
+					if ( $tags ) {
 						$list_of_tags = get_the_term_list( $pis_query->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
-						if ( $list_of_tags ) { ?>
-							<p <?php echo pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ); ?>>
-								<?php if ( $tags_text ) echo $tags_text . '&nbsp;';
-								echo apply_filters( 'pis_tags_list', $list_of_tags );
-								?>
-							</p>
-						<?php }
-					} ?>
+						if ( $list_of_tags ) {
+							$pis_output .= '<p ' . pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ) . '>';
+								if ( $tags_text ) $pis_output .= $tags_text . '&nbsp;';
+								$pis_output .= apply_filters( 'pis_tags_list', $list_of_tags );
+							$pis_output .= '</p>';
+						}
+					}
 
-					<?php /* Custom taxonomies */ ?>
-					<?php if ( $display_custom_tax ) {
-						echo pis_custom_taxonomies_terms_links( $pis_query->post->ID, $term_hashtag, $term_sep, $terms_margin, $margin_unit );
-					} ?>
+					/* Custom taxonomies */
+					if ( $display_custom_tax ) {
+						$pis_output .= pis_custom_taxonomies_terms_links( $pis_query->post->ID, $term_hashtag, $term_sep, $terms_margin, $margin_unit );
+					}
 
-					<?php /* The post meta */ ?>
-					<?php if ( $custom_field ) {
+					/* The post meta */
+					if ( $custom_field ) {
 						$the_custom_field = get_post_meta( $pis_query->post->ID, $meta, false );
 						if ( $the_custom_field ) {
 							if ( $custom_field_txt )
@@ -613,22 +624,22 @@ function pis_posts_in_sidebar( $args ) {
 								$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
 							else
 								$key = '';
-							$cf_value = '<span class="pis-custom-field-value">' . $the_custom_field[0] . '</span>'; ?>
-							<p <?php echo pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ); ?>>
-								<?php echo $cf_text . $key . $cf_value; ?>
-							</p>
-						<?php }
-					} ?>
+							$cf_value = '<span class="pis-custom-field-value">' . $the_custom_field[0] . '</span>';
+							$pis_output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+								$pis_output .= $cf_text . $key . $cf_value;
+							$pis_output .= '</p>';
+						}
+					}
 
-				</li>
+				$pis_output .= '</li>';
 
-			<?php endwhile; ?>
+			}
 
-		<?php echo '</' . $list_element . '>'; ?>
-		<!-- / ul#pis-ul -->
+		$pis_output .= '</' . $list_element . '>';
+		$pis_output .= '<!-- / ul#pis-ul -->';
 
-		<?php /* The link to the entire archive */ ?>
-		<?php if ( $archive_link ) {
+		/* The link to the entire archive */
+		if ( $archive_link ) {
 
 			$wp_post_type = array( 'post', 'page', 'media', 'any' );
 
@@ -669,39 +680,50 @@ function pis_posts_in_sidebar( $args ) {
 				if ( strpos( $archive_text, '%s' ) ) {
 					$archive_text = str_replace( '%s', $term_name, $archive_text );
 				}
-			?>
-				<p <?php echo pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ); ?>>
-					<a <?php pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ) ); ?> href="<?php echo $term_link; ?>" title="<?php echo esc_attr( $title_text ); ?>" rel="bookmark">
-						<?php echo $archive_text; ?>
-					</a>
-				</p>
-			<?php }
-		} ?>
+				$pis_output .= '<p ' . pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ) . '>';
+					$pis_output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . $term_link . '" title="' . esc_attr( $title_text ) . '" rel="bookmark">';
+						$pis_output .= $archive_text;
+					$pis_output .= '</a>';
+				$pis_output .= '</p>';
+			}
+		}
 
-	<?php /* If we have no posts yet */ ?>
-	<?php else : ?>
+	/* If we have no posts yet */
+	} else {
 
-		<?php if ( $nopost_text ) { ?>
-			<p <?php echo pis_paragraph( $noposts_margin, $margin_unit, 'pis-noposts noposts', 'pis_noposts_class' ); ?>>
-				<?php echo $nopost_text; ?>
-			</p>
-		<?php } ?>
-		<?php if ( $hide_widget ) {
-			echo '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
-		} ?>
+		if ( $nopost_text ) {
+			$pis_output .= '<p ' . pis_paragraph( $noposts_margin, $margin_unit, 'pis-noposts noposts', 'pis_noposts_class' ) . '>';
+				$pis_output .= $nopost_text;
+			$pis_output .= '</p>';
+		}
+		if ( $hide_widget ) {
+			$pis_output .= '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
+		}
 
-	<?php endif; ?>
+	}
 
-	<?php /* Reset this custom query */ ?>
-	<?php wp_reset_postdata(); ?>
+	/* Reset this custom query */
+	wp_reset_postdata();
 
-	<?php /* Debugging */ ?>
-	<?php pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ); ?>
+	/* Debugging */
+	$pis_output .= pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached );
 
-	<?php /* Prints the version of Posts in Sidebar and if the cache is active. */ ?>
-	<?php pis_generated( $cached ) ?>
+	/* Prints the version of Posts in Sidebar and if the cache is active. */
+	$pis_output .= pis_generated( $cached );
 
-<?php }
+	return $pis_output;
+}
+
+
+/**
+ * The main function to echo the output.
+ * 
+ * @uses get_pis_posts_in_sidebar()
+ * @since 2.1
+ */
+function pis_posts_in_sidebar( $args ) {
+	echo pis_get_posts_in_sidebar( $args );
+}
 
 
 /***********************************************************************

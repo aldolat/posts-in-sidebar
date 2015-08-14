@@ -50,10 +50,11 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// Complete the final output
 	$classes = 'class="' . $classes . '"';
 
-	if ( true === $echo )
+	if ( true === $echo ) {
 		echo apply_filters( 'pis_classes', $classes );
-	else
+	} else {
 		return apply_filters( 'pis_classes', $classes );
+	}
 }
 
 
@@ -72,7 +73,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
  */
 function pis_paragraph( $margin, $unit, $class, $class_filter ) {
 	( ! is_null( $margin ) ) ? $style = ' style="margin-bottom: ' . $margin . $unit . ';"' : $style = '';
-	$output = pis_class( $class, apply_filters( $class_filter, '' ) ) . $style;
+	$output = pis_class( $class, apply_filters( $class_filter, '' ), false ) . $style;
 	return $output;
 }
 
@@ -136,21 +137,28 @@ function pis_arrow() {
  * @uses pis_arrow()
  * @param string $the_more The text to be displayed for "Continue reading". Default empty.
  * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
+ * @param boolean $echo If echo the output or return.
  * @return string The HTML arrow linked to the post.
  */
-function pis_more_arrow( $the_more = '', $exc_arrow = false ) {
+function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
 	if ( $the_more || $exc_arrow ) {
 		if ( $exc_arrow ) {
 			$the_arrow = pis_arrow();
 		} else {
 			$the_arrow = '';
-		} ?>
-		<span <?php pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ) ); ?>>
-			<a href="<?php echo the_permalink(); ?>" title="<?php esc_attr_e( 'Read the full post', 'pis' ); ?>" rel="bookmark">
-				<?php echo $the_more . '&nbsp;' . $the_arrow; ?>
-			</a>
-		</span>
-	<?php }
+		}
+		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
+			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'pis' ) . '" rel="bookmark">';
+				$output .= $the_more . '&nbsp;' . $the_arrow;
+			$output .= '</a>';
+		$output .= '</span>';
+	}
+
+	if ( true === $echo ) {
+		echo $output;
+	} else {
+		return $output;
+	}
 }
 
 
@@ -198,64 +206,71 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @return The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()
+ * @uses pis_get_comments_number()
  */
 function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text ) { ?>
-	<?php if ( $display_author || $display_date || $comments ) { ?>
-		<p <?php echo pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ); ?>>
-	<?php } ?>
+	<?php if ( $display_author || $display_date || $comments ) {
+		$output = '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
+	}
 
-		<?php /* The author */ ?>
-		<?php if ( $display_author ) { ?>
-			<span <?php pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ) ); ?>>
-				<?php if ( $author_text ) echo $author_text . '&nbsp;'; ?><?php
-				if ( $linkify_author ) { ?>
-					<?php
+		/* The author */
+		if ( $display_author ) {
+			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
+				if ( $author_text ) $output .= $author_text . '&nbsp;';
+				if ( $linkify_author ) {
 					$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
 					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
-					?>
-					<a <?php pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ) ); ?> href="<?php echo $author_link; ?>" title="<?php echo esc_attr( $author_title ); ?>" rel="author">
-						<?php echo get_the_author(); ?></a>
-				<?php } else {
-					echo get_the_author();
-				} ?>
-			</span>
-		<?php } ?>
+					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" title="' . esc_attr( $author_title ) . '" rel="author">';
+						$output .= get_the_author();
+					$output .= '</a>';
+				} else {
+					$output .= get_the_author();
+				}
+			$output .= '</span>';
+		}
 
-		<?php /* The date */ ?>
-		<?php if ( $display_date ) : ?>
-			<?php if ( $display_author ) { ?>
-				<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
-			<?php } ?>
-			<span <?php pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ) ); ?>>
-				<?php if ( $date_text ) echo $date_text . '&nbsp;'; ?><?php
-				if ( $linkify_date ) { ?>
-					<?php $date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) ); ?>
-					<a <?php pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ) ); ?> href="<?php the_permalink(); ?>" title="<?php echo esc_attr( $date_title ); ?>" rel="bookmark">
-						<?php echo get_the_date(); ?></a>
-				<?php } else {
-					echo get_the_date();
-				} ?>
-			</span>
+		/* The date */
+		if ( $display_date ) :
+			if ( $display_author ) {
+				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '>&nbsp;' . $utility_sep . '&nbsp;</span>';
+			}
+			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
+				if ( $date_text ) $output .= $date_text . '&nbsp;';
+				if ( $linkify_date ) {
+					$date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $date_title ) . '" rel="bookmark">';
+						$output .= get_the_date();
+					$output .= '</a>';
+				} else {
+					$output .= get_the_date();
+				}
+			$output .= '</span>';
 
-		<?php endif; ?>
+		endif;
 
-		<?php /* The comments */ ?>
-		<?php if ( ! post_password_required() ) : ?>
-			<?php if ( $comments ) { ?>
-				<?php if ( $display_author || $display_date ) { ?>
-					<span <?php pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ) ); ?>>&nbsp;<?php echo $utility_sep; ?>&nbsp;</span>
-				<?php } ?>
-				<span <?php pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ) ); ?>>
-					<?php if ( $comments_text ) echo $comments_text . '&nbsp;'; ?><?php
-					comments_popup_link( '<span class="pis-reply">' . __( 'Leave a comment', 'pis' ) . '</span>', __( '1 Comment', 'pis' ), __( '% Comments', 'pis' ) ); ?>
-				</span>
-			<?php } ?>
-		<?php endif; ?>
+		/* The comments */
+		if ( ! post_password_required() ) :
+			if ( $comments ) {
+				if ( $display_author || $display_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '>&nbsp;' . $utility_sep . '&nbsp;</span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
+					if ( $comments_text ) $output .= $comments_text . '&nbsp;';
+					pis_get_comments_number();
+				$output .= '</span>';
+			}
+		endif;
 
-	<?php if ( $display_author || $display_date || $comments ) : ?>
-		</p>
-	<?php endif; ?>
-<?php }
+	if ( $display_author || $display_date || $comments ) :
+		$output .= '</p>';
+	endif;
+
+	if ( isset( $output) ) {
+		return $output;
+	} else {
+		return '';
+	}
+}
 
 
 /**
@@ -264,7 +279,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
  * @since 1.18
  * @return The HTML for the thumbnail.
  */
-function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb, $post_type, $image_link ) {
+function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb = true, $post_type = 'post', $image_link = '' ) {
 	if ( $thumb_wrap ) {
 		$open_wrap = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
@@ -302,53 +317,57 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
 			$image_class = '';
 			$image_style = '';
 		break;
-	} ?>
-	<?php echo $open_wrap; ?>
-	<?php // Figure out if a custom link for the featured image has been set.
+	}
+
+	$output = $open_wrap;
+
+		// Figure out if a custom link for the featured image has been set.
 		if ( $image_link ) {
 			$the_image_link = $image_link;
 		} else {
 			$the_image_link = get_permalink();
-		} ?>
-	<a <?php pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ) ); ?> href="<?php echo esc_url( strip_tags( $the_image_link ) ); ?>" title="<?php echo esc_attr( $post_link ); ?>" rel="bookmark">
-		<?php
-		/**
-		 * If the post type is an attachment (an image, or any other attachment),
-		 * the construct is different.
-		 *
-		 * @since 1.28
-		 */
-		if ( 'attachment' == $post_type ) {
-			$image_html = wp_get_attachment_image(
-				$pis_query->post->ID,
-				$image_size,
-				false,
-				array(
-					'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
-				)
-			);
-		} else {
+		}
+		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( strip_tags( $the_image_link ) ) . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
+
 			/**
-			 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
-			 * OR
-			 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
+			 * If the post type is an attachment (an image, or any other attachment),
+			 * the construct is different.
+			 *
+			 * @since 1.28
 			 */
-			if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
-				$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
-			} else {
-				$image_html = get_the_post_thumbnail(
+			if ( 'attachment' == $post_type ) {
+				$image_html = wp_get_attachment_image(
 					$pis_query->post->ID,
 					$image_size,
+					false,
 					array(
-						'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+						'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
 					)
 				);
+			} else {
+				/**
+				 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
+				 * OR
+				 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
+				 */
+				if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
+					$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
+				} else {
+					$image_html = get_the_post_thumbnail(
+						$pis_query->post->ID,
+						$image_size,
+						array(
+							'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
+						)
+					);
+				}
 			}
-		}
-		$image_html = str_replace( '<img', '<img' . $image_style, $image_html );
-		echo $image_html;
-		?></a>		
-	<?php echo $close_wrap;
+
+			$output .= str_replace( '<img', '<img' . $image_style, $image_html );
+		$output .= '</a>';
+	$output .= $close_wrap;
+
+	return $output;
 }
 
 
@@ -372,14 +391,14 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 	switch ( $excerpt ) :
 
 		case 'full_content':
-			the_content();
+			$output = get_the_content();
 		break;
 
 		case 'rich_content':
 			$content = $pis_query->post->post_content;
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			echo apply_filters( 'pis_rich_content', $content );
+			$output = apply_filters( 'pis_rich_content', $content );
 		break;
 
 		case 'content':
@@ -389,7 +408,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			$content = wp_kses( $content, array() );
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			echo apply_filters( 'pis_content', $content );
+			$output = apply_filters( 'pis_content', $content );
 		break;
 
 		case 'more_excerpt':
@@ -400,8 +419,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			} else {
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 			}
-			echo apply_filters( 'pis_more_excerpt_text', $excerpt_text );
-			pis_more_arrow( $the_more, $exc_arrow );
+			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 		break;
 
 		case 'excerpt':
@@ -419,24 +437,24 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				echo apply_filters( 'pis_user_excerpt', $user_excerpt );
+				$output = apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 			} else {
 			// ... else generate an excerpt
 				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
-				echo apply_filters( 'pis_excerpt_text', $excerpt_text );
+				$output = apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 			}
-			pis_more_arrow( $the_more, $exc_arrow );
 		break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			echo apply_filters( 'pis_only_read_more', $excerpt_text );
-			pis_more_arrow( $the_more, $exc_arrow );
+			$output = apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 		break;
 
 	endswitch;
 	// Close The text
+
+	return $output;
 }
 
 
@@ -631,7 +649,7 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 
 
 /**
- * Print the debugging informations.
+ * Return the debugging informations.
  * 
  * @param boolean $debug_query If the query is to be displayed.
  * @param boolean $debug_params If the widget parameters are to be displayed.
@@ -643,38 +661,39 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
  * @since 2.0.3
  */
 function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ) {
-	if ( $debug_query || $debug_params || $debug_query_number ) { ?>
-		<hr />
-		<h3><?php printf( __( '%s Debug', 'pis' ), 'Posts in Sidebar' ); ?></h3>
-		<p><?php global $wp_version;
-			printf( __( 'Site URL: %s', 'pis' ), site_url() . '<br>' );
-			printf( __( 'WP version: %s', 'pis' ), $wp_version . '<br>' );
-			printf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' );
-			if ( $cached ) _e( 'Cache: active', 'pis' ); else _e( 'Cache: not active' ); ?></p>
-	<?php }
+	$output = '';
 
-	if ( $debug_query ) { ?>
-		<p><strong><?php _e( 'The parameters for the query:', 'pis' ); ?></strong></p>
-		<pre><?php print_r( $params ); ?></pre>
-		<hr />
-	<?php }
+	if ( $debug_query || $debug_params || $debug_query_number ) {
+		$output .= '<h3>' . sprintf( __( '%s Debug', 'pis' ), 'Posts in Sidebar' ) . '</h3>';
+		$output .= '<p>'; global $wp_version;
+			$output .= sprintf( __( 'Site URL: %s', 'pis' ), site_url() . '<br>' );
+			$output .= sprintf( __( 'WP version: %s', 'pis' ), $wp_version . '<br>' );
+			$output .= sprintf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' );
+			if ( $cached ) $output .= __( 'Cache: active', 'pis' ); else $output .= __( 'Cache: not active' );
+		$output .= '</p>';
+	}
 
-	if ( $debug_params ) { ?>
-		<p><strong><?php _e( 'The complete set of parameters of the widget:', 'pis' ); ?></strong></p>
-		<pre><?php print_r( $args ); ?></pre>
-		<hr />
-	<?php }
+	if ( $debug_query ) {
+		$output .= '<p><strong>' . __( 'The parameters for the query:', 'pis' ) . '</strong></p>';
+		$output .= '<pre>' . print_r( $params, true ) . '</pre>';
+	}
 
-	if ( $debug_query_number ) { ?>
-		<p><strong><?php _e( 'The total number of queries of this WordPress installation:', 'pis' ); ?></strong></p>
-		<pre><?php printf( __( '%1$s queries in %2$s seconds', 'pis' ), get_num_queries(), timer_stop() ); ?></pre>
-		<hr />
-	<?php }
+	if ( $debug_params ) {
+		$output .= '<p><strong>' . __( 'The complete set of parameters of the widget:', 'pis' ) . '</strong></p>';
+		$output .= '<pre>' . print_r( $args, true ) . '</pre>';
+	}
+
+	if ( $debug_query_number ) {
+		$output .= '<p><strong>' . __( 'The total number of queries so far:', 'pis' ) . '</strong></p>';
+		$output .= '<pre>' . sprintf( __( '%1$s queries in %2$s seconds', 'pis' ), get_num_queries(), timer_stop() ) . '</pre>';
+	}
+
+	return $output;
 }
 
 
 /**
- * Prints the version of Posts in Sidebar and if the cache is active.
+ * Return the version of Posts in Sidebar and if the cache is active.
  * 
  * @param boolean $cached If the cache is active or not.
  * 
@@ -688,5 +707,30 @@ function pis_generated( $cached ) {
 		$pis_cache_active = '';
 	}
 	/* Output the credits and cache */
-	echo '<!-- Generated by Posts in Sidebar v' . PIS_VERSION . $pis_cache_active . ' -->';
+	return '<!-- Generated by Posts in Sidebar v' . PIS_VERSION . $pis_cache_active . ' -->';
+}
+
+
+/**
+ * Returns the HTML for the comments link.
+ * 
+ * @since 2.1
+ */
+function pis_get_comments_number() {
+	$num_comments = get_comments_number(); // get_comments_number returns only a numeric value
+
+	if ( comments_open() ) {
+		if ( 0 == $num_comments ) {
+			$comments = __( 'Leave a comment', 'pis' );
+		} elseif ( $num_comments > 1 ) {
+			$comments = sprintf( __( '% Comments', 'pis' ), $num_comments );
+		} else {
+			$comments = __( '1 Comment', 'pis' );
+		}
+		$output = '<span class="pis-reply"><a href="' . get_comments_link() .'">'. $comments.'</a>';
+	} else {
+		$output = __( 'Comments are off for this post.', 'pis' );
+	}
+
+	return $output;
 }

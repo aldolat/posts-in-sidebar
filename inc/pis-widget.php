@@ -1,7 +1,7 @@
 <?php
 /**
  * Prevent direct access to this file.
- * 
+ *
  * @since 2.0
  */
 if ( ! defined( 'WPINC' ) ) {
@@ -21,7 +21,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	/**
 	 * Create the widget's base settings.
 	 * Uses PHP5 constructor method.
-	 * 
+	 *
 	 * @see https://developer.wordpress.org/reference/classes/wp_widget/__construct/
 	 * @since 1.0
 	 */
@@ -63,7 +63,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 * 		$args['after_widget']
 		 * 		$args['before_title']
 		 * 		$args['after_title']
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		extract( $args );
@@ -83,7 +83,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		/* 
+		/*
 		 * Check for non-existent values in the database.
 		 * This avoids PHP notices.
 		 */
@@ -401,6 +401,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
+			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
 			/**
 			 * For historical reasons (for example, see version 1.18 of this plugin),
 			 * the variables $author, $cat, and $tag could have a value of 'NULL' (as string, not the costant NULL).
@@ -408,7 +409,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 * for posts by author with 'NULL' nicename. We have to convert this wrong value into an empty value.
 			 * This conversion should be safe because $author, $cat, and $tag must be all lowercase
 			 * (according to WordPress slugs management) and, for example, a 'NULL' (uppercase) author nicename couldn't exist.
-			 * 
+			 *
 			 * @since 1.28
 			 */
 		$instance['author']              = $new_instance['author'];
@@ -489,7 +490,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 1 > $instance['date_before_day'] || 31 < $instance['date_before_day'] || ! is_numeric( $instance['date_before_day'] ) ) $instance['date_before_day'] = '';
 		$instance['date_inclusive']      = isset( $new_instance['date_inclusive'] ) ? 1 : 0 ;
 		$instance['date_column']         = $new_instance['date_column'];
-		
+
 		// Posts exclusion
 		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
@@ -652,7 +653,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_val'       => '',
 			'search'              => NULL,
 			'ignore_sticky'       => false,
-			
+
 			// Taxonomies
 			'relation'            => '',
 
@@ -832,7 +833,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		/**
 		* When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
 		* See above for more informations (the long note on function update).
-		* 
+		*
 		* @since 2.0.3
 		*/
 		if ( 'NULL' == $instance['author'] ) $instance['author'] = '';

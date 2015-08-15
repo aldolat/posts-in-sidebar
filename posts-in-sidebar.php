@@ -17,12 +17,12 @@
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
@@ -30,7 +30,7 @@
 
 /**
  * Prevent direct access to this file.
- * 
+ *
  * @since 2.0
  */
 if ( ! defined( 'WPINC' ) ) {
@@ -40,7 +40,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Launch Posts in Sidebar.
- * 
+ *
  * @since 1.27
  */
 add_action( 'plugins_loaded', 'pis_setup' );
@@ -48,7 +48,7 @@ add_action( 'plugins_loaded', 'pis_setup' );
 
 /**
  * Setup Posts in Sidebar.
- * 
+ *
  * @since 1.27
  */
 function pis_setup() {
@@ -91,14 +91,14 @@ function pis_setup() {
 
 	/**
 	 * Load the shortcode.
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-shortcode.php' );
 
 	/**
 	 * Load the script.
-	 * 
+	 *
 	 * @since 1.29
 	 */
 	add_action( 'admin_enqueue_scripts', 'pis_load_scripts' );
@@ -233,7 +233,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'date_before_day'     => '',
 		'date_inclusive'      => false,
 		'date_column'         => '',
-		
+
 		// Posts exclusion
 		'author_not_in'       => '',
 		'exclude_current_post'=> false,
@@ -344,7 +344,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * Check if $author or $cat or $tag are equal to 'NULL' (string).
 	 * If so, make them empty.
 	 * For more informations, see inc/posts-in-sidebar-widget.php, function update().
-	 * 
+	 *
 	 * @since 1.28
 	 */
 	if ( 'NULL' == $author ) $author = '';
@@ -366,7 +366,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Build $tax_query parameter (if any).
 	 * It must be an array of array.
-	 * 
+	 *
 	 * @since 1.29
 	 */
 	$tax_query = pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb );
@@ -374,7 +374,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Build the array for date query.
 	 * It must be an array of array.
-	 * 
+	 *
 	 * @since 1.29
 	 */
 	$date_query = array(
@@ -427,7 +427,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'author_name'         => $author,      // Uses nicenames
 		'author__in'          => $author_in,   // Uses ids
 		'category_name'       => $cat,         // Uses category slugs
-		'tag'                 => $tag,         // Uses tag slugs 
+		'tag'                 => $tag,         // Uses tag slugs
 		'tax_query'           => $tax_query,   // Uses an array of array
 		'date_query'          => $date_query,  // Uses an array of array
 		'post_parent__in'     => $post_parent_in,
@@ -475,15 +475,15 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/**
 	 * Define the main variable that will concatenate all the output;
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	$pis_output = '';
 
 	/* The Loop */
-	if ( $pis_query->have_posts() ) {
+	if ( $pis_query->have_posts() ) : ?>
 
-		if ( $intro ) {
+		<?php if ( $intro ) {
 			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
 		}
 
@@ -497,18 +497,17 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 		$pis_output .= '<' . $list_element . ' ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
 
-			while ( $pis_query->have_posts() ) {
-				$pis_query->the_post();
+			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
 
-				/**
+				<?php /**
 				 * Assign the class 'current-post' if this is the post of the main loop.
 				 *
 				 * @since 1.6
 				 */
-				$current_post_class = ''; 
+				$current_post_class = '';
 				if ( is_single() && $single_post_id == $pis_query->post->ID ) {
 					$current_post_class = ' current-post';
-				} 
+				}
 
 				/**
 				 * Assign the class 'sticky' if the post is sticky.
@@ -523,14 +522,15 @@ function pis_get_posts_in_sidebar( $args ) {
 				$pis_output .= '<li ' . pis_class( 'pis-li' . $current_post_class . $sticky_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 					/* The thumbnail before the title */
-					if ( $image_before_title ) :
+					if ( $image_before_title ) {
 
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 							$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
 							$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 						}
 
-					endif; // Close if $image_before_title
+					}
+					// Close if $image_before_title
 
 					/* The title */
 					if ( $display_title ) {
@@ -555,13 +555,13 @@ function pis_get_posts_in_sidebar( $args ) {
 					}
 
 					/* The post content */
-					if ( ! post_password_required() ) :
-						
+					if ( ! post_password_required() ) {
+
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
 
 							$pis_output .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
-								if ( ! $image_before_title ) :
+								if ( ! $image_before_title ) {
 
 									/* The thumbnail */
 									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
@@ -569,16 +569,19 @@ function pis_get_posts_in_sidebar( $args ) {
 										$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
 									} // Close if ( $display_image && has_post_thumbnail )
 
-								endif; // Close if $image_before_title
+								}
+								// Close if $image_before_title
 
 								/* The text */
 								$pis_output .= pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow );
 
 							$pis_output .= '</p>';
 
-						endif; // Close if $display_image
+						endif;
+						// Close if $display_image
 
-					endif; // Close if post password required
+					}
+					// Close if post password required
 
 					/* The author, the date and the comments */
 					if ( ! $utility_after_title ) {
@@ -633,7 +636,8 @@ function pis_get_posts_in_sidebar( $args ) {
 
 				$pis_output .= '</li>';
 
-			}
+			endwhile;
+			// Close while
 
 		$pis_output .= '</' . $list_element . '>';
 		$pis_output .= '<!-- / ul#pis-ul -->';
@@ -686,10 +690,10 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_output .= '</a>';
 				$pis_output .= '</p>';
 			}
-		}
+		} ?>
 
-	/* If we have no posts yet */
-	} else {
+	<?php /* If we have no posts yet */
+	else :
 
 		if ( $nopost_text ) {
 			$pis_output .= '<p ' . pis_paragraph( $noposts_margin, $margin_unit, 'pis-noposts noposts', 'pis_noposts_class' ) . '>';
@@ -700,10 +704,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$pis_output .= '<style type="text/css">#' . $widget_id . ' { display: none; }</style>';
 		}
 
-	}
-
-	/* Reset this custom query */
-	wp_reset_postdata();
+	endif;
 
 	/* Debugging */
 	$pis_output .= pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached );
@@ -711,13 +712,16 @@ function pis_get_posts_in_sidebar( $args ) {
 	/* Prints the version of Posts in Sidebar and if the cache is active. */
 	$pis_output .= pis_generated( $cached );
 
+	/* Reset the custom query */
+	wp_reset_postdata();
+
 	return $pis_output;
 }
 
 
 /**
  * The main function to echo the output.
- * 
+ *
  * @uses get_pis_posts_in_sidebar()
  * @since 2.1
  */

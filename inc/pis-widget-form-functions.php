@@ -7,7 +7,7 @@
 
 /**
  * Prevent direct access to this file.
- * 
+ *
  * @since 2.0
  */
 if ( ! defined( 'WPINC' ) ) {

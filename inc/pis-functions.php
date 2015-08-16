@@ -1,7 +1,7 @@
 <?php
 /**
  * Prevent direct access to this file.
- * 
+ *
  * @since 2.0
  */
 if ( ! defined( 'WPINC' ) ) {
@@ -426,7 +426,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			/**
 			 * Check if the Relevanssi plugin is active and restore the user-defined excerpt in place of the Relevanssi-generated excerpt.
 			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
-			 * 
+			 *
 			 * @since 1.26
 			 */
 			if ( function_exists( 'relevanssi_do_excerpt' ) && isset( $pis_query->post->original_excerpt ) ) {
@@ -464,7 +464,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 
 /**
  * Display the custom taxonomies of the current post.
- * 
+ *
  * @since 1.29
  * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
  */
@@ -500,7 +500,7 @@ function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $
 
 /**
  * Build the query based on taxonomies.
- * 
+ *
  * @since 1.29
  */
 function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb ) {
@@ -634,7 +634,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 
 /**
  * Remove empty keys from an array recursively.
- * 
+ *
  * @since 1.29
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
  */
@@ -658,14 +658,14 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 
 /**
  * Return the debugging informations.
- * 
+ *
  * @param boolean $debug_query If the query is to be displayed.
  * @param boolean $debug_params If the widget parameters are to be displayed.
  * @param boolean $debug_query_number If the total number of the queries of the WordPress installation are to be displayed.
  * @param array $params The parameters of the query.
  * @param array $args The complete set of the widget options.
  * @param boolean $cached If the cache is active.
- * 
+ *
  * @since 2.0.3
  */
 function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ) {
@@ -702,9 +702,9 @@ function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $
 
 /**
  * Return the version of Posts in Sidebar and if the cache is active.
- * 
+ *
  * @param boolean $cached If the cache is active or not.
- * 
+ *
  * @since 2.0.3
  */
 function pis_generated( $cached ) {
@@ -721,7 +721,7 @@ function pis_generated( $cached ) {
 
 /**
  * Returns the HTML for the comments link.
- * 
+ *
  * @since 2.1
  */
 function pis_get_comments_number( $pis_post_id ) {

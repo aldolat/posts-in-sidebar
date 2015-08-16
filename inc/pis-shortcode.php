@@ -1,7 +1,7 @@
 <?php
 /**
  * Create the shortcode.
- * 
+ *
  * @since 2.1
  */
 function pis_shortcode( $atts ) {
@@ -79,7 +79,7 @@ function pis_shortcode( $atts ) {
 		'date_before_day'     => '',
 		'date_inclusive'      => false,
 		'date_column'         => '',
-		
+
 		// Posts exclusion
 		'author_not_in'       => '',
 		'exclude_current_post'=> false,

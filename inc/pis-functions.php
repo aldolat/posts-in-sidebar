@@ -712,7 +712,7 @@ function pis_generated( $cached ) {
 /**
  * Returns the HTML for the comments link.
  *
- * @since 2.1
+ * @since 3.0
  */
 function pis_get_comments_number( $pis_post_id ) {
 	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value

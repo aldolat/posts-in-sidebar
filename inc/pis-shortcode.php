@@ -3,7 +3,7 @@
  * Create the shortcode.
  *
  * @example [pissc post_type="page" post_parent_in=4 exclude_current_post=1]
- * @since 2.1
+ * @since 3.0
  */
 function pis_shortcode( $atts ) {
 	extract( shortcode_atts( array(

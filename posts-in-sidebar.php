@@ -92,7 +92,7 @@ function pis_setup() {
 	/**
 	 * Load the shortcode.
 	 *
-	 * @since 2.1
+	 * @since 3.0
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-shortcode.php' );
 
@@ -476,7 +476,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Define the main variable that will concatenate all the output;
 	 *
-	 * @since 2.1
+	 * @since 3.0
 	 */
 	$pis_output = '';
 
@@ -723,7 +723,7 @@ function pis_get_posts_in_sidebar( $args ) {
  * The main function to echo the output.
  *
  * @uses get_pis_posts_in_sidebar()
- * @since 2.1
+ * @since 3.0
  */
 function pis_posts_in_sidebar( $args ) {
 	echo pis_get_posts_in_sidebar( $args );

@@ -154,11 +154,7 @@ function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
 		$output .= '</span>';
 	}
 
-	if ( true === $echo ) {
-		echo $output;
-	} else {
-		return $output;
-	}
+	if ( true === $echo ) echo $output; else return $output;
 }
 
 
@@ -208,9 +204,11 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @uses pis_class()
  * @uses pis_get_comments_number()
  */
-function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id ) { ?>
-	<?php if ( $display_author || $display_date || $comments ) {
-		$output = '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
+function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id ) {
+	$output = '';
+
+	if ( $display_author || $display_date || $comments ) {
+		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
 	}
 
 		/* The author */
@@ -265,11 +263,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
 		$output .= '</p>';
 	endif;
 
-	if ( isset( $output) ) {
-		return $output;
-	} else {
-		return '';
-	}
+	return $output;
 }
 
 
@@ -380,6 +374,8 @@ function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $b
  * @uses pis_more_arrow()
  */
 function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow ) {
+	$output = '';
+
 	/*
 		"Full content"   = the content of the post as displayed in the page.
 		"Rich content"   = the content with inline images, titles and more (shortcodes will be executed).
@@ -391,14 +387,14 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 	switch ( $excerpt ) :
 
 		case 'full_content':
-			$output = get_the_content();
+			$output .= get_the_content();
 		break;
 
 		case 'rich_content':
 			$content = $pis_query->post->post_content;
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			$output = apply_filters( 'pis_rich_content', $content );
+			$output .= apply_filters( 'pis_rich_content', $content );
 		break;
 
 		case 'content':
@@ -408,7 +404,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			$content = wp_kses( $content, array() );
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			$output = apply_filters( 'pis_content', $content );
+			$output .= apply_filters( 'pis_content', $content );
 		break;
 
 		case 'more_excerpt':
@@ -419,7 +415,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			} else {
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 			}
-			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 		break;
 
 		case 'excerpt':
@@ -437,28 +433,24 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output = apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 			} else {
 			// ... else generate an excerpt
 				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
-				$output = apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 			}
 		break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output = apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
 		break;
 
 	endswitch;
 	// Close The text
 
-	if ( isset( $output ) ) {
-		return $output;
-	} else {
-		return '';
-	}
+	return $output;
 }
 
 
@@ -625,10 +617,8 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 			);
 		}
 	}
-	if ( isset( $tax_query ) )
-		return $tax_query;
-	else
-		return '';
+
+	if ( isset( $tax_query ) ) return $tax_query; else return '';
 }
 
 

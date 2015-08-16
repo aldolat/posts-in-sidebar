@@ -2,18 +2,11 @@
 /**
  * Create the shortcode.
  *
+ * @example [pissc post_type="page" post_parent_in=4 exclude_current_post=1]
  * @since 2.1
  */
 function pis_shortcode( $atts ) {
 	extract( shortcode_atts( array(
-		// The custom container class
-		'container_class'     => '',
-
-		// The title of the widget
-		'title'               => __( 'Posts', 'pis' ),
-		'title_link'          => '',
-		'intro'               => '',
-
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
@@ -150,7 +143,6 @@ function pis_shortcode( $atts ) {
 
 		// When no posts found
 		'nopost_text'         => __( 'No posts yet.', 'pis' ),
-		'hide_widget'         => false,
 
 		// Styles
 		'margin_unit'         => 'px',
@@ -171,11 +163,6 @@ function pis_shortcode( $atts ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
-
-		// Cache
-		'cached'              => false,
-		'cache_time'          => 3600,
-		'widget_id'           => '',
 
 		// Debug
 		'debug_query'         => false,

@@ -170,6 +170,6 @@ function pis_shortcode( $atts ) {
 		'debug_query_number'  => false,
 	), $atts ) );
 
-	return pis_get_posts_in_sidebar( $atts );
+	return do_shortcode( pis_get_posts_in_sidebar( $atts ) );
 }
 add_shortcode('pissc', 'pis_shortcode');

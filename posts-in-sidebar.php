@@ -117,11 +117,11 @@ function pis_load_scripts( $hook ) {
 	}
 
 	// Register and enqueue the JS file
-	wp_register_script( 'pis_js', plugins_url( 'assets/js/pis.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
+	wp_register_script( 'pis_js', plugins_url( 'inc/pis.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 	wp_enqueue_script( 'pis_js' );
 
 	// Register and enqueue the CSS file
-	wp_enqueue_style( 'pis_style', plugins_url( 'assets/css/pis.css', __FILE__ ), array(), PIS_VERSION, 'all' );
+	wp_register_style( 'pis_style', plugins_url( 'inc/pis.css', __FILE__ ), array(), PIS_VERSION, 'all' );
 	wp_enqueue_style( 'pis_style' );
 }
 

@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 4.1  
 **Tested up to:** 4.3  
-**Stable tag:** 2.1  
+**Stable tag:** 3.0  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -77,11 +77,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-### 2.1 ###
+### 3.0 ###
 
 * NEW: Added the shortcode.
 * NEW: Added "Any" to posts status.
-* FIX: Fixed post comments function.
 * Reorganized the widget sections.
 * Changed some files names.
 

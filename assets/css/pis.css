@@ -16,6 +16,12 @@
 	display: table;
 	clear: both;
 }
+.pis-section:last-child {
+	margin-bottom: 0;
+}
+.widget-content > .pis-section:last-child {
+	margin-bottom: 1em;
+}
 .pis-container {
 	display: none;
 	overflow: hidden;
@@ -28,12 +34,16 @@
 .pis-container-open {
 	display: block;
 }
+.pis-column-container {
+	clear: both;
+	overflow: hidden;
+}
 .pis-column {
 	float: left;
 	width: 31%;
 	margin: 0 2% 1em 0;
 }
-.pis-column-last {
+.pis-column:last-child {
 	margin-right: 0;
 }
 .pis-2col .pis-column {
@@ -59,4 +69,7 @@
 .pis-alert {
 	color: #777;
 	font-weight: bold;
+}
+.pis-section select {
+	width: 99%;
 }

@@ -192,6 +192,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'container_class'     => $instance['container_class'],
 
 			// The title of the widget
+			'title'               => $instance['title'],
+			'title_link'          => $instance['title_link'],
 			'intro'               => $instance['intro'],
 
 			// Posts retrieving
@@ -885,289 +887,310 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<div class="pis-container">
 
-				<div class="pis-column">
+				<p><em><?php _e( 'In this section you can define which type of posts you want to retrieve and which taxonomy the plugin will use. Other parameters are available to better define the query.', 'pis' ); ?></em></p>
 
-					<?php // ================= Post types
+				<div class="pis-column-container">
 
-					$args = array(
-						'public' => true,
-					);
-					$post_types = (array) get_post_types( $args, 'objects', 'and' );
+					<div class="pis-column">
 
-					$options = array(
-						array(
+						<?php // ================= Post types
+
+						$args = array(
+							'public' => true,
+						);
+						$post_types = (array) get_post_types( $args, 'objects', 'and' );
+
+						$options = array(
+							array(
+								'value' => 'any',
+								'desc'  => __( 'Any', 'pis' ),
+							)
+						);
+						foreach ( $post_types as $post_type ) {
+							$options[] = array(
+								'value' => $post_type->name,
+								'desc'  => $post_type->labels->singular_name,
+							);
+						}
+
+						pis_form_select(
+							__( 'Post type', 'pis' ),
+							$this->get_field_id('post_type'),
+							$this->get_field_name('post_type'),
+							$options,
+							$instance['post_type']
+						); ?>
+
+						<?php // ================= Posts ID
+						pis_form_input_text(
+							__( 'Get these posts exactly', 'pis' ),
+							$this->get_field_id('posts_id'),
+							$this->get_field_name('posts_id'),
+							esc_attr( $instance['posts_id'] ),
+							'5, 29, 523, 4519',
+							sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+						); ?>
+
+						<?php // ================= Author
+						$options = array(
+							array(
+								'value' => '',
+								'desc'  => __( 'Any', 'pis' )
+							)
+						);
+						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
+						foreach ( $authors as $author ) {
+							$options[] = array(
+								'value' => $author->user_nicename,
+								'desc'  => $author->display_name,
+							);
+						}
+						pis_form_select(
+							__( 'Get posts by this author', 'pis' ),
+							$this->get_field_id('author'),
+							$this->get_field_name('author'),
+							$options,
+							$instance['author']
+						); ?>
+
+						<?php // ================= Multiple authors
+						pis_form_input_text(
+							__( 'Get posts by these authors', 'pis' ),
+							$this->get_field_id('author_in'),
+							$this->get_field_name('author_in'),
+							esc_attr( $instance['author_in'] ),
+							__( '1, 23, 45', 'pis' ),
+							__( 'Insert IDs separated by commas. ', 'pis' )
+						); ?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= Category
+						pis_form_input_text(
+							__( 'Get posts with these categories', 'pis' ),
+							$this->get_field_id('cat'),
+							$this->get_field_name('cat'),
+							esc_attr( $instance['cat'] ),
+							__( 'books, ebooks', 'pis' ),
+							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+						); ?>
+
+						<?php // ================= Tag
+						pis_form_input_text(
+							__( 'Get posts with these tags', 'pis' ),
+							$this->get_field_id('tag'),
+							$this->get_field_name('tag'),
+							esc_attr( $instance['tag'] ),
+							__( 'best-sellers', 'pis' ),
+							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+						); ?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= Post parent
+						pis_form_input_text(
+							__( 'Get posts whose parent is in these IDs', 'pis' ),
+							$this->get_field_id('post_parent_in'),
+							$this->get_field_name('post_parent_in'),
+							esc_attr( $instance['post_parent_in'] ),
+							__( '2, 5, 12, 14, 20', 'pis' ),
+							__( 'Insert IDs separated by commas.' )
+						); ?>
+
+						<?php // ================= Post format
+						$options = array(
+							array(
+								'value' => '',
+								'desc'  => __( 'Any', 'pis' )
+							)
+						);
+						$post_formats = get_terms( 'post_format' );
+						foreach ( $post_formats as $post_format ) {
+							$options[] = array(
+								'value' => $post_format->slug,
+								'desc'  => $post_format->name,
+							);
+						}
+						pis_form_select(
+							__( 'Get posts with this post format', 'pis' ),
+							$this->get_field_id('post_format'),
+							$this->get_field_name('post_format'),
+							$options,
+							$instance['post_format']
+						); ?>
+
+						<?php // ================= Post status
+						$options = array( array(
 							'value' => 'any',
-							'desc'  => __( 'Any', 'pis' ),
-						)
-					);
-					foreach ( $post_types as $post_type ) {
-						$options[] = array(
-							'value' => $post_type->name,
-							'desc'  => $post_type->labels->singular_name,
-						);
-					}
+							'desc'  => 'Any',
+						) );
+						$statuses = get_post_stati( array(), 'objects' );
+						foreach( $statuses as $status ) {
+							$options[] = array(
+								'value' => $status->name,
+								'desc'  => $status->label,
+							);
+						}
+						pis_form_select(
+							__( 'Get posts with this post status', 'pis' ),
+							$this->get_field_id('post_status'),
+							$this->get_field_name('post_status'),
+							$options,
+							$instance['post_status']
+						); ?>
 
-					pis_form_select(
-						__( 'Post type', 'pis' ),
-						$this->get_field_id('post_type'),
-						$this->get_field_name('post_type'),
-						$options,
-						$instance['post_type']
-					); ?>
+						<?php // ================= Post meta key
+						pis_form_input_text(
+							__( 'Get post with this meta key', 'pis' ),
+							$this->get_field_id('post_meta_key'),
+							$this->get_field_name('post_meta_key'),
+							esc_attr( $instance['post_meta_key'] ),
+							__( 'meta-key', 'pis' )
+						); ?>
 
-					<?php // ================= Posts ID
-					pis_form_input_text(
-						__( 'Get these posts exactly', 'pis' ),
-						$this->get_field_id('posts_id'),
-						$this->get_field_name('posts_id'),
-						esc_attr( $instance['posts_id'] ),
-						'5, 29, 523, 4519',
-						sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
-					); ?>
+						<?php // ================= Post meta value
+						pis_form_input_text(
+							__( 'Get post with this meta value', 'pis' ),
+							$this->get_field_id('post_meta_val'),
+							$this->get_field_name('post_meta_val'),
+							esc_attr( $instance['post_meta_val'] ),
+							__( 'meta-value', 'pis' )
+						); ?>
 
-					<?php // ================= Author
-					$options = array(
-						array(
-							'value' => '',
-							'desc'  => __( 'Any', 'pis' )
-						)
-					);
-					$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
-					foreach ( $authors as $author ) {
-						$options[] = array(
-							'value' => $author->user_nicename,
-							'desc'  => $author->display_name,
-						);
-					}
-					pis_form_select(
-						__( 'Get posts by this author', 'pis' ),
-						$this->get_field_id('author'),
-						$this->get_field_name('author'),
-						$options,
-						$instance['author']
-					); ?>
+						<?php // ================= Search
+						pis_form_input_text(
+							__( 'Get post from this search', 'pis' ),
+							$this->get_field_id('search'),
+							$this->get_field_name('search'),
+							esc_attr( $instance['search'] ),
+							__( 'words to search', 'pis' )
+						); ?>
 
-					<?php // ================= Multiple authors
-					pis_form_input_text(
-						__( 'Get posts by these authors', 'pis' ),
-						$this->get_field_id('author_in'),
-						$this->get_field_name('author_in'),
-						esc_attr( $instance['author_in'] ),
-						__( '1, 23, 45', 'pis' ),
-						__( 'Insert IDs separated by commas. ', 'pis' )
-					); ?>
+					</div>
 
-					<?php // ================= Category
-					pis_form_input_text(
-						__( 'Get posts with these categories', 'pis' ),
-						$this->get_field_id('cat'),
-						$this->get_field_name('cat'),
-						esc_attr( $instance['cat'] ),
-						__( 'books, ebooks', 'pis' ),
-						sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
-					); ?>
+					<div class="column-container pis-2col">
 
-					<?php // ================= Tag
-					pis_form_input_text(
-						__( 'Get posts with these tags', 'pis' ),
-						$this->get_field_id('tag'),
-						$this->get_field_name('tag'),
-						esc_attr( $instance['tag'] ),
-						__( 'best-sellers', 'pis' ),
-						sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
-					); ?>
+						<div class="pis-column">
 
-				</div>
+							<?php // ================= Posts quantity
+							pis_form_input_text(
+								__( 'Get this number of posts', 'pis' ),
+								$this->get_field_id('number'),
+								$this->get_field_name('number'),
+								esc_attr( $instance['number'] ),
+								'3',
+								sprintf( __( 'The value %s shows all the posts.', 'pis' ), '<code>-1</code>' )
+							); ?>
 
-				<div class="pis-column">
+							<?php // ================= Ignore sticky post
+							pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
 
-					<?php // ================= Post parent
-					pis_form_input_text(
-						__( 'Get posts whose parent is in these IDs', 'pis' ),
-						$this->get_field_id('post_parent_in'),
-						$this->get_field_name('post_parent_in'),
-						esc_attr( $instance['post_parent_in'] ),
-						__( '2, 5, 12, 14, 20', 'pis' ),
-						__( 'Insert IDs separated by commas.' )
-					); ?>
+						</div>
 
-					<?php // ================= Post format
-					$options = array(
-						array(
-							'value' => '',
-							'desc'  => __( 'Any', 'pis' )
-						)
-					);
-					$post_formats = get_terms( 'post_format' );
-					foreach ( $post_formats as $post_format ) {
-						$options[] = array(
-							'value' => $post_format->slug,
-							'desc'  => $post_format->name,
-						);
-					}
-					pis_form_select(
-						__( 'Get posts with this post format', 'pis' ),
-						$this->get_field_id('post_format'),
-						$this->get_field_name('post_format'),
-						$options,
-						$instance['post_format']
-					); ?>
+						<div class="pis-column">
 
-					<?php // ================= Post status
-					$options = array();
-					$statuses = get_post_stati( '', 'objects' );
-					foreach( $statuses as $status ) {
-						$options[] = array(
-							'value' => $status->name,
-							'desc'  => $status->label,
-						);
-					}
-					pis_form_select(
-						__( 'Get posts with this post status', 'pis' ),
-						$this->get_field_id('post_status'),
-						$this->get_field_name('post_status'),
-						$options,
-						$instance['post_status']
-					); ?>
+							<?php // ================= Post order by
+							$options = array(
+								'none' => array(
+									'value' => 'none',
+									'desc'  => __( 'None', 'pis' )
+								),
+								'id' => array(
+									'value' => 'id',
+									'desc'  => __( 'ID', 'pis' )
+								),
+								'author' => array(
+									'value' => 'author',
+									'desc'  => __( 'Author', 'pis' )
+								),
+								'title' => array(
+									'value' => 'title',
+									'desc'  => __( 'Title', 'pis' )
+								),
+								'name' => array(
+									'value' => 'name',
+									'desc'  => __( 'Name (post slug)', 'pis' )
+								),
+								'date' => array(
+									'value' => 'date',
+									'desc'  => __( 'Date', 'pis' )
+								),
+								'modified' => array(
+									'value' => 'modified',
+									'desc'  => __( 'Modified', 'pis' )
+								),
+								'parent' => array(
+									'value' => 'parent',
+									'desc'  => __( 'Parent', 'pis' )
+								),
+								'rand' => array(
+									'value' => 'rand',
+									'desc'  => __( 'Random', 'pis' )
+								),
+								'comment_count' => array(
+									'value' => 'comment_count',
+									'desc'  => __( 'Comment count', 'pis' )
+								),
+								'menu_order' => array(
+									'value' => 'menu_order',
+									'desc'  => __( 'Menu order', 'pis' )
+								),
+								'meta_value' => array(
+									'value' => 'meta_value',
+									'desc'  => __( 'Meta value', 'pis' )
+								),
+								'meta_value_num' => array(
+									'value' => 'meta_value_num',
+									'desc'  => __( 'Meta value number', 'pis' )
+								),
+								'post__in' => array(
+									'value' => 'post__in',
+									'desc'  => __( 'Preserve ID order', 'pis' )
+								),
+							);
+							pis_form_select(
+								__( 'Order posts by', 'pis' ),
+								$this->get_field_id('orderby'),
+								$this->get_field_name('orderby'),
+								$options,
+								$instance['orderby']
+							); ?>
 
-					<?php // ================= Post meta key
-					pis_form_input_text(
-						__( 'Get post with this meta key', 'pis' ),
-						$this->get_field_id('post_meta_key'),
-						$this->get_field_name('post_meta_key'),
-						esc_attr( $instance['post_meta_key'] ),
-						__( 'meta-key', 'pis' )
-					); ?>
+							<?php // ================= Post order
+							$options = array(
+								'asc' => array(
+									'value' => 'ASC',
+									'desc'  => __( 'Ascending', 'pis' )
+								),
+								'desc' => array(
+									'value' => 'DESC',
+									'desc'  => __( 'Descending', 'pis' )
+								),
+							);
+							pis_form_select(
+								__( 'The order will be', 'pis' ),
+								$this->get_field_id('order'),
+								$this->get_field_name('order'),
+								$options,
+								$instance['order']
+							); ?>
 
-					<?php // ================= Post meta value
-					pis_form_input_text(
-						__( 'Get post with this meta value', 'pis' ),
-						$this->get_field_id('post_meta_val'),
-						$this->get_field_name('post_meta_val'),
-						esc_attr( $instance['post_meta_val'] ),
-						__( 'meta-value', 'pis' )
-					); ?>
+							<?php // ================= Number of posts to skip
+							pis_form_input_text(
+								__( 'Skip this number of posts', 'pis' ),
+								$this->get_field_id('offset_number'),
+								$this->get_field_name('offset_number'),
+								esc_attr( $instance['offset_number'] ),
+								'5'
+							); ?>
 
-					<?php // ================= Search
-					pis_form_input_text(
-						__( 'Get post from this search', 'pis' ),
-						$this->get_field_id('search'),
-						$this->get_field_name('search'),
-						esc_attr( $instance['search'] ),
-						__( 'words to search', 'pis' )
-					); ?>
+						</div>
 
-				</div>
-
-				<div class="pis-column pis-column-last">
-
-					<?php // ================= Ignore sticky post
-					pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
-
-					<?php // ================= Posts quantity
-					pis_form_input_text(
-						__( 'Get this number of posts', 'pis' ),
-						$this->get_field_id('number'),
-						$this->get_field_name('number'),
-						esc_attr( $instance['number'] ),
-						'3',
-						sprintf( __( 'The value %s shows all the posts.', 'pis' ), '<code>-1</code>' )
-					); ?>
-
-					<?php // ================= Post order by
-					$options = array(
-						'none' => array(
-							'value' => 'none',
-							'desc'  => __( 'None', 'pis' )
-						),
-						'id' => array(
-							'value' => 'id',
-							'desc'  => __( 'ID', 'pis' )
-						),
-						'author' => array(
-							'value' => 'author',
-							'desc'  => __( 'Author', 'pis' )
-						),
-						'title' => array(
-							'value' => 'title',
-							'desc'  => __( 'Title', 'pis' )
-						),
-						'name' => array(
-							'value' => 'name',
-							'desc'  => __( 'Name (post slug)', 'pis' )
-						),
-						'date' => array(
-							'value' => 'date',
-							'desc'  => __( 'Date', 'pis' )
-						),
-						'modified' => array(
-							'value' => 'modified',
-							'desc'  => __( 'Modified', 'pis' )
-						),
-						'parent' => array(
-							'value' => 'parent',
-							'desc'  => __( 'Parent', 'pis' )
-						),
-						'rand' => array(
-							'value' => 'rand',
-							'desc'  => __( 'Random', 'pis' )
-						),
-						'comment_count' => array(
-							'value' => 'comment_count',
-							'desc'  => __( 'Comment count', 'pis' )
-						),
-						'menu_order' => array(
-							'value' => 'menu_order',
-							'desc'  => __( 'Menu order', 'pis' )
-						),
-						'meta_value' => array(
-							'value' => 'meta_value',
-							'desc'  => __( 'Meta value', 'pis' )
-						),
-						'meta_value_num' => array(
-							'value' => 'meta_value_num',
-							'desc'  => __( 'Meta value number', 'pis' )
-						),
-						'post__in' => array(
-							'value' => 'post__in',
-							'desc'  => __( 'Preserve ID order', 'pis' )
-						),
-					);
-					pis_form_select(
-						__( 'Order posts by', 'pis' ),
-						$this->get_field_id('orderby'),
-						$this->get_field_name('orderby'),
-						$options,
-						$instance['orderby']
-					); ?>
-
-					<?php // ================= Post order
-					$options = array(
-						'asc' => array(
-							'value' => 'ASC',
-							'desc'  => __( 'Ascending', 'pis' )
-						),
-						'desc' => array(
-							'value' => 'DESC',
-							'desc'  => __( 'Descending', 'pis' )
-						),
-					);
-					pis_form_select(
-						__( 'The order will be', 'pis' ),
-						$this->get_field_id('order'),
-						$this->get_field_name('order'),
-						$options,
-						$instance['order']
-					); ?>
-
-					<?php // ================= Number of posts to skip
-					pis_form_input_text(
-						__( 'Skip this number of posts', 'pis' ),
-						$this->get_field_id('offset_number'),
-						$this->get_field_name('offset_number'),
-						esc_attr( $instance['offset_number'] ),
-						'5'
-					); ?>
+					</div>
 
 				</div>
 
@@ -1178,80 +1201,86 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<div class="pis-column">
+						<p><em><?php _e( 'Define here which posts must be excluded from the query.', 'pis' ); ?></em></p>
 
-							<?php // ================= Exclude posts by these authors
-							if ( is_array( $instance['author_not_in'] ) )
-								$var = implode( ',', $instance['author_not_in'] );
-							else
-								$var = $instance['author_not_in'];
-							pis_form_input_text(
-								__( 'Exclude posts by these authors', 'pis' ),
-								$this->get_field_id('author_not_in'),
-								$this->get_field_name('author_not_in'),
-								esc_attr( $var ),
-								'1, 23, 45',
-								__( 'Insert IDs separated by commas.', 'pis' )
-							); ?>
+						<div class="pis-column-container">
 
-							<?php // ================= Exclude posts from categories
-							if ( is_array( $instance['cat_not_in'] ) )
-								$var = implode( ',', $instance['cat_not_in'] );
-							else
-								$var = $instance['cat_not_in'];
-							pis_form_input_text(
-								__( 'Exclude posts from these categories', 'pis' ),
-								$this->get_field_id('cat_not_in'),
-								$this->get_field_name('cat_not_in'),
-								esc_attr( $var ),
-								'3, 31',
-								__( 'Insert IDs separated by commas.', 'pis' )
-							); ?>
+							<div class="pis-column">
 
-						</div>
+								<?php // ================= Exclude posts by these authors
+								if ( is_array( $instance['author_not_in'] ) )
+									$var = implode( ',', $instance['author_not_in'] );
+								else
+									$var = $instance['author_not_in'];
+								pis_form_input_text(
+									__( 'Exclude posts by these authors', 'pis' ),
+									$this->get_field_id('author_not_in'),
+									$this->get_field_name('author_not_in'),
+									esc_attr( $var ),
+									'1, 23, 45',
+									__( 'Insert IDs separated by commas.', 'pis' )
+								); ?>
 
-						<div class="pis-column">
+								<?php // ================= Exclude posts from categories
+								if ( is_array( $instance['cat_not_in'] ) )
+									$var = implode( ',', $instance['cat_not_in'] );
+								else
+									$var = $instance['cat_not_in'];
+								pis_form_input_text(
+									__( 'Exclude posts from these categories', 'pis' ),
+									$this->get_field_id('cat_not_in'),
+									$this->get_field_name('cat_not_in'),
+									esc_attr( $var ),
+									'3, 31',
+									__( 'Insert IDs separated by commas.', 'pis' )
+								); ?>
 
-							<?php // ================= Exclude posts from tags
-							if ( is_array( $instance['tag_not_in'] ) )
-								$var = implode( ',', $instance['tag_not_in'] );
-							else
-								$var = $instance['tag_not_in'];
-							pis_form_input_text(
-								__( 'Exclude posts from these tags', 'pis' ),
-								$this->get_field_id('tag_not_in'),
-								$this->get_field_name('tag_not_in'),
-								esc_attr( $var ),
-								'7, 11',
-								__( 'Insert IDs separated by commas.', 'pis' )
-							); ?>
+							</div>
 
-							<?php // ================= Exclude posts that have these ids.
-							pis_form_input_text(
-								__( 'Exclude posts with these IDs', 'pis' ),
-								$this->get_field_id('post_not_in'),
-								$this->get_field_name('post_not_in'),
-								esc_attr( $instance['post_not_in'] ),
-								'5, 29, 523, 4519',
-								__( 'Insert IDs separated by commas.', 'pis' )
-							); ?>
+							<div class="pis-column">
 
-						</div>
+								<?php // ================= Exclude posts from tags
+								if ( is_array( $instance['tag_not_in'] ) )
+									$var = implode( ',', $instance['tag_not_in'] );
+								else
+									$var = $instance['tag_not_in'];
+								pis_form_input_text(
+									__( 'Exclude posts from these tags', 'pis' ),
+									$this->get_field_id('tag_not_in'),
+									$this->get_field_name('tag_not_in'),
+									esc_attr( $var ),
+									'7, 11',
+									__( 'Insert IDs separated by commas.', 'pis' )
+								); ?>
 
-						<div class="pis-column pis-column-last">
+								<?php // ================= Exclude posts that have these ids.
+								pis_form_input_text(
+									__( 'Exclude posts with these IDs', 'pis' ),
+									$this->get_field_id('post_not_in'),
+									$this->get_field_name('post_not_in'),
+									esc_attr( $instance['post_not_in'] ),
+									'5, 29, 523, 4519',
+									__( 'Insert IDs separated by commas.', 'pis' )
+								); ?>
 
-							<?php // ================= Exclude posts whose parent is in these IDs.
-							pis_form_input_text(
-								__( 'Exclude posts whose parent is in these IDs', 'pis' ),
-								$this->get_field_id('post_parent_not_in'),
-								$this->get_field_name('post_parent_not_in'),
-								esc_attr( $instance['post_parent_not_in'] ),
-								'5, 29, 523, 4519',
-								__( 'Insert IDs separated by commas.', 'pis' )
-							); ?>
+							</div>
 
-							<?php // ================= Exclude current post
-							pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
+							<div class="pis-column">
+
+								<?php // ================= Exclude posts whose parent is in these IDs.
+								pis_form_input_text(
+									__( 'Exclude posts whose parent is in these IDs', 'pis' ),
+									$this->get_field_id('post_parent_not_in'),
+									$this->get_field_name('post_parent_not_in'),
+									esc_attr( $instance['post_parent_not_in'] ),
+									'5, 29, 523, 4519',
+									__( 'Insert IDs separated by commas.', 'pis' )
+								); ?>
+
+								<?php // ================= Exclude current post
+								pis_form_checkbox( __( 'Automatically exclude the current post in single post or the current page in single page', 'pis' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
+
+							</div>
 
 						</div>
 
@@ -1287,217 +1316,221 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<hr />
 
-						<div class="pis-column">
+						<div class="pis-column-container">
 
-							<h4 class="pis-title-center"><?php _e( 'Column A', 'pis' ); ?></h4>
+							<div class="pis-column">
 
-							<?php // ================= Taxonomy aa
-							pis_form_input_text( sprintf( __( '%1$sTaxonomy A1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								<h4 class="pis-title-center"><?php _e( 'Column A', 'pis' ); ?></h4>
 
-							<?php // ================= Field aa
-							$options = array(
-								'term_id' => array(
-									'value' => 'term_id',
-									'desc'  => __( 'Term ID', 'pis' )
-								),
-								'slug' => array(
-									'value' => 'slug',
-									'desc'  => __( 'Slug', 'pis' )
-								),
-								'name' => array(
-									'value' => 'name',
-									'desc'  => __( 'Name', 'pis' )
-								),
-							);
-							pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+								<?php // ================= Taxonomy aa
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy A1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
-							<?php // ================= Terms aa
-							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								<?php // ================= Field aa
+								$options = array(
+									'term_id' => array(
+										'value' => 'term_id',
+										'desc'  => __( 'Term ID', 'pis' )
+									),
+									'slug' => array(
+										'value' => 'slug',
+										'desc'  => __( 'Slug', 'pis' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => __( 'Name', 'pis' )
+									),
+								);
+								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
-							<?php // ================= Operator aa
-							$options = array(
-								'in' => array(
-									'value' => 'IN',
-									'desc'  => 'IN'
-								),
-								'not_in' => array(
-									'value' => 'NOT IN',
-									'desc'  => 'NOT IN'
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-							);
-							pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+								<?php // ================= Terms aa
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
-							<hr />
+								<?php // ================= Operator aa
+								$options = array(
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+								);
+								pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
-							<?php // ================= Taxonomy relation between aa and ab
-							$options = array(
-								'empty' => array(
-									'value' => '',
-									'desc'  => ''
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-								'or' => array(
-									'value' => 'OR',
-									'desc'  => 'OR'
-								),
-							);
-							pis_form_select( __( 'Relation between A1 and A2 taxonomies', 'pis' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
+								<hr />
 
-							<hr />
+								<?php // ================= Taxonomy relation between aa and ab
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select( __( 'Relation between A1 and A2 taxonomies', 'pis' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
 
-							<?php // ================= Taxonomy ab
-							pis_form_input_text( sprintf( __( '%1$sTaxonomy A2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								<hr />
 
-							<?php // ================= Field ab
-							$options = array(
-								'term_id' => array(
-									'value' => 'term_id',
-									'desc'  => __( 'Term ID', 'pis' )
-								),
-								'slug' => array(
-									'value' => 'slug',
-									'desc'  => __( 'Slug', 'pis' )
-								),
-								'name' => array(
-									'value' => 'name',
-									'desc'  => __( 'Name', 'pis' )
-								),
-							);
-							pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+								<?php // ================= Taxonomy ab
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy A2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
-							<?php // ================= Terms ab
-							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								<?php // ================= Field ab
+								$options = array(
+									'term_id' => array(
+										'value' => 'term_id',
+										'desc'  => __( 'Term ID', 'pis' )
+									),
+									'slug' => array(
+										'value' => 'slug',
+										'desc'  => __( 'Slug', 'pis' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => __( 'Name', 'pis' )
+									),
+								);
+								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
-							<?php // ================= Operator ab
-							$options = array(
-								'in' => array(
-									'value' => 'IN',
-									'desc'  => 'IN'
-								),
-								'not_in' => array(
-									'value' => 'NOT IN',
-									'desc'  => 'NOT IN'
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-							);
-							pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+								<?php // ================= Terms ab
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
-						</div>
+								<?php // ================= Operator ab
+								$options = array(
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+								);
+								pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
-						<div class="pis-column pis-column-last">
+							</div>
 
-							<h4 class="pis-title-center"><?php _e( 'Column B', 'pis' ); ?></h4>
+							<div class="pis-column">
 
-							<?php // ================= Taxonomy ba
-							pis_form_input_text( sprintf( __( '%1$sTaxonomy B1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								<h4 class="pis-title-center"><?php _e( 'Column B', 'pis' ); ?></h4>
 
-							<?php // ================= Field ba
-							$options = array(
-								'term_id' => array(
-									'value' => 'term_id',
-									'desc'  => __( 'Term ID', 'pis' )
-								),
-								'slug' => array(
-									'value' => 'slug',
-									'desc'  => __( 'Slug', 'pis' )
-								),
-								'name' => array(
-									'value' => 'name',
-									'desc'  => __( 'Name', 'pis' )
-								),
-							);
-							pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+								<?php // ================= Taxonomy ba
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy B1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
-							<?php // ================= Terms ba
-							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								<?php // ================= Field ba
+								$options = array(
+									'term_id' => array(
+										'value' => 'term_id',
+										'desc'  => __( 'Term ID', 'pis' )
+									),
+									'slug' => array(
+										'value' => 'slug',
+										'desc'  => __( 'Slug', 'pis' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => __( 'Name', 'pis' )
+									),
+								);
+								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
-							<?php // ================= Operator ba
-							$options = array(
-								'in' => array(
-									'value' => 'IN',
-									'desc'  => 'IN'
-								),
-								'not_in' => array(
-									'value' => 'NOT IN',
-									'desc'  => 'NOT IN'
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-							);
-							pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+								<?php // ================= Terms ba
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
 
-							<hr />
+								<?php // ================= Operator ba
+								$options = array(
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+								);
+								pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], __( 'Operator to test for terms.', 'pis' ) ); ?>
 
-							<?php // ================= Taxonomy relation between ba and bb
-							$options = array(
-								'empty' => array(
-									'value' => '',
-									'desc'  => ''
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-								'or' => array(
-									'value' => 'OR',
-									'desc'  => 'OR'
-								),
-							);
-							pis_form_select( __( 'Relation between B1 and B2 taxonomies', 'pis' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
+								<hr />
 
-							<hr />
+								<?php // ================= Taxonomy relation between ba and bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select( __( 'Relation between B1 and B2 taxonomies', 'pis' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
 
-							<?php // ================= Taxonomy bb
-							pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'post_format', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								<hr />
 
-							<?php // ================= Field bb
-							$options = array(
-								'term_id' => array(
-									'value' => 'term_id',
-									'desc'  => __( 'Term ID', 'pis' )
-								),
-								'slug' => array(
-									'value' => 'slug',
-									'desc'  => __( 'Slug', 'pis' )
-								),
-								'name' => array(
-									'value' => 'name',
-									'desc'  => __( 'Name', 'pis' )
-								),
-							);
-							pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
+								<?php // ================= Taxonomy bb
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'post_format', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
 
-							<?php // ================= Terms bb
-							pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'post-format-quote', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								<?php // ================= Field bb
+								$options = array(
+									'term_id' => array(
+										'value' => 'term_id',
+										'desc'  => __( 'Term ID', 'pis' )
+									),
+									'slug' => array(
+										'value' => 'slug',
+										'desc'  => __( 'Slug', 'pis' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => __( 'Name', 'pis' )
+									),
+								);
+								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
-							<?php // ================= Operator bb
-							$options = array(
-								'in' => array(
-									'value' => 'IN',
-									'desc'  => 'IN'
-								),
-								'not_in' => array(
-									'value' => 'NOT IN',
-									'desc'  => 'NOT IN'
-								),
-								'and' => array(
-									'value' => 'AND',
-									'desc'  => 'AND'
-								),
-							);
-							pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+								<?php // ================= Terms bb
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'post-format-quote', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+
+								<?php // ================= Operator bb
+								$options = array(
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+								);
+								pis_form_select( __( 'Operator', 'pis' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], __( 'Operator to test for terms.', 'pis' ) ); ?>
+
+							</div>
 
 						</div>
 
@@ -1512,185 +1545,199 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<div class="pis-column">
+						<p><em><?php _e( 'Define the date period within posts are published.', 'pis' ); ?></em></p>
 
-							<?php pis_form_input_text(
-								__( 'Year', 'pis' ),
-								$this->get_field_id('date_year'),
-								$this->get_field_name('date_year'),
-								esc_attr( $instance['date_year'] ),
-								'2015',
-								__( '4 digits year (e.g. 2015).', 'pis' )
-							); ?>
+						<div class="pis-column-container">
 
-							<?php pis_form_input_text(
-								__( 'Month', 'pis' ),
-								$this->get_field_id('date_month'),
-								$this->get_field_name('date_month'),
-								esc_attr( $instance['date_month'] ),
-								'06',
-								__( 'Month number (from 1 to 12).', 'pis' )
-							); ?>
+							<div class="pis-column">
 
-							<?php pis_form_input_text(
-								__( 'Week', 'pis' ),
-								$this->get_field_id('date_week'),
-								$this->get_field_name('date_week'),
-								esc_attr( $instance['date_week'] ),
-								'32',
-								__( 'Week of the year (from 0 to 53).', 'pis' )
-							); ?>
+								<?php pis_form_input_text(
+									__( 'Year', 'pis' ),
+									$this->get_field_id('date_year'),
+									$this->get_field_name('date_year'),
+									esc_attr( $instance['date_year'] ),
+									'2015',
+									__( '4 digits year (e.g. 2015).', 'pis' )
+								); ?>
 
-							<?php pis_form_input_text(
-								__( 'Day', 'pis' ),
-								$this->get_field_id('date_day'),
-								$this->get_field_name('date_day'),
-								esc_attr( $instance['date_day'] ),
-								'12',
-								__( 'Day of the month (from 1 to 31).', 'pis' )
-							); ?>
+								<?php pis_form_input_text(
+									__( 'Month', 'pis' ),
+									$this->get_field_id('date_month'),
+									$this->get_field_name('date_month'),
+									esc_attr( $instance['date_month'] ),
+									'06',
+									__( 'Month number (from 1 to 12).', 'pis' )
+								); ?>
 
-						</div>
+								<?php pis_form_input_text(
+									__( 'Week', 'pis' ),
+									$this->get_field_id('date_week'),
+									$this->get_field_name('date_week'),
+									esc_attr( $instance['date_week'] ),
+									'32',
+									__( 'Week of the year (from 0 to 53).', 'pis' )
+								); ?>
 
-						<div class="pis-column pis-column-last">
+								<?php pis_form_input_text(
+									__( 'Day', 'pis' ),
+									$this->get_field_id('date_day'),
+									$this->get_field_name('date_day'),
+									esc_attr( $instance['date_day'] ),
+									'12',
+									__( 'Day of the month (from 1 to 31).', 'pis' )
+								); ?>
 
-							<?php pis_form_input_text(
-								__( 'Hour', 'pis' ),
-								$this->get_field_id('date_hour'),
-								$this->get_field_name('date_hour'),
-								esc_attr( $instance['date_hour'] ),
-								'09',
-								__( 'Hour (from 0 to 23).', 'pis' )
-							); ?>
+							</div>
 
-							<?php pis_form_input_text(
-								__( 'Minute', 'pis' ),
-								$this->get_field_id('date_minute'),
-								$this->get_field_name('date_minute'),
-								esc_attr( $instance['date_minute'] ),
-								'24',
-								__( 'Minute (from 0 to 59).', 'pis' )
-							); ?>
+							<div class="pis-column">
 
-							<?php pis_form_input_text(
-								__( 'Second', 'pis' ),
-								$this->get_field_id('date_second'),
-								$this->get_field_name('date_second'),
-								esc_attr( $instance['date_second'] ),
-								'32',
-								__( 'Second (from 0 to 59).', 'pis' )
-							); ?>
+								<?php pis_form_input_text(
+									__( 'Hour', 'pis' ),
+									$this->get_field_id('date_hour'),
+									$this->get_field_name('date_hour'),
+									esc_attr( $instance['date_hour'] ),
+									'09',
+									__( 'Hour (from 0 to 23).', 'pis' )
+								); ?>
 
-						</div>
+								<?php pis_form_input_text(
+									__( 'Minute', 'pis' ),
+									$this->get_field_id('date_minute'),
+									$this->get_field_name('date_minute'),
+									esc_attr( $instance['date_minute'] ),
+									'24',
+									__( 'Minute (from 0 to 59).', 'pis' )
+								); ?>
 
-						<div class="pis-column clear">
+								<?php pis_form_input_text(
+									__( 'Second', 'pis' ),
+									$this->get_field_id('date_second'),
+									$this->get_field_name('date_second'),
+									esc_attr( $instance['date_second'] ),
+									'32',
+									__( 'Second (from 0 to 59).', 'pis' )
+								); ?>
 
-							<h5 class="pis-title-center"><?php _e( 'Get posts after this date', 'pis' ); ?></h5>
-
-							<?php pis_form_input_text(
-								__( 'Year', 'pis' ),
-								$this->get_field_id('date_after_year'),
-								$this->get_field_name('date_after_year'),
-								esc_attr( $instance['date_after_year'] ),
-								'2011',
-								__( 'Accepts any four-digit year.', 'pis' )
-							); ?>
-
-							<?php pis_form_input_text(
-								__( 'Month', 'pis' ),
-								$this->get_field_id('date_after_month'),
-								$this->get_field_name('date_after_month'),
-								esc_attr( $instance['date_after_month'] ),
-								'10',
-								__( 'The month of the year. Accepts numbers 1-12.', 'pis' )
-							); ?>
-
-							<?php pis_form_input_text(
-								__( 'Day', 'pis' ),
-								$this->get_field_id('date_after_day'),
-								$this->get_field_name('date_after_day'),
-								esc_attr( $instance['date_after_day'] ),
-								'10',
-								__( 'The day of the month. Accepts numbers 1-31.', 'pis' )
-							); ?>
+							</div>
 
 						</div>
 
-						<div class="pis-column pis-column-last">
+						<div class="pis-column-container">
 
-							<h5 class="pis-title-center"><?php _e( 'Get posts before this date', 'pis' ); ?></h5>
+							<div class="pis-column">
 
-							<?php pis_form_input_text(
-								__( 'Year', 'pis' ),
-								$this->get_field_id('date_before_year'),
-								$this->get_field_name('date_before_year'),
-								esc_attr( $instance['date_before_year'] ),
-								'2011',
-								__( 'Accepts any four-digit year.', 'pis' )
-							); ?>
+								<h5 class="pis-title-center"><?php _e( 'Get posts after this date', 'pis' ); ?></h5>
 
-							<?php pis_form_input_text(
-								__( 'Month', 'pis' ),
-								$this->get_field_id('date_before_month'),
-								$this->get_field_name('date_before_month'),
-								esc_attr( $instance['date_before_month'] ),
-								'10',
-								__( 'The month of the year. Accepts numbers 1-12.', 'pis' )
-							); ?>
+								<?php pis_form_input_text(
+									__( 'Year', 'pis' ),
+									$this->get_field_id('date_after_year'),
+									$this->get_field_name('date_after_year'),
+									esc_attr( $instance['date_after_year'] ),
+									'2011',
+									__( 'Accepts any four-digit year.', 'pis' )
+								); ?>
 
-							<?php pis_form_input_text(
-								__( 'Day', 'pis' ),
-								$this->get_field_id('date_before_day'),
-								$this->get_field_name('date_before_day'),
-								esc_attr( $instance['date_before_day'] ),
-								'10',
-								__( 'The day of the month. Accepts numbers 1-31.', 'pis' )
-							); ?>
+								<?php pis_form_input_text(
+									__( 'Month', 'pis' ),
+									$this->get_field_id('date_after_month'),
+									$this->get_field_name('date_after_month'),
+									esc_attr( $instance['date_after_month'] ),
+									'10',
+									__( 'The month of the year. Accepts numbers 1-12.', 'pis' )
+								); ?>
+
+								<?php pis_form_input_text(
+									__( 'Day', 'pis' ),
+									$this->get_field_id('date_after_day'),
+									$this->get_field_name('date_after_day'),
+									esc_attr( $instance['date_after_day'] ),
+									'10',
+									__( 'The day of the month. Accepts numbers 1-31.', 'pis' )
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h5 class="pis-title-center"><?php _e( 'Get posts before this date', 'pis' ); ?></h5>
+
+								<?php pis_form_input_text(
+									__( 'Year', 'pis' ),
+									$this->get_field_id('date_before_year'),
+									$this->get_field_name('date_before_year'),
+									esc_attr( $instance['date_before_year'] ),
+									'2011',
+									__( 'Accepts any four-digit year.', 'pis' )
+								); ?>
+
+								<?php pis_form_input_text(
+									__( 'Month', 'pis' ),
+									$this->get_field_id('date_before_month'),
+									$this->get_field_name('date_before_month'),
+									esc_attr( $instance['date_before_month'] ),
+									'10',
+									__( 'The month of the year. Accepts numbers 1-12.', 'pis' )
+								); ?>
+
+								<?php pis_form_input_text(
+									__( 'Day', 'pis' ),
+									$this->get_field_id('date_before_day'),
+									$this->get_field_name('date_before_day'),
+									esc_attr( $instance['date_before_day'] ),
+									'10',
+									__( 'The day of the month. Accepts numbers 1-31.', 'pis' )
+								); ?>
+
+							</div>
 
 						</div>
 
-						<h5 class="pis-title-center clear"><?php _e( 'Other options', 'pis' ); ?></h5>
+						<h5 class="pis-title-center"><?php _e( 'Other options', 'pis' ); ?></h5>
 
-						<div class="pis-column">
+						<div class="pis-column-container">
 
-							<?php
-							pis_form_checkbox( __( 'Inclusive', 'pis' ), $this->get_field_id( 'date_inclusive' ), $this->get_field_name( 'date_inclusive' ), checked( $date_inclusive, true, false ), __( 'For after/before, whether exact value should be matched or not', 'pis' ) ); ?>
+							<div class="pis-column">
 
-						</div>
+								<?php
+								pis_form_checkbox( __( 'Inclusive', 'pis' ), $this->get_field_id( 'date_inclusive' ), $this->get_field_name( 'date_inclusive' ), checked( $date_inclusive, true, false ), __( 'For after/before, whether exact value should be matched or not', 'pis' ) ); ?>
 
-						<div class="pis-column pis-column-last">
+							</div>
 
-							<?php
-							$options = array(
-								'empty' => array(
-									'value' => '',
-									'desc'  => ''
-								),
-								'post_date' => array(
-									'value' => 'post_date',
-									'desc'  => __( 'Post date', 'pis' )
-								),
-								'post_date_gmt' => array(
-									'value' => 'post_date_gmt',
-									'desc'  => __( 'Post date GMT', 'pis' )
-								),
-								'post_modified' => array(
-									'value' => 'post_modified',
-									'desc'  => __( 'Post modified', 'pis' )
-								),
-								'post_modified_gmt' => array(
-									'value' => 'post_modified_gmt',
-									'desc'  => __( 'Post modified GMT', 'pis' )
-								)
-							);
-							pis_form_select(
-								__( 'Column', 'pis' ),
-								$this->get_field_id('date_column'),
-								$this->get_field_name('date_column'),
-								$options,
-								$instance['date_column'],
-								__( 'Column to query against.', 'pis' )
-							); ?>
+							<div class="pis-column">
+
+								<?php
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'post_date' => array(
+										'value' => 'post_date',
+										'desc'  => __( 'Post date', 'pis' )
+									),
+									'post_date_gmt' => array(
+										'value' => 'post_date_gmt',
+										'desc'  => __( 'Post date GMT', 'pis' )
+									),
+									'post_modified' => array(
+										'value' => 'post_modified',
+										'desc'  => __( 'Post modified', 'pis' )
+									),
+									'post_modified_gmt' => array(
+										'value' => 'post_modified_gmt',
+										'desc'  => __( 'Post modified GMT', 'pis' )
+									)
+								);
+								pis_form_select(
+									__( 'Column', 'pis' ),
+									$this->get_field_id('date_column'),
+									$this->get_field_name('date_column'),
+									$options,
+									$instance['date_column'],
+									__( 'Column to query against.', 'pis' )
+								); ?>
+
+							</div>
 
 						</div>
 
@@ -1709,375 +1756,490 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<div class="pis-container">
 
-				<div class="pis-column">
+				<p><em><?php _e( 'Define here which elements you want to display in the widget.', 'pis' ); ?></em></p>
 
-					<h4><?php _e( 'The title of the post', 'pis' ); ?></h4>
+				<div class="pis-section pis-2col">
 
-					<?php // ================= Title of the post
-					pis_form_checkbox( __( 'Display the title of the post', 'pis' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
+					<div class="pis-column-container">
 
-					<?php // ================= Link to the title
-					pis_form_checkbox( __( 'Link the title to the post', 'pis' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
+						<div class="pis-column">
 
-					<?php // ================= Arrow after the title
-					pis_form_checkbox( __( 'Show an arrow after the title', 'pis' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>
+							<h4><?php _e( 'The title of the post', 'pis' ); ?></h4>
 
-					<h4><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
+							<?php // ================= Title of the post
+							pis_form_checkbox( __( 'Display the title of the post', 'pis' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
 
-					<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
-						<p class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'pis' ); ?></p>
-					<?php } ?>
+							<?php // ================= Link to the title
+							pis_form_checkbox( __( 'Link the title to the post', 'pis' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
 
-					<?php // ================= Featured image
-					pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
+							<?php // ================= Arrow after the title
+							pis_form_checkbox( __( 'Show an arrow after the title', 'pis' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>
 
-					<?php // ================= Image sizes
-					$options = array();
-					$sizes = (array) get_intermediate_image_sizes();
-					$sizes[] = 'full';
-					foreach ( $sizes as $size ) {
-						$options[] = array(
-							'value' => $size,
-							'desc'  => $size,
-						);
-					}
-					pis_form_select(
-						__( 'The size of the thumbnail will be', 'pis' ),
-						$this->get_field_id('image_size'),
-						$this->get_field_name('image_size'),
-						$options,
-						$instance['image_size']
-					); ?>
+						</div>
 
-					<?php // ================= Image align
-					$options = array(
-						'nochange' => array(
-							'value' => 'nochange',
-							'desc'  => __( 'Do not change', 'pis' )
-						),
-						'left' => array(
-							'value' => 'left',
-							'desc'  => __( 'Left', 'pis' )
-						),
-						'right' => array(
-							'value' => 'right',
-							'desc'  => __( 'Right', 'pis' )
-						),
-						'center' => array(
-							'value' => 'center',
-							'desc'  => __( 'Center', 'pis' )
-						),
+						<div class="pis-column">
+							<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
 
-					);
-					pis_form_select(
-						__( 'Align the image to', 'pis' ),
-						$this->get_field_id('image_align'),
-						$this->get_field_name('image_align'),
-						$options,
-						$instance['image_align']
-					); ?>
-
-					<p>
-						<em>
-							<?php printf(
-								__( 'Note that in order to use image sizes different from the WordPress standards, add them to your %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'pis' ),
-								'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
+							<?php // ================= Type of text
+							$options = array(
+								'full_content' => array(
+									'value' => 'full_content',
+									'desc'  => __( 'The full content', 'pis' )
+								),
+								'rich_content' => array(
+									'value' => 'rich_content',
+									'desc'  => __( 'The rich content', 'pis' )
+								),
+								'content' => array(
+									'value' => 'content',
+									'desc'  => __( 'The simple text', 'pis' )
+								),
+								'more_excerpt' => array(
+									'value' => 'more_excerpt',
+									'desc'  => __( 'The excerpt up to "more" tag', 'pis' )
+								),
+								'excerpt' => array(
+									'value' => 'excerpt',
+									'desc'  => __( 'The excerpt', 'pis' )
+								),
+								'only_read_more' => array(
+									'value' => 'only_read_more',
+									'desc'  => __( 'Display only the Read more link', 'pis' )
+								),
+								'none' => array(
+									'value' => 'none',
+									'desc'  => __( 'Do not show any text', 'pis' )
+								),
+							);
+							pis_form_select(
+								__( 'Display this type of text', 'pis' ),
+								$this->get_field_id('excerpt'),
+								$this->get_field_name('excerpt'),
+								$options,
+								$instance['excerpt']
 							); ?>
-							<?php printf(
-								__( 'You can also use %1$sa plugin%2$s that could help you in doing it.', 'pis' ),
-								'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
-							); ?>
-						</em>
-					</p>
 
-					<?php // ================= Positioning image before title
-					pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
+							<?php // ================= Excerpt length
+							pis_form_input_text( __( 'The WordPress generated excerpt length will be (in words)', 'pis' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ), '20' ); ?>
 
-					<?php // ================= Image link
-					pis_form_input_text(
-						__( 'Link the image to this URL', 'pis' ),
-						$this->get_field_id( 'image_link' ),
-						$this->get_field_name( 'image_link' ),
-						esc_url( strip_tags( $instance['image_link'] ) ),
-						'http://example.com/mypage',
-						__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'pis' )
-					); ?>
+							<?php // ================= More link text
+							pis_form_input_text( __( 'Use this text for More link', 'pis' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), __( 'Read more&hellip;', 'pis' ) ); ?>
 
-					<h4><?php _e( 'Customized featured image', 'pis' ); ?></h4>
+							<?php // ================= Arrow after the excerpt
+							pis_form_checkbox( __( 'Display an arrow after the "Read more" link', 'pis' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), checked( $exc_arrow, true, false ) ); ?>
 
-					<?php // ================= Custom image URL
-					pis_form_input_text(
-						__( 'Use this image instead of the standard featured image', 'pis' ),
-						$this->get_field_id( 'custom_image_url' ),
-						$this->get_field_name( 'custom_image_url' ),
-						esc_url( strip_tags( $instance['custom_image_url'] ) ),
-						'http://example.com/image.jpg',
-						__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you active the checkbox below.', 'pis' )
-					); ?>
+						</div>
 
-					<?php // ================= Use custom image URL only if the post thumbnail is not defined.
-					pis_form_checkbox( __( 'Use custom image URL only if the post has not a featured image.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
-
-					<h4><?php _e( 'The text of the post', 'pis' ); ?></h4>
-
-					<?php // ================= Type of text
-					$options = array(
-						'full_content' => array(
-							'value' => 'full_content',
-							'desc'  => __( 'The full content', 'pis' )
-						),
-						'rich_content' => array(
-							'value' => 'rich_content',
-							'desc'  => __( 'The rich content', 'pis' )
-						),
-						'content' => array(
-							'value' => 'content',
-							'desc'  => __( 'The simple text', 'pis' )
-						),
-						'more_excerpt' => array(
-							'value' => 'more_excerpt',
-							'desc'  => __( 'The excerpt up to "more" tag', 'pis' )
-						),
-						'excerpt' => array(
-							'value' => 'excerpt',
-							'desc'  => __( 'The excerpt', 'pis' )
-						),
-						'only_read_more' => array(
-							'value' => 'only_read_more',
-							'desc'  => __( 'Display only the Read more link', 'pis' )
-						),
-						'none' => array(
-							'value' => 'none',
-							'desc'  => __( 'Do not show any text', 'pis' )
-						),
-					);
-					pis_form_select(
-						__( 'Display this type of text', 'pis' ),
-						$this->get_field_id('excerpt'),
-						$this->get_field_name('excerpt'),
-						$options,
-						$instance['excerpt']
-					); ?>
-
-					<?php // ================= Excerpt length
-					pis_form_input_text( __( 'The WordPress generated excerpt length will be (in words)', 'pis' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ), '20' ); ?>
-
-					<?php // ================= More link text
-					pis_form_input_text( __( 'Use this text for More link', 'pis' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), __( 'Read more&hellip;', 'pis' ) ); ?>
-
-					<?php // ================= Arrow after the excerpt
-					pis_form_checkbox( __( 'Display an arrow after the "Read more" link', 'pis' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), checked( $exc_arrow, true, false ) ); ?>
+					</div>
 
 				</div>
 
-				<div class="pis-column">
+				<div class="pis-section pis-2col">
+					<h4 class="pis-widget-title"><?php _e( 'The featured image of the post', 'pis' ); ?></h4>
 
-					<h4><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
+					<div class="pis-container">
 
-					<?php // ================= Author
-					pis_form_checkbox( __( 'Display the author of the post', 'pis' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
+						<div class="pis-column-container">
 
-					<?php // ================= Author text
-					pis_form_input_text( __( 'Use this text before author\'s name', 'pis' ), $this->get_field_id( 'author_text' ), $this->get_field_name( 'author_text' ), esc_attr( $instance['author_text'] ), __( 'By', 'pis' ) ); ?>
+							<div class="pis-column">
 
-					<?php // ================= Author archive
-					pis_form_checkbox( __( 'Link the author to his archive', 'pis' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), checked( $linkify_author, true, false ) ); ?>
+								<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
+									<p class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'pis' ); ?></p>
+								<?php } ?>
 
-					<?php // ================= Date
-					pis_form_checkbox( __( 'Display the date of the post', 'pis' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), checked( $display_date, true, false ) ); ?>
+								<?php // ================= Featured image
+								pis_form_checkbox( __( 'Display the featured image of the post', 'pis' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
 
-					<?php // ================= Date text
-					pis_form_input_text( __( 'Use this text before date', 'pis' ), $this->get_field_id( 'date_text' ), $this->get_field_name( 'date_text' ), esc_attr( $instance['date_text'] ), __( 'Published on', 'pis' ) ); ?>
+								<?php // ================= Image sizes
+								$options = array();
+								$sizes = (array) get_intermediate_image_sizes();
+								$sizes[] = 'full';
+								foreach ( $sizes as $size ) {
+									$options[] = array(
+										'value' => $size,
+										'desc'  => $size,
+									);
+								}
+								pis_form_select(
+									__( 'The size of the thumbnail will be', 'pis' ),
+									$this->get_field_id('image_size'),
+									$this->get_field_name('image_size'),
+									$options,
+									$instance['image_size']
+								); ?>
 
-					<?php // ================= Date link
-					pis_form_checkbox( __( 'Link the date to the post', 'pis' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), checked( $linkify_date, true, false ) ); ?>
+								<?php // ================= Image align
+								$options = array(
+									'nochange' => array(
+										'value' => 'nochange',
+										'desc'  => __( 'Do not change', 'pis' )
+									),
+									'left' => array(
+										'value' => 'left',
+										'desc'  => __( 'Left', 'pis' )
+									),
+									'right' => array(
+										'value' => 'right',
+										'desc'  => __( 'Right', 'pis' )
+									),
+									'center' => array(
+										'value' => 'center',
+										'desc'  => __( 'Center', 'pis' )
+									),
 
-					<?php // ================= Number of comments
-					pis_form_checkbox( __( 'Display the number of comments', 'pis' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), checked( $comments, true, false ) ); ?>
+								);
+								pis_form_select(
+									__( 'Align the image to', 'pis' ),
+									$this->get_field_id('image_align'),
+									$this->get_field_name('image_align'),
+									$options,
+									$instance['image_align']
+								); ?>
 
-					<?php // ================= Comments text
-					pis_form_input_text( __( 'Use this text before comments number', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), __( 'Comments:', 'pis' ) ); ?>
+								<p>
+									<em>
+										<?php printf(
+											__( 'Note that in order to use image sizes different from the WordPress standards, add them to your %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'pis' ),
+											'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
+										); ?>
+										<?php printf(
+											__( 'You can also use %1$sa plugin%2$s that could help you in doing it.', 'pis' ),
+											'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
+										); ?>
+									</em>
+								</p>
 
-					<?php // ================= Utility separator
-					pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
+								<?php // ================= Positioning image before title
+								pis_form_checkbox( __( 'Display the image before the title of the post', 'pis' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
 
-					<?php // ================= Author
-					pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+								<?php // ================= Image link
+								pis_form_input_text(
+									__( 'Link the image to this URL', 'pis' ),
+									$this->get_field_id( 'image_link' ),
+									$this->get_field_name( 'image_link' ),
+									esc_url( strip_tags( $instance['image_link'] ) ),
+									'http://example.com/mypage',
+									__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'pis' )
+								); ?>
 
-					<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
+							</div>
 
-					<?php // ================= Post categories
-					pis_form_checkbox( __( 'Display the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
+							<div class="pis-column">
 
-					<?php // ================= Categories text
-					pis_form_input_text( __( 'Use this text before categories list', 'pis' ), $this->get_field_id( 'categ_text' ), $this->get_field_name( 'categ_text' ), esc_attr( $instance['categ_text'] ), __( 'Category:', 'pis' ) ); ?>
+								<h4><?php _e( 'Customized featured image', 'pis' ); ?></h4>
 
-					<?php // ================= Categories separator
-					pis_form_input_text(
-						__( 'Use this separator between categories', 'pis' ),
-						$this->get_field_id( 'categ_sep' ),
-						$this->get_field_name( 'categ_sep' ),
-						esc_attr( $instance['categ_sep'] ),
-						',',
-						__( 'A space will be added after the separator.', 'pis' )
-					); ?>
+								<?php // ================= Custom image URL
+								pis_form_input_text(
+									__( 'Use this image instead of the standard featured image', 'pis' ),
+									$this->get_field_id( 'custom_image_url' ),
+									$this->get_field_name( 'custom_image_url' ),
+									esc_url( strip_tags( $instance['custom_image_url'] ) ),
+									'http://example.com/image.jpg',
+									__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you active the checkbox below.', 'pis' )
+								); ?>
 
-					<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
+								<?php // ================= Use custom image URL only if the post thumbnail is not defined.
+								pis_form_checkbox( __( 'Use custom image URL only if the post has not a featured image.', 'pis' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
 
-					<?php // ================= Post tags
-					pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
+							</div>
 
-					<?php // ================= Tags text
-					pis_form_input_text( __( 'Use this text before tags list', 'pis' ), $this->get_field_id( 'tags_text' ), $this->get_field_name( 'tags_text' ), esc_attr( $instance['tags_text'] ), __( 'Tags:', 'pis' ) ); ?>
+						</div>
 
-					<?php // ================= Hashtag
-					pis_form_input_text( __( 'Use this hashtag', 'pis' ), $this->get_field_id( 'hashtag' ), $this->get_field_name( 'hashtag' ), esc_attr( $instance['hashtag'] ), '#' ); ?>
-
-					<?php // ================= Tags separator
-					pis_form_input_text(
-						__( 'Use this separator between tags', 'pis' ),
-						$this->get_field_id( 'tag_sep' ),
-						$this->get_field_name( 'tag_sep' ),
-						esc_attr( $instance['tag_sep'] ),
-						',',
-						__( 'A space will be added after the separator.', 'pis' )
-					); ?>
+					</div>
 
 				</div>
 
-				<div class="pis-column pis-column-last">
+				<div class="pis-section pis-2col">
 
-					<h4><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
+					<h4 class="pis-widget-title"><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
 
-					<?php // ================= Custom taxonomies
-					pis_form_checkbox( __( 'Show the custom taxonomies of the post', 'pis' ),
-					$this->get_field_id( 'display_custom_tax' ),
-					$this->get_field_name( 'display_custom_tax' ),
-					checked( $display_custom_tax, true, false ) ); ?>
+					<div class="pis-container">
 
-					<?php // ================= Terms hashtag
-					pis_form_input_text( __( 'Use this hashtag for terms', 'pis' ), $this->get_field_id( 'term_hashtag' ), $this->get_field_name( 'term_hashtag' ), esc_attr( $instance['term_hashtag'] ), '#' ); ?>
+						<div class="pis-column-container">
 
-					<?php // ================= Terms separator
-					pis_form_input_text(
-						__( 'Use this separator between terms', 'pis' ),
-						$this->get_field_id( 'term_sep' ),
-						$this->get_field_name( 'term_sep' ),
-						esc_attr( $instance['term_sep'] ),
-						',',
-						__( 'A space will be added after the separator.', 'pis' )
-					); ?>
+							<div class="pis-column">
 
-					<h4><?php _e( 'The custom field', 'pis' ); ?></h4>
+								<?php // ================= Author
+								pis_form_checkbox( __( 'Display the author of the post', 'pis' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
 
-					<?php // ================= Display custom field
-					pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
+								<?php // ================= Author text
+								pis_form_input_text( __( 'Use this text before author\'s name', 'pis' ), $this->get_field_id( 'author_text' ), $this->get_field_name( 'author_text' ), esc_attr( $instance['author_text'] ), __( 'By', 'pis' ) ); ?>
 
-					<?php // ================= Custom fields text
-					pis_form_input_text( __( 'Use this text before the custom field', 'pis' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), __( 'Custom field:', 'pis' ) ); ?>
+								<?php // ================= Author archive
+								pis_form_checkbox( __( 'Link the author to his archive', 'pis' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), checked( $linkify_author, true, false ) ); ?>
 
-					<?php // ================= Which custom field
-					$options = array();
-					$metas = (array) pis_meta();
-					foreach ( $metas as $meta ) {
-						if ( ! is_protected_meta( $meta, 'post' ) ) {
-							$options[] = array(
-								'value' => $meta,
-								'desc'  => $meta,
-							);
-						}
-					}
-					pis_form_select(
-						__( 'Display this custom field', 'pis' ),
-						$this->get_field_id('meta'),
-						$this->get_field_name('meta'),
-						$options,
-						$instance['meta']
-					); ?>
+								<?php // ================= Date
+								pis_form_checkbox( __( 'Display the date of the post', 'pis' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), checked( $display_date, true, false ) ); ?>
 
-					<?php // ================= Custom field key
-					pis_form_checkbox( __( 'Also display the key of the custom field', 'pis' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
+								<?php // ================= Date text
+								pis_form_input_text( __( 'Use this text before date', 'pis' ), $this->get_field_id( 'date_text' ), $this->get_field_name( 'date_text' ), esc_attr( $instance['date_text'] ), __( 'Published on', 'pis' ) ); ?>
 
-					<?php // ================= Custom field separator
-					pis_form_input_text( __( 'Use this separator between meta key and value', 'pis' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
+								<?php // ================= Date link
+								pis_form_checkbox( __( 'Link the date to the post', 'pis' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), checked( $linkify_date, true, false ) ); ?>
 
-					<h4><?php _e( 'The link to the archive', 'pis' ); ?></h4>
+							</div>
 
-					<?php // ================= Taxonomy archive link
-					pis_form_checkbox( __( 'Display the link to the taxonomy archive', 'pis' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
+							<div class="pis-column">
 
-					<?php // ================= Which taxonomy
-					$options = array(
-						'author' => array(
-							'value' => 'author',
-							'desc'  => __( 'Author', 'pis' )
-						),
-						'category' => array(
-							'value' => 'category',
-							'desc'  => __( 'Category', 'pis' )
-						),
-						'tag' => array(
-							'value' => 'tag',
-							'desc'  => __( 'Tag', 'pis' )
-						),
-					);
-					$custom_post_types = (array) get_post_types( array(
-						'_builtin'            => false,
-						'exclude_from_search' => false,
-					), 'objects' );
-					foreach ( $custom_post_types as $custom_post_type ) {
-						$options[] = array(
-							'value' => $custom_post_type->name,
-							'desc'  => sprintf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ),
-						);
-					}
-					if ( $post_formats ) {
-						foreach ( $post_formats as $post_format ) {
-							$options[] = array(
-								'value' => $post_format->slug,
-								'desc'  => sprintf( __( 'Post format: %s', 'pis' ), $post_format->name ),
-							);
-						}
-					}
-					pis_form_select(
-						__( 'Link to the archive of', 'pis' ),
-						$this->get_field_id('link_to'),
-						$this->get_field_name('link_to'),
-						$options,
-						$instance['link_to']
-					); ?>
+								<?php // ================= Number of comments
+								pis_form_checkbox( __( 'Display the number of comments', 'pis' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), checked( $comments, true, false ) ); ?>
 
+								<?php // ================= Comments text
+								pis_form_input_text( __( 'Use this text before comments number', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), __( 'Comments:', 'pis' ) ); ?>
 
-					<?php // ================= Archive link text
-					pis_form_input_text(
-						__( 'Use this text for archive link', 'pis' ),
-						$this->get_field_id( 'archive_text' ),
-						$this->get_field_name( 'archive_text' ),
-						esc_attr( $instance['archive_text'] ),
-						__( 'Display all posts by %s', 'pis' ),
-						sprintf( __( 'Use %s to display the name of the taxonomy. Also, note that if you haven\'t selected any taxonomy, the link won\'t appear.', 'pis' ), '<code>%s</code>' )
-					); ?>
+								<?php // ================= Utility separator
+								pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
 
-					<h4><?php _e( 'When no posts are found', 'pis' ); ?></h4>
+								<?php // ================= Author
+								pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
 
-					<?php // ================= When no posts are found
-					// Text when no posts found
-					pis_form_input_text(
-						__( 'Use this text when there are no posts', 'pis' ),
-						$this->get_field_id( 'nopost_text' ),
-						$this->get_field_name( 'nopost_text' ),
-						esc_attr( $instance['nopost_text'] ),
-						__( 'No posts yet.', 'pis' )
-					); ?>
+							</div>
 
-					<?php
-					// Hide the widget if no posts found
-					pis_form_checkbox(
-						__( 'Completely hide the widget if no posts are found', 'pis' ),
-						$this->get_field_id( 'hide_widget' ),
-						$this->get_field_name( 'hide_widget' ),
-						checked( $hide_widget, true, false )
-					); ?>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="pis-section">
+
+					<h4 class="pis-widget-title"><?php _e( 'Taxonomies', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
+
+								<?php // ================= Post categories
+								pis_form_checkbox( __( 'Display the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
+
+								<?php // ================= Categories text
+								pis_form_input_text( __( 'Use this text before categories list', 'pis' ), $this->get_field_id( 'categ_text' ), $this->get_field_name( 'categ_text' ), esc_attr( $instance['categ_text'] ), __( 'Category:', 'pis' ) ); ?>
+
+								<?php // ================= Categories separator
+								pis_form_input_text(
+									__( 'Use this separator between categories', 'pis' ),
+									$this->get_field_id( 'categ_sep' ),
+									$this->get_field_name( 'categ_sep' ),
+									esc_attr( $instance['categ_sep'] ),
+									',',
+									__( 'A space will be added after the separator.', 'pis' )
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
+
+								<?php // ================= Post tags
+								pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
+
+								<?php // ================= Tags text
+								pis_form_input_text( __( 'Use this text before tags list', 'pis' ), $this->get_field_id( 'tags_text' ), $this->get_field_name( 'tags_text' ), esc_attr( $instance['tags_text'] ), __( 'Tags:', 'pis' ) ); ?>
+
+								<?php // ================= Hashtag
+								pis_form_input_text( __( 'Use this hashtag', 'pis' ), $this->get_field_id( 'hashtag' ), $this->get_field_name( 'hashtag' ), esc_attr( $instance['hashtag'] ), '#' ); ?>
+
+								<?php // ================= Tags separator
+								pis_form_input_text(
+									__( 'Use this separator between tags', 'pis' ),
+									$this->get_field_id( 'tag_sep' ),
+									$this->get_field_name( 'tag_sep' ),
+									esc_attr( $instance['tag_sep'] ),
+									',',
+									__( 'A space will be added after the separator.', 'pis' )
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h4><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
+
+								<?php // ================= Custom taxonomies
+								pis_form_checkbox( __( 'Show the custom taxonomies of the post', 'pis' ),
+								$this->get_field_id( 'display_custom_tax' ),
+								$this->get_field_name( 'display_custom_tax' ),
+								checked( $display_custom_tax, true, false ) ); ?>
+
+								<?php // ================= Terms hashtag
+								pis_form_input_text( __( 'Use this hashtag for terms', 'pis' ), $this->get_field_id( 'term_hashtag' ), $this->get_field_name( 'term_hashtag' ), esc_attr( $instance['term_hashtag'] ), '#' ); ?>
+
+								<?php // ================= Terms separator
+								pis_form_input_text(
+									__( 'Use this separator between terms', 'pis' ),
+									$this->get_field_id( 'term_sep' ),
+									$this->get_field_name( 'term_sep' ),
+									esc_attr( $instance['term_sep'] ),
+									',',
+									__( 'A space will be added after the separator.', 'pis' )
+								); ?>
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="pis-section pis-2col">
+
+					<h4 class="pis-widget-title"><?php _e( 'The custom field', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<?php // ================= Display custom field
+								pis_form_checkbox( __( 'Display the custom field of the post', 'pis' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
+
+								<?php // ================= Custom fields text
+								pis_form_input_text( __( 'Use this text before the custom field', 'pis' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), __( 'Custom field:', 'pis' ) ); ?>
+
+								<?php // ================= Which custom field
+								$options = array();
+								$metas = (array) pis_meta();
+								foreach ( $metas as $meta ) {
+									if ( ! is_protected_meta( $meta, 'post' ) ) {
+										$options[] = array(
+											'value' => $meta,
+											'desc'  => $meta,
+										);
+									}
+								}
+								pis_form_select(
+									__( 'Display this custom field', 'pis' ),
+									$this->get_field_id('meta'),
+									$this->get_field_name('meta'),
+									$options,
+									$instance['meta']
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Custom field key
+								pis_form_checkbox( __( 'Also display the key of the custom field', 'pis' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
+
+								<?php // ================= Custom field separator
+								pis_form_input_text( __( 'Use this separator between meta key and value', 'pis' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="pis-section pis-2col">
+
+					<h4 class="pis-widget-title"><?php _e( 'The link to the archive', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<?php // ================= Taxonomy archive link
+								pis_form_checkbox( __( 'Display the link to the taxonomy archive', 'pis' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
+
+								<?php // ================= Which taxonomy
+								$options = array(
+									'author' => array(
+										'value' => 'author',
+										'desc'  => __( 'Author', 'pis' )
+									),
+									'category' => array(
+										'value' => 'category',
+										'desc'  => __( 'Category', 'pis' )
+									),
+									'tag' => array(
+										'value' => 'tag',
+										'desc'  => __( 'Tag', 'pis' )
+									),
+								);
+								$custom_post_types = (array) get_post_types( array(
+									'_builtin'            => false,
+									'exclude_from_search' => false,
+								), 'objects' );
+								foreach ( $custom_post_types as $custom_post_type ) {
+									$options[] = array(
+										'value' => $custom_post_type->name,
+										'desc'  => sprintf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ),
+									);
+								}
+								if ( $post_formats ) {
+									foreach ( $post_formats as $post_format ) {
+										$options[] = array(
+											'value' => $post_format->slug,
+											'desc'  => sprintf( __( 'Post format: %s', 'pis' ), $post_format->name ),
+										);
+									}
+								}
+								pis_form_select(
+									__( 'Link to the archive of', 'pis' ),
+									$this->get_field_id('link_to'),
+									$this->get_field_name('link_to'),
+									$options,
+									$instance['link_to']
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Archive link text
+								pis_form_input_text(
+									__( 'Use this text for archive link', 'pis' ),
+									$this->get_field_id( 'archive_text' ),
+									$this->get_field_name( 'archive_text' ),
+									esc_attr( $instance['archive_text'] ),
+									__( 'Display all posts by %s', 'pis' ),
+									sprintf( __( 'Use %s to display the name of the taxonomy. Also, note that if you haven\'t selected any taxonomy, the link won\'t appear.', 'pis' ), '<code>%s</code>' )
+								); ?>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="pis-section">
+
+					<h4 class="pis-widget-title"><?php _e( 'When no posts are found', 'pis' ); ?></h4>
+
+					<div class="pis-container">
+
+							<?php // ================= When no posts are found
+							// Text when no posts found
+							pis_form_input_text(
+								__( 'Use this text when there are no posts', 'pis' ),
+								$this->get_field_id( 'nopost_text' ),
+								$this->get_field_name( 'nopost_text' ),
+								esc_attr( $instance['nopost_text'] ),
+								__( 'No posts yet.', 'pis' )
+							); ?>
+
+							<?php
+							// Hide the widget if no posts found
+							pis_form_checkbox(
+								__( 'Completely hide the widget if no posts are found', 'pis' ),
+								$this->get_field_id( 'hide_widget' ),
+								$this->get_field_name( 'hide_widget' ),
+								checked( $hide_widget, true, false )
+							); ?>
+
+					</div>
 
 				</div>
 
@@ -2139,7 +2301,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<?php pis_form_input_text( __( 'Tags bottom margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
 				</div>
 
-				<div class="pis-column pis-column-last">
+				<div class="pis-column">
 					<?php pis_form_input_text( __( 'Terms bottom margin', 'pis' ), $this->get_field_id( 'terms_margin' ), $this->get_field_name( 'terms_margin' ), esc_attr( $instance['terms_margin'] ) ); ?>
 					<?php pis_form_input_text( __( 'Custom field bottom margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
 					<?php pis_form_input_text( __( 'Archive bottom margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
@@ -2234,25 +2396,36 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h4 class="pis-widget-title"><?php _e( 'Cache', 'pis' ); ?></h4>
 
-			<div class="pis-container">
+			<div class="pis-container pis-2col">
 
-				<?php // ================= Cache for the query
-				pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
-					$this->get_field_id( 'cached' ),
-					$this->get_field_name( 'cached' ),
-					checked( $cached, true, false ),
-					__( 'This option, if activated, will increase the performance.', 'pis' )
-				); ?>
+				<div class="pis-column-container">
 
-				<?php // ================= Cache duration
-				pis_form_input_text(
-					__( 'The cache will be used for (in seconds)', 'pis' ),
-					$this->get_field_id('cache_time'),
-					$this->get_field_name('cache_time'),
-					esc_attr( $instance['cache_time'] ),
-					'3600',
-					sprintf( __( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
-				); ?>
+					<div class="pis-column">
+
+						<?php // ================= Cache for the query
+						pis_form_checkbox( __( 'Use a cache to serve the output', 'pis' ),
+							$this->get_field_id( 'cached' ),
+							$this->get_field_name( 'cached' ),
+							checked( $cached, true, false ),
+							__( 'This option, if activated, will increase the performance.', 'pis' )
+						); ?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= Cache duration
+						pis_form_input_text(
+							__( 'The cache will be used for (in seconds)', 'pis' ),
+							$this->get_field_id('cache_time'),
+							$this->get_field_name('cache_time'),
+							esc_attr( $instance['cache_time'] ),
+							'3600',
+							sprintf( __( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'pis' ), '<code>3600</code>', '<code>0</code>' )
+						); ?>
+					</div>
+
+				</div>
 
 			</div>
 

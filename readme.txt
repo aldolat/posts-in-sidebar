@@ -66,7 +66,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 2.1 =
 
 * NEW: Added the shortcode.
-* Fixed post comments function.
+* NEW: Added "Any" to posts status.
+* FIX: Fixed post comments function.
+* Reorganized the widget sections.
 * Changed some files names.
 
 = 2.0.4 =

@@ -208,7 +208,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @uses pis_class()
  * @uses pis_get_comments_number()
  */
-function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text ) { ?>
+function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id ) { ?>
 	<?php if ( $display_author || $display_date || $comments ) {
 		$output = '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
 	}
@@ -256,7 +256,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
 				}
 				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
 					if ( $comments_text ) $output .= $comments_text . '&nbsp;';
-					pis_get_comments_number();
+					$output .= pis_get_comments_number( $pis_post_id );
 				$output .= '</span>';
 			}
 		endif;
@@ -454,7 +454,11 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 	endswitch;
 	// Close The text
 
-	return $output;
+	if ( isset( $output ) ) {
+		return $output;
+	} else {
+		return '';
+	}
 }
 
 
@@ -716,20 +720,21 @@ function pis_generated( $cached ) {
  * 
  * @since 2.1
  */
-function pis_get_comments_number() {
-	$num_comments = get_comments_number(); // get_comments_number returns only a numeric value
+function pis_get_comments_number( $pis_post_id ) {
+	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value
 
-	if ( comments_open() ) {
-		if ( 0 == $num_comments ) {
-			$comments = __( 'Leave a comment', 'pis' );
-		} elseif ( $num_comments > 1 ) {
-			$comments = sprintf( __( '% Comments', 'pis' ), $num_comments );
-		} else {
-			$comments = __( '1 Comment', 'pis' );
-		}
-		$output = '<span class="pis-reply"><a href="' . get_comments_link() .'">'. $comments.'</a>';
+	if ( 0 == $num_comments && ! comments_open( $pis_post_id ) ) {
+		$output = __( 'Comments are closed.', 'pis' );
 	} else {
-		$output = __( 'Comments are off for this post.', 'pis' );
+		// Construct the comments string.
+		if ( 0 < $num_comments ) {
+			$comments = sprintf( _n( '%s Comment', '%s Comments', $num_comments, 'pis' ), $num_comments );
+		} else {
+			$comments = __( 'Leave a comment', 'pis' );
+		}
+
+		// Contruct the HTML string for the comments.
+		$output = '<span class="pis-reply"><a href="' . get_comments_link( $pis_post_id ) .'">'. $comments.'</a>';
 	}
 
 	return $output;

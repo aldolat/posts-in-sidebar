@@ -66,6 +66,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 2.1 =
 
 * NEW: Added the shortcode.
+* Fixed post comments function.
 * Changed some files names.
 
 = 2.0.4 =

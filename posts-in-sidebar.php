@@ -551,7 +551,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID );
 					}
 
 					/* The post content */
@@ -585,7 +585,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( ! $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text );
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID );
 					}
 
 					/* The categories */
@@ -620,7 +620,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$the_custom_field = get_post_meta( $pis_query->post->ID, $meta, false );
 						if ( $the_custom_field ) {
 							if ( $custom_field_txt )
-								$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . '</span>';
+								$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . ' </span>';
 							else
 								$cf_text = '';
 							if ( $custom_field_key )

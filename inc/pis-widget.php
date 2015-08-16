@@ -2014,7 +2014,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
 
 								<?php // ================= Post categories
-								pis_form_checkbox( __( 'Display the categories of the post', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
+								pis_form_checkbox( __( 'Show the categories', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
 
 								<?php // ================= Categories text
 								pis_form_input_text( __( 'Use this text before categories list', 'pis' ), $this->get_field_id( 'categ_text' ), $this->get_field_name( 'categ_text' ), esc_attr( $instance['categ_text'] ), __( 'Category:', 'pis' ) ); ?>
@@ -2036,7 +2036,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
 
 								<?php // ================= Post tags
-								pis_form_checkbox( __( 'Show the tags of the post', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
+								pis_form_checkbox( __( 'Show the tags', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
 
 								<?php // ================= Tags text
 								pis_form_input_text( __( 'Use this text before tags list', 'pis' ), $this->get_field_id( 'tags_text' ), $this->get_field_name( 'tags_text' ), esc_attr( $instance['tags_text'] ), __( 'Tags:', 'pis' ) ); ?>
@@ -2061,7 +2061,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h4><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
 
 								<?php // ================= Custom taxonomies
-								pis_form_checkbox( __( 'Show the custom taxonomies of the post', 'pis' ),
+								pis_form_checkbox( __( 'Show the custom taxonomies', 'pis' ),
 								$this->get_field_id( 'display_custom_tax' ),
 								$this->get_field_name( 'display_custom_tax' ),
 								checked( $display_custom_tax, true, false ) ); ?>

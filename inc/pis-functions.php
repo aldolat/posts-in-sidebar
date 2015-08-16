@@ -479,18 +479,22 @@ function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $
 	// get post type taxonomies
 	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
+	$output = '';
+
 	foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
 		// Exclude the standard WordPress 'category' and 'post_tag' taxonomies otherwise we'll have a duplicate in the front-end.
 		if ( 'category' != $taxonomy_slug && 'post_tag' != $taxonomy_slug ) {
 			// get the terms related to post
 			$list_of_terms = get_the_term_list( $postID, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
-			if ( $list_of_terms ) { ?>
-				<p <?php echo pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ); ?>>
-					<span class="pis-tax-name"><?php echo $taxonomy->label; ?></span>: <?php echo apply_filters( 'pis_terms_list', $list_of_terms ); ?>
-				</p>
-			<?php }
+			if ( $list_of_terms ) {
+				$output .= '<p ' . pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
+					$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
+				$output .= '</p>';
+			}
 		}
 	}
+
+	return $output;
 }
 
 

@@ -289,6 +289,7 @@ function pis_utility_section( $args ) {
  * Add the thumbnail of the post.
  *
  * @since 1.18
+ * @param array The array of parameters.
  * @return The HTML for the thumbnail.
  */
 function pis_the_thumbnail( $args ) {
@@ -405,6 +406,11 @@ function pis_the_thumbnail( $args ) {
  * Add the text of the post in form of excerpt, full post, and so on.
  *
  * @since 1.18
+ * @param string $excerpt The type of text to display.
+ * @param array $pis_query The array containing the current content to display.
+ * @param string $exc_length The length of the excerpt.
+ * @param string $the_more The text to be displayed for "Continue reading".
+ * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
  * @return The HTML for the text of the post.
  * @uses pis_break_text()
  * @uses pis_more_arrow()
@@ -494,6 +500,11 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
  * Return the custom taxonomies of the current post.
  *
  * @since 1.29
+ * @param integer $postID The ID of the post.
+ * @param string $term_hashtag The hashtag symbol to use for terms.
+ * @param string $term_sep The separator symbol to use to separate terms.
+ * @param string $terms_margin The margin for the terms paragraph.
+ * @param string $margin_unit The unit of the margins.
  * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
  */
 // get taxonomies terms links
@@ -758,7 +769,6 @@ function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $
  * Return the version of Posts in Sidebar and if the cache is active.
  *
  * @param boolean $cached If the cache is active or not.
- *
  * @since 2.0.3
  */
 function pis_generated( $cached ) {

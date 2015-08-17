@@ -12,7 +12,33 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
 ## Description ##
 
-This plugin creates a new widget for your sidebar. In this widget you can display a list of post using author, category, tag, post format, custom post type, and so on. You can also display the featured image, the tags and also a link to the archive page. A bunch of useful options are also available.
+Posts in Sidebar is a plugin for WordPress that lets you show a list of your posts using the criteria you want. This plugin gives you almost all the power of WordPress to retrieve the posts you want and show them in your sidebars.
+
+The plugin has also a shortcode, that you can use in your posts/pages to list your posts.
+
+Once installed, Posts in Sidebar creates a new widget for your sidebar. Add it to your sidebar, select the options to retrieve the posts you want, and save the widget: you're done!
+
+Here are some of the functions you'll have:
+
+* get posts by authors, categories, tags, post format, or any custom taxonomy;
+* get posts by exact IDs;
+* get posts by meta key/value;
+* get posts by modification date;
+* get posts children of other posts;
+* get posts by search;
+* get posts by complex taxonomies queries;
+* get posts by date queries;
+* exclude posts by authors, taxonomies, and so on;
+* control which elements of the posts are displayed;
+* stylize the output of the widget using custom CSS styles;
+* cache the output of the widget to save queries to the database;
+* ... and much more.
+
+The powerful WordPress' class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
+
+This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: a donation is very appreciated.
+
+Enjoy!
 
 ### Documentation, Help & Bugs ###
 

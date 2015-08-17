@@ -547,7 +547,21 @@ function pis_get_posts_in_sidebar( $args ) {
 
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 							$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-							$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = true, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+							$pis_output .= pis_the_thumbnail( array(
+								'display_image'       => $display_image,
+								'image_align'         => $image_align,
+								'side_image_margin'   => $side_image_margin,
+								'bottom_image_margin' => $bottom_image_margin,
+								'margin_unit'         => $margin_unit,
+								'post_link'           => $post_link,
+								'pis_query'           => $pis_query,
+								'image_size'          => $image_size,
+								'thumb_wrap'          => true,
+								'custom_image_url'    => $custom_image_url,
+								'custom_img_no_thumb' => $custom_img_no_thumb,
+								'post_type'           => $post_type,
+								'image_link'          => $image_link,
+							) );
 						}
 
 					}
@@ -572,7 +586,21 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID, $linkify_comments );
+						$pis_output .= pis_utility_section( array(
+							'display_author'   => $display_author,
+							'display_date'     => $display_date,
+							'comments'         => $comments,
+							'utility_margin'   => $utility_margin,
+							'margin_unit'      => $margin_unit,
+							'author_text'      => $author_text,
+							'linkify_author'   => $linkify_author,
+							'utility_sep'      => $utility_sep,
+							'date_text'        => $date_text,
+							'linkify_date'     => $linkify_date,
+							'comments_text'    => $comments_text,
+							'pis_post_id'      => $pis_query->post->ID,
+							'link_to_comments' => $linkify_comments,
+						) );
 					}
 
 					/* The post content */
@@ -587,7 +615,21 @@ function pis_get_posts_in_sidebar( $args ) {
 									/* The thumbnail */
 									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 										$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
-										$pis_output .= pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url, $custom_img_no_thumb, $post_type, $image_link );
+										$pis_output .= pis_the_thumbnail( array(
+											'display_image'       => $display_image,
+											'image_align'         => $image_align,
+											'side_image_margin'   => $side_image_margin,
+											'bottom_image_margin' => $bottom_image_margin,
+											'margin_unit'         => $margin_unit,
+											'post_link'           => $post_link,
+											'pis_query'           => $pis_query,
+											'image_size'          => $image_size,
+											'thumb_wrap'          => false,
+											'custom_image_url'    => $custom_image_url,
+											'custom_img_no_thumb' => $custom_img_no_thumb,
+											'post_type'           => $post_type,
+											'image_link'          => $image_link,
+										) );
 									} // Close if ( $display_image && has_post_thumbnail )
 
 								}
@@ -606,7 +648,21 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( ! $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID, $linkify_comments );
+						$pis_output .= pis_utility_section( array(
+							'display_author'   => $display_author,
+							'display_date'     => $display_date,
+							'comments'         => $comments,
+							'utility_margin'   => $utility_margin,
+							'margin_unit'      => $margin_unit,
+							'author_text'      => $author_text,
+							'linkify_author'   => $linkify_author,
+							'utility_sep'      => $utility_sep,
+							'date_text'        => $date_text,
+							'linkify_date'     => $linkify_date,
+							'comments_text'    => $comments_text,
+							'pis_post_id'      => $pis_query->post->ID,
+							'link_to_comments' => $linkify_comments,
+						) );
 					}
 
 					/* The categories */

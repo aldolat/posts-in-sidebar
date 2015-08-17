@@ -198,12 +198,31 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * Add the utilities section: author, date of the post and comments.
  *
  * @since 1.18
+ * @param array The array of parameters.
  * @return The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()
  * @uses pis_get_comments_number()
  */
-function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id, $link_to_comments ) {
+function pis_utility_section( $args ) {
+	$defaults = array(
+		'display_author'   => false,
+		'display_date'     => false,
+		'comments'         => false,
+		'utility_margin'   => NULL,
+		'margin_unit'      => 'px',
+		'author_text'      => __( 'By', 'pis' ),
+		'linkify_author'   => false,
+		'utility_sep'      => '|',
+		'date_text'        => __( 'Published on', 'pis' ),
+		'linkify_date'     => false,
+		'comments_text'    => __( 'Comments:', 'pis' ),
+		'pis_post_id'      => '',
+		'link_to_comments' => true,
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
 	$output = '';
 
 	if ( $display_author || $display_date || $comments ) {
@@ -272,7 +291,25 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
  * @since 1.18
  * @return The HTML for the thumbnail.
  */
-function pis_the_thumbnail( $display_image, $image_align, $side_image_margin, $bottom_image_margin, $margin_unit, $post_link, $pis_query, $image_size, $thumb_wrap = false, $custom_image_url = '', $custom_img_no_thumb = true, $post_type = 'post', $image_link = '' ) {
+function pis_the_thumbnail( $args ) {
+	$defaults = array(
+		'display_image'       => false,
+		'image_align'         => 'no_change',
+		'side_image_margin'   => NULL,
+		'bottom_image_margin' => NULL,
+		'margin_unit'         => 'px',
+		'post_link'           => '',
+		'pis_query'           => '',
+		'image_size'          => 'thumbnail',
+		'thumb_wrap'          => false,
+		'custom_image_url'    => '',
+		'custom_img_no_thumb' => true,
+		'post_type'           => 'post',
+		'image_link'          => '',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
 	if ( $thumb_wrap ) {
 		$open_wrap = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';

@@ -34,7 +34,7 @@ Here are some of the functions you'll have:
 * cache the output of the widget to save queries to the database;
 * ... and much more.
 
-The powerful WordPress' class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
+The powerful WordPress class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
 
 This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: a donation is very appreciated.
 

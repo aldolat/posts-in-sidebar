@@ -636,7 +636,13 @@ function pis_get_posts_in_sidebar( $args ) {
 								// Close if $image_before_title
 
 								/* The text */
-								$pis_output .= pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow );
+								$pis_output .= pis_the_text( array(
+									'excerpt'    => $excerpt,
+									'pis_query'  => $pis_query,
+									'exc_length' => $exc_length,
+									'the_more'   => $the_more,
+									'exc_arrow'  => $exc_arrow,
+								) );
 
 							$pis_output .= '</p>';
 
@@ -689,7 +695,13 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* Custom taxonomies */
 					if ( $display_custom_tax ) {
-						$pis_output .= pis_custom_taxonomies_terms_links( $pis_query->post->ID, $term_hashtag, $term_sep, $terms_margin, $margin_unit );
+						$pis_output .= pis_custom_taxonomies_terms_links( array(
+							'postID'       => $pis_query->post->ID,
+							'term_hashtag' => $term_hashtag,
+							'term_sep'     => $term_sep,
+							'terms_margin' => $terms_margin,
+							'margin_unit'  => $margin_unit,
+						) );
 					}
 
 					/* The post meta */
@@ -784,7 +796,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	endif;
 
 	/* Debugging */
-	$pis_output .= pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached );
+	$pis_output .= pis_debug( array(
+		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.
+		'debug_params'       => $debug_params,         // bool   If display the complete set of parameters of the widget.
+		'debug_query_number' => $debug_query_number,   // bool   If display the number of queries.
+		'params'             => $params,               // array  The parameters for the query.
+		'args'               => $args,                 // array  The complete set of parameters of the widget.
+		'cached'             => $cached,               // bool   If the cache is active.
+	) );
 
 	/* Prints the version of Posts in Sidebar and if the cache is active. */
 	$pis_output .= pis_generated( $cached );

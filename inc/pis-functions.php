@@ -406,16 +406,22 @@ function pis_the_thumbnail( $args ) {
  * Add the text of the post in form of excerpt, full post, and so on.
  *
  * @since 1.18
- * @param string $excerpt The type of text to display.
- * @param array $pis_query The array containing the current content to display.
- * @param string $exc_length The length of the excerpt.
- * @param string $the_more The text to be displayed for "Continue reading".
- * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
+ * @param array $args The array containing the custom parameters.
  * @return The HTML for the text of the post.
  * @uses pis_break_text()
  * @uses pis_more_arrow()
  */
-function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow ) {
+function pis_the_text( $args ) {
+	$defaults = array(
+		'excerpt'    => 'excerpt',
+		'pis_query'  => '',
+		'exc_length' => 20,
+		'the_more'   => __( 'Read more&hellip;', 'pis' ),
+		'exc_arrow'  => false,
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
 	$output = '';
 
 	/*
@@ -500,15 +506,20 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
  * Return the custom taxonomies of the current post.
  *
  * @since 1.29
- * @param integer $postID The ID of the post.
- * @param string $term_hashtag The hashtag symbol to use for terms.
- * @param string $term_sep The separator symbol to use to separate terms.
- * @param string $terms_margin The margin for the terms paragraph.
- * @param string $margin_unit The unit of the margins.
+ * @param array $args The array containing the custom parameters.
  * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
  */
-// get taxonomies terms links
-function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $terms_margin, $margin_unit ) {
+function pis_custom_taxonomies_terms_links( $args ) {
+	$defaults = array(
+		'postID'       => '',
+		'term_hashtag' => '',
+		'term_sep'     => ',',
+		'terms_margin' => NULL,
+		'margin_unit'  => 'px',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
 	// get post by post id
 	$post = get_post( $postID );
 
@@ -724,16 +735,21 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 /**
  * Return the debugging informations.
  *
- * @param boolean $debug_query If the query is to be displayed.
- * @param boolean $debug_params If the widget parameters are to be displayed.
- * @param boolean $debug_query_number If the total number of the queries of the WordPress installation are to be displayed.
- * @param array $params The parameters of the query.
- * @param array $args The complete set of the widget options.
- * @param boolean $cached If the cache is active.
- *
+ * @param array $parameters The array containing the custom parameters.
  * @since 2.0.3
  */
-function pis_debug( $debug_query, $debug_params, $debug_query_number, $params, $args, $cached ) {
+function pis_debug( $parameters ) {
+	$defaults = array (
+		'debug_query'        => false,
+		'debug_params'       => false,
+		'debug_query_number' => false,
+		'params'             => '',
+		'args'               => '',
+		'cached'             => false,
+	);
+	$parameters = wp_parse_args( $parameters, $defaults );
+	extract( $parameters, EXTR_SKIP );
+
 	$output = '';
 
 	if ( $debug_query || $debug_params || $debug_query_number ) {

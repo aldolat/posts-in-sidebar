@@ -728,9 +728,9 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 
 		// Contruct the HTML string for the comments.
 		if ( $link ) {
-			$output = '<span class="pis-reply"><a href="' . get_comments_link( $pis_post_id ) . '">' . $comments . '</a></span>';
+			$output = '<a ' . pis_class( 'pis-comments-link', apply_filters( 'pis_comments_link_class', '' ), false ) . ' href="' . get_comments_link( $pis_post_id ) . '">' . $comments . '</a>';
 		} else {
-			$output = '<span class="pis-reply">' . $comments . '</span>';
+			$output = $comments;
 		}
 	}
 

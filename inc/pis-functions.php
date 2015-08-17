@@ -59,7 +59,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 
 
 /**
- * Return the paragraph class with inline style
+ * Return the paragraph class with inline style.
  *
  * @since 1.12
  *
@@ -67,7 +67,6 @@ function pis_class( $default = '', $class = '', $echo = true ) {
  * @param string $unit The unit measure to be used.
  * @param string $class The default class defined by the plugin's developer.
  * @param string $class_filter The name of the class filter.
- * @param boolean $class_echo If the pis_class() function should echo or not the output.
  * @return string $output The class and the inline style.
  * @uses pis_class()
  */

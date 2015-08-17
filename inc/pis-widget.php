@@ -1949,7 +1949,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<div class="pis-section pis-2col">
+				<div class="pis-section">
 
 					<h4 class="pis-widget-title"><?php _e( 'Author, date and comments', 'pis' ); ?></h4>
 
@@ -1968,6 +1968,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Author archive
 								pis_form_checkbox( __( 'Link the author to his archive', 'pis' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), checked( $linkify_author, true, false ) ); ?>
 
+							</div>
+
+							<div class="pis-column">
+
 								<?php // ================= Date
 								pis_form_checkbox( __( 'Display the date of the post', 'pis' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), checked( $display_date, true, false ) ); ?>
 
@@ -1985,17 +1989,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( __( 'Display the number of comments', 'pis' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), checked( $comments, true, false ) ); ?>
 
 								<?php // ================= Comments text
-								pis_form_input_text( __( 'Use this text before comments number', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), __( 'Comments:', 'pis' ) ); ?>
-
-								<?php // ================= Utility separator
-								pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
-
-								<?php // ================= Author
-								pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+								pis_form_input_text( __( 'Use this text before comments', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), __( 'Comments:', 'pis' ) ); ?>
 
 							</div>
 
 						</div>
+
+						<?php // ================= Utility separator
+						pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
+
+						<?php // ================= Author
+						pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
 
 					</div>
 

@@ -454,7 +454,7 @@ function pis_the_text( $excerpt, $pis_query, $exc_length, $the_more, $exc_arrow 
 
 
 /**
- * Display the custom taxonomies of the current post.
+ * Return the custom taxonomies of the current post.
  *
  * @since 1.29
  * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
@@ -492,9 +492,35 @@ function pis_custom_taxonomies_terms_links( $postID, $term_hashtag, $term_sep, $
 /**
  * Build the query based on taxonomies.
  *
+ * @param array $args The array containing the custom parameters.
+ * @return array An array of array of parameters.
  * @since 1.29
  */
-function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb ) {
+function pis_tax_query( $args ) {
+	$defaults = array (
+		'relation'    => '',
+		'taxonomy_aa' => '',
+		'field_aa'    => 'slug',
+		'terms_aa'    => '',
+		'operator_aa' => 'IN',
+		'relation_a'  => '',
+		'taxonomy_ab' => '',
+		'field_ab'    => 'slug',
+		'terms_ab'    => '',
+		'operator_ab' => 'IN',
+		'taxonomy_ba' => '',
+		'field_ba'    => 'slug',
+		'terms_ba'    => '',
+		'operator_ba' => 'IN',
+		'relation_b'  => '',
+		'taxonomy_bb' => '',
+		'field_bb'    => 'slug',
+		'terms_bb'    => '',
+		'operator_bb' => 'IN',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
 	if ( '' == $taxonomy_aa && '' == $terms_aa ) {
 		$tax_query = '';
 	} else {
@@ -505,7 +531,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 		if ( $terms_bb ) $terms_bb = explode( ',', $terms_bb );
 
 		// Let's figure out the tax_query to build
-		if ( $taxonomy_aa && !$taxonomy_ab && !$taxonomy_ba && !$taxonomy_bb ) {
+		if ( $taxonomy_aa && ! $taxonomy_ab && ! $taxonomy_ba && ! $taxonomy_bb ) {
 			$tax_query = array(
 				array(
 					'taxonomy' => $taxonomy_aa,
@@ -514,7 +540,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 					'operator' => $operator_aa,
 				)
 			);
-		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
+		} else if ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -530,7 +556,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 					'operator' => $operator_ba,
 				)
 			);
-		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && !$taxonomy_bb && !empty( $relation ) ) {
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -555,7 +581,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 					'operator' => $operator_ba,
 				)
 			);
-		} else if ( $taxonomy_aa && !$taxonomy_ab && $taxonomy_ba && $taxonomy_bb && !empty( $relation ) ) {
+		} else if ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -580,7 +606,7 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 					)
 				)
 			);
-		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && !empty( $relation ) ) {
+		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(

@@ -370,7 +370,27 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 1.29
 	 */
-	$tax_query = pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator_aa, $relation_a, $taxonomy_ab, $field_ab, $terms_ab, $operator_ab, $taxonomy_ba, $field_ba, $terms_ba, $operator_ba, $relation_b, $taxonomy_bb, $field_bb, $terms_bb, $operator_bb );
+	$tax_query = pis_tax_query( array(
+		'relation'    => $relation,
+		'taxonomy_aa' => $taxonomy_aa,
+		'field_aa'    => $field_aa,
+		'terms_aa'    => $terms_aa,
+		'operator_aa' => $operator_aa,
+		'relation_a'  => $relation_a,
+		'taxonomy_ab' => $taxonomy_ab,
+		'field_ab'    => $field_ab,
+		'terms_ab'    => $terms_ab,
+		'operator_ab' => $operator_ab,
+		'taxonomy_ba' => $taxonomy_ba,
+		'field_ba'    => $field_ba,
+		'terms_ba'    => $terms_ba,
+		'operator_ba' => $operator_ba,
+		'relation_b'  => $relation_b,
+		'taxonomy_bb' => $taxonomy_bb,
+		'field_bb'    => $field_bb,
+		'terms_bb'    => $terms_bb,
+		'operator_bb' => $operator_bb,
+	) );
 
 	/**
 	 * Build the array for date query.

@@ -624,6 +624,8 @@ function pis_tax_query( $relation, $taxonomy_aa, $field_aa, $terms_aa, $operator
 /**
  * Remove empty keys from an array recursively.
  *
+ * @param array $array The array to be checked.
+ * @param boolean $make_empty If the output is to return as an empty string.
  * @since 1.29
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
  */
@@ -711,6 +713,8 @@ function pis_generated( $cached ) {
 /**
  * Returns the HTML for the comments link.
  *
+ * @param integer $pis_post_id The ID of the post.
+ * @param boolean $link If the output is to be wrapped into a link to comments.
  * @since 3.0
  */
 function pis_get_comments_number( $pis_post_id, $link ) {

@@ -204,7 +204,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @uses pis_class()
  * @uses pis_get_comments_number()
  */
-function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id ) {
+function pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_post_id, $link_to_comments ) {
 	$output = '';
 
 	if ( $display_author || $display_date || $comments ) {
@@ -254,7 +254,7 @@ function pis_utility_section( $display_author, $display_date, $comments, $utilit
 				}
 				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
 					if ( $comments_text ) $output .= $comments_text . '&nbsp;';
-					$output .= pis_get_comments_number( $pis_post_id );
+					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
 				$output .= '</span>';
 			}
 		endif;
@@ -714,7 +714,7 @@ function pis_generated( $cached ) {
  *
  * @since 3.0
  */
-function pis_get_comments_number( $pis_post_id ) {
+function pis_get_comments_number( $pis_post_id, $link ) {
 	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value
 
 	if ( 0 == $num_comments && ! comments_open( $pis_post_id ) ) {
@@ -728,7 +728,11 @@ function pis_get_comments_number( $pis_post_id ) {
 		}
 
 		// Contruct the HTML string for the comments.
-		$output = '<span class="pis-reply"><a href="' . get_comments_link( $pis_post_id ) .'">'. $comments.'</a>';
+		if ( $link ) {
+			$output = '<span class="pis-reply"><a href="' . get_comments_link( $pis_post_id ) . '">' . $comments . '</a></span>';
+		} else {
+			$output = '<span class="pis-reply">' . $comments . '</span>';
+		}
 	}
 
 	return $output;

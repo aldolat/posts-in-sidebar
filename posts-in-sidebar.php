@@ -271,6 +271,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'linkify_date'        => false,
 		'comments'            => false,
 		'comments_text'       => __( 'Comments:', 'pis' ),
+		'linkify_comments'    => true,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 
@@ -551,7 +552,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID );
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID, $linkify_comments );
 					}
 
 					/* The post content */
@@ -585,7 +586,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( ! $utility_after_title ) {
-						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID );
+						$pis_output .= pis_utility_section( $display_author, $display_date, $comments, $utility_margin, $margin_unit, $author_text, $linkify_author, $utility_sep, $date_text, $linkify_date, $comments_text, $pis_query->post->ID, $linkify_comments );
 					}
 
 					/* The categories */

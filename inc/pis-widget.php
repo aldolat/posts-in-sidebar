@@ -146,6 +146,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = '';
 		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = '';
+		if ( ! isset ( $instance['linkify_comments'] ) )    $instance['linkify_comments']     = true;
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '';
 		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = false;
 		if ( ! isset( $instance['categories'] ) )           $instance['categories']           = false;
@@ -296,6 +297,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'linkify_date'        => $instance['linkify_date'],
 			'comments'            => $instance['comments'],
 			'comments_text'       => $instance['comments_text'],
+			'linkify_comments'    => $instance['linkify_comments'],
 			'utility_sep'         => $instance['utility_sep'],
 			'utility_after_title' => $instance['utility_after_title'],
 
@@ -531,6 +533,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['linkify_date']        = isset( $new_instance['linkify_date'] ) ? 1 : 0;
 		$instance['comments']            = isset( $new_instance['comments'] ) ? 1 : 0;
 		$instance['comments_text']       = strip_tags( $new_instance['comments_text'] );
+		$instance['linkify_comments']    = isset( $new_instance['linkify_comments'] ) ? 1 : 0;
 		$instance['utility_sep']         = strip_tags( $new_instance['utility_sep'] );
 		$instance['utility_after_title'] = isset( $new_instance['utility_after_title'] ) ? 1 : 0;
 
@@ -737,6 +740,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'linkify_date'        => false,
 			'comments'            => false,
 			'comments_text'       => __( 'Comments:', 'pis' ),
+			'linkify_comments'    => true,
 			'utility_sep'         => '|',
 			'utility_after_title' => false,
 
@@ -819,6 +823,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$display_date         = (bool) $instance['display_date'];
 		$linkify_date         = (bool) $instance['linkify_date'];
 		$comments             = (bool) $instance['comments'];
+		$linkify_comments     = (bool) $instance['linkify_comments'];
 		$categories           = (bool) $instance['categories'];
 		$tags                 = (bool) $instance['tags'];
 		$display_custom_tax   = (bool) $instance['display_custom_tax'];
@@ -1990,6 +1995,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Comments text
 								pis_form_input_text( __( 'Use this text before comments', 'pis' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), __( 'Comments:', 'pis' ) ); ?>
+
+								<?php // ================= Comments link
+								pis_form_checkbox( __( 'Link the comments to post\'s comments', 'pis' ), $this->get_field_id( 'linkify_comments' ), $this->get_field_name( 'linkify_comments' ), checked( $linkify_comments, true, false ) ); ?>
 
 							</div>
 

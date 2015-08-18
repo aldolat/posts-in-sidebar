@@ -2221,18 +2221,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => __( 'Tag', 'pis' )
 									),
 								);
-								/*
-								$custom_post_types = (array) get_post_types( array(
-									'_builtin'            => false,
-									'exclude_from_search' => false,
-								), 'objects' );
-								foreach ( $custom_post_types as $custom_post_type ) {
-									$options[] = array(
-										'value' => $custom_post_type->name,
-										'desc'  => sprintf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ),
-									);
-								}
-								*/
 								/* Custom post type */
 								$custom_post_types = get_post_types( array(
 									'_builtin' => false
@@ -2276,22 +2264,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<div class="pis-linkto-tax-name">
 									<?php // ================= Taxonomy name for archive link
 									pis_form_input_text(
-										__( 'Enter taxonomy name (the term name of the custom post type or custom taxonomy)', 'pis' ),
+										__( 'Taxonomy name', 'pis' ),
 										$this->get_field_id( 'tax_name' ),
 										$this->get_field_name( 'tax_name' ),
 										esc_attr( $instance['tax_name'] ),
-										__( 'genre', 'pis' )
+										__( 'genre', 'pis' ),
+										sprintf( __( 'Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s).', 'pis' ), '<code>', '</code>' ),
+										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
 
 								<div class="pis-linkto-term-name">
 									<?php // ================= Taxonomy term name for archive link
 									pis_form_input_text(
-										__( 'Enter taxonomy term name (author, category, tag, custom post type, or custom taxonomy name)', 'pis' ),
+										__( 'Taxonomy term name', 'pis' ),
 										$this->get_field_id( 'tax_term_name' ),
 										$this->get_field_name( 'tax_term_name' ),
 										esc_attr( $instance['tax_term_name'] ),
-										__( 'science', 'pis' )
+										__( 'science', 'pis' ),
+										sprintf( __( 'Enter the name of the taxonomy term (e.g, %1$sscience%2$s if the taxonomy is %1$sgenre%2$s. If you selected %1$sAuthor%2$s, enter the author slug; if you selected %1$sCategory%2$s, enter the category slug, and so on).', 'pis' ), '<code>', '</code>' ),
+										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
 

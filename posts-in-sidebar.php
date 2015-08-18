@@ -734,15 +734,15 @@ function pis_get_posts_in_sidebar( $args ) {
 		/* The link to the entire archive */
 		if ( $archive_link ) {
 			$pis_output .= pis_archive_link( array(
-				'link_to' => $link_to,
-				'author' => $author,
-				'cat' => $cat,
-				'tag' => $tag,
-				'post_type' => $post_type,
-				'post_format' => $post_format,
-				'archive_text' => $archive_text,
+				'link_to'        => $link_to,
+				'author'         => $author,
+				'cat'            => $cat,
+				'tag'            => $tag,
+				'post_type'      => $post_type,
+				'post_format'    => $post_format,
+				'archive_text'   => $archive_text,
 				'archive_margin' => $archive_margin,
-				'margin_unit' => $margin_unit
+				'margin_unit'    => $margin_unit
 			) );
 		} ?>
 

@@ -854,6 +854,7 @@ function pis_archive_link( $args ) {
 
 	$wp_post_type = array( 'post', 'page', 'media', 'any' );
 
+	// Link to Author archive
 	if ( 'author' == $link_to && isset( $author ) ) {
 		$author_infos = get_user_by( 'slug', $author );
 		if ( $author_infos ) {
@@ -861,26 +862,30 @@ function pis_archive_link( $args ) {
 			$term_name = $author_infos->display_name;
 			$title_text = sprintf( __( 'Display all posts by %s', 'pis' ), $term_name );
 		}
-	} elseif ( 'category' == $link_to && isset( $cat ) ) {
+	} // Link to Category archive
+	elseif ( 'category' == $link_to && isset( $cat ) ) {
 		$term_identity = get_term_by( 'slug', $cat, 'category' );
 		if ( $term_identity ) {
 			$term_link = get_category_link( $term_identity->term_id );
 			$term_name = $term_identity->name;
 			$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_name );
 		}
-	} elseif ( 'tag' == $link_to && isset( $tag ) ) {
+	} // Link to Tag archive
+	elseif ( 'tag' == $link_to && isset( $tag ) ) {
 		$term_identity = get_term_by( 'slug', $tag, 'post_tag' );
 		if ( $term_identity ) {
 			$term_link = get_tag_link( $term_identity->term_id );
 			$term_name = $term_identity->name;
 			$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_identity->name );
 		}
-	} elseif ( ! in_array( $post_type, $wp_post_type ) ) {
+	} // Link to Custom Post Type archive
+	elseif ( ! in_array( $post_type, $wp_post_type ) ) {
 		$term_link = get_post_type_archive_link( $link_to );
 		$post_type_object = get_post_type_object( $link_to );
 		$term_name = $post_type_object->labels->name;
 		$title_text = sprintf( __( 'Display all %s', 'pis' ), $term_name );
-	} elseif ( term_exists( $link_to, 'post_format' ) && $link_to == $post_format ) {
+	} // Link to Post Format archive
+	elseif ( $post_format == $link_to && term_exists( $link_to, 'post_format' ) ) {
 		$term_link = get_post_format_link( substr( $link_to, 12 ) );
 		$term_object = get_term_by( 'slug', $link_to, 'post_format' );
 		$term_name = $term_object->name;

@@ -894,6 +894,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em><?php _e( 'In this section you can define which type of posts you want to retrieve and which taxonomy the plugin will use. Other parameters are available to better define the query.', 'pis' ); ?></em></p>
 
+				<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+
 				<div class="pis-column-container">
 
 					<div class="pis-column">
@@ -933,8 +935,44 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('posts_id'),
 							esc_attr( $instance['posts_id'] ),
 							'5, 29, 523, 4519',
-							sprintf( __( 'Insert IDs separated by commas. To easily find the IDs, install %1$sthis plugin%2$s.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' )
+							__( 'Insert IDs separated by commas.', 'pis' )
 						); ?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= Category
+						pis_form_input_text(
+							__( 'Get posts with these categories', 'pis' ),
+							$this->get_field_id('cat'),
+							$this->get_field_name('cat'),
+							esc_attr( $instance['cat'] ),
+							__( 'books, ebooks', 'pis' ),
+							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+						); ?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= Tag
+						pis_form_input_text(
+							__( 'Get posts with these tags', 'pis' ),
+							$this->get_field_id('tag'),
+							$this->get_field_name('tag'),
+							esc_attr( $instance['tag'] ),
+							__( 'best-sellers', 'pis' ),
+							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+						); ?>
+
+					</div>
+
+				</div>
+
+				<div class="column-container">
+
+					<div class="pis-column">
 
 						<?php // ================= Author
 						$options = array(
@@ -965,31 +1003,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('author_in'),
 							esc_attr( $instance['author_in'] ),
 							__( '1, 23, 45', 'pis' ),
-							__( 'Insert IDs separated by commas. ', 'pis' )
-						); ?>
-
-					</div>
-
-					<div class="pis-column">
-
-						<?php // ================= Category
-						pis_form_input_text(
-							__( 'Get posts with these categories', 'pis' ),
-							$this->get_field_id('cat'),
-							$this->get_field_name('cat'),
-							esc_attr( $instance['cat'] ),
-							__( 'books, ebooks', 'pis' ),
-							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
-						); ?>
-
-						<?php // ================= Tag
-						pis_form_input_text(
-							__( 'Get posts with these tags', 'pis' ),
-							$this->get_field_id('tag'),
-							$this->get_field_name('tag'),
-							esc_attr( $instance['tag'] ),
-							__( 'best-sellers', 'pis' ),
-							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+							__( 'Insert IDs separated by commas.', 'pis' )
 						); ?>
 
 					</div>
@@ -1003,7 +1017,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('post_parent_in'),
 							esc_attr( $instance['post_parent_in'] ),
 							__( '2, 5, 12, 14, 20', 'pis' ),
-							__( 'Insert IDs separated by commas.' )
+							__( 'Insert IDs separated by commas.', 'pis' )
 						); ?>
 
 						<?php // ================= Post format
@@ -1048,6 +1062,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$instance['post_status']
 						); ?>
 
+					</div>
+
+					<div class="pis-column">
+
 						<?php // ================= Post meta key
 						pis_form_input_text(
 							__( 'Get post with this meta key', 'pis' ),
@@ -1077,123 +1095,123 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					</div>
 
-					<div class="column-container pis-2col">
+				</div>
 
-						<div class="pis-column">
+				<div class="column-container pis-2col">
 
-							<?php // ================= Posts quantity
-							pis_form_input_text(
-								__( 'Get this number of posts', 'pis' ),
-								$this->get_field_id('number'),
-								$this->get_field_name('number'),
-								esc_attr( $instance['number'] ),
-								'3',
-								sprintf( __( 'The value %s shows all the posts.', 'pis' ), '<code>-1</code>' )
-							); ?>
+					<div class="pis-column">
 
-							<?php // ================= Ignore sticky post
-							pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
+						<?php // ================= Posts quantity
+						pis_form_input_text(
+							__( 'Get this number of posts', 'pis' ),
+							$this->get_field_id('number'),
+							$this->get_field_name('number'),
+							esc_attr( $instance['number'] ),
+							'3',
+							sprintf( __( 'The value %s shows all the posts.', 'pis' ), '<code>-1</code>' )
+						); ?>
 
-						</div>
+						<?php // ================= Ignore sticky post
+						pis_form_checkbox( __( 'Do not display sticky posts on top of other posts', 'pis' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), __( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'pis' ) ); ?>
 
-						<div class="pis-column">
+					</div>
 
-							<?php // ================= Post order by
-							$options = array(
-								'none' => array(
-									'value' => 'none',
-									'desc'  => __( 'None', 'pis' )
-								),
-								'id' => array(
-									'value' => 'id',
-									'desc'  => __( 'ID', 'pis' )
-								),
-								'author' => array(
-									'value' => 'author',
-									'desc'  => __( 'Author', 'pis' )
-								),
-								'title' => array(
-									'value' => 'title',
-									'desc'  => __( 'Title', 'pis' )
-								),
-								'name' => array(
-									'value' => 'name',
-									'desc'  => __( 'Name (post slug)', 'pis' )
-								),
-								'date' => array(
-									'value' => 'date',
-									'desc'  => __( 'Date', 'pis' )
-								),
-								'modified' => array(
-									'value' => 'modified',
-									'desc'  => __( 'Modified', 'pis' )
-								),
-								'parent' => array(
-									'value' => 'parent',
-									'desc'  => __( 'Parent', 'pis' )
-								),
-								'rand' => array(
-									'value' => 'rand',
-									'desc'  => __( 'Random', 'pis' )
-								),
-								'comment_count' => array(
-									'value' => 'comment_count',
-									'desc'  => __( 'Comment count', 'pis' )
-								),
-								'menu_order' => array(
-									'value' => 'menu_order',
-									'desc'  => __( 'Menu order', 'pis' )
-								),
-								'meta_value' => array(
-									'value' => 'meta_value',
-									'desc'  => __( 'Meta value', 'pis' )
-								),
-								'meta_value_num' => array(
-									'value' => 'meta_value_num',
-									'desc'  => __( 'Meta value number', 'pis' )
-								),
-								'post__in' => array(
-									'value' => 'post__in',
-									'desc'  => __( 'Preserve ID order', 'pis' )
-								),
-							);
-							pis_form_select(
-								__( 'Order posts by', 'pis' ),
-								$this->get_field_id('orderby'),
-								$this->get_field_name('orderby'),
-								$options,
-								$instance['orderby']
-							); ?>
+					<div class="pis-column">
 
-							<?php // ================= Post order
-							$options = array(
-								'asc' => array(
-									'value' => 'ASC',
-									'desc'  => __( 'Ascending', 'pis' )
-								),
-								'desc' => array(
-									'value' => 'DESC',
-									'desc'  => __( 'Descending', 'pis' )
-								),
-							);
-							pis_form_select(
-								__( 'The order will be', 'pis' ),
-								$this->get_field_id('order'),
-								$this->get_field_name('order'),
-								$options,
-								$instance['order']
-							); ?>
+						<?php // ================= Post order by
+						$options = array(
+							'none' => array(
+								'value' => 'none',
+								'desc'  => __( 'None', 'pis' )
+							),
+							'id' => array(
+								'value' => 'id',
+								'desc'  => __( 'ID', 'pis' )
+							),
+							'author' => array(
+								'value' => 'author',
+								'desc'  => __( 'Author', 'pis' )
+							),
+							'title' => array(
+								'value' => 'title',
+								'desc'  => __( 'Title', 'pis' )
+							),
+							'name' => array(
+								'value' => 'name',
+								'desc'  => __( 'Name (post slug)', 'pis' )
+							),
+							'date' => array(
+								'value' => 'date',
+								'desc'  => __( 'Date', 'pis' )
+							),
+							'modified' => array(
+								'value' => 'modified',
+								'desc'  => __( 'Modified', 'pis' )
+							),
+							'parent' => array(
+								'value' => 'parent',
+								'desc'  => __( 'Parent', 'pis' )
+							),
+							'rand' => array(
+								'value' => 'rand',
+								'desc'  => __( 'Random', 'pis' )
+							),
+							'comment_count' => array(
+								'value' => 'comment_count',
+								'desc'  => __( 'Comment count', 'pis' )
+							),
+							'menu_order' => array(
+								'value' => 'menu_order',
+								'desc'  => __( 'Menu order', 'pis' )
+							),
+							'meta_value' => array(
+								'value' => 'meta_value',
+								'desc'  => __( 'Meta value', 'pis' )
+							),
+							'meta_value_num' => array(
+								'value' => 'meta_value_num',
+								'desc'  => __( 'Meta value number', 'pis' )
+							),
+							'post__in' => array(
+								'value' => 'post__in',
+								'desc'  => __( 'Preserve ID order', 'pis' )
+							),
+						);
+						pis_form_select(
+							__( 'Order posts by', 'pis' ),
+							$this->get_field_id('orderby'),
+							$this->get_field_name('orderby'),
+							$options,
+							$instance['orderby']
+						); ?>
 
-							<?php // ================= Number of posts to skip
-							pis_form_input_text(
-								__( 'Skip this number of posts', 'pis' ),
-								$this->get_field_id('offset_number'),
-								$this->get_field_name('offset_number'),
-								esc_attr( $instance['offset_number'] ),
-								'5'
-							); ?>
+						<?php // ================= Post order
+						$options = array(
+							'asc' => array(
+								'value' => 'ASC',
+								'desc'  => __( 'Ascending', 'pis' )
+							),
+							'desc' => array(
+								'value' => 'DESC',
+								'desc'  => __( 'Descending', 'pis' )
+							),
+						);
+						pis_form_select(
+							__( 'The order will be', 'pis' ),
+							$this->get_field_id('order'),
+							$this->get_field_name('order'),
+							$options,
+							$instance['order']
+						); ?>
 
-						</div>
+						<?php // ================= Number of posts to skip
+						pis_form_input_text(
+							__( 'Skip this number of posts', 'pis' ),
+							$this->get_field_id('offset_number'),
+							$this->get_field_name('offset_number'),
+							esc_attr( $instance['offset_number'] ),
+							'5'
+						); ?>
 
 					</div>
 
@@ -1207,6 +1225,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					<div class="pis-container">
 
 						<p><em><?php _e( 'Define here which posts must be excluded from the query.', 'pis' ); ?></em></p>
+
+						<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<div class="pis-column-container">
 
@@ -1293,14 +1313,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<!-- Taxonomy complex query -->
+				<!-- Custom taxonomy query -->
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php _e( 'Taxonomy complex query', 'pis' ); ?></h4>
+					<h4 class="pis-widget-title"><?php _e( 'Custom taxonomy query', 'pis' ); ?></h4>
 
 					<div class="pis-container">
 
-						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy. If you want to use only one taxonomy, use "Taxonomy A1" field. If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category but not in the wisdom tag), then use also Taxonomy B1 field. If you have to put in relation more taxonomies, start using also the A2 and B2 fields (e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1] AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
+						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy
+						(category, tags, and custom taxonomies).
+						If you want to use only one taxonomy, use the "Taxonomy A1" field.
+						If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category
+						but not in the wisdom tag), then use also the "Taxonomy B1" field.
+						If you have to put in relation more taxonomies, start using also the "A2" and "B2" fields
+						(e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1]
+						AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
+
+						<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<?php // ================= Taxonomy relation between aa and bb
 						$options = array(

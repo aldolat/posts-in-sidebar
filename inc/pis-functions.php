@@ -903,5 +903,5 @@ function pis_archive_link( $args ) {
 		$output .= '</p>';
 	}
 
-	if ( isset( $output) ) return $output; else return '';
+	if ( isset( $output ) ) return $output; else return '';
 }

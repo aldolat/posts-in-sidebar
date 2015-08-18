@@ -733,52 +733,17 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		/* The link to the entire archive */
 		if ( $archive_link ) {
-
-			$wp_post_type = array( 'post', 'page', 'media', 'any' );
-
-			if ( 'author' == $link_to && isset( $author ) ) {
-				$author_infos = get_user_by( 'slug', $author );
-				if ( $author_infos ) {
-					$term_link = get_author_posts_url( $author_infos->ID, $author );
-					$term_name = $author_infos->display_name;
-					$title_text = sprintf( __( 'Display all posts by %s', 'pis' ), $term_name );
-				}
-			} elseif ( 'category' == $link_to && isset( $cat ) ) {
-				$term_identity = get_term_by( 'slug', $cat, 'category' );
-				if ( $term_identity ) {
-					$term_link = get_category_link( $term_identity->term_id );
-					$term_name = $term_identity->name;
-					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_name );
-				}
-			} elseif ( 'tag' == $link_to && isset( $tag ) ) {
-				$term_identity = get_term_by( 'slug', $tag, 'post_tag' );
-				if ( $term_identity ) {
-					$term_link = get_tag_link( $term_identity->term_id );
-					$term_name = $term_identity->name;
-					$title_text = sprintf( __( 'Display all posts archived under %s', 'pis' ), $term_identity->name );
-				}
-			} elseif ( ! in_array( $post_type, $wp_post_type ) ) {
-				$term_link = get_post_type_archive_link( $link_to );
-				$post_type_object = get_post_type_object( $link_to );
-				$term_name = $post_type_object->labels->name;
-				$title_text = sprintf( __( 'Display all %s', 'pis' ), $term_name );
-			} elseif ( term_exists( $link_to, 'post_format' ) && $link_to == $post_format ) {
-				$term_link = get_post_format_link( substr( $link_to, 12 ) );
-				$term_object = get_term_by( 'slug', $link_to, 'post_format' );
-				$term_name = $term_object->name;
-				$title_text = sprintf( __( 'Display all posts with post format %s', 'pis' ), $term_name );
-			}
-
-			if ( isset( $term_link ) ) {
-				if ( strpos( $archive_text, '%s' ) ) {
-					$archive_text = str_replace( '%s', $term_name, $archive_text );
-				}
-				$pis_output .= '<p ' . pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ) . '>';
-					$pis_output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . $term_link . '" title="' . esc_attr( $title_text ) . '" rel="bookmark">';
-						$pis_output .= $archive_text;
-					$pis_output .= '</a>';
-				$pis_output .= '</p>';
-			}
+			$pis_output .= pis_archive_link( array(
+				'link_to' => $link_to,
+				'author' => $author,
+				'cat' => $cat,
+				'tag' => $tag,
+				'post_type' => $post_type,
+				'post_format' => $post_format,
+				'archive_text' => $archive_text,
+				'archive_margin' => $archive_margin,
+				'margin_unit' => $margin_unit
+			) );
 		} ?>
 
 	<?php /* If we have no posts yet */

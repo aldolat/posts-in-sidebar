@@ -146,7 +146,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = '';
 		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = '';
-		if ( ! isset ( $instance['linkify_comments'] ) )    $instance['linkify_comments']     = true;
+		if ( ! isset( $instance['linkify_comments'] ) )     $instance['linkify_comments']     = true;
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '';
 		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = false;
 		if ( ! isset( $instance['categories'] ) )           $instance['categories']           = false;
@@ -160,6 +160,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['meta'] ) )                 $instance['meta']                 = '';
 		if ( ! isset( $instance['custom_field_key'] ) )     $instance['custom_field_key']     = false;
 		if ( ! isset( $instance['custom_field_sep'] ) )     $instance['custom_field_sep']     = '';
+		if ( ! isset( $instance['tax_name'] ) )             $instance['tax_name']             = '';
+		if ( ! isset( $instance['tax_term_name'] ) )        $instance['tax_term_name']        = '';
 		if ( ! isset( $instance['nopost_text'] ) )          $instance['nopost_text']          = '';
 		if ( ! isset( $instance['hide_widget'] ) )          $instance['hide_widget']          = false;
 		if ( ! isset( $instance['margin_unit'] ) )          $instance['margin_unit']          = '';
@@ -327,6 +329,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The link to the archive
 			'archive_link'        => $instance['archive_link'],
 			'link_to'             => $instance['link_to'],
+			'tax_name'            => $instance['tax_name'],
+			'tax_term_name'       => $instance['tax_term_name'],
 			'archive_text'        => $instance['archive_text'],
 
 			// Text when no posts found
@@ -419,6 +423,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
 		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
+			// Make empty $author if $author_in is not empty.
+			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
 		$instance['cat']                 = strip_tags( $new_instance['cat'] );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
@@ -563,6 +569,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// The link to the archive
 		$instance['archive_link']        = isset( $new_instance['archive_link'] ) ? 1 : 0;
 		$instance['link_to']             = $new_instance['link_to'];
+		$instance['tax_name']            = strip_tags( $new_instance['tax_name'] );
+		$instance['tax_term_name']       = strip_tags( $new_instance['tax_term_name'] );
 		$instance['archive_text']        = strip_tags( $new_instance['archive_text'] );
 
 		// Text when no posts found
@@ -770,6 +778,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The link to the archive
 			'archive_link'        => false,
 			'link_to'             => 'category',
+			'tax_name'            => '',
+			'tax_term_name'       => '',
 			'archive_text'        => __( 'Display all posts', 'pis' ),
 
 			// Text when no posts found
@@ -1003,7 +1013,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('author_in'),
 							esc_attr( $instance['author_in'] ),
 							__( '1, 23, 45', 'pis' ),
-							__( 'Insert IDs separated by commas.', 'pis' )
+							__( 'Insert IDs separated by commas. Note that if you fill this field, the previous one will be ignored.', 'pis' )
 						); ?>
 
 					</div>
@@ -2195,19 +2205,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Which taxonomy
 								$options = array(
+									/* Author */
 									'author' => array(
 										'value' => 'author',
 										'desc'  => __( 'Author', 'pis' )
 									),
+									/* Category */
 									'category' => array(
 										'value' => 'category',
 										'desc'  => __( 'Category', 'pis' )
 									),
+									/* tag */
 									'tag' => array(
 										'value' => 'tag',
 										'desc'  => __( 'Tag', 'pis' )
 									),
 								);
+								/*
 								$custom_post_types = (array) get_post_types( array(
 									'_builtin'            => false,
 									'exclude_from_search' => false,
@@ -2218,7 +2232,30 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => sprintf( __( 'Post type: %s', 'pis' ), $custom_post_type->labels->singular_name ),
 									);
 								}
-								if ( $post_formats ) {
+								*/
+								/* Custom post type */
+								$custom_post_types = get_post_types( array(
+									'_builtin' => false
+								) );
+								if ( $custom_post_types ) {
+									$options[] = array(
+										'value' => 'custom_post_type',
+										'desc'  => __( 'Custom post type', 'pis' ),
+									);
+								}
+								/* Custom taxonomy */
+								$custom_taxonomy = get_taxonomies( array(
+									'public'   => true,
+									'_builtin' => false
+								) );
+								if ( $custom_taxonomy ) {
+									$options[] = array(
+										'value' => 'custom_taxonomy',
+										'desc'  => __( 'Custom taxonomy', 'pis' ),
+									);
+								}
+								/* Post format */
+								if ( $post_formats ) { // $post_formats has been already declared (search above).
 									foreach ( $post_formats as $post_format ) {
 										$options[] = array(
 											'value' => $post_format->slug,
@@ -2231,8 +2268,32 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id('link_to'),
 									$this->get_field_name('link_to'),
 									$options,
-									$instance['link_to']
+									$instance['link_to'],
+									'',
+									'pis-linkto-form'
 								); ?>
+
+								<div class="pis-linkto-tax-name">
+									<?php // ================= Taxonomy name for archive link
+									pis_form_input_text(
+										__( 'Enter taxonomy name (the term name of the custom post type or custom taxonomy)', 'pis' ),
+										$this->get_field_id( 'tax_name' ),
+										$this->get_field_name( 'tax_name' ),
+										esc_attr( $instance['tax_name'] ),
+										__( 'genre', 'pis' )
+									); ?>
+								</div>
+
+								<div class="pis-linkto-term-name">
+									<?php // ================= Taxonomy term name for archive link
+									pis_form_input_text(
+										__( 'Enter taxonomy term name (author, category, tag, custom post type, or custom taxonomy name)', 'pis' ),
+										$this->get_field_id( 'tax_term_name' ),
+										$this->get_field_name( 'tax_term_name' ),
+										esc_attr( $instance['tax_term_name'] ),
+										__( 'science', 'pis' )
+									); ?>
+								</div>
 
 							</div>
 

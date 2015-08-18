@@ -301,6 +301,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		// The link to the archive
 		'archive_link'        => false,
 		'link_to'             => 'category',
+		'tax_name'            => '',
+		'tax_term_name'       => '',
 		'archive_text'        => __( 'Display all posts', 'pis' ),
 
 		// When no posts found
@@ -440,6 +442,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( 'attachment' == $post_type ) {
 		$post_status = 'inherit';
 	}
+
+	/**
+	 * If $post_in is not empy, make $author empty,
+	 * otherwise WordPress will use $author.
+	 *
+	 * @since 3.0
+	 */
+	if ( ! empty( $author_in ) ) $author = '';
 
 	// Build the array to get posts
 	$params = array(
@@ -735,11 +745,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		if ( $archive_link ) {
 			$pis_output .= pis_archive_link( array(
 				'link_to'        => $link_to,
-				'author'         => $author,
-				'cat'            => $cat,
-				'tag'            => $tag,
-				'post_type'      => $post_type,
-				'post_format'    => $post_format,
+				'tax_name'       => $tax_name,
+				'tax_term_name'  => $tax_term_name,
 				'archive_text'   => $archive_text,
 				'archive_margin' => $archive_margin,
 				'margin_unit'    => $margin_unit

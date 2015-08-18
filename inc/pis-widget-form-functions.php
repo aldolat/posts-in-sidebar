@@ -100,12 +100,14 @@ function pis_form_checkbox( $label, $id, $name, $checked, $comment = '' ) {
  * @param string $options The options to display.
  * @param string $value The values of the select form.
  * @param string $comment An optional comment to display. It is displayed below the select form.
+ * @param string $class The custom class for the select element.
  * @since 1.12
  */
-function pis_form_select( $label, $id, $name, $options, $value, $comment = '' ) {
+function pis_form_select( $label, $id, $name, $options, $value, $comment = '', $class = '' ) {
 	echo '<p>';
 	pis_form_label( $label, $id );
-	echo '&nbsp;<select name="' . $name . '">';
+	if ( $class ) $class = ' class="' . $class . '"';
+	echo '&nbsp;<select name="' . $name . '"' . $class . '>';
 		foreach ( $options as $option ) {
 			$selected = selected( $option['value'], $value, false );
 			echo '<option ' . $selected . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['desc'] ) . '</option>';

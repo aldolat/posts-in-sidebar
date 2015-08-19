@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-08-19 09:24:20+00:00\n"
-"PO-Revision-Date: 2015-08-19 11:24+0100\n"
+"POT-Creation-Date: 2015-08-19 11:06:41+00:00\n"
+"PO-Revision-Date: 2015-08-19 13:07+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -219,8 +219,8 @@ msgid ""
 "Enter slugs separated by commas. To display posts that have all of the "
 "categories, use %1$s (a plus) between terms, for example:%2$s."
 msgstr ""
-"Inserire abbreviazioni (slug) separate da virgola. Per visualizzare i post "
-"che hanno tutte le categorie, utilizzare %1$s (un più) tra i termini, per "
+"Inserire slug (abbreviazioni) separate da virgola. Per visualizzare i post "
+"che hanno tutte le categorie, utilizzare %1$s (un più) tra le voci, per "
 "esempio: %2$s."
 
 #: inc/pis-widget.php:971
@@ -236,8 +236,8 @@ msgid ""
 "Enter slugs separated by commas. To display posts that have all of the tags, "
 "use %1$s (a plus) between terms, for example:%2$s."
 msgstr ""
-"Inserire abbreviazioni (slug) separate da virgola. Per visualizzare i post "
-"che hanno tutti i tag, utilizzare %1$s (un più) tra i termini, per esempio: "
+"Inserire slug (abbreviazioni) separate da virgola. Per visualizzare i post "
+"che hanno tutti i tag, utilizzare %1$s (un più) tra le voci, per esempio: "
 "%2$s."
 
 #: inc/pis-widget.php:1002
@@ -298,7 +298,7 @@ msgstr "Preleva post da questa ricerca"
 
 #: inc/pis-widget.php:1103
 msgid "words to search"
-msgstr "termini da cercare"
+msgstr "parole da cercare"
 
 #: inc/pis-widget.php:1116
 msgid "Get this number of posts"
@@ -336,7 +336,7 @@ msgstr "Autore"
 
 #: inc/pis-widget.php:1151
 msgid "Name (post slug)"
-msgstr "Nome (abbreviazione)"
+msgstr "Nome (slug)"
 
 #: inc/pis-widget.php:1155
 msgid "Date"
@@ -486,12 +486,12 @@ msgstr "Inserire lo slug della tassonomia"
 #: inc/pis-widget.php:1376 inc/pis-widget.php:1437 inc/pis-widget.php:1483
 #: inc/pis-widget.php:1544
 msgid "Term ID"
-msgstr "ID del termine"
+msgstr "ID della voce"
 
 #: inc/pis-widget.php:1380 inc/pis-widget.php:1441 inc/pis-widget.php:1487
 #: inc/pis-widget.php:1548
 msgid "Slug"
-msgstr "Abbreviazione"
+msgstr "Slug (abbreviazione)"
 
 #: inc/pis-widget.php:1384 inc/pis-widget.php:1445 inc/pis-widget.php:1491
 #: inc/pis-widget.php:1552
@@ -506,12 +506,12 @@ msgstr "Campo"
 #: inc/pis-widget.php:1387 inc/pis-widget.php:1448 inc/pis-widget.php:1494
 #: inc/pis-widget.php:1555
 msgid "Select taxonomy term by this field."
-msgstr "Selezionare il termine della tassonomia in questo campo."
+msgstr "Selezionare la voce della tassonomia in questo campo."
 
 #: inc/pis-widget.php:1390 inc/pis-widget.php:1451 inc/pis-widget.php:1497
 #: inc/pis-widget.php:1558
 msgid "Terms"
-msgstr "Termini"
+msgstr "Voci"
 
 #: inc/pis-widget.php:1390
 msgid "gnu-linux,kde"
@@ -530,7 +530,7 @@ msgstr "Operatore"
 #: inc/pis-widget.php:1407 inc/pis-widget.php:1468 inc/pis-widget.php:1514
 #: inc/pis-widget.php:1575
 msgid "Operator to test for terms."
-msgstr "Operatore per i termini."
+msgstr "Operatore per le voci."
 
 #: inc/pis-widget.php:1426
 msgid "Relation between A1 and A2 taxonomies"
@@ -815,12 +815,12 @@ msgstr "Allinea l'immagine a"
 #: inc/pis-widget.php:1946
 msgid ""
 "Note that in order to use image sizes different from the WordPress "
-"standards, add them to your %3$sfunctions.php%4$s file. See the %1$sCodex"
-"%2$s for further information."
+"standards, add them to your theme's %3$sfunctions.php%4$s file. See the "
+"%1$sCodex%2$s for further information."
 msgstr ""
 "Si noti che, per usare dimensioni di immagine diverse da quelle standard di "
-"WordPress, esse vanno aggiunte nel file %3$sfunctions.php%4$s. Si legga il "
-"%1$sCodex%2$s per ulteriori informazioni."
+"WordPress, esse vanno aggiunte nel file %3$sfunctions.php%4$s del proprio "
+"tema. Si legga il %1$sCodex%2$s per ulteriori informazioni."
 
 #: inc/pis-widget.php:1950
 msgid "You can also use %1$sa plugin%2$s that could help you in doing it."
@@ -974,11 +974,11 @@ msgstr "Mostra le tassonomie personalizzate"
 
 #: inc/pis-widget.php:2121
 msgid "Use this hashtag for terms"
-msgstr "Usa questo hashtag per i termini"
+msgstr "Usa questo hashtag per le voci"
 
 #: inc/pis-widget.php:2125
 msgid "Use this separator between terms"
-msgstr "Usa questo separatore fra i termini"
+msgstr "Usa questo separatore fra le voci"
 
 #: inc/pis-widget.php:2142
 msgid "The custom field"
@@ -1157,7 +1157,7 @@ msgstr "Margine inferiore dei tag"
 
 #: inc/pis-widget.php:2410
 msgid "Terms bottom margin"
-msgstr "Margine inferiore dei termini"
+msgstr "Margine inferiore delle voci"
 
 #: inc/pis-widget.php:2411
 msgid "Custom field bottom margin"

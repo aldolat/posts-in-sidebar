@@ -1943,7 +1943,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<p>
 									<em>
 										<?php printf(
-											__( 'Note that in order to use image sizes different from the WordPress standards, add them to your %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'pis' ),
+											__( 'Note that in order to use image sizes different from the WordPress standards, add them to your theme\'s %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'pis' ),
 											'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
 										); ?>
 										<?php printf(

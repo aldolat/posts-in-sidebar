@@ -67,8 +67,9 @@
 	text-align: center;
 }
 .pis-alert {
-	color: #777;
 	font-weight: bold;
+	background-color: #F7F2D2;
+	padding: 1em;
 }
 .pis-section select {
 	width: 99%;

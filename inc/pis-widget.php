@@ -2545,7 +2545,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<div class="pis-container">
 
-				<p><strong><?php _e( 'Use this options for debugging purposes only. Please note that the informations will be displayed publicly on your site.', 'pis' ); ?></strong></p>
+				<p class="pis-alert"><strong><?php _e( 'Use this options for debugging purposes only. Please note that the informations will be displayed publicly on your site.', 'pis' ); ?></strong></p>
 
 				<?php // ================= Debug: display the query for the widget
 				pis_form_checkbox(

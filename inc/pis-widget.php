@@ -980,7 +980,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<div class="column-container">
+				<div class="pis-column-container">
 
 					<div class="pis-column">
 
@@ -1107,7 +1107,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<div class="column-container pis-2col">
+				<div class="pis-column-container pis-2col">
 
 					<div class="pis-column">
 
@@ -1341,22 +1341,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
-						<?php // ================= Taxonomy relation between aa and bb
-						$options = array(
-							'empty' => array(
-								'value' => '',
-								'desc'  => ''
-							),
-							'and' => array(
-								'value' => 'AND',
-								'desc'  => 'AND'
-							),
-							'or' => array(
-								'value' => 'OR',
-								'desc'  => 'OR'
-							),
-						);
-						pis_form_select( __( 'Relation between Column A and Column B', 'pis' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], __( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'pis' ) ); ?>
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+								<?php // ================= Taxonomy relation between aa and bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select( __( 'Relation between Column A and Column B', 'pis' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], __( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'pis' ) ); ?>
+
+							</div>
+
+						</div>
 
 						<hr />
 
@@ -1736,9 +1743,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<h5 class="pis-title-center"><?php _e( 'Other options', 'pis' ); ?></h5>
-
 						<div class="pis-column-container">
+
+							<h5 class="pis-title-center"><?php _e( 'Other options', 'pis' ); ?></h5>
 
 							<div class="pis-column">
 
@@ -2351,56 +2358,68 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em><?php _e( 'This section defines the margin for each line of the widget. Leave blank if you don\'t want to add any local style.', 'pis' ); ?></em></p>
 
-				<?php // ================= Margin unit
-				$options = array(
-					'px' => array(
-						'value' => 'px',
-						'desc'  => 'px'
-					),
-					'%' => array(
-						'value' => '%',
-						'desc'  => '%'
-					),
-					'em' => array(
-						'value' => 'em',
-						'desc'  => 'em'
-					),
-					'rem' => array(
-						'value' => 'rem',
-						'desc'  => 'rem'
-					),
-				);
-				pis_form_select(
-					__( 'Unit for margins', 'pis' ),
-					$this->get_field_id('margin_unit'),
-					$this->get_field_name('margin_unit'),
-					$options,
-					$instance['margin_unit']
-				); ?>
+				<div class="pis-column-container">
 
-				<p><strong><?php printf( __( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'pis' ), '<code>10</code>', '<code>0</code>' ); ?></strong></p>
+					<div class="pis-column">
 
-				<?php // ================= Margins ?>
+						<?php // ================= Margin unit
+						$options = array(
+							'px' => array(
+								'value' => 'px',
+								'desc'  => 'px'
+							),
+							'%' => array(
+								'value' => '%',
+								'desc'  => '%'
+							),
+							'em' => array(
+								'value' => 'em',
+								'desc'  => 'em'
+							),
+							'rem' => array(
+								'value' => 'rem',
+								'desc'  => 'rem'
+							),
+						);
+						pis_form_select(
+							__( 'Unit for margins', 'pis' ),
+							$this->get_field_id('margin_unit'),
+							$this->get_field_name('margin_unit'),
+							$options,
+							$instance['margin_unit']
+						); ?>
 
-				<div class="pis-column">
-					<?php pis_form_input_text( __( 'Introduction bottom margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Title bottom margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Image left &amp; right margin', 'pis' ), $this->get_field_id( 'side_image_margin' ), $this->get_field_name( 'side_image_margin' ), esc_attr( $instance['side_image_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Image bottom margin', 'pis' ), $this->get_field_id( 'bottom_image_margin' ), $this->get_field_name( 'bottom_image_margin' ), esc_attr( $instance['bottom_image_margin'] ) ); ?>
+						<p><?php printf( __( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'pis' ), '<code>10</code>', '<code>0</code>' ); ?></p>
+
+					</div>
+
 				</div>
 
-				<div class="pis-column">
-					<?php pis_form_input_text( __( 'Excerpt bottom margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Utility bottom margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Categories bottom margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Tags bottom margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
-				</div>
+				<div class="pis-column-container">
 
-				<div class="pis-column">
-					<?php pis_form_input_text( __( 'Terms bottom margin', 'pis' ), $this->get_field_id( 'terms_margin' ), $this->get_field_name( 'terms_margin' ), esc_attr( $instance['terms_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Custom field bottom margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'Archive bottom margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
-					<?php pis_form_input_text( __( 'No-posts bottom margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
+					<?php // ================= Margins ?>
+
+					<div class="pis-column">
+						<?php pis_form_input_text( __( 'Introduction bottom margin', 'pis' ), $this->get_field_id( 'intro_margin' ), $this->get_field_name( 'intro_margin' ), esc_attr( $instance['intro_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Title bottom margin', 'pis' ), $this->get_field_id( 'title_margin' ), $this->get_field_name( 'title_margin' ), esc_attr( $instance['title_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Image left &amp; right margin', 'pis' ), $this->get_field_id( 'side_image_margin' ), $this->get_field_name( 'side_image_margin' ), esc_attr( $instance['side_image_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Image bottom margin', 'pis' ), $this->get_field_id( 'bottom_image_margin' ), $this->get_field_name( 'bottom_image_margin' ), esc_attr( $instance['bottom_image_margin'] ) ); ?>
+					</div>
+
+					<div class="pis-column">
+						<?php pis_form_input_text( __( 'Excerpt bottom margin', 'pis' ), $this->get_field_id( 'excerpt_margin' ), $this->get_field_name( 'excerpt_margin' ), esc_attr( $instance['excerpt_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Utility bottom margin', 'pis' ), $this->get_field_id( 'utility_margin' ), $this->get_field_name( 'utility_margin' ), esc_attr( $instance['utility_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Categories bottom margin', 'pis' ), $this->get_field_id( 'categories_margin' ), $this->get_field_name( 'categories_margin' ), esc_attr( $instance['categories_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Tags bottom margin', 'pis' ), $this->get_field_id( 'tags_margin' ), $this->get_field_name( 'tags_margin' ), esc_attr( $instance['tags_margin'] ) ); ?>
+					</div>
+
+					<div class="pis-column">
+						<?php pis_form_input_text( __( 'Terms bottom margin', 'pis' ), $this->get_field_id( 'terms_margin' ), $this->get_field_name( 'terms_margin' ), esc_attr( $instance['terms_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Custom field bottom margin', 'pis' ), $this->get_field_id( 'custom_field_margin' ), $this->get_field_name( 'custom_field_margin' ), esc_attr( $instance['custom_field_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'Archive bottom margin', 'pis' ), $this->get_field_id( 'archive_margin' ), $this->get_field_name( 'archive_margin' ), esc_attr( $instance['archive_margin'] ) ); ?>
+						<?php pis_form_input_text( __( 'No-posts bottom margin', 'pis' ), $this->get_field_id( 'noposts_margin' ), $this->get_field_name( 'noposts_margin' ), esc_attr( $instance['noposts_margin'] ) ); ?>
+					</div>
+
 				</div>
 
 				<!-- Custom styles -->

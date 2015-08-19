@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 3.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-08-19 11:06:41+00:00\n"
+"POT-Creation-Date: 2015-08-19 11:13:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -878,7 +878,7 @@ msgid "Taxonomies"
 msgstr ""
 
 #: inc/pis-widget.php:2065
-msgid "The categories of the post"
+msgid "Categories"
 msgstr ""
 
 #: inc/pis-widget.php:2068
@@ -898,7 +898,7 @@ msgid "A space will be added after the separator."
 msgstr ""
 
 #: inc/pis-widget.php:2087
-msgid "The tags of the post"
+msgid "Tags"
 msgstr ""
 
 #: inc/pis-widget.php:2090
@@ -918,7 +918,7 @@ msgid "Use this separator between tags"
 msgstr ""
 
 #: inc/pis-widget.php:2112
-msgid "The custom taxonomies of the post"
+msgid "Custom taxonomies"
 msgstr ""
 
 #: inc/pis-widget.php:2115

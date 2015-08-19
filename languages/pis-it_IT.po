@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-08-19 11:06:41+00:00\n"
-"PO-Revision-Date: 2015-08-19 13:10+0100\n"
+"POT-Creation-Date: 2015-08-19 11:13:58+00:00\n"
+"PO-Revision-Date: 2015-08-19 13:14+0100\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -925,8 +925,8 @@ msgid "Taxonomies"
 msgstr "Tassonomie"
 
 #: inc/pis-widget.php:2065
-msgid "The categories of the post"
-msgstr "Le categorie del post"
+msgid "Categories"
+msgstr "Categorie"
 
 #: inc/pis-widget.php:2068
 msgid "Show the categories"
@@ -945,8 +945,8 @@ msgid "A space will be added after the separator."
 msgstr "Dopo il separatore verrà aggiunto uno spazio."
 
 #: inc/pis-widget.php:2087
-msgid "The tags of the post"
-msgstr "I tag del post"
+msgid "Tags"
+msgstr "Tag"
 
 #: inc/pis-widget.php:2090
 msgid "Show the tags"
@@ -965,8 +965,8 @@ msgid "Use this separator between tags"
 msgstr "Usa questo separatore fra i tag"
 
 #: inc/pis-widget.php:2112
-msgid "The custom taxonomies of the post"
-msgstr "Le tassonomie personalizzate del post"
+msgid "Custom taxonomies"
+msgstr "Tassonomie personalizzate"
 
 #: inc/pis-widget.php:2115
 msgid "Show the custom taxonomies"
@@ -1309,6 +1309,15 @@ msgstr "Aldo Latino"
 #. Author URI of the plugin/theme
 msgid "http://www.aldolat.it/"
 msgstr "http://www.aldolat.it/"
+
+#~ msgid "The categories of the post"
+#~ msgstr "Le categorie del post"
+
+#~ msgid "The tags of the post"
+#~ msgstr "I tag del post"
+
+#~ msgid "The custom taxonomies of the post"
+#~ msgstr "Le tassonomie personalizzate del post"
 
 #~ msgid "Insert IDs separated by commas. "
 #~ msgstr "Inserire ID separati da virgola."

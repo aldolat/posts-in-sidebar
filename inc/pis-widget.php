@@ -2062,7 +2062,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php _e( 'The categories of the post', 'pis' ); ?></h4>
+								<h4><?php _e( 'Categories', 'pis' ); ?></h4>
 
 								<?php // ================= Post categories
 								pis_form_checkbox( __( 'Show the categories', 'pis' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
@@ -2084,7 +2084,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php _e( 'The tags of the post', 'pis' ); ?></h4>
+								<h4><?php _e( 'Tags', 'pis' ); ?></h4>
 
 								<?php // ================= Post tags
 								pis_form_checkbox( __( 'Show the tags', 'pis' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
@@ -2109,7 +2109,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php _e( 'The custom taxonomies of the post', 'pis' ); ?></h4>
+								<h4><?php _e( 'Custom taxonomies', 'pis' ); ?></h4>
 
 								<?php // ================= Custom taxonomies
 								pis_form_checkbox( __( 'Show the custom taxonomies', 'pis' ),

@@ -4,30 +4,22 @@
  */
 jQuery(document).ready(function($){
 	// Animate widget sections
-	jQuery('body').on('click','.pis-widget-title',function(event){
-		jQuery(this).next().slideToggle();
+	$('body').on('click','.pis-widget-title',function(event){
+		$(this).next().slideToggle();
 	});
 
 	// Animate fields for archive link
-	jQuery(".pis-linkto-form").change(function(){
-		if ( jQuery(this).val() == "author" ) {
-			jQuery('.pis-linkto-tax-name').slideUp();
-			jQuery('.pis-linkto-term-name').slideDown();
-		} else if ( jQuery(this).val() == "category" ) {
-			jQuery('.pis-linkto-tax-name').slideUp();
-			jQuery('.pis-linkto-term-name').slideDown();
-		} else if ( jQuery(this).val() == "tag" ) {
-			jQuery('.pis-linkto-tax-name').slideUp();
-			jQuery('.pis-linkto-term-name').slideDown();
-		} else if ( jQuery(this).val() == "custom_post_type" ) {
-			jQuery('.pis-linkto-tax-name').slideUp();
-			jQuery('.pis-linkto-term-name').slideDown();
-		} else if ( jQuery(this).val() == "custom_taxonomy" ) {
-			jQuery('.pis-linkto-tax-name').slideDown();
-			jQuery('.pis-linkto-term-name').slideDown();
+	$(".pis-linkto-form").change(function(){
+		var select = $(this).val();
+		if ( select == "author" || select == "category" || select == "tag" || select == "custom_post_type" ) {
+			$('.pis-linkto-tax-name').slideUp();
+			$('.pis-linkto-term-name').slideDown();
+		} else if ( select == "custom_taxonomy" ) {
+			$('.pis-linkto-tax-name').slideDown();
+			$('.pis-linkto-term-name').slideDown();
 		} else { // This is the case of post formats
-			jQuery('.pis-linkto-tax-name').slideUp();
-			jQuery('.pis-linkto-term-name').slideUp();
+			$('.pis-linkto-tax-name').slideUp();
+			$('.pis-linkto-term-name').slideUp();
 		}
 	}).change();
 });

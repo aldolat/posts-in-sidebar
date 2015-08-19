@@ -2261,6 +2261,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'pis-linkto-form'
 								); ?>
 
+							</div>
+
+							<div class="pis-column">
+
 								<div class="pis-linkto-tax-name">
 									<?php // ================= Taxonomy name for archive link
 									pis_form_input_text(
@@ -2282,27 +2286,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'tax_term_name' ),
 										esc_attr( $instance['tax_term_name'] ),
 										__( 'science', 'pis' ),
-										sprintf( __( 'Enter the name of the taxonomy term (e.g, %1$sscience%2$s if the taxonomy is %1$sgenre%2$s. If you selected %1$sAuthor%2$s, enter the author slug; if you selected %1$sCategory%2$s, enter the category slug, and so on).', 'pis' ), '<code>', '</code>' ),
+										sprintf( __( 'Enter the name of the taxonomy term (e.g, %1$sscience%2$s if the taxonomy is "genre").%3$sIf you selected "Author" in "Link to the archive of" field, enter the author slug; if you selected "Category", enter the category slug, and so on.', 'pis' ), '<code>', '</code>', '<br />' ),
 										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
 
 							</div>
 
-							<div class="pis-column">
-
-								<?php // ================= Archive link text
-								pis_form_input_text(
-									__( 'Use this text for archive link', 'pis' ),
-									$this->get_field_id( 'archive_text' ),
-									$this->get_field_name( 'archive_text' ),
-									esc_attr( $instance['archive_text'] ),
-									__( 'Display all posts by %s', 'pis' ),
-									sprintf( __( 'Use %s to display the name of the taxonomy. Also, note that if you haven\'t selected any taxonomy, the link won\'t appear.', 'pis' ), '<code>%s</code>' )
-								); ?>
-							</div>
-
 						</div>
+
+						<?php // ================= Archive link text
+						pis_form_input_text(
+							__( 'Use this text for archive link', 'pis' ),
+							$this->get_field_id( 'archive_text' ),
+							$this->get_field_name( 'archive_text' ),
+							esc_attr( $instance['archive_text'] ),
+							__( 'Display all posts by %s', 'pis' ),
+							sprintf( __( 'Use %s to display the name of the taxonomy.', 'pis' ), '<code>%s</code>' )
+						); ?>
 
 					</div>
 

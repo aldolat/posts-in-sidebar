@@ -945,7 +945,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('posts_id'),
 							esc_attr( $instance['posts_id'] ),
 							'5, 29, 523, 4519',
-							__( 'Insert IDs separated by commas.', 'pis' )
+							__( 'Enter IDs separated by commas.', 'pis' )
 						); ?>
 
 					</div>
@@ -959,7 +959,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('cat'),
 							esc_attr( $instance['cat'] ),
 							__( 'books, ebooks', 'pis' ),
-							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+							sprintf( __( 'Enter slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'pis' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 						); ?>
 
 					</div>
@@ -973,7 +973,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('tag'),
 							esc_attr( $instance['tag'] ),
 							__( 'best-sellers', 'pis' ),
-							sprintf( __( 'Insert slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s%3$s.', 'pis' ), '<code>+</code>', '<br />', '<code>staff+news+our-works</code>' )
+							sprintf( __( 'Enter slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'pis' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 						); ?>
 
 					</div>
@@ -1013,7 +1013,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('author_in'),
 							esc_attr( $instance['author_in'] ),
 							__( '1, 23, 45', 'pis' ),
-							__( 'Insert IDs separated by commas. Note that if you fill this field, the previous one will be ignored.', 'pis' )
+							__( 'Enter IDs separated by commas. Note that if you fill this field, the previous one will be ignored.', 'pis' )
 						); ?>
 
 					</div>
@@ -1027,7 +1027,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('post_parent_in'),
 							esc_attr( $instance['post_parent_in'] ),
 							__( '2, 5, 12, 14, 20', 'pis' ),
-							__( 'Insert IDs separated by commas.', 'pis' )
+							__( 'Enter IDs separated by commas.', 'pis' )
 						); ?>
 
 						<?php // ================= Post format
@@ -1253,7 +1253,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('author_not_in'),
 									esc_attr( $var ),
 									'1, 23, 45',
-									__( 'Insert IDs separated by commas.', 'pis' )
+									__( 'Enter IDs separated by commas.', 'pis' )
 								); ?>
 
 								<?php // ================= Exclude posts from categories
@@ -1267,7 +1267,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('cat_not_in'),
 									esc_attr( $var ),
 									'3, 31',
-									__( 'Insert IDs separated by commas.', 'pis' )
+									__( 'Enter IDs separated by commas.', 'pis' )
 								); ?>
 
 							</div>
@@ -1285,7 +1285,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('tag_not_in'),
 									esc_attr( $var ),
 									'7, 11',
-									__( 'Insert IDs separated by commas.', 'pis' )
+									__( 'Enter IDs separated by commas.', 'pis' )
 								); ?>
 
 								<?php // ================= Exclude posts that have these ids.
@@ -1295,7 +1295,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('post_not_in'),
 									esc_attr( $instance['post_not_in'] ),
 									'5, 29, 523, 4519',
-									__( 'Insert IDs separated by commas.', 'pis' )
+									__( 'Enter IDs separated by commas.', 'pis' )
 								); ?>
 
 							</div>
@@ -1309,7 +1309,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('post_parent_not_in'),
 									esc_attr( $instance['post_parent_not_in'] ),
 									'5, 29, 523, 4519',
-									__( 'Insert IDs separated by commas.', 'pis' )
+									__( 'Enter IDs separated by commas.', 'pis' )
 								); ?>
 
 								<?php // ================= Exclude current post
@@ -1330,14 +1330,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy
-						(category, tags, and custom taxonomies).
-						If you want to use only one taxonomy, use the "Taxonomy A1" field.
-						If you have to put in relation two taxonomies (e.g., display posts that are in the quotes category
-						but not in the wisdom tag), then use also the "Taxonomy B1" field.
-						If you have to put in relation more taxonomies, start using also the "A2" and "B2" fields
-						(e.g., display posts that are in the quotes category [A1] OR both have the quote post format [B1]
-						AND are in the wisdom category [B2]).', 'pis' ); ?></em></p>
+						<p><em><?php _e( 'This section lets you retrieve posts from any taxonomy (category, tags, and custom taxonomies). If you want to use only one taxonomy, use the "Taxonomy A1" field. If you have to put in relation two taxonomies (e.g., display posts that are in the "quotes" category but not in the "wisdom" tag), then use also the "Taxonomy B1" field. If you have to put in relation more taxonomies, start using also the "A2" and "B2" fields (e.g., display posts that are in the "quotes" category [A1] OR both have the "Quote" post format [B1] AND are in the "wisdom" category [B2]).', 'pis' ); ?></em></p>
 
 						<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'pis' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
@@ -1374,7 +1367,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h4 class="pis-title-center"><?php _e( 'Column A', 'pis' ); ?></h4>
 
 								<?php // ================= Taxonomy aa
-								pis_form_input_text( sprintf( __( '%1$sTaxonomy A1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy A1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), __( 'category', 'pis' ), __( 'Enter the slug of the taxonomy.', 'pis' ) ); ?>
 
 								<?php // ================= Field aa
 								$options = array(
@@ -1394,7 +1387,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 								<?php // ================= Terms aa
-								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), __( 'gnu-linux,kde', 'pis' ), __( 'Enter terms, separated by comma.', 'pis' ) ); ?>
 
 								<?php // ================= Operator aa
 								$options = array(
@@ -1435,7 +1428,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<hr />
 
 								<?php // ================= Taxonomy ab
-								pis_form_input_text( sprintf( __( '%1$sTaxonomy A2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy A2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), __( 'movie-genre', 'pis' ), __( 'Enter the slug of the taxonomy.', 'pis' ) ); ?>
 
 								<?php // ================= Field ab
 								$options = array(
@@ -1455,7 +1448,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 								<?php // ================= Terms ab
-								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), __( 'action,sci-fi', 'pis' ), __( 'Enter terms, separated by comma.', 'pis' ) ); ?>
 
 								<?php // ================= Operator ab
 								$options = array(
@@ -1481,7 +1474,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h4 class="pis-title-center"><?php _e( 'Column B', 'pis' ); ?></h4>
 
 								<?php // ================= Taxonomy ba
-								pis_form_input_text( sprintf( __( '%1$sTaxonomy B1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy B1%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), __( 'post_tag', 'pis' ), __( 'Enter the slug of the taxonomy.', 'pis' ) ); ?>
 
 								<?php // ================= Field ba
 								$options = array(
@@ -1501,7 +1494,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 								<?php // ================= Terms ba
-								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), __( 'system,apache', 'pis' ), __( 'Enter terms, separated by comma.', 'pis' ) ); ?>
 
 								<?php // ================= Operator ba
 								$options = array(
@@ -1542,7 +1535,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<hr />
 
 								<?php // ================= Taxonomy bb
-								pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'post_format', 'pis' ), __( 'Insert the slug of the taxonomy.', 'pis' ) ); ?>
+								pis_form_input_text( sprintf( __( '%1$sTaxonomy B2%2$s', 'pis' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), __( 'post_format', 'pis' ), __( 'Enter the slug of the taxonomy.', 'pis' ) ); ?>
 
 								<?php // ================= Field bb
 								$options = array(
@@ -1562,7 +1555,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( __( 'Field', 'pis' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], __( 'Select taxonomy term by this field.', 'pis' ) ); ?>
 
 								<?php // ================= Terms bb
-								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'post-format-quote', 'pis' ), __( 'Insert terms, separated by comma.', 'pis' ) ); ?>
+								pis_form_input_text( __( 'Terms', 'pis' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), __( 'post-format-quote', 'pis' ), __( 'Enter terms, separated by comma.', 'pis' ) ); ?>
 
 								<?php // ================= Operator bb
 								$options = array(
@@ -2293,7 +2286,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'tax_term_name' ),
 										esc_attr( $instance['tax_term_name'] ),
 										__( 'science', 'pis' ),
-										sprintf( __( 'Enter the name of the taxonomy term (e.g, %1$sscience%2$s if the taxonomy is "genre").%3$sIf you selected "Author" in "Link to the archive of" field, enter the author slug; if you selected "Category", enter the category slug, and so on.', 'pis' ), '<code>', '</code>', '<br />' ),
+										sprintf( __( 'Enter the name of the taxonomy term (e.g., %1$sscience%2$s if the taxonomy is "genre").%3$sIf you selected "Author" in "Link to the archive of" field, enter the author slug; if you selected "Category", enter the category slug, and so on.', 'pis' ), '<code>', '</code>', '<br />' ),
 										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
@@ -2443,7 +2436,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('custom_styles'),
 							$this->get_field_name('custom_styles'),
 							$instance['custom_styles'],
-							__( 'Insert here your CSS styles', 'pis' ),
+							__( 'Enter here your CSS styles', 'pis' ),
 							$style = 'resize: vertical; width: 100%; height: 80px;'
 						); ?>
 

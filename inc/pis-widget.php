@@ -2514,7 +2514,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id( 'cached' ),
 							$this->get_field_name( 'cached' ),
 							checked( $cached, true, false ),
-							__( 'This option, if activated, will increase the performance.', 'pis' )
+							__( 'This option, if activated, will increase the performance but will show the same output during the defined cache time.', 'pis' )
 						); ?>
 
 					</div>

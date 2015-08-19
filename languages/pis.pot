@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 3.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2015-08-19 11:13:58+00:00\n"
+"POT-Creation-Date: 2015-08-19 11:21:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1183,7 +1183,9 @@ msgid "Use a cache to serve the output"
 msgstr ""
 
 #: inc/pis-widget.php:2517
-msgid "This option, if activated, will increase the performance."
+msgid ""
+"This option, if activated, will increase the performance but will show the "
+"same output during the defined cache time."
 msgstr ""
 
 #: inc/pis-widget.php:2526

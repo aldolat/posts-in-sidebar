@@ -153,7 +153,10 @@ function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
 		$output .= '</span>';
 	}
 
-	if ( true === $echo ) echo $output; else return $output;
+	if ( ! isset( $output ) )
+		return '';
+
+	if ( $echo ) echo $output; else return $output;
 }
 
 

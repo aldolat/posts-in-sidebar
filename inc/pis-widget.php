@@ -70,6 +70,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
+		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
+
 		echo $before_widget;
 
 		// Add a new container if the "Container Class" is not empty
@@ -378,6 +380,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		echo $after_widget;
+
+		echo '<!-- End Posts in Sidebar - ' . $widget_id . ' -->';
 	}
 
 	/**

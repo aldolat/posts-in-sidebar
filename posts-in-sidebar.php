@@ -266,6 +266,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		'display_author'      => false,
 		'author_text'         => __( 'By', 'pis' ),
 		'linkify_author'      => false,
+		'gravatar_display'    => false,
+		'gravatar_size'       => 32,
+		'gravatar_default'    => '',
+		'gravatar_position'   => 'next_author',
 		'display_date'        => false,
 		'date_text'           => __( 'Published on', 'pis' ),
 		'linkify_date'        => false,
@@ -577,9 +581,19 @@ function pis_get_posts_in_sidebar( $args ) {
 					}
 					// Close if $image_before_title
 
+
+
 					/* The title */
 					if ( $display_title ) {
 						$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+							/* The Gravatar */
+							if ( $gravatar_display && 'next_title' == $gravatar_position ) {
+								$pis_output .= pis_get_gravatar( array(
+									'author'  => get_the_author_meta( 'ID' ),
+									'size'    => $gravatar_size,
+									'default' => $gravatar_default
+								) );
+							}
 							if ( $link_on_title ) {
 								$post_link = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
 								$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
@@ -596,21 +610,28 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( $utility_after_title ) {
+
 						$pis_output .= pis_utility_section( array(
-							'display_author'   => $display_author,
-							'display_date'     => $display_date,
-							'comments'         => $comments,
-							'utility_margin'   => $utility_margin,
-							'margin_unit'      => $margin_unit,
-							'author_text'      => $author_text,
-							'linkify_author'   => $linkify_author,
-							'utility_sep'      => $utility_sep,
-							'date_text'        => $date_text,
-							'linkify_date'     => $linkify_date,
-							'comments_text'    => $comments_text,
-							'pis_post_id'      => $pis_query->post->ID,
-							'link_to_comments' => $linkify_comments,
+							'display_author'    => $display_author,
+							'display_date'      => $display_date,
+							'comments'          => $comments,
+							'utility_margin'    => $utility_margin,
+							'margin_unit'       => $margin_unit,
+							'author_text'       => $author_text,
+							'linkify_author'    => $linkify_author,
+							'utility_sep'       => $utility_sep,
+							'date_text'         => $date_text,
+							'linkify_date'      => $linkify_date,
+							'comments_text'     => $comments_text,
+							'pis_post_id'       => $pis_query->post->ID,
+							'link_to_comments'  => $linkify_comments,
+							'gravatar_display'  => $gravatar_display,
+							'gravatar_position' => $gravatar_position,
+							'gravatar_author'   => get_the_author_meta( 'ID' ),
+							'gravatar_size'     => $gravatar_size,
+							'gravatar_default'  => $gravatar_default,
 						) );
+
 					}
 
 					/* The post content */
@@ -645,6 +666,15 @@ function pis_get_posts_in_sidebar( $args ) {
 								}
 								// Close if $image_before_title
 
+								/* The Gravatar */
+								if ( $gravatar_display && 'next_post' == $gravatar_position ) {
+									$pis_output .= pis_get_gravatar( array(
+										'author'  => get_the_author_meta( 'ID' ),
+										'size'    => $gravatar_size,
+										'default' => $gravatar_default
+									) );
+								}
+
 								/* The text */
 								$pis_output .= pis_the_text( array(
 									'excerpt'    => $excerpt,
@@ -664,21 +694,28 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					/* The author, the date and the comments */
 					if ( ! $utility_after_title ) {
+
 						$pis_output .= pis_utility_section( array(
-							'display_author'   => $display_author,
-							'display_date'     => $display_date,
-							'comments'         => $comments,
-							'utility_margin'   => $utility_margin,
-							'margin_unit'      => $margin_unit,
-							'author_text'      => $author_text,
-							'linkify_author'   => $linkify_author,
-							'utility_sep'      => $utility_sep,
-							'date_text'        => $date_text,
-							'linkify_date'     => $linkify_date,
-							'comments_text'    => $comments_text,
-							'pis_post_id'      => $pis_query->post->ID,
-							'link_to_comments' => $linkify_comments,
+							'display_author'    => $display_author,
+							'display_date'      => $display_date,
+							'comments'          => $comments,
+							'utility_margin'    => $utility_margin,
+							'margin_unit'       => $margin_unit,
+							'author_text'       => $author_text,
+							'linkify_author'    => $linkify_author,
+							'utility_sep'       => $utility_sep,
+							'date_text'         => $date_text,
+							'linkify_date'      => $linkify_date,
+							'comments_text'     => $comments_text,
+							'pis_post_id'       => $pis_query->post->ID,
+							'link_to_comments'  => $linkify_comments,
+							'gravatar_display'  => $gravatar_display,
+							'gravatar_position' => $gravatar_position,
+							'gravatar_author'   => get_the_author_meta( 'ID' ),
+							'gravatar_size'     => $gravatar_size,
+							'gravatar_default'  => $gravatar_default,
 						) );
+
 					}
 
 					/* The categories */

@@ -92,6 +92,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 3.0 =
 
 * NEW: Added the shortcode.
+* NEW: Added Gravatar support for authors.
 * NEW: Added "Any" to posts status.
 * Reorganized the widget sections.
 * Changed some files names.

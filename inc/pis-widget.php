@@ -145,6 +145,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['display_author'] ) )       $instance['display_author']       = false;
 		if ( ! isset( $instance['author_text'] ) )          $instance['author_text']          = '';
 		if ( ! isset( $instance['linkify_author'] ) )       $instance['linkify_author']       = false;
+		if ( ! isset( $instance['gravatar_display'] ) )     $instance['gravatar_display']     = false;
+		if ( ! isset( $instance['gravatar_size'] ) )        $instance['gravatar_size']        = '';
+		if ( ! isset( $instance['gravatar_default'] ) )     $instance['gravatar_default']         = '';
+		if ( ! isset( $instance['gravatar_position'] ) )    $instance['gravatar_position']    = '';
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = '';
 		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = '';
@@ -296,6 +300,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_author'      => $instance['display_author'],
 			'author_text'         => $instance['author_text'],
 			'linkify_author'      => $instance['linkify_author'],
+			'gravatar_display'    => $instance['gravatar_display'],
+			'gravatar_size'       => $instance['gravatar_size'],
+			'gravatar_default'    => $instance['gravatar_default'],
+			'gravatar_position'   => $instance['gravatar_position'],
 			'display_date'        => $instance['display_date'],
 			'date_text'           => $instance['date_text'],
 			'linkify_date'        => $instance['linkify_date'],
@@ -538,6 +546,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['display_author']      = isset( $new_instance['display_author'] ) ? 1 : 0;
 		$instance['author_text']         = strip_tags( $new_instance['author_text'] );
 		$instance['linkify_author']      = isset( $new_instance['linkify_author'] ) ? 1 : 0;
+		$instance['gravatar_display']    = isset( $new_instance['gravatar_display'] ) ? 1 : 0;
+		$instance['gravatar_size']       = strip_tags( $new_instance['gravatar_size'] );
+		$instance['gravatar_default']    = esc_url( $new_instance['gravatar_default'] );
+		$instance['gravatar_position']   = $new_instance['gravatar_position'];
 		$instance['display_date']        = isset( $new_instance['display_date'] ) ? 1 : 0;
 		$instance['date_text']           = strip_tags( $new_instance['date_text'] );
 		$instance['linkify_date']        = isset( $new_instance['linkify_date'] ) ? 1 : 0;
@@ -747,6 +759,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_author'      => false,
 			'author_text'         => __( 'By', 'pis' ),
 			'linkify_author'      => false,
+			'gravatar_display'    => false,
+			'gravatar_size'       => 32,
+			'gravatar_default'    => '',
+			'gravatar_position'   => 'next_author',
 			'display_date'        => false,
 			'date_text'           => __( 'Published on', 'pis' ),
 			'linkify_date'        => false,
@@ -834,6 +850,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$utility_after_title  = (bool) $instance['utility_after_title'];
 		$display_author       = (bool) $instance['display_author'];
 		$linkify_author       = (bool) $instance['linkify_author'];
+		$gravatar_display     = (bool) $instance['gravatar_display'];
 		$display_date         = (bool) $instance['display_date'];
 		$linkify_date         = (bool) $instance['linkify_date'];
 		$comments             = (bool) $instance['comments'];
@@ -2046,11 +2063,63 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<?php // ================= Utility separator
-						pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
+						<div class="pis-column-container">
 
-						<?php // ================= Author
-						pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+							<div class="pis-column">
+
+								<?php // ================= Author gravatar
+								pis_form_checkbox( __( 'Display author\'s Gravatar', 'pis' ), $this->get_field_id( 'gravatar_display' ), $this->get_field_name( 'gravatar_display' ), checked( $gravatar_display, true, false ), '', 'pis-gravatar' ); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Utility separator
+								pis_form_input_text( __( 'Use this separator between author, date and comments', 'pis' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', __( 'A space will be added before and after the separator.', 'pis' ) ); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Section position
+								pis_form_checkbox( __( 'Display this section after the title of the post', 'pis' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+
+							</div>
+
+						</div>
+
+						<div class="pis-column-container pis-gravatar-options">
+
+							<div class="pis-column">
+								<?php // ================= Gravatar size
+								pis_form_input_text( __( 'Gravatar size', 'pis' ), $this->get_field_id( 'gravatar_size' ), $this->get_field_name( 'gravatar_size' ), esc_attr( $instance['gravatar_size'] ), '32' ); ?>
+							</div>
+
+							<div class="pis-column">
+								<?php // ================= Gravatar default image
+								pis_form_input_text( __( 'URL of the default Gravatar image', 'pis' ), $this->get_field_id( 'gravatar_default' ), $this->get_field_name( 'gravatar_default' ), esc_attr( $instance['gravatar_default'] ), 'http://example.com/image.jpg' ); ?>
+							</div>
+
+							<div class="pis-column">
+								<?php // ================= Gravatar position
+								$options = array(
+									'next_title' => array(
+										'value' => 'next_title',
+										'desc'  => __( 'Next to the post title', 'pis' )
+									),
+									'next_post' => array(
+										'value' => 'next_post',
+										'desc'  => __( 'Next to the post content', 'pis' )
+									),
+									'next_author' => array(
+										'value' => 'next_author',
+										'desc'  => __( 'Next to the author name', 'pis' )
+									),
+								);
+								pis_form_select( __( 'Gravatar position', 'pis' ), $this->get_field_id('gravatar_position'), $this->get_field_name('gravatar_position'), $options, $instance['gravatar_position'] ); ?>
+							</div>
+
+						</div>
 
 					</div>
 

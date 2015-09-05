@@ -209,19 +209,24 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  */
 function pis_utility_section( $args ) {
 	$defaults = array(
-		'display_author'   => false,
-		'display_date'     => false,
-		'comments'         => false,
-		'utility_margin'   => NULL,
-		'margin_unit'      => 'px',
-		'author_text'      => __( 'By', 'pis' ),
-		'linkify_author'   => false,
-		'utility_sep'      => '|',
-		'date_text'        => __( 'Published on', 'pis' ),
-		'linkify_date'     => false,
-		'comments_text'    => __( 'Comments:', 'pis' ),
-		'pis_post_id'      => '',
-		'link_to_comments' => true,
+		'display_author'    => false,
+		'display_date'      => false,
+		'comments'          => false,
+		'utility_margin'    => NULL,
+		'margin_unit'       => 'px',
+		'author_text'       => __( 'By', 'pis' ),
+		'linkify_author'    => false,
+		'utility_sep'       => '|',
+		'date_text'         => __( 'Published on', 'pis' ),
+		'linkify_date'      => false,
+		'comments_text'     => __( 'Comments:', 'pis' ),
+		'pis_post_id'       => '',
+		'link_to_comments'  => true,
+		'gravatar_display'  => false,
+		'gravatar_position' => '',
+		'gravatar_author'   => '',
+		'gravatar_size'     => 32,
+		'gravatar_default'  => '',
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -232,10 +237,19 @@ function pis_utility_section( $args ) {
 		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
 	}
 
+		/* The Gravatar */
+		if ( $gravatar_display && 'next_author' == $gravatar_position ) {
+			$output .= pis_get_gravatar( array(
+				'author'  => $gravatar_author,
+				'size'    => $gravatar_size,
+				'default' => $gravatar_default,
+			) );
+		}
+
 		/* The author */
 		if ( $display_author ) {
 			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
-				if ( $author_text ) $output .= $author_text . '&nbsp;';
+				if ( $author_text ) $output .= $author_text . ' ';
 				if ( $linkify_author ) {
 					$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
 					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
@@ -251,10 +265,10 @@ function pis_utility_section( $args ) {
 		/* The date */
 		if ( $display_date ) :
 			if ( $display_author ) {
-				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '>&nbsp;' . $utility_sep . '&nbsp;</span>';
+				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 			}
 			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
-				if ( $date_text ) $output .= $date_text . '&nbsp;';
+				if ( $date_text ) $output .= $date_text . ' ';
 				if ( $linkify_date ) {
 					$date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
 					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $date_title ) . '" rel="bookmark">';
@@ -271,10 +285,10 @@ function pis_utility_section( $args ) {
 		if ( ! post_password_required() ) :
 			if ( $comments ) {
 				if ( $display_author || $display_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '>&nbsp;' . $utility_sep . '&nbsp;</span>';
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 				}
 				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-					if ( $comments_text ) $output .= $comments_text . '&nbsp;';
+					if ( $comments_text ) $output .= $comments_text . ' ';
 					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
 				$output .= '</span>';
 			}
@@ -914,4 +928,25 @@ function pis_archive_link( $args ) {
 	}
 
 	if ( isset( $output ) ) return $output; else return '';
+}
+
+
+/**
+ * Returns the HTML string for the author's Gravatar image.
+ *
+ * @param array $args The array containing the custom args.
+ * @since 3.0
+ */
+function pis_get_gravatar( $args ) {
+	$defaults = array(
+		'author'    => '',
+		'size'      => 32,
+		'default'   => '',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '<span ' . pis_class( 'pis-gravatar', apply_filters( 'pis_gravatar_class', '' ), false ) . '>' . get_avatar( $author, $size, $default ) . '</span>';
+
+	return $output;
 }

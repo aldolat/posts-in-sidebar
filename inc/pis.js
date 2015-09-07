@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
 	});
 
 	// Animate fields for archive link
-	$(".pis-linkto-form").change(function(){
+	$('body').on('click','.pis-linkto-form',function(event){
 		var select = $(this).val();
 		if ( select == "author" || select == "category" || select == "tag" || select == "custom_post_type" ) {
 			$('.pis-linkto-tax-name').slideUp();
@@ -21,6 +21,14 @@ jQuery(document).ready(function($){
 			$('.pis-linkto-tax-name').slideUp();
 			$('.pis-linkto-term-name').slideUp();
 		}
-	}).change();
-});
+	});
 
+	// Animate options for Gravatar settings
+	$('body').on('click','.pis-gravatar',function(event){
+		if ( $(this).is(":checked")) {
+			$('.pis-gravatar-options').slideDown();
+		} else {
+			$('.pis-gravatar-options').slideUp();
+		}
+	});
+});

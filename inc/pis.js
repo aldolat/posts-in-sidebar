@@ -1,3 +1,7 @@
+/**
+ * Posts in Sidebar javascript for admin UI
+ * @since 2.0
+ */
 jQuery(document).ready(function($){
 	// Animate widget sections
 	$('body').on('click','.pis-widget-title',function(event){
@@ -19,28 +23,12 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	var pisGravatarChecked = sessionStorage.getItem( "pis-gravatar-checked" );
-	if( pisGravatarChecked !== null ) {
-		var pisGravatarCheckedVal = parseInt( pisGravatarChecked, 10 );
-		if( $( ".pis-gravatar-options" ).length ) {
-			if( pisGravatarCheckedVal == 1 ) {
-				$( ".pis-gravatar-options" ).slideDown();
-			} else {
-				$( ".pis-gravatar-options" ).slideUp();
-			}
-		}
-	}
-
-	var gravEvent = ( $( ".pis-gravatar" ).is( ":checkbox" ) ) ? "change" : "click";
-
 	// Animate options for Gravatar settings
-	$('body').on( gravEvent,'.pis-gravatar',function(event){
-		if ( $( this ).prop( "checked" ) ) {
-			sessionStorage.setItem( "pis-gravatar-checked", 1 );
+	$('body').on('click','.pis-gravatar',function(event){
+		if ( $(this).is(":checked")) {
 			$('.pis-gravatar-options').slideDown();
 		} else {
 			$('.pis-gravatar-options').slideUp();
-			sessionStorage.setItem( "pis-gravatar-checked", 0 );
 		}
 	});
 });

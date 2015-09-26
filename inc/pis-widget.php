@@ -2618,6 +2618,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<div class="pis-container">
 
+				<p><?php printf( __( 'You are using Posts in Sidebar version %s.', 'pis' ), '<strong>' . PIS_VERSION . '</strong>' ); ?></p>
+
 				<p class="pis-alert"><strong><?php _e( 'Use this options for debugging purposes only. Please note that the informations will be displayed publicly on your site.', 'pis' ); ?></strong></p>
 
 				<?php // ================= Debug: display the query for the widget

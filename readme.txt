@@ -96,6 +96,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * NEW: Added "Any" to posts status.
 * Reorganized the widget sections.
 * Changed some files names.
+* Changed translation domain into posts-in-sidebar.
 
 = 2.0.4 =
 

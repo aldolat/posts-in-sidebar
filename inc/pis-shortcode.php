@@ -98,29 +98,29 @@ function pis_shortcode( $atts ) {
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
 		'exc_length'          => 20,        // In words
-		'the_more'            => __( 'Read more&hellip;', 'pis' ),
+		'the_more'            => __( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
 		// Author, date and comments
 		'display_author'      => false,
-		'author_text'         => __( 'By', 'pis' ),
+		'author_text'         => __( 'By', 'posts-in-sidebar' ),
 		'linkify_author'      => false,
 		'display_date'        => false,
-		'date_text'           => __( 'Published on', 'pis' ),
+		'date_text'           => __( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'        => false,
 		'comments'            => false,
-		'comments_text'       => __( 'Comments:', 'pis' ),
+		'comments_text'       => __( 'Comments:', 'posts-in-sidebar' ),
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 
 		// The categories of the post
 		'categories'          => false,
-		'categ_text'          => __( 'Category:', 'pis' ),
+		'categ_text'          => __( 'Category:', 'posts-in-sidebar' ),
 		'categ_sep'           => ',',
 
 		// The tags of the post
 		'tags'                => false,
-		'tags_text'           => __( 'Tags:', 'pis' ),
+		'tags_text'           => __( 'Tags:', 'posts-in-sidebar' ),
 		'hashtag'             => '#',
 		'tag_sep'             => '',
 
@@ -139,10 +139,10 @@ function pis_shortcode( $atts ) {
 		// The link to the archive
 		'archive_link'        => false,
 		'link_to'             => 'category',
-		'archive_text'        => __( 'Display all posts', 'pis' ),
+		'archive_text'        => __( 'Display all posts', 'posts-in-sidebar' ),
 
 		// When no posts found
-		'nopost_text'         => __( 'No posts yet.', 'pis' ),
+		'nopost_text'         => __( 'No posts yet.', 'posts-in-sidebar' ),
 
 		// Styles
 		'margin_unit'         => 'px',

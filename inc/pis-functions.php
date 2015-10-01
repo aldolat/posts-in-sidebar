@@ -147,7 +147,7 @@ function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
 			$the_arrow = '';
 		}
 		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
-			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'pis' ) . '" rel="bookmark">';
+			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'posts-in-sidebar' ) . '" rel="bookmark">';
 				$output .= $the_more . '&nbsp;' . $the_arrow;
 			$output .= '</a>';
 		$output .= '</span>';
@@ -214,12 +214,12 @@ function pis_utility_section( $args ) {
 		'comments'          => false,
 		'utility_margin'    => NULL,
 		'margin_unit'       => 'px',
-		'author_text'       => __( 'By', 'pis' ),
+		'author_text'       => __( 'By', 'posts-in-sidebar' ),
 		'linkify_author'    => false,
 		'utility_sep'       => '|',
-		'date_text'         => __( 'Published on', 'pis' ),
+		'date_text'         => __( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'      => false,
-		'comments_text'     => __( 'Comments:', 'pis' ),
+		'comments_text'     => __( 'Comments:', 'posts-in-sidebar' ),
 		'pis_post_id'       => '',
 		'link_to_comments'  => true,
 		'gravatar_display'  => false,
@@ -251,7 +251,7 @@ function pis_utility_section( $args ) {
 			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
 				if ( $author_text ) $output .= $author_text . ' ';
 				if ( $linkify_author ) {
-					$author_title = sprintf( __( 'View all posts by %s', 'pis' ), get_the_author() );
+					$author_title = sprintf( __( 'View all posts by %s', 'posts-in-sidebar' ), get_the_author() );
 					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
 					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" title="' . esc_attr( $author_title ) . '" rel="author">';
 						$output .= get_the_author();
@@ -270,7 +270,7 @@ function pis_utility_section( $args ) {
 			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
 				if ( $date_text ) $output .= $date_text . ' ';
 				if ( $linkify_date ) {
-					$date_title = sprintf( __( 'Permalink to %s', 'pis' ), the_title_attribute( 'echo=0' ) );
+					$date_title = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
 					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $date_title ) . '" rel="bookmark">';
 						$output .= get_the_date();
 					$output .= '</a>';
@@ -433,7 +433,7 @@ function pis_the_text( $args ) {
 		'excerpt'    => 'excerpt',
 		'pis_query'  => '',
 		'exc_length' => 20,
-		'the_more'   => __( 'Read more&hellip;', 'pis' ),
+		'the_more'   => __( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'  => false,
 	);
 	$args = wp_parse_args( $args, $defaults );
@@ -770,28 +770,28 @@ function pis_debug( $parameters ) {
 	$output = '';
 
 	if ( $debug_query || $debug_params || $debug_query_number ) {
-		$output .= '<h3>' . sprintf( __( '%s Debug', 'pis' ), 'Posts in Sidebar' ) . '</h3>';
+		$output .= '<h3>' . sprintf( __( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
 		$output .= '<p>'; global $wp_version;
-			$output .= sprintf( __( 'Site URL: %s', 'pis' ), site_url() . '<br>' );
-			$output .= sprintf( __( 'WP version: %s', 'pis' ), $wp_version . '<br>' );
-			$output .= sprintf( __( 'PiS version: %s', 'pis' ), PIS_VERSION . '<br>' );
-			if ( $cached ) $output .= __( 'Cache: active', 'pis' ); else $output .= __( 'Cache: not active' );
+			$output .= sprintf( __( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '<br>' );
+			$output .= sprintf( __( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '<br>' );
+			$output .= sprintf( __( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '<br>' );
+			if ( $cached ) $output .= __( 'Cache: active', 'posts-in-sidebar' ); else $output .= __( 'Cache: not active' );
 		$output .= '</p>';
 	}
 
 	if ( $debug_query ) {
-		$output .= '<p><strong>' . __( 'The parameters for the query:', 'pis' ) . '</strong></p>';
+		$output .= '<p><strong>' . __( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
 		$output .= '<pre>' . print_r( $params, true ) . '</pre>';
 	}
 
 	if ( $debug_params ) {
-		$output .= '<p><strong>' . __( 'The complete set of parameters of the widget:', 'pis' ) . '</strong></p>';
+		$output .= '<p><strong>' . __( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
 		$output .= '<pre>' . print_r( $args, true ) . '</pre>';
 	}
 
 	if ( $debug_query_number ) {
-		$output .= '<p><strong>' . __( 'The total number of queries so far:', 'pis' ) . '</strong></p>';
-		$output .= '<pre>' . sprintf( __( '%1$s queries in %2$s seconds', 'pis' ), get_num_queries(), timer_stop() ) . '</pre>';
+		$output .= '<p><strong>' . __( 'The total number of queries so far:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<pre>' . sprintf( __( '%1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</pre>';
 	}
 
 	return $output;
@@ -827,13 +827,13 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value
 
 	if ( 0 == $num_comments && ! comments_open( $pis_post_id ) ) {
-		$output = __( 'Comments are closed.', 'pis' );
+		$output = __( 'Comments are closed.', 'posts-in-sidebar' );
 	} else {
 		// Construct the comments string.
 		if ( 0 < $num_comments ) {
-			$comments = sprintf( _n( '%s Comment', '%s Comments', $num_comments, 'pis' ), $num_comments );
+			$comments = sprintf( _n( '%s Comment', '%s Comments', $num_comments, 'posts-in-sidebar' ), $num_comments );
 		} else {
-			$comments = __( 'Leave a comment', 'pis' );
+			$comments = __( 'Leave a comment', 'posts-in-sidebar' );
 		}
 
 		// Contruct the HTML string for the comments.
@@ -859,7 +859,7 @@ function pis_archive_link( $args ) {
 		'link_to'        => 'category',
 		'tax_name'       => '',
 		'tax_term_name'  => '',
-		'archive_text'   => __( 'Display all posts', 'pis' ),
+		'archive_text'   => __( 'Display all posts', 'posts-in-sidebar' ),
 		'archive_margin' => NULL,
 		'margin_unit'    => 'px'
 	);

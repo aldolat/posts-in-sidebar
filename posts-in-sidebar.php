@@ -172,7 +172,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
-		'author_in'           => '',        // Aurthor IDs
+		'author_in'           => '',        // Author IDs
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',

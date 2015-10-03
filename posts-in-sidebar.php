@@ -6,7 +6,7 @@
  * Version: 3.0
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Text Domain: pis
+ * Text Domain: posts-in-sidebar
  * Domain Path: /languages/
  * License: GPLv3 or later
  */

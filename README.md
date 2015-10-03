@@ -36,7 +36,7 @@ Here are some of the functions you'll have:
 
 The powerful WordPress class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
 
-This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: a donation is very appreciated.
+This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: [a donation](http://dev.aldolat.it/projects/posts-in-sidebar/#donate) is very appreciated.
 
 Enjoy!
 

@@ -147,7 +147,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['linkify_author'] ) )       $instance['linkify_author']       = false;
 		if ( ! isset( $instance['gravatar_display'] ) )     $instance['gravatar_display']     = false;
 		if ( ! isset( $instance['gravatar_size'] ) )        $instance['gravatar_size']        = '';
-		if ( ! isset( $instance['gravatar_default'] ) )     $instance['gravatar_default']         = '';
+		if ( ! isset( $instance['gravatar_default'] ) )     $instance['gravatar_default']     = '';
 		if ( ! isset( $instance['gravatar_position'] ) )    $instance['gravatar_position']    = '';
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = '';
 		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
@@ -279,6 +279,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The title of the post
 			'display_title'       => $instance['display_title'],
 			'link_on_title'       => $instance['link_on_title'],
+			'title_tooltip'       => $instance['title_tooltip'],
 			'arrow'               => $instance['arrow'],
 
 			// The featured image of the post
@@ -524,6 +525,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// The title of the post
 		$instance['display_title']       = isset( $new_instance['display_title'] ) ? 1 : 0;
 		$instance['link_on_title']       = isset( $new_instance['link_on_title'] ) ? 1 : 0;
+		$instance['title_tooltip']       = strip_tags( $new_instance['title_tooltip'] );
 		$instance['arrow']               = isset( $new_instance['arrow'] ) ? 1 : 0;
 
 		// The featured image of the post
@@ -738,6 +740,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The title of the post
 			'display_title'       => true,
 			'link_on_title'       => true,
+			'title_tooltip'       => __( 'Permalink to', 'posts-in-sidebar' ),
 			'arrow'               => false,
 
 			// The featured image of the post
@@ -1836,6 +1839,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php // ================= Link to the title
 							pis_form_checkbox( __( 'Link the title to the post', 'posts-in-sidebar' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
+
+							<?php // ================= Title tooltip
+							pis_form_input_text( __( 'Use this text in the tooltip', 'posts-in-sidebar' ), $this->get_field_id( 'title_tooltip' ), $this->get_field_name( 'title_tooltip' ), esc_attr( $instance['title_tooltip'] ), '', __( 'The title of the post will be added after this text.', 'posts-in-sidebar' ) ); ?>
 
 							<?php // ================= Arrow after the title
 							pis_form_checkbox( __( 'Show an arrow after the title', 'posts-in-sidebar' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>

@@ -245,6 +245,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		// The title of the post
 		'display_title'       => true,
 		'link_on_title'       => true,
+		'title_tooltip'       => __( 'Permalink to', 'posts-in-sidebar' ),
 		'arrow'               => false,
 
 		// The featured image of the post
@@ -595,7 +596,7 @@ function pis_get_posts_in_sidebar( $args ) {
 								) );
 							}
 							if ( $link_on_title ) {
-								$post_link = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
+								$post_link = $title_tooltip . ' ' . the_title_attribute( 'echo=0' );
 								$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
 							}
 							$pis_output .= get_the_title();

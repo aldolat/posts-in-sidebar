@@ -561,7 +561,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					if ( $image_before_title ) {
 
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-							$post_link = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
+							$post_link = $title_tooltip . ' ' . the_title_attribute( 'echo=0' );
 							$pis_output .= pis_the_thumbnail( array(
 								'display_image'       => $display_image,
 								'image_align'         => $image_align,
@@ -646,7 +646,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 									/* The thumbnail */
 									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-										$post_link = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
+										$post_link = $title_tooltip . ' ' . the_title_attribute( 'echo=0' );
 										$pis_output .= pis_the_thumbnail( array(
 											'display_image'       => $display_image,
 											'image_align'         => $image_align,

@@ -94,6 +94,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * NEW: Added the shortcode.
 * NEW: Added Gravatar support for authors.
 * NEW: Added "Any" to posts status.
+* NEW: Added an option to change the tooltip in the title link.
 * Reorganized the widget sections.
 * Changed some files names.
 * Changed translation domain into posts-in-sidebar.

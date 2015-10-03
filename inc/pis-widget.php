@@ -1841,7 +1841,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_checkbox( __( 'Link the title to the post', 'posts-in-sidebar' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
 
 							<?php // ================= Title tooltip
-							pis_form_input_text( __( 'Use this text in the tooltip', 'posts-in-sidebar' ), $this->get_field_id( 'title_tooltip' ), $this->get_field_name( 'title_tooltip' ), esc_attr( $instance['title_tooltip'] ), '', __( 'The title of the post will be added after this text.', 'posts-in-sidebar' ) ); ?>
+							pis_form_input_text( __( 'Use this text in the tooltip', 'posts-in-sidebar' ), $this->get_field_id( 'title_tooltip' ), $this->get_field_name( 'title_tooltip' ), esc_attr( $instance['title_tooltip'] ), '', __( 'The title of the post will be added after this text. Also note that this text will be used for the image tooltip.', 'posts-in-sidebar' ) ); ?>
 
 							<?php // ================= Arrow after the title
 							pis_form_checkbox( __( 'Show an arrow after the title', 'posts-in-sidebar' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>

@@ -582,8 +582,6 @@ function pis_get_posts_in_sidebar( $args ) {
 					}
 					// Close if $image_before_title
 
-
-
 					/* The title */
 					if ( $display_title ) {
 						$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';

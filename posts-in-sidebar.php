@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.0
+ * Version: 3.1
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.0' );
+	define( 'PIS_VERSION', '3.1' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -102,6 +102,13 @@ function pis_setup() {
 	 * @since 1.29
 	 */
 	add_action( 'admin_enqueue_scripts', 'pis_load_scripts' );
+
+	/**
+	 * Add links to plugins list line.
+	 *
+	 * @since 3.1
+	 */
+	add_filter( 'plugin_row_meta', 'pis_add_links', 10, 2 );
 }
 
 
@@ -150,6 +157,19 @@ function pis_load_widgets() {
 	register_widget( 'PIS_Posts_In_Sidebar' );
 }
 
+
+/**
+ * Add links to plugins list line.
+ *
+ * @since 3.1
+ */
+function pis_add_links( $links, $file ) {
+	if ( $file == plugin_basename( __FILE__ ) ) {
+		$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename( dirname( __FILE__ ) ) . '?rate=5#postform';
+		$links[] = '<a target="_blank" href="' . $rate_url . '" title="' . __( 'Click here to rate and review this plugin on WordPress.org', 'posts-in-sidebar' ) . '">' . __( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
+	}
+	return $links;
+}
 
 /**
  * The core function.

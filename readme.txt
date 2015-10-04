@@ -3,8 +3,8 @@ Contributors: aldolat
 Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget
 Requires at least: 4.1
-Tested up to: 4.3
-Stable tag: 3.0
+Tested up to: 4.4
+Stable tag: 3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 3.1 =
+
+* Added link to review page in the plugins list page.
 
 = 3.0 =
 

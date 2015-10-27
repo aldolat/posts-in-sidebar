@@ -452,6 +452,7 @@ function pis_the_text( $args ) {
 	switch ( $excerpt ) :
 
 		case 'full_content':
+			// Filter the post content. If not filtered, shortcodes (and other things) will not be executed.
 			$output .= apply_filters( 'the_content', get_the_content() );
 		break;
 

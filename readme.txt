@@ -91,7 +91,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.0.1 =
 
-* Fixed shortcodes execution in "Full content" type of text.
+* Fixed shortcodes execution in "Full content" type of text (thanks to [fabianfabian](https://wordpress.org/support/profile/fabianfabian) for reporting).
 * Added link to review page in the plugins list page.
 
 = 3.0 =

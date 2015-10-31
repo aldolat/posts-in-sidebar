@@ -523,8 +523,8 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	}
 
-	// If in a single post, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class.
-	if ( is_single() ) {
+	// If in a single post or in a page, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class.
+	if ( is_single() || is_page() ) {
 		global $post;
 		$single_post_id = $post->ID;
 	}
@@ -565,7 +565,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					 * @since 1.6
 					 */
 					$current_post_class = '';
-					if ( is_single() && $single_post_id == $pis_query->post->ID ) {
+					if ( ( is_single() || is_page() ) && $single_post_id == $pis_query->post->ID ) {
 						$current_post_class = ' current-post';
 					}
 

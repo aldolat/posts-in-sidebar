@@ -91,8 +91,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.0.1 =
 
-* Added check if the post is private.
 * Fixed shortcodes execution in "Full content" type of text (thanks to [fabianfabian](https://wordpress.org/support/profile/fabianfabian) for reporting).
+* Added check if the post is private.
+* Added check for current post in pages.
 * Added link to review page in the plugins list page.
 
 = 3.0 =

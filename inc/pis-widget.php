@@ -2091,6 +2091,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<div class="pis-column-container">
 
 							<div class="pis-column">
+
 								<?php // ================= Author gravatar
 								pis_form_checkbox( __( 'Display author\'s Gravatar', 'posts-in-sidebar' ), $this->get_field_id( 'gravatar_display' ), $this->get_field_name( 'gravatar_display' ), checked( $gravatar_display, true, false ), '', 'pis-gravatar' ); ?>
 

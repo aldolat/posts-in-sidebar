@@ -211,6 +211,7 @@ function pis_utility_section( $args ) {
 	$defaults = array(
 		'display_author'    => false,
 		'display_date'      => false,
+		'display_mod_date'  => false,
 		'comments'          => false,
 		'utility_margin'    => NULL,
 		'margin_unit'       => 'px',
@@ -219,6 +220,8 @@ function pis_utility_section( $args ) {
 		'utility_sep'       => '|',
 		'date_text'         => __( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'      => false,
+		'mod_date_text'     => __( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'  => false,
 		'comments_text'     => __( 'Comments:', 'posts-in-sidebar' ),
 		'pis_post_id'       => '',
 		'link_to_comments'  => true,
@@ -233,7 +236,7 @@ function pis_utility_section( $args ) {
 
 	$output = '';
 
-	if ( $display_author || $display_date || $comments ) {
+	if ( $display_author || $display_date || $display_mod_date || $comments ) {
 		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
 	}
 
@@ -280,10 +283,35 @@ function pis_utility_section( $args ) {
 			$output .= '</span>';
 		}
 
+		/* The modification date */
+		if ( $display_mod_date ) {
+			/**
+			 * The modification date is displayed under these two conditions:
+			 * 1. if the creation date is not displayed OR
+			 * 2. if the creation date is displayed AND the modification date is different from the creation date.
+			 */
+			if ( ( ! $display_date ) || ( $display_date && get_the_modified_date() != get_the_date() ) ) {
+				if ( $display_author || $display_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
+					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
+					if ( $linkify_mod_date ) {
+						$mod_date_title = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
+						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $mod_date_title ) . '" rel="bookmark">';
+							$output .= get_the_modified_date();
+						$output .= '</a>';
+					} else {
+						$output .= get_the_modified_date();
+					}
+				$output .= '</span>';
+			}
+		}
+
 		/* The comments */
 		if ( ! post_password_required() ) {
 			if ( $comments ) {
-				if ( $display_author || $display_date ) {
+				if ( $display_author || $display_date || $display_mod_date ) {
 					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 				}
 				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
@@ -293,7 +321,7 @@ function pis_utility_section( $args ) {
 			}
 		}
 
-	if ( $display_author || $display_date || $comments ) {
+	if ( $display_author || $display_date || $display_mod_date || $comments ) {
 		$output .= '</p>';
 	}
 

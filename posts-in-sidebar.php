@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.0.1
+ * Version: 3.1
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.0.1' );
+	define( 'PIS_VERSION', '3.1' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -294,6 +294,9 @@ function pis_get_posts_in_sidebar( $args ) {
 		'display_date'        => false,
 		'date_text'           => __( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'        => false,
+		'display_mod_date'    => false,
+		'mod_date_text'       => __( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'    => false,
 		'comments'            => false,
 		'comments_text'       => __( 'Comments:', 'posts-in-sidebar' ),
 		'linkify_comments'    => true,
@@ -647,6 +650,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
 								'display_date'      => $display_date,
+								'display_mod_date'  => $display_mod_date,
 								'comments'          => $comments,
 								'utility_margin'    => $utility_margin,
 								'margin_unit'       => $margin_unit,
@@ -655,6 +659,8 @@ function pis_get_posts_in_sidebar( $args ) {
 								'utility_sep'       => $utility_sep,
 								'date_text'         => $date_text,
 								'linkify_date'      => $linkify_date,
+								'mod_date_text'     => $mod_date_text,
+								'linkify_mod_date'  => $linkify_mod_date,
 								'comments_text'     => $comments_text,
 								'pis_post_id'       => $pis_query->post->ID,
 								'link_to_comments'  => $linkify_comments,
@@ -731,6 +737,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
 								'display_date'      => $display_date,
+								'display_mod_date'  => $display_mod_date,
 								'comments'          => $comments,
 								'utility_margin'    => $utility_margin,
 								'margin_unit'       => $margin_unit,
@@ -739,6 +746,8 @@ function pis_get_posts_in_sidebar( $args ) {
 								'utility_sep'       => $utility_sep,
 								'date_text'         => $date_text,
 								'linkify_date'      => $linkify_date,
+								'mod_date_text'     => $mod_date_text,
+								'linkify_mod_date'  => $linkify_mod_date,
 								'comments_text'     => $comments_text,
 								'pis_post_id'       => $pis_query->post->ID,
 								'link_to_comments'  => $linkify_comments,

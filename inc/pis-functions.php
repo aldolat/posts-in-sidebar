@@ -263,7 +263,7 @@ function pis_utility_section( $args ) {
 		}
 
 		/* The date */
-		if ( $display_date ) :
+		if ( $display_date ) {
 			if ( $display_author ) {
 				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 			}
@@ -278,11 +278,10 @@ function pis_utility_section( $args ) {
 					$output .= get_the_date();
 				}
 			$output .= '</span>';
-
-		endif;
+		}
 
 		/* The comments */
-		if ( ! post_password_required() ) :
+		if ( ! post_password_required() ) {
 			if ( $comments ) {
 				if ( $display_author || $display_date ) {
 					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
@@ -292,11 +291,11 @@ function pis_utility_section( $args ) {
 					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
 				$output .= '</span>';
 			}
-		endif;
+		}
 
-	if ( $display_author || $display_date || $comments ) :
+	if ( $display_author || $display_date || $comments ) {
 		$output .= '</p>';
-	endif;
+	}
 
 	return $output;
 }

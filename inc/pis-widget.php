@@ -70,6 +70,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
+		/**
+		* Change the widget title if the user wants a different title in single posts.
+		* @since 3.2
+		*/
+		if ( isset( $instance['get_from_same_cat'] ) && true == $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_single() ) {
+			$title = $instance['title_same_cat'];
+			if ( is_singular( 'post' ) ) {
+				$the_category = get_the_category( get_the_ID() );
+				$the_custom_title = $the_category[0]->name;
+			} elseif ( is_single() && ! is_singular( array( 'page', 'attachment' ) ) ) {
+				$the_post_type = get_post_type_object( get_post_type( get_the_ID() ) );
+				$the_custom_title = $the_post_type->labels->name;
+			}
+			$title = str_replace( '%s', $the_custom_title, $title );
+		}
+
 		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
 
 		echo $before_widget;
@@ -96,6 +112,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
 		if ( ! isset( $instance['post_format'] ) )          $instance['post_format']          = '';
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
+		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
+		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
 		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = 'slug';
@@ -231,6 +249,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_val'       => $instance['post_meta_val'],
 			'search'              => $instance['search'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
+			'get_from_same_cat'   => $instance['get_from_same_cat'],
+			'title_same_cat'      => $instance['title_same_cat'],
 
 			// Taxonomies
 			'relation'            => $instance['relation'],
@@ -467,6 +487,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['search']              = strip_tags( $new_instance['search'] );
 			if ( '' == $instance['search'] ) $instance['search'] = NULL;
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
+		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
+		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
 
 		// Taxonomies
 		$instance['relation']            = $new_instance['relation'];
@@ -698,6 +720,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_val'       => '',
 			'search'              => NULL,
 			'ignore_sticky'       => false,
+			'get_from_same_cat'   => false,
+			'title_same_cat'      => '',
 
 			// Taxonomies
 			'relation'            => '',
@@ -858,6 +882,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		);
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
+		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
 		$date_inclusive       = (bool) $instance['date_inclusive'];
 		$exclude_current_post = (bool) $instance['exclude_current_post'];
 		$display_title        = (bool) $instance['display_title'];
@@ -1121,7 +1146,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php // ================= Post meta key
 						pis_form_input_text(
-							__( 'Get post with this meta key', 'posts-in-sidebar' ),
+							__( 'Get posts with this meta key', 'posts-in-sidebar' ),
 							$this->get_field_id('post_meta_key'),
 							$this->get_field_name('post_meta_key'),
 							esc_attr( $instance['post_meta_key'] ),
@@ -1130,7 +1155,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php // ================= Post meta value
 						pis_form_input_text(
-							__( 'Get post with this meta value', 'posts-in-sidebar' ),
+							__( 'Get posts with this meta value', 'posts-in-sidebar' ),
 							$this->get_field_id('post_meta_val'),
 							$this->get_field_name('post_meta_val'),
 							esc_attr( $instance['post_meta_val'] ),
@@ -1139,7 +1164,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php // ================= Search
 						pis_form_input_text(
-							__( 'Get post from this search', 'posts-in-sidebar' ),
+							__( 'Get posts from this search', 'posts-in-sidebar' ),
 							$this->get_field_id('search'),
 							$this->get_field_name('search'),
 							esc_attr( $instance['search'] ),
@@ -1264,6 +1289,36 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('offset_number'),
 							esc_attr( $instance['offset_number'] ),
 							'5'
+						); ?>
+
+					</div>
+
+				</div>
+
+				<div class="pis-column-container pis-2col">
+
+					<div class="pis-column">
+
+						<?php // ================= Get posts from same category
+						pis_form_checkbox( __( 'When on single posts, get posts from the current category or from the same post type', 'posts-in-sidebar' ),
+							$this->get_field_id( 'get_from_same_cat' ),
+							$this->get_field_name( 'get_from_same_cat' ),
+							checked( $get_from_same_cat, true, false ),
+							__( 'If the post has multiple categories, the plugin will use the first category in the array of categories, i.e. the category with the lowest ID.', 'posts-in-sidebar' ) );
+						?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= The custom widget title when on single posts
+						pis_form_input_text(
+							__( 'When on single posts, Use this widget title', 'posts-in-sidebar' ),
+							$this->get_field_id('title_same_cat'),
+							$this->get_field_name('title_same_cat'),
+							esc_attr( $instance['title_same_cat'] ),
+							__( 'Posts under %s', 'posts-in-sidebar' ),
+							sprintf( __( 'Use %s to display the name of the taxonomy.', 'posts-in-sidebar' ), '<code>%s</code>' )
 						); ?>
 
 					</div>

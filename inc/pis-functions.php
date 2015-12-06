@@ -749,7 +749,11 @@ function pis_tax_query( $args ) {
 		}
 	}
 
-	if ( isset( $tax_query ) ) return $tax_query; else return '';
+	if ( isset( $tax_query ) ) {
+		return $tax_query;
+	} else {
+		return '';
+	}
 }
 
 

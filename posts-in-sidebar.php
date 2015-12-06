@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.1
+ * Version: 3.2
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.1' );
+	define( 'PIS_VERSION', '3.2' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -209,6 +209,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		 */
 		'search'              => NULL,
 		'ignore_sticky'       => false,
+		/* This is the category of the single post
+		 * where we'll get posts from.
+		 */
+		'get_from_same_cat'   => false,
+		'title_same_cat'      => '',
 
 		// Taxonomies
 		'relation'            => '',
@@ -385,13 +390,13 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Some params accept only an array.
 	 */
-	if ( $posts_id    && ! is_array( $posts_id ) )    $posts_id    = explode( ',', $posts_id );    else $posts_id    = '';
-	if ( $post_not_in && ! is_array( $post_not_in ) ) $post_not_in = explode( ',', $post_not_in ); else $post_not_in = '';
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )  $cat_not_in  = explode( ',', $cat_not_in );  else $cat_not_in  = '';
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )  $tag_not_in  = explode( ',', $tag_not_in );  else $tag_not_in  = '';
-	if ( $author_in   && ! is_array( $author_in ) )   $author_in   = explode( ',', $author_in );   else $author_in   = '';
-	if ( $author_not_in   && ! is_array( $author_not_in ) )   $author_not_in   = explode( ',', $author_not_in );   else $author_not_in   = '';
-	if ( $post_parent_in  && ! is_array( $post_parent_in ) )  $post_parent_in  = explode( ',', $post_parent_in );  else $post_parent_in  = '';
+	if ( $posts_id    && ! is_array( $posts_id ) )                    $posts_id            = explode( ',', $posts_id );            else $posts_id    = '';
+	if ( $post_not_in && ! is_array( $post_not_in ) )                 $post_not_in         = explode( ',', $post_not_in );         else $post_not_in = '';
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )                  $cat_not_in          = explode( ',', $cat_not_in );          else $cat_not_in  = '';
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )                  $tag_not_in          = explode( ',', $tag_not_in );          else $tag_not_in  = '';
+	if ( $author_in   && ! is_array( $author_in ) )                   $author_in           = explode( ',', $author_in );           else $author_in   = '';
+	if ( $author_not_in   && ! is_array( $author_not_in ) )           $author_not_in       = explode( ',', $author_not_in );       else $author_not_in   = '';
+	if ( $post_parent_in  && ! is_array( $post_parent_in ) )          $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = '';
 	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = '';
 
 	/**
@@ -504,8 +509,23 @@ function pis_get_posts_in_sidebar( $args ) {
 		'meta_key'            => $post_meta_key,
 		'meta_value'          => $post_meta_val,
 		's'                   => $search,
-		'ignore_sticky_posts' => $ignore_sticky
+		'ignore_sticky_posts' => $ignore_sticky,
 	);
+
+	/**
+	 * Check if the user wants to display posts from the same category of the single post.
+	 * This will work in single posts only.
+	 * The category used will be the first in the array ( $the_category[0] ), i.e. the category with the lowest ID.
+	 * @since 3.2
+	 */
+	if ( isset( $get_from_same_cat ) && true == $get_from_same_cat ) {
+		if ( is_singular( 'post' ) ) {
+			$the_category = get_the_category( get_the_ID() );
+			$params['category_name'] = get_cat_name( $the_category[0]->cat_ID );
+		} elseif ( is_single() && ! is_singular( array( 'page', 'attachment' ) ) ) {
+			$params['post_type'] = get_post_type( get_the_ID() );
+		}
+	}
 
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {
@@ -528,8 +548,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	// If in a single post or in a page, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class.
 	if ( is_single() || is_page() ) {
-		global $post;
-		$single_post_id = $post->ID;
+		$single_post_id = get_the_ID();
 	}
 
 	/**

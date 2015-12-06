@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 4.1  
 **Tested up to:** 4.4  
-**Stable tag:** 3.1  
+**Stable tag:** 3.2  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -28,6 +28,7 @@ Here are some of the functions you'll have:
 * get posts by search;
 * get posts by complex taxonomies queries;
 * get posts by date queries;
+* get posts from the category of the current post or get other posts from the same post type;
 * exclude posts by authors, taxonomies, and so on;
 * control which elements of the posts are displayed;
 * stylize the output of the widget using custom CSS styles;
@@ -102,6 +103,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 3.2 ###
+* NEW: Added support to get posts from the category of the current post (props by [wendygordon](https://wordpress.org/support/profile/wendygordon)).
 
 ### 3.1 ###
 

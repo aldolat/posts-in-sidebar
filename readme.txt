@@ -92,6 +92,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.2 =
 * NEW: Added support to get posts from the category of the current post (props by [wendygordon](https://wordpress.org/support/profile/wendygordon)).
+* Minor improvements.
 
 = 3.1 =
 

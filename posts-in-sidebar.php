@@ -390,14 +390,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Some params accept only an array.
 	 */
-	if ( $posts_id    && ! is_array( $posts_id ) )                    $posts_id            = explode( ',', $posts_id );            else $posts_id    = '';
-	if ( $post_not_in && ! is_array( $post_not_in ) )                 $post_not_in         = explode( ',', $post_not_in );         else $post_not_in = '';
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )                  $cat_not_in          = explode( ',', $cat_not_in );          else $cat_not_in  = '';
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )                  $tag_not_in          = explode( ',', $tag_not_in );          else $tag_not_in  = '';
-	if ( $author_in   && ! is_array( $author_in ) )                   $author_in           = explode( ',', $author_in );           else $author_in   = '';
-	if ( $author_not_in   && ! is_array( $author_not_in ) )           $author_not_in       = explode( ',', $author_not_in );       else $author_not_in   = '';
-	if ( $post_parent_in  && ! is_array( $post_parent_in ) )          $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = '';
-	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = '';
+	if ( $posts_id    && ! is_array( $posts_id ) )                    $posts_id            = explode( ',', $posts_id );            else $posts_id    = array();
+	if ( $post_not_in && ! is_array( $post_not_in ) )                 $post_not_in         = explode( ',', $post_not_in );         else $post_not_in = array();
+	if ( $cat_not_in  && ! is_array( $cat_not_in ) )                  $cat_not_in          = explode( ',', $cat_not_in );          else $cat_not_in  = array();
+	if ( $tag_not_in  && ! is_array( $tag_not_in ) )                  $tag_not_in          = explode( ',', $tag_not_in );          else $tag_not_in  = array();
+	if ( $author_in   && ! is_array( $author_in ) )                   $author_in           = explode( ',', $author_in );           else $author_in   = array();
+	if ( $author_not_in   && ! is_array( $author_not_in ) )           $author_not_in       = explode( ',', $author_not_in );       else $author_not_in   = array();
+	if ( $post_parent_in  && ! is_array( $post_parent_in ) )          $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = array();
+	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = array();
 
 	/**
 	 * Build $tax_query parameter (if any).
@@ -459,11 +459,28 @@ function pis_get_posts_in_sidebar( $args ) {
 	$date_query = pis_array_remove_empty_keys( $date_query, true );
 
 	/**
-	 * Get the ID of the current post.
+	 * If in a single post or in a page, get the ID of the post of the main loop.
+	 * This will be used for:
+	 * - excluding the current post from the query;
+	 * - getting the category of the current post;
+	 * - adding the "current-post" CSS class.
+	 *
+	 * About is_singular() and is_single() functions.
+	 * is_singular() => is true when any post type is displayed (regular post, custom post type, page, attachment).
+	 * is_single()   => is true when any post type is displayed, except page and attachment.
+	 */
+	if ( is_singular() ) {
+		$single_post_id = get_the_ID();
+	}
+
+	/**
+	 * Exclude the current post from the query.
 	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
 	 */
-	if ( ( is_single() || is_page() ) && $exclude_current_post ) {
-		$post_not_in[] = get_the_id();
+	if ( is_singular() && $exclude_current_post ) {
+		if ( ! in_array( $single_post_id, $post_not_in ) ) {
+			$post_not_in[] = $single_post_id;
+		}
 	}
 
 	/**
@@ -514,41 +531,39 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/**
 	 * Check if the user wants to display posts from the same category of the single post.
-	 * This will work in single posts only.
+	 * This will work in single (regular) posts only, not in custom post types.
 	 * The category used will be the first in the array ( $the_category[0] ), i.e. the category with the lowest ID.
 	 * @since 3.2
 	 */
-	if ( isset( $get_from_same_cat ) && true == $get_from_same_cat ) {
-		if ( is_singular( 'post' ) ) {
-			$the_category = get_the_category( get_the_ID() );
-			$params['category_name'] = get_cat_name( $the_category[0]->cat_ID );
-		} elseif ( is_single() && ! is_singular( array( 'page', 'attachment' ) ) ) {
-			$params['post_type'] = get_post_type( get_the_ID() );
-		}
+	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular( 'post' ) ) {
+		$the_category = get_the_category( $single_post_id );
+		// Set parameters. The excluding parameters (like "post__not_in" will be left active).
+		$params['post_type'] = 'post';
+		$params['post__in'] = '';
+		$params['author_name'] = '';
+		$params['author__in'] = '';
+		$params['category_name'] = get_cat_name( $the_category[0]->cat_ID );
+		$params['tag'] = '';
+		$params['tax_query'] = '';
+		$params['date_query'] = '';
+		$params['post_parent__in'] = '';
+		$params['post_format'] = '';
+		$params['meta_key'] = '';
+		$params['meta_value'] = '';
 	}
 
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {
-
 		// Get the cached query
 		$pis_query = get_transient( $widget_id . '_query_cache' );
-
 		// If it does not exist, create a new query and cache it for future uses
 		if ( ! $pis_query ) {
 			$pis_query = new WP_Query( $params );
 			set_transient( $widget_id . '_query_cache', $pis_query, $cache_time );
 		}
-
 	// ... otherwise serve a not-cached version of the output.
 	} else {
-
 		$pis_query = new WP_Query( $params );
-
-	}
-
-	// If in a single post or in a page, get the ID of the post of the main loop. This will be used to add the "current-post" CSS class.
-	if ( is_single() || is_page() ) {
-		$single_post_id = get_the_ID();
 	}
 
 	/**
@@ -587,7 +602,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					 * @since 1.6
 					 */
 					$current_post_class = '';
-					if ( ( is_single() || is_page() ) && $single_post_id == $pis_query->post->ID ) {
+					if ( is_singular() && $single_post_id == $pis_query->post->ID ) {
 						$current_post_class = ' current-post';
 					}
 

@@ -74,16 +74,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		* Change the widget title if the user wants a different title in single posts.
 		* @since 3.2
 		*/
-		if ( isset( $instance['get_from_same_cat'] ) && true == $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_single() ) {
+		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
 			$title = $instance['title_same_cat'];
-			if ( is_singular( 'post' ) ) {
-				$the_category = get_the_category( get_the_ID() );
-				$the_custom_title = $the_category[0]->name;
-			} elseif ( is_single() && ! is_singular( array( 'page', 'attachment' ) ) ) {
-				$the_post_type = get_post_type_object( get_post_type( get_the_ID() ) );
-				$the_custom_title = $the_post_type->labels->name;
-			}
-			$title = str_replace( '%s', $the_custom_title, $title );
+			$the_category = get_the_category( get_the_ID() );
+			$the_category_name = $the_category[0]->name;
+			$title = str_replace( '%s', $the_category_name, $title );
 		}
 
 		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
@@ -1295,16 +1290,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
+				<hr>
+
 				<div class="pis-column-container pis-2col">
 
 					<div class="pis-column">
 
 						<?php // ================= Get posts from same category
-						pis_form_checkbox( __( 'When on single posts, get posts from the current category or from the same post type', 'posts-in-sidebar' ),
+						pis_form_checkbox( __( 'When on single posts, get posts from the current category', 'posts-in-sidebar' ),
 							$this->get_field_id( 'get_from_same_cat' ),
 							$this->get_field_name( 'get_from_same_cat' ),
 							checked( $get_from_same_cat, true, false ),
-							__( 'If the post has multiple categories, the plugin will use the first category in the array of categories, i.e. the category with the lowest ID.', 'posts-in-sidebar' ) );
+							__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. '
+							. 'If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest ID). '
+							. 'Custom post types are excluded from this feature.',
+							 'posts-in-sidebar' )
+						);
 						?>
 
 					</div>
@@ -1318,7 +1319,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('title_same_cat'),
 							esc_attr( $instance['title_same_cat'] ),
 							__( 'Posts under %s', 'posts-in-sidebar' ),
-							sprintf( __( 'Use %s to display the name of the taxonomy.', 'posts-in-sidebar' ), '<code>%s</code>' )
+							sprintf( __( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 						); ?>
 
 					</div>

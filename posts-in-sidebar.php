@@ -537,7 +537,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular( 'post' ) ) {
 		$the_category = get_the_category( $single_post_id );
-		// Set parameters. The excluding parameters (like "post__not_in" will be left active).
+		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
 		$params['post_type'] = 'post';
 		$params['post__in'] = '';
 		$params['author_name'] = '';

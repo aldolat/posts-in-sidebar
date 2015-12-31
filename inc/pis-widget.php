@@ -1301,10 +1301,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id( 'get_from_same_cat' ),
 							$this->get_field_name( 'get_from_same_cat' ),
 							checked( $get_from_same_cat, true, false ),
-							__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. '
-							. 'If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest ID). '
-							. 'Custom post types are excluded from this feature.',
-							 'posts-in-sidebar' )
+							__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest ID). Custom post types are excluded from this feature.', 'posts-in-sidebar' )
 						);
 						?>
 
@@ -1314,7 +1311,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php // ================= The custom widget title when on single posts
 						pis_form_input_text(
-							__( 'When on single posts, Use this widget title', 'posts-in-sidebar' ),
+							__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
 							$this->get_field_id('title_same_cat'),
 							$this->get_field_name('title_same_cat'),
 							esc_attr( $instance['title_same_cat'] ),

@@ -28,9 +28,9 @@ Here are some of the functions you'll have:
 * get posts by search;
 * get posts by complex taxonomies queries;
 * get posts by date queries;
-* get posts from the category of the current post or get other posts from the same post type;
+* get posts from the category of the current post;
 * exclude posts by authors, taxonomies, and so on;
-* control which elements of the posts are displayed;
+* control which elements of the posts are displayed (like post thumbnail, taxonomies, meta values, and so on);
 * stylize the output of the widget using custom CSS styles;
 * cache the output of the widget to save queries to the database;
 * ... and much more.

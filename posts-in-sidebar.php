@@ -328,7 +328,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
 		'meta'                => '',
-		'custom_field_count'  => '',  // In words.
+		'custom_field_count'  => '',  // In characters.
 		'custom_field_hellip' => '&hellip;',
 		'custom_field_key'    => false,
 		'custom_field_sep'    => ':',
@@ -842,7 +842,8 @@ function pis_get_posts_in_sidebar( $args ) {
 								else
 									$key = '';
 								if ( ! empty( $custom_field_count ) )
-									$cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+									// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+									$cf_text_value = rtrim( substr( $the_custom_field[0], 0, $custom_field_count ) ) . $custom_field_hellip;
 								else
 									$cf_text_value = $the_custom_field[0];
 								$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';

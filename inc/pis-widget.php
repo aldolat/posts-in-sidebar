@@ -838,7 +838,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field'        => false,
 			'custom_field_txt'    => '',
 			'meta'                => '',
-			'custom_field_count'  => '',  // In words.
+			'custom_field_count'  => '',  // In characters.
 			'custom_field_hellip' => '&hellip;',
 			'custom_field_key'    => false,
 			'custom_field_sep'    => ':',
@@ -2332,7 +2332,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Custom field count
-								pis_form_input_text( __( 'The custom field content will be (in words)', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_count' ), $this->get_field_name( 'custom_field_count' ), esc_attr( $instance['custom_field_count'] ), '10' ); ?>
+								pis_form_input_text( __( 'The custom field content length will be (in characters)', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_count' ), $this->get_field_name( 'custom_field_count' ), esc_attr( $instance['custom_field_count'] ), '10' ); ?>
 
 								<?php // ================= Custom field hellip
 								pis_form_input_text( __( 'Use this text for horizontal ellipsis', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_hellip' ), $this->get_field_name( 'custom_field_hellip' ), esc_attr( $instance['custom_field_hellip'] ), '&hellip;' ); ?>

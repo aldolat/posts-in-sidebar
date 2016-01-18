@@ -185,6 +185,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['custom_field'] ) )         $instance['custom_field']         = false;
 		if ( ! isset( $instance['custom_field_txt'] ) )     $instance['custom_field_txt']     = '';
 		if ( ! isset( $instance['meta'] ) )                 $instance['meta']                 = '';
+		if ( ! isset( $instance['custom_field_count'] ) )   $instance['custom_field_count']   = '';
+		if ( ! isset( $instance['custom_field_hellip'] ) )  $instance['custom_field_hellip']  = '&hellip;';
 		if ( ! isset( $instance['custom_field_key'] ) )     $instance['custom_field_key']     = false;
 		if ( ! isset( $instance['custom_field_sep'] ) )     $instance['custom_field_sep']     = '';
 		if ( ! isset( $instance['tax_name'] ) )             $instance['tax_name']             = '';
@@ -360,6 +362,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field'        => $instance['custom_field'],
 			'custom_field_txt'    => $instance['custom_field_txt'],
 			'meta'                => $instance['meta'],
+			'custom_field_count'  => $instance['custom_field_count'],
+			'custom_field_hellip' => $instance['custom_field_hellip'],
 			'custom_field_key'    => $instance['custom_field_key'],
 			'custom_field_sep'    => $instance['custom_field_sep'],
 
@@ -612,6 +616,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['custom_field']        = isset( $new_instance['custom_field'] ) ? 1 : 0;
 		$instance['custom_field_txt']    = strip_tags( $new_instance['custom_field_txt'] );
 		$instance['meta']                = strip_tags( $new_instance['meta'] );
+		$instance['custom_field_count']  = strip_tags( $new_instance['custom_field_count'] );
+			if ( 0 >= $instance['custom_field_count'] || ! is_numeric( $instance['custom_field_count'] ) ) $instance['custom_field_count'] = '';
+		$instance['custom_field_hellip'] = strip_tags( $new_instance['custom_field_hellip'] );
 		$instance['custom_field_key']    = isset( $new_instance['custom_field_key'] ) ? 1 : 0;
 		$instance['custom_field_sep']    = strip_tags( $new_instance['custom_field_sep'] );
 
@@ -831,6 +838,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field'        => false,
 			'custom_field_txt'    => '',
 			'meta'                => '',
+			'custom_field_count'  => '',  // In words.
+			'custom_field_hellip' => '&hellip;',
 			'custom_field_key'    => false,
 			'custom_field_sep'    => ':',
 
@@ -2321,6 +2330,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$options,
 									$instance['meta']
 								); ?>
+
+								<?php // ================= Custom field count
+								pis_form_input_text( __( 'The custom field content will be (in words)', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_count' ), $this->get_field_name( 'custom_field_count' ), esc_attr( $instance['custom_field_count'] ), '10' ); ?>
+
+								<?php // ================= Custom field hellip
+								pis_form_input_text( __( 'Use this text for horizontal ellipsis', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_hellip' ), $this->get_field_name( 'custom_field_hellip' ), esc_attr( $instance['custom_field_hellip'] ), '&hellip;' ); ?>
 
 							</div>
 

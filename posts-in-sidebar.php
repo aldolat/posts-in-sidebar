@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.2
+ * Version: 3.3
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.2' );
+	define( 'PIS_VERSION', '3.3' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -328,6 +328,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
 		'meta'                => '',
+		'custom_field_count'  => '',  // In words.
+		'custom_field_hellip' => '&hellip;',
 		'custom_field_key'    => false,
 		'custom_field_sep'    => ':',
 
@@ -839,7 +841,11 @@ function pis_get_posts_in_sidebar( $args ) {
 									$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
 								else
 									$key = '';
-								$cf_value = '<span class="pis-custom-field-value">' . $the_custom_field[0] . '</span>';
+								if ( ! empty( $custom_field_count ) )
+									$cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+								else
+									$cf_text_value = $the_custom_field[0];
+								$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 								$pis_output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
 									$pis_output .= $cf_text . $key . $cf_value;
 								$pis_output .= '</p>';

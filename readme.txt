@@ -92,7 +92,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.3 =
 
-* NEW: Added option to truncate the custom field content (props by [bubdev](https://wordpress.org/support/profile/bubdev)),
+* NEW: Added option to truncate the custom field content (props by [bubdev](https://wordpress.org/support/profile/bubdev)).
 
 = 3.2 =
 

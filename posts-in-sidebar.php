@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.3
+ * Version: 3.4-dev
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -392,13 +392,13 @@ function pis_get_posts_in_sidebar( $args ) {
 	/**
 	 * Some params accept only an array.
 	 */
-	if ( $posts_id    && ! is_array( $posts_id ) )                    $posts_id            = explode( ',', $posts_id );            else $posts_id    = array();
-	if ( $post_not_in && ! is_array( $post_not_in ) )                 $post_not_in         = explode( ',', $post_not_in );         else $post_not_in = array();
-	if ( $cat_not_in  && ! is_array( $cat_not_in ) )                  $cat_not_in          = explode( ',', $cat_not_in );          else $cat_not_in  = array();
-	if ( $tag_not_in  && ! is_array( $tag_not_in ) )                  $tag_not_in          = explode( ',', $tag_not_in );          else $tag_not_in  = array();
-	if ( $author_in   && ! is_array( $author_in ) )                   $author_in           = explode( ',', $author_in );           else $author_in   = array();
-	if ( $author_not_in   && ! is_array( $author_not_in ) )           $author_not_in       = explode( ',', $author_not_in );       else $author_not_in   = array();
-	if ( $post_parent_in  && ! is_array( $post_parent_in ) )          $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = array();
+	if ( $posts_id            && ! is_array( $posts_id ) )            $posts_id            = explode( ',', $posts_id );            else $posts_id    = array();
+	if ( $post_not_in         && ! is_array( $post_not_in ) )         $post_not_in         = explode( ',', $post_not_in );         else $post_not_in = array();
+	if ( $cat_not_in          && ! is_array( $cat_not_in ) )          $cat_not_in          = explode( ',', $cat_not_in );          else $cat_not_in  = array();
+	if ( $tag_not_in          && ! is_array( $tag_not_in ) )          $tag_not_in          = explode( ',', $tag_not_in );          else $tag_not_in  = array();
+	if ( $author_in           && ! is_array( $author_in ) )           $author_in           = explode( ',', $author_in );           else $author_in   = array();
+	if ( $author_not_in       && ! is_array( $author_not_in ) )       $author_not_in       = explode( ',', $author_not_in );       else $author_not_in   = array();
+	if ( $post_parent_in      && ! is_array( $post_parent_in ) )      $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = array();
 	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = array();
 
 	/**

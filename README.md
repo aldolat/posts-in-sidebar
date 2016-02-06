@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 4.1  
 **Tested up to:** 4.4  
-**Stable tag:** 3.4-dev  
+**Stable tag:** 3.3.1  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -104,8 +104,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-### 3.4 ###
+### 3.3.1 ###
 
+* FIX: fixed wrong characters displaying in custom field values.
 * Minor improvements.
 
 ### 3.3 ###

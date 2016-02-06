@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.4-dev
+ * Version: 3.3.1
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.3' );
+	define( 'PIS_VERSION', '3.3.1' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -843,7 +843,7 @@ function pis_get_posts_in_sidebar( $args ) {
 									$key = '';
 								if ( ! empty( $custom_field_count ) )
 									// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
-									$cf_text_value = rtrim( substr( $the_custom_field[0], 0, $custom_field_count ) ) . $custom_field_hellip;
+									$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
 								else
 									$cf_text_value = $the_custom_field[0];
 								$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';

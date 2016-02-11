@@ -7,11 +7,19 @@
  */
 function pis_shortcode( $atts ) {
 	extract( shortcode_atts( array(
+		// The custom container class
+		//'container_class'     => '', /* For widget only */
+
+		// The title of the widget
+		//'title'               => __( 'Posts', 'posts-in-sidebar' ), /* For widget only */
+		//'title_link'          => '', /* For widget only */
+		//'intro'               => '', /* For widget only */
+
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
-		'author_in'           => '',        // Aurthor IDs
+		'author_in'           => '',        // Author IDs
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -28,6 +36,11 @@ function pis_shortcode( $atts ) {
 		 */
 		'search'              => NULL,
 		'ignore_sticky'       => false,
+		/* This is the category of the single post
+		 * where we'll get posts from.
+		 */
+		//'get_from_same_cat'   => false, /* For widget only */
+		//'title_same_cat'      => '',    /* For widget only */
 
 		// Taxonomies
 		'relation'            => '',
@@ -84,6 +97,7 @@ function pis_shortcode( $atts ) {
 		// The title of the post
 		'display_title'       => true,
 		'link_on_title'       => true,
+		'title_tooltip'       => __( 'Permalink to', 'posts-in-sidebar' ),
 		'arrow'               => false,
 
 		// The featured image of the post
@@ -105,11 +119,19 @@ function pis_shortcode( $atts ) {
 		'display_author'      => false,
 		'author_text'         => __( 'By', 'posts-in-sidebar' ),
 		'linkify_author'      => false,
+		'gravatar_display'    => false,
+		'gravatar_size'       => 32,
+		'gravatar_default'    => '',
+		'gravatar_position'   => 'next_author',
 		'display_date'        => false,
 		'date_text'           => __( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'        => false,
+		'display_mod_date'    => false,
+		'mod_date_text'       => __( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'    => false,
 		'comments'            => false,
 		'comments_text'       => __( 'Comments:', 'posts-in-sidebar' ),
+		'linkify_comments'    => true,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 
@@ -133,16 +155,21 @@ function pis_shortcode( $atts ) {
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
 		'meta'                => '',
+		'custom_field_count'  => '',  // In characters.
+		'custom_field_hellip' => '&hellip;',
 		'custom_field_key'    => false,
 		'custom_field_sep'    => ':',
 
 		// The link to the archive
 		'archive_link'        => false,
 		'link_to'             => 'category',
+		'tax_name'            => '',
+		'tax_term_name'       => '',
 		'archive_text'        => __( 'Display all posts', 'posts-in-sidebar' ),
 
 		// When no posts found
 		'nopost_text'         => __( 'No posts yet.', 'posts-in-sidebar' ),
+		//'hide_widget'         => false, /* For widget only */
 
 		// Styles
 		'margin_unit'         => 'px',
@@ -163,6 +190,11 @@ function pis_shortcode( $atts ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
+
+		// Cache
+		//'cached'              => false, /* For widget only */
+		//'cache_time'          => 3600,  /* For widget only */
+		//'widget_id'           => '',    /* For widget only */
 
 		// Debug
 		'debug_query'         => false,

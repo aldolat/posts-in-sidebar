@@ -185,7 +185,7 @@ function pis_shortcode( $atts ) {
 		'custom_field_margin' => NULL,
 		'archive_margin'      => NULL,
 		'noposts_margin'      => NULL,
-		'custom_styles'       => '',
+		// 'custom_styles'       => '', /* For widget only */
 
 		// Extras
 		'list_element'        => 'ul',

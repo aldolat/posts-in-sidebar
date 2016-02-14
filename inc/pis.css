@@ -74,3 +74,8 @@
 .pis-section select {
 	width: 99%;
 }
+
+.pis-column.centered {
+	float: none;
+	margin: 0px auto 13px;
+}

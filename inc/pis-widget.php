@@ -1439,9 +1439,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php printf( __( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
+						<hr />
+
 						<div class="pis-column-container">
 
-							<div class="pis-column">
+							<div class="pis-column centered">
 								<?php // ================= Taxonomy relation between aa and bb
 								$options = array(
 									'empty' => array(
@@ -1462,8 +1464,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 						</div>
-
-						<hr />
 
 						<div class="pis-column-container">
 

@@ -7,7 +7,7 @@
  */
 
 // Check for the 'WP_UNINSTALL_PLUGIN' constant, before executing
-if( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit( 'No script kiddies please!' );
 }
 

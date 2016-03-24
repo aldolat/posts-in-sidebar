@@ -204,4 +204,6 @@ function pis_shortcode( $atts ) {
 
 	return do_shortcode( pis_get_posts_in_sidebar( $atts ) );
 }
-add_shortcode('pissc', 'pis_shortcode');
+if ( ! shortcode_exists( 'pissc' ) ) {
+	add_shortcode('pissc', 'pis_shortcode');
+}

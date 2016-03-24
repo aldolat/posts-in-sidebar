@@ -71,7 +71,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		/**
-		* Change the widget title if the user wants a different title in single posts.
+		* Change the widget title if the user wants a different title in single posts (for same category).
 		* @since 3.2
 		*/
 		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
@@ -79,6 +79,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$the_category = get_the_category( get_the_ID() );
 			$the_category_name = $the_category[0]->name;
 			$title = str_replace( '%s', $the_category_name, $title );
+		}
+
+		/**
+		* Change the widget title if the user wants a different title in single posts (for same author).
+		* @since 3.5
+		*/
+		if ( isset( $instance['get_from_same_author'] ) && $instance['get_from_same_author'] && isset( $instance['title_same_author'] ) && ! empty( $instance['title_same_author'] ) && is_singular( 'post' ) ) {
+			$title = $instance['title_same_author'];
+			$post_author_id = get_post_field( 'post_author', get_the_ID() );
+			$the_author_name = get_the_author_meta( 'display_name', $post_author_id );
+			$title = str_replace( '%s', $the_author_name, $title );
 		}
 
 		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
@@ -109,6 +120,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
 		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
+		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
+		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
 		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = 'slug';
@@ -248,6 +261,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ignore_sticky'       => $instance['ignore_sticky'],
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
+			'get_from_same_author'=> $instance['get_from_same_author'],
+			'title_same_author'   => $instance['title_same_author'],
 
 			// Taxonomies
 			'relation'            => $instance['relation'],
@@ -488,6 +503,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
+		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
+		$instance['title_same_author']   = strip_tags( $new_instance['title_same_author'] );
 
 		// Taxonomies
 		$instance['relation']            = $new_instance['relation'];
@@ -724,6 +741,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ignore_sticky'       => false,
 			'get_from_same_cat'   => false,
 			'title_same_cat'      => '',
+			'get_from_same_author'=> false,
+			'title_same_author'   => '',
 
 			// Taxonomies
 			'relation'            => '',
@@ -887,6 +906,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
+		$get_from_same_author = (bool) $instance['get_from_same_author'];
 		$date_inclusive       = (bool) $instance['date_inclusive'];
 		$exclude_current_post = (bool) $instance['exclude_current_post'];
 		$display_title        = (bool) $instance['display_title'];
@@ -1310,7 +1330,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id( 'get_from_same_cat' ),
 							$this->get_field_name( 'get_from_same_cat' ),
 							checked( $get_from_same_cat, true, false ),
-							__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest ID). Custom post types are excluded from this feature.', 'posts-in-sidebar' )
+							__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key in the array). Custom post types are excluded from this feature.', 'posts-in-sidebar' )
 						);
 						?>
 
@@ -1326,6 +1346,39 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_attr( $instance['title_same_cat'] ),
 							__( 'Posts under %s', 'posts-in-sidebar' ),
 							sprintf( __( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
+						); ?>
+
+					</div>
+
+				</div>
+
+				<hr>
+
+				<div class="pis-column-container pis-2col">
+
+					<div class="pis-column">
+
+						<?php // ================= Get posts from same author
+						pis_form_checkbox( __( 'When on single posts, get posts from the current author', 'posts-in-sidebar' ),
+							$this->get_field_id( 'get_from_same_author' ),
+							$this->get_field_name( 'get_from_same_author' ),
+							checked( $get_from_same_author, true, false ),
+							__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature.', 'posts-in-sidebar' )
+						);
+						?>
+
+					</div>
+
+					<div class="pis-column">
+
+						<?php // ================= The custom widget title when on single posts
+						pis_form_input_text(
+							__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
+							$this->get_field_id('title_same_author'),
+							$this->get_field_name('title_same_author'),
+							esc_attr( $instance['title_same_author'] ),
+							__( 'Posts by %s', 'posts-in-sidebar' ),
+							sprintf( __( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
 						); ?>
 
 					</div>

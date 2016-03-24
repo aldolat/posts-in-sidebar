@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.5-dev
+ * Version: 3.5
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.5-dev' );
+	define( 'PIS_VERSION', '3.5' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -214,6 +214,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		 */
 		'get_from_same_cat'   => false,
 		'title_same_cat'      => '',
+		/* This is the author of the single post
+		 * where we'll get posts from.
+		 */
+		'get_from_same_author'=> false,
+		'title_same_author'   => '',
 
 		// Taxonomies
 		'relation'            => '',
@@ -544,7 +549,29 @@ function pis_get_posts_in_sidebar( $args ) {
 		$params['post__in'] = '';
 		$params['author_name'] = '';
 		$params['author__in'] = '';
-		$params['category_name'] = get_cat_name( $the_category[0]->cat_ID );
+		$params['category_name'] =  $the_category[0]->slug;
+		$params['tag'] = '';
+		$params['tax_query'] = '';
+		$params['date_query'] = '';
+		$params['post_parent__in'] = '';
+		$params['post_format'] = '';
+		$params['meta_key'] = '';
+		$params['meta_value'] = '';
+	}
+
+	/**
+	 * Check if the user wants to display posts from the same author of the single post.
+	 * This will work in single (regular) posts only, not in custom post types.
+	 * @since 3.5
+	 */
+	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular( 'post' ) ) {
+		$the_author_id = get_post_field( 'post_author', $single_post_id );
+		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+		$params['post_type'] = 'post';
+		$params['post__in'] = '';
+		$params['author_name'] = '';
+		$params['author__in'] = explode( ',', $the_author_id );
+		$params['category_name'] = '';
 		$params['tag'] = '';
 		$params['tax_query'] = '';
 		$params['date_query'] = '';

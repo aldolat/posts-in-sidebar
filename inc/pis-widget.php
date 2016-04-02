@@ -168,6 +168,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['image_link'] ) )           $instance['image_link']           = '';
 		if ( ! isset( $instance['custom_image_url'] ) )     $instance['custom_image_url']     = '';
 		if ( ! isset( $instance['custom_img_no_thumb'] ) )  $instance['custom_img_no_thumb']  = true;
+		if ( ! isset( $instance['image_link_to_post'] ) )   $instance['image_link_to_post']   = true;
 		if ( ! isset( $instance['the_more'] ) )             $instance['the_more']             = __( 'Read more&hellip;', 'posts-in-sidebar' );
 		if ( ! isset( $instance['display_author'] ) )       $instance['display_author']       = false;
 		if ( ! isset( $instance['author_text'] ) )          $instance['author_text']          = __( 'By', 'posts-in-sidebar' );
@@ -330,6 +331,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_link'          => $instance['image_link'],
 			'custom_image_url'    => $instance['custom_image_url'],
 			'custom_img_no_thumb' => $instance['custom_img_no_thumb'],
+			'image_link_to_post'  => $instance['image_link_to_post'],
 
 			// The text of the post
 			'excerpt'             => $instance['excerpt'],
@@ -585,6 +587,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['image_link']          = esc_url( strip_tags( $new_instance['image_link'] ) );
 		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
 		$instance['custom_img_no_thumb'] = isset( $new_instance['custom_img_no_thumb'] ) ? 1 : 0;
+		$instance['image_link_to_post']  = isset( $new_instance['image_link_to_post'] ) ? 1 : 0;
 
 		// The text of the post
 		$instance['excerpt']             = $new_instance['excerpt'];
@@ -810,6 +813,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'image_link'          => '',
 			'custom_image_url'    => '',
 			'custom_img_no_thumb' => true,
+			'image_link_to_post'  => true,
 
 			// The text of the post
 			'excerpt'             => 'excerpt',
@@ -915,6 +919,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$image_before_title   = (bool) $instance['image_before_title'];
 		$arrow                = (bool) $instance['arrow'];
 		$custom_img_no_thumb  = (bool) $instance['custom_img_no_thumb'];
+		$image_link_to_post   = (bool) $instance['image_link_to_post'];
 		$exc_arrow            = (bool) $instance['exc_arrow'];
 		$utility_after_title  = (bool) $instance['utility_after_title'];
 		$display_author       = (bool) $instance['display_author'];
@@ -2117,7 +2122,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Positioning image before title
 								pis_form_checkbox( __( 'Display the image before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
 
-								<?php // ================= Image link
+							</div>
+
+							<div class="pis-column">
+
+								<h4><?php _e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h4>
+
+								<?php // ================= The link of the image to post
+								pis_form_checkbox(
+									__( 'Link the image to the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'image_link_to_post' ),
+									$this->get_field_name( 'image_link_to_post' ),
+									checked( $image_link_to_post, true, false ),
+									__( 'If activated, the image will be linked to the post. If you want to change the link, enter another URL in the box below.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom link of the image
 								pis_form_input_text(
 									__( 'Link the image to this URL', 'posts-in-sidebar' ),
 									$this->get_field_id( 'image_link' ),
@@ -2126,10 +2146,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'http://example.com/mypage',
 									__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'posts-in-sidebar' )
 								); ?>
-
-							</div>
-
-							<div class="pis-column">
 
 								<h4><?php _e( 'Customized featured image', 'posts-in-sidebar' ); ?></h4>
 

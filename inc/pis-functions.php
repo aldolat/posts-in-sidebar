@@ -351,6 +351,7 @@ function pis_the_thumbnail( $args ) {
 		'custom_img_no_thumb' => true,
 		'post_type'           => 'post',
 		'image_link'          => '',
+		'image_link_to_post'  => true,
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -396,6 +397,8 @@ function pis_the_thumbnail( $args ) {
 
 	$output = $open_wrap;
 
+		if ( $image_link_to_post ) {
+
 		// Figure out if a custom link for the featured image has been set.
 		if ( $image_link ) {
 			$the_image_link = $image_link;
@@ -403,6 +406,7 @@ function pis_the_thumbnail( $args ) {
 			$the_image_link = get_permalink();
 		}
 		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( strip_tags( $the_image_link ) ) . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
+		}
 
 			/**
 			 * If the post type is an attachment (an image, or any other attachment),
@@ -439,7 +443,11 @@ function pis_the_thumbnail( $args ) {
 			}
 
 			$output .= str_replace( '<img', '<img' . $image_style, $image_html );
-		$output .= '</a>';
+
+		if ( $image_link_to_post ) {
+			$output .= '</a>';
+		}
+
 	$output .= $close_wrap;
 
 	return $output;

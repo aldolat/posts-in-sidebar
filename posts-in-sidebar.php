@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.5
+ * Version: 3.6
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.5' );
+	define( 'PIS_VERSION', '3.6' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -286,6 +286,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'image_link'          => '',
 		'custom_image_url'    => '',
 		'custom_img_no_thumb' => true,
+		'image_link_to_post'  => true,
 
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
@@ -676,6 +677,7 @@ function pis_get_posts_in_sidebar( $args ) {
 									'custom_img_no_thumb' => $custom_img_no_thumb,
 									'post_type'           => $post_type,
 									'image_link'          => $image_link,
+									'image_link_to_post'  => $image_link_to_post,
 								) );
 							}
 
@@ -762,6 +764,7 @@ function pis_get_posts_in_sidebar( $args ) {
 												'custom_img_no_thumb' => $custom_img_no_thumb,
 												'post_type'           => $post_type,
 												'image_link'          => $image_link,
+												'image_link_to_post'  => $image_link_to_post,
 											) );
 										} // Close if ( $display_image && has_post_thumbnail )
 

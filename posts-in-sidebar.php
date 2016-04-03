@@ -3,7 +3,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: http://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 3.6
+ * Version: 3.7-dev
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -56,7 +56,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '3.6' );
+	define( 'PIS_VERSION', '3.7-dev' );
 
 	/**
 	 * Make plugin available for i18n.
@@ -213,12 +213,22 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * where we'll get posts from.
 		 */
 		'get_from_same_cat'   => false,
+		'number_same_cat'     => '',
 		'title_same_cat'      => '',
 		/* This is the author of the single post
 		 * where we'll get posts from.
 		 */
 		'get_from_same_author'=> false,
+		'number_same_author'  => '',
 		'title_same_author'   => '',
+		/* This is the custom field
+		 * to be used when on single post
+		 */
+		'get_from_custom_fld' => false,
+		's_custom_field_key'  => '',
+		's_custom_field_value'=> '',
+		'number_custom_field' => '',
+		'title_custom_field'  => '',
 
 		// Taxonomies
 		'relation'            => '',
@@ -547,6 +557,9 @@ function pis_get_posts_in_sidebar( $args ) {
 		$the_category = get_the_category( $single_post_id );
 		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
 		$params['post_type'] = 'post';
+		if ( isset( $number_same_cat ) && ! empty( $number_same_cat ) ) {
+			$params['posts_per_page'] = $number_same_cat;
+		}
 		$params['post__in'] = '';
 		$params['author_name'] = '';
 		$params['author__in'] = '';
@@ -569,6 +582,9 @@ function pis_get_posts_in_sidebar( $args ) {
 		$the_author_id = get_post_field( 'post_author', $single_post_id );
 		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
 		$params['post_type'] = 'post';
+		if ( isset( $number_same_author ) && ! empty( $number_same_author ) ) {
+			$params['posts_per_page'] = $number_same_author;
+		}
 		$params['post__in'] = '';
 		$params['author_name'] = '';
 		$params['author__in'] = explode( ',', $the_author_id );
@@ -580,6 +596,34 @@ function pis_get_posts_in_sidebar( $args ) {
 		$params['post_format'] = '';
 		$params['meta_key'] = '';
 		$params['meta_value'] = '';
+	}
+
+	/**
+	 * Check if the user wants to display posts from a certain custom field when on single post.
+	 * This will work in single (regular) posts only, not in custom post types.
+	 * @since 3.7
+	 */
+	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
+		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+		$params['post_type'] = 'post';
+		if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
+			$params['posts_per_page'] = $number_custom_field;
+		}
+		$params['post__in'] = '';
+		$params['author_name'] = '';
+		$params['author__in'] = '';
+		$params['category_name'] = '';
+		$params['tag'] = '';
+		$params['tax_query'] = '';
+		$params['date_query'] = '';
+		$params['post_parent__in'] = '';
+		$params['post_format'] = '';
+		if ( isset( $s_custom_field_key ) && ! empty( $s_custom_field_key ) ) {
+			$params['meta_key'] = $s_custom_field_key;
+		}
+		if ( isset( $s_custom_field_value ) && ! empty( $s_custom_field_value ) ) {
+			$params['meta_value'] = $s_custom_field_value;
+		}
 	}
 
 	// If the user has chosen a cached version of the widget output...

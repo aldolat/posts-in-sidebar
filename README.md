@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget  
 **Requires at least:** 4.1  
 **Tested up to:** 4.5  
-**Stable tag:** 3.6  
+**Stable tag:** 3.7-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -103,6 +103,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 3.7 ###
+
+* NEW: Added support to get posts from custom field when on single post (props by Michael Shenfield)
+* NEW: Added support for changing number of posts when on single post.
 
 ### 3.6 ###
 

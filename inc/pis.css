@@ -79,3 +79,7 @@
 	float: none;
 	margin: 0px auto 13px;
 }
+
+.pis-section h5 {
+	font-size: 1em;
+}

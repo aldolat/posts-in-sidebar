@@ -1498,7 +1498,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'custom_field_key'
 								); ?>
 
-								<?php // ================= Type of the taxonomy===========================================================
+								<?php // ================= Type of the taxonomy
 								$options = array();
 								$args = array(
 									'public' => true,

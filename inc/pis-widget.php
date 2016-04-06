@@ -96,8 +96,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		* Change the widget title if the user wants a different title in single posts (for custom fields).
 		* @since 3.7
 		*/
-		if ( isset( $instance['get_from_custom_fld'] ) && $instance['get_from_custom_fld'] && isset( $instance['title_custom_field'] ) && ! empty( $instance['title_custom_field'] ) && is_singular( 'post' ) ) {
-			$title = $instance['title_custom_field'];
+		if ( isset( $instance['get_from_custom_fld'] ) &&
+			 $instance['get_from_custom_fld'] &&
+			 isset( $instance['s_custom_field_key'] ) &&
+			 isset( $instance['s_custom_field_tax'] )  &&
+			 isset( $instance['title_custom_field'] ) &&
+			 ! empty( $instance['title_custom_field'] ) &&
+			 is_singular( 'post' ) ) {
+
+			$taxonomy_name = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
+			if ( term_exists( $taxonomy_name, $instance['s_custom_field_tax'] ) && has_term( $taxonomy_name, $instance['s_custom_field_tax'], get_the_ID() ) ) {
+				$title = $instance['title_custom_field'];
+				$the_category_name = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
+				$title = str_replace( '%s', strip_tags( $the_category_name ), $title );
+			}
 		}
 
 		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
@@ -132,9 +144,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
-		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = '';
+		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
 		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
-		if ( ! isset( $instance['s_custom_field_value'] ) ) $instance['s_custom_field_value'] = '';
+		if ( ! isset( $instance['s_custom_field_tax'] ) )   $instance['s_custom_field_tax']   = '';
 		if ( ! isset( $instance['number_custom_field'] ) )  $instance['number_custom_field']  = '';
 		if ( ! isset( $instance['title_custom_field'] ) )   $instance['title_custom_field']   = '';
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
@@ -283,7 +295,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_same_author'   => $instance['title_same_author'],
 			'get_from_custom_fld' => $instance['get_from_custom_fld'],
 			's_custom_field_key'  => $instance['s_custom_field_key'],
-			's_custom_field_value'=> $instance['s_custom_field_value'],
+			's_custom_field_tax'  => $instance['s_custom_field_tax'],
 			'number_custom_field' => $instance['number_custom_field'],
 			'title_custom_field'  => $instance['title_custom_field'],
 
@@ -535,7 +547,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_same_author']   = strip_tags( $new_instance['title_same_author'] );
 		$instance['get_from_custom_fld'] = isset( $new_instance['get_from_custom_fld'] ) ? 1 : 0;
 		$instance['s_custom_field_key']  = strip_tags( $new_instance['s_custom_field_key'] );
-		$instance['s_custom_field_value']= strip_tags( $new_instance['s_custom_field_value'] );
+		$instance['s_custom_field_tax']  = $new_instance['s_custom_field_tax'];
 		$instance['number_custom_field'] = intval( strip_tags( $new_instance['number_custom_field'] ) );
 			if ( 0 == $instance['number_custom_field'] || ! is_numeric( $instance['number_custom_field'] ) ) $instance['number_custom_field'] = '';
 		$instance['title_custom_field']  = strip_tags( $new_instance['title_custom_field'] );
@@ -782,7 +794,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_same_author'   => '',
 			'get_from_custom_fld' => false,
 			's_custom_field_key'  => '',
-			's_custom_field_value'=> '',
+			's_custom_field_tax'  => '',
 			'number_custom_field' => '',
 			'title_custom_field'  => '',
 
@@ -1464,7 +1476,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column-container">
 
-							<h5><?php _e( 'Get posts from custom field', 'posts-in-sidebar' ); ?></h5>
+							<h5><?php _e( 'Get posts from taxonomy using custom field', 'posts-in-sidebar' ); ?></h5>
 
 							<div class="pis-column">
 
@@ -1486,13 +1498,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'custom_field_key'
 								); ?>
 
-								<?php // ================= Define the custom field value
-								pis_form_input_text(
-									__( 'Get posts with this custom field value', 'posts-in-sidebar' ),
-									$this->get_field_id( 's_custom_field_value' ),
-									$this->get_field_name( 's_custom_field_value' ),
-									esc_attr( $instance['s_custom_field_value'] ),
-									'the-value-of-key'
+								<?php // ================= Type of the taxonomy===========================================================
+								$options = array();
+								$args = array(
+									'public' => true,
+								);
+								$registered_taxonomies = get_taxonomies( $args, 'object' );
+								foreach ( $registered_taxonomies as $registered_taxonomy ) {
+									$options[] = array(
+										'value' => $registered_taxonomy->name,
+										'desc'  => $registered_taxonomy->labels->singular_name
+									);
+								}
+								pis_form_select(
+									__( 'Type of the taxonomy', 'posts-in-sidebar' ),
+									$this->get_field_id('s_custom_field_tax'),
+									$this->get_field_name('s_custom_field_tax'),
+									$options,
+									$instance['s_custom_field_tax']
 								); ?>
 
 							</div>
@@ -1515,7 +1538,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'title_custom_field' ),
 									$this->get_field_name( 'title_custom_field' ),
 									esc_attr( $instance['title_custom_field'] ),
-									__( 'Posts', 'posts-in-sidebar' )
+									__( 'Posts', 'posts-in-sidebar' ),
+									sprintf( __( 'Use %s to display the name of the taxonomy.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
 							</div>

@@ -226,7 +226,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 */
 		'get_from_custom_fld' => false,
 		's_custom_field_key'  => '',
-		's_custom_field_value'=> '',
+		's_custom_field_tax'  => '',
 		'number_custom_field' => '',
 		'title_custom_field'  => '',
 
@@ -604,25 +604,30 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 3.7
 	 */
 	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
-		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
-		$params['post_type'] = 'post';
-		if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
-			$params['posts_per_page'] = $number_custom_field;
-		}
-		$params['post__in'] = '';
-		$params['author_name'] = '';
-		$params['author__in'] = '';
-		$params['category_name'] = '';
-		$params['tag'] = '';
-		$params['tax_query'] = '';
-		$params['date_query'] = '';
-		$params['post_parent__in'] = '';
-		$params['post_format'] = '';
-		if ( isset( $s_custom_field_key ) && ! empty( $s_custom_field_key ) ) {
-			$params['meta_key'] = $s_custom_field_key;
-		}
-		if ( isset( $s_custom_field_value ) && ! empty( $s_custom_field_value ) ) {
-			$params['meta_value'] = $s_custom_field_value;
+
+		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
+			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
+			if ( term_exists( $taxonomy_name, $s_custom_field_tax ) && has_term( $taxonomy_name, $s_custom_field_tax, $single_post_id ) ) {
+				if ( 'category' == $s_custom_field_tax ) {
+					$params['category_name'] = $taxonomy_name;
+				} else if ( 'post_tag' == $s_custom_field_tax ) {
+					$params['tag'] = $taxonomy_name;
+				}
+				// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+				$params['post_type'] = 'post';
+				if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
+					$params['posts_per_page'] = $number_custom_field;
+				}
+				$params['post__in'] = '';
+				$params['author_name'] = '';
+				$params['author__in'] = '';
+				$params['tax_query'] = '';
+				$params['date_query'] = '';
+				$params['post_parent__in'] = '';
+				$params['post_format'] = '';
+				$params['meta_key'] = '';
+				$params['meta_value'] = '';
+			}
 		}
 	}
 

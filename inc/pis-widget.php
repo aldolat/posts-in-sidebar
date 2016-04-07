@@ -107,7 +107,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$taxonomy_name = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
 			if ( term_exists( $taxonomy_name, $instance['s_custom_field_tax'] ) && has_term( $taxonomy_name, $instance['s_custom_field_tax'], get_the_ID() ) ) {
 				$title = $instance['title_custom_field'];
-				$the_category_name = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
+				$the_category = get_term_by( 'slug', $taxonomy_name, $instance['s_custom_field_tax'], 'OBJECT' );
+				$the_category_name = $the_category->name;
 				$title = str_replace( '%s', strip_tags( $the_category_name ), $title );
 			}
 		}

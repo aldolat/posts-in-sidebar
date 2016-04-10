@@ -93,7 +93,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/**
-		* Change the widget title if the user wants a different title in single posts (for custom fields).
+		* Change the widget title if the user wants a different title in single posts (for for same category/tag using custom fields).
 		* @since 3.7
 		*/
 		if ( isset( $instance['get_from_custom_fld'] ) &&
@@ -1481,12 +1481,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<?php // ================= Get posts from custom field when on single post
+								<?php // ================= Get posts from category/tags using custom field when on single post
 								pis_form_checkbox( __( 'When on single posts, get posts from this custom field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'get_from_custom_fld' ),
 									$this->get_field_name( 'get_from_custom_fld' ),
 									checked( $get_from_custom_fld, true, false ),
-									__( 'When activated, this function will get posts from the defined custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature.', 'posts-in-sidebar' )
+									sprintf( __( 'When activated, this function will get posts from the user-defined custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 								);
 								?>
 

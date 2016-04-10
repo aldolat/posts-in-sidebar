@@ -599,12 +599,16 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/**
-	 * Check if the user wants to display posts from a certain custom field when on single post.
+	 * Check if, when on single post, the user wants to display posts from a certain category
+	 * chosen by the user using custom field.
 	 * This will work in single (regular) posts only, not in custom post types.
+	 *
+	 * This piece of code will see if the current (main) post has a custom field defined in the widget panel.
+	 * If true, the code will change the query parameters for category/tag using the custom field value as taxonomy term.
+	 *
 	 * @since 3.7
 	 */
 	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
-
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
 			if ( term_exists( $taxonomy_name, $s_custom_field_tax ) && has_term( $taxonomy_name, $s_custom_field_tax, $single_post_id ) ) {

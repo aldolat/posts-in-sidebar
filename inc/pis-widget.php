@@ -1486,7 +1486,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_custom_fld' ),
 									$this->get_field_name( 'get_from_custom_fld' ),
 									checked( $get_from_custom_fld, true, false ),
-									sprintf( __( 'When activated, this function will get posts from the user-defined custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									sprintf( __( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 								);
 								?>
 

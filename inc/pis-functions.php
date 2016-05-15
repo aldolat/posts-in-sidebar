@@ -872,8 +872,10 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 		$output = __( 'Comments are closed.', 'posts-in-sidebar' );
 	} else {
 		// Construct the comments string.
-		if ( 0 < $num_comments ) {
-			$comments = sprintf( _n( '%s Comment', '%s Comments', $num_comments, 'posts-in-sidebar' ), $num_comments );
+		if ( 1 == $num_comments ) {
+			$comments = __( '1 Comment', 'posts-in-sidebar' );
+		} else if ( 1 < $num_comments ) {
+			$comments = sprintf( __( '%d Comments', 'posts-in-sidebar' ), $num_comments );
 		} else {
 			$comments = __( 'Leave a comment', 'posts-in-sidebar' );
 		}

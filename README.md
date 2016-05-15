@@ -108,6 +108,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * NEW: Added support to get posts, when on single post, from user-defined category/tag using custom field (props by Mike S).
 * NEW: Added support for changing number of posts when on single post.
+* FIX: fixed displaying comments string when using languages different from English.
 
 ### 3.6 ###
 

@@ -35,7 +35,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		/* Widget control settings. */
 		$control_ops = array(
-			'width'   => 800,
+			'width'   => 600,
 			'id_base' => 'pis_posts_in_sidebar',
 		);
 

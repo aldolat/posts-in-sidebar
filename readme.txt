@@ -90,6 +90,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Changelog ==
 
+= 3.8 =
+
+* Reduced widget width to 600px in the admin area.
+
 = 3.7 =
 
 * NEW: Added support to get posts, when on single post, from user-defined category/tag using custom field (props by Mike S).

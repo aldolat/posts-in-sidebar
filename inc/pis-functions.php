@@ -78,12 +78,12 @@ function pis_paragraph( $margin, $unit, $class, $class_filter ) {
 
 
 /**
-* Return the given text with paragraph breaks (HTML <br />).
-*
-* @since 1.12
-* @param string $text The text to be checked.
-* @return string $text The checked text with paragraph breaks.
-*/
+ * Return the given text with paragraph breaks (HTML <br />).
+ *
+ * @since 1.12
+ * @param string $text The text to be checked.
+ * @return string $text The checked text with paragraph breaks.
+ */
 function pis_break_text( $text ) {
 	// Convert cross-platform newlines into HTML '<br />'
 	$text = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $text );
@@ -135,11 +135,12 @@ function pis_arrow() {
  * @since 1.15
  * @uses pis_arrow()
  * @param string $the_more The text to be displayed for "Continue reading". Default empty.
+ * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
  * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
  * @param boolean $echo If echo the output or return.
  * @return string The HTML arrow linked to the post.
  */
-function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
+function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true ) {
 	if ( $the_more || $exc_arrow ) {
 		if ( $exc_arrow ) {
 			$the_arrow = pis_arrow();
@@ -148,15 +149,21 @@ function pis_more_arrow( $the_more = '', $exc_arrow = false, $echo = true ) {
 		}
 		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
 			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'posts-in-sidebar' ) . '" rel="bookmark">';
+			if ( $no_the_more ) $the_more = '';
 				$output .= $the_more . '&nbsp;' . $the_arrow;
 			$output .= '</a>';
 		$output .= '</span>';
 	}
 
-	if ( ! isset( $output ) )
+	if ( ! isset( $output ) ) {
 		return '';
+	}
 
-	if ( $echo ) echo $output; else return $output;
+	if ( $echo ) {
+		echo $output;
+	} else {
+		return $output;
+	}
 }
 
 
@@ -518,7 +525,7 @@ function pis_the_text( $args ) {
 			} else {
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 			}
-			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
 		break;
 
 		case 'excerpt':
@@ -536,18 +543,20 @@ function pis_the_text( $args ) {
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
 			} else {
 			// ... else generate an excerpt
 				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
+				$no_the_more = false;
+				if ( $exc_length >= count( explode( ' ', wp_strip_all_tags( $excerpt_text ) ) ) ) $no_the_more = true;
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
-				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false );
 			}
 		break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $exc_arrow, false );
+			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
 		break;
 
 	endswitch;

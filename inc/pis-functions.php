@@ -119,11 +119,17 @@ function pis_meta() {
  * @return string $output The HTML arrow.
  * @uses pis_class()
  */
-function pis_arrow() {
+function pis_arrow( $pre_space = true ) {
 	$the_arrow = '&rarr;';
 	if ( is_rtl() ) $the_arrow = '&larr;';
 
-	$output = '&nbsp;<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', '' ), false ) . '>' . $the_arrow . '</span>';
+	if ( $pre_space ) {
+		$space = '&nbsp;';
+	} else {
+		$space = '';
+	}
+
+	$output = $space . '<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', '' ), false ) . '>' . $the_arrow . '</span>';
 
 	return $output;
 }
@@ -142,17 +148,25 @@ function pis_arrow() {
  */
 function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true ) {
 	if ( $the_more || $exc_arrow ) {
-		if ( $exc_arrow ) {
+
+		if ( $the_more && $exc_arrow ) {
 			$the_arrow = pis_arrow();
+		} else if ( ( ! $the_more || $no_the_more ) && $exc_arrow ) {
+			$the_arrow = pis_arrow( false );
 		} else {
 			$the_arrow = '';
 		}
+
 		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
 			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'posts-in-sidebar' ) . '" rel="bookmark">';
-			if ( $no_the_more ) $the_more = '';
-				$output .= $the_more . '&nbsp;' . $the_arrow;
+			if ( $no_the_more ) {
+				$output .= pis_arrow( false );
+			} else {
+				$output .= $the_more . $the_arrow;
+			}
 			$output .= '</a>';
 		$output .= '</span>';
+
 	}
 
 	if ( ! isset( $output ) ) {

@@ -92,7 +92,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8 =
 
-* If in a WordPress generated excerpt the length of the excerpt is smaller that the user-defined length, the "Read more..." text is automatically hidden.
+* If the length of a WordPress-generated excerpt is smaller than or equal to the maximum length defined by the user for the excerpt, the "Read more..." text is automatically hidden.
 * Reduced widget width to 600px in the admin area.
 
 = 3.7 =

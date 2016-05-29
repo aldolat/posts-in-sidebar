@@ -562,7 +562,7 @@ function pis_the_text( $args ) {
 			// ... else generate an excerpt
 				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
 				$no_the_more = false;
-				if ( $exc_length >= count( explode( ' ', wp_strip_all_tags( $excerpt_text ) ) ) ) $no_the_more = true;
+				if ( count( explode( ' ', wp_strip_all_tags( $excerpt_text ) ) ) <= $exc_length ) $no_the_more = true;
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false );
 			}

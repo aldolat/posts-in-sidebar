@@ -2187,14 +2187,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id('excerpt'),
 								$this->get_field_name('excerpt'),
 								$options,
-								$instance['excerpt']
+								$instance['excerpt'],
+								sprintf( __( 'For informations regarding these types of text, please see %1$shere%2$s', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
 							); ?>
 
 							<?php // ================= Excerpt length
 							pis_form_input_text( __( 'The WordPress generated excerpt length will be (in words)', 'posts-in-sidebar' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ), '20' ); ?>
 
 							<?php // ================= More link text
-							pis_form_input_text( __( 'Use this text for More link', 'posts-in-sidebar' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), __( 'Read more&hellip;', 'posts-in-sidebar' ), __( 'The "Read more" text will be automatically hidden if the length of the WordPress-generated excerpt is smaller than or equal to the user-defined length.' ) ); ?>
+							pis_form_input_text( __( 'Use this text for More link', 'posts-in-sidebar' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), __( 'Read more&hellip;', 'posts-in-sidebar' ), __( 'The "Read more" text will be automatically hidden if the length of the WordPress-generated excerpt is smaller than or equal to the user-defined length.', 'posts-in-sidebar' ) ); ?>
 
 							<?php // ================= Arrow after the excerpt
 							pis_form_checkbox( __( 'Display an arrow after the text of the post', 'posts-in-sidebar' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), checked( $exc_arrow, true, false ) ); ?>

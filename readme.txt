@@ -92,6 +92,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8 =
 
+* FIX: The "Rich Content" option for excerpt correctly executes shortcodes now.
 * If the length of a WordPress-generated excerpt is smaller than or equal to the maximum length defined by the user for the excerpt, the "Read more..." text is automatically hidden.
 * Reduced widget width to 600px in the admin area.
 

@@ -518,6 +518,7 @@ function pis_the_text( $args ) {
 			$content = $pis_query->post->post_content;
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
+			$content = do_shortcode( $content );
 			$output .= apply_filters( 'pis_rich_content', $content );
 		break;
 

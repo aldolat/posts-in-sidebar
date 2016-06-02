@@ -2188,7 +2188,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name('excerpt'),
 								$options,
 								$instance['excerpt'],
-								sprintf( __( 'For informations regarding these types of text, please see %1$shere%2$s', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
+								sprintf( __( 'For informations regarding these types of text, please see %1$shere%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
 							); ?>
 
 							<?php // ================= Excerpt length

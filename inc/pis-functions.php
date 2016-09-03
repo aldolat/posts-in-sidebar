@@ -158,7 +158,7 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
 		}
 
 		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
-			$output .= '<a href="' . get_permalink() . '" title="' . esc_attr__( 'Read the full post', 'posts-in-sidebar' ) . '" rel="bookmark">';
+			$output .= '<a href="' . get_permalink() . '" rel="bookmark">';
 			if ( $no_the_more ) {
 				$output .= pis_arrow( false );
 			} else {

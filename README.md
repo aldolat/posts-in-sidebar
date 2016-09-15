@@ -106,6 +106,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 3.9 ###
 
+* Exclude current post even if the user has specified a list of IDs.
 * Removed title attribute on links.
 
 ### 3.8 ###

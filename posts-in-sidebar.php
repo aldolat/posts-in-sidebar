@@ -496,8 +496,27 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
 	 */
 	if ( is_singular() && $exclude_current_post ) {
+
+		/**
+		 * First case.
+		 * Add the current post ID to the $post_not_in array.
+		 */
 		if ( ! in_array( $single_post_id, $post_not_in ) ) {
 			$post_not_in[] = $single_post_id;
+		}
+
+		/**
+		 * Second case.
+		 * If the user has specified a list of posts to get, the $post_not_in array will be ignored by WordPress.
+		 * So let's exclude the current post in any way.
+		 *
+		 * @see https://codex.wordpress.org/Class_Reference/WP_Query#Post_.26_Page_Parameters
+		 * @since 3.9
+		 */
+		if ( in_array( $single_post_id, $posts_id ) ) {
+			$single_post_id_arr = array();
+			$single_post_id_arr[] = $single_post_id;
+			$posts_id = array_diff( $posts_id, $single_post_id_arr );
 		}
 	}
 

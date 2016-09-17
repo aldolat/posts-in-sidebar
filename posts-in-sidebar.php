@@ -582,17 +582,17 @@ function pis_get_posts_in_sidebar( $args ) {
 		if ( isset( $number_same_cat ) && ! empty( $number_same_cat ) ) {
 			$params['posts_per_page'] = $number_same_cat;
 		}
-		$params['post__in'] = '';
-		$params['author_name'] = '';
-		$params['author__in'] = '';
-		$params['category_name'] =  $the_category[0]->slug;
-		$params['tag'] = '';
-		$params['tax_query'] = '';
-		$params['date_query'] = '';
+		$params['post__in']        = '';
+		$params['author_name']     = '';
+		$params['author__in']      = '';
+		$params['category_name']   = $the_category[0]->slug;
+		$params['tag']             = '';
+		$params['tax_query']       = '';
+		$params['date_query']      = '';
 		$params['post_parent__in'] = '';
-		$params['post_format'] = '';
-		$params['meta_key'] = '';
-		$params['meta_value'] = '';
+		$params['post_format']     = '';
+		$params['meta_key']        = '';
+		$params['meta_value']      = '';
 	}
 
 	/**
@@ -607,17 +607,17 @@ function pis_get_posts_in_sidebar( $args ) {
 		if ( isset( $number_same_author ) && ! empty( $number_same_author ) ) {
 			$params['posts_per_page'] = $number_same_author;
 		}
-		$params['post__in'] = '';
-		$params['author_name'] = '';
-		$params['author__in'] = explode( ',', $the_author_id );
-		$params['category_name'] = '';
-		$params['tag'] = '';
-		$params['tax_query'] = '';
-		$params['date_query'] = '';
+		$params['post__in']        = '';
+		$params['author_name']     = '';
+		$params['author__in']      = explode( ',', $the_author_id );
+		$params['category_name']   = '';
+		$params['tag']             = '';
+		$params['tax_query']       = '';
+		$params['date_query']      = '';
 		$params['post_parent__in'] = '';
-		$params['post_format'] = '';
-		$params['meta_key'] = '';
-		$params['meta_value'] = '';
+		$params['post_format']     = '';
+		$params['meta_key']        = '';
+		$params['meta_value']      = '';
 	}
 
 	/**
@@ -644,15 +644,15 @@ function pis_get_posts_in_sidebar( $args ) {
 				if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
 					$params['posts_per_page'] = $number_custom_field;
 				}
-				$params['post__in'] = '';
-				$params['author_name'] = '';
-				$params['author__in'] = '';
-				$params['tax_query'] = '';
-				$params['date_query'] = '';
+				$params['post__in']        = '';
+				$params['author_name']     = '';
+				$params['author__in']      = '';
+				$params['tax_query']       = '';
+				$params['date_query']      = '';
 				$params['post_parent__in'] = '';
-				$params['post_format'] = '';
-				$params['meta_key'] = '';
-				$params['meta_value'] = '';
+				$params['post_format']     = '';
+				$params['meta_key']        = '';
+				$params['meta_value']      = '';
 			}
 		}
 	}

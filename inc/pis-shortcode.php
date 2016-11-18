@@ -108,6 +108,7 @@ function pis_shortcode( $atts ) {
 		'image_link'          => '',
 		'custom_image_url'    => '',
 		'custom_img_no_thumb' => true,
+		'image_link_to_post'  => true,
 
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"

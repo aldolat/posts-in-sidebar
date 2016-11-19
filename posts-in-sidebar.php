@@ -697,7 +697,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
 
-				<?php if ( 'private' == get_post_status() && ! current_user_can( 'read_private_posts' ) && ! current_user_can( 'read_private_posts' ) ) {
+				<?php if ( 'private' == get_post_status() && ! current_user_can( 'read_private_posts' ) ) {
 					$pis_output .= '';
 				} else { ?>
 

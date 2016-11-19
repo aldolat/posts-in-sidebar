@@ -108,6 +108,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * Restored the title attribute on links.
 * Aligned widget and shortcode options.
+* Minor corrections.
 
 ### 3.8.1 ###
 

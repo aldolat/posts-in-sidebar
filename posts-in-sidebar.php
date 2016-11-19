@@ -735,7 +735,6 @@ function pis_get_posts_in_sidebar( $args ) {
 
 						/* The thumbnail before the title */
 						if ( $image_before_title ) {
-
 							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
 								$post_link = pis_tooltip( $title_tooltip ) . the_title_attribute( 'echo=0' );
 								$pis_output .= pis_the_thumbnail( array(
@@ -755,7 +754,6 @@ function pis_get_posts_in_sidebar( $args ) {
 									'image_link_to_post'  => $image_link_to_post,
 								) );
 							}
-
 						}
 						// Close if $image_before_title
 
@@ -786,7 +784,6 @@ function pis_get_posts_in_sidebar( $args ) {
 
 						/* The author, the date and the comments */
 						if ( $utility_after_title ) {
-
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
 								'display_date'      => $display_date,
@@ -810,7 +807,6 @@ function pis_get_posts_in_sidebar( $args ) {
 								'gravatar_size'     => $gravatar_size,
 								'gravatar_default'  => $gravatar_default,
 							) );
-
 						}
 
 						/* The post content */
@@ -874,7 +870,6 @@ function pis_get_posts_in_sidebar( $args ) {
 
 						/* The author, the date and the comments */
 						if ( ! $utility_after_title ) {
-
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
 								'display_date'      => $display_date,
@@ -898,7 +893,6 @@ function pis_get_posts_in_sidebar( $args ) {
 								'gravatar_size'     => $gravatar_size,
 								'gravatar_default'  => $gravatar_default,
 							) );
-
 						}
 
 						/* The categories */

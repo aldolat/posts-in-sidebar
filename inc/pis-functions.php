@@ -1018,3 +1018,16 @@ function pis_get_gravatar( $args ) {
 
 	return $output;
 }
+
+
+/**
+ * Returns the tooltip text for the link to the post.
+ *
+ * @param $tooltip_text The text to be displayed in the tooltip.
+ * @since 3.9
+ */
+function pis_tooltip( $tooltip_text ) {
+	if ( $tooltip_text )
+		$tooltip_text = rtrim( $tooltip_text ) . ' ';
+	return $tooltip_text;
+}

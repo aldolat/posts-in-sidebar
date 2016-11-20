@@ -148,30 +148,31 @@ function pis_arrow( $pre_space = true ) {
  * @return string The HTML arrow linked to the post.
  */
 function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true ) {
-	if ( $the_more || $exc_arrow ) {
-
-		if ( $the_more && $exc_arrow ) {
-			$the_arrow = pis_arrow();
-		} else if ( ( ! $the_more || $no_the_more ) && $exc_arrow ) {
+	$output = '';
+	// If we do not want any "Read more" nor any arrow
+	// or the user doesn't want any "Read more" nor any arrow.
+	if ( ( true == $no_the_more && false == $exc_arrow ) || ( $the_more == '' && false == $exc_arrow ) ) {
+		$output = '';
+	} else {
+		// Else if we do not want any "Read more" but the user wants an arrow
+		// or the user doesn't want the "Read more" but only the arrow.
+		if ( ( true == $no_the_more && true == $exc_arrow ) || ( ! $the_more && $exc_arrow ) ) {
+			$the_more = '';
 			$the_arrow = pis_arrow( false );
-		} else {
+		}
+		// The user wants the "Read more" and the arrow.
+		else if ( $the_more && $exc_arrow ) {
+			$the_arrow = pis_arrow();
+		}
+		// The user wants the "Read more" but not the arrow
+		else {
 			$the_arrow = '';
 		}
-
 		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
 			$output .= '<a href="' . get_permalink() . '" rel="bookmark">';
-			if ( $no_the_more ) {
-				$output .= pis_arrow( false );
-			} else {
 				$output .= $the_more . $the_arrow;
-			}
 			$output .= '</a>';
 		$output .= '</span>';
-
-	}
-
-	if ( ! isset( $output ) ) {
-		return '';
 	}
 
 	if ( $echo ) {

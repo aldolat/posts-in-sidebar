@@ -115,9 +115,10 @@ function pis_meta() {
 /**
  * Generate an HTML arrow.
  *
- * @since 1.15
+ * @param boolean $pre_space If a space must be prepended before the arrow.
  * @return string $output The HTML arrow.
  * @uses pis_class()
+ * @since 1.15
  */
 function pis_arrow( $pre_space = true ) {
 	$the_arrow = '&rarr;';

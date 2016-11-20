@@ -639,6 +639,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['exc_length']          = absint( strip_tags( $new_instance['exc_length'] ) );
 			if ( '' == $instance['exc_length'] || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
 		$instance['the_more']            = strip_tags( $new_instance['the_more'] );
+			if ( strpos( $instance['the_more'], '...' ) ) $instance['the_more'] = str_replace( '...', '&hellip;', $instance['the_more'] );
 		$instance['exc_arrow']           = isset( $new_instance['exc_arrow'] ) ? 1 : 0;
 
 		// Author, date and comments

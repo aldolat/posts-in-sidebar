@@ -161,7 +161,7 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
 			$the_arrow = pis_arrow( false );
 		}
 		// The user wants the "Read more" and the arrow.
-		else if ( $the_more && $exc_arrow ) {
+		elseif ( $the_more && $exc_arrow ) {
 			$the_arrow = pis_arrow();
 		}
 		// The user wants the "Read more" but not the arrow
@@ -680,7 +680,7 @@ function pis_tax_query( $args ) {
 					'operator' => $operator_aa,
 				)
 			);
-		} else if ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -696,7 +696,7 @@ function pis_tax_query( $args ) {
 					'operator' => $operator_ba,
 				)
 			);
-		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -721,7 +721,7 @@ function pis_tax_query( $args ) {
 					'operator' => $operator_ba,
 				)
 			);
-		} else if ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -746,7 +746,7 @@ function pis_tax_query( $args ) {
 					)
 				)
 			);
-		} else if ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
 			$tax_query = array(
 				'relation' => $relation,
 				array(
@@ -900,7 +900,7 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 		// Construct the comments string.
 		if ( 1 == $num_comments ) {
 			$comments = __( '1 Comment', 'posts-in-sidebar' );
-		} else if ( 1 < $num_comments ) {
+		} elseif ( 1 < $num_comments ) {
 			$comments = sprintf( __( '%d Comments', 'posts-in-sidebar' ), $num_comments );
 		} else {
 			$comments = __( 'Leave a comment', 'posts-in-sidebar' );

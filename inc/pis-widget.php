@@ -124,7 +124,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		if ( $title && isset( $instance['title_link'] ) && ! empty( $instance['title_link'] ) ) {
 			echo $before_title . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $title . '</a>' . $after_title;
-		} else if ( $title ) {
+		} elseif ( $title ) {
 			echo $before_title . $title . $after_title;
 		}
 

@@ -636,7 +636,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			if ( term_exists( $taxonomy_name, $s_custom_field_tax ) && has_term( $taxonomy_name, $s_custom_field_tax, $single_post_id ) ) {
 				if ( 'category' == $s_custom_field_tax ) {
 					$params['category_name'] = $taxonomy_name;
-				} else if ( 'post_tag' == $s_custom_field_tax ) {
+				} elseif ( 'post_tag' == $s_custom_field_tax ) {
 					$params['tag'] = $taxonomy_name;
 				}
 				// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.

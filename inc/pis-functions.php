@@ -151,7 +151,7 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
 	$output = '';
 	// If we do not want any "Read more" nor any arrow
 	// or the user doesn't want any "Read more" nor any arrow.
-	if ( ( true == $no_the_more && false == $exc_arrow ) || ( $the_more == '' && false == $exc_arrow ) ) {
+	if ( ( true == $no_the_more && false == $exc_arrow ) || ( '' == $the_more && false == $exc_arrow ) ) {
 		$output = '';
 	} else {
 		// Else if we do not want any "Read more" but the user wants an arrow

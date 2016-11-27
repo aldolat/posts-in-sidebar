@@ -534,7 +534,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/**
-	 * If $post_in is not empy, make $author empty,
+	 * If $author_in is not empy, make $author empty,
 	 * otherwise WordPress will use $author.
 	 *
 	 * @since 3.0

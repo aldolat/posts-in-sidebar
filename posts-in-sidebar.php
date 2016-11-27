@@ -172,7 +172,7 @@ function pis_load_widgets() {
  */
 function pis_add_links( $links, $file ) {
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$rate_url = 'http://wordpress.org/support/view/plugin-reviews/' . basename( dirname( __FILE__ ) ) . '?rate=5#postform';
+		$rate_url = 'https://wordpress.org/support/plugin/' . basename( dirname( __FILE__ ) ) . '/reviews/#new-post';
 		$links[] = '<a target="_blank" href="' . $rate_url . '" title="' . __( 'Click here to rate and review this plugin on WordPress.org', 'posts-in-sidebar' ) . '">' . __( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
 	}
 	return $links;

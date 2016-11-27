@@ -1013,6 +1013,7 @@ function pis_get_posts_in_sidebar( $args ) {
  * The main function to echo the output.
  *
  * @uses get_pis_posts_in_sidebar()
+ * @param mixed $args The options for the main function.
  * @since 3.0
  */
 function pis_posts_in_sidebar( $args ) {

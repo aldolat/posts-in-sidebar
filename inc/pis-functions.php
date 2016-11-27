@@ -997,7 +997,11 @@ function pis_archive_link( $args ) {
 		$output .= '</p>';
 	}
 
-	if ( isset( $output ) ) return $output; else return '';
+	if ( isset( $output ) ) {
+		return $output;
+	} else {
+		return '';
+	}
 }
 
 
@@ -1029,7 +1033,6 @@ function pis_get_gravatar( $args ) {
  * @since 3.9
  */
 function pis_tooltip( $tooltip_text ) {
-	if ( $tooltip_text )
-		$tooltip_text = rtrim( $tooltip_text ) . ' ';
+	$tooltip_text = rtrim( $tooltip_text ) . ' ';
 	return $tooltip_text;
 }

@@ -844,28 +844,34 @@ function pis_debug( $parameters ) {
 	$output = '';
 
 	if ( $debug_query || $debug_params || $debug_query_number ) {
+		global $wp_version;
 		$output .= '<h3>' . sprintf( __( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
-		$output .= '<p>'; global $wp_version;
-			$output .= sprintf( __( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '<br>' );
-			$output .= sprintf( __( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '<br>' );
-			$output .= sprintf( __( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '<br>' );
-			if ( $cached ) $output .= __( 'Cache: active', 'posts-in-sidebar' ); else $output .= __( 'Cache: not active' );
+		$output .= '<p><strong>Environment informations:</strong><br>';
+			$output .= '&bull;&ensp;' . sprintf( __( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '<br>' );
+			$output .= '&bull;&ensp;' . sprintf( __( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '<br>' );
+			$output .= '&bull;&ensp;' . sprintf( __( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '<br>' );
+			if ( $cached ) {
+				$output .= '&bull;&ensp;' . __( 'Cache: active', 'posts-in-sidebar' );
+			} else {
+				$output .= '&bull;&ensp;' . __( 'Cache: not active', 'posts-in-sidebar' );
+			}
 		$output .= '</p>';
 	}
 
 	if ( $debug_query ) {
 		$output .= '<p><strong>' . __( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre>' . print_r( $params, true ) . '</pre>';
+		$output .= '<pre><code>$pis_query = ' . print_r( $params, true ) . '</code></pre>';
 	}
 
 	if ( $debug_params ) {
 		$output .= '<p><strong>' . __( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre>' . print_r( $args, true ) . '</pre>';
+		$output .= '<pre><code>$args = ' . print_r( $args, true ) . '</code></pre>';
 	}
 
 	if ( $debug_query_number ) {
-		$output .= '<p><strong>' . __( 'The total number of queries so far:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre>' . sprintf( __( '%1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</pre>';
+		$output .= '<p><strong>' . __( 'The total number of queries so far:', 'posts-in-sidebar' ) . '</strong><br>';
+		$output .= sprintf( __( '%1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() );
+		$output .= '</p>';
 	}
 
 	return $output;

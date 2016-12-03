@@ -1,5 +1,11 @@
 <?php
 /**
+ * This file contains the functions of the plugin
+ *
+ * @since 1.23
+ */
+
+/**
  * Prevent direct access to this file.
  *
  * @since 2.0

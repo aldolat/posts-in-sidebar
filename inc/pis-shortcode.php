@@ -1,5 +1,11 @@
 <?php
 /**
+ * This file contains the shortcode for the plugin
+ *
+ * @since 3.0
+ */
+
+/**
  * Create the shortcode.
  *
  * @example [pissc post_type="page" post_parent_in=4 exclude_current_post=1]

@@ -1,7 +1,7 @@
 === Posts in Sidebar ===
 Contributors: aldolat
 Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
-Tags: post, sidebar, widget
+Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.7
 Stable tag: 3.8.2

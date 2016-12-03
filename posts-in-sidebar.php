@@ -53,12 +53,12 @@ add_action( 'plugins_loaded', 'pis_setup' );
  */
 function pis_setup() {
 
-	/**
+	/*
 	 * Define the version of the plugin.
 	 */
 	define( 'PIS_VERSION', '3.8.2' );
 
-	/**
+	/*
 	 * Make plugin available for i18n.
 	 * Translations must be archived in the /languages/ directory.
 	 * The name of each translation file must be, for example:
@@ -77,40 +77,40 @@ function pis_setup() {
 	 */
 	load_plugin_textdomain( 'posts-in-sidebar', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
 
-	/**
+	/*
 	 * Load the plugin's main function.
 	 *
 	 * @since 3.8.1
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-main.php' );
 
-	/**
+	/*
 	 * Load the plugin's functions.
 	 *
 	 * @since 1.23
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-functions.php' );
 
-	/**
+	/*
 	 * Load Posts in Sidebar's widgets.
 	 */
 	add_action( 'widgets_init', 'pis_load_widgets' );
 
-	/**
+	/*
 	 * Load the shortcode.
 	 *
 	 * @since 3.0
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-shortcode.php' );
 
-	/**
+	/*
 	 * Load the script.
 	 *
 	 * @since 1.29
 	 */
 	add_action( 'admin_enqueue_scripts', 'pis_load_scripts' );
 
-	/**
+	/*
 	 * Add links to plugins list line.
 	 *
 	 * @since 3.1
@@ -147,14 +147,14 @@ function pis_load_scripts( $hook ) {
  */
 function pis_load_widgets() {
 
-	/**
+	/*
 	 * Load the widget's form functions.
 	 *
 	 * @since 1.12
 	 */
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/pis-widget-form-functions.php' );
 
-	/**
+	/*
 	 * Load the widget's PHP file.
 	 *
 	 * @since 1.1

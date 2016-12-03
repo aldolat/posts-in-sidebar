@@ -1,5 +1,18 @@
 <?php
 /**
+ * This file contains the core functions of the plugin
+ *
+ * The main function is pis_get_posts_in_sidebar( $args )
+ * that retrieves the posts based on the parameters
+ * chosen by the user.
+ *
+ * The function pis_posts_in_sidebar( $args ) is a simple
+ * function to echo the main one.
+ *
+ * @since 3.9.1
+ */
+
+/**
  * Prevent direct access to this file.
  *
  * @since 2.0
@@ -42,24 +55,28 @@ function pis_get_posts_in_sidebar( $args ) {
 		'post_status'         => 'publish',
 		'post_meta_key'       => '',
 		'post_meta_val'       => '',
-		/* The 's' (search) parameter must be not declared or must be empty
+		/*
+		 * The 's' (search) parameter must be not declared or must be empty
 		 * otherwise it will break sticky posts.
 		 */
 		'search'              => NULL,
 		'ignore_sticky'       => false,
-		/* This is the category of the single post
+		/*
+		 * This is the category of the single post
 		 * where we'll get posts from.
 		 */
 		'get_from_same_cat'   => false,
 		'number_same_cat'     => '',
 		'title_same_cat'      => '',
-		/* This is the author of the single post
+		/*
+		 * This is the author of the single post
 		 * where we'll get posts from.
 		 */
 		'get_from_same_author'=> false,
 		'number_same_author'  => '',
 		'title_same_author'   => '',
-		/* This is the custom field
+		/*
+		 * This is the custom field
 		 * to be used when on single post
 		 */
 		'get_from_custom_fld' => false,
@@ -232,7 +249,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
-	/**
+	/*
 	 * Check if $author or $cat or $tag are equal to 'NULL' (string).
 	 * If so, make them empty.
 	 * For more informations, see inc/posts-in-sidebar-widget.php, function update().
@@ -243,7 +260,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( 'NULL' == $cat ) $cat = '';
 	if ( 'NULL' == $tag ) $tag = '';
 
-	/**
+	/*
 	 * Some params accept only an array.
 	 */
 	if ( $posts_id            && ! is_array( $posts_id ) )            $posts_id            = explode( ',', $posts_id );            else $posts_id    = array();
@@ -255,7 +272,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( $post_parent_in      && ! is_array( $post_parent_in ) )      $post_parent_in      = explode( ',', $post_parent_in );      else $post_parent_in  = array();
 	if ( $post_parent_not_in  && ! is_array( $post_parent_not_in ) )  $post_parent_not_in  = explode( ',', $post_parent_not_in );  else $post_parent_not_in  = array();
 
-	/**
+	/*
 	 * Build $tax_query parameter (if any).
 	 * It must be an array of array.
 	 *
@@ -283,7 +300,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'operator_bb' => $operator_bb,
 	) );
 
-	/**
+	/*
 	 * Build the array for date query.
 	 * It must be an array of array.
 	 *
@@ -314,7 +331,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	);
 	$date_query = pis_array_remove_empty_keys( $date_query, true );
 
-	/**
+	/*
 	 * If in a single post or in a page, get the ID of the post of the main loop.
 	 * This will be used for:
 	 * - excluding the current post from the query;
@@ -332,13 +349,13 @@ function pis_get_posts_in_sidebar( $args ) {
 		$single_post_id = get_the_ID();
 	}
 
-	/**
+	/*
 	 * Exclude the current post from the query.
 	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
 	 */
 	if ( is_singular() && $exclude_current_post ) {
 
-		/**
+		/*
 		 * First case.
 		 * Add the current post ID to the $post_not_in array.
 		 */
@@ -346,7 +363,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$post_not_in[] = $single_post_id;
 		}
 
-		/**
+		/*
 		 * Second case.
 		 * If the user has specified a list of posts to get, the $post_not_in array is ignored by WordPress (see link below).
 		 * So let's modify this behaviour.
@@ -361,7 +378,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
-	/**
+	/*
 	 * If $post_type is 'attachment', $post_status must be 'inherit'.
 	 *
 	 * @see https://codex.wordpress.org/Class_Reference/WP_Query#Type_Parameters
@@ -371,7 +388,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		$post_status = 'inherit';
 	}
 
-	/**
+	/*
 	 * If $author_in is not empy, make $author empty,
 	 * otherwise WordPress will use $author.
 	 *
@@ -407,10 +424,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		'ignore_sticky_posts' => $ignore_sticky,
 	);
 
-	/**
+	/*
 	 * Check if the user wants to display posts from the same category of the single post.
 	 * This will work in single (regular) posts only, not in custom post types.
 	 * The category used will be the first in the array ( $the_category[0] ), i.e. the category with the lowest ID.
+	 *
 	 * @since 3.2
 	 */
 	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular( 'post' ) ) {
@@ -433,9 +451,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		$params['meta_value']      = '';
 	}
 
-	/**
+	/*
 	 * Check if the user wants to display posts from the same author of the single post.
 	 * This will work in single (regular) posts only, not in custom post types.
+	 *
 	 * @since 3.5
 	 */
 	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular( 'post' ) ) {
@@ -458,7 +477,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		$params['meta_value']      = '';
 	}
 
-	/**
+	/*
 	 * Check if, when on single post, the user wants to display posts from a certain category
 	 * chosen by the user using custom field.
 	 * This will work in single (regular) posts only, not in custom post types.
@@ -509,14 +528,14 @@ function pis_get_posts_in_sidebar( $args ) {
 		$pis_query = new WP_Query( $params );
 	}
 
-	/**
+	/*
 	 * Define the main variable that will concatenate all the output;
 	 *
 	 * @since 3.0
 	 */
 	$pis_output = '';
 
-	/* The Loop */
+	// The Loop
 	if ( $pis_query->have_posts() ) : ?>
 
 		<?php if ( $intro ) {
@@ -539,7 +558,8 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_output .= '';
 				} else { ?>
 
-					<?php /**
+					<?php
+					/*
 					 * Assign the class 'current-post' if this is the post of the main loop.
 					 *
 					 * @since 1.6
@@ -549,7 +569,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$current_post_class = ' current-post';
 					}
 
-					/**
+					/*
 					 * Assign the class 'sticky' if the post is sticky.
 					 *
 					 * @since 1.25
@@ -559,7 +579,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$sticky_class = ' sticky';
 					}
 
-					/**
+					/*
 					 * Assign the class 'private' if the post is private.
 					 *
 					 * @since 3.0.1
@@ -595,10 +615,10 @@ function pis_get_posts_in_sidebar( $args ) {
 						}
 						// Close if $image_before_title
 
-						/* The title */
+						// The title
 						if ( $display_title ) {
 							$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
-								/* The Gravatar */
+								// The Gravatar
 								if ( $gravatar_display && 'next_title' == $gravatar_position ) {
 									$pis_output .= pis_get_gravatar( array(
 										'author'  => get_the_author_meta( 'ID' ),
@@ -620,7 +640,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							$pis_output .= '</p>';
 						} // Close Display title
 
-						/* The author, the date and the comments */
+						// The author, the date and the comments
 						if ( $utility_after_title ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
@@ -647,7 +667,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						/* The post content */
+						// The post content
 						if ( ! post_password_required() ) {
 
 							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
@@ -680,7 +700,7 @@ function pis_get_posts_in_sidebar( $args ) {
 									}
 									// Close if $image_before_title
 
-									/* The Gravatar */
+									// The Gravatar
 									if ( $gravatar_display && 'next_post' == $gravatar_position ) {
 										$pis_output .= pis_get_gravatar( array(
 											'author'  => get_the_author_meta( 'ID' ),
@@ -689,7 +709,7 @@ function pis_get_posts_in_sidebar( $args ) {
 										) );
 									}
 
-									/* The text */
+									// The text
 									$pis_output .= pis_the_text( array(
 										'excerpt'    => $excerpt,
 										'pis_query'  => $pis_query,
@@ -706,7 +726,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						}
 						// Close if post password required
 
-						/* The author, the date and the comments */
+						// The author, the date and the comments
 						if ( ! $utility_after_title ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
@@ -733,7 +753,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						/* The categories */
+						// The categories
 						if ( $categories ) {
 							$list_of_categories = get_the_term_list( $pis_query->post->ID, 'category', '', $categ_sep . ' ', '' );
 							if ( $list_of_categories ) {
@@ -744,7 +764,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							}
 						}
 
-						/* The tags */
+						// The tags
 						if ( $tags ) {
 							$list_of_tags = get_the_term_list( $pis_query->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 							if ( $list_of_tags ) {
@@ -755,7 +775,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							}
 						}
 
-						/* Custom taxonomies */
+						// Custom taxonomies
 						if ( $display_custom_tax ) {
 							$pis_output .= pis_custom_taxonomies_terms_links( array(
 								'postID'       => $pis_query->post->ID,
@@ -766,7 +786,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						/* The post meta */
+						// The post meta
 						if ( $custom_field ) {
 							$the_custom_field = get_post_meta( $pis_query->post->ID, $meta, false );
 							if ( $the_custom_field ) {
@@ -801,7 +821,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		$pis_output .= '</' . $list_element . '>';
 		$pis_output .= '<!-- / ul#pis-ul -->';
 
-		/* The link to the entire archive */
+		// The link to the entire archive
 		if ( $archive_link ) {
 			$pis_output .= pis_archive_link( array(
 				'link_to'        => $link_to,
@@ -813,7 +833,8 @@ function pis_get_posts_in_sidebar( $args ) {
 			) );
 		} ?>
 
-	<?php /* If we have no posts yet */
+	<?php
+	// If we have no posts yet
 	else :
 
 		if ( $nopost_text ) {
@@ -827,7 +848,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	endif;
 
-	/* Debugging */
+	// Debugging
 	$pis_output .= pis_debug( array(
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.
 		'debug_params'       => $debug_params,         // bool   If display the complete set of parameters of the widget.
@@ -837,10 +858,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		'cached'             => $cached,               // bool   If the cache is active.
 	) );
 
-	/* Prints the version of Posts in Sidebar and if the cache is active. */
+	// Prints the version of Posts in Sidebar and if the cache is active
 	$pis_output .= pis_generated( $cached );
 
-	/* Reset the custom query */
+	// Reset the custom query
 	wp_reset_postdata();
 
 	return $pis_output;

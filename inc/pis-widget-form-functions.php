@@ -1,5 +1,11 @@
 <?php
 /**
+ * This file contains the functions used in the widget's forms
+ *
+ * @since 1.12
+ */
+
+/**
  * The forms for the widget panel
  *
  * @package PostsInSidebar

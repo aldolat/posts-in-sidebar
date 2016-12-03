@@ -1,5 +1,11 @@
 <?php
 /**
+ * This file contains the functions for the widget
+ *
+ * @since 1.0
+ */
+
+/**
  * Prevent direct access to this file.
  *
  * @since 2.0
@@ -56,7 +62,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	 * @since 1.0
 	 */
 	public function widget( $args, $instance ) {
-		/**
+		/*
 		 * Extract $args array keys into single variables.
 		 * Some of these are:
 		 * 		$args['before_widget']
@@ -70,8 +76,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
-		/**
+		/*
 		* Change the widget title if the user wants a different title in single posts (for same category).
+		*
 		* @since 3.2
 		*/
 		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
@@ -81,8 +88,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$title = str_replace( '%s', $the_category_name, $title );
 		}
 
-		/**
+		/*
 		* Change the widget title if the user wants a different title in single posts (for same author).
+		*
 		* @since 3.5
 		*/
 		if ( isset( $instance['get_from_same_author'] ) && $instance['get_from_same_author'] && isset( $instance['title_same_author'] ) && ! empty( $instance['title_same_author'] ) && is_singular( 'post' ) ) {
@@ -92,8 +100,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$title = str_replace( '%s', $the_author_name, $title );
 		}
 
-		/**
+		/*
 		* Change the widget title if the user wants a different title in single posts (for for same category/tag using custom fields).
+		*
 		* @since 3.7
 		*/
 		if ( isset( $instance['get_from_custom_fld'] ) &&
@@ -257,7 +266,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
 		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
 
-		/**
+		/*
 		 * Execute the main function in the front-end.
 		 * Some parameters are passed only for the debugging list.
 		 */
@@ -454,10 +463,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'cached'              => $instance['cached'],
 			'cache_time'          => $instance['cache_time'],
 			/*
-				The following 'widget_id' variable will be used in the main function
-				to check if a cached version of the query already exists
-				for every instance of the widget.
-			*/
+			 *
+			 * The following 'widget_id' variable will be used in the main function
+			 * to check if a cached version of the query already exists
+			 * for every instance of the widget.
+			 */
 			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
 
 			// Debug
@@ -505,7 +515,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_type']           = $new_instance['post_type'];
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
-			/**
+			/*
 			 * For historical reasons (for example, see version 1.18 of this plugin),
 			 * the variables $author, $cat, and $tag could have a value of 'NULL' (as string, not the costant NULL).
 			 * This means that in the database we could have this value, so that WordPress will search, for example,
@@ -998,12 +1008,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$debug_params         = (bool) $instance['debug_params'];
 		$debug_query_number   = (bool) $instance['debug_query_number'];
 
-		/**
-		* When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
-		* See above for more informations (the long note on function update).
-		*
-		* @since 2.0.3
-		*/
+		/*
+		 * When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
+		 * See above for more informations (the long note on function update).
+		 *
+		 * @since 2.0.3
+		 */
 		if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
 		if ( 'NULL' == $instance['cat'] )    $instance['cat']    = '';
 		if ( 'NULL' == $instance['tag'] )    $instance['tag']    = '';

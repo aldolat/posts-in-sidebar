@@ -171,7 +171,7 @@ function pis_shortcode( $atts ) {
 		'link_to'             => 'category',
 		'tax_name'            => '',
 		'tax_term_name'       => '',
-		'archive_text'        => __( 'Display all posts', 'posts-in-sidebar' ),
+		'archive_text'        => __( 'Display all posts under %s', 'posts-in-sidebar' ),
 
 		// When no posts found
 		'nopost_text'         => __( 'No posts yet.', 'posts-in-sidebar' ),

@@ -67,19 +67,16 @@
 	text-align: center;
 }
 .pis-alert {
-	font-weight: bold;
 	background-color: #F7F2D2;
 	padding: 1em;
 }
 .pis-section select {
 	width: 99%;
 }
-
 .pis-column.centered {
 	float: none;
 	margin: 0px auto 13px;
 }
-
 .pis-section h5 {
 	font-size: 1em;
 }

@@ -930,7 +930,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'             => 'category',
 			'tax_name'            => '',
 			'tax_term_name'       => '',
-			'archive_text'        => __( 'Display all posts', 'posts-in-sidebar' ),
+			'archive_text'        => __( 'Display all posts under %s', 'posts-in-sidebar' ),
 
 			// Text when no posts found
 			'nopost_text'         => __( 'No posts yet.', 'posts-in-sidebar' ),
@@ -2220,7 +2220,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
-									<p class="pis-alert"><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'posts-in-sidebar' ); ?></p>
+									<p class="pis-alert"><strong><?php _e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'posts-in-sidebar' ); ?></strong></p>
 								<?php } ?>
 
 								<?php // ================= Featured image
@@ -2665,7 +2665,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<div class="pis-linkto-tax-name">
+								<div class="pis-linkto-tax-name pis-alert">
 									<?php // ================= Taxonomy name for archive link
 									pis_form_input_text(
 										__( 'Taxonomy name', 'posts-in-sidebar' ),
@@ -2673,7 +2673,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'tax_name' ),
 										esc_attr( $instance['tax_name'] ),
 										__( 'genre', 'posts-in-sidebar' ),
-										sprintf( __( 'Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s).', 'posts-in-sidebar' ), '<code>', '</code>' ),
+										sprintf( __( 'Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s).%3$sUse this field only if you selected "Custom taxonomy" in the dropdpwn "Link to the archive of."', 'posts-in-sidebar' ), '<code>', '</code>', '<br />' ),
 										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
@@ -2701,8 +2701,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id( 'archive_text' ),
 							$this->get_field_name( 'archive_text' ),
 							esc_attr( $instance['archive_text'] ),
-							__( 'Display all posts by %s', 'posts-in-sidebar' ),
-							sprintf( __( 'Use %s to display the name of the taxonomy.', 'posts-in-sidebar' ), '<code>%s</code>' )
+							__( 'Display all posts under %s', 'posts-in-sidebar' ),
+							sprintf( __( 'Use %s to display the taxonomy term name.', 'posts-in-sidebar' ), '<code>%s</code>' )
 						); ?>
 
 					</div>

@@ -103,7 +103,6 @@ function pis_shortcode( $atts ) {
 		// The title of the post
 		'display_title'       => true,
 		'link_on_title'       => true,
-		'title_tooltip'       => __( 'Permalink to', 'posts-in-sidebar' ),
 		'arrow'               => false,
 
 		// The featured image of the post

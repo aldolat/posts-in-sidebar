@@ -140,7 +140,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		// The title of the post
 		'display_title'       => true,
 		'link_on_title'       => true,
-		'title_tooltip'       => __( 'Permalink to', 'posts-in-sidebar' ),
 		'arrow'               => false,
 
 		// The featured image of the post
@@ -594,14 +593,12 @@ function pis_get_posts_in_sidebar( $args ) {
 						/* The thumbnail before the title */
 						if ( $image_before_title ) {
 							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-								$post_link = pis_tooltip( $title_tooltip ) . the_title_attribute( 'echo=0' );
 								$pis_output .= pis_the_thumbnail( array(
 									'display_image'       => $display_image,
 									'image_align'         => $image_align,
 									'side_image_margin'   => $side_image_margin,
 									'bottom_image_margin' => $bottom_image_margin,
 									'margin_unit'         => $margin_unit,
-									'post_link'           => $post_link,
 									'pis_query'           => $pis_query,
 									'image_size'          => $image_size,
 									'thumb_wrap'          => true,
@@ -627,8 +624,7 @@ function pis_get_posts_in_sidebar( $args ) {
 									) );
 								}
 								if ( $link_on_title ) {
-									$post_link = pis_tooltip( $title_tooltip ) . the_title_attribute( 'echo=0' );
-									$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
+									$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 								}
 								$pis_output .= get_the_title();
 								if ( $arrow ) {
@@ -678,14 +674,12 @@ function pis_get_posts_in_sidebar( $args ) {
 
 										/* The thumbnail */
 										if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-											$post_link = pis_tooltip( $title_tooltip ) . the_title_attribute( 'echo=0' );
 											$pis_output .= pis_the_thumbnail( array(
 												'display_image'       => $display_image,
 												'image_align'         => $image_align,
 												'side_image_margin'   => $side_image_margin,
 												'bottom_image_margin' => $bottom_image_margin,
 												'margin_unit'         => $margin_unit,
-												'post_link'           => $post_link,
 												'pis_query'           => $pis_query,
 												'image_size'          => $image_size,
 												'thumb_wrap'          => false,

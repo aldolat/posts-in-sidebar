@@ -283,9 +283,8 @@ function pis_utility_section( $args ) {
 			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
 				if ( $author_text ) $output .= $author_text . ' ';
 				if ( $linkify_author ) {
-					$author_title = sprintf( __( 'View all posts by %s', 'posts-in-sidebar' ), get_the_author() );
 					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
-					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" title="' . esc_attr( $author_title ) . '" rel="author">';
+					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
 						$output .= get_the_author();
 					$output .= '</a>';
 				} else {
@@ -302,8 +301,7 @@ function pis_utility_section( $args ) {
 			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
 				if ( $date_text ) $output .= $date_text . ' ';
 				if ( $linkify_date ) {
-					$date_title = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
-					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $date_title ) . '" rel="bookmark">';
+					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 						$output .= get_the_date();
 					$output .= '</a>';
 				} else {
@@ -326,8 +324,7 @@ function pis_utility_section( $args ) {
 				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
 					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
 					if ( $linkify_mod_date ) {
-						$mod_date_title = sprintf( __( 'Permalink to %s', 'posts-in-sidebar' ), the_title_attribute( 'echo=0' ) );
-						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" title="' . esc_attr( $mod_date_title ) . '" rel="bookmark">';
+						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 							$output .= get_the_modified_date();
 						$output .= '</a>';
 					} else {
@@ -372,7 +369,6 @@ function pis_the_thumbnail( $args ) {
 		'side_image_margin'   => NULL,
 		'bottom_image_margin' => NULL,
 		'margin_unit'         => 'px',
-		'post_link'           => '',
 		'pis_query'           => '',
 		'image_size'          => 'thumbnail',
 		'thumb_wrap'          => false,
@@ -434,7 +430,7 @@ function pis_the_thumbnail( $args ) {
 		} else {
 			$the_image_link = get_permalink();
 		}
-		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( strip_tags( $the_image_link ) ) . '" title="' . esc_attr( $post_link ) . '" rel="bookmark">';
+		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( strip_tags( $the_image_link ) ) . '" rel="bookmark">';
 		}
 
 			/**
@@ -1004,7 +1000,7 @@ function pis_archive_link( $args ) {
 			$archive_text = str_replace( '%s', $term_name, $archive_text );
 		}
 		$output = '<p ' . pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ) . '>';
-			$output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . esc_url( $term_link ) . '" title="' . esc_attr( $archive_text ) . '" rel="bookmark">';
+			$output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . esc_url( $term_link ) . '" rel="bookmark">';
 				$output .= $archive_text;
 			$output .= '</a>';
 		$output .= '</p>';
@@ -1045,7 +1041,7 @@ function pis_get_gravatar( $args ) {
  * @param $tooltip_text The text to be displayed in the tooltip.
  * @since 3.9
  */
-function pis_tooltip( $tooltip_text ) {
+/*function pis_tooltip( $tooltip_text ) {
 	$tooltip_text = rtrim( $tooltip_text ) . ' ';
 	return $tooltip_text;
-}
+}*/

@@ -107,7 +107,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 3.8.2 ###
 
 * Rewritten function for displaying the Read more.
-* Restored the title attribute on links.
+* Completely removed the HTML title attribute on links.
 * Aligned widget and shortcode options.
 * Minor corrections.
 

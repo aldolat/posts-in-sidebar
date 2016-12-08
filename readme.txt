@@ -4,7 +4,7 @@ Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.7
-Stable tag: 3.8.2
+Stable tag: 3.8.3-dev
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -89,6 +89,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 3.8.3-dev =
+
+* Removed `languages/` directory.
 
 = 3.8.2 =
 

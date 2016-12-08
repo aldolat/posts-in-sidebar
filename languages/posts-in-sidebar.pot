@@ -1,0 +1,1417 @@
+# Copyright (C) 2016 Posts in Sidebar
+# This file is distributed under the same license as the Posts in Sidebar package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Posts in Sidebar 3.8.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
+"POT-Creation-Date: 2016-12-04 16:43:32+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: inc/pis-functions.php:247 inc/pis-main.php:163 inc/pis-shortcode.php:126
+#: inc/pis-widget.php:210 inc/pis-widget.php:885 inc/pis-widget.php:2353
+msgid "By"
+msgstr ""
+
+#: inc/pis-functions.php:250 inc/pis-main.php:170 inc/pis-shortcode.php:133
+#: inc/pis-widget.php:216 inc/pis-widget.php:892 inc/pis-widget.php:2366
+msgid "Published on"
+msgstr ""
+
+#: inc/pis-functions.php:252 inc/pis-main.php:173 inc/pis-shortcode.php:136
+#: inc/pis-widget.php:219 inc/pis-widget.php:895 inc/pis-widget.php:2426
+msgid "Modified on"
+msgstr ""
+
+#: inc/pis-functions.php:254 inc/pis-main.php:176 inc/pis-shortcode.php:139
+#: inc/pis-widget.php:221 inc/pis-widget.php:898 inc/pis-widget.php:2379
+msgid "Comments:"
+msgstr ""
+
+#: inc/pis-functions.php:496 inc/pis-main.php:158 inc/pis-shortcode.php:121
+#: inc/pis-widget.php:208 inc/pis-widget.php:880 inc/pis-widget.php:2202
+msgid "Read more&hellip;"
+msgstr ""
+
+#: inc/pis-functions.php:844
+msgid "%s Debug"
+msgstr ""
+
+#: inc/pis-functions.php:846
+msgid "Site URL: %s"
+msgstr ""
+
+#: inc/pis-functions.php:847
+msgid "WP version: %s"
+msgstr ""
+
+#: inc/pis-functions.php:848
+msgid "PiS version: %s"
+msgstr ""
+
+#: inc/pis-functions.php:850
+msgid "Cache: active"
+msgstr ""
+
+#: inc/pis-functions.php:852
+msgid "Cache: not active"
+msgstr ""
+
+#: inc/pis-functions.php:858
+msgid "The parameters for the query:"
+msgstr ""
+
+#: inc/pis-functions.php:863
+msgid "The complete set of parameters of the widget:"
+msgstr ""
+
+#: inc/pis-functions.php:868
+msgid "The total number of queries so far:"
+msgstr ""
+
+#: inc/pis-functions.php:869
+msgid "%1$s queries in %2$s seconds"
+msgstr ""
+
+#: inc/pis-functions.php:907
+msgid "Comments are closed."
+msgstr ""
+
+#: inc/pis-functions.php:911
+msgid "1 Comment"
+msgstr ""
+
+#: inc/pis-functions.php:913
+msgid "%d Comments"
+msgstr ""
+
+#: inc/pis-functions.php:915
+msgid "Leave a comment"
+msgstr ""
+
+#: inc/pis-functions.php:941
+msgid "Display all posts"
+msgstr ""
+
+#: inc/pis-main.php:38 inc/pis-widget.php:776 inc/pis-widget.php:1549
+msgid "Posts"
+msgstr ""
+
+#: inc/pis-main.php:183 inc/pis-shortcode.php:146 inc/pis-widget.php:226
+#: inc/pis-widget.php:905 inc/pis-widget.php:2465
+msgid "Category:"
+msgstr ""
+
+#: inc/pis-main.php:188 inc/pis-shortcode.php:151 inc/pis-widget.php:229
+#: inc/pis-widget.php:910 inc/pis-widget.php:2487
+msgid "Tags:"
+msgstr ""
+
+#: inc/pis-main.php:211 inc/pis-shortcode.php:174 inc/pis-widget.php:933
+#: inc/pis-widget.php:2704
+msgid "Display all posts under %s"
+msgstr ""
+
+#: inc/pis-main.php:214 inc/pis-shortcode.php:177 inc/pis-widget.php:244
+#: inc/pis-widget.php:936 inc/pis-widget.php:2725
+msgid "No posts yet."
+msgstr ""
+
+#: inc/pis-widget.php:39
+msgid "Display a list of posts in a widget"
+msgstr ""
+
+#. #-#-#-#-#  posts-in-sidebar.pot (Posts in Sidebar 3.8.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: inc/pis-widget.php:51
+msgid "Posts in Sidebar"
+msgstr ""
+
+#: inc/pis-widget.php:1021
+msgid "The title of the widget"
+msgstr ""
+
+#: inc/pis-widget.php:1026 inc/pis-widget.php:1304
+msgid "Title"
+msgstr ""
+
+#: inc/pis-widget.php:1030
+msgid "From the archive"
+msgstr ""
+
+#: inc/pis-widget.php:1034
+msgid "Link the title of the widget to this URL"
+msgstr ""
+
+#: inc/pis-widget.php:1042
+msgid "Place this text after the title"
+msgstr ""
+
+#: inc/pis-widget.php:1046
+msgid "These posts are part of my Readings series."
+msgstr ""
+
+#: inc/pis-widget.php:1048
+msgid "Allowed HTML: %s. Other tags will be stripped."
+msgstr ""
+
+#: inc/pis-widget.php:1058
+msgid "Getting posts"
+msgstr ""
+
+#: inc/pis-widget.php:1062
+msgid ""
+"In this section you can define which type of posts you want to retrieve and "
+"which taxonomy the plugin will use. Other parameters are available to better "
+"define the query."
+msgstr ""
+
+#: inc/pis-widget.php:1064 inc/pis-widget.php:1570 inc/pis-widget.php:1666
+msgid ""
+"If a field requires one or more IDs, install %1$sthis plugin%2$s to easily "
+"find the IDs."
+msgstr ""
+
+#: inc/pis-widget.php:1080 inc/pis-widget.php:1148 inc/pis-widget.php:1194
+msgid "Any"
+msgstr ""
+
+#: inc/pis-widget.php:1091
+msgid "Post type"
+msgstr ""
+
+#: inc/pis-widget.php:1100
+msgid "Get these posts exactly"
+msgstr ""
+
+#: inc/pis-widget.php:1105 inc/pis-widget.php:1187 inc/pis-widget.php:1587
+#: inc/pis-widget.php:1601 inc/pis-widget.php:1619 inc/pis-widget.php:1629
+#: inc/pis-widget.php:1643
+msgid "Enter IDs separated by commas."
+msgstr ""
+
+#: inc/pis-widget.php:1114
+msgid "Get posts with these categories"
+msgstr ""
+
+#: inc/pis-widget.php:1118
+msgid "books, ebooks"
+msgstr ""
+
+#: inc/pis-widget.php:1119
+msgid ""
+"Enter slugs separated by commas. To display posts that have all of the "
+"categories, use %1$s (a plus) between terms, for example:%2$s."
+msgstr ""
+
+#: inc/pis-widget.php:1128
+msgid "Get posts with these tags"
+msgstr ""
+
+#: inc/pis-widget.php:1132
+msgid "best-sellers"
+msgstr ""
+
+#: inc/pis-widget.php:1133
+msgid ""
+"Enter slugs separated by commas. To display posts that have all of the tags, "
+"use %1$s (a plus) between terms, for example:%2$s."
+msgstr ""
+
+#: inc/pis-widget.php:1159
+msgid "Get posts by this author"
+msgstr ""
+
+#: inc/pis-widget.php:1168
+msgid "Get posts by these authors"
+msgstr ""
+
+#: inc/pis-widget.php:1172
+msgid "1, 23, 45"
+msgstr ""
+
+#: inc/pis-widget.php:1173
+msgid ""
+"Enter IDs separated by commas. Note that if you fill this field, the "
+"previous one will be ignored."
+msgstr ""
+
+#: inc/pis-widget.php:1182
+msgid "Get posts whose parent is in these IDs"
+msgstr ""
+
+#: inc/pis-widget.php:1186
+msgid "2, 5, 12, 14, 20"
+msgstr ""
+
+#: inc/pis-widget.php:1205
+msgid "Get posts with this post format"
+msgstr ""
+
+#: inc/pis-widget.php:1225
+msgid "Get posts with this post status"
+msgstr ""
+
+#: inc/pis-widget.php:1238
+msgid "Get posts with this meta key"
+msgstr ""
+
+#: inc/pis-widget.php:1242
+msgid "meta-key"
+msgstr ""
+
+#: inc/pis-widget.php:1247
+msgid "Get posts with this meta value"
+msgstr ""
+
+#: inc/pis-widget.php:1251
+msgid "meta-value"
+msgstr ""
+
+#: inc/pis-widget.php:1256
+msgid "Get posts from this search"
+msgstr ""
+
+#: inc/pis-widget.php:1260
+msgid "words to search"
+msgstr ""
+
+#: inc/pis-widget.php:1273
+msgid "Get this number of posts"
+msgstr ""
+
+#: inc/pis-widget.php:1278 inc/pis-widget.php:1421 inc/pis-widget.php:1466
+#: inc/pis-widget.php:1540
+msgid "The value %s shows all the posts."
+msgstr ""
+
+#: inc/pis-widget.php:1282
+msgid "Do not display sticky posts on top of other posts"
+msgstr ""
+
+#: inc/pis-widget.php:1282
+msgid ""
+"If you activate this option, sticky posts will be managed as other posts. "
+"Sticky post status will be automatically ignored if you set up an author or "
+"a taxonomy in this widget."
+msgstr ""
+
+#: inc/pis-widget.php:1292
+msgid "None"
+msgstr ""
+
+#: inc/pis-widget.php:1296
+msgid "ID"
+msgstr ""
+
+#: inc/pis-widget.php:1300 inc/pis-widget.php:2611
+msgid "Author"
+msgstr ""
+
+#: inc/pis-widget.php:1308
+msgid "Name (post slug)"
+msgstr ""
+
+#: inc/pis-widget.php:1312
+msgid "Date"
+msgstr ""
+
+#: inc/pis-widget.php:1316
+msgid "Modified"
+msgstr ""
+
+#: inc/pis-widget.php:1320
+msgid "Parent"
+msgstr ""
+
+#: inc/pis-widget.php:1324
+msgid "Random"
+msgstr ""
+
+#: inc/pis-widget.php:1328
+msgid "Comment count"
+msgstr ""
+
+#: inc/pis-widget.php:1332
+msgid "Menu order"
+msgstr ""
+
+#: inc/pis-widget.php:1336
+msgid "Meta value"
+msgstr ""
+
+#: inc/pis-widget.php:1340
+msgid "Meta value number"
+msgstr ""
+
+#: inc/pis-widget.php:1344
+msgid "Preserve ID order"
+msgstr ""
+
+#: inc/pis-widget.php:1348
+msgid "Order posts by"
+msgstr ""
+
+#: inc/pis-widget.php:1359
+msgid "Ascending"
+msgstr ""
+
+#: inc/pis-widget.php:1363
+msgid "Descending"
+msgstr ""
+
+#: inc/pis-widget.php:1367
+msgid "The order will be"
+msgstr ""
+
+#: inc/pis-widget.php:1376
+msgid "Skip this number of posts"
+msgstr ""
+
+#: inc/pis-widget.php:1389
+msgid "Change the query when on single posts"
+msgstr ""
+
+#: inc/pis-widget.php:1393
+msgid ""
+"In this section you can change some parameters of the query when on single "
+"posts. Activate only one of these."
+msgstr ""
+
+#: inc/pis-widget.php:1397
+msgid "Get posts from current category"
+msgstr ""
+
+#: inc/pis-widget.php:1402
+msgid "When on single posts, get posts from the current category"
+msgstr ""
+
+#: inc/pis-widget.php:1406
+msgid ""
+"When activated, this function will get posts from the first category of the "
+"post, ignoring other parameters like tags, date, post formats, etc. If the "
+"post has multiple categories, the plugin will use the first category in the "
+"array of categories (the category with the lowest key in the array). Custom "
+"post types are excluded from this feature."
+msgstr ""
+
+#: inc/pis-widget.php:1416 inc/pis-widget.php:1461 inc/pis-widget.php:1535
+msgid "When on single posts, get this number of posts"
+msgstr ""
+
+#: inc/pis-widget.php:1426 inc/pis-widget.php:1471 inc/pis-widget.php:1545
+msgid "When on single posts, use this widget title"
+msgstr ""
+
+#: inc/pis-widget.php:1430
+msgid "Posts under %s"
+msgstr ""
+
+#: inc/pis-widget.php:1431
+msgid "Use %s to display the name of the category."
+msgstr ""
+
+#: inc/pis-widget.php:1442
+msgid "Get posts from current author"
+msgstr ""
+
+#: inc/pis-widget.php:1447
+msgid "When on single posts, get posts from the current author"
+msgstr ""
+
+#: inc/pis-widget.php:1451
+msgid ""
+"When activated, this function will get posts by the author of the post, "
+"ignoring other parameters like tags, date, post formats, etc. Custom post "
+"types are excluded from this feature."
+msgstr ""
+
+#: inc/pis-widget.php:1475
+msgid "Posts by %s"
+msgstr ""
+
+#: inc/pis-widget.php:1476
+msgid "Use %s to display the name of the author."
+msgstr ""
+
+#: inc/pis-widget.php:1487
+msgid "Get posts from taxonomy using custom field"
+msgstr ""
+
+#: inc/pis-widget.php:1492
+msgid "When on single posts, get posts from this custom field"
+msgstr ""
+
+#: inc/pis-widget.php:1496
+msgid ""
+"When activated, this function will get posts from the category defined by "
+"the user via custom field, ignoring other parameters like tags, date, post "
+"formats, etc. Custom post types are excluded from this feature. %1$sRead "
+"more on this%2$s."
+msgstr ""
+
+#: inc/pis-widget.php:1502
+msgid "Get posts with this custom field key"
+msgstr ""
+
+#: inc/pis-widget.php:1522
+msgid "Type of the taxonomy"
+msgstr ""
+
+#: inc/pis-widget.php:1550
+msgid "Use %s to display the name of the taxonomy."
+msgstr ""
+
+#: inc/pis-widget.php:1564
+msgid "Excluding posts"
+msgstr ""
+
+#: inc/pis-widget.php:1568
+msgid "Define here which posts must be excluded from the query."
+msgstr ""
+
+#: inc/pis-widget.php:1582
+msgid "Exclude posts by these authors"
+msgstr ""
+
+#: inc/pis-widget.php:1596
+msgid "Exclude posts from these categories"
+msgstr ""
+
+#: inc/pis-widget.php:1614
+msgid "Exclude posts from these tags"
+msgstr ""
+
+#: inc/pis-widget.php:1624
+msgid "Exclude posts with these IDs"
+msgstr ""
+
+#: inc/pis-widget.php:1638
+msgid "Exclude posts whose parent is in these IDs"
+msgstr ""
+
+#: inc/pis-widget.php:1647
+msgid ""
+"Automatically exclude the current post in single post or the current page in "
+"single page"
+msgstr ""
+
+#: inc/pis-widget.php:1660
+msgid "Custom taxonomy query"
+msgstr ""
+
+#: inc/pis-widget.php:1664
+msgid ""
+"This section lets you retrieve posts from any taxonomy (category, tags, and "
+"custom taxonomies). If you want to use only one taxonomy, use the \"Taxonomy "
+"A1\" field. If you have to put in relation two taxonomies (e.g., display "
+"posts that are in the \"quotes\" category but not in the \"wisdom\" tag), "
+"then use also the \"Taxonomy B1\" field. If you have to put in relation more "
+"taxonomies, start using also the \"A2\" and \"B2\" fields (e.g., display "
+"posts that are in the \"quotes\" category [A1] OR both have the \"Quote\" "
+"post format [B1] AND are in the \"wisdom\" category [B2])."
+msgstr ""
+
+#: inc/pis-widget.php:1688
+msgid "Relation between Column A and Column B"
+msgstr ""
+
+#: inc/pis-widget.php:1688
+msgid ""
+"The logical relationship between each inner taxonomy array when there is "
+"more than one. Do not use with a single inner taxonomy array."
+msgstr ""
+
+#: inc/pis-widget.php:1698
+msgid "Column A"
+msgstr ""
+
+#: inc/pis-widget.php:1701
+msgid "%1$sTaxonomy A1%2$s"
+msgstr ""
+
+#: inc/pis-widget.php:1701
+msgid "category"
+msgstr ""
+
+#: inc/pis-widget.php:1701 inc/pis-widget.php:1762 inc/pis-widget.php:1808
+#: inc/pis-widget.php:1869
+msgid "Enter the slug of the taxonomy."
+msgstr ""
+
+#: inc/pis-widget.php:1707 inc/pis-widget.php:1768 inc/pis-widget.php:1814
+#: inc/pis-widget.php:1875
+msgid "Term ID"
+msgstr ""
+
+#: inc/pis-widget.php:1711 inc/pis-widget.php:1772 inc/pis-widget.php:1818
+#: inc/pis-widget.php:1879
+msgid "Slug"
+msgstr ""
+
+#: inc/pis-widget.php:1715 inc/pis-widget.php:1776 inc/pis-widget.php:1822
+#: inc/pis-widget.php:1883
+msgid "Name"
+msgstr ""
+
+#: inc/pis-widget.php:1718 inc/pis-widget.php:1779 inc/pis-widget.php:1825
+#: inc/pis-widget.php:1886
+msgid "Field"
+msgstr ""
+
+#: inc/pis-widget.php:1718 inc/pis-widget.php:1779 inc/pis-widget.php:1825
+#: inc/pis-widget.php:1886
+msgid "Select taxonomy term by this field."
+msgstr ""
+
+#: inc/pis-widget.php:1721 inc/pis-widget.php:1782 inc/pis-widget.php:1828
+#: inc/pis-widget.php:1889
+msgid "Terms"
+msgstr ""
+
+#: inc/pis-widget.php:1721
+msgid "gnu-linux,kde"
+msgstr ""
+
+#: inc/pis-widget.php:1721 inc/pis-widget.php:1782 inc/pis-widget.php:1828
+#: inc/pis-widget.php:1889
+msgid "Enter terms, separated by comma."
+msgstr ""
+
+#: inc/pis-widget.php:1738 inc/pis-widget.php:1799 inc/pis-widget.php:1845
+#: inc/pis-widget.php:1906
+msgid "Operator"
+msgstr ""
+
+#: inc/pis-widget.php:1738 inc/pis-widget.php:1799 inc/pis-widget.php:1845
+#: inc/pis-widget.php:1906
+msgid "Operator to test for terms."
+msgstr ""
+
+#: inc/pis-widget.php:1757
+msgid "Relation between A1 and A2 taxonomies"
+msgstr ""
+
+#: inc/pis-widget.php:1762
+msgid "%1$sTaxonomy A2%2$s"
+msgstr ""
+
+#: inc/pis-widget.php:1762
+msgid "movie-genre"
+msgstr ""
+
+#: inc/pis-widget.php:1782
+msgid "action,sci-fi"
+msgstr ""
+
+#: inc/pis-widget.php:1805
+msgid "Column B"
+msgstr ""
+
+#: inc/pis-widget.php:1808
+msgid "%1$sTaxonomy B1%2$s"
+msgstr ""
+
+#: inc/pis-widget.php:1808
+msgid "post_tag"
+msgstr ""
+
+#: inc/pis-widget.php:1828
+msgid "system,apache"
+msgstr ""
+
+#: inc/pis-widget.php:1864
+msgid "Relation between B1 and B2 taxonomies"
+msgstr ""
+
+#: inc/pis-widget.php:1869
+msgid "%1$sTaxonomy B2%2$s"
+msgstr ""
+
+#: inc/pis-widget.php:1869
+msgid "post_format"
+msgstr ""
+
+#: inc/pis-widget.php:1889
+msgid "post-format-quote"
+msgstr ""
+
+#: inc/pis-widget.php:1919
+msgid "Date query"
+msgstr ""
+
+#: inc/pis-widget.php:1923
+msgid "Define the date period within posts are published."
+msgstr ""
+
+#: inc/pis-widget.php:1930 inc/pis-widget.php:2007 inc/pis-widget.php:2040
+msgid "Year"
+msgstr ""
+
+#: inc/pis-widget.php:1935
+msgid "4 digits year (e.g. 2015)."
+msgstr ""
+
+#: inc/pis-widget.php:1939 inc/pis-widget.php:2016 inc/pis-widget.php:2049
+msgid "Month"
+msgstr ""
+
+#: inc/pis-widget.php:1944
+msgid "Month number (from 1 to 12)."
+msgstr ""
+
+#: inc/pis-widget.php:1948
+msgid "Week"
+msgstr ""
+
+#: inc/pis-widget.php:1953
+msgid "Week of the year (from 0 to 53)."
+msgstr ""
+
+#: inc/pis-widget.php:1957 inc/pis-widget.php:2025 inc/pis-widget.php:2058
+msgid "Day"
+msgstr ""
+
+#: inc/pis-widget.php:1962
+msgid "Day of the month (from 1 to 31)."
+msgstr ""
+
+#: inc/pis-widget.php:1970
+msgid "Hour"
+msgstr ""
+
+#: inc/pis-widget.php:1975
+msgid "Hour (from 0 to 23)."
+msgstr ""
+
+#: inc/pis-widget.php:1979
+msgid "Minute"
+msgstr ""
+
+#: inc/pis-widget.php:1984
+msgid "Minute (from 0 to 59)."
+msgstr ""
+
+#: inc/pis-widget.php:1988
+msgid "Second"
+msgstr ""
+
+#: inc/pis-widget.php:1993
+msgid "Second (from 0 to 59)."
+msgstr ""
+
+#: inc/pis-widget.php:2004
+msgid "Get posts after this date"
+msgstr ""
+
+#: inc/pis-widget.php:2012 inc/pis-widget.php:2045
+msgid "Accepts any four-digit year."
+msgstr ""
+
+#: inc/pis-widget.php:2021 inc/pis-widget.php:2054
+msgid "The month of the year. Accepts numbers 1-12."
+msgstr ""
+
+#: inc/pis-widget.php:2030 inc/pis-widget.php:2063
+msgid "The day of the month. Accepts numbers 1-31."
+msgstr ""
+
+#: inc/pis-widget.php:2037
+msgid "Get posts before this date"
+msgstr ""
+
+#: inc/pis-widget.php:2072
+msgid "Other options"
+msgstr ""
+
+#: inc/pis-widget.php:2077
+msgid "Inclusive"
+msgstr ""
+
+#: inc/pis-widget.php:2077
+msgid "For after/before, whether exact value should be matched or not"
+msgstr ""
+
+#: inc/pis-widget.php:2091
+msgid "Post date"
+msgstr ""
+
+#: inc/pis-widget.php:2095
+msgid "Post date GMT"
+msgstr ""
+
+#: inc/pis-widget.php:2099
+msgid "Post modified"
+msgstr ""
+
+#: inc/pis-widget.php:2103
+msgid "Post modified GMT"
+msgstr ""
+
+#: inc/pis-widget.php:2107
+msgid "Column"
+msgstr ""
+
+#: inc/pis-widget.php:2112
+msgid "Column to query against."
+msgstr ""
+
+#: inc/pis-widget.php:2130
+msgid "Displaying posts"
+msgstr ""
+
+#: inc/pis-widget.php:2134
+msgid "Define here which elements you want to display in the widget."
+msgstr ""
+
+#: inc/pis-widget.php:2142
+msgid "The title of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2145
+msgid "Display the title of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2148
+msgid "Link the title to the post"
+msgstr ""
+
+#: inc/pis-widget.php:2151
+msgid "Show an arrow after the title"
+msgstr ""
+
+#: inc/pis-widget.php:2156
+msgid "The text of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2162
+msgid "The full content"
+msgstr ""
+
+#: inc/pis-widget.php:2166
+msgid "The rich content"
+msgstr ""
+
+#: inc/pis-widget.php:2170
+msgid "The simple text"
+msgstr ""
+
+#: inc/pis-widget.php:2174
+msgid "The excerpt up to \"more\" tag"
+msgstr ""
+
+#: inc/pis-widget.php:2178
+msgid "The excerpt"
+msgstr ""
+
+#: inc/pis-widget.php:2182
+msgid "Display only the Read more link"
+msgstr ""
+
+#: inc/pis-widget.php:2186
+msgid "Do not show any text"
+msgstr ""
+
+#: inc/pis-widget.php:2190
+msgid "Display this type of text"
+msgstr ""
+
+#: inc/pis-widget.php:2195
+msgid ""
+"For informations regarding these types of text, please see %1$shere%2$s."
+msgstr ""
+
+#: inc/pis-widget.php:2199
+msgid "The WordPress generated excerpt length will be (in words)"
+msgstr ""
+
+#: inc/pis-widget.php:2202
+msgid "Use this text for More link"
+msgstr ""
+
+#: inc/pis-widget.php:2202
+msgid ""
+"The \"Read more\" text will be automatically hidden if the length of the "
+"WordPress-generated excerpt is smaller than or equal to the user-defined "
+"length."
+msgstr ""
+
+#: inc/pis-widget.php:2205
+msgid "Display an arrow after the text of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2214
+msgid "The featured image of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2223
+msgid ""
+"Your theme does not support the Post Thumbnail feature. No image will be "
+"displayed."
+msgstr ""
+
+#: inc/pis-widget.php:2227
+msgid "Display the featured image of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2240
+msgid "The size of the thumbnail will be"
+msgstr ""
+
+#: inc/pis-widget.php:2251
+msgid "Do not change"
+msgstr ""
+
+#: inc/pis-widget.php:2255
+msgid "Left"
+msgstr ""
+
+#: inc/pis-widget.php:2259
+msgid "Right"
+msgstr ""
+
+#: inc/pis-widget.php:2263
+msgid "Center"
+msgstr ""
+
+#: inc/pis-widget.php:2268
+msgid "Align the image to"
+msgstr ""
+
+#: inc/pis-widget.php:2278
+msgid ""
+"Note that in order to use image sizes different from the WordPress "
+"standards, add them to your theme's %3$sfunctions.php%4$s file. See the "
+"%1$sCodex%2$s for further information."
+msgstr ""
+
+#: inc/pis-widget.php:2282
+msgid "You can also use %1$sa plugin%2$s that could help you in doing it."
+msgstr ""
+
+#: inc/pis-widget.php:2289
+msgid "Display the image before the title of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2295
+msgid "The link of the featured image"
+msgstr ""
+
+#: inc/pis-widget.php:2299
+msgid "Link the image to the post"
+msgstr ""
+
+#: inc/pis-widget.php:2303
+msgid ""
+"If activated, the image will be linked to the post. If you want to change "
+"the link, enter another URL in the box below."
+msgstr ""
+
+#: inc/pis-widget.php:2308
+msgid "Link the image to this URL"
+msgstr ""
+
+#: inc/pis-widget.php:2313
+msgid ""
+"By default the featured image is linked to the post. Use this field to link "
+"the image to a URL of your choice. Please, note that every featured image of "
+"this widget will be linked to the same URL."
+msgstr ""
+
+#: inc/pis-widget.php:2316
+msgid "Customized featured image"
+msgstr ""
+
+#: inc/pis-widget.php:2320
+msgid "Use this image instead of the standard featured image"
+msgstr ""
+
+#: inc/pis-widget.php:2325
+msgid ""
+"Paste here the URL of the image. Note that the same image will be used for "
+"all the posts in the widget, unless you active the checkbox below."
+msgstr ""
+
+#: inc/pis-widget.php:2329
+msgid "Use custom image URL only if the post has not a featured image."
+msgstr ""
+
+#: inc/pis-widget.php:2341
+msgid "Author, date and comments"
+msgstr ""
+
+#: inc/pis-widget.php:2350
+msgid "Display the author of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2353
+msgid "Use this text before author's name"
+msgstr ""
+
+#: inc/pis-widget.php:2356
+msgid "Link the author to his archive"
+msgstr ""
+
+#: inc/pis-widget.php:2363
+msgid "Display the date of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2366
+msgid "Use this text before date"
+msgstr ""
+
+#: inc/pis-widget.php:2369
+msgid "Link the date to the post"
+msgstr ""
+
+#: inc/pis-widget.php:2376
+msgid "Display the number of comments"
+msgstr ""
+
+#: inc/pis-widget.php:2379
+msgid "Use this text before comments"
+msgstr ""
+
+#: inc/pis-widget.php:2382
+msgid "Link the comments to post's comments"
+msgstr ""
+
+#: inc/pis-widget.php:2393
+msgid "Display author's Gravatar"
+msgstr ""
+
+#: inc/pis-widget.php:2396
+msgid "Gravatar size"
+msgstr ""
+
+#: inc/pis-widget.php:2399
+msgid "URL of the default Gravatar image"
+msgstr ""
+
+#: inc/pis-widget.php:2405
+msgid "Next to the post title"
+msgstr ""
+
+#: inc/pis-widget.php:2409
+msgid "Next to the post content"
+msgstr ""
+
+#: inc/pis-widget.php:2413
+msgid "Next to the author name"
+msgstr ""
+
+#: inc/pis-widget.php:2416
+msgid "Gravatar position"
+msgstr ""
+
+#: inc/pis-widget.php:2423
+msgid "Display the modification date of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2426
+msgid "Use this text before modification date"
+msgstr ""
+
+#: inc/pis-widget.php:2429
+msgid "Link the modification date to the post"
+msgstr ""
+
+#: inc/pis-widget.php:2436
+msgid "Use this separator between author, date and comments"
+msgstr ""
+
+#: inc/pis-widget.php:2436
+msgid "A space will be added before and after the separator."
+msgstr ""
+
+#: inc/pis-widget.php:2439
+msgid "Display this section after the title of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2451
+msgid "Taxonomies"
+msgstr ""
+
+#: inc/pis-widget.php:2459
+msgid "Categories"
+msgstr ""
+
+#: inc/pis-widget.php:2462
+msgid "Show the categories"
+msgstr ""
+
+#: inc/pis-widget.php:2465
+msgid "Use this text before categories list"
+msgstr ""
+
+#: inc/pis-widget.php:2469
+msgid "Use this separator between categories"
+msgstr ""
+
+#: inc/pis-widget.php:2474 inc/pis-widget.php:2499 inc/pis-widget.php:2524
+msgid "A space will be added after the separator."
+msgstr ""
+
+#: inc/pis-widget.php:2481
+msgid "Tags"
+msgstr ""
+
+#: inc/pis-widget.php:2484
+msgid "Show the tags"
+msgstr ""
+
+#: inc/pis-widget.php:2487
+msgid "Use this text before tags list"
+msgstr ""
+
+#: inc/pis-widget.php:2490
+msgid "Use this hashtag"
+msgstr ""
+
+#: inc/pis-widget.php:2494
+msgid "Use this separator between tags"
+msgstr ""
+
+#: inc/pis-widget.php:2506
+msgid "Custom taxonomies"
+msgstr ""
+
+#: inc/pis-widget.php:2509
+msgid "Show the custom taxonomies"
+msgstr ""
+
+#: inc/pis-widget.php:2515
+msgid "Use this hashtag for terms"
+msgstr ""
+
+#: inc/pis-widget.php:2519
+msgid "Use this separator between terms"
+msgstr ""
+
+#: inc/pis-widget.php:2536
+msgid "The custom field"
+msgstr ""
+
+#: inc/pis-widget.php:2545
+msgid "Display the custom field of the post"
+msgstr ""
+
+#: inc/pis-widget.php:2548
+msgid "Use this text before the custom field"
+msgstr ""
+
+#: inc/pis-widget.php:2548
+msgid "Custom field:"
+msgstr ""
+
+#: inc/pis-widget.php:2562
+msgid "Display this custom field"
+msgstr ""
+
+#: inc/pis-widget.php:2570
+msgid "The custom field content length will be (in characters)"
+msgstr ""
+
+#: inc/pis-widget.php:2573
+msgid "Use this text for horizontal ellipsis"
+msgstr ""
+
+#: inc/pis-widget.php:2580
+msgid "Also display the key of the custom field"
+msgstr ""
+
+#: inc/pis-widget.php:2583
+msgid "Use this separator between meta key and value"
+msgstr ""
+
+#: inc/pis-widget.php:2595
+msgid "The link to the archive"
+msgstr ""
+
+#: inc/pis-widget.php:2604
+msgid "Display the link to the taxonomy archive"
+msgstr ""
+
+#: inc/pis-widget.php:2616
+msgid "Category"
+msgstr ""
+
+#: inc/pis-widget.php:2621
+msgid "Tag"
+msgstr ""
+
+#: inc/pis-widget.php:2631
+msgid "Custom post type"
+msgstr ""
+
+#: inc/pis-widget.php:2642
+msgid "Custom taxonomy"
+msgstr ""
+
+#: inc/pis-widget.php:2650
+msgid "Post format: %s"
+msgstr ""
+
+#: inc/pis-widget.php:2655
+msgid "Link to the archive of"
+msgstr ""
+
+#: inc/pis-widget.php:2671
+msgid "Taxonomy name"
+msgstr ""
+
+#: inc/pis-widget.php:2675
+msgid "genre"
+msgstr ""
+
+#: inc/pis-widget.php:2676
+msgid ""
+"Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s).%3$sUse "
+"this field only if you selected \"Custom taxonomy\" in the \"Link to the "
+"archive of\" dropdown menu."
+msgstr ""
+
+#: inc/pis-widget.php:2684
+msgid "Taxonomy term name"
+msgstr ""
+
+#: inc/pis-widget.php:2688
+msgid "science"
+msgstr ""
+
+#: inc/pis-widget.php:2689
+msgid ""
+"Enter the name of the taxonomy term (e.g., %1$sscience%2$s if the taxonomy "
+"is \"genre\").%3$sIf you selected \"Author\" in \"Link to the archive of\" "
+"field, enter the author slug; if you selected \"Category\", enter the "
+"category slug, and so on."
+msgstr ""
+
+#: inc/pis-widget.php:2700
+msgid "Use this text for archive link"
+msgstr ""
+
+#: inc/pis-widget.php:2705
+msgid "Use %s to display the taxonomy term name."
+msgstr ""
+
+#: inc/pis-widget.php:2714
+msgid "When no posts are found"
+msgstr ""
+
+#: inc/pis-widget.php:2721
+msgid "Use this text when there are no posts"
+msgstr ""
+
+#: inc/pis-widget.php:2731
+msgid "Completely hide the widget if no posts are found"
+msgstr ""
+
+#: inc/pis-widget.php:2748
+msgid "Styles"
+msgstr ""
+
+#: inc/pis-widget.php:2752
+msgid ""
+"This section defines the margin for each line of the widget. Leave blank if "
+"you don't want to add any local style."
+msgstr ""
+
+#: inc/pis-widget.php:2778
+msgid "Unit for margins"
+msgstr ""
+
+#: inc/pis-widget.php:2785
+msgid ""
+"Enter here only the value without any unit, e.g. enter %1$s if you want a "
+"space of 10px or enter %2$s if you don't want any space."
+msgstr ""
+
+#: inc/pis-widget.php:2796
+msgid "Introduction bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2797
+msgid "Title bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2798
+msgid "Image left &amp; right margin"
+msgstr ""
+
+#: inc/pis-widget.php:2799
+msgid "Image bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2803
+msgid "Excerpt bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2804
+msgid "Utility bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2805
+msgid "Categories bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2806
+msgid "Tags bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2810
+msgid "Terms bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2811
+msgid "Custom field bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2812
+msgid "Archive bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2813
+msgid "No-posts bottom margin"
+msgstr ""
+
+#: inc/pis-widget.php:2821 inc/pis-widget.php:2835
+msgid "Custom styles"
+msgstr ""
+
+#: inc/pis-widget.php:2826
+msgid "In this field you can add your own styles, for example: %s"
+msgstr ""
+
+#: inc/pis-widget.php:2828
+msgid ""
+"To apply a style only to elements of this widget, prefix every style with "
+"this ID selector: %s"
+msgstr ""
+
+#: inc/pis-widget.php:2830
+msgid "For example: %s"
+msgstr ""
+
+#: inc/pis-widget.php:2839
+msgid "Enter here your CSS styles"
+msgstr ""
+
+#: inc/pis-widget.php:2850
+msgid "Extras"
+msgstr ""
+
+#: inc/pis-widget.php:2856
+msgid "Add a global container with this CSS class"
+msgstr ""
+
+#: inc/pis-widget.php:2862
+msgid ""
+"Enter the name of your container (for example, %1$s). The plugin will add a "
+"new %2$s container with this class. You can enter only one class and the "
+"name may contain only letters, hyphens and underscores. The new container "
+"will enclose all the widget, from the title to the last line."
+msgstr ""
+
+#: inc/pis-widget.php:2869
+msgid "Unordered list"
+msgstr ""
+
+#: inc/pis-widget.php:2873
+msgid "Ordered list"
+msgstr ""
+
+#: inc/pis-widget.php:2877
+msgid "Use this type of list for the posts"
+msgstr ""
+
+#: inc/pis-widget.php:2886
+msgid ""
+"Try to remove the bullets and the extra left space from the list elements"
+msgstr ""
+
+#: inc/pis-widget.php:2890
+msgid ""
+"If the plugin doesn't remove the bullets and/or the extra left space, you "
+"have to %1$sedit your CSS file%2$s manually."
+msgstr ""
+
+#: inc/pis-widget.php:2904
+msgid "Cache"
+msgstr ""
+
+#: inc/pis-widget.php:2913
+msgid "Use a cache to serve the output"
+msgstr ""
+
+#: inc/pis-widget.php:2917
+msgid ""
+"This option, if activated, will increase the performance but will show the "
+"same output during the defined cache time."
+msgstr ""
+
+#: inc/pis-widget.php:2926
+msgid "The cache will be used for (in seconds)"
+msgstr ""
+
+#: inc/pis-widget.php:2931
+msgid ""
+"For example, %1$s for one hour of cache. To reset the cache, enter %2$s and "
+"save the widget."
+msgstr ""
+
+#: inc/pis-widget.php:2944
+msgid "Debugging"
+msgstr ""
+
+#: inc/pis-widget.php:2948
+msgid "You are using Posts in Sidebar version %s."
+msgstr ""
+
+#: inc/pis-widget.php:2950
+msgid ""
+"Use this options for debugging purposes only. Please note that the "
+"informations will be displayed publicly on your site."
+msgstr ""
+
+#: inc/pis-widget.php:2954
+msgid "Display the query for the widget"
+msgstr ""
+
+#: inc/pis-widget.php:2962
+msgid "Display the complete set of parameters for the widget"
+msgstr ""
+
+#: inc/pis-widget.php:2970
+msgid ""
+"Display the total number of queries, including WordPress, current theme and "
+"all active plugins"
+msgstr ""
+
+#: posts-in-sidebar.php:176
+msgid "Click here to rate and review this plugin on WordPress.org"
+msgstr ""
+
+#: posts-in-sidebar.php:176
+msgid "Rate this plugin"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://dev.aldolat.it/projects/posts-in-sidebar/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Publish a list of posts in your sidebar"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Aldo Latino"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.aldolat.it/"
+msgstr ""

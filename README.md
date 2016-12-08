@@ -106,7 +106,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 3.8.3-dev ###
 
-* Removed `languages/` directory.
+* Removed Italian l10n from `languages/` directory, because there is already a language pack in GlotPress.
 
 ### 3.8.2 ###
 

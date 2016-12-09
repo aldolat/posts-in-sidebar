@@ -646,7 +646,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['exc_length']          = absint( strip_tags( $new_instance['exc_length'] ) );
 			if ( '' == $instance['exc_length'] || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
 		$instance['the_more']            = strip_tags( $new_instance['the_more'] );
-			if ( strpos( $instance['the_more'], '...' ) ) $instance['the_more'] = str_replace( '...', '&hellip;', $instance['the_more'] );
+			$instance['the_more'] = str_replace( '...', '&hellip;', $instance['the_more'] );
 		$instance['exc_arrow']           = isset( $new_instance['exc_arrow'] ) ? 1 : 0;
 
 		// Author, date and comments
@@ -692,6 +692,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['custom_field_count']  = strip_tags( $new_instance['custom_field_count'] );
 			if ( 0 >= $instance['custom_field_count'] || ! is_numeric( $instance['custom_field_count'] ) ) $instance['custom_field_count'] = '';
 		$instance['custom_field_hellip'] = strip_tags( $new_instance['custom_field_hellip'] );
+			$instance['custom_field_hellip'] = str_replace( '...', '&hellip;', $instance['custom_field_hellip'] );
 		$instance['custom_field_key']    = isset( $new_instance['custom_field_key'] ) ? 1 : 0;
 		$instance['custom_field_sep']    = strip_tags( $new_instance['custom_field_sep'] );
 

@@ -80,3 +80,15 @@
 .pis-section h5 {
 	font-size: 1em;
 }
+.pis-section ::-webkit-input-placeholder {
+	color: #ccc;
+}
+.pis-section :-moz-placeholder {  /* Firefox 18- */
+	color: #ccc;
+}
+.pis-section ::-moz-placeholder { /* Firefox 19+ */
+	color: #ccc;
+}
+.pis-section :-ms-input-placeholder {
+	color: #ccc;
+}

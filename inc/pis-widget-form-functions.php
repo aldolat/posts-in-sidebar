@@ -72,7 +72,7 @@ function pis_form_textarea( $label, $id, $name, $text, $placeholder = '', $style
 	pis_form_label( $label, $id );
 	if ( $placeholder ) $placeholder = ' placeholder="' . $placeholder . '"';
 	if ( $style ) $style = ' style="' . $style . '"';
-	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10"' . $placeholder . ' class="widefat"' . $style . '>' . esc_html( $text ) . '</textarea>'; ?>
+	echo '<textarea id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" rows="2" cols="10"' . $placeholder . ' class="widefat"' . $style . '>' . esc_textarea( $text ) . '</textarea>'; ?>
 	<?php if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';
 }

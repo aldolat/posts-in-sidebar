@@ -118,37 +118,37 @@ function pis_shortcode( $atts ) {
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
 		'exc_length'          => 20,        // In words
-		'the_more'            => __( 'Read more&hellip;', 'posts-in-sidebar' ),
+		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
 		// Author, date and comments
 		'display_author'      => false,
-		'author_text'         => __( 'By', 'posts-in-sidebar' ),
+		'author_text'         => esc_html__( 'By', 'posts-in-sidebar' ),
 		'linkify_author'      => false,
 		'gravatar_display'    => false,
 		'gravatar_size'       => 32,
 		'gravatar_default'    => '',
 		'gravatar_position'   => 'next_author',
 		'display_date'        => false,
-		'date_text'           => __( 'Published on', 'posts-in-sidebar' ),
+		'date_text'           => esc_html__( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'        => false,
 		'display_mod_date'    => false,
-		'mod_date_text'       => __( 'Modified on', 'posts-in-sidebar' ),
+		'mod_date_text'       => esc_html__( 'Modified on', 'posts-in-sidebar' ),
 		'linkify_mod_date'    => false,
 		'comments'            => false,
-		'comments_text'       => __( 'Comments:', 'posts-in-sidebar' ),
+		'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
 		'linkify_comments'    => true,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 
 		// The categories of the post
 		'categories'          => false,
-		'categ_text'          => __( 'Category:', 'posts-in-sidebar' ),
+		'categ_text'          => esc_html__( 'Category:', 'posts-in-sidebar' ),
 		'categ_sep'           => ',',
 
 		// The tags of the post
 		'tags'                => false,
-		'tags_text'           => __( 'Tags:', 'posts-in-sidebar' ),
+		'tags_text'           => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 		'hashtag'             => '#',
 		'tag_sep'             => '',
 
@@ -171,10 +171,10 @@ function pis_shortcode( $atts ) {
 		'link_to'             => 'category',
 		'tax_name'            => '',
 		'tax_term_name'       => '',
-		'archive_text'        => __( 'Display all posts under %s', 'posts-in-sidebar' ),
+		'archive_text'        => esc_html__( 'Display all posts under %s', 'posts-in-sidebar' ),
 
 		// When no posts found
-		'nopost_text'         => __( 'No posts yet.', 'posts-in-sidebar' ),
+		'nopost_text'         => esc_html__( 'No posts yet.', 'posts-in-sidebar' ),
 		//'hide_widget'         => false, /* For widget only */
 
 		// Styles

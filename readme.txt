@@ -99,6 +99,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 3.8.3-dev =
 
 * Removed Italian l10n from `languages/` directory, because the Italian language pack in GlotPress is completed.
+* Hardening security on i18n.
 
 = 3.8.2 =
 

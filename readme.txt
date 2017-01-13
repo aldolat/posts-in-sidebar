@@ -66,6 +66,8 @@ This plugin has been translated into these languages:
 
 == Installation ==
 
+**Installing Posts in Sidebar**
+
 This section describes how to install the plugin and get it working.
 
 1. Upload  the `posts-in-sidebar` directory to the `/wp-content/plugins/` directory
@@ -73,6 +75,10 @@ This section describes how to install the plugin and get it working.
 1. Go to the widgets manager and add the newly available widget into the sidebar
 1. Adjust the options to fit your needs
 1. Save and test your results.
+
+**Uninstalling**
+
+Posts in Sidebar cleans up after itself. All plugin settings will be removed from your database when the plugin is uninstalled via the Plugins screen.
 
 == Frequently Asked Questions ==
 
@@ -92,7 +98,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8.3-dev =
 
-* Removed Italian l10n from `languages/` directory, because there is already a language pack in GlotPress.
+* Removed Italian l10n from `languages/` directory, because the Italian language pack in GlotPress is completed.
 
 = 3.8.2 =
 

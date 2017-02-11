@@ -489,6 +489,10 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
+			if ( is_numeric( $taxonomy_name ) ) {
+				$taxonomy_identity = get_term_by( 'id', $taxonomy_name, $s_custom_field_tax );
+				$taxonomy_name = $taxonomy_identity->slug;
+			}
 			if ( term_exists( $taxonomy_name, $s_custom_field_tax ) && has_term( $taxonomy_name, $s_custom_field_tax, $single_post_id ) ) {
 				if ( 'category' == $s_custom_field_tax ) {
 					$params['category_name'] = $taxonomy_name;

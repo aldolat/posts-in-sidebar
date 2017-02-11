@@ -113,12 +113,30 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 ! empty( $instance['title_custom_field'] ) &&
 			 is_singular( 'post' ) ) {
 
-			$taxonomy_name = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
-			if ( term_exists( $taxonomy_name, $instance['s_custom_field_tax'] ) && has_term( $taxonomy_name, $instance['s_custom_field_tax'], get_the_ID() ) ) {
+			// Get the custom field value of the custom field key
+			$the_term_slug = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
+			// The functions term_exists() and has_term() seem to work only on slugs (a text value),
+			// so let's figure out if the custom field value is a numeric value.
+			// If it's numeric...
+			if ( is_numeric( $the_term_slug ) ) {
+				// ... let's get the term's array of characteristics using its ID...
+				$the_term = get_term_by( 'id', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
+				// ... and then the slug.
+				$the_term_slug = $the_term->slug;
+				// In the meantime get the term's name.
+				$the_term_name = $the_term->name;
+			} else {
+				// If the custom field value is a text value, let's get the term's array of characteristics using its slug...
+				$the_term = get_term_by( 'slug', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
+				// ... and then the term's name.
+				$the_term_name = $the_term->name;
+			}
+			// If the term exists and the current post of the main query has this term...
+			if ( term_exists( $the_term_slug, $instance['s_custom_field_tax'] ) && has_term( $the_term_slug, $instance['s_custom_field_tax'], get_the_ID() ) ) {
+				// ... change the title as required by the user.
 				$title = $instance['title_custom_field'];
-				$the_category = get_term_by( 'slug', $taxonomy_name, $instance['s_custom_field_tax'], 'OBJECT' );
-				$the_category_name = $the_category->name;
-				$title = str_replace( '%s', strip_tags( $the_category_name ), $title );
+				// Also change the %s into the term name, if required.
+				$title = str_replace( '%s', strip_tags( $the_term_name ), $title );
 			}
 		}
 

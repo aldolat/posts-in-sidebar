@@ -279,6 +279,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['remove_bullets'] ) )       $instance['remove_bullets']       = false;
 		if ( ! isset( $instance['cached'] ) )               $instance['cached']               = false;
 		if ( ! isset( $instance['cache_time'] ) )           $instance['cache_time']           = 3600;
+		if ( ! isset( $instance['admin_only'] ) )           $instance['admin_only']           = true;
 		if ( ! isset( $instance['debug_query'] ) )          $instance['debug_query']          = false;
 		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
 		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
@@ -487,6 +488,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'widget_id'           => $this->id, // $this->id is the id of the widget instance.
 
 			// Debug
+			'admin_only'          => $instance['admin_only'],
 			'debug_query'         => $instance['debug_query'],
 			'debug_params'        => $instance['debug_params'],
 			'debug_query_number'  => $instance['debug_query_number'],
@@ -774,8 +776,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['widget_id']           = $this->id;
 
 		// Debug
-		$instance['debug_query']         = isset( $new_instance['debug_query'] ) ? 1 : 0;
-		$instance['debug_params']        = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['admin_only']          = isset( $new_instance['admin_only'] )         ? 1 : 0;
+		$instance['debug_query']         = isset( $new_instance['debug_query'] )        ? 1 : 0;
+		$instance['debug_params']        = isset( $new_instance['debug_params'] )       ? 1 : 0;
 		$instance['debug_query_number']  = isset( $new_instance['debug_query_number'] ) ? 1 : 0;
 
 		return $instance;
@@ -981,6 +984,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'cache_time'          => '',
 
 			// Debug
+			'admin_only'          => true,
 			'debug_query'         => false,
 			'debug_params'        => false,
 			'debug_query_number'  => false,
@@ -1019,6 +1023,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$hide_widget          = (bool) $instance['hide_widget'];
 		$remove_bullets       = (bool) $instance['remove_bullets'];
 		$cached               = (bool) $instance['cached'];
+		$admin_only           = (bool) $instance['admin_only'];
 		$debug_query          = (bool) $instance['debug_query'];
 		$debug_params         = (bool) $instance['debug_params'];
 		$debug_query_number   = (bool) $instance['debug_query_number'];
@@ -2966,7 +2971,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><?php printf( esc_html__( 'You are using Posts in Sidebar version %s.', 'posts-in-sidebar' ), '<strong>' . PIS_VERSION . '</strong>' ); ?></p>
 
-				<p class="pis-alert"><strong><?php esc_html_e( 'Use this options for debugging purposes only. Please note that the informations will be displayed publicly on your site.', 'posts-in-sidebar' ); ?></strong></p>
+				<p class="pis-alert"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
+
+				<div class="pis-boxed-alert"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging informations publicly on your site.', 'posts-in-sidebar' ); ?></strong>
+					<?php // ================= Debug: display debugging informations to admins only
+					pis_form_checkbox(
+						esc_html__( 'Display debugging informations to admins only', 'posts-in-sidebar' ),
+						$this->get_field_id( 'admin_only' ),
+						$this->get_field_name( 'admin_only' ),
+						checked( $admin_only, true, false )
+					); ?>
+				</div>
 
 				<?php // ================= Debug: display the query for the widget
 				pis_form_checkbox(

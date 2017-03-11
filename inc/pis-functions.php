@@ -827,6 +827,7 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
  */
 function pis_debug( $parameters ) {
 	$defaults = array (
+		'admin_only'         => true,
 		'debug_query'        => false,
 		'debug_params'       => false,
 		'debug_query_number' => false,
@@ -870,7 +871,20 @@ function pis_debug( $parameters ) {
 		$output .= '</p>';
 	}
 
-	return $output;
+	/**
+	 * Display debugging informations to admins only.
+	 *
+	 * @since 3.8.3
+	 */
+	if ( $admin_only ) {
+		if ( current_user_can( 'create_users' ) ) {
+			return $output;
+		} else {
+			return '';
+		}
+	} else {
+		return $output;
+	}
 }
 
 

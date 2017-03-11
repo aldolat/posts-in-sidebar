@@ -112,6 +112,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 3.8.3 ###
 
+* Added option to display debugging information to admins only.
 * Now the custom field value for getting posts via custom field key can be the taxonomy ID (props by morfe1).
 * Removed Italian l10n from `languages/` directory, because the Italian language pack in GlotPress is completed.
 * Hardening security on i18n.

@@ -2693,7 +2693,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'tax_name' ),
 										esc_attr( $instance['tax_name'] ),
 										esc_html__( 'genre', 'posts-in-sidebar' ),
-										sprintf( esc_html__( 'Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s).%3$sUse this field only if you selected "Custom taxonomy" in the "Link to the archive of" dropdown menu.%4$s', 'posts-in-sidebar' ), '<code>', '</code>', '<br /><strong>', '</strong>' ),
+										sprintf( esc_html__( 'Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s). %3$sUse this field only if you selected "Custom taxonomy" in the "Link to the archive of" dropdown menu.%4$s', 'posts-in-sidebar' ), '<code>', '</code>', '<br /><strong>', '</strong>' ),
 										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>

@@ -98,7 +98,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8.4 =
 
-* 
+* Removed empty lines in the HTML source.
 
 = 3.8.3 =
 

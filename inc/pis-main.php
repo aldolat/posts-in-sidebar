@@ -545,9 +545,8 @@ function pis_get_posts_in_sidebar( $args ) {
 	$pis_output = '';
 
 	// The Loop
-	if ( $pis_query->have_posts() ) : ?>
-
-		<?php if ( $intro ) {
+	if ( $pis_query->have_posts() ) : ?><?php
+		if ( $intro ) {
 			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
 		}
 
@@ -561,13 +560,12 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 		$pis_output .= '<' . $list_element . ' ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
 
-			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?>
+			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?><?php
 
-				<?php if ( 'private' == get_post_status() && ! current_user_can( 'read_private_posts' ) ) {
+				if ( 'private' == get_post_status() && ! current_user_can( 'read_private_posts' ) ) {
 					$pis_output .= '';
-				} else { ?>
+				} else { ?><?php
 
-					<?php
 					/*
 					 * Assign the class 'current-post' if this is the post of the main loop.
 					 *
@@ -835,9 +833,7 @@ function pis_get_posts_in_sidebar( $args ) {
 				'archive_margin' => $archive_margin,
 				'margin_unit'    => $margin_unit
 			) );
-		} ?>
-
-	<?php
+		} ?><?php
 	// If we have no posts yet
 	else :
 

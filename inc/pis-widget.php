@@ -140,7 +140,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			}
 		}
 
-		echo '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->';
+		echo "\n" . '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->' . "\n";
 
 		echo $before_widget;
 
@@ -500,7 +500,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		echo $after_widget;
 
-		echo '<!-- End Posts in Sidebar - ' . $widget_id . ' -->';
+		echo "\n" . '<!-- End Posts in Sidebar - ' . $widget_id . ' -->' . "\n\n";
 	}
 
 	/**

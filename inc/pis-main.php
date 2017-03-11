@@ -489,6 +489,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
+			/**
+			 * Convert ID of the taxonomy into the relevant slug.
+			 *
+			 * @since 3.8.3
+			 */
 			if ( is_numeric( $taxonomy_name ) ) {
 				$taxonomy_identity = get_term_by( 'id', $taxonomy_name, $s_custom_field_tax );
 				$taxonomy_name = $taxonomy_identity->slug;

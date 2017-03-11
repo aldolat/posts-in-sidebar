@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.7  
-**Stable tag:** 3.8.3  
+**Stable tag:** 3.8.4-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -109,6 +109,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 
 ## Changelog ##
+
+### 3.8.4-dev ###
+
+* 
 
 ### 3.8.3 ###
 

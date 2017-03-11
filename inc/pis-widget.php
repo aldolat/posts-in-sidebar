@@ -2685,10 +2685,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'pis-linkto-form'
 								); ?>
 
-							</div>
-
-							<div class="pis-column">
-
 								<div class="pis-linkto-tax-name pis-alert">
 									<?php // ================= Taxonomy name for archive link
 									pis_form_input_text(
@@ -2701,6 +2697,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'margin: 0; padding: 0.5em;'
 									); ?>
 								</div>
+
+							</div>
+
+							<div class="pis-column">
 
 								<div class="pis-linkto-term-name">
 									<?php // ================= Taxonomy term name for archive link

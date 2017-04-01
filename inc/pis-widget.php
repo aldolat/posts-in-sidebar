@@ -169,6 +169,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
+		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
@@ -318,6 +319,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'number_same_cat'     => $instance['number_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
+			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
@@ -570,6 +572,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['number_same_cat']     = intval( strip_tags( $new_instance['number_same_cat'] ) );
 			if ( 0 == $instance['number_same_cat'] || ! is_numeric( $instance['number_same_cat'] ) ) $instance['number_same_cat'] = '';
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
+		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
@@ -820,6 +823,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'get_from_same_cat'   => false,
 			'number_same_cat'     => '',
 			'title_same_cat'      => '',
+			'dont_ignore_params'  => false,
 			'get_from_same_author'=> false,
 			'number_same_author'  => '',
 			'title_same_author'   => '',
@@ -992,6 +996,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
+		$dont_ignore_params   = (bool) $instance['dont_ignore_params'];
 		$get_from_same_author = (bool) $instance['get_from_same_author'];
 		$get_from_custom_fld  = (bool) $instance['get_from_custom_fld'];
 		$date_inclusive       = (bool) $instance['date_inclusive'];
@@ -1427,7 +1432,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_cat' ),
 									$this->get_field_name( 'get_from_same_cat' ),
 									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key in the array). Custom post types are excluded from this feature.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1472,7 +1477,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_author' ),
 									$this->get_field_name( 'get_from_same_author' ),
 									checked( $get_from_same_author, true, false ),
-									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1517,7 +1522,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_custom_fld' ),
 									$this->get_field_name( 'get_from_custom_fld' ),
 									checked( $get_from_custom_fld, true, false ),
-									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 								);
 								?>
 
@@ -1575,6 +1580,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<?php // ================= Don't ignore other parameters
+							pis_form_checkbox( esc_html__( 'Do not ignore other parameters', 'posts-in-sidebar' ),
+								$this->get_field_id( 'dont_ignore_params' ),
+								$this->get_field_name( 'dont_ignore_params' ),
+								checked( $dont_ignore_params, true, false ),
+								esc_html__( 'By default, when you activate one of the options to change the query on single posts, the plugin will deactivate other parameters like tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
+								'pis-alert'
+							); ?>
 
 						</div>
 

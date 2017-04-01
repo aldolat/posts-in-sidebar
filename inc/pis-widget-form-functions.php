@@ -89,9 +89,9 @@ function pis_form_textarea( $label, $id, $name, $text, $placeholder = '', $style
  * @since 1.12
  */
 function pis_form_checkbox( $label, $id, $name, $checked, $comment = '', $class = '' ) {
-	echo '<p>';
-	if ( $class ) $class = ' ' . $class;
-	echo '<input class="checkbox' . $class . '" type="checkbox" ' . $checked . ' id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" />&nbsp;';
+	if ( $class ) $class = ' class="' . $class . '"';
+	echo '<p' . $class . '>';
+	echo '<input class="checkbox" type="checkbox" ' . $checked . ' id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" />&nbsp;';
 	pis_form_label( $label, $id );
 	if ( $comment ) echo '<br /><em>' . $comment . '</em>';
 	echo '</p>';

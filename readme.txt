@@ -98,6 +98,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8.4 =
 
+* Added option to maintain active other parameters when on single post (props by techsmurfy).
 * Removed empty lines in the HTML source.
 
 = 3.8.3 =

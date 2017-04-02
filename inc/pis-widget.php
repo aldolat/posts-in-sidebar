@@ -86,6 +86,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$the_category = get_the_category( get_the_ID() );
 			$the_category_name = $the_category[0]->name;
 			$title = str_replace( '%s', $the_category_name, $title );
+
+			$title = $instance['title_same_cat'];
+			$the_category = wp_get_post_categories( get_the_ID() );
+			sort( $the_category );
+			$the_category = get_category( $the_category[0] );
+			$the_category_name = $the_category->name;
+			$title = str_replace( '%s', $the_category_name, $title );
 		}
 
 		/*

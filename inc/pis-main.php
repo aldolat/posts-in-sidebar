@@ -427,23 +427,33 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/*
 	 * Check if the user wants to display posts from the same category of the single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
-	 * The category used will be the first in the array ( $the_category[0] ), i.e. the category with the lowest ID.
+	 *
+	 * The category used will be the first in the array ($post_categories[0]), i.e. the category with the lowest ID.
+	 * In the permalink WordPress uses the category with the lowest ID and we want to use this.
+	 * On the contrary, if we get the list of posts categories, these are returned by WordPress in an aphabetically ordered array,
+	 * where the lowest key ID has not always the category used in the permalink.
 	 *
 	 * @since 3.2
 	 */
 	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular( 'post' ) ) {
-		$the_category = get_the_category( $single_post_id );
-
-		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+		// Set the post_type.
 		$params['post_type'] = 'post';
 
+		// Set the number of posts
 		if ( isset( $number_same_cat ) && ! empty( $number_same_cat ) ) {
 			$params['posts_per_page'] = $number_same_cat;
 		}
 
-		$params['category_name']   = $the_category[0]->slug;
+		// Set the category.
+		$post_categories = wp_get_post_categories( $single_post_id );
+		// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
+		sort( $post_categories );
+		$the_category = get_category( $post_categories[0] );
+		$params['category_name'] = $the_category->slug;
 
+		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params ) {
 			$params['post__in']        = '';
 			$params['author_name']     = '';
@@ -460,22 +470,25 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/*
 	 * Check if the user wants to display posts from the same author of the single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
 	 *
 	 * @since 3.5
 	 */
 	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular( 'post' ) ) {
-		$the_author_id = get_post_field( 'post_author', $single_post_id );
-
-		// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+		// Set the post_type.
 		$params['post_type'] = 'post';
 
+		// Set the number of posts
 		if ( isset( $number_same_author ) && ! empty( $number_same_author ) ) {
 			$params['posts_per_page'] = $number_same_author;
 		}
 
-		$params['author__in']      = explode( ',', $the_author_id );
+		// Set the authors
+		$the_author_id = get_post_field( 'post_author', $single_post_id );
+		$params['author__in'] = explode( ',', $the_author_id );
 
+		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params ) {
 			$params['post__in']        = '';
 			$params['author_name']     = '';
@@ -491,8 +504,8 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/*
-	 * Check if, when on single post, the user wants to display posts from a certain category
-	 * chosen by the user using custom field.
+	 * Check if, when on single post, the user wants to display posts from a certain category chosen by the user using custom field.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
 	 *
 	 * This piece of code will see if the current (main) post has a custom field defined in the widget panel.
@@ -519,12 +532,15 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['tag'] = $taxonomy_name;
 				}
 
-				// Set parameters. The parameters for excluding posts (like "post__not_in") will be left active.
+				// Set the post_type.
 				$params['post_type'] = 'post';
 
+				// Set the number of posts
 				if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
 					$params['posts_per_page'] = $number_custom_field;
 				}
+
+				// Reset other parameters. The user can choose not to reset them.
 				if ( ! $dont_ignore_params ) {
 					$params['post__in']        = '';
 					$params['author_name']     = '';

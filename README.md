@@ -113,6 +113,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 3.8.4-dev ###
 
 * Added option to maintain active other parameters when on single post (props by techsmurfy).
+* When the user wants to get posts from the current category, now the plugin chooses the category with the lowest ID (not the lowest key ID of the array) (props by techsmurfy).
 * Removed empty lines in the HTML source.
 * Added Indonesian translation, thanks to Jordan Silaen.
 

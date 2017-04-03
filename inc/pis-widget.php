@@ -89,7 +89,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			$title = $instance['title_same_cat'];
 			$the_category = wp_get_post_categories( get_the_ID() );
-			sort( $the_category );
+			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
 			$the_category_name = $the_category->name;
 			$title = str_replace( '%s', $the_category_name, $title );
@@ -177,6 +177,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
+		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']   = false;
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
@@ -327,6 +328,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number_same_cat'     => $instance['number_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
+			'sort_categories'     => $instance['sort_categories'],
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
@@ -580,6 +582,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 0 == $instance['number_same_cat'] || ! is_numeric( $instance['number_same_cat'] ) ) $instance['number_same_cat'] = '';
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
+		$instance['sort_categories']     = isset( $new_instance['sort_categories'] ) ? 1 : 0;
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
@@ -831,6 +834,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number_same_cat'     => '',
 			'title_same_cat'      => '',
 			'dont_ignore_params'  => false,
+			'sort_categories'     => false,
 			'get_from_same_author'=> false,
 			'number_same_author'  => '',
 			'title_same_author'   => '',
@@ -1003,6 +1007,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
+		$sort_categories      = (bool) $instance['sort_categories'];
 		$dont_ignore_params   = (bool) $instance['dont_ignore_params'];
 		$get_from_same_author = (bool) $instance['get_from_same_author'];
 		$get_from_custom_fld  = (bool) $instance['get_from_custom_fld'];
@@ -1466,6 +1471,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
+
+								<?php // ================= Get posts from same category
+								pis_form_checkbox( esc_html__( 'Reorder categories', 'posts-in-sidebar' ),
+									$this->get_field_id( 'sort_categories' ),
+									$this->get_field_name( 'sort_categories' ),
+									checked( $sort_categories, true, false ),
+									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post.', 'posts-in-sidebar' )
+								);
+								?>
 
 							</div>
 

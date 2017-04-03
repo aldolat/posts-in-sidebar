@@ -69,6 +69,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'number_same_cat'     => '',
 		'title_same_cat'      => '',
 		'dont_ignore_params'  => false,
+		'sort_categories'  => false,
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -449,7 +450,9 @@ function pis_get_posts_in_sidebar( $args ) {
 		// Set the category.
 		$post_categories = wp_get_post_categories( $single_post_id );
 		// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
-		sort( $post_categories );
+		if ( $sort_categories ) {
+			sort( $post_categories );
+		}
 		$the_category = get_category( $post_categories[0] );
 		$params['category_name'] = $the_category->slug;
 

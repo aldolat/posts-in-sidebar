@@ -1614,7 +1614,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'dont_ignore_params' ),
 								checked( $dont_ignore_params, true, false ),
 								esc_html__( 'By default, when you activate one of the options to change the query on single posts, the plugin will deactivate other parameters like tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
-								'pis-alert'
+								'pis-boxed pis-boxed-green'
 							); ?>
 
 						</div>
@@ -2285,7 +2285,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php if ( ! current_theme_supports( 'post-thumbnails' ) ) { ?>
-									<p class="pis-alert"><strong><?php esc_html_e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'posts-in-sidebar' ); ?></strong></p>
+									<p class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Your theme does not support the Post Thumbnail feature. No image will be displayed.', 'posts-in-sidebar' ); ?></strong></p>
 								<?php } ?>
 
 								<?php // ================= Featured image
@@ -2726,7 +2726,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'pis-linkto-form'
 								); ?>
 
-								<div class="pis-linkto-tax-name pis-alert">
+								<div class="pis-linkto-tax-name pis-boxed pis-boxed-green">
 									<?php // ================= Taxonomy name for archive link
 									pis_form_input_text(
 										esc_html__( 'Taxonomy name', 'posts-in-sidebar' ),
@@ -3012,9 +3012,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><?php printf( esc_html__( 'You are using Posts in Sidebar version %s.', 'posts-in-sidebar' ), '<strong>' . PIS_VERSION . '</strong>' ); ?></p>
 
-				<p class="pis-alert"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
+				<p class="pis-boxed pis-boxed-blue"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
 
-				<div class="pis-boxed-alert"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging informations publicly on your site.', 'posts-in-sidebar' ); ?></strong>
+				<div class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging informations publicly on your site.', 'posts-in-sidebar' ); ?></strong>
 					<?php // ================= Debug: display debugging informations to admins only
 					pis_form_checkbox(
 						esc_html__( 'Display debugging informations to admins only', 'posts-in-sidebar' ),

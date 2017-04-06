@@ -66,13 +66,19 @@
 .pis-title-center {
 	text-align: center;
 }
-.pis-alert {
-	background-color: #f7f2d2;
+.pis-boxed {
+	border-width: 1px;
+	border-style: solid;
 	padding: 1em;
 }
-.pis-boxed-alert {
-	border: 1px solid #e91e63;
-	padding: 1em;
+.pis-boxed-green {
+	border-color: #4caf50;
+}
+.pis-boxed-blue {
+	border-color: #2196F3;
+}
+.pis-boxed-red {
+	border-color: #e91e63;
 }
 .pis-section select {
 	width: 99%;

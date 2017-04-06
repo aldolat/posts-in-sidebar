@@ -1473,7 +1473,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Get posts from same category
-								pis_form_checkbox( esc_html__( 'Reorder categories', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
 									$this->get_field_id( 'sort_categories' ),
 									$this->get_field_name( 'sort_categories' ),
 									checked( $sort_categories, true, false ),
@@ -2350,9 +2350,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									</em>
 								</p>
 
-								<?php // ================= Positioning image before title
-								pis_form_checkbox( esc_html__( 'Display the image before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
-
 							</div>
 
 							<div class="pis-column">
@@ -2396,6 +2393,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 						</div>
+
+						<?php // ================= Positioning image before title
+						pis_form_checkbox( esc_html__( 'Display the image before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
 
 					</div>
 
@@ -2500,12 +2500,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Utility separator
 								pis_form_input_text( esc_html__( 'Use this separator between author, date and comments', 'posts-in-sidebar' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', esc_html__( 'A space will be added before and after the separator.', 'posts-in-sidebar' ) ); ?>
 
-								<?php // ================= Section position
-								pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
-
 							</div>
 
 						</div>
+
+						<?php // ================= Section position
+						pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
 
 					</div>
 

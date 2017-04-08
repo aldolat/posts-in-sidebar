@@ -153,7 +153,7 @@ function pis_arrow( $pre_space = true ) {
  * @param boolean $echo If echo the output or return.
  * @return string The HTML arrow linked to the post.
  */
-function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true ) {
+function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true, $pre_space = true ) {
 	$output = '';
 	// If we do not want any "Read more" nor any arrow
 	// or the user doesn't want any "Read more" nor any arrow.
@@ -179,6 +179,10 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
 				$output .= $the_more . $the_arrow;
 			$output .= '</a>';
 		$output .= '</span>';
+	}
+
+	if ( $pre_space ) {
+		$output = ' ' . $output;
 	}
 
 	if ( $echo ) {
@@ -544,7 +548,7 @@ function pis_the_text( $args ) {
 			} else {
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 			}
-			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
+			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 		break;
 
 		case 'excerpt':
@@ -562,20 +566,23 @@ function pis_the_text( $args ) {
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
+				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+				$output = trim( $output );
 			} else {
 			// ... else generate an excerpt
 				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
 				$no_the_more = false;
 				if ( count( explode( ' ', wp_strip_all_tags( $excerpt_text ) ) ) <= $exc_length ) $no_the_more = true;
 				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
-				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false );
+				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
+				$output = trim( $output );
 			}
 		break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . ' ' . pis_more_arrow( $the_more, false, $exc_arrow, false );
+			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = trim( $output );
 		break;
 
 	endswitch;

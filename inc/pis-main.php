@@ -580,7 +580,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	$pis_output = '';
 
-	// The Loop
+	/* The Loop */
 	if ( $pis_query->have_posts() ) : ?><?php
 		if ( $intro ) {
 			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
@@ -656,7 +656,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						}
 						// Close if $image_before_title
 
-						// The title
+						/* The title */
 						if ( $display_title ) {
 							$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
 								// The Gravatar
@@ -680,7 +680,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							$pis_output .= '</p>';
 						} // Close Display title
 
-						// The author, the date and the comments
+						/* The author, the date and the comments */
 						if ( $utility_after_title ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
@@ -707,11 +707,29 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						// The post content
+						/* The post content */
 						if ( ! post_password_required() ) {
 
+							/*
+							* The content of the post (i.e. the text and/or the post thumbnail)
+							* should be displayed if one of these conditions are true:
+							* - The $post_type is an attachment;
+							* - The user wants to display the post thumbnail AND the post has a thumbnail or a custom image;
+							* - The $excerpt variable is different from 'none'.
+							*/
 							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
 
+								// Prepare the variable $pis_the_text to contain the text of the post
+								$pis_the_text = pis_the_text( array(
+									'excerpt'    => $excerpt,
+									'pis_query'  => $pis_query,
+									'exc_length' => $exc_length,
+									'the_more'   => $the_more,
+									'exc_arrow'  => $exc_arrow,
+								) );
+
+								// If the the text of the post is empty or the user do not want to display the image, hide the HTML p tag
+								if ( ! empty( $pis_the_text ) || $display_image )
 								$pis_output .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
 									if ( ! $image_before_title ) {
@@ -738,7 +756,7 @@ function pis_get_posts_in_sidebar( $args ) {
 									}
 									// Close if $image_before_title
 
-									// The Gravatar
+									/* The Gravatar */
 									if ( $gravatar_display && 'next_post' == $gravatar_position ) {
 										$pis_output .= pis_get_gravatar( array(
 											'author'  => get_the_author_meta( 'ID' ),
@@ -747,15 +765,10 @@ function pis_get_posts_in_sidebar( $args ) {
 										) );
 									}
 
-									// The text
-									$pis_output .= pis_the_text( array(
-										'excerpt'    => $excerpt,
-										'pis_query'  => $pis_query,
-										'exc_length' => $exc_length,
-										'the_more'   => $the_more,
-										'exc_arrow'  => $exc_arrow,
-									) );
+									/* The text */
+									$pis_output .= $pis_the_text;
 
+								if ( ! empty( $pis_the_text ) || $display_image )
 								$pis_output .= '</p>';
 
 							endif;
@@ -764,7 +777,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						}
 						// Close if post password required
 
-						// The author, the date and the comments
+						/* The author, the date and the comments */
 						if ( ! $utility_after_title ) {
 							$pis_output .= pis_utility_section( array(
 								'display_author'    => $display_author,
@@ -791,7 +804,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						// The categories
+						/* The categories */
 						if ( $categories ) {
 							$list_of_categories = get_the_term_list( $pis_query->post->ID, 'category', '', $categ_sep . ' ', '' );
 							if ( $list_of_categories ) {
@@ -802,7 +815,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							}
 						}
 
-						// The tags
+						/* The tags */
 						if ( $tags ) {
 							$list_of_tags = get_the_term_list( $pis_query->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
 							if ( $list_of_tags ) {
@@ -813,7 +826,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							}
 						}
 
-						// Custom taxonomies
+						/* The custom taxonomies */
 						if ( $display_custom_tax ) {
 							$pis_output .= pis_custom_taxonomies_terms_links( array(
 								'postID'       => $pis_query->post->ID,
@@ -824,7 +837,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 						}
 
-						// The post meta
+						/* The post meta */
 						if ( $custom_field ) {
 							$the_custom_field = get_post_meta( $pis_query->post->ID, $meta, false );
 							if ( $the_custom_field ) {
@@ -859,7 +872,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		$pis_output .= '</' . $list_element . '>';
 		$pis_output .= '<!-- / ul#pis-ul -->';
 
-		// The link to the entire archive
+		/* The link to the entire archive */
 		if ( $archive_link ) {
 			$pis_output .= pis_archive_link( array(
 				'link_to'        => $link_to,
@@ -884,7 +897,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	endif;
 
-	// Debugging
+	/* Debugging */
 	$pis_output .= pis_debug( array(
 		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.

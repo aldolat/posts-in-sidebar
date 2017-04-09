@@ -1216,6 +1216,7 @@ function pis_custom_field( $args ) {
 	$output = '';
 
 	$the_custom_field = get_post_meta( $post_id, $meta, false );
+
 	if ( $the_custom_field ) {
 		if ( $custom_field_txt )
 			$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . ' </span>';
@@ -1229,7 +1230,7 @@ function pis_custom_field( $args ) {
 			// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
 			$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
 		else
-			$cf_text_value = $the_custom_field[0];
+			if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
 		$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 		$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;

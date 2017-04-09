@@ -550,7 +550,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget
-		//if ( ! isset( $new_instance['intro'] ) ) $new_instance['intro'] = '';
 		$allowed_html = array(
 			'a' => array(
 				'href'  => array(),
@@ -1132,7 +1131,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					$this->get_field_id('intro'),
 					$this->get_field_name('intro'),
 					$instance['intro'],
-					sprintf( esc_html__( 'These posts are part of my %1$sReadings series%2$s.', 'posts-in-sidebar' ), '<em>', '</em>'),
+					esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
 					$style = 'resize: vertical; width: 100%; height: 80px;',
 					$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
 				); ?>

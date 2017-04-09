@@ -72,13 +72,13 @@
 	padding: 1em;
 }
 .pis-boxed-green {
-	border-color: #4caf50;
+	border-color: rgba(76, 175, 80, 0.5);
 }
 .pis-boxed-blue {
-	border-color: #2196F3;
+	border-color: rgba(33, 150, 243, 0.5);
 }
 .pis-boxed-red {
-	border-color: #e91e63;
+	border-color: rgba(233, 30, 99, 0.5);
 }
 .pis-section select {
 	width: 99%;

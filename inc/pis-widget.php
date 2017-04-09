@@ -2395,7 +2395,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						</div>
 
 						<?php // ================= Positioning image before title
-						pis_form_checkbox( esc_html__( 'Display the image before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
+						pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
 
 					</div>
 

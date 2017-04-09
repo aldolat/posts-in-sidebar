@@ -1067,3 +1067,174 @@ function pis_get_gravatar( $args ) {
 	$tooltip_text = rtrim( $tooltip_text ) . ' ';
 	return $tooltip_text;
 }*/
+
+/**
+ * Returns the title of the post.
+ *
+ * @param array $args {
+ *     The array containing the custom parameters.
+ *     @type string  $title_margin      The margin for the title.
+ *     @type string  $margin_unit       The measure unit for the margin.
+ *                                      Accepted values:
+ *                                      px (default), %, em, rem
+ *     @type boolean $gravatar_display  If the Gravatar should be displayed.
+ *     @type string  $gravatar_position The position of the Gravatar.
+ *                                      Accepted values:
+ *                                      next_author (default), next_title, next_post
+ *     @type string  $gravatar_author   The ID of the post author.
+ *     @type integer $gravatar_size     The size of the displayed Gravatar.
+ *     @type string  $gravatar_default  The URL of the default Gravatar image.
+ *     @type boolean $link_on_title     If the title should be linked to the post.
+ *     @type boolean $arrow             If an HTML arrow should be added to the title.
+ * }
+ *
+ * @return The HTML paragraph with the title.
+ * @since 3.8.4
+ */
+function pis_the_title( $args ) {
+	$defaults = array(
+		'title_margin'      => '',
+		'margin_unit'       => '',
+		'gravatar_display'  => false,
+		'gravatar_position' => '',
+		'gravatar_author'   => '',
+		'gravatar_size'     => '32',
+		'gravatar_default'  => '',
+		'link_on_title'     => true,
+		'arrow'             => false,
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+		// The Gravatar
+		if ( $gravatar_display && 'next_title' == $gravatar_position ) {
+			$output .= pis_get_gravatar( array(
+				'author'  => $gravatar_author,
+				'size'    => $gravatar_size,
+				'default' => $gravatar_default
+			) );
+		}
+		if ( $link_on_title ) {
+			$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+		}
+		$output .= get_the_title();
+		if ( $arrow ) {
+			$output .= pis_arrow();
+		}
+		if ( $link_on_title ) {
+			$output .= '</a>';
+		}
+	$output .= '</p>';
+
+	return $output;
+}
+
+/**
+ * Returns the categories of the post.
+ *
+ * @param array $args {
+ *     The array containing the custom parameters.
+ *     @type string $post_id           The ID of the post.
+ *     @type string $categ_sep         The separator for the categories.
+ *     @type string $categories_margin The margin for the categories.
+ *     @type string $margin_unit       The measure unit for the margin.
+ *                                     Accepted values:
+ *                                     px (default), %, em, rem
+ *     @type string $categ_text        The text for the categories.
+ * }
+ *
+ * @return The HTML paragraph with the categories.
+ * @since 3.8.4
+ */
+function pis_the_categories( $args ) {
+	$defaults = array(
+		'post_id'           => '',
+		'categ_sep'         => ',',
+		'categories_margin' => '',
+		'margin_unit'       => 'px',
+		'categ_text'        => esc_html__( 'Category:', 'posts-in-sidebar' ),
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '';
+
+	$list_of_categories = get_the_term_list( $post_id, 'category', '', $categ_sep . ' ', '' );
+
+	if ( $list_of_categories ) {
+		$output = '<p ' . pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ) . '>';
+			if ( $categ_text ) $output .= $categ_text . '&nbsp';
+			$output .= apply_filters(  'pis_categories_list', $list_of_categories );
+		$output .= '</p>';
+	}
+
+	return $output;
+}
+
+function pis_the_tags( $args ) {
+	$defaults = array(
+		'post_id'     => '',
+		'hashtag'     => '#',
+		'tag_sep'     => '',
+		'tags_margin' => '',
+		'margin_unit' => 'px',
+		'tags_text'   => esc_html__( 'Tags:', 'posts-in-sidebar' ),
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '';
+
+	$list_of_tags = get_the_term_list( $post_id, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
+
+	if ( $list_of_tags ) {
+		$output .= '<p ' . pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ) . '>';
+			if ( $tags_text ) $output .= $tags_text . '&nbsp;';
+			$output .= apply_filters( 'pis_tags_list', $list_of_tags );
+		$output .= '</p>';
+	}
+
+	return $output;
+}
+
+function pis_custom_field( $args ) {
+	$defaults = array(
+		'post_id'             => '',
+		'meta'                => '',
+		'custom_field_txt'    => '',
+		'custom_field_key'    => false,
+		'custom_field_sep'    => ':',
+		'custom_field_count'  => '',
+		'custom_field_hellip' => '&hellip;',
+		'custom_field_margin' => '',
+		'margin_unit'         => 'px',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '';
+
+	$the_custom_field = get_post_meta( $post_id, $meta, false );
+	if ( $the_custom_field ) {
+		if ( $custom_field_txt )
+			$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . ' </span>';
+		else
+			$cf_text = '';
+		if ( $custom_field_key )
+			$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
+		else
+			$key = '';
+		if ( ! empty( $custom_field_count ) )
+			// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+			$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
+		else
+			$cf_text_value = $the_custom_field[0];
+		$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+		$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+			$output .= $cf_text . $key . $cf_value;
+		$output .= '</p>';
+	}
+
+	return $output;
+}

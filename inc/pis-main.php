@@ -179,22 +179,29 @@ function pis_get_posts_in_sidebar( $args ) {
 		'linkify_comments'    => true,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
+		'utility_before_title'=> false,
 
 		// The categories of the post
 		'categories'          => false,
 		'categ_text'          => esc_html__( 'Category:', 'posts-in-sidebar' ),
 		'categ_sep'           => ',',
+		'categ_before_title'  => false,
+		'categ_after_title'   => false,
 
 		// The tags of the post
 		'tags'                => false,
 		'tags_text'           => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 		'hashtag'             => '#',
 		'tag_sep'             => '',
+		'tags_before_title'  => false,
+		'tags_after_title'   => false,
 
 		// The custom taxonomies of the post
 		'display_custom_tax'  => false,
 		'term_hashtag'        => '',
 		'term_sep'            => ',',
+		'ctaxs_before_title'  => false,
+		'ctaxs_after_title'   => false,
 
 		// The custom field
 		'custom_field'        => false,
@@ -204,6 +211,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'custom_field_hellip' => '&hellip;',
 		'custom_field_key'    => false,
 		'custom_field_sep'    => ':',
+		'cf_before_title'     => false,
+		'cf_after_title'      => false,
 
 		// The link to the archive
 		'archive_link'        => false,
@@ -634,232 +643,200 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					$pis_output .= '<li ' . pis_class( 'pis-li' . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
-						/* The thumbnail before the title */
-						if ( $image_before_title ) {
-							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-								$pis_output .= pis_the_thumbnail( array(
-									'display_image'       => $display_image,
-									'image_align'         => $image_align,
-									'side_image_margin'   => $side_image_margin,
-									'bottom_image_margin' => $bottom_image_margin,
-									'margin_unit'         => $margin_unit,
-									'pis_query'           => $pis_query,
-									'image_size'          => $image_size,
-									'thumb_wrap'          => true,
-									'custom_image_url'    => $custom_image_url,
-									'custom_img_no_thumb' => $custom_img_no_thumb,
-									'post_type'           => $post_type,
-									'image_link'          => $image_link,
-									'image_link_to_post'  => $image_link_to_post,
-								) );
-							}
-						}
-						// Close if $image_before_title
+						// Define the containers for single sections to be concatenated later
+						$pis_thumbnail_content    = '';
+						$pis_title_content        = '';
+						$pis_text_content         = '';
+						$pis_utility_content      = '';
+						$pis_categories_content   = '';
+						$pis_tags_content         = '';
+						$pis_custom_tax_content   = '';
+						$pis_custom_field_content = '';
+
+						/* The thumbnail */
+						$pis_thumbnail_content = pis_the_thumbnail( array(
+							'display_image'       => $display_image,
+							'image_align'         => $image_align,
+							'side_image_margin'   => $side_image_margin,
+							'bottom_image_margin' => $bottom_image_margin,
+							'margin_unit'         => $margin_unit,
+							'pis_query'           => $pis_query,
+							'image_size'          => $image_size,
+							'thumb_wrap'          => true,
+							'custom_image_url'    => $custom_image_url,
+							'custom_img_no_thumb' => $custom_img_no_thumb,
+							'post_type'           => $post_type,
+							'image_link'          => $image_link,
+							'image_link_to_post'  => $image_link_to_post,
+						) );
 
 						/* The title */
-						if ( $display_title ) {
-							$pis_output .= '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
-								// The Gravatar
-								if ( $gravatar_display && 'next_title' == $gravatar_position ) {
-									$pis_output .= pis_get_gravatar( array(
+						$pis_title_content = pis_the_title( array(
+							'title_margin'      => $title_margin,
+							'margin_unit'       => $margin_unit,
+							'gravatar_display'  => $gravatar_display,
+							'gravatar_position' => $gravatar_position,
+							'gravatar_author'   => get_the_author_meta( 'ID' ),
+							'gravatar_size'     => $gravatar_size,
+							'gravatar_default'  => $gravatar_default,
+							'link_on_title'     => true,
+							'arrow'             => false,
+						) );
+
+						/*
+						 * The post content.
+						 * The content of the post (i.e. the text and/or the post thumbnail)
+						 * should be displayed if one of these conditions are true:
+						 * - The $post_type is an attachment;
+						 * - The user wants to display the post thumbnail AND the post has a thumbnail or a custom image;
+						 * - The $excerpt variable is different from 'none'.
+						 */
+						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
+
+							// Prepare the variable $pis_the_text to contain the text of the post
+							$pis_the_text = pis_the_text( array(
+								'excerpt'    => $excerpt,
+								'pis_query'  => $pis_query,
+								'exc_length' => $exc_length,
+								'the_more'   => $the_more,
+								'exc_arrow'  => $exc_arrow,
+							) );
+
+							// If the the text of the post is empty or the user do not want to display the image, hide the HTML p tag
+							if ( ! empty( $pis_the_text ) || $display_image )
+							$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
+
+								if ( ! $image_before_title ) {
+
+									/* The thumbnail */
+									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
+										$pis_text_content .= pis_the_thumbnail( array(
+											'display_image'       => $display_image,
+											'image_align'         => $image_align,
+											'side_image_margin'   => $side_image_margin,
+											'bottom_image_margin' => $bottom_image_margin,
+											'margin_unit'         => $margin_unit,
+											'pis_query'           => $pis_query,
+											'image_size'          => $image_size,
+											'thumb_wrap'          => false,
+											'custom_image_url'    => $custom_image_url,
+											'custom_img_no_thumb' => $custom_img_no_thumb,
+											'post_type'           => $post_type,
+											'image_link'          => $image_link,
+											'image_link_to_post'  => $image_link_to_post,
+										) );
+									} // Close if ( $display_image && has_post_thumbnail )
+
+								}
+								// Close if $image_before_title
+
+								/* The Gravatar */
+								if ( $gravatar_display && 'next_post' == $gravatar_position ) {
+									$pis_text_content .= pis_get_gravatar( array(
 										'author'  => get_the_author_meta( 'ID' ),
 										'size'    => $gravatar_size,
 										'default' => $gravatar_default
 									) );
 								}
-								if ( $link_on_title ) {
-									$pis_output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-								}
-								$pis_output .= get_the_title();
-								if ( $arrow ) {
-									$pis_output .= pis_arrow();
-								}
-								if ( $link_on_title ) {
-									$pis_output .= '</a>';
-								}
-							$pis_output .= '</p>';
-						} // Close Display title
+
+								/* The text */
+								$pis_text_content .= $pis_the_text;
+
+							if ( ! empty( $pis_the_text ) || $display_image )
+							$pis_text_content .= '</p>';
+
+						endif;
+						// Close the post content (if $display_image)
 
 						/* The author, the date and the comments */
-						if ( $utility_after_title ) {
-							$pis_output .= pis_utility_section( array(
-								'display_author'    => $display_author,
-								'display_date'      => $display_date,
-								'display_mod_date'  => $display_mod_date,
-								'comments'          => $comments,
-								'utility_margin'    => $utility_margin,
-								'margin_unit'       => $margin_unit,
-								'author_text'       => $author_text,
-								'linkify_author'    => $linkify_author,
-								'utility_sep'       => $utility_sep,
-								'date_text'         => $date_text,
-								'linkify_date'      => $linkify_date,
-								'mod_date_text'     => $mod_date_text,
-								'linkify_mod_date'  => $linkify_mod_date,
-								'comments_text'     => $comments_text,
-								'pis_post_id'       => $pis_query->post->ID,
-								'link_to_comments'  => $linkify_comments,
-								'gravatar_display'  => $gravatar_display,
-								'gravatar_position' => $gravatar_position,
-								'gravatar_author'   => get_the_author_meta( 'ID' ),
-								'gravatar_size'     => $gravatar_size,
-								'gravatar_default'  => $gravatar_default,
-							) );
-						}
-
-						/* The post content */
-						if ( ! post_password_required() ) {
-
-							/*
-							* The content of the post (i.e. the text and/or the post thumbnail)
-							* should be displayed if one of these conditions are true:
-							* - The $post_type is an attachment;
-							* - The user wants to display the post thumbnail AND the post has a thumbnail or a custom image;
-							* - The $excerpt variable is different from 'none'.
-							*/
-							if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
-
-								// Prepare the variable $pis_the_text to contain the text of the post
-								$pis_the_text = pis_the_text( array(
-									'excerpt'    => $excerpt,
-									'pis_query'  => $pis_query,
-									'exc_length' => $exc_length,
-									'the_more'   => $the_more,
-									'exc_arrow'  => $exc_arrow,
-								) );
-
-								// If the the text of the post is empty or the user do not want to display the image, hide the HTML p tag
-								if ( ! empty( $pis_the_text ) || $display_image )
-								$pis_output .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
-
-									if ( ! $image_before_title ) {
-
-										/* The thumbnail */
-										if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
-											$pis_output .= pis_the_thumbnail( array(
-												'display_image'       => $display_image,
-												'image_align'         => $image_align,
-												'side_image_margin'   => $side_image_margin,
-												'bottom_image_margin' => $bottom_image_margin,
-												'margin_unit'         => $margin_unit,
-												'pis_query'           => $pis_query,
-												'image_size'          => $image_size,
-												'thumb_wrap'          => false,
-												'custom_image_url'    => $custom_image_url,
-												'custom_img_no_thumb' => $custom_img_no_thumb,
-												'post_type'           => $post_type,
-												'image_link'          => $image_link,
-												'image_link_to_post'  => $image_link_to_post,
-											) );
-										} // Close if ( $display_image && has_post_thumbnail )
-
-									}
-									// Close if $image_before_title
-
-									/* The Gravatar */
-									if ( $gravatar_display && 'next_post' == $gravatar_position ) {
-										$pis_output .= pis_get_gravatar( array(
-											'author'  => get_the_author_meta( 'ID' ),
-											'size'    => $gravatar_size,
-											'default' => $gravatar_default
-										) );
-									}
-
-									/* The text */
-									$pis_output .= $pis_the_text;
-
-								if ( ! empty( $pis_the_text ) || $display_image )
-								$pis_output .= '</p>';
-
-							endif;
-							// Close if $display_image
-
-						}
-						// Close if post password required
-
-						/* The author, the date and the comments */
-						if ( ! $utility_after_title ) {
-							$pis_output .= pis_utility_section( array(
-								'display_author'    => $display_author,
-								'display_date'      => $display_date,
-								'display_mod_date'  => $display_mod_date,
-								'comments'          => $comments,
-								'utility_margin'    => $utility_margin,
-								'margin_unit'       => $margin_unit,
-								'author_text'       => $author_text,
-								'linkify_author'    => $linkify_author,
-								'utility_sep'       => $utility_sep,
-								'date_text'         => $date_text,
-								'linkify_date'      => $linkify_date,
-								'mod_date_text'     => $mod_date_text,
-								'linkify_mod_date'  => $linkify_mod_date,
-								'comments_text'     => $comments_text,
-								'pis_post_id'       => $pis_query->post->ID,
-								'link_to_comments'  => $linkify_comments,
-								'gravatar_display'  => $gravatar_display,
-								'gravatar_position' => $gravatar_position,
-								'gravatar_author'   => get_the_author_meta( 'ID' ),
-								'gravatar_size'     => $gravatar_size,
-								'gravatar_default'  => $gravatar_default,
-							) );
-						}
+						$pis_utility_content = pis_utility_section( array(
+							'display_author'    => $display_author,
+							'display_date'      => $display_date,
+							'display_mod_date'  => $display_mod_date,
+							'comments'          => $comments,
+							'utility_margin'    => $utility_margin,
+							'margin_unit'       => $margin_unit,
+							'author_text'       => $author_text,
+							'linkify_author'    => $linkify_author,
+							'utility_sep'       => $utility_sep,
+							'date_text'         => $date_text,
+							'linkify_date'      => $linkify_date,
+							'mod_date_text'     => $mod_date_text,
+							'linkify_mod_date'  => $linkify_mod_date,
+							'comments_text'     => $comments_text,
+							'pis_post_id'       => $pis_query->post->ID,
+							'link_to_comments'  => $linkify_comments,
+							'gravatar_display'  => $gravatar_display,
+							'gravatar_position' => $gravatar_position,
+							'gravatar_author'   => get_the_author_meta( 'ID' ),
+							'gravatar_size'     => $gravatar_size,
+							'gravatar_default'  => $gravatar_default,
+						) );
 
 						/* The categories */
-						if ( $categories ) {
-							$list_of_categories = get_the_term_list( $pis_query->post->ID, 'category', '', $categ_sep . ' ', '' );
-							if ( $list_of_categories ) {
-								$pis_output .= '<p ' . pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ) . '>';
-									if ( $categ_text ) $pis_output .= $categ_text . '&nbsp';
-									$pis_output .= apply_filters(  'pis_categories_list', $list_of_categories );
-								$pis_output .= '</p>';
-							}
-						}
+						$pis_categories_content = pis_the_categories( array(
+							'post_id'           => $pis_query->post->ID,
+							'categ_sep'         => $categ_sep,
+							'categories_margin' => $categories_margin,
+							'margin_unit'       => $margin_unit,
+							'categ_text'        => $categ_text,
+						) );
 
 						/* The tags */
-						if ( $tags ) {
-							$list_of_tags = get_the_term_list( $pis_query->post->ID, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
-							if ( $list_of_tags ) {
-								$pis_output .= '<p ' . pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ) . '>';
-									if ( $tags_text ) $pis_output .= $tags_text . '&nbsp;';
-									$pis_output .= apply_filters( 'pis_tags_list', $list_of_tags );
-								$pis_output .= '</p>';
-							}
-						}
+						$pis_tags_content = pis_the_tags( array(
+							'post_id'     => $pis_query->post->ID,
+							'hashtag'     => $hashtag,
+							'tag_sep'     => $tag_sep,
+							'tags_margin' => $tags_margin,
+							'margin_unit' => $margin_unit,
+							'tags_text'   => $tags_text,
+						) );
 
 						/* The custom taxonomies */
-						if ( $display_custom_tax ) {
-							$pis_output .= pis_custom_taxonomies_terms_links( array(
-								'postID'       => $pis_query->post->ID,
-								'term_hashtag' => $term_hashtag,
-								'term_sep'     => $term_sep,
-								'terms_margin' => $terms_margin,
-								'margin_unit'  => $margin_unit,
-							) );
-						}
+						$pis_custom_tax_content = pis_custom_taxonomies_terms_links( array(
+							'postID'       => $pis_query->post->ID,
+							'term_hashtag' => $term_hashtag,
+							'term_sep'     => $term_sep,
+							'terms_margin' => $terms_margin,
+							'margin_unit'  => $margin_unit,
+						) );
 
 						/* The post meta */
-						if ( $custom_field ) {
-							$the_custom_field = get_post_meta( $pis_query->post->ID, $meta, false );
-							if ( $the_custom_field ) {
-								if ( $custom_field_txt )
-									$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . ' </span>';
-								else
-									$cf_text = '';
-								if ( $custom_field_key )
-									$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
-								else
-									$key = '';
-								if ( ! empty( $custom_field_count ) )
-									// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
-									$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
-								else
-									$cf_text_value = $the_custom_field[0];
-								$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
-								$pis_output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
-									$pis_output .= $cf_text . $key . $cf_value;
-								$pis_output .= '</p>';
-							}
-						}
+						$pis_custom_field_content = pis_custom_field( array(
+							'post_id'             => $pis_query->post->ID,
+							'meta'                => $meta,
+							'custom_field_txt'    => $custom_field_txt,
+							'custom_field_key'    => $custom_field_key,
+							'custom_field_sep'    => $custom_field_sep,
+							'custom_field_count'  => $custom_field_count,
+							'custom_field_hellip' => $custom_field_hellip,
+							'custom_field_margin' => $custom_field_margin,
+							'margin_unit'         => $margin_unit,
+						) );
+
+						// Concatenate the variables
+						if ( $image_before_title )                                                  $pis_output .= $pis_thumbnail_content;
+						if ( $utility_before_title )                                                $pis_output .= $pis_utility_content;
+						if ( $categories && $categ_before_title )                                   $pis_output .= $pis_categories_content;
+						if ( $tags && $tags_before_title )                                          $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && $ctaxs_before_title )                           $pis_output .= $pis_custom_tax_content;
+						if ( $custom_field && $cf_before_title )                                    $pis_output .= $pis_custom_field_content;
+
+						if ( $display_title )                                                       $pis_output .= $pis_title_content;
+
+						if ( $utility_after_title )                                                 $pis_output .= $pis_utility_content;
+						if ( $categories && $categ_after_title )                                    $pis_output .= $pis_categories_content;
+						if ( $tags && $tags_after_title )                                           $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && $ctaxs_after_title )                            $pis_output .= $pis_custom_tax_content;
+						if ( $custom_field && $cf_after_title )                                     $pis_output .= $pis_custom_field_content;
+
+						if ( ! post_password_required() )                                           $pis_output .= $pis_text_content;
+
+						if ( ! $utility_before_title && ! $utility_after_title )                    $pis_output .= $pis_utility_content;
+						if ( $categories && ! $categ_before_title && ! $categ_after_title )         $pis_output .= $pis_categories_content;
+						if ( $tags && ! $tags_before_title && ! $tags_after_title )                 $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && ! $ctaxs_before_title && ! $ctaxs_after_title ) $pis_output .= $pis_custom_tax_content;
+						if ( $custom_field && ! $cf_before_title && ! $cf_after_title )             $pis_output .= $pis_custom_field_content;
 
 					$pis_output .= '</li>';
 

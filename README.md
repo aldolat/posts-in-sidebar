@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.7  
-**Stable tag:** 3.8.4-dev  
+**Stable tag:** 3.8.4  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -114,6 +114,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * Added option to maintain active other parameters when on single post (props by techsmurfy).
 * Added option to sort categories of the main post before getting the posts for the sidebar. When the user wants to get posts from the current category, now the user can choose to fetch posts from the main category of the main post (i.e. the category with the lowest ID) or from the category with the lowest key ID in the array of categories (props by techsmurfy).
+* Added options to move certain parts before/after the title.
 * Removed empty lines in the HTML source.
 * Added Indonesian translation, thanks to Jordan Silaen.
 

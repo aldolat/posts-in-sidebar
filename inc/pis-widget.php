@@ -57,8 +57,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	/**
 	 * Display the content of the widget in the front-end.
 	 *
-	 * @param array $args
-	 * @param array $instance
+	 * @param array $args     Widget arguments.
+	 * @param array $instance Saved values from database.
 	 * @since 1.0
 	 */
 	public function widget( $args, $instance ) {
@@ -249,16 +249,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['linkify_comments'] ) )     $instance['linkify_comments']     = true;
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '|';
 		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = false;
+		if ( ! isset( $instance['utility_before_title'] ) ) $instance['utility_before_title'] = false;
 		if ( ! isset( $instance['categories'] ) )           $instance['categories']           = false;
 		if ( ! isset( $instance['categ_text'] ) )           $instance['categ_text']           = esc_html__( 'Category:', 'posts-in-sidebar' );
 		if ( ! isset( $instance['categ_sep'] ) )            $instance['categ_sep']            = ',';
+		if ( ! isset( $instance['categ_before_title'] ) )   $instance['categ_before_title']   = false;
+		if ( ! isset( $instance['categ_after_title'] ) )    $instance['categ_after_title']    = false;
 		if ( ! isset( $instance['tags'] ) )                 $instance['tags']                 = false;
 		if ( ! isset( $instance['tags_text'] ) )            $instance['tags_text']            = esc_html__( 'Tags:', 'posts-in-sidebar' );
 		if ( ! isset( $instance['hashtag'] ) )              $instance['hashtag']              = '#';
 		if ( ! isset( $instance['tag_sep'] ) )              $instance['tag_sep']              = '';
+		if ( ! isset( $instance['tags_before_title'] ) )    $instance['tags_before_title']    = false;
+		if ( ! isset( $instance['tags_after_title'] ) )     $instance['tags_after_title']     = false;
 		if ( ! isset( $instance['display_custom_tax'] ) )   $instance['display_custom_tax']   = false;
 		if ( ! isset( $instance['term_hashtag'] ) )         $instance['term_hashtag']         = '';
 		if ( ! isset( $instance['term_sep'] ) )             $instance['term_sep']             = ',';
+		if ( ! isset( $instance['ctaxs_before_title'] ) )   $instance['ctaxs_before_title']   = false;
+		if ( ! isset( $instance['ctaxs_after_title'] ) )    $instance['ctaxs_after_title']    = false;
 		if ( ! isset( $instance['custom_field'] ) )         $instance['custom_field']         = false;
 		if ( ! isset( $instance['custom_field_txt'] ) )     $instance['custom_field_txt']     = '';
 		if ( ! isset( $instance['meta'] ) )                 $instance['meta']                 = '';
@@ -266,6 +273,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['custom_field_hellip'] ) )  $instance['custom_field_hellip']  = '&hellip;';
 		if ( ! isset( $instance['custom_field_key'] ) )     $instance['custom_field_key']     = false;
 		if ( ! isset( $instance['custom_field_sep'] ) )     $instance['custom_field_sep']     = '';
+		if ( ! isset( $instance['cf_before_title'] ) )      $instance['cf_before_title']      = false;
+		if ( ! isset( $instance['cf_after_title'] ) )       $instance['cf_after_title']       = false;
 		if ( ! isset( $instance['tax_name'] ) )             $instance['tax_name']             = '';
 		if ( ! isset( $instance['tax_term_name'] ) )        $instance['tax_term_name']        = '';
 		if ( ! isset( $instance['nopost_text'] ) )          $instance['nopost_text']          = esc_html__( 'No posts yet.', 'posts-in-sidebar' );
@@ -430,22 +439,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'linkify_comments'    => $instance['linkify_comments'],
 			'utility_sep'         => $instance['utility_sep'],
 			'utility_after_title' => $instance['utility_after_title'],
+			'utility_before_title'=> $instance['utility_before_title'],
 
 			// The categories of the post
 			'categories'          => $instance['categories'],
 			'categ_text'          => $instance['categ_text'],
 			'categ_sep'           => $instance['categ_sep'],
+			'categ_before_title'  => $instance['categ_before_title'],
+			'categ_after_title'   => $instance['categ_after_title'],
 
 			// The tags of the post
 			'tags'                => $instance['tags'],
 			'tags_text'           => $instance['tags_text'],
 			'hashtag'             => $instance['hashtag'],
 			'tag_sep'             => $instance['tag_sep'],
+			'tags_before_title'   => $instance['tags_before_title'],
+			'tags_after_title'    => $instance['tags_after_title'],
 
 			// The custom taxonomies of the post
 			'display_custom_tax'  => $instance['display_custom_tax'],
 			'term_hashtag'        => $instance['term_hashtag'],
 			'term_sep'            => $instance['term_sep'],
+			'ctaxs_before_title'  => $instance['ctaxs_before_title'],
+			'ctaxs_after_title'   => $instance['ctaxs_after_title'],
 
 			// The custom field
 			'custom_field'        => $instance['custom_field'],
@@ -455,6 +471,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field_hellip' => $instance['custom_field_hellip'],
 			'custom_field_key'    => $instance['custom_field_key'],
 			'custom_field_sep'    => $instance['custom_field_sep'],
+			'cf_before_title'     => $instance['cf_before_title'],
+			'cf_after_title'      => $instance['cf_after_title'],
 
 			// The link to the archive
 			'archive_link'        => $instance['archive_link'],
@@ -530,6 +548,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// The title of the widget
 		$instance['title']      = strip_tags( $new_instance['title'] );
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
+
+		// The introduction for the widget
+		//if ( ! isset( $new_instance['intro'] ) ) $new_instance['intro'] = '';
 		$allowed_html = array(
 			'a' => array(
 				'href'  => array(),
@@ -538,7 +559,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'em' => array(),
 			'strong' => array(),
 		);
-		$instance['intro']               = wp_kses( $new_instance['intro'], $allowed_html );
+		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
@@ -701,22 +722,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['linkify_comments']    = isset( $new_instance['linkify_comments'] ) ? 1 : 0;
 		$instance['utility_sep']         = strip_tags( $new_instance['utility_sep'] );
 		$instance['utility_after_title'] = isset( $new_instance['utility_after_title'] ) ? 1 : 0;
+		$instance['utility_before_title']= isset( $new_instance['utility_before_title'] ) ? 1 : 0;
 
 		// The categories of the post
 		$instance['categories']          = isset( $new_instance['categories'] ) ? 1 : 0;
 		$instance['categ_text']          = strip_tags( $new_instance['categ_text'] );
 		$instance['categ_sep']           = strip_tags( $new_instance['categ_sep'] );
+		$instance['categ_before_title']  = isset( $new_instance['categ_before_title'] ) ? 1 : 0;
+		$instance['categ_after_title']   = isset( $new_instance['categ_after_title'] ) ? 1 : 0;
 
 		// The tags of the post
 		$instance['tags']                = isset( $new_instance['tags'] ) ? 1 : 0;
 		$instance['tags_text']           = strip_tags( $new_instance['tags_text'] );
 		$instance['hashtag']             = strip_tags( $new_instance['hashtag'] );
 		$instance['tag_sep']             = strip_tags( $new_instance['tag_sep'] );
+		$instance['tags_before_title']   = isset( $new_instance['tags_before_title'] ) ? 1 : 0;
+		$instance['tags_after_title']    = isset( $new_instance['tags_after_title'] ) ? 1 : 0;
 
 		// The custom taxonomies of the post
 		$instance['display_custom_tax']  = isset( $new_instance['display_custom_tax'] ) ? 1 : 0;
 		$instance['term_hashtag']        = strip_tags( $new_instance['term_hashtag'] );
 		$instance['term_sep']            = strip_tags( $new_instance['term_sep'] );
+		$instance['ctaxs_before_title']  = isset( $new_instance['ctaxs_before_title'] ) ? 1 : 0;
+		$instance['ctaxs_after_title']   = isset( $new_instance['ctaxs_after_title'] ) ? 1 : 0;
 
 		// The custom field
 		$instance['custom_field']        = isset( $new_instance['custom_field'] ) ? 1 : 0;
@@ -728,6 +756,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['custom_field_hellip'] = str_replace( '...', '&hellip;', $instance['custom_field_hellip'] );
 		$instance['custom_field_key']    = isset( $new_instance['custom_field_key'] ) ? 1 : 0;
 		$instance['custom_field_sep']    = strip_tags( $new_instance['custom_field_sep'] );
+		$instance['cf_before_title']    = isset( $new_instance['cf_before_title'] ) ? 1 : 0;
+		$instance['cf_after_title']     = isset( $new_instance['cf_after_title'] ) ? 1 : 0;
 
 		// The link to the archive
 		$instance['archive_link']        = isset( $new_instance['archive_link'] ) ? 1 : 0;
@@ -936,22 +966,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'linkify_comments'    => true,
 			'utility_sep'         => '|',
 			'utility_after_title' => false,
+			'utility_before_title'=> false,
 
 			// The categories of the post
 			'categories'          => false,
 			'categ_text'          => esc_html__( 'Category:', 'posts-in-sidebar' ),
 			'categ_sep'           => ',',
+			'categ_before_title'  => false,
+			'categ_after_title'   => false,
 
 			// The tags of the post
 			'tags'                => false,
 			'tags_text'           => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 			'hashtag'             => '#',
 			'tag_sep'             => '',
+			'tags_before_title'   => false,
+			'tags_after_title'    => false,
 
 			// The custom taxonomies of the post
 			'display_custom_tax'  => false,
 			'term_hashtag'        => '',
 			'term_sep'            => ',',
+			'ctaxs_before_title'  => false,
+			'ctaxs_after_title'   => false,
 
 			// The custom field
 			'custom_field'        => false,
@@ -961,6 +998,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'custom_field_hellip' => '&hellip;',
 			'custom_field_key'    => false,
 			'custom_field_sep'    => ':',
+			'cf_before_title'     => false,
+			'cf_after_title'      => false,
 
 			// The link to the archive
 			'archive_link'        => false,
@@ -1022,6 +1061,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$image_link_to_post   = (bool) $instance['image_link_to_post'];
 		$exc_arrow            = (bool) $instance['exc_arrow'];
 		$utility_after_title  = (bool) $instance['utility_after_title'];
+		$utility_before_title = (bool) $instance['utility_before_title'];
 		$display_author       = (bool) $instance['display_author'];
 		$linkify_author       = (bool) $instance['linkify_author'];
 		$gravatar_display     = (bool) $instance['gravatar_display'];
@@ -1032,10 +1072,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$comments             = (bool) $instance['comments'];
 		$linkify_comments     = (bool) $instance['linkify_comments'];
 		$categories           = (bool) $instance['categories'];
+		$categ_before_title   = (bool) $instance['categ_before_title'];
+		$categ_after_title    = (bool) $instance['categ_after_title'];
 		$tags                 = (bool) $instance['tags'];
+		$tags_before_title    = (bool) $instance['tags_before_title'];
+		$tags_after_title     = (bool) $instance['tags_after_title'];
 		$display_custom_tax   = (bool) $instance['display_custom_tax'];
+		$ctaxs_before_title   = (bool) $instance['ctaxs_before_title'];
+		$ctaxs_after_title    = (bool) $instance['ctaxs_after_title'];
 		$custom_field         = (bool) $instance['custom_field'];
 		$custom_field_key     = (bool) $instance['custom_field_key'];
+		$cf_before_title      = (bool) $instance['cf_before_title'];
+		$cf_after_title       = (bool) $instance['cf_after_title'];
 		$archive_link         = (bool) $instance['archive_link'];
 		$hide_widget          = (bool) $instance['hide_widget'];
 		$remove_bullets       = (bool) $instance['remove_bullets'];
@@ -1613,7 +1661,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id( 'dont_ignore_params' ),
 								$this->get_field_name( 'dont_ignore_params' ),
 								checked( $dont_ignore_params, true, false ),
-								esc_html__( 'By default, when you activate one of the options to change the query on single posts, the plugin will deactivate other parameters like tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
+								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
 								'pis-boxed pis-boxed-green'
 							); ?>
 
@@ -1760,7 +1808,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4 class="pis-title-center"><?php esc_html_e( 'Column A', 'posts-in-sidebar' ); ?></h4>
+								<h5 class="pis-title-center"><?php esc_html_e( 'Column A', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Taxonomy aa
 								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy A1%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), esc_html__( 'category', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
@@ -1867,7 +1915,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4 class="pis-title-center"><?php esc_html_e( 'Column B', 'posts-in-sidebar' ); ?></h4>
+								<h5 class="pis-title-center"><?php esc_html_e( 'Column B', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Taxonomy ba
 								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy B1%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), esc_html__( 'post_tag', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
@@ -2204,7 +2252,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column">
 
-							<h4><?php esc_html_e( 'The title of the post', 'posts-in-sidebar' ); ?></h4>
+							<h5><?php esc_html_e( 'The title of the post', 'posts-in-sidebar' ); ?></h5>
 
 							<?php // ================= Title of the post
 							pis_form_checkbox( esc_html__( 'Display the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
@@ -2218,7 +2266,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						</div>
 
 						<div class="pis-column">
-							<h4><?php esc_html_e( 'The text of the post', 'posts-in-sidebar' ); ?></h4>
+							<h5><?php esc_html_e( 'The text of the post', 'posts-in-sidebar' ); ?></h5>
 
 							<?php // ================= Type of text
 							$options = array(
@@ -2354,7 +2402,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h4>
+								<h5><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= The link of the image to post
 								pis_form_checkbox(
@@ -2375,7 +2423,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL.', 'posts-in-sidebar' )
 								); ?>
 
-								<h4><?php esc_html_e( 'Customized featured image', 'posts-in-sidebar' ); ?></h4>
+								<h5><?php esc_html_e( 'Custom featured image', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Custom image URL
 								pis_form_input_text(
@@ -2384,7 +2432,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'custom_image_url' ),
 									esc_url( strip_tags( $instance['custom_image_url'] ) ),
 									'http://example.com/image.jpg',
-									esc_html__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you active the checkbox below.', 'posts-in-sidebar' )
+									esc_html__( 'Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you activate the checkbox below.', 'posts-in-sidebar' )
 								); ?>
 
 								<?php // ================= Use custom image URL only if the post thumbnail is not defined.
@@ -2394,8 +2442,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<?php // ================= Positioning image before title
-						pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
+						<div class="pis-boxed pis-boxed-green">
+
+							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+							<?php // ================= Positioning image before title
+							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
+
+						</div>
 
 					</div>
 
@@ -2504,8 +2558,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<?php // ================= Section position
-						pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ), '', 'pis-boxed pis-boxed-green' ); ?>
+						<div class="pis-boxed pis-boxed-green">
+
+							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+							<?php // ================= Section position
+							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_before_title' ), $this->get_field_name( 'utility_before_title' ), checked( $utility_before_title, true, false ) ); ?>
+
+							<?php // ================= Section position
+							pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+
+						</div>
 
 					</div>
 
@@ -2521,7 +2584,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h4>
+								<h5><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Post categories
 								pis_form_checkbox( esc_html__( 'Show the categories', 'posts-in-sidebar' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
@@ -2543,7 +2606,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h4>
+								<h5><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Post tags
 								pis_form_checkbox( esc_html__( 'Show the tags', 'posts-in-sidebar' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
@@ -2568,7 +2631,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h4><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h4>
+								<h5><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Custom taxonomies
 								pis_form_checkbox( esc_html__( 'Show the custom taxonomies', 'posts-in-sidebar' ),
@@ -2592,6 +2655,77 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 						</div>
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<div class="pis-boxed pis-boxed-green">
+
+									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the categories before the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'categ_before_title' ),
+									$this->get_field_name( 'categ_before_title' ),
+									checked( $categ_before_title, true, false ) ); ?>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the categories after the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'categ_after_title' ),
+									$this->get_field_name( 'categ_after_title' ),
+									checked( $categ_after_title, true, false ) ); ?>
+
+								</div>
+
+							</div>
+
+							<div class="pis-column">
+
+								<div class="pis-boxed pis-boxed-green">
+
+									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the tags before the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'tags_before_title' ),
+									$this->get_field_name( 'tags_before_title' ),
+									checked( $tags_before_title, true, false ) ); ?>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the tags after the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'tags_after_title' ),
+									$this->get_field_name( 'tags_after_title' ),
+									checked( $tags_after_title, true, false ) ); ?>
+
+								</div>
+
+							</div>
+
+							<div class="pis-column">
+
+								<div class="pis-boxed pis-boxed-green">
+
+									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the custom taxonomies before the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'ctaxs_before_title' ),
+									$this->get_field_name( 'ctaxs_before_title' ),
+									checked( $ctaxs_before_title, true, false ) ); ?>
+
+									<?php // ================= Section position
+									pis_form_checkbox( esc_html__( 'Display the custom taxonomies after the title of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'ctaxs_after_title' ),
+									$this->get_field_name( 'ctaxs_after_title' ),
+									checked( $ctaxs_after_title, true, false ) ); ?>
+
+								</div>
+
+							</div>
+
+						</div>
+
 					</div>
 
 				</div>
@@ -2648,6 +2782,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_input_text( esc_html__( 'Use this separator between meta key and value', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
 
 							</div>
+
+						</div>
+
+						<div class="pis-boxed pis-boxed-green">
+
+							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+
+							<?php // ================= Section position
+							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ),
+							$this->get_field_id( 'cf_before_title' ),
+							$this->get_field_name( 'cf_before_title' ),
+							checked( $cf_before_title, true, false ) ); ?>
+
+							<?php // ================= Section position
+							pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ),
+							$this->get_field_id( 'cf_after_title' ),
+							$this->get_field_name( 'cf_after_title' ),
+							checked( $cf_after_title, true, false ) ); ?>
 
 						</div>
 

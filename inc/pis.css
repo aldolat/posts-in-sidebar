@@ -87,9 +87,6 @@
 	float: none;
 	margin: 0px auto 13px;
 }
-.pis-section h5 {
-	font-size: 1em;
-}
 .pis-section ::-webkit-input-placeholder {
 	color: #ccc;
 }
@@ -101,4 +98,16 @@
 }
 .pis-section :-ms-input-placeholder {
 	color: #ccc;
+}
+.pis-section h5 {
+	font-size: 1em;
+}
+.pis-container p:last-child {
+	margin-bottom: 0;
+}
+.pis-container h5 {
+	margin-top: 1em;
+}
+.pis-boxed h5 {
+	margin-top: 0;
 }

@@ -100,6 +100,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * Added option to get posts from a certain amount of time ago.
 * Removed empty items from the array for the query.
+* Removed some default settings in custom taxonomy query.
 
 = 3.8.5 =
 

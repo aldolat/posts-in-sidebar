@@ -2317,7 +2317,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							An expression like "1 month ago" means: get posts that have been published in the last month,
 							and not only published exactly one month ago.', 'posts-in-sidebar' ); ?></em></p>
 
-							<p><em><?php esc_html_e( 'Also, please note that these options will override the options under "Get posts published after/before a date".', 'posts-in-sidebar' ); ?></em></p>
+							<p><em><?php esc_html_e( 'Also, please note that these options will override the corresponding options under "Get posts published after/before a date".', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 

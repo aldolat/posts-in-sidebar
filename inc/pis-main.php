@@ -262,7 +262,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/*
 	 * Remove empty items from the $args array.
-	 * This will produce a cleaner output if debug is on.
+	 * This is performed only to produce a cleaner output if debug is on.
 	 *
 	 * @since 3.8.6
 	 */

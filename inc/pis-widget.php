@@ -2093,15 +2093,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'In this section you can define the period within posts have been published.
-						You can get posts published in a certain period or after/before a date or in a dynamic period (based on current date).', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php esc_html_e( 'In this section you can define the period within posts have been published. You can get posts published in a certain period or after/before a date or in a dynamic period (based on current date).', 'posts-in-sidebar' ); ?></em></p>
 
 						<div class="pis-column-container">
 
 							<h5 class="pis-title-center"><?php esc_html_e( 'Get posts published in a certain period', 'posts-in-sidebar' ); ?></h5>
 
-							<p><em><?php esc_html_e( 'Define the period within posts are published.
-							For example, you can pick up the posts published on 15 January, 2017 at 10.', 'posts-in-sidebar' ); ?></em></p>
+							<p><em><?php esc_html_e( 'Define the period within posts are published. For example, you can pick up the posts published on 15 January, 2017 at 10.', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 
@@ -2182,8 +2180,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<h5 class="pis-title-center"><?php esc_html_e( 'Get posts published after/before a date', 'posts-in-sidebar' ); ?></h5>
 
-							<p><em><?php esc_html_e( 'Here you can get posts published after/before a certain date.
-							You can also use the two options together, for example, to get posts published between 2017-01-15 and 2017-01-31.', 'posts-in-sidebar' ); ?></em></p>
+							<p><em><?php esc_html_e( 'Here you can get posts published after/before a certain date. You can also use the two options together, for example, to get posts published between 2017-01-15 and 2017-01-31.', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 
@@ -2312,10 +2309,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<h5 class="pis-title-center"><?php esc_html_e( 'Dynamic date query', 'posts-in-sidebar' ); ?></h5>
 
-							<p><em><?php esc_html_e( 'Define the amount of time from now within the posts have been published.
-							For example, you can get posts published 1 month ago or 2 years ago, and so on.
-							An expression like "1 month ago" means: get posts that have been published in the last month,
-							and not only published exactly one month ago.', 'posts-in-sidebar' ); ?></em></p>
+							<p><em><?php esc_html_e( 'Define the amount of time from now within the posts have been published. For example, you can get posts published 1 month ago or 2 years ago, and so on. An expression like "1 month ago" means: get posts that have been published in the last month, and not only published exactly one month ago.', 'posts-in-sidebar' ); ?></em></p>
 
 							<p><em><?php esc_html_e( 'Also, please note that these options will override the corresponding options under "Get posts published after/before a date".', 'posts-in-sidebar' ); ?></em></p>
 

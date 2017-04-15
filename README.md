@@ -112,7 +112,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 3.8.6 ###
 
-* Unset empty arrays.
+* Removed empty items from the array for the query.
 
 ### 3.8.5 ###
 

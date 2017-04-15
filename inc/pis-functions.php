@@ -804,7 +804,7 @@ function pis_tax_query( $args ) {
 /**
  * Remove empty keys from an array recursively.
  *
- * @param array $array The array to be checked.
+ * @param array   $array      The array to be checked.
  * @param boolean $make_empty If the output is to return as an empty string.
  * @since 1.29
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively

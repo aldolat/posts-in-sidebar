@@ -261,6 +261,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	extract( $args, EXTR_SKIP );
 
 	/*
+	 * Remove empty items from the $args array.
+	 * This will produce a cleaner output if debug is on.
+	 *
+	 * @since 3.8.6
+	 */
+	$args = pis_array_remove_empty_keys( $args, true );
+
+	/*
 	 * Check if $author or $cat or $tag are equal to 'NULL' (string).
 	 * If so, make them empty.
 	 * For more informations, see inc/posts-in-sidebar-widget.php, function update().
@@ -340,7 +348,12 @@ function pis_get_posts_in_sidebar( $args ) {
 			'column'    => $date_column,
 		)
 	);
-	$date_query = pis_array_remove_empty_keys( $date_query, true );
+	/*
+	 * The following function is necessary to make empty the $date_query array if date/time values are empty.
+	 * Starting from 3.8.6 this action is performed later, before creating a new WP_Query object.
+	 * For this reason it is commented out here.
+	 */
+	// $date_query = pis_array_remove_empty_keys( $date_query, true );
 
 	/*
 	 * If in a single post or in a page, get the ID of the post of the main loop.
@@ -434,6 +447,15 @@ function pis_get_posts_in_sidebar( $args ) {
 		's'                   => $search,
 		'ignore_sticky_posts' => $ignore_sticky,
 	);
+
+	/*
+	 * Remove empty items from the $params array.
+	 * This is necessary for some parts of WP_Query (like dates)
+	 * and will produce a cleaner output if debug is on.
+	 *
+	 * @since 3.8.6
+	 */
+	$params = pis_array_remove_empty_keys( $params, true );
 
 	/*
 	 * Check if the user wants to display posts from the same category of the single post.
@@ -875,6 +897,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	endif;
 
 	/* Debugging */
+
 	$pis_output .= pis_debug( array(
 		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.

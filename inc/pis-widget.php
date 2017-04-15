@@ -678,12 +678,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 1 > $instance['date_before_day'] || 31 < $instance['date_before_day'] || ! is_numeric( $instance['date_before_day'] ) ) $instance['date_before_day'] = '';
 		$instance['date_inclusive']      = isset( $new_instance['date_inclusive'] ) ? 1 : 0 ;
 		$instance['date_column']         = $new_instance['date_column'];
-		$instance['date_after_dyn_num']  = $new_instance['date_after_dyn_num'];
-			if ( ! is_numeric( $instance['date_after_dyn_num'] ) ) $instance['date_after_dyn_num'] = '';
+		$instance['date_after_dyn_num']  = absint( strip_tags( $new_instance['date_after_dyn_num'] ) );
+			if ( ! is_numeric( $instance['date_after_dyn_num'] ) || 0 == $instance['date_after_dyn_num'] ) $instance['date_after_dyn_num'] = '';
 		$instance['date_after_dyn_date'] = $new_instance['date_after_dyn_date'];
-		$instance['date_before_dyn_num'] = $new_instance['date_before_dyn_num'];
-			if ( ! is_numeric( $instance['date_before_dyn_num'] ) ) $instance['date_before_dyn_num'] = '';
+			if ( '' == $instance['date_after_dyn_num'] ) $instance['date_after_dyn_date'] = '';
+		$instance['date_before_dyn_num'] = absint( strip_tags( $new_instance['date_before_dyn_num'] ) );
+			if ( ! is_numeric( $instance['date_before_dyn_num'] ) || 0 == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_num'] = '';
 		$instance['date_before_dyn_date']= $new_instance['date_before_dyn_date'];
+			if ( '' == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_date'] = '';
 
 		// Posts exclusion
 		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );

@@ -914,7 +914,6 @@ function pis_get_posts_in_sidebar( $args ) {
 	endif;
 
 	/* Debugging */
-
 	$pis_output .= pis_debug( array(
 		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.

@@ -220,6 +220,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['date_before_day'] ) )      $instance['date_before_day']      = '';
 		if ( ! isset( $instance['date_inclusive'] ) )       $instance['date_inclusive']       = false;
 		if ( ! isset( $instance['date_column'] ) )          $instance['date_column']          = '';
+		if ( ! isset( $instance['date_after_dyn_num'] ) )   $instance['date_after_dyn_num']   = '';
+		if ( ! isset( $instance['date_after_dyn_date'] ) )  $instance['date_after_dyn_date']  = '';
+		if ( ! isset( $instance['date_before_dyn_num'] ) )  $instance['date_before_dyn_num']  = '';
+		if ( ! isset( $instance['date_before_dyn_date'] ) ) $instance['date_before_dyn_date'] = '';
 		if ( ! isset( $instance['author_not_in'] ) )        $instance['author_not_in']        = '';
 		if ( ! isset( $instance['exclude_current_post'] ) ) $instance['exclude_current_post'] = false;
 		if ( ! isset( $instance['post_not_in'] ) )          $instance['post_not_in']          = '';
@@ -390,6 +394,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_before_day'     => $instance['date_before_day'],
 			'date_inclusive'      => $instance['date_inclusive'],
 			'date_column'         => $instance['date_column'],
+			'date_after_dyn_num'  => $instance['date_after_dyn_num'],
+			'date_after_dyn_date' => $instance['date_after_dyn_date'],
+			'date_before_dyn_num' => $instance['date_before_dyn_num'],
+			'date_before_dyn_date'=> $instance['date_before_dyn_date'],
 
 			// Posts exclusion
 			'author_not_in'       => $instance['author_not_in'],
@@ -670,6 +678,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 1 > $instance['date_before_day'] || 31 < $instance['date_before_day'] || ! is_numeric( $instance['date_before_day'] ) ) $instance['date_before_day'] = '';
 		$instance['date_inclusive']      = isset( $new_instance['date_inclusive'] ) ? 1 : 0 ;
 		$instance['date_column']         = $new_instance['date_column'];
+		$instance['date_after_dyn_num']  = $new_instance['date_after_dyn_num'];
+			if ( ! is_numeric( $instance['date_after_dyn_num'] ) ) $instance['date_after_dyn_num'] = '';
+		$instance['date_after_dyn_date'] = $new_instance['date_after_dyn_date'];
+		$instance['date_before_dyn_num'] = $new_instance['date_before_dyn_num'];
+			if ( ! is_numeric( $instance['date_before_dyn_num'] ) ) $instance['date_before_dyn_num'] = '';
+		$instance['date_before_dyn_date']= $new_instance['date_before_dyn_date'];
 
 		// Posts exclusion
 		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
@@ -916,6 +930,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_before_day'     => '',
 			'date_inclusive'      => false,
 			'date_column'         => '',
+			'date_after_dyn_num'  => '',
+			'date_after_dyn_date' => '',
+			'date_before_dyn_num' => '',
+			'date_before_dyn_date'=> '',
 
 			// Posts exclusion
 			'author_not_in'       => '',
@@ -2032,9 +2050,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'Define the date period within posts are published.', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php esc_html_e( 'In this section you can define the period within posts have been published.
+						You can get posts published in a certain period or after/before a date or some time ago (based on current time).', 'posts-in-sidebar' ); ?></em></p>
 
 						<div class="pis-column-container">
+
+							<h5 class="pis-title-center"><?php esc_html_e( 'Get posts published in this period', 'posts-in-sidebar' ); ?></h5>
+
+							<p><em><?php esc_html_e( 'Define the period within posts are published.
+							For example, you can pick up the posts published on 15 January, 2017 at 10.', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 
@@ -2109,11 +2133,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
+						<hr>
+
 						<div class="pis-column-container">
+
+							<h5 class="pis-title-center"><?php esc_html_e( 'Get posts published after/before a date', 'posts-in-sidebar' ); ?></h5>
+
+							<p><em><?php esc_html_e( 'Here you can get posts published after/before a certain date.
+							You can also mix the two options, for example, get posts published after January 15, 2017 but before January 31, 2017.', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 
-								<h5 class="pis-title-center"><?php esc_html_e( 'Get posts after this date', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Get posts after this date', 'posts-in-sidebar' ); ?></h6>
+
+								<p><em><?php esc_html_e( 'Get posts published after a certain date.', 'posts-in-sidebar' ); ?></em></p>
 
 								<?php pis_form_input_text(
 									esc_html__( 'Year', 'posts-in-sidebar' ),
@@ -2146,7 +2179,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5 class="pis-title-center"><?php esc_html_e( 'Get posts before this date', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Get posts before this date', 'posts-in-sidebar' ); ?></h6>
+
+								<p><em><?php esc_html_e( 'Get posts published before a certain date.', 'posts-in-sidebar' ); ?></em></p>
 
 								<?php pis_form_input_text(
 									esc_html__( 'Year', 'posts-in-sidebar' ),
@@ -2181,7 +2216,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-column-container">
 
-							<h5 class="pis-title-center"><?php esc_html_e( 'Other options', 'posts-in-sidebar' ); ?></h5>
+							<h5><?php esc_html_e( 'Other options for after/before', 'posts-in-sidebar' ); ?></h5>
 
 							<div class="pis-column">
 
@@ -2222,6 +2257,133 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$options,
 									$instance['date_column'],
 									esc_html__( 'Column to query against.', 'posts-in-sidebar' )
+								); ?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<h5 class="pis-title-center"><?php esc_html_e( 'Dynamic date query', 'posts-in-sidebar' ); ?></h5>
+
+							<p><em><?php esc_html_e( 'Define the amount of time within posts have been published.
+							For example, you can get posts published within 1 month from today or within 2 years from today, and so on.', 'posts-in-sidebar' ); ?></em></p>
+
+							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Get posts after this amount of time', 'posts-in-sidebar' ); ?></h6>
+
+								<?php // ================= The amount of time for the dynamic date
+								pis_form_input_text(
+									esc_html__( 'Amount of time', 'posts-in-sidebar' ),
+									$this->get_field_id('date_after_dyn_num'),
+									$this->get_field_name('date_after_dyn_num'),
+									esc_attr( $instance['date_after_dyn_num'] ),
+									'1'
+								); ?>
+
+								<?php // ================= Type of date
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'year' => array(
+										'value' => 'year',
+										'desc'  => 'years'
+									),
+									'month' => array(
+										'value' => 'month',
+										'desc'  => 'months'
+									),
+									'week' => array(
+										'value' => 'week',
+										'desc'  => 'weeks'
+									),
+									'day' => array(
+										'value' => 'day',
+										'desc'  => 'days'
+									),
+									'hour' => array(
+										'value' => 'hour',
+										'desc'  => 'hours'
+									),
+									'minute' => array(
+										'value' => 'minute',
+										'desc'  => 'minutes'
+									),
+									'second' => array(
+										'value' => 'second',
+										'desc'  => 'seconds'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type of date', 'posts-in-sidebar' ),
+									$this->get_field_id('date_after_dyn_date'),
+									$this->get_field_name('date_after_dyn_date'),
+									$options,
+									$instance['date_after_dyn_date']
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Get posts before this amount of time', 'posts-in-sidebar' ); ?></h6>
+
+								<?php // ================= The amount of time for the dynamic date
+								pis_form_input_text(
+									esc_html__( 'Amount of time', 'posts-in-sidebar' ),
+									$this->get_field_id('date_before_dyn_num'),
+									$this->get_field_name('date_before_dyn_num'),
+									esc_attr( $instance['date_before_dyn_num'] ),
+									'1'
+								); ?>
+
+								<?php // ================= Type of date
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'year' => array(
+										'value' => 'year',
+										'desc'  => 'years'
+									),
+									'month' => array(
+										'value' => 'month',
+										'desc'  => 'months'
+									),
+									'week' => array(
+										'value' => 'week',
+										'desc'  => 'weeks'
+									),
+									'day' => array(
+										'value' => 'day',
+										'desc'  => 'days'
+									),
+									'hour' => array(
+										'value' => 'hour',
+										'desc'  => 'hours'
+									),
+									'minute' => array(
+										'value' => 'minute',
+										'desc'  => 'minutes'
+									),
+									'second' => array(
+										'value' => 'second',
+										'desc'  => 'seconds'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type of date', 'posts-in-sidebar' ),
+									$this->get_field_id('date_before_dyn_date'),
+									$this->get_field_name('date_before_dyn_date'),
+									$options,
+									$instance['date_before_dyn_date']
 								); ?>
 
 							</div>

@@ -130,6 +130,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		'date_before_day'     => '',
 		'date_inclusive'      => false,
 		'date_column'         => '',
+		'date_after_dyn_num'  => '',
+		'date_after_dyn_date' => '',
+		'date_before_dyn_num' => '',
+		'date_before_dyn_date'=> '',
 
 		// Posts exclusion
 		'author_not_in'       => '',
@@ -351,9 +355,22 @@ function pis_get_posts_in_sidebar( $args ) {
 	/*
 	 * The following function is necessary to make empty the $date_query array if date/time values are empty.
 	 * Starting from 3.8.6 this action is performed later, before creating a new WP_Query object.
-	 * For this reason it is commented out here.
+	 * For this reason it is commented out here starting from 3.8.6 version.
 	 */
 	// $date_query = pis_array_remove_empty_keys( $date_query, true );
+
+	/*
+	 * Get posts published after/before a certain amount of time ago.
+	 * In this case we can use an expression like "1 month ago".
+	 *
+	 * @since 3.8.6
+	 */
+	if ( $date_after_dyn_num && $date_after_dyn_date ) {
+		$date_query[0]['after'] = $date_after_dyn_num . ' ' . $date_after_dyn_date . ' ago';
+	}
+	if ( $date_before_dyn_num && $date_before_dyn_date ) {
+		$date_query[0]['before'] = $date_before_dyn_num . ' ' . $date_before_dyn_date . ' ago';
+	}
 
 	/*
 	 * If in a single post or in a page, get the ID of the post of the main loop.

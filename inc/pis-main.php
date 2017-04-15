@@ -91,28 +91,28 @@ function pis_get_posts_in_sidebar( $args ) {
 		'relation'            => '',
 
 		'taxonomy_aa'         => '',
-		'field_aa'            => 'slug',
+		'field_aa'            => '',
 		'terms_aa'            => '',
-		'operator_aa'         => 'IN',
+		'operator_aa'         => '',
 
 		'relation_a'          => '',
 
 		'taxonomy_ab'         => '',
-		'field_ab'            => 'slug',
+		'field_ab'            => '',
 		'terms_ab'            => '',
-		'operator_ab'         => 'IN',
+		'operator_ab'         => '',
 
 		'taxonomy_ba'         => '',
-		'field_ba'            => 'slug',
+		'field_ba'            => '',
 		'terms_ba'            => '',
-		'operator_ba'         => 'IN',
+		'operator_ba'         => '',
 
 		'relation_b'          => '',
 
 		'taxonomy_bb'         => '',
-		'field_bb'            => 'slug',
+		'field_bb'            => '',
 		'terms_bb'            => '',
-		'operator_bb'         => 'IN',
+		'operator_bb'         => '',
 
 		// Date query
 		'date_year'           => '',

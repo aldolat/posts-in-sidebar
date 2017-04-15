@@ -177,7 +177,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
-		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']   = false;
+		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']      = false;
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
@@ -188,23 +188,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_custom_field'] ) )   $instance['title_custom_field']   = '';
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
-		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = 'slug';
+		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = '';
 		if ( ! isset( $instance['terms_aa'] ) )             $instance['terms_aa']             = '';
-		if ( ! isset( $instance['operator_aa'] ) )          $instance['operator_aa']          = 'IN';
+		if ( ! isset( $instance['operator_aa'] ) )          $instance['operator_aa']          = '';
 		if ( ! isset( $instance['relation_a'] ) )           $instance['relation_a']           = '';
 		if ( ! isset( $instance['taxonomy_ab'] ) )          $instance['taxonomy_ab']          = '';
-		if ( ! isset( $instance['field_ab'] ) )             $instance['field_ab']             = 'slug';
+		if ( ! isset( $instance['field_ab'] ) )             $instance['field_ab']             = '';
 		if ( ! isset( $instance['terms_ab'] ) )             $instance['terms_ab']             = '';
-		if ( ! isset( $instance['operator_ab'] ) )          $instance['operator_ab']          = 'IN';
+		if ( ! isset( $instance['operator_ab'] ) )          $instance['operator_ab']          = '';
 		if ( ! isset( $instance['taxonomy_ba'] ) )          $instance['taxonomy_ba']          = '';
-		if ( ! isset( $instance['field_ba'] ) )             $instance['field_ba']             = 'slug';
+		if ( ! isset( $instance['field_ba'] ) )             $instance['field_ba']             = '';
 		if ( ! isset( $instance['terms_ba'] ) )             $instance['terms_ba']             = '';
-		if ( ! isset( $instance['operator_ba'] ) )          $instance['operator_ba']          = 'IN';
+		if ( ! isset( $instance['operator_ba'] ) )          $instance['operator_ba']          = '';
 		if ( ! isset( $instance['relation_b'] ) )           $instance['relation_b']           = '';
 		if ( ! isset( $instance['taxonomy_bb'] ) )          $instance['taxonomy_bb']          = '';
-		if ( ! isset( $instance['field_bb'] ) )             $instance['field_bb']             = 'slug';
+		if ( ! isset( $instance['field_bb'] ) )             $instance['field_bb']             = '';
 		if ( ! isset( $instance['terms_bb'] ) )             $instance['terms_bb']             = '';
-		if ( ! isset( $instance['operator_bb'] ) )          $instance['operator_bb']          = 'IN';
+		if ( ! isset( $instance['operator_bb'] ) )          $instance['operator_bb']          = '';
 		if ( ! isset( $instance['date_year'] ) )            $instance['date_year']            = '';
 		if ( ! isset( $instance['date_month'] ) )           $instance['date_month']           = '';
 		if ( ! isset( $instance['date_week'] ) )            $instance['date_week']            = '';
@@ -893,28 +893,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'relation'            => '',
 
 			'taxonomy_aa'         => '',
-			'field_aa'            => 'slug',
+			'field_aa'            => '',
 			'terms_aa'            => '',
-			'operator_aa'         => 'IN',
+			'operator_aa'         => '',
 
 			'relation_a'          => '',
 
 			'taxonomy_ab'         => '',
-			'field_ab'            => 'slug',
+			'field_ab'            => '',
 			'terms_ab'            => '',
-			'operator_ab'         => 'IN',
+			'operator_ab'         => '',
 
 			'taxonomy_ba'         => '',
-			'field_ba'            => 'slug',
+			'field_ba'            => '',
 			'terms_ba'            => '',
-			'operator_ba'         => 'IN',
+			'operator_ba'         => '',
 
 			'relation_b'          => '',
 
 			'taxonomy_bb'         => '',
-			'field_bb'            => 'slug',
+			'field_bb'            => '',
 			'terms_bb'            => '',
-			'operator_bb'         => 'IN',
+			'operator_bb'         => '',
 
 			// Date query
 			'date_year'           => '',
@@ -1834,6 +1834,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Field aa
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'term_id' => array(
 										'value' => 'term_id',
 										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' )
@@ -1854,6 +1858,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Operator aa
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'in' => array(
 										'value' => 'IN',
 										'desc'  => 'IN'
@@ -1895,6 +1903,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Field ab
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'term_id' => array(
 										'value' => 'term_id',
 										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' )
@@ -1915,6 +1927,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Operator ab
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'in' => array(
 										'value' => 'IN',
 										'desc'  => 'IN'
@@ -1941,6 +1957,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Field ba
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'term_id' => array(
 										'value' => 'term_id',
 										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' )
@@ -1961,6 +1981,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Operator ba
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'in' => array(
 										'value' => 'IN',
 										'desc'  => 'IN'
@@ -1984,6 +2008,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => '',
 										'desc'  => ''
 									),
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'and' => array(
 										'value' => 'AND',
 										'desc'  => 'AND'
@@ -2002,6 +2030,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Field bb
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'term_id' => array(
 										'value' => 'term_id',
 										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' )

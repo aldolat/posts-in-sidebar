@@ -1624,7 +1624,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Type of the taxonomy
-								$options = array();
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+								);
 								$args = array(
 									'public' => true,
 								);
@@ -2054,6 +2059,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Operator bb
 								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
 									'in' => array(
 										'value' => 'IN',
 										'desc'  => 'IN'
@@ -2305,8 +2314,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<p><em><?php esc_html_e( 'Define the amount of time from now within the posts have been published.
 							For example, you can get posts published 1 month ago or 2 years ago, and so on.
-							An expression like "1 month ago" means posts that have been published in the last month,
-							and not published exactly 1 month ago.', 'posts-in-sidebar' ); ?></em></p>
+							An expression like "1 month ago" means: get posts that have been published in the last month,
+							and not only published exactly one month ago.', 'posts-in-sidebar' ); ?></em></p>
+
+							<p><em><?php esc_html_e( 'Also, please note that these options will override the options under "Get posts published after/before a date".', 'posts-in-sidebar' ); ?></em></p>
 
 							<div class="pis-column">
 

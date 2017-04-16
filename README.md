@@ -113,6 +113,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 3.8.7 ###
 
 * Fixed link on titles and title arrows.
+* Fixed a bug where, regardless of the state of "Display the featured image of the post" checkbox, the featured image was always visible if the "Display this section before the title of the post" checkbox were active.
 
 ### 3.8.6 ###
 

@@ -693,8 +693,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$pis_custom_field_content = '';
 
 						/* The thumbnail */
-						$pis_thumbnail_content = pis_the_thumbnail( array(
-							'display_image'       => $display_image,
+						$pis_thumbnail_content .= pis_the_thumbnail( array(
 							'image_align'         => $image_align,
 							'side_image_margin'   => $side_image_margin,
 							'bottom_image_margin' => $bottom_image_margin,
@@ -710,7 +709,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						/* The title */
-						$pis_title_content = pis_the_title( array(
+						$pis_title_content .= pis_the_title( array(
 							'title_margin'      => $title_margin,
 							'margin_unit'       => $margin_unit,
 							'gravatar_display'  => $gravatar_display,
@@ -727,11 +726,10 @@ function pis_get_posts_in_sidebar( $args ) {
 						 * The content of the post (i.e. the text and/or the post thumbnail)
 						 * should be displayed if one of these conditions are true:
 						 * - The $post_type is an attachment;
-						 * - The user wants to display the post thumbnail AND the post has a thumbnail or a custom image;
+						 * - The post has a thumbnail or a custom image;
 						 * - The $excerpt variable is different from 'none'.
 						 */
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
-
 							// Prepare the variable $pis_the_text to contain the text of the post
 							$pis_the_text = pis_the_text( array(
 								'excerpt'    => $excerpt,
@@ -745,12 +743,10 @@ function pis_get_posts_in_sidebar( $args ) {
 							if ( ! empty( $pis_the_text ) || $display_image )
 							$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
-								if ( ! $image_before_title ) {
-
+								if ( $display_image && ! $image_before_title ) {
 									/* The thumbnail */
-									if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) ) {
+									if ( 'attachment' == $post_type || has_post_thumbnail() || $custom_image_url ) {
 										$pis_text_content .= pis_the_thumbnail( array(
-											'display_image'       => $display_image,
 											'image_align'         => $image_align,
 											'side_image_margin'   => $side_image_margin,
 											'bottom_image_margin' => $bottom_image_margin,
@@ -764,10 +760,9 @@ function pis_get_posts_in_sidebar( $args ) {
 											'image_link'          => $image_link,
 											'image_link_to_post'  => $image_link_to_post,
 										) );
-									} // Close if ( $display_image && has_post_thumbnail )
-
+									} // Close if has_post_thumbnail
 								}
-								// Close if $image_before_title
+								// Close if $display_image
 
 								/* The Gravatar */
 								if ( $gravatar_display && 'next_post' == $gravatar_position ) {
@@ -777,18 +772,18 @@ function pis_get_posts_in_sidebar( $args ) {
 										'default' => $gravatar_default
 									) );
 								}
+								// Close The Gravatar
 
 								/* The text */
 								$pis_text_content .= $pis_the_text;
 
 							if ( ! empty( $pis_the_text ) || $display_image )
 							$pis_text_content .= '</p>';
-
 						endif;
-						// Close the post content (if $display_image)
+						// Close the post content
 
 						/* The author, the date and the comments */
-						$pis_utility_content = pis_utility_section( array(
+						$pis_utility_content .= pis_utility_section( array(
 							'display_author'    => $display_author,
 							'display_date'      => $display_date,
 							'display_mod_date'  => $display_mod_date,
@@ -813,7 +808,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						/* The categories */
-						$pis_categories_content = pis_the_categories( array(
+						$pis_categories_content .= pis_the_categories( array(
 							'post_id'           => $pis_query->post->ID,
 							'categ_sep'         => $categ_sep,
 							'categories_margin' => $categories_margin,
@@ -822,7 +817,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						/* The tags */
-						$pis_tags_content = pis_the_tags( array(
+						$pis_tags_content .= pis_the_tags( array(
 							'post_id'     => $pis_query->post->ID,
 							'hashtag'     => $hashtag,
 							'tag_sep'     => $tag_sep,
@@ -832,7 +827,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						/* The custom taxonomies */
-						$pis_custom_tax_content = pis_custom_taxonomies_terms_links( array(
+						$pis_custom_tax_content .= pis_custom_taxonomies_terms_links( array(
 							'postID'       => $pis_query->post->ID,
 							'term_hashtag' => $term_hashtag,
 							'term_sep'     => $term_sep,
@@ -841,7 +836,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						/* The post meta */
-						$pis_custom_field_content = pis_custom_field( array(
+						$pis_custom_field_content .= pis_custom_field( array(
 							'post_id'             => $pis_query->post->ID,
 							'meta'                => $meta,
 							'custom_field_txt'    => $custom_field_txt,
@@ -854,7 +849,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						// Concatenate the variables
-						if ( $image_before_title )                                                  $pis_output .= $pis_thumbnail_content;
+						if ( $display_image && $image_before_title )                                $pis_output .= $pis_thumbnail_content;
 						if ( $utility_before_title )                                                $pis_output .= $pis_utility_content;
 						if ( $categories && $categ_before_title )                                   $pis_output .= $pis_categories_content;
 						if ( $tags && $tags_before_title )                                          $pis_output .= $pis_tags_content;
@@ -878,6 +873,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						if ( $custom_field && ! $cf_before_title && ! $cf_after_title )             $pis_output .= $pis_custom_field_content;
 
 					$pis_output .= '</li>';
+					// Close li
 
 				}
 				// Close if private and current user can't read private posts.

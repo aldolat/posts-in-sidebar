@@ -392,7 +392,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/*
 	 * Exclude the current post from the query.
-	 * This will be used in case the user do not want to display the same post in the main body and in the sidebar.
+	 * This will be used in case the user does not want to display the same post in the main body and in the sidebar.
 	 */
 	if ( is_singular() && $exclude_current_post ) {
 
@@ -739,7 +739,7 @@ function pis_get_posts_in_sidebar( $args ) {
 								'exc_arrow'  => $exc_arrow,
 							) );
 
-							// If the the text of the post is empty or the user do not want to display the image, hide the HTML p tag
+							// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag
 							if ( ! empty( $pis_the_text ) || $display_image )
 							$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 

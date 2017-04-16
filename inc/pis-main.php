@@ -718,8 +718,8 @@ function pis_get_posts_in_sidebar( $args ) {
 							'gravatar_author'   => get_the_author_meta( 'ID' ),
 							'gravatar_size'     => $gravatar_size,
 							'gravatar_default'  => $gravatar_default,
-							'link_on_title'     => true,
-							'arrow'             => false,
+							'link_on_title'     => $link_on_title,
+							'arrow'             => $arrow,
 						) );
 
 						/*

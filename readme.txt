@@ -98,7 +98,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 3.8.7 =
 
-
+* Fixed link on titles and title arrows.
 
 = 3.8.6 =
 

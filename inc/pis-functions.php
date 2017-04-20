@@ -20,10 +20,10 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.9
  *
- * @param string $default One or more classes, defined by plugin's developer, to add to the class list.
- * @param string|array $class One or more classes, defined by the user, to add to the class list.
- * @param boolean $echo If the function should echo or not the output. Default true.
- * @return string $output List of classes.
+ * @param string       $default One or more classes, defined by plugin's developer, to add to the class list.
+ * @param string|array $class   One or more classes, defined by the user, to add to the class list.
+ * @param boolean      $echo    If the function should echo or not the output. Default true.
+ * @return string      $output  List of classes.
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
 
@@ -69,11 +69,11 @@ function pis_class( $default = '', $class = '', $echo = true ) {
  *
  * @since 1.12
  *
- * @param string $margin The margin of the paragraph.
- * @param string $unit The unit measure to be used.
- * @param string $class The default class defined by the plugin's developer.
- * @param string $class_filter The name of the class filter.
- * @return string $output The class and the inline style.
+ * @param string  $margin       The margin of the paragraph.
+ * @param string  $unit         The unit measure to be used.
+ * @param string  $class        The default class defined by the plugin's developer.
+ * @param string  $class_filter The name of the class filter.
+ * @return string $output       The class and the inline style.
  * @uses pis_class()
  */
 function pis_paragraph( $margin, $unit, $class, $class_filter ) {
@@ -87,7 +87,7 @@ function pis_paragraph( $margin, $unit, $class, $class_filter ) {
  * Return the given text with paragraph breaks (HTML <br />).
  *
  * @since 1.12
- * @param string $text The text to be checked.
+ * @param string  $text The text to be checked.
  * @return string $text The checked text with paragraph breaks.
  */
 function pis_break_text( $text ) {
@@ -121,8 +121,8 @@ function pis_meta() {
 /**
  * Generate an HTML arrow.
  *
- * @param boolean $pre_space If a space must be prepended before the arrow.
- * @return string $output The HTML arrow.
+ * @param  boolean $pre_space If a space must be prepended before the arrow.
+ * @return string  $output The HTML arrow.
  * @uses pis_class()
  * @since 1.15
  */
@@ -145,12 +145,13 @@ function pis_arrow( $pre_space = true ) {
 /**
  * Generate the output for the more and/or the HTML arrow.
  *
+ * @param string  $the_more    The text to be displayed for "Continue reading". Default empty.
+ * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
+ * @param boolean $exc_arrow   If the arrow must be displayed or not. Default false.
+ * @param boolean $echo        If echo the output or return.
+ *
  * @since 1.15
  * @uses pis_arrow()
- * @param string $the_more The text to be displayed for "Continue reading". Default empty.
- * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
- * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
- * @param boolean $echo If echo the output or return.
  * @return string The HTML arrow linked to the post.
  */
 function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true, $pre_space = true ) {
@@ -234,7 +235,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * Add the utilities section: author, date of the post and comments.
  *
  * @since 1.18
- * @param array The array of parameters.
+ * @param array $args The array of parameters.
  * @return The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()

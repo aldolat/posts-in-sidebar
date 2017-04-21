@@ -234,8 +234,32 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
 /**
  * Add the utilities section: author, date of the post and comments.
  *
+ * @param array $args {
+ *    The array of parameters.
+ *
+ *    @type boolean display_author    If display the post's outhor. Default false.
+ *    @type boolean display_date      If display the post's date. Default false.
+ *    @type boolean display_mod_date  If display the modification date of the post. Default false.
+ *    @type boolean comments          If display comments number. Default false.
+ *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
+ *    @type string  margin_unit       The margin unit for $utility_margin. Default 'px'. Accepts 'px', '%', 'em', 'rem'.
+ *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
+ *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
+ *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
+ *    @type string  date_text         The text to be prepended before the date. Default 'Published on'.
+ *    @type boolean linkify_date      If link the date name to the posts. Default false.
+ *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
+ *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
+ *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
+ *    @type string  pis_post_id       The ID of the post. Default empy value.
+ *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
+ *    @type boolean gravatar_display  If display the Gravatar. Default false.
+ *    @type string  gravatar_position The position for the Gravatar. Default empty value. Accepts 'next_title', 'next_post', 'next_author'.
+ *    @type string  gravatar_author   The ID of the post's author. Default empty value.
+ *    @type integer gravatar_size     The size of the Gravatar. Default 32.
+ *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
+ * }
  * @since 1.18
- * @param array $args The array of parameters.
  * @return The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()

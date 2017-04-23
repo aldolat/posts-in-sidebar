@@ -242,7 +242,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  *    @type boolean display_mod_date  If display the modification date of the post. Default false.
  *    @type boolean comments          If display comments number. Default false.
  *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
- *    @type string  margin_unit       The margin unit for $utility_margin. Default 'px'. Accepts 'px', '%', 'em', 'rem'.
+ *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
  *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
  *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
  *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
@@ -251,10 +251,10 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
  *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
  *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
- *    @type string  pis_post_id       The ID of the post. Default empy value.
+ *    @type string  pis_post_id       The ID of the post. Default empy.
  *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
  *    @type boolean gravatar_display  If display the Gravatar. Default false.
- *    @type string  gravatar_position The position for the Gravatar. Default empty value. Accepts 'next_title', 'next_post', 'next_author'.
+ *    @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
  *    @type string  gravatar_author   The ID of the post's author. Default empty value.
  *    @type integer gravatar_size     The size of the Gravatar. Default 32.
  *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
@@ -387,8 +387,23 @@ function pis_utility_section( $args ) {
 /**
  * Add the thumbnail of the post.
  *
+ * @param array $args {
+ *    The array of parameters.
+ *
+ *    @type string  image_align         Alignment of the image. Accepts 'no_change', 'left', 'right', 'center'. Default 'no_change'.
+ *    @type string  side_image_margin   The left/right margin for the image. Default NULL.
+ *    @type string  bottom_image_margin The left/right margin for the image. Default NULL.
+ *    @type string  margin_unit         The margin unit. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
+ *    @type string  pis_query           The query containing the post. Default empty.
+ *    @type string  image_size          The size of the image. Default 'thumbnail'.
+ *    @type boolean thumb_wrap          If the image should be wrapped in a HTML p element. Default false.
+ *    @type string  custom_image_url    The URL of the custom thumbnail. Default empty.
+ *    @type boolean custom_img_no_thumb If the custom image should be used only if the post has not a featured image. Default true.
+ *    @type string  post_type           The post type. Default 'post'.
+ *    @type string  image_link          The URL to a custom address. Default empty.
+ *    @type boolean image_link_to_post  If the thumbnail should be linked to the post. Default true.
+ * }
  * @since 1.18
- * @param array The array of parameters.
  * @return The HTML for the thumbnail.
  */
 function pis_the_thumbnail( $args ) {

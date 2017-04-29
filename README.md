@@ -129,7 +129,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * Updated the description in "When on single posts, get posts from the current category".
 
-### 3.8.4-dev ###
+### 3.8.4 ###
 
 * Added option to maintain active other parameters when on single post (props by techsmurfy).
 * Added option to sort categories of the main post before getting the posts for the sidebar. When the user wants to get posts from the current category, now the user can choose to fetch posts from the main category of the main post (i.e. the category with the lowest ID) or from the category with the lowest key ID in the array of categories (props by techsmurfy).

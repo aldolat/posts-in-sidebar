@@ -168,6 +168,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		if ( ! isset( $instance['intro'] ) )                $instance['intro']                = '';
 		if ( ! isset( $instance['post_type'] ) )            $instance['post_type']            = 'post';
+		if ( ! isset( $instance['post_type_multiple'] ) )   $instance['post_type_multiple']   = '';
 		if ( ! isset( $instance['posts_id'] ) )             $instance['posts_id']             = '';
 		if ( ! isset( $instance['author_in'] ) )            $instance['author_in']            = '';
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
@@ -321,6 +322,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Posts retrieving
 			'post_type'           => $instance['post_type'],
+			'post_type_multiple'  => $instance['post_type_multiple'],
 			'posts_id'            => $instance['posts_id'],
 			'author'              => $instance['author'],
 			'author_in'           => $instance['author_in'],
@@ -570,6 +572,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
+		$instance['post_type_multiple']  = strip_tags( $new_instance['post_type_multiple'] );
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
 			/*
@@ -859,6 +862,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Posts retrieving
 			'post_type'           => 'post',
+			'post_type_multiple'  => '',
 			'posts_id'            => '',
 			'author'              => '',
 			'author_in'           => '',
@@ -1200,7 +1204,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('post_type'),
 							$this->get_field_name('post_type'),
 							$options,
-							$instance['post_type']
+							$instance['post_type'],
+							esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+						); ?>
+
+						<?php // ================= Multiple post types
+						pis_form_input_text(
+							esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+							$this->get_field_id('post_type_multiple'),
+							$this->get_field_name('post_type_multiple'),
+							esc_attr( $instance['post_type_multiple'] ),
+							esc_html__( 'post, page, books, ebooks', 'posts-in-sidebar' ),
+							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 						); ?>
 
 						<?php // ================= Posts ID
@@ -1210,7 +1225,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('posts_id'),
 							esc_attr( $instance['posts_id'] ),
 							'5, 29, 523, 4519',
-							esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 						); ?>
 
 					</div>

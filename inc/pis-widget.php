@@ -573,6 +573,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
 		$instance['post_type_multiple']  = strip_tags( $new_instance['post_type_multiple'] );
+			/*
+			 * Check post types entered.
+			 * The function removes any post type that has not been defined.
+			 * @since 3.8.8
+			 */
+			if ( ! empty( $instance['post_type_multiple'] ) ) {
+				$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
+				$instance['post_type_multiple'] = pis_compare_string_to_array( $instance['post_type_multiple'], $post_type_wordpress );
+			}
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
 			/*

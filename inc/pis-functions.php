@@ -864,6 +864,35 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 
 
 /**
+ * Compare a string and an array and return the common elements as a string.
+ *
+ * @param string $string The string to be compared.
+ * @param array  $array  The array to be compared.
+ *
+ * @return string $output The string containing the common values.
+ *
+ * @since 3.8.8
+ */
+function pis_compare_string_to_array( $string = '', $array = array() ) {
+	// Convert the string to lowercase
+	$string = strtolower( $string );
+	// Remove any space from the string
+	$string = str_replace( ' ', '', $string );
+	// Remove any comma at the beginning and at the end of the string
+	$string = trim( $string, ', ' );
+	// Convert the string into an array
+	$string = explode( ',', $string );
+
+	// Compare the two arrays and return the intersection (the common values)
+	$output = array_intersect( $string, $array );
+	// Convert the returned array into a string
+	$output = implode( ', ', $output );
+
+	return $output;
+}
+
+
+/**
  * Return the debugging informations.
  *
  * @param array $parameters The array containing the custom parameters.

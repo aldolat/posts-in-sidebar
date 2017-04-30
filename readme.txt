@@ -99,6 +99,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 3.8.8 =
 
 * Added option to get multiple post types.
+* Removed option for displaying query number (it's displayed by default now).
 
 = 3.8.7 =
 

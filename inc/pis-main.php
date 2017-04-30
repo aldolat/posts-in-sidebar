@@ -894,7 +894,6 @@ function pis_get_posts_in_sidebar( $args ) {
 			// Close while
 
 		$pis_output .= '</' . $list_element . '>';
-		$pis_output .= '<!-- / ul#pis-ul -->';
 
 		/* The link to the entire archive */
 		if ( $archive_link ) {

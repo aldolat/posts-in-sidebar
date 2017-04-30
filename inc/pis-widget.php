@@ -1177,7 +1177,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em><?php esc_html_e( 'In this section you can define which type of posts you want to retrieve and which taxonomy the plugin will use. Other parameters are available to better define the query.', 'posts-in-sidebar' ); ?></em></p>
 
-				<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+				<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 				<div class="pis-column-container">
 
@@ -1723,7 +1723,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php esc_html_e( 'Define here which posts must be excluded from the query.', 'posts-in-sidebar' ); ?></em></p>
 
-						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<div class="pis-column-container">
 
@@ -1819,7 +1819,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php esc_html_e( 'This section lets you retrieve posts from any taxonomy (category, tags, and custom taxonomies). If you want to use only one taxonomy, use the "Taxonomy A1" field. If you have to put in relation two taxonomies (e.g., display posts that are in the "quotes" category but not in the "wisdom" tag), then use also the "Taxonomy B1" field. If you have to put in relation more taxonomies, start using also the "A2" and "B2" fields (e.g., display posts that are in the "quotes" category [A1] OR both have the "Quote" post format [B1] AND are in the "wisdom" category [B2]).', 'posts-in-sidebar' ); ?></em></p>
 
-						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<hr />
 
@@ -2610,11 +2610,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<em>
 										<?php printf(
 											esc_html__( 'Note that in order to use image sizes different from the WordPress standards, add them to your theme\'s %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'posts-in-sidebar' ),
-											'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
+											'<a href="https://developer.wordpress.org/reference/functions/add_image_size/" target="_blank">', '</a>', '<code>', '</code>'
 										); ?>
 										<?php printf(
 											esc_html__( 'You can also use %1$sa plugin%2$s that could help you in doing it.', 'posts-in-sidebar' ),
-											'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
+											'<a href="https://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
 										); ?>
 									</em>
 								</p>

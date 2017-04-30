@@ -20,10 +20,10 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.9
  *
- * @param string $default One or more classes, defined by plugin's developer, to add to the class list.
- * @param string|array $class One or more classes, defined by the user, to add to the class list.
- * @param boolean $echo If the function should echo or not the output. Default true.
- * @return string $output List of classes.
+ * @param string       $default One or more classes, defined by plugin's developer, to add to the class list.
+ * @param string|array $class   One or more classes, defined by the user, to add to the class list.
+ * @param boolean      $echo    If the function should echo or not the output. Default true.
+ * @return string      $output  List of classes.
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
 
@@ -69,11 +69,11 @@ function pis_class( $default = '', $class = '', $echo = true ) {
  *
  * @since 1.12
  *
- * @param string $margin The margin of the paragraph.
- * @param string $unit The unit measure to be used.
- * @param string $class The default class defined by the plugin's developer.
- * @param string $class_filter The name of the class filter.
- * @return string $output The class and the inline style.
+ * @param string  $margin       The margin of the paragraph.
+ * @param string  $unit         The unit measure to be used.
+ * @param string  $class        The default class defined by the plugin's developer.
+ * @param string  $class_filter The name of the class filter.
+ * @return string $output       The class and the inline style.
  * @uses pis_class()
  */
 function pis_paragraph( $margin, $unit, $class, $class_filter ) {
@@ -87,7 +87,7 @@ function pis_paragraph( $margin, $unit, $class, $class_filter ) {
  * Return the given text with paragraph breaks (HTML <br />).
  *
  * @since 1.12
- * @param string $text The text to be checked.
+ * @param string  $text The text to be checked.
  * @return string $text The checked text with paragraph breaks.
  */
 function pis_break_text( $text ) {
@@ -121,8 +121,8 @@ function pis_meta() {
 /**
  * Generate an HTML arrow.
  *
- * @param boolean $pre_space If a space must be prepended before the arrow.
- * @return string $output The HTML arrow.
+ * @param  boolean $pre_space If a space must be prepended before the arrow.
+ * @return string  $output The HTML arrow.
  * @uses pis_class()
  * @since 1.15
  */
@@ -145,12 +145,13 @@ function pis_arrow( $pre_space = true ) {
 /**
  * Generate the output for the more and/or the HTML arrow.
  *
+ * @param string  $the_more    The text to be displayed for "Continue reading". Default empty.
+ * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
+ * @param boolean $exc_arrow   If the arrow must be displayed or not. Default false.
+ * @param boolean $echo        If echo the output or return.
+ *
  * @since 1.15
  * @uses pis_arrow()
- * @param string $the_more The text to be displayed for "Continue reading". Default empty.
- * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
- * @param boolean $exc_arrow If the arrow must be displayed or not. Default false.
- * @param boolean $echo If echo the output or return.
  * @return string The HTML arrow linked to the post.
  */
 function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true, $pre_space = true ) {
@@ -233,8 +234,32 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
 /**
  * Add the utilities section: author, date of the post and comments.
  *
+ * @param array $args {
+ *    The array of parameters.
+ *
+ *    @type boolean display_author    If display the post's outhor. Default false.
+ *    @type boolean display_date      If display the post's date. Default false.
+ *    @type boolean display_mod_date  If display the modification date of the post. Default false.
+ *    @type boolean comments          If display comments number. Default false.
+ *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
+ *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
+ *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
+ *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
+ *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
+ *    @type string  date_text         The text to be prepended before the date. Default 'Published on'.
+ *    @type boolean linkify_date      If link the date name to the posts. Default false.
+ *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
+ *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
+ *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
+ *    @type string  pis_post_id       The ID of the post. Default empy.
+ *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
+ *    @type boolean gravatar_display  If display the Gravatar. Default false.
+ *    @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
+ *    @type string  gravatar_author   The ID of the post's author. Default empty value.
+ *    @type integer gravatar_size     The size of the Gravatar. Default 32.
+ *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
+ * }
  * @since 1.18
- * @param array The array of parameters.
  * @return The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()
@@ -362,8 +387,23 @@ function pis_utility_section( $args ) {
 /**
  * Add the thumbnail of the post.
  *
+ * @param array $args {
+ *    The array of parameters.
+ *
+ *    @type string  image_align         Alignment of the image. Accepts 'no_change', 'left', 'right', 'center'. Default 'no_change'.
+ *    @type string  side_image_margin   The left/right margin for the image. Default NULL.
+ *    @type string  bottom_image_margin The left/right margin for the image. Default NULL.
+ *    @type string  margin_unit         The margin unit. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
+ *    @type string  pis_query           The query containing the post. Default empty.
+ *    @type string  image_size          The size of the image. Default 'thumbnail'.
+ *    @type boolean thumb_wrap          If the image should be wrapped in a HTML p element. Default false.
+ *    @type string  custom_image_url    The URL of the custom thumbnail. Default empty.
+ *    @type boolean custom_img_no_thumb If the custom image should be used only if the post has not a featured image. Default true.
+ *    @type string  post_type           The post type. Default 'post'.
+ *    @type string  image_link          The URL to a custom address. Default empty.
+ *    @type boolean image_link_to_post  If the thumbnail should be linked to the post. Default true.
+ * }
  * @since 1.18
- * @param array The array of parameters.
  * @return The HTML for the thumbnail.
  */
 function pis_the_thumbnail( $args ) {
@@ -824,9 +864,47 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 
 
 /**
+ * Compare a string and an array and return the common elements as a string.
+ *
+ * @param string $string The string to be compared.
+ * @param array  $array  The array to be compared.
+ *
+ * @return string $output The string containing the common values.
+ *
+ * @since 3.8.8
+ */
+function pis_compare_string_to_array( $string = '', $array = array() ) {
+	// Convert the string to lowercase
+	$string = strtolower( $string );
+	// Remove any space from the string
+	$string = str_replace( ' ', '', $string );
+	// Remove any comma at the beginning and at the end of the string
+	$string = trim( $string, ',' );
+	// Convert the string into an array
+	$string = explode( ',', $string );
+
+	// Compare the two arrays and return the intersection (the common values)
+	$output = array_intersect( $string, $array );
+	// Convert the returned array into a string
+	$output = implode( ', ', $output );
+
+	return $output;
+}
+
+
+/**
  * Return the debugging informations.
  *
- * @param array $parameters The array containing the custom parameters.
+ * @param array $parameters {
+ *     The array containing the custom parameters.
+ *
+ *     @type boolean $admin_only   If the administrators only can view the debugging informations.
+ *     @type boolean $debug_query  If display the query used for retrieving posts.
+ *     @type boolean $debug_params If display the set of options of the widget.
+ *     @type string  $params       The parameters for the query.
+ *     @type string  $args         The set of options of the widget.
+ *     @type boolean $cached       If the output of the widget has been cached.
+ * }
  * @since 2.0.3
  */
 function pis_debug( $parameters ) {
@@ -834,7 +912,6 @@ function pis_debug( $parameters ) {
 		'admin_only'         => true,
 		'debug_query'        => false,
 		'debug_params'       => false,
-		'debug_query_number' => false,
 		'params'             => '',
 		'args'               => '',
 		'cached'             => false,
@@ -844,35 +921,36 @@ function pis_debug( $parameters ) {
 
 	$output = '';
 
-	if ( $debug_query || $debug_params || $debug_query_number ) {
+	if ( $debug_query || $debug_params ) {
 		global $wp_version;
-		$output .= '<h3>' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
-		$output .= '<p><strong>' . esc_html__( 'Environment informations:', 'posts-in-sidebar' ) . '</strong><br>';
-			$output .= '&bull;&ensp;' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '<br>' );
-			$output .= '&bull;&ensp;' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '<br>' );
-			$output .= '&bull;&ensp;' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '<br>' );
+		$output .= '<!-- Start PiS Debug -->';
+		$output .= '<h3 class="pis-debug-title-main">' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'Environment informations:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<ul class="pis-debug-ul">';
+			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '</li>' );
+			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '</li>' );
+			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '</li>' );
 			if ( $cached ) {
-				$output .= '&bull;&ensp;' . esc_html__( 'Cache: active', 'posts-in-sidebar' );
+				$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: active', 'posts-in-sidebar' ) . '</li>';
 			} else {
-				$output .= '&bull;&ensp;' . esc_html__( 'Cache: not active', 'posts-in-sidebar' );
+				$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>';
 			}
-		$output .= '</p>';
+			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Queries: %1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</li>';
+		$output .= '</ul>';
 	}
 
 	if ( $debug_query ) {
-		$output .= '<p><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre><code>$pis_query = ' . print_r( $params, true ) . '</code></pre>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<pre class="pis-debug-body"><code>$pis_query = ' . print_r( $params, true ) . '</code></pre>';
 	}
 
 	if ( $debug_params ) {
-		$output .= '<p><strong>' . esc_html__( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre><code>$args = ' . print_r( $args, true ) . '</code></pre>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<pre class="pis-debug-body"><code>$args = ' . print_r( $args, true ) . '</code></pre>';
 	}
 
-	if ( $debug_query_number ) {
-		$output .= '<p><strong>' . esc_html__( 'The total number of queries so far:', 'posts-in-sidebar' ) . '</strong><br>';
-		$output .= sprintf( esc_html__( '%1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() );
-		$output .= '</p>';
+	if ( $debug_query || $debug_params ) {
+		$output .= '<!-- End PiS Debug -->';
 	}
 
 	/**

@@ -168,6 +168,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		if ( ! isset( $instance['intro'] ) )                $instance['intro']                = '';
 		if ( ! isset( $instance['post_type'] ) )            $instance['post_type']            = 'post';
+		if ( ! isset( $instance['post_type_multiple'] ) )   $instance['post_type_multiple']   = '';
 		if ( ! isset( $instance['posts_id'] ) )             $instance['posts_id']             = '';
 		if ( ! isset( $instance['author_in'] ) )            $instance['author_in']            = '';
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
@@ -304,7 +305,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['admin_only'] ) )           $instance['admin_only']           = true;
 		if ( ! isset( $instance['debug_query'] ) )          $instance['debug_query']          = false;
 		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
-		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
 
 		/*
 		 * Execute the main function in the front-end.
@@ -321,6 +321,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Posts retrieving
 			'post_type'           => $instance['post_type'],
+			'post_type_multiple'  => $instance['post_type_multiple'],
 			'posts_id'            => $instance['posts_id'],
 			'author'              => $instance['author'],
 			'author_in'           => $instance['author_in'],
@@ -528,7 +529,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'admin_only'          => $instance['admin_only'],
 			'debug_query'         => $instance['debug_query'],
 			'debug_params'        => $instance['debug_params'],
-			'debug_query_number'  => $instance['debug_query_number'],
 		) );
 
 		if ( isset( $instance['container_class'] ) && ! empty( $instance['container_class'] ) ) {
@@ -570,6 +570,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
+		$instance['post_type_multiple']  = strip_tags( $new_instance['post_type_multiple'] );
+			/*
+			 * Check post types entered.
+			 * The function removes any post type that has not been defined.
+			 * @since 3.8.8
+			 */
+			if ( ! empty( $instance['post_type_multiple'] ) ) {
+				$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
+				$instance['post_type_multiple'] = pis_compare_string_to_array( $instance['post_type_multiple'], $post_type_wordpress );
+			}
 		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
 			/*
@@ -837,7 +847,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['admin_only']          = isset( $new_instance['admin_only'] )         ? 1 : 0;
 		$instance['debug_query']         = isset( $new_instance['debug_query'] )        ? 1 : 0;
 		$instance['debug_params']        = isset( $new_instance['debug_params'] )       ? 1 : 0;
-		$instance['debug_query_number']  = isset( $new_instance['debug_query_number'] ) ? 1 : 0;
 
 		return $instance;
 	}
@@ -859,6 +868,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			// Posts retrieving
 			'post_type'           => 'post',
+			'post_type_multiple'  => '',
 			'posts_id'            => '',
 			'author'              => '',
 			'author_in'           => '',
@@ -1060,7 +1070,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'admin_only'          => true,
 			'debug_query'         => false,
 			'debug_params'        => false,
-			'debug_query_number'  => false,
 		);
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
@@ -1110,7 +1119,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$admin_only           = (bool) $instance['admin_only'];
 		$debug_query          = (bool) $instance['debug_query'];
 		$debug_params         = (bool) $instance['debug_params'];
-		$debug_query_number   = (bool) $instance['debug_query_number'];
 
 		/*
 		 * When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
@@ -1169,7 +1177,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em><?php esc_html_e( 'In this section you can define which type of posts you want to retrieve and which taxonomy the plugin will use. Other parameters are available to better define the query.', 'posts-in-sidebar' ); ?></em></p>
 
-				<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+				<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 				<div class="pis-column-container">
 
@@ -1200,7 +1208,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('post_type'),
 							$this->get_field_name('post_type'),
 							$options,
-							$instance['post_type']
+							$instance['post_type'],
+							esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+						); ?>
+
+						<?php // ================= Multiple post types
+						pis_form_input_text(
+							esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+							$this->get_field_id('post_type_multiple'),
+							$this->get_field_name('post_type_multiple'),
+							esc_attr( $instance['post_type_multiple'] ),
+							esc_html__( 'post, page, books, ebooks', 'posts-in-sidebar' ),
+							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 						); ?>
 
 						<?php // ================= Posts ID
@@ -1210,7 +1229,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('posts_id'),
 							esc_attr( $instance['posts_id'] ),
 							'5, 29, 523, 4519',
-							esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 						); ?>
 
 					</div>
@@ -1704,7 +1723,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php esc_html_e( 'Define here which posts must be excluded from the query.', 'posts-in-sidebar' ); ?></em></p>
 
-						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<div class="pis-column-container">
 
@@ -1800,7 +1819,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php esc_html_e( 'This section lets you retrieve posts from any taxonomy (category, tags, and custom taxonomies). If you want to use only one taxonomy, use the "Taxonomy A1" field. If you have to put in relation two taxonomies (e.g., display posts that are in the "quotes" category but not in the "wisdom" tag), then use also the "Taxonomy B1" field. If you have to put in relation more taxonomies, start using also the "A2" and "B2" fields (e.g., display posts that are in the "quotes" category [A1] OR both have the "Quote" post format [B1] AND are in the "wisdom" category [B2]).', 'posts-in-sidebar' ); ?></em></p>
 
-						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="http://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
 						<hr />
 
@@ -2591,11 +2610,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<em>
 										<?php printf(
 											esc_html__( 'Note that in order to use image sizes different from the WordPress standards, add them to your theme\'s %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information.', 'posts-in-sidebar' ),
-											'<a href="http://codex.wordpress.org/Function_Reference/add_image_size" target="_blank">', '</a>', '<code>', '</code>'
+											'<a href="https://developer.wordpress.org/reference/functions/add_image_size/" target="_blank">', '</a>', '<code>', '</code>'
 										); ?>
 										<?php printf(
 											esc_html__( 'You can also use %1$sa plugin%2$s that could help you in doing it.', 'posts-in-sidebar' ),
-											'<a href="http://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
+											'<a href="https://wordpress.org/plugins/simple-image-sizes/" target="_blank">', '</a>'
 										); ?>
 									</em>
 								</p>
@@ -3392,14 +3411,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					$this->get_field_id( 'debug_params' ),
 					$this->get_field_name( 'debug_params' ),
 					checked( $debug_params, true, false )
-				); ?>
-
-				<?php // ================= Debug: display the total number of queries
-				pis_form_checkbox(
-					esc_html__( 'Display the total number of queries, including WordPress, current theme and all active plugins', 'posts-in-sidebar' ),
-					$this->get_field_id( 'debug_query_number' ),
-					$this->get_field_name( 'debug_query_number' ),
-					checked( $debug_query_number, true, false )
 				); ?>
 
 			</div>

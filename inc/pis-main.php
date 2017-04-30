@@ -9,7 +9,7 @@
  * The function pis_posts_in_sidebar( $args ) is a simple
  * function to echo the main one.
  *
- * @since 3.9.1
+ * @since 3.8.2
  */
 
 /**
@@ -41,6 +41,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
+		'post_type_multiple'  => '',        // A list of post types, comma separated
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
@@ -258,7 +259,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'admin_only'          => true,
 		'debug_query'         => false,
 		'debug_params'        => false,
-		'debug_query_number'  => false,
 
 	);
 	$args = wp_parse_args( $args, $defaults );
@@ -437,9 +437,21 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( ! empty( $author_in ) ) $author = '';
 
-	// Build the array to get posts
+	/*
+	 * Verify if the user wants multiple post types.
+	 * If $post_type_multiple is not empty, change $post_type content into an array
+	 * with the content of $post_type_multiple.
+	 *
+	 * @since 3.8.8
+	 */
+	if ( ! empty( $post_type_multiple ) ) {
+		$post_type_multiple = explode( ', ', $post_type_multiple );
+		$post_type = (array) $post_type_multiple;
+	}
+
+	// Build the array for WP_Query object.
 	$params = array(
-		'post_type'           => $post_type,
+		'post_type'           => $post_type,   // Uses a string with a single slug or an array of multiple slugs
 		'post__in'            => $posts_id,    // Uses ids
 		'author_name'         => $author,      // Uses nicenames
 		'author__in'          => $author_in,   // Uses ids
@@ -882,7 +894,6 @@ function pis_get_posts_in_sidebar( $args ) {
 			// Close while
 
 		$pis_output .= '</' . $list_element . '>';
-		$pis_output .= '<!-- / ul#pis-ul -->';
 
 		/* The link to the entire archive */
 		if ( $archive_link ) {
@@ -914,7 +925,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.
 		'debug_params'       => $debug_params,         // bool   If display the complete set of parameters of the widget.
-		'debug_query_number' => $debug_query_number,   // bool   If display the number of queries.
 		'params'             => $params,               // array  The parameters for the query.
 		'args'               => $args,                 // array  The complete set of parameters of the widget.
 		'cached'             => $cached,               // bool   If the cache is active.

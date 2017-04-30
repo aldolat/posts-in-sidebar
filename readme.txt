@@ -1,10 +1,10 @@
 === Posts in Sidebar ===
 Contributors: aldolat
-Donate link: http://dev.aldolat.it/projects/posts-in-sidebar/
+Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.7
-Stable tag: 3.8.7
+Stable tag: 3.8.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,7 +37,7 @@ Here are some of the functions you'll have:
 
 The powerful WordPress class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
 
-This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: [a donation](http://dev.aldolat.it/projects/posts-in-sidebar/#donate) is very appreciated.
+This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and it's developed with many efforts: [a donation](https://dev.aldolat.it/projects/posts-in-sidebar/#donate) is very appreciated.
 
 Enjoy!
 
@@ -95,6 +95,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 3.8.8 =
+
+* Added option to get multiple post types.
+* Removed option for displaying query number (it's displayed by default now).
 
 = 3.8.7 =
 

@@ -23,6 +23,7 @@ function pis_shortcode( $atts ) {
 
 		// Posts retrieving
 		'post_type'           => 'post',    // post, page, attachment, or any custom post type
+		'post_type_multiple'  => '',        // A list of post types, comma separated
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs

@@ -895,7 +895,16 @@ function pis_compare_string_to_array( $string = '', $array = array() ) {
 /**
  * Return the debugging informations.
  *
- * @param array $parameters The array containing the custom parameters.
+ * @param array $parameters {
+ *     The array containing the custom parameters.
+ *
+ *     @type boolean $admin_only   If the administrators only can view the debugging informations.
+ *     @type boolean $debug_query  If display the query used for retrieving posts.
+ *     @type boolean $debug_params If display the set of options of the widget.
+ *     @type string  $params       The parameters for the query.
+ *     @type string  $args         The set of options of the widget.
+ *     @type boolean $cached       If the output of the widget has been cached.
+ * }
  * @since 2.0.3
  */
 function pis_debug( $parameters ) {

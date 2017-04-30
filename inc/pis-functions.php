@@ -879,7 +879,7 @@ function pis_compare_string_to_array( $string = '', $array = array() ) {
 	// Remove any space from the string
 	$string = str_replace( ' ', '', $string );
 	// Remove any comma at the beginning and at the end of the string
-	$string = trim( $string, ', ' );
+	$string = trim( $string, ',' );
 	// Convert the string into an array
 	$string = explode( ',', $string );
 

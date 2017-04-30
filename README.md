@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.7  
-**Stable tag:** 3.8.8  
+**Stable tag:** 3.8.9-dev  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -107,8 +107,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 7. Displaying the full set of items (categories, date, author, tags, and so on). ###
 ![7. Displaying the full set of items (categories, date, author, tags, and so on).](https://ps.w.org/posts-in-sidebar/assets/screenshot-7.png)
 
-
 ## Changelog ##
+
+## 3.8.9-dev ##
+
+* 
 
 ## 3.8.8 ##
 

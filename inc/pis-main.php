@@ -259,7 +259,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'admin_only'          => true,
 		'debug_query'         => false,
 		'debug_params'        => false,
-		'debug_query_number'  => false,
 
 	);
 	$args = wp_parse_args( $args, $defaults );
@@ -927,7 +926,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
 		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.
 		'debug_params'       => $debug_params,         // bool   If display the complete set of parameters of the widget.
-		'debug_query_number' => $debug_query_number,   // bool   If display the number of queries.
 		'params'             => $params,               // array  The parameters for the query.
 		'args'               => $args,                 // array  The complete set of parameters of the widget.
 		'cached'             => $cached,               // bool   If the cache is active.

@@ -305,7 +305,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['admin_only'] ) )           $instance['admin_only']           = true;
 		if ( ! isset( $instance['debug_query'] ) )          $instance['debug_query']          = false;
 		if ( ! isset( $instance['debug_params'] ) )         $instance['debug_params']         = false;
-		if ( ! isset( $instance['debug_query_number'] ) )   $instance['debug_query_number']   = false;
 
 		/*
 		 * Execute the main function in the front-end.
@@ -530,7 +529,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'admin_only'          => $instance['admin_only'],
 			'debug_query'         => $instance['debug_query'],
 			'debug_params'        => $instance['debug_params'],
-			'debug_query_number'  => $instance['debug_query_number'],
 		) );
 
 		if ( isset( $instance['container_class'] ) && ! empty( $instance['container_class'] ) ) {
@@ -849,7 +847,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['admin_only']          = isset( $new_instance['admin_only'] )         ? 1 : 0;
 		$instance['debug_query']         = isset( $new_instance['debug_query'] )        ? 1 : 0;
 		$instance['debug_params']        = isset( $new_instance['debug_params'] )       ? 1 : 0;
-		$instance['debug_query_number']  = isset( $new_instance['debug_query_number'] ) ? 1 : 0;
 
 		return $instance;
 	}
@@ -1073,7 +1070,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'admin_only'          => true,
 			'debug_query'         => false,
 			'debug_params'        => false,
-			'debug_query_number'  => false,
 		);
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
@@ -1123,7 +1119,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$admin_only           = (bool) $instance['admin_only'];
 		$debug_query          = (bool) $instance['debug_query'];
 		$debug_params         = (bool) $instance['debug_params'];
-		$debug_query_number   = (bool) $instance['debug_query_number'];
 
 		/*
 		 * When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
@@ -3416,14 +3411,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					$this->get_field_id( 'debug_params' ),
 					$this->get_field_name( 'debug_params' ),
 					checked( $debug_params, true, false )
-				); ?>
-
-				<?php // ================= Debug: display the total number of queries
-				pis_form_checkbox(
-					esc_html__( 'Display the total number of queries, including WordPress, current theme and all active plugins', 'posts-in-sidebar' ),
-					$this->get_field_id( 'debug_query_number' ),
-					$this->get_field_name( 'debug_query_number' ),
-					checked( $debug_query_number, true, false )
 				); ?>
 
 			</div>

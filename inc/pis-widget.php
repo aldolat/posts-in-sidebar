@@ -1218,7 +1218,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('post_type_multiple'),
 							$this->get_field_name('post_type_multiple'),
 							esc_attr( $instance['post_type_multiple'] ),
-							esc_html__( 'post, page, books, ebooks', 'posts-in-sidebar' ),
+							esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 						); ?>
 

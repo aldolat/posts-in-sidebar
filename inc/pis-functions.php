@@ -914,8 +914,8 @@ function pis_debug( $parameters ) {
 
 	if ( $debug_query || $debug_params ) {
 		global $wp_version;
-		$output .= '<h3>' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
-		$output .= '<p class="pis-debug"><strong>' . esc_html__( 'Environment informations:', 'posts-in-sidebar' ) . '</strong><p>';
+		$output .= '<h3 class="pis-debug-title">' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'Environment informations:', 'posts-in-sidebar' ) . '</strong><p>';
 		$output .= '<ul class="pis-debug-ul">';
 			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '</li>' );
 			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '</li>' );
@@ -931,13 +931,13 @@ function pis_debug( $parameters ) {
 	}
 
 	if ( $debug_query ) {
-		$output .= '<p><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre><code>$pis_query = ' . print_r( $params, true ) . '</code></pre>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<pre class="pis-debug-body"><code>$pis_query = ' . print_r( $params, true ) . '</code></pre>';
 	}
 
 	if ( $debug_params ) {
-		$output .= '<p><strong>' . esc_html__( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
-		$output .= '<pre><code>$args = ' . print_r( $args, true ) . '</code></pre>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The complete set of parameters of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<pre class="pis-debug-body"><code>$args = ' . print_r( $args, true ) . '</code></pre>';
 	}
 
 	/**

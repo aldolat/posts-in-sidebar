@@ -1,42 +1,54 @@
 /**
- * Posts in Sidebar javascript for admin UI
- *
- * This file contains the jQuery instructions to animate fields:
- * - the first animate the panels of the entire widget.
- * - the second animate (hiding and showing) the necessary field(s)
- *   for the archive link section.
- *
- * @since 2.0
- */
-
- /*
-  * Animate widget sections
+  * Posts in Sidebar javascript for admin UI.
+  * This file is a modified version of Category Posts Widget's js file from @kometschuh
+  * released under GPLv2 or later.
+  *
+  * @since 2.0
+  * @since 3.8.9 Now the panels remain open if Save button is clicked.
   */
-jQuery(document).ready(function($){
-	// Animate widget sections
-	$('body').on('click','.pis-widget-title',function(event){
-		$(this).next().slideToggle();
-	});
-});
+ jQuery(document).ready( function(event) {
+    // The namespace
+    var pis_namespace = {
+		// Holds an array of open panels per wiget id
+    	open_panels : {},
+        // Generic click handler on the panel title
+        clickHandler: function(element) {
+			// Open the div "below" the h4 title
+			jQuery(element).toggleClass('open').next().stop().slideToggle();
+			// Get the data-panel attribute, for example "custom-taxonomy-query"
+			var panel = element.getAttribute('data-panel');
+			// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in parent panels
+			var id = jQuery(element).parent().parent().parent().parent().parent().attr('id');
+			// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in child panels
+			if ( id === undefined )
+				var id = jQuery(element).parent().parent().parent().parent().parent().parent().parent().attr('id');
+			var o = {};
+			if (this.open_panels.hasOwnProperty(id))
+				o = this.open_panels[id];
+			if (o.hasOwnProperty(panel))
+				delete o[panel];
+			else
+				o[panel] = true;
+			this.open_panels[id] = o;
+        }
+    }
 
-/*
- * Animate fields for archive link.
- * TODO
- */
-/*
-jQuery(document).ready(function($){
-	$('body').on('click','.pis-linkto-form',function(event){
-		var select = $(this).val();
-		if ( select == "author" || select == "category" || select == "tag" || select == "custom_post_type" ) {
-			$('.pis-linkto-tax-name').slideUp();
-			$('.pis-linkto-term-name').slideDown();
-		} else if ( select == "custom_taxonomy" ) {
-			$('.pis-linkto-tax-name').slideDown();
-			$('.pis-linkto-term-name').slideDown();
-		} else { // This is the case of post formats
-			$('.pis-linkto-tax-name').slideUp();
-			$('.pis-linkto-term-name').slideUp();
-		}
-	});
+ 	jQuery('.pis-widget-title').click(function () {
+        pis_namespace.clickHandler(this);
+ 	});
+
+ 	// After saving the widget, we need to reassign click handlers
+ 	jQuery(document).on('widget-updated', function(root,element){
+ 		jQuery('.pis-widget-title').off('click').on('click', function () {
+            pis_namespace.clickHandler(this);
+ 		})
+         // Refresh panels to the state before saving
+        var id = jQuery(element).attr('id');
+        if (pis_namespace.open_panels.hasOwnProperty(id)) {
+            var o = pis_namespace.open_panels[id];
+            for (var panel in o) {
+                jQuery(element).find('[data-panel='+panel+']').toggleClass('open').next().stop().show();
+            }
+        }
+ 	});
 });
-*/

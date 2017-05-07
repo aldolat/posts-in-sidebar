@@ -1134,44 +1134,40 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
+			<h4><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
 
-			<div class="pis-container pis-container-open">
+			<?php pis_form_input_text(
+				esc_html__( 'Title', 'posts-in-sidebar' ),
+				$this->get_field_id('title'),
+				$this->get_field_name('title'),
+				esc_attr( $instance['title'] ),
+				esc_html__( 'From the archive', 'posts-in-sidebar' )
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Title', 'posts-in-sidebar' ),
-					$this->get_field_id('title'),
-					$this->get_field_name('title'),
-					esc_attr( $instance['title'] ),
-					esc_html__( 'From the archive', 'posts-in-sidebar' )
-				); ?>
+			<?php pis_form_input_text(
+				esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
+				$this->get_field_id('title_link'),
+				$this->get_field_name('title_link'),
+				esc_url( strip_tags( $instance['title_link'] ) ),
+				'http://example.com/readings-series/'
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
-					$this->get_field_id('title_link'),
-					$this->get_field_name('title_link'),
-					esc_url( strip_tags( $instance['title_link'] ) ),
-					'http://example.com/readings-series/'
-				); ?>
-
-				<?php pis_form_textarea(
-					esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
-					$this->get_field_id('intro'),
-					$this->get_field_name('intro'),
-					$instance['intro'],
-					esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-					$style = 'resize: vertical; width: 100%; height: 80px;',
-					$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
-				); ?>
-
-			</div>
+			<?php pis_form_textarea(
+				esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
+				$this->get_field_id('intro'),
+				$this->get_field_name('intro'),
+				$instance['intro'],
+				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
+				$style = 'resize: vertical; width: 100%; height: 80px;',
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+			); ?>
 
 		</div>
 
 		<!-- Getting posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Getting posts', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="getting-posts" class="pis-widget-title"><?php esc_html_e( 'Getting posts', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -1513,7 +1509,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Change the query when on single posts', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="change-query" class="pis-widget-title"><?php esc_html_e( 'Change the query when on single posts', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -1717,7 +1713,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Excluding posts -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="excluding-posts" class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -1813,7 +1809,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Custom taxonomy query -->
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Custom taxonomy query', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-taxonomy-query" class="pis-widget-title"><?php esc_html_e( 'Custom taxonomy query', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2108,7 +2104,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Date query -->
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Date query', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="date-query" class="pis-widget-title"><?php esc_html_e( 'Date query', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2461,7 +2457,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Displaying posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Displaying posts', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="displaying-posts" class="pis-widget-title"><?php esc_html_e( 'Displaying posts', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2545,7 +2541,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</div>
 
 				<div class="pis-section pis-2col">
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The featured image of the post', 'posts-in-sidebar' ); ?></h4>
+
+					<h5 data-panel="featured-image" class="pis-widget-title"><?php esc_html_e( 'The featured image of the post', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2678,7 +2675,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Author, date and comments', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="author-date-comments" class="pis-widget-title"><?php esc_html_e( 'Author, date and comments', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2797,7 +2794,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Taxonomies', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="taxonomies" class="pis-widget-title"><?php esc_html_e( 'Taxonomies', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2953,7 +2950,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-field" class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3030,7 +3027,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The link to the archive', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="archive-link" class="pis-widget-title"><?php esc_html_e( 'The link to the archive', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3149,7 +3146,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'When no posts are found', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="no-posts" class="pis-widget-title"><?php esc_html_e( 'When no posts are found', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3183,7 +3180,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Styles -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Styles', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="styles" class="pis-widget-title"><?php esc_html_e( 'Styles', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -3256,7 +3253,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Custom styles -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Custom styles', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-styles" class="pis-widget-title"><?php esc_html_e( 'Custom styles', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3285,7 +3282,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Extras -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Extras', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="extras" class="pis-widget-title"><?php esc_html_e( 'Extras', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3339,7 +3336,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Cache -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Cache', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="cache" class="pis-widget-title"><?php esc_html_e( 'Cache', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container pis-2col">
 
@@ -3379,7 +3376,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Debugging -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Debugging', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="debugging" class="pis-widget-title"><?php esc_html_e( 'Debugging', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 

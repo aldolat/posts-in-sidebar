@@ -1134,37 +1134,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 data-panel="widget-title" class="pis-widget-title"><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
+			<h4><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
 
-			<div class="pis-container pis-container-open">
+			<?php pis_form_input_text(
+				esc_html__( 'Title', 'posts-in-sidebar' ),
+				$this->get_field_id('title'),
+				$this->get_field_name('title'),
+				esc_attr( $instance['title'] ),
+				esc_html__( 'From the archive', 'posts-in-sidebar' )
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Title', 'posts-in-sidebar' ),
-					$this->get_field_id('title'),
-					$this->get_field_name('title'),
-					esc_attr( $instance['title'] ),
-					esc_html__( 'From the archive', 'posts-in-sidebar' )
-				); ?>
+			<?php pis_form_input_text(
+				esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
+				$this->get_field_id('title_link'),
+				$this->get_field_name('title_link'),
+				esc_url( strip_tags( $instance['title_link'] ) ),
+				'http://example.com/readings-series/'
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
-					$this->get_field_id('title_link'),
-					$this->get_field_name('title_link'),
-					esc_url( strip_tags( $instance['title_link'] ) ),
-					'http://example.com/readings-series/'
-				); ?>
-
-				<?php pis_form_textarea(
-					esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
-					$this->get_field_id('intro'),
-					$this->get_field_name('intro'),
-					$instance['intro'],
-					esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-					$style = 'resize: vertical; width: 100%; height: 80px;',
-					$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
-				); ?>
-
-			</div>
+			<?php pis_form_textarea(
+				esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
+				$this->get_field_id('intro'),
+				$this->get_field_name('intro'),
+				$instance['intro'],
+				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
+				$style = 'resize: vertical; width: 100%; height: 80px;',
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+			); ?>
 
 		</div>
 

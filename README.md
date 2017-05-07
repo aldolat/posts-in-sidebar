@@ -111,7 +111,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## 3.8.9-dev ##
 
-* 
+* Now panels do not collapse after saving the widget.
 
 ## 3.8.8 ##
 

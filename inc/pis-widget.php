@@ -2349,31 +2349,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									),
 									'year' => array(
 										'value' => 'year',
-										'desc'  => 'years'
+										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' )
 									),
 									'month' => array(
 										'value' => 'month',
-										'desc'  => 'months'
+										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' )
 									),
 									'week' => array(
 										'value' => 'week',
-										'desc'  => 'weeks'
+										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' )
 									),
 									'day' => array(
 										'value' => 'day',
-										'desc'  => 'days'
+										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' )
 									),
 									'hour' => array(
 										'value' => 'hour',
-										'desc'  => 'hours'
+										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' )
 									),
 									'minute' => array(
 										'value' => 'minute',
-										'desc'  => 'minutes'
+										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' )
 									),
 									'second' => array(
 										'value' => 'second',
-										'desc'  => 'seconds'
+										'desc'  => esc_html__( 'seconds', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2407,31 +2407,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									),
 									'year' => array(
 										'value' => 'year',
-										'desc'  => 'years'
+										'desc'  => esc_hml__( 'Years', 'posts-in-sidebar' )
 									),
 									'month' => array(
 										'value' => 'month',
-										'desc'  => 'months'
+										'desc'  => esc_hml__( 'Months', 'posts-in-sidebar' )
 									),
 									'week' => array(
 										'value' => 'week',
-										'desc'  => 'weeks'
+										'desc'  => esc_hml__( 'Weeks', 'posts-in-sidebar' )
 									),
 									'day' => array(
 										'value' => 'day',
-										'desc'  => 'days'
+										'desc'  => esc_hml__( 'Days', 'posts-in-sidebar' )
 									),
 									'hour' => array(
 										'value' => 'hour',
-										'desc'  => 'hours'
+										'desc'  => esc_hml__( 'Hours', 'posts-in-sidebar' )
 									),
 									'minute' => array(
 										'value' => 'minute',
-										'desc'  => 'minutes'
+										'desc'  => esc_hml__( 'Minutes', 'posts-in-sidebar' )
 									),
 									'second' => array(
 										'value' => 'second',
-										'desc'  => 'seconds'
+										'desc'  => esc_hml__( 'Seconds', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(

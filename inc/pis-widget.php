@@ -2407,31 +2407,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									),
 									'year' => array(
 										'value' => 'year',
-										'desc'  => esc_hml__( 'Years', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' )
 									),
 									'month' => array(
 										'value' => 'month',
-										'desc'  => esc_hml__( 'Months', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' )
 									),
 									'week' => array(
 										'value' => 'week',
-										'desc'  => esc_hml__( 'Weeks', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' )
 									),
 									'day' => array(
 										'value' => 'day',
-										'desc'  => esc_hml__( 'Days', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' )
 									),
 									'hour' => array(
 										'value' => 'hour',
-										'desc'  => esc_hml__( 'Hours', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' )
 									),
 									'minute' => array(
 										'value' => 'minute',
-										'desc'  => esc_hml__( 'Minutes', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' )
 									),
 									'second' => array(
 										'value' => 'second',
-										'desc'  => esc_hml__( 'Seconds', 'posts-in-sidebar' )
+										'desc'  => esc_html__( 'Seconds', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(

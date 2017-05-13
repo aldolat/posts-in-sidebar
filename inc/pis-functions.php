@@ -711,10 +711,10 @@ function pis_tax_query( $args ) {
 		$tax_query = '';
 	} else {
 		// Convert terms into arrays
-		$terms_aa = explode( ',', $terms_aa );
-		if ( $terms_ab ) $terms_ab = explode( ',', $terms_ab );
-		if ( $terms_ba ) $terms_ba = explode( ',', $terms_ba );
-		if ( $terms_bb ) $terms_bb = explode( ',', $terms_bb );
+		$terms_aa = explode( ',', preg_replace( '/\s+/', '', $terms_aa ) );
+		if ( $terms_ab ) $terms_ab = explode( ',', preg_replace( '/\s+/', '', $terms_ab ) );
+		if ( $terms_ba ) $terms_ba = explode( ',', preg_replace( '/\s+/', '', $terms_ba ) );
+		if ( $terms_bb ) $terms_bb = explode( ',', preg_replace( '/\s+/', '', $terms_bb ) );
 
 		// Let's figure out the tax_query to build
 		if ( $taxonomy_aa && ! $taxonomy_ab && ! $taxonomy_ba && ! $taxonomy_bb ) {

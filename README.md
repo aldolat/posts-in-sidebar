@@ -27,7 +27,8 @@ Here are some of the functions you'll have:
 * get posts children of other posts;
 * get posts by search;
 * get posts by complex taxonomies queries;
-* get posts by date queries;
+* get posts by complex date queries;
+* get posts by complex custom taxonomies queries;
 * get posts from the category of the current post;
 * exclude posts by authors, taxonomies, and so on;
 * control which elements of the posts are displayed (like post thumbnail, taxonomies, meta values, and so on);

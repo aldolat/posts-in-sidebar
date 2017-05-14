@@ -838,6 +838,171 @@ function pis_tax_query( $args ) {
 
 
 /**
+ * Build the query based on custom fields.
+ *
+ * @param array $args The array containing the custom parameters.
+ * @return array An array of array of parameters.
+ * @since 4.0
+ */
+function pis_meta_query( $args ) {
+	$defaults = array (
+		'mq_relation'   => '',
+		'mq_key_aa'     => '',
+		'mq_value_aa'   => '',
+		'mq_compare_aa' => '',
+		'mq_type_aa'    => '',
+		'mq_relation_a' => '',
+		'mq_key_ab'     => '',
+		'mq_value_ab'   => '',
+		'mq_compare_ab' => '',
+		'mq_type_ab'    => '',
+		'mq_key_ba'     => '',
+		'mq_value_ba'   => '',
+		'mq_compare_ba' => '',
+		'mq_type_ba'    => '',
+		'mq_relation_b' => '',
+		'mq_key_bb'     => '',
+		'mq_value_bb'   => '',
+		'mq_compare_bb' => '',
+		'mq_type_bb'    => '',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	if ( '' == $mq_key_aa || '' == $mq_value_aa ) {
+		$meta_query = '';
+	} else {
+		$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
+		if ( strpos( $mq_value_aa, ',' ) && in_array( $mq_compare_aa, $compare_array ) )
+			$mq_value_aa = explode( ',', preg_replace( '/\s+/', '', $mq_value_aa ) );
+		if ( $mq_value_ab && strpos( $mq_value_ab, ',' ) && in_array( $mq_compare_ab, $compare_array ) )
+			$mq_value_ab = explode( ',', preg_replace( '/\s+/', '', $mq_value_ab ) );
+		if ( $mq_value_ba && strpos( $mq_value_ba, ',' ) && in_array( $mq_compare_ba, $compare_array ) )
+			$mq_value_ba = explode( ',', preg_replace( '/\s+/', '', $mq_value_ba ) );
+		if ( $mq_value_bb && strpos( $mq_value_bb, ',' ) && in_array( $mq_compare_bb, $compare_array ) )
+			$mq_value_bb = explode( ',', preg_replace( '/\s+/', '', $mq_value_bb ) );
+
+		if ( $mq_key_aa && ! $mq_key_ab && ! $mq_key_ba && ! $mq_key_bb ) {
+			$meta_query = array(
+				array(
+					'key'     => $mq_key_aa,
+					'value'   => $mq_value_aa, // This could be an array
+					'compare' => $mq_compare_aa,
+					'type'    => $mq_type_aa,
+				)
+			);
+		} elseif ( $mq_key_aa && ! $mq_key_ab && $mq_key_ba && ! $mq_key_bb && ! empty( $mq_relation ) ) {
+			$meta_query = array(
+				'relation' => $mq_relation,
+				array(
+					'key'     => $mq_key_aa,
+					'value'   => $mq_value_aa, // This could be an array
+					'compare' => $mq_compare_aa,
+					'type'    => $mq_type_aa,
+				),
+				array(
+					'key'     => $mq_key_ba,
+					'value'   => $mq_value_ba, // This could be an array
+					'compare' => $mq_compare_ba,
+					'type'    => $mq_type_ba,
+				),
+			);
+		}  elseif ( $mq_key_aa && $mq_key_ab && $mq_key_ba && ! $mq_key_bb && ! empty( $mq_relation ) ) {
+			$meta_query = array(
+				'relation' => $mq_relation,
+				array(
+					'relation' => $mq_relation_a,
+					array(
+						'key'     => $mq_key_aa,
+						'value'   => $mq_value_aa, // This could be an array
+						'compare' => $mq_compare_aa,
+						'type'    => $mq_type_aa,
+					),
+					array(
+						'key'     => $mq_key_ab,
+						'value'   => $mq_value_ab, // This could be an array
+						'compare' => $mq_compare_ab,
+						'type'    => $mq_type_ab,
+					),
+				),
+				array(
+					'key'     => $mq_key_ba,
+					'value'   => $mq_value_ba, // This could be an array
+					'compare' => $mq_compare_ba,
+					'type'    => $mq_type_ba,
+				),
+			);
+		} elseif ( $mq_key_aa && ! $mq_key_ab && $mq_key_ba && $mq_key_bb && ! empty( $mq_relation ) ) {
+			$meta_query = array(
+				'relation' => $mq_relation,
+				array(
+					'key'     => $mq_key_aa,
+					'value'   => $mq_value_aa, // This could be an array
+					'compare' => $mq_compare_aa,
+					'type'    => $mq_type_aa,
+				),
+				array(
+					'relation' => $mq_relation_b,
+					array(
+						'key'     => $mq_key_ba,
+						'value'   => $mq_value_ba, // This could be an array
+						'compare' => $mq_compare_ba,
+						'type'    => $mq_type_ba,
+					),
+					array(
+						'key'     => $mq_key_bb,
+						'value'   => $mq_value_bb, // This could be an array
+						'compare' => $mq_compare_bb,
+						'type'    => $mq_type_bb,
+					),
+				),
+			);
+		} elseif ( $mq_key_aa && $mq_key_ab && $mq_key_ba && $mq_key_bb && ! empty( $mq_relation ) ) {
+			$meta_query = array(
+				'relation' => $mq_relation,
+				array(
+					'relation' => $relation_a,
+					array (
+						'key'     => $mq_key_aa,
+						'value'   => $mq_value_aa, // This could be an array
+						'compare' => $mq_compare_aa,
+						'type'    => $mq_type_aa,
+					),
+					array (
+						'key'     => $mq_key_ab,
+						'value'   => $mq_value_ab, // This could be an array
+						'compare' => $mq_compare_ab,
+						'type'    => $mq_type_ab,
+					)
+				),
+				array(
+					'relation' => $relation_b,
+					array (
+						'key'     => $mq_key_ba,
+						'value'   => $mq_value_ba, // This could be an array
+						'compare' => $mq_compare_ba,
+						'type'    => $mq_type_ba,
+					),
+					array (
+						'key'     => $mq_key_bb,
+						'value'   => $mq_value_bb, // This could be an array
+						'compare' => $mq_compare_bb,
+						'type'    => $mq_type_bb,
+					)
+				)
+			);
+		}
+	}
+
+	if ( isset( $meta_query ) ) {
+		return $meta_query;
+	} else {
+		return '';
+	}
+}
+
+
+/**
  * Remove empty keys from an array recursively.
  *
  * @param array   $array      The array to be checked.

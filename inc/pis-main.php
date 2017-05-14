@@ -136,6 +136,33 @@ function pis_get_posts_in_sidebar( $args ) {
 		'date_before_dyn_num' => '',
 		'date_before_dyn_date'=> '',
 
+		// Meta query
+		'mq_relation'         => '',
+
+		'mq_key_aa'           => '',
+		'mq_value_aa'         => '',
+		'mq_compare_aa'       => '',
+		'mq_type_aa'          => '',
+
+		'mq_relation_a'       => '',
+
+		'mq_key_ab'           => '',
+		'mq_value_ab'         => '',
+		'mq_compare_ab'       => '',
+		'mq_type_ab'          => '',
+
+		'mq_key_ba'           => '',
+		'mq_value_ba'         => '',
+		'mq_compare_ba'       => '',
+		'mq_type_ba'          => '',
+
+		'mq_relation_b'       => '',
+
+		'mq_key_bb'           => '',
+		'mq_value_bb'         => '',
+		'mq_compare_bb'       => '',
+		'mq_type_bb'          => '',
+
 		// Posts exclusion
 		'author_not_in'       => '',
 		'exclude_current_post'=> false,
@@ -360,6 +387,34 @@ function pis_get_posts_in_sidebar( $args ) {
 	// $date_query = pis_array_remove_empty_keys( $date_query, true );
 
 	/*
+	 * Build the array for post meta query.
+	 * It must be an array of array.
+	 *
+	 * @since 4.0
+	 */
+	$meta_query = pis_meta_query( array(
+		'mq_relation'         => $mq_relation,
+		'mq_key_aa'           => $mq_key_aa,
+		'mq_value_aa'         => $mq_value_aa,
+		'mq_compare_aa'       => $mq_compare_aa,
+		'mq_type_aa'          => $mq_type_aa,
+		'mq_relation_a'       => $mq_relation_a,
+		'mq_key_ab'           => $mq_key_ab,
+		'mq_value_ab'         => $mq_value_ab,
+		'mq_compare_ab'       => $mq_compare_ab,
+		'mq_type_ab'          => $mq_type_ab,
+		'mq_key_ba'           => $mq_key_ba,
+		'mq_value_ba'         => $mq_value_ba,
+		'mq_compare_ba'       => $mq_compare_ba,
+		'mq_type_ba'          => $mq_type_ba,
+		'mq_relation_b'       => $mq_relation_b,
+		'mq_key_bb'           => $mq_key_bb,
+		'mq_value_bb'         => $mq_value_bb,
+		'mq_compare_bb'       => $mq_compare_bb,
+		'mq_type_bb'          => $mq_type_bb,
+	) );
+
+	/*
 	 * Get posts published after/before a certain amount of time ago.
 	 * In this case we can use an expression like "1 month ago".
 	 *
@@ -459,6 +514,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'tag'                 => $tag,         // Uses tag slugs
 		'tax_query'           => $tax_query,   // Uses an array of array
 		'date_query'          => $date_query,  // Uses an array of array
+		'meta_query'          => $meta_query,  // Uses an array of array
 		'post_parent__in'     => $post_parent_in,
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,

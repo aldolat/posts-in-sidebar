@@ -4,7 +4,7 @@
   * released under GPLv2 or later.
   *
   * @since 2.0
-  * @since 3.8.9 Now the panels remain open if Save button is clicked.
+  * @since 4.0 Now the panels remain open if Save button is clicked.
   */
  jQuery( document ).ready( function( event ) {
     // The namespace

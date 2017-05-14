@@ -92,6 +92,30 @@ function pis_shortcode( $atts ) {
 		'date_before_day'     => '',
 		'date_inclusive'      => false,
 		'date_column'         => '',
+		'date_after_dyn_num'  => '',
+		'date_after_dyn_date' => '',
+		'date_before_dyn_num' => '',
+		'date_before_dyn_date'=> '',
+
+		// Meta query
+		'mq_relation'         => '',
+
+		'mq_key_aa'           => '',
+		'mq_value_aa'         => '',
+		'mq_compare_aa'       => '',
+		'mq_type_aa'          => '',
+
+		'mq_relation_a'       => '',
+
+		'mq_key_ab'           => '',
+		'mq_value_ab'         => '',
+		'mq_compare_ab'       => '',
+		'mq_type_ab'          => '',
+
+		'mq_key_ba'           => '',
+		'mq_value_ba'         => '',
+		'mq_compare_ba'       => '',
+		'mq_type_ba'          => '',
 
 		// Posts exclusion
 		'author_not_in'       => '',

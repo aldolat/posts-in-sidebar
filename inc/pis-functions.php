@@ -707,7 +707,7 @@ function pis_tax_query( $args ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
-	if ( '' == $taxonomy_aa && '' == $terms_aa ) {
+	if ( '' == $taxonomy_aa || '' == $field_aa || '' == $terms_aa ) {
 		$tax_query = '';
 	} else {
 		// Convert terms into arrays

@@ -70,7 +70,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'number_same_cat'     => '',
 		'title_same_cat'      => '',
 		'dont_ignore_params'  => false,
-		'sort_categories'  => false,
+		'sort_categories'     => false,
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.

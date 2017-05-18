@@ -6,41 +6,43 @@
   * @since 2.0
   * @since 4.0 Now the panels remain open if Save button is clicked.
   */
- jQuery( document ).ready( function( event ) {
-    // The namespace
-    var pis_namespace = {
-		// Holds an array of open panels per wiget id
-    	open_panels : {},
-        // Generic click handler on the panel title
-        clickHandler: function( element ) {
-			// Open the div "below" the h4 title
-			jQuery( element ).toggleClass( 'open' ).next().stop().slideToggle();
-			// Get the data-panel attribute, for example "custom-taxonomy-query"
-			var panel = element.getAttribute( 'data-panel' );
-			// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in parent panels
-			var id = jQuery( element ).parent().parent().parent().parent().parent().attr( 'id' );
-			// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in child panels
-			if ( id === undefined )
-				var id = jQuery( element ).parent().parent().parent().parent().parent().parent().parent().attr( 'id' );
-			var o = {};
-			if ( this.open_panels.hasOwnProperty( id ) ) {
-				o = this.open_panels[id];
-			}
-			if ( o.hasOwnProperty( panel ) ) {
-				delete o[panel];
-			} else {
-				o[panel] = true;
-			}
-			this.open_panels[id] = o;
-        }
-    }
 
+// The namespace
+var pis_namespace = {
+	// Holds an array of open panels per wiget id
+	open_panels : {},
+    // Generic click handler on the panel title
+    clickHandler: function( element ) {
+		// Open the div "below" the h4 title
+		jQuery( element ).toggleClass( 'open' ).next().stop().slideToggle();
+		// Get the data-panel attribute, for example "custom-taxonomy-query"
+		var panel = element.getAttribute( 'data-panel' );
+		// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in parent panels
+		var id = jQuery( element ).parent().parent().parent().parent().parent().attr( 'id' );
+		// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in child panels
+		if ( id === undefined )
+			var id = jQuery( element ).parent().parent().parent().parent().parent().parent().parent().attr( 'id' );
+		var o = {};
+		if ( this.open_panels.hasOwnProperty( id ) ) {
+			o = this.open_panels[id];
+		}
+		if ( o.hasOwnProperty( panel ) ) {
+			delete o[panel];
+		} else {
+			o[panel] = true;
+		}
+		this.open_panels[id] = o;
+    }
+}
+
+jQuery( document ).ready( function() {
+    // Open/close the widget panel.
  	jQuery( '.pis-widget-title' ).click( function() {
         pis_namespace.clickHandler( this );
  	});
 
  	// After saving the widget, we need to reassign click handlers
- 	jQuery( document ).on( 'widget-updated', function( root, element ) {
+ 	jQuery( document ).on( 'widget-added widget-updated', function( root, element ) {
  		jQuery( '.pis-widget-title' ).off( 'click' ).on( 'click', function() {
             pis_namespace.clickHandler( this );
  		});

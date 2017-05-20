@@ -3776,7 +3776,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_input_text( esc_html__( 'Use this text before the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), esc_html__( 'Custom field:', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Which custom field
-								$options = array();
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									)
+								);
 								$metas = (array) pis_meta();
 								foreach ( $metas as $meta ) {
 									if ( ! is_protected_meta( $meta, 'post' ) ) {

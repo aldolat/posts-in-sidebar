@@ -90,26 +90,20 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// Taxonomies
 		'relation'            => '',
-
 		'taxonomy_aa'         => '',
 		'field_aa'            => '',
 		'terms_aa'            => '',
 		'operator_aa'         => '',
-
 		'relation_a'          => '',
-
 		'taxonomy_ab'         => '',
 		'field_ab'            => '',
 		'terms_ab'            => '',
 		'operator_ab'         => '',
-
 		'taxonomy_ba'         => '',
 		'field_ba'            => '',
 		'terms_ba'            => '',
 		'operator_ba'         => '',
-
 		'relation_b'          => '',
-
 		'taxonomy_bb'         => '',
 		'field_bb'            => '',
 		'terms_bb'            => '',
@@ -138,26 +132,20 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// Meta query
 		'mq_relation'         => '',
-
 		'mq_key_aa'           => '',
 		'mq_value_aa'         => '',
 		'mq_compare_aa'       => '',
 		'mq_type_aa'          => '',
-
 		'mq_relation_a'       => '',
-
 		'mq_key_ab'           => '',
 		'mq_value_ab'         => '',
 		'mq_compare_ab'       => '',
 		'mq_type_ab'          => '',
-
 		'mq_key_ba'           => '',
 		'mq_value_ba'         => '',
 		'mq_compare_ba'       => '',
 		'mq_type_ba'          => '',
-
 		'mq_relation_b'       => '',
-
 		'mq_key_bb'           => '',
 		'mq_value_bb'         => '',
 		'mq_compare_bb'       => '',

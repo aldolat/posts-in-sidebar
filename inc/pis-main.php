@@ -521,15 +521,6 @@ function pis_get_posts_in_sidebar( $args ) {
 	);
 
 	/*
-	 * Remove empty items from the $params array.
-	 * This is necessary for some parts of WP_Query (like dates)
-	 * and will produce a cleaner output if debug is on.
-	 *
-	 * @since 3.8.6
-	 */
-	$params = pis_array_remove_empty_keys( $params, true );
-
-	/*
 	 * Check if the user wants to display posts from the same category of the single post.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
@@ -567,6 +558,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['tag']             = '';
 			$params['tax_query']       = '';
 			$params['date_query']      = '';
+			$params['meta_query']      = '';
 			$params['post_parent__in'] = '';
 			$params['post_format']     = '';
 			$params['meta_key']        = '';
@@ -602,6 +594,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['tag']             = '';
 			$params['tax_query']       = '';
 			$params['date_query']      = '';
+			$params['meta_query']      = '';
 			$params['post_parent__in'] = '';
 			$params['post_format']     = '';
 			$params['meta_key']        = '';
@@ -653,6 +646,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['author__in']      = '';
 					$params['tax_query']       = '';
 					$params['date_query']      = '';
+					$params['meta_query']      = '';
 					$params['post_parent__in'] = '';
 					$params['post_format']     = '';
 					$params['meta_key']        = '';
@@ -661,6 +655,15 @@ function pis_get_posts_in_sidebar( $args ) {
 			}
 		}
 	}
+
+	/*
+	 * Remove empty items from the $params array.
+	 * This is necessary for some parts of WP_Query (like dates)
+	 * and will produce a cleaner output if debug is on.
+	 *
+	 * @since 3.8.6
+	 */
+	$params = pis_array_remove_empty_keys( $params, true );
 
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {

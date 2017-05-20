@@ -61,6 +61,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * otherwise it will break sticky posts.
 		 */
 		'search'              => NULL,
+		'has_password'        => 'null', // Fake content that will be converted after into real null/true/false.
+		'post_password'       => '',
 		'ignore_sticky'       => false,
 		/*
 		 * This is the category of the single post
@@ -517,6 +519,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'meta_key'            => $post_meta_key,
 		'meta_value'          => $post_meta_val,
 		's'                   => $search,
+		'has_password'        => $has_password,
+		'post_password'       => $post_password,
 		'ignore_sticky_posts' => $ignore_sticky,
 	);
 
@@ -664,6 +668,27 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 3.8.6
 	 */
 	$params = pis_array_remove_empty_keys( $params, true );
+
+	/*
+	 * Convert the fake null/true/false content of $params['has_password'] parameter.
+	 * This conversion must be after the previous line for emptying $params.
+	 *
+	 * @since 4.0
+	 */
+	switch ( $params['has_password'] ) {
+		case 'null' :
+			unset( $params['has_password'] );
+			break;
+		case 'true' :
+			$params['has_password'] = true;
+			break;
+		case 'false' :
+			$params['has_password'] = false;
+			break;
+		default:
+			unset( $params['has_password'] );
+			break;
+	}
 
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {

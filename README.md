@@ -113,6 +113,8 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ## 4.0-dev ##
 
 * Added section for retrieving posts from multiple custom fields.
+* Added option for retrieving posts with/whitout password.
+* Added option for retrieving posts with a certain password.
 * Now panels do not collapse after saving the widget.
 
 ## 3.8.8 ##

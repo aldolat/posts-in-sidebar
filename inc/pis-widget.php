@@ -174,6 +174,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
 		if ( ! isset( $instance['post_format'] ) )          $instance['post_format']          = '';
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
+		if ( ! isset( $instance['has_password'] ) )         $instance['has_password']         = 'null';
+		if ( ! isset( $instance['post_password'] ) )        $instance['post_password']        = '';
 		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
@@ -356,6 +358,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => $instance['post_meta_key'],
 			'post_meta_val'       => $instance['post_meta_val'],
 			'search'              => $instance['search'],
+			'has_password'        => $instance['has_password'],
+			'post_password'       => $instance['post_password'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'number_same_cat'     => $instance['number_same_cat'],
@@ -654,6 +658,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['search']              = strip_tags( $new_instance['search'] );
 			if ( '' == $instance['search'] ) $instance['search'] = NULL;
+		$instance['has_password']        = $new_instance['has_password'];
+		$instance['post_password']       = $new_instance['post_password'];
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
 		$instance['number_same_cat']     = intval( strip_tags( $new_instance['number_same_cat'] ) );
@@ -951,6 +957,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
 			'search'              => NULL,
+			'has_password'        => 'null',
+			'post_password'       => '',
 			'ignore_sticky'       => false,
 			'get_from_same_cat'   => false,
 			'number_same_cat'     => '',
@@ -1475,6 +1483,39 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('search'),
 							esc_attr( $instance['search'] ),
 							esc_html__( 'words to search', 'posts-in-sidebar' )
+						); ?>
+
+						<?php // ================= Post with/whitout password
+						$options = array(
+							array(
+								'value' => 'null',
+								'desc'  => 'With and without password',
+							),
+							array(
+								'value' => 'true',
+								'desc'  => 'With password',
+							),
+							array(
+								'value' => 'false',
+								'desc'  => 'Without password',
+							)
+						);
+						pis_form_select(
+							esc_html__( 'Get posts with/whitout password', 'posts-in-sidebar' ),
+							$this->get_field_id('has_password'),
+							$this->get_field_name('has_password'),
+							$options,
+							$instance['has_password']
+						); ?>
+
+						<?php // ================= Post password
+						pis_form_input_text(
+							esc_html__( 'Get posts with this password', 'posts-in-sidebar' ),
+							$this->get_field_id('post_password'),
+							$this->get_field_name('post_password'),
+							esc_attr( $instance['post_password'] ),
+							// XKCD, Password Strength, https://xkcd.com/936/
+							'correct horse battery staple'
 						); ?>
 
 					</div>

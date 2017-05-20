@@ -1,11 +1,11 @@
 /**
-  * Posts in Sidebar javascript for admin UI.
-  * This file is a modified version of Category Posts Widget's js file from @kometschuh
-  * released under GPLv2 or later.
-  *
-  * @since 2.0
-  * @since 4.0 Now the panels remain open if Save button is clicked.
-  */
+ * Posts in Sidebar javascript for admin UI.
+ * This file is a modified version of Category Posts Widget's js file from @kometschuh
+ * released under GPLv2 or later.
+ *
+ * @since 2.0
+ * @since 4.0 Now the panels remain open if Save button is clicked.
+ */
 
 // The namespace
 var pis_namespace = {

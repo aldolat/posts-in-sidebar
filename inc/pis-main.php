@@ -488,7 +488,6 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 3.8.8
 	 */
 	if ( ! empty( $post_type_multiple ) ) {
-		// $post_type = array();
 		$post_type = (array) explode( ', ', $post_type_multiple );
 	}
 

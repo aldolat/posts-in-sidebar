@@ -1485,7 +1485,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_html__( 'words to search', 'posts-in-sidebar' )
 						); ?>
 
-						<?php // ================= Post with/whitout password
+						<?php // ================= Post with/without password
 						$options = array(
 							array(
 								'value' => 'null',
@@ -1501,7 +1501,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							)
 						);
 						pis_form_select(
-							esc_html__( 'Get posts with/whitout password', 'posts-in-sidebar' ),
+							esc_html__( 'Get posts with/without password', 'posts-in-sidebar' ),
 							$this->get_field_id('has_password'),
 							$this->get_field_name('has_password'),
 							$options,

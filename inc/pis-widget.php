@@ -2620,7 +2620,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'This section lets you retrieve posts from any custom field. If you want to use only one custom field, use the "Custom field key A1" field. If you have to put in relation two custom fields (e.g., display posts that have the meta key "color" and value "red" but meta key "price" with values between 10 and 20), then use also the "Custom field key B1" field. If you have to put in relation more more custom fields, start using also the "A2" and "B2" fields.', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php esc_html_e( 'This section lets you retrieve posts from any custom field. If you want to use only one custom field, use the "Custom field key A1" field. If you have to put in relation two custom fields (e.g., display posts that have the meta key "color" and value "red" but meta key "price" with values between 10 and 20), then use also the "Custom field key B1" field. If you have to put in relation more custom fields, start using also the "A2" and "B2" fields.', 'posts-in-sidebar' ); ?></em></p>
 
 						<div class="pis-column-container">
 

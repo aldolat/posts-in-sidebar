@@ -4,7 +4,7 @@ Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.8
-Stable tag: 4.0-dev
+Stable tag: 4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,7 +97,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Changelog ==
 
-= 4.0-dev =
+= 4.0 =
 
 * Added section for retrieving posts from multiple custom fields.
 * Added option for retrieving posts with/whitout password.

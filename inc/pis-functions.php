@@ -1011,6 +1011,10 @@ function pis_meta_query( $args ) {
  * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
  */
 function pis_array_remove_empty_keys( $array, $make_empty = false ) {
+	if ( ! is_array( $array ) ) {
+		return;
+	}
+
 	foreach ( $array as $key => $value ) {
 		if ( is_array( $value ) ) {
 			$array[$key] = pis_array_remove_empty_keys( $array[$key] );

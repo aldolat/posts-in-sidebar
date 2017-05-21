@@ -3,8 +3,8 @@
 **Donate link:** https://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
-**Tested up to:** 4.7  
-**Stable tag:** 3.8.8  
+**Tested up to:** 4.8  
+**Stable tag:** 4.0  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -27,7 +27,8 @@ Here are some of the functions you'll have:
 * get posts children of other posts;
 * get posts by search;
 * get posts by complex taxonomies queries;
-* get posts by date queries;
+* get posts by complex date queries;
+* get posts by complex custom fields queries;
 * get posts from the category of the current post;
 * exclude posts by authors, taxonomies, and so on;
 * control which elements of the posts are displayed (like post thumbnail, taxonomies, meta values, and so on);
@@ -107,10 +108,16 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 7. Displaying the full set of items (categories, date, author, tags, and so on). ###
 ![7. Displaying the full set of items (categories, date, author, tags, and so on).](https://ps.w.org/posts-in-sidebar/assets/screenshot-7.png)
 
-
 ## Changelog ##
 
-## 3.8.8 ##
+### 4.0 ###
+
+* Added section for retrieving posts from multiple custom fields.
+* Added option for retrieving posts with/whitout password.
+* Added option for retrieving posts with a certain password.
+* Now panels do not collapse after saving the widget.
+
+### 3.8.8 ###
 
 * Added option to get multiple post types.
 * Removed option for displaying query number (it's displayed by default now).

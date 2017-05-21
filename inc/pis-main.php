@@ -61,6 +61,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * otherwise it will break sticky posts.
 		 */
 		'search'              => NULL,
+		'has_password'        => 'null', // Fake content that will be converted later into real null/true/false.
+		'post_password'       => '',
 		'ignore_sticky'       => false,
 		/*
 		 * This is the category of the single post
@@ -70,7 +72,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'number_same_cat'     => '',
 		'title_same_cat'      => '',
 		'dont_ignore_params'  => false,
-		'sort_categories'  => false,
+		'sort_categories'     => false,
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -90,26 +92,20 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// Taxonomies
 		'relation'            => '',
-
 		'taxonomy_aa'         => '',
 		'field_aa'            => '',
 		'terms_aa'            => '',
 		'operator_aa'         => '',
-
 		'relation_a'          => '',
-
 		'taxonomy_ab'         => '',
 		'field_ab'            => '',
 		'terms_ab'            => '',
 		'operator_ab'         => '',
-
 		'taxonomy_ba'         => '',
 		'field_ba'            => '',
 		'terms_ba'            => '',
 		'operator_ba'         => '',
-
 		'relation_b'          => '',
-
 		'taxonomy_bb'         => '',
 		'field_bb'            => '',
 		'terms_bb'            => '',
@@ -135,6 +131,27 @@ function pis_get_posts_in_sidebar( $args ) {
 		'date_after_dyn_date' => '',
 		'date_before_dyn_num' => '',
 		'date_before_dyn_date'=> '',
+
+		// Meta query
+		'mq_relation'         => '',
+		'mq_key_aa'           => '',
+		'mq_value_aa'         => '',
+		'mq_compare_aa'       => '',
+		'mq_type_aa'          => '',
+		'mq_relation_a'       => '',
+		'mq_key_ab'           => '',
+		'mq_value_ab'         => '',
+		'mq_compare_ab'       => '',
+		'mq_type_ab'          => '',
+		'mq_key_ba'           => '',
+		'mq_value_ba'         => '',
+		'mq_compare_ba'       => '',
+		'mq_type_ba'          => '',
+		'mq_relation_b'       => '',
+		'mq_key_bb'           => '',
+		'mq_value_bb'         => '',
+		'mq_compare_bb'       => '',
+		'mq_type_bb'          => '',
 
 		// Posts exclusion
 		'author_not_in'       => '',
@@ -360,6 +377,34 @@ function pis_get_posts_in_sidebar( $args ) {
 	// $date_query = pis_array_remove_empty_keys( $date_query, true );
 
 	/*
+	 * Build the array for post meta query.
+	 * It must be an array of array.
+	 *
+	 * @since 4.0
+	 */
+	$meta_query = pis_meta_query( array(
+		'mq_relation'         => $mq_relation,
+		'mq_key_aa'           => $mq_key_aa,
+		'mq_value_aa'         => $mq_value_aa,
+		'mq_compare_aa'       => $mq_compare_aa,
+		'mq_type_aa'          => $mq_type_aa,
+		'mq_relation_a'       => $mq_relation_a,
+		'mq_key_ab'           => $mq_key_ab,
+		'mq_value_ab'         => $mq_value_ab,
+		'mq_compare_ab'       => $mq_compare_ab,
+		'mq_type_ab'          => $mq_type_ab,
+		'mq_key_ba'           => $mq_key_ba,
+		'mq_value_ba'         => $mq_value_ba,
+		'mq_compare_ba'       => $mq_compare_ba,
+		'mq_type_ba'          => $mq_type_ba,
+		'mq_relation_b'       => $mq_relation_b,
+		'mq_key_bb'           => $mq_key_bb,
+		'mq_value_bb'         => $mq_value_bb,
+		'mq_compare_bb'       => $mq_compare_bb,
+		'mq_type_bb'          => $mq_type_bb,
+	) );
+
+	/*
 	 * Get posts published after/before a certain amount of time ago.
 	 * In this case we can use an expression like "1 month ago".
 	 *
@@ -445,8 +490,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 3.8.8
 	 */
 	if ( ! empty( $post_type_multiple ) ) {
-		$post_type_multiple = explode( ', ', $post_type_multiple );
-		$post_type = (array) $post_type_multiple;
+		$post_type = (array) explode( ', ', $post_type_multiple );
 	}
 
 	// Build the array for WP_Query object.
@@ -459,6 +503,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'tag'                 => $tag,         // Uses tag slugs
 		'tax_query'           => $tax_query,   // Uses an array of array
 		'date_query'          => $date_query,  // Uses an array of array
+		'meta_query'          => $meta_query,  // Uses an array of array
 		'post_parent__in'     => $post_parent_in,
 		'post_format'         => $post_format,
 		'posts_per_page'      => $number,
@@ -474,17 +519,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		'meta_key'            => $post_meta_key,
 		'meta_value'          => $post_meta_val,
 		's'                   => $search,
+		'has_password'        => $has_password,
+		'post_password'       => $post_password,
 		'ignore_sticky_posts' => $ignore_sticky,
 	);
-
-	/*
-	 * Remove empty items from the $params array.
-	 * This is necessary for some parts of WP_Query (like dates)
-	 * and will produce a cleaner output if debug is on.
-	 *
-	 * @since 3.8.6
-	 */
-	$params = pis_array_remove_empty_keys( $params, true );
 
 	/*
 	 * Check if the user wants to display posts from the same category of the single post.
@@ -524,6 +562,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['tag']             = '';
 			$params['tax_query']       = '';
 			$params['date_query']      = '';
+			$params['meta_query']      = '';
 			$params['post_parent__in'] = '';
 			$params['post_format']     = '';
 			$params['meta_key']        = '';
@@ -559,6 +598,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['tag']             = '';
 			$params['tax_query']       = '';
 			$params['date_query']      = '';
+			$params['meta_query']      = '';
 			$params['post_parent__in'] = '';
 			$params['post_format']     = '';
 			$params['meta_key']        = '';
@@ -610,6 +650,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['author__in']      = '';
 					$params['tax_query']       = '';
 					$params['date_query']      = '';
+					$params['meta_query']      = '';
 					$params['post_parent__in'] = '';
 					$params['post_format']     = '';
 					$params['meta_key']        = '';
@@ -617,6 +658,36 @@ function pis_get_posts_in_sidebar( $args ) {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Remove empty items from the $params array.
+	 * This is necessary for some parts of WP_Query (like dates)
+	 * and will produce a cleaner output if debug is on.
+	 *
+	 * @since 3.8.6
+	 */
+	$params = pis_array_remove_empty_keys( $params, true );
+
+	/*
+	 * Convert the fake null/true/false content of $params['has_password'] parameter.
+	 * This conversion must be after the previous line for emptying $params.
+	 *
+	 * @since 4.0
+	 */
+	switch ( $params['has_password'] ) {
+		case 'null' :
+			unset( $params['has_password'] );
+			break;
+		case 'true' :
+			$params['has_password'] = true;
+			break;
+		case 'false' :
+			$params['has_password'] = false;
+			break;
+		default:
+			unset( $params['has_password'] );
+			break;
 	}
 
 	// If the user has chosen a cached version of the widget output...

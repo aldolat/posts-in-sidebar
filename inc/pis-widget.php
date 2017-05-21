@@ -174,6 +174,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
 		if ( ! isset( $instance['post_format'] ) )          $instance['post_format']          = '';
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
+		if ( ! isset( $instance['has_password'] ) )         $instance['has_password']         = 'null';
+		if ( ! isset( $instance['post_password'] ) )        $instance['post_password']        = '';
 		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
@@ -225,6 +227,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['date_after_dyn_date'] ) )  $instance['date_after_dyn_date']  = '';
 		if ( ! isset( $instance['date_before_dyn_num'] ) )  $instance['date_before_dyn_num']  = '';
 		if ( ! isset( $instance['date_before_dyn_date'] ) ) $instance['date_before_dyn_date'] = '';
+		if ( ! isset( $instance['mq_relation'] ) )          $instance['mq_relation']          = '';
+		if ( ! isset( $instance['mq_key_aa'] ) )            $instance['mq_key_aa']            = '';
+		if ( ! isset( $instance['mq_value_aa'] ) )          $instance['mq_value_aa']          = '';
+		if ( ! isset( $instance['mq_compare_aa'] ) )        $instance['mq_compare_aa']        = '';
+		if ( ! isset( $instance['mq_type_aa'] ) )           $instance['mq_type_aa']           = '';
+		if ( ! isset( $instance['mq_relation_a'] ) )        $instance['mq_relation_a']        = '';
+		if ( ! isset( $instance['mq_key_ab'] ) )            $instance['mq_key_ab']            = '';
+		if ( ! isset( $instance['mq_value_ab'] ) )          $instance['mq_value_ab']          = '';
+		if ( ! isset( $instance['mq_compare_ab'] ) )        $instance['mq_compare_ab']        = '';
+		if ( ! isset( $instance['mq_type_ab'] ) )           $instance['mq_type_ab']           = '';
+		if ( ! isset( $instance['mq_key_ba'] ) )            $instance['mq_key_ba']            = '';
+		if ( ! isset( $instance['mq_value_ba'] ) )          $instance['mq_value_ba']          = '';
+		if ( ! isset( $instance['mq_compare_ba'] ) )        $instance['mq_compare_ba']        = '';
+		if ( ! isset( $instance['mq_type_ba'] ) )           $instance['mq_type_ba']           = '';
+		if ( ! isset( $instance['mq_relation_b'] ) )        $instance['mq_relation_b']        = '';
+		if ( ! isset( $instance['mq_key_bb'] ) )            $instance['mq_key_bb']            = '';
+		if ( ! isset( $instance['mq_value_bb'] ) )          $instance['mq_value_bb']          = '';
+		if ( ! isset( $instance['mq_compare_bb'] ) )        $instance['mq_compare_bb']        = '';
+		if ( ! isset( $instance['mq_type_bb'] ) )           $instance['mq_type_bb']           = '';
 		if ( ! isset( $instance['author_not_in'] ) )        $instance['author_not_in']        = '';
 		if ( ! isset( $instance['exclude_current_post'] ) ) $instance['exclude_current_post'] = false;
 		if ( ! isset( $instance['post_not_in'] ) )          $instance['post_not_in']          = '';
@@ -337,6 +358,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => $instance['post_meta_key'],
 			'post_meta_val'       => $instance['post_meta_val'],
 			'search'              => $instance['search'],
+			'has_password'        => $instance['has_password'],
+			'post_password'       => $instance['post_password'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'number_same_cat'     => $instance['number_same_cat'],
@@ -399,6 +422,27 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_after_dyn_date' => $instance['date_after_dyn_date'],
 			'date_before_dyn_num' => $instance['date_before_dyn_num'],
 			'date_before_dyn_date'=> $instance['date_before_dyn_date'],
+
+			// Meta query
+			'mq_relation'         => $instance['mq_relation'],
+			'mq_key_aa'           => $instance['mq_key_aa'],
+			'mq_value_aa'         => $instance['mq_value_aa'],
+			'mq_compare_aa'       => $instance['mq_compare_aa'],
+			'mq_type_aa'          => $instance['mq_type_aa'],
+			'mq_relation_a'       => $instance['mq_relation_a'],
+			'mq_key_ab'           => $instance['mq_key_ab'],
+			'mq_value_ab'         => $instance['mq_value_ab'],
+			'mq_compare_ab'       => $instance['mq_compare_ab'],
+			'mq_type_ab'          => $instance['mq_type_ab'],
+			'mq_key_ba'           => $instance['mq_key_ba'],
+			'mq_value_ba'         => $instance['mq_value_ba'],
+			'mq_compare_ba'       => $instance['mq_compare_ba'],
+			'mq_type_ba'          => $instance['mq_type_ba'],
+			'mq_relation_b'       => $instance['mq_relation_b'],
+			'mq_key_bb'           => $instance['mq_key_bb'],
+			'mq_value_bb'         => $instance['mq_value_bb'],
+			'mq_compare_bb'       => $instance['mq_compare_bb'],
+			'mq_type_bb'          => $instance['mq_type_bb'],
 
 			// Posts exclusion
 			'author_not_in'       => $instance['author_not_in'],
@@ -614,6 +658,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['search']              = strip_tags( $new_instance['search'] );
 			if ( '' == $instance['search'] ) $instance['search'] = NULL;
+		$instance['has_password']        = $new_instance['has_password'];
+		$instance['post_password']       = $new_instance['post_password'];
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
 		$instance['number_same_cat']     = intval( strip_tags( $new_instance['number_same_cat'] ) );
@@ -696,6 +742,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( ! is_numeric( $instance['date_before_dyn_num'] ) || 0 == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_num'] = '';
 		$instance['date_before_dyn_date']= $new_instance['date_before_dyn_date'];
 			if ( '' == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_date'] = '';
+
+		//Meta query
+		$instance['mq_relation']   = $new_instance['mq_relation'];
+
+		$instance['mq_key_aa']     = $new_instance['mq_key_aa'];
+		$instance['mq_value_aa']   = strip_tags( $new_instance['mq_value_aa'] );
+		$instance['mq_compare_aa'] = $new_instance['mq_compare_aa'];
+		$instance['mq_type_aa']    = $new_instance['mq_type_aa'];
+
+		$instance['mq_relation_a'] = $new_instance['mq_relation_a'];
+
+		$instance['mq_key_ab']     = $new_instance['mq_key_ab'];
+		$instance['mq_value_ab']   = strip_tags( $new_instance['mq_value_ab'] );
+		$instance['mq_compare_ab'] = $new_instance['mq_compare_ab'];
+		$instance['mq_type_ab']    = $new_instance['mq_type_ab'];
+
+		$instance['mq_key_ba']     = $new_instance['mq_key_ba'];
+		$instance['mq_value_ba']   = strip_tags( $new_instance['mq_value_ba'] );
+		$instance['mq_compare_ba'] = $new_instance['mq_compare_ba'];
+		$instance['mq_type_ba']    = $new_instance['mq_type_ba'];
+
+		$instance['mq_relation_b'] = $new_instance['mq_relation_b'];
+
+		$instance['mq_key_bb']     = $new_instance['mq_key_bb'];
+		$instance['mq_value_bb']   = strip_tags( $new_instance['mq_value_bb'] );
+		$instance['mq_compare_bb'] = $new_instance['mq_compare_bb'];
+		$instance['mq_type_bb']    = $new_instance['mq_type_bb'];
 
 		// Posts exclusion
 		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
@@ -884,6 +957,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'post_meta_key'       => '',
 			'post_meta_val'       => '',
 			'search'              => NULL,
+			'has_password'        => 'null',
+			'post_password'       => '',
 			'ignore_sticky'       => false,
 			'get_from_same_cat'   => false,
 			'number_same_cat'     => '',
@@ -946,6 +1021,33 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'date_after_dyn_date' => '',
 			'date_before_dyn_num' => '',
 			'date_before_dyn_date'=> '',
+
+			// Meta query
+			'mq_relation'         => '',
+
+			'mq_key_aa'           => '',
+			'mq_value_aa'         => '',
+			'mq_compare_aa'       => '',
+			'mq_type_aa'          => '',
+
+			'mq_relation_a'       => '',
+
+			'mq_key_ab'           => '',
+			'mq_value_ab'         => '',
+			'mq_compare_ab'       => '',
+			'mq_type_ab'          => '',
+
+			'mq_key_ba'           => '',
+			'mq_value_ba'         => '',
+			'mq_compare_ba'       => '',
+			'mq_type_ba'          => '',
+
+			'mq_relation_b'       => '',
+
+			'mq_key_bb'           => '',
+			'mq_value_bb'         => '',
+			'mq_compare_bb'       => '',
+			'mq_type_bb'          => '',
 
 			// Posts exclusion
 			'author_not_in'       => '',
@@ -1134,44 +1236,40 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Widget title -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
+			<h4><?php esc_html_e( 'The title of the widget', 'posts-in-sidebar' ); ?></h4>
 
-			<div class="pis-container pis-container-open">
+			<?php pis_form_input_text(
+				esc_html__( 'Title', 'posts-in-sidebar' ),
+				$this->get_field_id('title'),
+				$this->get_field_name('title'),
+				esc_attr( $instance['title'] ),
+				esc_html__( 'From the archive', 'posts-in-sidebar' )
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Title', 'posts-in-sidebar' ),
-					$this->get_field_id('title'),
-					$this->get_field_name('title'),
-					esc_attr( $instance['title'] ),
-					esc_html__( 'From the archive', 'posts-in-sidebar' )
-				); ?>
+			<?php pis_form_input_text(
+				esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
+				$this->get_field_id('title_link'),
+				$this->get_field_name('title_link'),
+				esc_url( strip_tags( $instance['title_link'] ) ),
+				'http://example.com/readings-series/'
+			); ?>
 
-				<?php pis_form_input_text(
-					esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
-					$this->get_field_id('title_link'),
-					$this->get_field_name('title_link'),
-					esc_url( strip_tags( $instance['title_link'] ) ),
-					'http://example.com/readings-series/'
-				); ?>
-
-				<?php pis_form_textarea(
-					esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
-					$this->get_field_id('intro'),
-					$this->get_field_name('intro'),
-					$instance['intro'],
-					esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-					$style = 'resize: vertical; width: 100%; height: 80px;',
-					$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
-				); ?>
-
-			</div>
+			<?php pis_form_textarea(
+				esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
+				$this->get_field_id('intro'),
+				$this->get_field_name('intro'),
+				$instance['intro'],
+				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
+				$style = 'resize: vertical; width: 100%; height: 80px;',
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+			); ?>
 
 		</div>
 
 		<!-- Getting posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Getting posts', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="getting-posts" class="pis-widget-title"><?php esc_html_e( 'Getting posts', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -1218,7 +1316,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id('post_type_multiple'),
 							$this->get_field_name('post_type_multiple'),
 							esc_attr( $instance['post_type_multiple'] ),
-							esc_html__( 'post, page, books, ebooks', 'posts-in-sidebar' ),
+							esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 						); ?>
 
@@ -1387,6 +1485,39 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_html__( 'words to search', 'posts-in-sidebar' )
 						); ?>
 
+						<?php // ================= Post with/whitout password
+						$options = array(
+							array(
+								'value' => 'null',
+								'desc'  => 'With and without password',
+							),
+							array(
+								'value' => 'true',
+								'desc'  => 'With password',
+							),
+							array(
+								'value' => 'false',
+								'desc'  => 'Without password',
+							)
+						);
+						pis_form_select(
+							esc_html__( 'Get posts with/whitout password', 'posts-in-sidebar' ),
+							$this->get_field_id('has_password'),
+							$this->get_field_name('has_password'),
+							$options,
+							$instance['has_password']
+						); ?>
+
+						<?php // ================= Post password
+						pis_form_input_text(
+							esc_html__( 'Get posts with this password', 'posts-in-sidebar' ),
+							$this->get_field_id('post_password'),
+							$this->get_field_name('post_password'),
+							esc_attr( $instance['post_password'] ),
+							// XKCD, Password Strength, https://xkcd.com/936/
+							'correct horse battery staple'
+						); ?>
+
 					</div>
 
 				</div>
@@ -1513,7 +1644,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Change the query when on single posts', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="change-query" class="pis-widget-title"><?php esc_html_e( 'Change the query when on single posts', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -1717,7 +1848,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Excluding posts -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="excluding-posts" class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -1813,7 +1944,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Custom taxonomy query -->
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Custom taxonomy query', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-taxonomy-query" class="pis-widget-title"><?php esc_html_e( 'Custom taxonomy query', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -1851,10 +1982,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5 class="pis-title-center"><?php esc_html_e( 'Column A', 'posts-in-sidebar' ); ?></h5>
+								<h6 class="pis-title-center"><?php esc_html_e( 'Column A', 'posts-in-sidebar' ); ?></h6>
 
 								<?php // ================= Taxonomy aa
-								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy A1%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_aa'), $this->get_field_name('taxonomy_aa'), esc_attr( $instance['taxonomy_aa'] ), esc_html__( 'category', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Taxonomy A1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('taxonomy_aa'),
+									$this->get_field_name('taxonomy_aa'),
+									esc_attr( $instance['taxonomy_aa'] ),
+									esc_html__( 'category', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Field aa
 								$options = array(
@@ -1923,7 +2061,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<hr />
 
 								<?php // ================= Taxonomy ab
-								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy A2%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ab'), $this->get_field_name('taxonomy_ab'), esc_attr( $instance['taxonomy_ab'] ), esc_html__( 'movie-genre', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Taxonomy A2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('taxonomy_ab'),
+									$this->get_field_name('taxonomy_ab'),
+									esc_attr( $instance['taxonomy_ab'] ),
+									esc_html__( 'movie-genre', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Field ab
 								$options = array(
@@ -1974,10 +2119,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5 class="pis-title-center"><?php esc_html_e( 'Column B', 'posts-in-sidebar' ); ?></h5>
+								<h6 class="pis-title-center"><?php esc_html_e( 'Column B', 'posts-in-sidebar' ); ?></h6>
 
 								<?php // ================= Taxonomy ba
-								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy B1%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_ba'), $this->get_field_name('taxonomy_ba'), esc_attr( $instance['taxonomy_ba'] ), esc_html__( 'post_tag', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Taxonomy B1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('taxonomy_ba'),
+									$this->get_field_name('taxonomy_ba'),
+									esc_attr( $instance['taxonomy_ba'] ),
+									esc_html__( 'post_tag', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Field ba
 								$options = array(
@@ -2050,7 +2202,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<hr />
 
 								<?php // ================= Taxonomy bb
-								pis_form_input_text( sprintf( esc_html__( '%1$sTaxonomy B2%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ), $this->get_field_id('taxonomy_bb'), $this->get_field_name('taxonomy_bb'), esc_attr( $instance['taxonomy_bb'] ), esc_html__( 'post_format', 'posts-in-sidebar' ), esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Taxonomy B2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('taxonomy_bb'),
+									$this->get_field_name('taxonomy_bb'),
+									esc_attr( $instance['taxonomy_bb'] ),
+									esc_html__( 'post_format', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Field bb
 								$options = array(
@@ -2108,7 +2267,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Date query -->
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Date query', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="date-query" class="pis-widget-title"><?php esc_html_e( 'Date query', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2353,31 +2512,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									),
 									'year' => array(
 										'value' => 'year',
-										'desc'  => 'years'
+										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' )
 									),
 									'month' => array(
 										'value' => 'month',
-										'desc'  => 'months'
+										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' )
 									),
 									'week' => array(
 										'value' => 'week',
-										'desc'  => 'weeks'
+										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' )
 									),
 									'day' => array(
 										'value' => 'day',
-										'desc'  => 'days'
+										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' )
 									),
 									'hour' => array(
 										'value' => 'hour',
-										'desc'  => 'hours'
+										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' )
 									),
 									'minute' => array(
 										'value' => 'minute',
-										'desc'  => 'minutes'
+										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' )
 									),
 									'second' => array(
 										'value' => 'second',
-										'desc'  => 'seconds'
+										'desc'  => esc_html__( 'seconds', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2411,31 +2570,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									),
 									'year' => array(
 										'value' => 'year',
-										'desc'  => 'years'
+										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' )
 									),
 									'month' => array(
 										'value' => 'month',
-										'desc'  => 'months'
+										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' )
 									),
 									'week' => array(
 										'value' => 'week',
-										'desc'  => 'weeks'
+										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' )
 									),
 									'day' => array(
 										'value' => 'day',
-										'desc'  => 'days'
+										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' )
 									),
 									'hour' => array(
 										'value' => 'hour',
-										'desc'  => 'hours'
+										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' )
 									),
 									'minute' => array(
 										'value' => 'minute',
-										'desc'  => 'minutes'
+										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' )
 									),
 									'second' => array(
 										'value' => 'second',
-										'desc'  => 'seconds'
+										'desc'  => esc_html__( 'Seconds', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2454,6 +2613,695 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
+				<!-- Meta query -->
+				<div class="pis-section pis-2col">
+
+					<h5 data-panel="meta-query" class="pis-widget-title"><?php esc_html_e( 'Custom fields query', 'posts-in-sidebar' ); ?></h5>
+
+					<div class="pis-container">
+
+						<p><em><?php esc_html_e( 'This section lets you retrieve posts from any custom field. If you want to use only one custom field, use the "Custom field key A1" field. If you have to put in relation two custom fields (e.g., display posts that have the meta key "color" and value "red" but meta key "price" with values between 10 and 20), then use also the "Custom field key B1" field. If you have to put in relation more custom fields, start using also the "A2" and "B2" fields.', 'posts-in-sidebar' ); ?></em></p>
+
+						<div class="pis-column-container">
+
+							<div class="pis-column centered">
+
+								<?php // ================= Meta relation between aa and bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_relation'),
+									$this->get_field_name('mq_relation'),
+									$options,
+									$instance['mq_relation'],
+									esc_html__( 'The logical relationship between each inner meta_query array when there is more than one.', 'posts-in-sidebar' )
+								); ?>
+
+							</div>
+
+						</div>
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<h6 class="pis-title-center"><?php esc_html_e( 'Column A', 'posts-in-sidebar' ); ?></h6>
+
+								<?php // ================= Custom field key aa
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Custom field key A1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('mq_key_aa'),
+									$this->get_field_name('mq_key_aa'),
+									esc_attr( $instance['mq_key_aa'] ),
+									esc_html__( 'color', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field value aa
+								pis_form_input_text(
+									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_value_aa'),
+									$this->get_field_name('mq_value_aa'),
+									esc_attr( $instance['mq_value_aa'] ),
+									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
+									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field compare aa
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'equal' => array(
+										'value' => '=',
+										'desc'  => '='
+									),
+									'not_equal' => array(
+										'value' => '!=',
+										'desc'  => '!='
+									),
+									'greater' => array(
+										'value' => '>',
+										'desc'  => '>'
+									),
+									'greater_equal' => array(
+										'value' => '>=',
+										'desc'  => '>='
+									),
+									'lower' => array(
+										'value' => '<',
+										'desc'  => '<'
+									),
+									'lower_equal' => array(
+										'value' => '<=',
+										'desc'  => '<='
+									),
+									'like' => array(
+										'value' => 'LIKE',
+										'desc'  => 'LIKE'
+									),
+									'not_like' => array(
+										'value' => 'NOT LIKE',
+										'desc'  => 'NOT LIKE'
+									),
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'between' => array(
+										'value' => 'BETWEEN',
+										'desc'  => 'BETWEEN'
+									),
+									'not_between' => array(
+										'value' => 'NOT BETWEEN',
+										'desc'  => 'NOT BETWEEN'
+									),
+									'exists' => array(
+										'value' => 'EXISTS',
+										'desc'  => 'EXISTS'
+									),
+									'not_exists' => array(
+										'value' => 'NOT EXISTS',
+										'desc'  => 'NOT EXISTS'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Operator', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_compare_aa'),
+									$this->get_field_name('mq_compare_aa'),
+									$options, $instance['mq_compare_aa'],
+									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field type aa
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'numeric' => array(
+										'value' => 'NUMERIC',
+										'desc'  => 'NUMERIC'
+									),
+									'binary' => array(
+										'value' => 'BINARY',
+										'desc'  => 'BINARY'
+									),
+									'char' => array(
+										'value' => 'CHAR',
+										'desc'  => 'CHAR'
+									),
+									'date' => array(
+										'value' => 'DATE',
+										'desc'  => 'DATE'
+									),
+									'datetime' => array(
+										'value' => 'DATETIME',
+										'desc'  => 'DATETIME'
+									),
+									'decimal' => array(
+										'value' => 'DECIMAL',
+										'desc'  => 'DECIMAL'
+									),
+									'signed' => array(
+										'value' => 'SIGNED',
+										'desc'  => 'SIGNED'
+									),
+									'time' => array(
+										'value' => 'TIME',
+										'desc'  => 'TIME'
+									),
+									'unsigned' => array(
+										'value' => 'UNSIGNED',
+										'desc'  => 'UNSIGNED'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_type_aa'),
+									$this->get_field_name('mq_type_aa'),
+									$options, $instance['mq_type_aa'],
+									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+								); ?>
+
+								<hr />
+
+								<?php // ================= Relation between aa and ab
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Relation between A1 and A2 custom fields', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_relation_a'),
+									$this->get_field_name('mq_relation_a'),
+									$options, $instance['mq_relation_a']
+								); ?>
+
+								<hr />
+
+								<?php // ================= Custom field key ab
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Custom field key A2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('mq_key_ab'),
+									$this->get_field_name('mq_key_ab'),
+									esc_attr( $instance['mq_key_ab'] ),
+									esc_html__( 'color', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field value ab
+								pis_form_input_text(
+									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_value_ab'),
+									$this->get_field_name('mq_value_ab'),
+									esc_attr( $instance['mq_value_ab'] ),
+									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
+									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field compare ab
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'equal' => array(
+										'value' => '=',
+										'desc'  => '='
+									),
+									'not_equal' => array(
+										'value' => '!=',
+										'desc'  => '!='
+									),
+									'greater' => array(
+										'value' => '>',
+										'desc'  => '>'
+									),
+									'greater_equal' => array(
+										'value' => '>=',
+										'desc'  => '>='
+									),
+									'lower' => array(
+										'value' => '<',
+										'desc'  => '<'
+									),
+									'lower_equal' => array(
+										'value' => '<=',
+										'desc'  => '<='
+									),
+									'like' => array(
+										'value' => 'LIKE',
+										'desc'  => 'LIKE'
+									),
+									'not_like' => array(
+										'value' => 'NOT LIKE',
+										'desc'  => 'NOT LIKE'
+									),
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'between' => array(
+										'value' => 'BETWEEN',
+										'desc'  => 'BETWEEN'
+									),
+									'not_between' => array(
+										'value' => 'NOT BETWEEN',
+										'desc'  => 'NOT BETWEEN'
+									),
+									'exists' => array(
+										'value' => 'EXISTS',
+										'desc'  => 'EXISTS'
+									),
+									'not_exists' => array(
+										'value' => 'NOT EXISTS',
+										'desc'  => 'NOT EXISTS'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Operator', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_compare_ab'),
+									$this->get_field_name('mq_compare_ab'),
+									$options, $instance['mq_compare_ab'],
+									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field type ab
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'numeric' => array(
+										'value' => 'NUMERIC',
+										'desc'  => 'NUMERIC'
+									),
+									'binary' => array(
+										'value' => 'BINARY',
+										'desc'  => 'BINARY'
+									),
+									'char' => array(
+										'value' => 'CHAR',
+										'desc'  => 'CHAR'
+									),
+									'date' => array(
+										'value' => 'DATE',
+										'desc'  => 'DATE'
+									),
+									'datetime' => array(
+										'value' => 'DATETIME',
+										'desc'  => 'DATETIME'
+									),
+									'decimal' => array(
+										'value' => 'DECIMAL',
+										'desc'  => 'DECIMAL'
+									),
+									'signed' => array(
+										'value' => 'SIGNED',
+										'desc'  => 'SIGNED'
+									),
+									'time' => array(
+										'value' => 'TIME',
+										'desc'  => 'TIME'
+									),
+									'unsigned' => array(
+										'value' => 'UNSIGNED',
+										'desc'  => 'UNSIGNED'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_type_ab'),
+									$this->get_field_name('mq_type_ab'),
+									$options, $instance['mq_type_ab'],
+									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h6 class="pis-title-center"><?php esc_html_e( 'Column B', 'posts-in-sidebar' ); ?></h6>
+
+								<?php // ================= Custom field key ba
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Custom field key B1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('mq_key_ba'),
+									$this->get_field_name('mq_key_ba'),
+									esc_attr( $instance['mq_key_ba'] ),
+									esc_html__( 'color', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field value ba
+								pis_form_input_text(
+									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_value_ba'),
+									$this->get_field_name('mq_value_ba'),
+									esc_attr( $instance['mq_value_ba'] ),
+									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
+									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field compare ba
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'equal' => array(
+										'value' => '=',
+										'desc'  => '='
+									),
+									'not_equal' => array(
+										'value' => '!=',
+										'desc'  => '!='
+									),
+									'greater' => array(
+										'value' => '>',
+										'desc'  => '>'
+									),
+									'greater_equal' => array(
+										'value' => '>=',
+										'desc'  => '>='
+									),
+									'lower' => array(
+										'value' => '<',
+										'desc'  => '<'
+									),
+									'lower_equal' => array(
+										'value' => '<=',
+										'desc'  => '<='
+									),
+									'like' => array(
+										'value' => 'LIKE',
+										'desc'  => 'LIKE'
+									),
+									'not_like' => array(
+										'value' => 'NOT LIKE',
+										'desc'  => 'NOT LIKE'
+									),
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'between' => array(
+										'value' => 'BETWEEN',
+										'desc'  => 'BETWEEN'
+									),
+									'not_between' => array(
+										'value' => 'NOT BETWEEN',
+										'desc'  => 'NOT BETWEEN'
+									),
+									'exists' => array(
+										'value' => 'EXISTS',
+										'desc'  => 'EXISTS'
+									),
+									'not_exists' => array(
+										'value' => 'NOT EXISTS',
+										'desc'  => 'NOT EXISTS'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Operator', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_compare_ba'),
+									$this->get_field_name('mq_compare_ba'),
+									$options, $instance['mq_compare_ba'],
+									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field type ba
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'numeric' => array(
+										'value' => 'NUMERIC',
+										'desc'  => 'NUMERIC'
+									),
+									'binary' => array(
+										'value' => 'BINARY',
+										'desc'  => 'BINARY'
+									),
+									'char' => array(
+										'value' => 'CHAR',
+										'desc'  => 'CHAR'
+									),
+									'date' => array(
+										'value' => 'DATE',
+										'desc'  => 'DATE'
+									),
+									'datetime' => array(
+										'value' => 'DATETIME',
+										'desc'  => 'DATETIME'
+									),
+									'decimal' => array(
+										'value' => 'DECIMAL',
+										'desc'  => 'DECIMAL'
+									),
+									'signed' => array(
+										'value' => 'SIGNED',
+										'desc'  => 'SIGNED'
+									),
+									'time' => array(
+										'value' => 'TIME',
+										'desc'  => 'TIME'
+									),
+									'unsigned' => array(
+										'value' => 'UNSIGNED',
+										'desc'  => 'UNSIGNED'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_type_ba'),
+									$this->get_field_name('mq_type_ba'),
+									$options, $instance['mq_type_ba'],
+									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+								); ?>
+
+								<hr />
+
+								<?php // ================= Relation between ba and bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'and' => array(
+										'value' => 'AND',
+										'desc'  => 'AND'
+									),
+									'or' => array(
+										'value' => 'OR',
+										'desc'  => 'OR'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Relation between B1 and B2 custom fields', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_relation_b'),
+									$this->get_field_name('mq_relation_b'),
+									$options, $instance['mq_relation_b']
+								); ?>
+
+								<hr />
+
+								<?php // ================= Custom field key bb
+								pis_form_input_text(
+									sprintf( '%1$s' . esc_html__( 'Custom field key B2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
+									$this->get_field_id('mq_key_bb'),
+									$this->get_field_name('mq_key_bb'),
+									esc_attr( $instance['mq_key_bb'] ),
+									esc_html__( 'color', 'posts-in-sidebar' ),
+									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field value bb
+								pis_form_input_text(
+									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_value_bb'),
+									$this->get_field_name('mq_value_bb'),
+									esc_attr( $instance['mq_value_bb'] ),
+									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
+									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field compare bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'equal' => array(
+										'value' => '=',
+										'desc'  => '='
+									),
+									'not_equal' => array(
+										'value' => '!=',
+										'desc'  => '!='
+									),
+									'greater' => array(
+										'value' => '>',
+										'desc'  => '>'
+									),
+									'greater_equal' => array(
+										'value' => '>=',
+										'desc'  => '>='
+									),
+									'lower' => array(
+										'value' => '<',
+										'desc'  => '<'
+									),
+									'lower_equal' => array(
+										'value' => '<=',
+										'desc'  => '<='
+									),
+									'like' => array(
+										'value' => 'LIKE',
+										'desc'  => 'LIKE'
+									),
+									'not_like' => array(
+										'value' => 'NOT LIKE',
+										'desc'  => 'NOT LIKE'
+									),
+									'in' => array(
+										'value' => 'IN',
+										'desc'  => 'IN'
+									),
+									'not_in' => array(
+										'value' => 'NOT IN',
+										'desc'  => 'NOT IN'
+									),
+									'between' => array(
+										'value' => 'BETWEEN',
+										'desc'  => 'BETWEEN'
+									),
+									'not_between' => array(
+										'value' => 'NOT BETWEEN',
+										'desc'  => 'NOT BETWEEN'
+									),
+									'exists' => array(
+										'value' => 'EXISTS',
+										'desc'  => 'EXISTS'
+									),
+									'not_exists' => array(
+										'value' => 'NOT EXISTS',
+										'desc'  => 'NOT EXISTS'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Operator', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_compare_bb'),
+									$this->get_field_name('mq_compare_bb'),
+									$options, $instance['mq_compare_bb'],
+									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Custom field type bb
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									),
+									'numeric' => array(
+										'value' => 'NUMERIC',
+										'desc'  => 'NUMERIC'
+									),
+									'binary' => array(
+										'value' => 'BINARY',
+										'desc'  => 'BINARY'
+									),
+									'char' => array(
+										'value' => 'CHAR',
+										'desc'  => 'CHAR'
+									),
+									'date' => array(
+										'value' => 'DATE',
+										'desc'  => 'DATE'
+									),
+									'datetime' => array(
+										'value' => 'DATETIME',
+										'desc'  => 'DATETIME'
+									),
+									'decimal' => array(
+										'value' => 'DECIMAL',
+										'desc'  => 'DECIMAL'
+									),
+									'signed' => array(
+										'value' => 'SIGNED',
+										'desc'  => 'SIGNED'
+									),
+									'time' => array(
+										'value' => 'TIME',
+										'desc'  => 'TIME'
+									),
+									'unsigned' => array(
+										'value' => 'UNSIGNED',
+										'desc'  => 'UNSIGNED'
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Type', 'posts-in-sidebar' ),
+									$this->get_field_id('mq_type_bb'),
+									$this->get_field_name('mq_type_bb'),
+									$options, $instance['mq_type_bb'],
+									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+								); ?>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
 			</div>
 
 		</div>
@@ -2461,7 +3309,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Displaying posts -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Displaying posts', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="displaying-posts" class="pis-widget-title"><?php esc_html_e( 'Displaying posts', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -2545,7 +3393,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				</div>
 
 				<div class="pis-section pis-2col">
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The featured image of the post', 'posts-in-sidebar' ); ?></h4>
+
+					<h5 data-panel="featured-image" class="pis-widget-title"><?php esc_html_e( 'The featured image of the post', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2678,7 +3527,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Author, date and comments', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="author-date-comments" class="pis-widget-title"><?php esc_html_e( 'Author, date and comments', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2797,7 +3646,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Taxonomies', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="taxonomies" class="pis-widget-title"><?php esc_html_e( 'Taxonomies', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2953,7 +3802,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-field" class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -2968,7 +3817,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_input_text( esc_html__( 'Use this text before the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), esc_html__( 'Custom field:', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Which custom field
-								$options = array();
+								$options = array(
+									'empty' => array(
+										'value' => '',
+										'desc'  => ''
+									)
+								);
 								$metas = (array) pis_meta();
 								foreach ( $metas as $meta ) {
 									if ( ! is_protected_meta( $meta, 'post' ) ) {
@@ -3030,7 +3884,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section pis-2col">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'The link to the archive', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="archive-link" class="pis-widget-title"><?php esc_html_e( 'The link to the archive', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3149,7 +4003,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'When no posts are found', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="no-posts" class="pis-widget-title"><?php esc_html_e( 'When no posts are found', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3183,7 +4037,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Styles -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Styles', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="styles" class="pis-widget-title"><?php esc_html_e( 'Styles', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 
@@ -3256,7 +4110,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Custom styles -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Custom styles', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="custom-styles" class="pis-widget-title"><?php esc_html_e( 'Custom styles', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3285,7 +4139,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Extras -->
 				<div class="pis-section">
 
-					<h4 class="pis-widget-title"><?php esc_html_e( 'Extras', 'posts-in-sidebar' ); ?></h4>
+					<h5 data-panel="extras" class="pis-widget-title"><?php esc_html_e( 'Extras', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3339,7 +4193,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Cache -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Cache', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="cache" class="pis-widget-title"><?php esc_html_e( 'Cache', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container pis-2col">
 
@@ -3379,7 +4233,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		<!-- Debugging -->
 		<div class="pis-section">
 
-			<h4 class="pis-widget-title"><?php esc_html_e( 'Debugging', 'posts-in-sidebar' ); ?></h4>
+			<h4 data-panel="debugging" class="pis-widget-title"><?php esc_html_e( 'Debugging', 'posts-in-sidebar' ); ?></h4>
 
 			<div class="pis-container">
 

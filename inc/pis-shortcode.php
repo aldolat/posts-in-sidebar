@@ -42,6 +42,8 @@ function pis_shortcode( $atts ) {
 		 * otherwise it will break sticky posts.
 		 */
 		'search'              => NULL,
+		'has_password'        => 'null', // Fake content that will be converted later into real null/true/false.
+		'post_password'       => '',
 		'ignore_sticky'       => false,
 		/* This is the category of the single post
 		 * where we'll get posts from.
@@ -51,26 +53,20 @@ function pis_shortcode( $atts ) {
 
 		// Taxonomies
 		'relation'            => '',
-
 		'taxonomy_aa'         => '',
 		'field_aa'            => 'slug',
 		'terms_aa'            => '',
 		'operator_aa'         => 'IN',
-
 		'relation_a'          => '',
-
 		'taxonomy_ab'         => '',
 		'field_ab'            => 'slug',
 		'terms_ab'            => '',
 		'operator_ab'         => 'IN',
-
 		'taxonomy_ba'         => '',
 		'field_ba'            => 'slug',
 		'terms_ba'            => '',
 		'operator_ba'         => 'IN',
-
 		'relation_b'          => '',
-
 		'taxonomy_bb'         => '',
 		'field_bb'            => 'slug',
 		'terms_bb'            => '',
@@ -92,6 +88,31 @@ function pis_shortcode( $atts ) {
 		'date_before_day'     => '',
 		'date_inclusive'      => false,
 		'date_column'         => '',
+		'date_after_dyn_num'  => '',
+		'date_after_dyn_date' => '',
+		'date_before_dyn_num' => '',
+		'date_before_dyn_date'=> '',
+
+		// Meta query
+		'mq_relation'         => '',
+		'mq_key_aa'           => '',
+		'mq_value_aa'         => '',
+		'mq_compare_aa'       => '',
+		'mq_type_aa'          => '',
+		'mq_relation_a'       => '',
+		'mq_key_ab'           => '',
+		'mq_value_ab'         => '',
+		'mq_compare_ab'       => '',
+		'mq_type_ab'          => '',
+		'mq_key_ba'           => '',
+		'mq_value_ba'         => '',
+		'mq_compare_ba'       => '',
+		'mq_type_ba'          => '',
+		'mq_relation_b'       => '',
+		'mq_key_bb'           => '',
+		'mq_value_bb'         => '',
+		'mq_compare_bb'       => '',
+		'mq_type_bb'          => '',
 
 		// Posts exclusion
 		'author_not_in'       => '',

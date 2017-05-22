@@ -1489,15 +1489,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						$options = array(
 							array(
 								'value' => 'null',
-								'desc'  => 'With and without password',
+								'desc'  => esc_html__( 'With and without password', 'posts-in-sidebar' )
 							),
 							array(
 								'value' => 'true',
-								'desc'  => 'With password',
+								'desc'  => esc_html__( 'With password', 'posts-in-sidebar' )
 							),
 							array(
 								'value' => 'false',
-								'desc'  => 'Without password',
+								'desc'  => esc_html__( 'Without password', 'posts-in-sidebar' )
 							)
 						);
 						pis_form_select(

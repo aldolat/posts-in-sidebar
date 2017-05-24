@@ -3807,7 +3807,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h5 data-panel="custom-field" class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h5>
+					<h5 data-panel="custom-field" class="pis-widget-title"><?php esc_html_e( 'The custom fields', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3861,8 +3861,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 						</div>
-
-						<h6><?php esc_html_e( 'Common elements', 'posts-in-sidebar' ); ?></h6>
 
 						<?php // ================= Custom fields text
 						pis_form_input_text( esc_html__( 'Use this text before the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), esc_html__( 'Custom field:', 'posts-in-sidebar' ) ); ?>

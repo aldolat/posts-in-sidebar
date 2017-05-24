@@ -1460,6 +1460,12 @@ function pis_the_tags( $args ) {
 	return $output;
 }
 
+
+/**
+ * Return the custom field of the post.
+ *
+ * @since 3.8.4
+ */
 function pis_custom_field( $args ) {
 	$defaults = array(
 		'post_id'             => '',

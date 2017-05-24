@@ -105,13 +105,13 @@ function pis_break_text( $text ) {
 function pis_meta() {
 	global $wpdb;
 	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
-	$keys = $wpdb->get_col( "
-		SELECT meta_key
+	$sql = "SELECT DISTINCT meta_key
 		FROM $wpdb->postmeta
-		GROUP BY meta_key
-		HAVING meta_key NOT LIKE '\_%'
+		WHERE meta_key NOT BETWEEN '_' AND '_z'
+		HAVING meta_key NOT LIKE %s
 		ORDER BY meta_key
-		LIMIT $limit" );
+		LIMIT %d";
+	$keys = $wpdb->get_col( $wpdb->prepare( $sql, $wpdb->esc_like( '_' ) . '%', $limit ) );
 	if ( $keys )
 		natcasesort($keys);
 	return $keys;
@@ -1462,7 +1462,7 @@ function pis_the_tags( $args ) {
 
 
 /**
- * Return the custom field of the post.
+ * Return the custom fields of the post.
  *
  * @since 3.8.4
  */
@@ -1491,6 +1491,7 @@ function pis_custom_field( $args ) {
 		$cf_text = '';
 	}
 
+	// If the user want to display all the custom fields of the post
 	if ( $custom_field_all ) {
 		$the_custom_fields = get_post_custom( $post_id );
 		if ( $the_custom_fields ) {

@@ -110,7 +110,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-# 4.1 #
+### 4.1 ###
 
 * Added option to display all the custom fields of the post.
 

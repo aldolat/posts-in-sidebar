@@ -1469,6 +1469,7 @@ function pis_the_tags( $args ) {
 function pis_custom_field( $args ) {
 	$defaults = array(
 		'post_id'             => '',
+		'custom_field_all'    => false,
 		'meta'                => '',
 		'custom_field_txt'    => '',
 		'custom_field_key'    => false,
@@ -1483,26 +1484,65 @@ function pis_custom_field( $args ) {
 
 	$output = '';
 
-	$the_custom_field = get_post_meta( $post_id, $meta, false );
+	// The leading text for the custom fields
+	if ( $custom_field_txt ) {
+		$cf_text = '<span class="pis-custom-field-text-before">' . rtrim( $custom_field_txt ) . '</span> ';
+	} else {
+		$cf_text = '';
+	}
 
-	if ( $the_custom_field ) {
-		if ( $custom_field_txt )
-			$cf_text = '<span class="pis-custom-field-text-before">' . $custom_field_txt . ' </span>';
-		else
-			$cf_text = '';
-		if ( $custom_field_key )
-			$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
-		else
-			$key = '';
-		if ( ! empty( $custom_field_count ) )
-			// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
-			$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
-		else
-			if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
-		$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
-		$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
-			$output .= $cf_text . $key . $cf_value;
-		$output .= '</p>';
+	if ( $custom_field_all ) {
+		$the_custom_fields = get_post_custom( $post_id );
+		if ( $the_custom_fields ) {
+			foreach ( $the_custom_fields as $cf_key => $cf_value ) {
+				// Make sure to avoid custom fields starting with _ (an underscore)
+				if ( '_' != substr( $cf_key, 0, 1 ) ) {
+					foreach ( $cf_value as $k => $cf_v ) {
+
+						// If we have to display a text before the custom field
+						if ( $custom_field_key ) {
+							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
+						} else $key = '';
+
+						// If we have to reduce the length of the custom field value
+						if ( ! empty( $custom_field_count ) ) {
+							$custom_field_count > strlen( $cf_v ) ? $cf_h = '' : $cf_h = $custom_field_hellip;
+							$cf_text_value = rtrim( mb_substr( $cf_v, 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $cf_h;
+						} else {
+							$cf_text_value = $cf_v;
+						}
+
+						// Build the custom field value line
+						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+
+						// Build the final output
+						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+							$output .= $cf_text . $key . $cf_value;
+						$output .= '</p>';
+					}
+				}
+			}
+		}
+	} else {
+		$the_custom_field = get_post_meta( $post_id, $meta, false );
+		if ( $the_custom_field ) {
+			if ( $custom_field_key ) {
+				$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
+			} else {
+				$key = '';
+			}
+			if ( ! empty( $custom_field_count ) ) {
+				if ( $custom_field_count > strlen( $the_custom_field[0] ) ) $custom_field_hellip = '';
+				// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+				$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
+			} else {
+				if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
+			}
+			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+				$output .= $cf_text . $key . $cf_value;
+			$output .= '</p>';
+		}
 	}
 
 	return $output;

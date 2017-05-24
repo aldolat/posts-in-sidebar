@@ -292,6 +292,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['term_sep'] ) )             $instance['term_sep']             = ',';
 		if ( ! isset( $instance['ctaxs_before_title'] ) )   $instance['ctaxs_before_title']   = false;
 		if ( ! isset( $instance['ctaxs_after_title'] ) )    $instance['ctaxs_after_title']    = false;
+		if ( ! isset( $instance['custom_field_all'] ) )     $instance['custom_field_all']     = false;
 		if ( ! isset( $instance['custom_field'] ) )         $instance['custom_field']         = false;
 		if ( ! isset( $instance['custom_field_txt'] ) )     $instance['custom_field_txt']     = '';
 		if ( ! isset( $instance['meta'] ) )                 $instance['meta']                 = '';
@@ -517,6 +518,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ctaxs_after_title'   => $instance['ctaxs_after_title'],
 
 			// The custom field
+			'custom_field_all'    => $instance['custom_field_all'],
 			'custom_field'        => $instance['custom_field'],
 			'custom_field_txt'    => $instance['custom_field_txt'],
 			'meta'                => $instance['meta'],
@@ -845,8 +847,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['ctaxs_after_title']   = isset( $new_instance['ctaxs_after_title'] ) ? 1 : 0;
 
 		// The custom field
+		$instance['custom_field_all']    = isset( $new_instance['custom_field_all'] ) ? 1 : 0;
 		$instance['custom_field']        = isset( $new_instance['custom_field'] ) ? 1 : 0;
-		$instance['custom_field_txt']    = strip_tags( $new_instance['custom_field_txt'] );
+		$instance['custom_field_txt']    = rtrim( strip_tags( $new_instance['custom_field_txt'] ) );
 		$instance['meta']                = strip_tags( $new_instance['meta'] );
 		$instance['custom_field_count']  = strip_tags( $new_instance['custom_field_count'] );
 			if ( 0 >= $instance['custom_field_count'] || ! is_numeric( $instance['custom_field_count'] ) ) $instance['custom_field_count'] = '';
@@ -1122,6 +1125,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'ctaxs_after_title'   => false,
 
 			// The custom field
+			'custom_field_all'    => false,
 			'custom_field'        => false,
 			'custom_field_txt'    => '',
 			'meta'                => '',
@@ -1210,6 +1214,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$display_custom_tax   = (bool) $instance['display_custom_tax'];
 		$ctaxs_before_title   = (bool) $instance['ctaxs_before_title'];
 		$ctaxs_after_title    = (bool) $instance['ctaxs_after_title'];
+		$custom_field_all     = (bool) $instance['custom_field_all'];
 		$custom_field         = (bool) $instance['custom_field'];
 		$custom_field_key     = (bool) $instance['custom_field_key'];
 		$cf_before_title      = (bool) $instance['cf_before_title'];
@@ -3800,21 +3805,34 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<div class="pis-section pis-2col">
+				<div class="pis-section">
 
 					<h5 data-panel="custom-field" class="pis-widget-title"><?php esc_html_e( 'The custom field', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
-						<div class="pis-column-container">
+						<div class="pis-column-container pis-2col">
 
 							<div class="pis-column">
 
-								<?php // ================= Display custom field
-								pis_form_checkbox( esc_html__( 'Display the custom field of the post', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
+								<h6><?php esc_html_e( 'Display all the custom fields', 'posts-in-sidebar' ); ?></h6>
 
-								<?php // ================= Custom fields text
-								pis_form_input_text( esc_html__( 'Use this text before the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), esc_html__( 'Custom field:', 'posts-in-sidebar' ) ); ?>
+								<?php // ================= Display all the custom fields
+								pis_form_checkbox(
+									esc_html__( 'Display all the custom fields of the post', 'posts-in-sidebar' ),
+									$this->get_field_id( 'custom_field_all' ),
+									$this->get_field_name( 'custom_field_all' ),
+									checked( $custom_field_all, true, false )
+								); ?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Display a single custom field', 'posts-in-sidebar' ); ?></h6>
+
+								<?php // ================= Display a single custom field
+								pis_form_checkbox( esc_html__( 'Display the custom field of the post', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
 
 								<?php // ================= Which custom field
 								$options = array(
@@ -3840,25 +3858,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$instance['meta']
 								); ?>
 
-								<?php // ================= Custom field count
-								pis_form_input_text( esc_html__( 'The custom field content length will be (in characters)', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_count' ), $this->get_field_name( 'custom_field_count' ), esc_attr( $instance['custom_field_count'] ), '10' ); ?>
-
-								<?php // ================= Custom field hellip
-								pis_form_input_text( esc_html__( 'Use this text for horizontal ellipsis', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_hellip' ), $this->get_field_name( 'custom_field_hellip' ), esc_attr( $instance['custom_field_hellip'] ), '&hellip;' ); ?>
-
-							</div>
-
-							<div class="pis-column">
-
-								<?php // ================= Custom field key
-								pis_form_checkbox( esc_html__( 'Also display the key of the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
-
-								<?php // ================= Custom field separator
-								pis_form_input_text( esc_html__( 'Use this separator between meta key and value', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
-
 							</div>
 
 						</div>
+
+						<h6><?php esc_html_e( 'Common elements', 'posts-in-sidebar' ); ?></h6>
+
+						<?php // ================= Custom fields text
+						pis_form_input_text( esc_html__( 'Use this text before the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_txt' ), $this->get_field_name( 'custom_field_txt' ), esc_attr( $instance['custom_field_txt'] ), esc_html__( 'Custom field:', 'posts-in-sidebar' ) ); ?>
+
+						<?php // ================= Custom field count
+						pis_form_input_text( esc_html__( 'The custom field content length will be (in characters)', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_count' ), $this->get_field_name( 'custom_field_count' ), esc_attr( $instance['custom_field_count'] ), '10' ); ?>
+
+						<?php // ================= Custom field hellip
+						pis_form_input_text( esc_html__( 'Use this text for horizontal ellipsis', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_hellip' ), $this->get_field_name( 'custom_field_hellip' ), esc_attr( $instance['custom_field_hellip'] ), '&hellip;' ); ?>
+
+						<?php // ================= Custom field key
+						pis_form_checkbox( esc_html__( 'Also display the key of the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
+
+						<?php // ================= Custom field separator
+						pis_form_input_text( esc_html__( 'Use this separator between meta key and value', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
 
 						<div class="pis-boxed pis-boxed-green">
 

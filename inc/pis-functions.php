@@ -1384,7 +1384,7 @@ function pis_the_title( $args ) {
  *     @type string $margin_unit       The measure unit for the margin.
  *                                     Accepted values:
  *                                     px (default), %, em, rem
- *     @type string $categ_text        The text for the categories.
+ *     @type string $categ_text        The leading text for the categories.
  * }
  *
  * @return The HTML paragraph with the categories.

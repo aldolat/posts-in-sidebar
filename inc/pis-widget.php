@@ -3843,12 +3843,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								$metas = (array) pis_meta();
 								foreach ( $metas as $meta ) {
-									if ( ! is_protected_meta( $meta, 'post' ) ) {
-										$options[] = array(
-											'value' => $meta,
-											'desc'  => $meta,
-										);
-									}
+									if ( is_protected_meta( $meta, 'post' ) )
+										continue;
+									$options[] = array(
+										'value' => $meta,
+										'desc'  => $meta,
+									);
 								}
 								pis_form_select(
 									esc_html__( 'Display this custom field', 'posts-in-sidebar' ),

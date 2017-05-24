@@ -96,7 +96,8 @@
 .pis-section :-ms-input-placeholder {
 	color: #ccc;
 }
-.pis-section h5 {
+.pis-section h5,
+.pis-section h6 {
 	font-size: 1em;
 }
 .pis-container p:last-child {
@@ -108,6 +109,7 @@
 .pis-boxed h5 {
 	margin-top: 0;
 }
-.pis-section h6 {
-	font-size: 1em;
+.pis-container h6 {
+	margin-bottom: 1.67em;
+	margin-top: 1em;
 }

@@ -45,6 +45,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
+		'posts_by_comments'   => false,     // Uses an array of post IDs
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -492,6 +493,20 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( ! empty( $post_type_multiple ) ) {
 		$post_type = (array) explode( ', ', $post_type_multiple );
+	}
+
+	/*
+	 * Get posts by recent comments.
+	 *
+	 * @since 4.1
+	 */
+	if ( $posts_by_comments ) {
+		// Get the posts IDs.
+		$posts_id = pis_get_posts_by_recent_comments( $post_type, $number, $order );
+		// Preserve post ID order given in $posts_id array.
+		$orderby = 'post__in';
+		// Make sure to get only publiched posts.
+		$post_status = 'publish';
 	}
 
 	// Build the array for WP_Query object.

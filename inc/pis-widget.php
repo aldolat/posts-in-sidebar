@@ -171,6 +171,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['post_type_multiple'] ) )   $instance['post_type_multiple']   = '';
 		if ( ! isset( $instance['posts_id'] ) )             $instance['posts_id']             = '';
 		if ( ! isset( $instance['author_in'] ) )            $instance['author_in']            = '';
+		if ( ! isset( $instance['posts_by_comments'] ) )    $instance['posts_by_comments']    = false;
 		if ( ! isset( $instance['post_parent_in'] ) )       $instance['post_parent_in']       = '';
 		if ( ! isset( $instance['post_format'] ) )          $instance['post_format']          = '';
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
@@ -347,6 +348,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'posts_id'            => $instance['posts_id'],
 			'author'              => $instance['author'],
 			'author_in'           => $instance['author_in'],
+			'posts_by_comments'   => $instance['posts_by_comments'],
 			'cat'                 => $instance['cat'],
 			'tag'                 => $instance['tag'],
 			'post_parent_in'      => $instance['post_parent_in'],
@@ -643,6 +645,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
 			// Make $author empty if $author_in is not empty.
 			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
+		$instance['posts_by_comments']   = $new_instance['posts_by_comments'];
 		$instance['cat']                 = strip_tags( $new_instance['cat'] );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
@@ -948,6 +951,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'posts_id'            => '',
 			'author'              => '',
 			'author_in'           => '',
+			'posts_by_comments'   => '',
 			'cat'                 => '',
 			'tag'                 => '',
 			'post_parent_in'      => '',
@@ -1178,6 +1182,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'debug_params'        => false,
 		);
 		$instance             = wp_parse_args( (array) $instance, $defaults );
+		$posts_by_comments    = (bool) $instance['posts_by_comments'];
 		$ignore_sticky        = (bool) $instance['ignore_sticky'];
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
 		$sort_categories      = (bool) $instance['sort_categories'];
@@ -1402,6 +1407,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_html__( '1, 23, 45', 'posts-in-sidebar' ),
 							esc_html__( 'Enter IDs separated by commas. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
 						); ?>
+
+						<?php // ================= Get posts by recent comments
+						pis_form_checkbox( esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
+							$this->get_field_id( 'posts_by_comments' ),
+							$this->get_field_name( 'posts_by_comments' ),
+							checked( $posts_by_comments, true, false )
+						);
+						?>
 
 					</div>
 

@@ -36,7 +36,9 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 
 	// If $class is not empty, transform it into an array and add the elements to the array
 	if ( ! empty( $class ) ) {
-		if ( ! is_array( $class ) ) $class = preg_split( '#\s+#', $class );
+		// If $class is not an array, transform it into an array, using one or more spaces as separator
+		if ( ! is_array( $class ) ) $class = preg_split( '/[\s]+/', trim( $class ) );
+		// Merge array $class into $classes
 		$classes = array_merge( $classes, $class );
 	}
 

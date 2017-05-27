@@ -1518,8 +1518,11 @@ function pis_custom_field( $args ) {
 						// Build the custom field value line
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
+						// Create the class from the key of the custom field key
+						$pis_cf_key_class = ' pis-' . $cf_key;
+
 						// Build the final output
-						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . $cf_key, 'pis_custom_fields_class' ) . '>';
+						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
 							$output .= $cf_text . $key . $cf_value;
 						$output .= '</p>';
 					}

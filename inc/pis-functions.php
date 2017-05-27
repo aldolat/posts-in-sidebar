@@ -30,8 +30,8 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// Define $classes as array
 	$classes = array();
 
-	// If $default is not empy, add the value as an element of the array
-	if( ! empty( $default ) )
+	// If $default is not empy, add the value as an element of the array, removing any space
+	if ( ! empty( $default ) )
 		$classes[] = $default;
 
 	// If $class is not empty, transform it into an array and add the elements to the array
@@ -42,8 +42,8 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 		$classes = array_merge( $classes, $class );
 	}
 
-	// Escape evil chars in $classes
-	$classes = array_map( 'esc_attr', $classes );
+	// Sanitize a html classname to ensure it only contains valid characters.
+	$classes = array_filter( $classes, 'sanitize_html_class' );
 
 	// Remove null or empty or space-only-filled elements from the array
 	foreach ( $classes as $key => $value ) {
@@ -1519,7 +1519,7 @@ function pis_custom_field( $args ) {
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
 						// Create the class from the key of the custom field key
-						$pis_cf_key_class = ' pis-' . $cf_key;
+						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key ) );
 
 						// Build the final output
 						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
@@ -1545,7 +1545,7 @@ function pis_custom_field( $args ) {
 				if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
-			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . $custom_field_key, 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key ) ), 'pis_custom_fields_class' ) . '>';
 				$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}

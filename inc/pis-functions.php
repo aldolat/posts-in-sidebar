@@ -1517,7 +1517,7 @@ function pis_custom_field( $args ) {
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
 						// Build the final output
-						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . $cf_key, 'pis_custom_fields_class' ) . '>';
 							$output .= $cf_text . $key . $cf_value;
 						$output .= '</p>';
 					}
@@ -1540,7 +1540,7 @@ function pis_custom_field( $args ) {
 				if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
-			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field', 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . $custom_field_key, 'pis_custom_fields_class' ) . '>';
 				$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}

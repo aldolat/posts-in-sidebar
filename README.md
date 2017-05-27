@@ -112,6 +112,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 4.1 ###
 
+* Added option to get posts by recent comments.
 * Added option to display all the custom fields of the post.
 
 ### 4.0 ###

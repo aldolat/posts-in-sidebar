@@ -26,6 +26,7 @@ Here are some of the functions you'll have:
 * get posts by modification date;
 * get posts children of other posts;
 * get posts by search;
+* get posts by recent comments;
 * get posts by complex taxonomies queries;
 * get posts by complex date queries;
 * get posts by complex custom fields queries;

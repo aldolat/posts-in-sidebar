@@ -951,7 +951,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'posts_id'            => '',
 			'author'              => '',
 			'author_in'           => '',
-			'posts_by_comments'   => '',
+			'posts_by_comments'   => false,
 			'cat'                 => '',
 			'tag'                 => '',
 			'post_parent_in'      => '',

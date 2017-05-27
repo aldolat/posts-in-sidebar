@@ -30,7 +30,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// Define $classes as array
 	$classes = array();
 
-	// If $default is not empy, add the value ad an element of the array
+	// If $default is not empy, add the value as an element of the array
 	if( ! empty( $default ) )
 		$classes[] = $default;
 

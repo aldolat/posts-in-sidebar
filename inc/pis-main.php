@@ -750,6 +750,13 @@ function pis_get_posts_in_sidebar( $args ) {
 				} else { ?><?php
 
 					/*
+					 * Assign the ID of the post as a class.
+					 *
+					 * @since 4.1
+					 */
+					$post_id_class = ' pis-post-' . $pis_query->post->ID;
+
+					/*
 					 * Assign the class 'current-post' if this is the post of the main loop.
 					 *
 					 * @since 1.6
@@ -779,7 +786,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$pis_output .= '<li ' . pis_class( 'pis-li' . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
+					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 						// Define the containers for single sections to be concatenated later
 						$pis_thumbnail_content    = '';

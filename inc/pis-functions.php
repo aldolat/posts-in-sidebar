@@ -41,7 +41,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	}
 
 	// Escape evil chars in $classes
-	$classes = array_map( 'sanitize_html_class', $classes );
+	$classes = array_map( 'esc_attr', $classes );
 
 	// Remove null or empty or space-only-filled elements from the array
 	foreach ( $classes as $key => $value ) {

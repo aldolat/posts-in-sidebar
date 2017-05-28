@@ -20,30 +20,33 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since 1.9
  *
- * @param string       $default One or more classes, defined by plugin's developer, to add to the class list.
- * @param string|array $class   One or more classes, defined by the user, to add to the class list.
- * @param boolean      $echo    If the function should echo or not the output. Default true.
- * @return string      $output  List of classes.
+ * @param  string|array $default One or more classes, defined by plugin's developer, to add to the class list.
+ * @param  string|array $class   One or more classes, defined by the user, to add to the class list.
+ * @param  boolean      $echo    If the function should echo or not the output. Default true.
+ * @return string       $output  HTML formatted list of classes, e.g class="class1 class2".
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
 
 	// Define $classes as array
 	$classes = array();
 
-	// If $default is not empy, add the value as an element of the array, removing any space
-	if ( ! empty( $default ) )
-		$classes[] = $default;
-
-	// If $class is not empty, transform it into an array and add the elements to the array
-	if ( ! empty( $class ) ) {
-		// If $class is not an array, transform it into an array, using one or more spaces as separator
-		if ( ! is_array( $class ) ) $class = preg_split( '/[\s]+/', trim( $class ) );
-		// Merge array $class into $classes
-		$classes = array_merge( $classes, $class );
+	// If $default is not empty, remove any leading and trailing dot, space, and dash,
+	// transform it into an array using internal spaces, and merge it with $classes.
+	if ( ! empty( $default ) ) {
+		if ( ! is_array( $default ) ) {
+			$default = preg_split( '/[\s]+/', trim( $default ) );
+		}
+		$classes = array_merge( $classes, $default );
 	}
 
-	// Sanitize a html classname to ensure it only contains valid characters.
-	$classes = array_filter( $classes, 'sanitize_html_class' );
+	// If $class is not empty, remove any leading and trailing space,
+	// transform it into an array using internal spaces, and merge it with $classes.
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '/[\s]+/', trim( $class ) );
+		}
+		$classes = array_merge( $classes, $class );
+	}
 
 	// Remove null or empty or space-only-filled elements from the array
 	foreach ( $classes as $key => $value ) {
@@ -52,11 +55,11 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 		}
 	}
 
-	// Convert the array into string
-	$classes = implode( ' ', $classes );
+	// Sanitize a HTML classname to ensure it only contains valid characters.
+	$classes = array_map( 'sanitize_html_class', $classes );
 
-	// Complete the final output
-	$classes = 'class="' . $classes . '"';
+	// Convert the array into string and build the final output
+	$classes = 'class="' . implode( ' ', $classes ) . '"';
 
 	if ( true === $echo ) {
 		echo apply_filters( 'pis_classes', $classes );

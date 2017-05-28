@@ -14,7 +14,6 @@ if ( ! defined( 'WPINC' ) ) {
 	exit( 'No script kiddies please!' );
 }
 
-
 /*
  * Queries section
  ******************************************************************************/
@@ -180,7 +179,6 @@ function pis_tax_query( $args ) {
 	}
 }
 
-
 /**
  * Build the query based on custom fields.
  *
@@ -345,7 +343,6 @@ function pis_meta_query( $args ) {
 	}
 }
 
-
 /**
  * Get posts by most recent comments.
  *
@@ -378,7 +375,6 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
 
 	return $post_ids;
 }
-
 
 /*
  * Display section
@@ -1296,7 +1292,6 @@ function pis_debug( $parameters ) {
 		return $output;
 	}
 }
-
 
 /*
  * Tools section

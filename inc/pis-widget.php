@@ -645,7 +645,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
 			// Make $author empty if $author_in is not empty.
 			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
-		$instance['posts_by_comments']   = $new_instance['posts_by_comments'];
+		$instance['posts_by_comments']   = isset( $new_instance['posts_by_comments'] ) ? 1 : 0;
 		$instance['cat']                 = strip_tags( $new_instance['cat'] );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );

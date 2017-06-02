@@ -45,7 +45,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
-		'posts_by_comments'   => false,     // Uses an array of post IDs
+		'posts_by_comments'   => false,     // Boolean. An array of post IDs will be used
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -505,7 +505,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		$posts_id = pis_get_posts_by_recent_comments( $post_type, $number, $order );
 		// Preserve post ID order given in $posts_id array.
 		$orderby = 'post__in';
-		// Make sure to get only publiched posts.
+		// Make sure to get only published posts.
 		$post_status = 'publish';
 	}
 

@@ -584,7 +584,7 @@ function pis_custom_field( $args ) {
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
 						// Create the class from the key of the custom field key
-						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key ) );
+						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key, ' -' ) );
 
 						// Build the final output
 						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
@@ -610,7 +610,7 @@ function pis_custom_field( $args ) {
 				if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
-			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key ) ), 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key, ' -' ) ), 'pis_custom_fields_class' ) . '>';
 				$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}
@@ -1316,7 +1316,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// transform it into an array using internal spaces, and merge it with $classes.
 	if ( ! empty( $default ) ) {
 		if ( ! is_array( $default ) ) {
-			$default = preg_split( '/[\s]+/', trim( $default ) );
+			$default = preg_split( '/[\s]+/', trim( $default, ' -' ) );
 		}
 		$classes = array_merge( $classes, $default );
 	}
@@ -1325,7 +1325,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// transform it into an array using internal spaces, and merge it with $classes.
 	if ( ! empty( $class ) ) {
 		if ( ! is_array( $class ) ) {
-			$class = preg_split( '/[\s]+/', trim( $class ) );
+			$class = preg_split( '/[\s]+/', trim( $class, ' -' ) );
 		}
 		$classes = array_merge( $classes, $class );
 	}
@@ -1339,6 +1339,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 
 	// Sanitize a HTML classname to ensure it only contains valid characters.
 	$classes = array_map( 'sanitize_html_class', $classes );
+	$classes = array_map( 'pis_remove_dashes', $classes );
 
 	// Convert the array into string and build the final output
 	$classes = 'class="' . implode( ' ', $classes ) . '"';
@@ -1571,6 +1572,17 @@ function pis_compare_string_to_array( $string = '', $array = array() ) {
 	$output = implode( ', ', $output );
 
 	return $output;
+}
+
+/**
+ * Remove any leading and trailing dash from a string.
+ *
+ * @param string $string The string to be trimmed.
+ * @since 4.1
+ */
+function pis_remove_dashes( $string = '' ) {
+	$string = trim( $string, '-' );
+	return $string;
 }
 
 /**

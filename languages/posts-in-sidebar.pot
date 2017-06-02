@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 4.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2017-06-02 06:14:50+00:00\n"
+"POT-Creation-Date: 2017-06-02 16:40:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,98 +12,98 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: inc/pis-functions.php:468 inc/pis-main.php:209 inc/pis-shortcode.php:169
+#: inc/pis-functions.php:479 inc/pis-main.php:209 inc/pis-shortcode.php:169
 #: inc/pis-widget.php:281 inc/pis-widget.php:1111 inc/pis-widget.php:3681
 msgid "Category:"
 msgstr ""
 
-#: inc/pis-functions.php:512 inc/pis-main.php:216 inc/pis-shortcode.php:174
+#: inc/pis-functions.php:523 inc/pis-main.php:216 inc/pis-shortcode.php:174
 #: inc/pis-widget.php:286 inc/pis-widget.php:1118 inc/pis-widget.php:3703
 msgid "Tags:"
 msgstr ""
 
-#: inc/pis-functions.php:664 inc/pis-main.php:188 inc/pis-shortcode.php:149
-#: inc/pis-widget.php:264 inc/pis-widget.php:1090 inc/pis-widget.php:3560
-msgid "By"
-msgstr ""
-
-#: inc/pis-functions.php:667 inc/pis-main.php:195 inc/pis-shortcode.php:156
-#: inc/pis-widget.php:270 inc/pis-widget.php:1097 inc/pis-widget.php:3573
-msgid "Published on"
-msgstr ""
-
-#: inc/pis-functions.php:669 inc/pis-main.php:198 inc/pis-shortcode.php:159
-#: inc/pis-widget.php:273 inc/pis-widget.php:1100 inc/pis-widget.php:3633
-msgid "Modified on"
-msgstr ""
-
-#: inc/pis-functions.php:671 inc/pis-main.php:201 inc/pis-shortcode.php:162
-#: inc/pis-widget.php:275 inc/pis-widget.php:1103 inc/pis-widget.php:3586
-msgid "Comments:"
-msgstr ""
-
-#: inc/pis-functions.php:922 inc/pis-main.php:183 inc/pis-shortcode.php:144
+#: inc/pis-functions.php:781 inc/pis-main.php:183 inc/pis-shortcode.php:144
 #: inc/pis-widget.php:262 inc/pis-widget.php:1085 inc/pis-widget.php:3402
 msgid "Read more&hellip;"
 msgstr ""
 
-#: inc/pis-functions.php:1073
+#: inc/pis-functions.php:918 inc/pis-main.php:188 inc/pis-shortcode.php:149
+#: inc/pis-widget.php:264 inc/pis-widget.php:1090 inc/pis-widget.php:3560
+msgid "By"
+msgstr ""
+
+#: inc/pis-functions.php:921 inc/pis-main.php:195 inc/pis-shortcode.php:156
+#: inc/pis-widget.php:270 inc/pis-widget.php:1097 inc/pis-widget.php:3573
+msgid "Published on"
+msgstr ""
+
+#: inc/pis-functions.php:923 inc/pis-main.php:198 inc/pis-shortcode.php:159
+#: inc/pis-widget.php:273 inc/pis-widget.php:1100 inc/pis-widget.php:3633
+msgid "Modified on"
+msgstr ""
+
+#: inc/pis-functions.php:925 inc/pis-main.php:201 inc/pis-shortcode.php:162
+#: inc/pis-widget.php:275 inc/pis-widget.php:1103 inc/pis-widget.php:3586
+msgid "Comments:"
+msgstr ""
+
+#: inc/pis-functions.php:1084
 msgid "Comments are closed."
 msgstr ""
 
-#: inc/pis-functions.php:1077
+#: inc/pis-functions.php:1088
 msgid "1 Comment"
 msgstr ""
 
-#: inc/pis-functions.php:1079
+#: inc/pis-functions.php:1090
 msgid "%d Comments"
 msgstr ""
 
-#: inc/pis-functions.php:1081
+#: inc/pis-functions.php:1092
 msgid "Leave a comment"
 msgstr ""
 
-#: inc/pis-functions.php:1126
+#: inc/pis-functions.php:1137
 msgid "Display all posts"
 msgstr ""
 
-#: inc/pis-functions.php:1251
+#: inc/pis-functions.php:1262
 msgid "%s Debug"
 msgstr ""
 
-#: inc/pis-functions.php:1252
+#: inc/pis-functions.php:1263
 msgid "Environment informations:"
 msgstr ""
 
-#: inc/pis-functions.php:1254
+#: inc/pis-functions.php:1265
 msgid "Site URL: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1255
+#: inc/pis-functions.php:1266
 msgid "WP version: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1256
+#: inc/pis-functions.php:1267
 msgid "PiS version: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1258
+#: inc/pis-functions.php:1269
 msgid "Cache: active"
 msgstr ""
 
-#: inc/pis-functions.php:1260
+#: inc/pis-functions.php:1271
 msgid "Cache: not active"
 msgstr ""
 
-#: inc/pis-functions.php:1262
+#: inc/pis-functions.php:1273
 msgid "Queries: %1$s queries in %2$s seconds"
 msgstr ""
 
-#: inc/pis-functions.php:1267
+#: inc/pis-functions.php:1278
 msgid "The parameters for the query:"
 msgstr ""
 
-#: inc/pis-functions.php:1272
+#: inc/pis-functions.php:1283
 msgid "The complete set of parameters of the widget:"
 msgstr ""
 

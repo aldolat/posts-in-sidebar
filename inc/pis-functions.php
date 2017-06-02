@@ -620,158 +620,6 @@ function pis_custom_field( $args ) {
 }
 
 /**
- * Add the utilities section: author, date of the post and comments.
- *
- * @param array $args {
- *    The array of parameters.
- *
- *    @type boolean display_author    If display the post's outhor. Default false.
- *    @type boolean display_date      If display the post's date. Default false.
- *    @type boolean display_mod_date  If display the modification date of the post. Default false.
- *    @type boolean comments          If display comments number. Default false.
- *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
- *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
- *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
- *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
- *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
- *    @type string  date_text         The text to be prepended before the date. Default 'Published on'.
- *    @type boolean linkify_date      If link the date name to the posts. Default false.
- *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
- *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
- *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
- *    @type string  pis_post_id       The ID of the post. Default empy.
- *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
- *    @type boolean gravatar_display  If display the Gravatar. Default false.
- *    @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
- *    @type string  gravatar_author   The ID of the post's author. Default empty value.
- *    @type integer gravatar_size     The size of the Gravatar. Default 32.
- *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
- * }
- * @since 1.18
- * @return The HTML for the section.
- * @uses pis_paragraph()
- * @uses pis_class()
- * @uses pis_get_comments_number()
- */
-function pis_utility_section( $args ) {
-	$defaults = array(
-		'display_author'    => false,
-		'display_date'      => false,
-		'display_mod_date'  => false,
-		'comments'          => false,
-		'utility_margin'    => NULL,
-		'margin_unit'       => 'px',
-		'author_text'       => esc_html__( 'By', 'posts-in-sidebar' ),
-		'linkify_author'    => false,
-		'utility_sep'       => '|',
-		'date_text'         => esc_html__( 'Published on', 'posts-in-sidebar' ),
-		'linkify_date'      => false,
-		'mod_date_text'     => esc_html__( 'Modified on', 'posts-in-sidebar' ),
-		'linkify_mod_date'  => false,
-		'comments_text'     => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-		'pis_post_id'       => '',
-		'link_to_comments'  => true,
-		'gravatar_display'  => false,
-		'gravatar_position' => '',
-		'gravatar_author'   => '',
-		'gravatar_size'     => 32,
-		'gravatar_default'  => '',
-	);
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
-
-	$output = '';
-
-	if ( $display_author || $display_date || $display_mod_date || $comments ) {
-		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
-	}
-
-		/* The Gravatar */
-		if ( $gravatar_display && 'next_author' == $gravatar_position ) {
-			$output .= pis_get_gravatar( array(
-				'author'  => $gravatar_author,
-				'size'    => $gravatar_size,
-				'default' => $gravatar_default,
-			) );
-		}
-
-		/* The author */
-		if ( $display_author ) {
-			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
-				if ( $author_text ) $output .= $author_text . ' ';
-				if ( $linkify_author ) {
-					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
-					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
-						$output .= get_the_author();
-					$output .= '</a>';
-				} else {
-					$output .= get_the_author();
-				}
-			$output .= '</span>';
-		}
-
-		/* The date */
-		if ( $display_date ) {
-			if ( $display_author ) {
-				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-			}
-			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
-				if ( $date_text ) $output .= $date_text . ' ';
-				if ( $linkify_date ) {
-					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-						$output .= get_the_date();
-					$output .= '</a>';
-				} else {
-					$output .= get_the_date();
-				}
-			$output .= '</span>';
-		}
-
-		/* The modification date */
-		if ( $display_mod_date ) {
-			/**
-			 * The modification date is displayed under these two conditions:
-			 * 1. if the creation date is not displayed OR
-			 * 2. if the creation date is displayed AND the modification date is different from the creation date.
-			 */
-			if ( ( ! $display_date ) || ( $display_date && get_the_modified_date() != get_the_date() ) ) {
-				if ( $display_author || $display_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-				}
-				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
-					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
-					if ( $linkify_mod_date ) {
-						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-							$output .= get_the_modified_date();
-						$output .= '</a>';
-					} else {
-						$output .= get_the_modified_date();
-					}
-				$output .= '</span>';
-			}
-		}
-
-		/* The comments */
-		if ( ! post_password_required() ) {
-			if ( $comments ) {
-				if ( $display_author || $display_date || $display_mod_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-				}
-				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-					if ( $comments_text ) $output .= $comments_text . ' ';
-					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
-				$output .= '</span>';
-			}
-		}
-
-	if ( $display_author || $display_date || $display_mod_date || $comments ) {
-		$output .= '</p>';
-	}
-
-	return $output;
-}
-
-/**
  * Add the thumbnail of the post.
  *
  * @param array $args {
@@ -1010,6 +858,158 @@ function pis_the_text( $args ) {
 
 	endswitch;
 	// Close The text
+
+	return $output;
+}
+
+/**
+ * Add the utilities section: author, date of the post and comments.
+ *
+ * @param array $args {
+ *    The array of parameters.
+ *
+ *    @type boolean display_author    If display the post's outhor. Default false.
+ *    @type boolean display_date      If display the post's date. Default false.
+ *    @type boolean display_mod_date  If display the modification date of the post. Default false.
+ *    @type boolean comments          If display comments number. Default false.
+ *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
+ *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
+ *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
+ *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
+ *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
+ *    @type string  date_text         The text to be prepended before the date. Default 'Published on'.
+ *    @type boolean linkify_date      If link the date name to the posts. Default false.
+ *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
+ *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
+ *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
+ *    @type string  pis_post_id       The ID of the post. Default empy.
+ *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
+ *    @type boolean gravatar_display  If display the Gravatar. Default false.
+ *    @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
+ *    @type string  gravatar_author   The ID of the post's author. Default empty value.
+ *    @type integer gravatar_size     The size of the Gravatar. Default 32.
+ *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
+ * }
+ * @since 1.18
+ * @return The HTML for the section.
+ * @uses pis_paragraph()
+ * @uses pis_class()
+ * @uses pis_get_comments_number()
+ */
+function pis_utility_section( $args ) {
+	$defaults = array(
+		'display_author'    => false,
+		'display_date'      => false,
+		'display_mod_date'  => false,
+		'comments'          => false,
+		'utility_margin'    => NULL,
+		'margin_unit'       => 'px',
+		'author_text'       => esc_html__( 'By', 'posts-in-sidebar' ),
+		'linkify_author'    => false,
+		'utility_sep'       => '|',
+		'date_text'         => esc_html__( 'Published on', 'posts-in-sidebar' ),
+		'linkify_date'      => false,
+		'mod_date_text'     => esc_html__( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'  => false,
+		'comments_text'     => esc_html__( 'Comments:', 'posts-in-sidebar' ),
+		'pis_post_id'       => '',
+		'link_to_comments'  => true,
+		'gravatar_display'  => false,
+		'gravatar_position' => '',
+		'gravatar_author'   => '',
+		'gravatar_size'     => 32,
+		'gravatar_default'  => '',
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	$output = '';
+
+	if ( $display_author || $display_date || $display_mod_date || $comments ) {
+		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
+	}
+
+		/* The Gravatar */
+		if ( $gravatar_display && 'next_author' == $gravatar_position ) {
+			$output .= pis_get_gravatar( array(
+				'author'  => $gravatar_author,
+				'size'    => $gravatar_size,
+				'default' => $gravatar_default,
+			) );
+		}
+
+		/* The author */
+		if ( $display_author ) {
+			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
+				if ( $author_text ) $output .= $author_text . ' ';
+				if ( $linkify_author ) {
+					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
+					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
+						$output .= get_the_author();
+					$output .= '</a>';
+				} else {
+					$output .= get_the_author();
+				}
+			$output .= '</span>';
+		}
+
+		/* The date */
+		if ( $display_date ) {
+			if ( $display_author ) {
+				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+			}
+			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
+				if ( $date_text ) $output .= $date_text . ' ';
+				if ( $linkify_date ) {
+					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+						$output .= get_the_date();
+					$output .= '</a>';
+				} else {
+					$output .= get_the_date();
+				}
+			$output .= '</span>';
+		}
+
+		/* The modification date */
+		if ( $display_mod_date ) {
+			/**
+			 * The modification date is displayed under these two conditions:
+			 * 1. if the creation date is not displayed OR
+			 * 2. if the creation date is displayed AND the modification date is different from the creation date.
+			 */
+			if ( ( ! $display_date ) || ( $display_date && get_the_modified_date() != get_the_date() ) ) {
+				if ( $display_author || $display_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
+					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
+					if ( $linkify_mod_date ) {
+						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+							$output .= get_the_modified_date();
+						$output .= '</a>';
+					} else {
+						$output .= get_the_modified_date();
+					}
+				$output .= '</span>';
+			}
+		}
+
+		/* The comments */
+		if ( ! post_password_required() ) {
+			if ( $comments ) {
+				if ( $display_author || $display_date || $display_mod_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
+					if ( $comments_text ) $output .= $comments_text . ' ';
+					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
+				$output .= '</span>';
+			}
+		}
+
+	if ( $display_author || $display_date || $display_mod_date || $comments ) {
+		$output .= '</p>';
+	}
 
 	return $output;
 }
@@ -1294,7 +1294,7 @@ function pis_debug( $parameters ) {
 }
 
 /*
- * Tools section
+ * Posts in Sidebar tools section
  ******************************************************************************/
 
 /**
@@ -1511,6 +1511,10 @@ function pis_add_styles_to_head() {
 	}
 }
 add_action( 'wp_head', 'pis_add_styles_to_head' );
+
+/*
+ * Generic tools section
+ ******************************************************************************/
 
 /**
  * Remove empty keys from an array recursively.

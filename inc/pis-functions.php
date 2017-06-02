@@ -356,21 +356,32 @@ function pis_meta_query( $args ) {
  */
 function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
 	global $wpdb;
+
+	/*
+	 * $wpdb properties for database prefix:
+	 *     $wpdb->base_prefix = Get the prefix defined in wp-config.php;
+	 *     $wpdb->prefix      = Get the prefix for the current site (useful in a multisite installation).
+	 * @see https://codex.wordpress.org/Class_Reference/wpdb#Class_Variables
+	 */
+	$posts_table = $wpdb->prefix . 'posts'; // Will output, for example, 'wp_posts'.
+
 	$number = (int) apply_filters( 'pis_get_posts_by_recent_comments', $limit );
-	$sql = "SELECT wp_posts.*,
+
+	$sql = "SELECT $posts_table.*,
 	coalesce(
 		(
 			select max(comment_date)
 			from $wpdb->comments wpc
-			where wpc.comment_post_id = wp_posts.id
+			where wpc.comment_post_id = $posts_table.id
 		),
-		wp_posts.post_date
+		$posts_table.post_date
 	) as mcomment_date
-	from $wpdb->posts wp_posts
+	from $wpdb->posts $posts_table
 	where post_type = '$post_type'
 	and post_status = 'publish'
 	order by mcomment_date $order
 	limit $number";
+
 	$post_ids = $wpdb->get_col( $sql );
 
 	return $post_ids;

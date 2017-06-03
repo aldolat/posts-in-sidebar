@@ -1508,10 +1508,22 @@ function pis_add_styles_to_head() {
 		}
 	}
 
-	// Remove any empty elements from the array
+	/*
+	 * Remove any empty elements from the array.
+	 *
+	 * Invoking array_filter without a callback function
+	 * will remove any element with one of these values:
+	 *     - false
+	 *     - null
+     *     - '' (empty)
+	 *
+	 * For multidimensional arrays, use pis_array_remove_empty_keys() function.
+	 *
+	 * @see http://php.net/manual/en/function.array-filter.php#example-5568
+	 */
 	$styles = array_filter( $styles );
 
-	// Make the array as string.
+	// Transform the array into a string.
 	$styles = implode( "\n", $styles );
 
 	// Print the output if it's not empty.

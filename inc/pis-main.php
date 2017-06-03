@@ -502,7 +502,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( $posts_by_comments ) {
 		// Get the posts IDs.
-		$posts_id = pis_get_posts_by_recent_comments( $post_type, $number, $order );
+		$posts_id = pis_get_posts_by_recent_comments( $post_type, $number, 'DESC' );
 		// Preserve post ID order given in $posts_id array.
 		$orderby = 'post__in';
 		// Make sure to get only published posts.

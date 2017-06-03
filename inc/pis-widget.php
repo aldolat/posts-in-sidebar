@@ -1412,7 +1412,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						pis_form_checkbox( esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
 							$this->get_field_id( 'posts_by_comments' ),
 							$this->get_field_name( 'posts_by_comments' ),
-							checked( $posts_by_comments, true, false )
+							checked( $posts_by_comments, true, false ),
+							esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
 						);
 						?>
 

@@ -580,8 +580,10 @@ function pis_custom_field( $args ) {
 
 						// If we have to display a text before the custom field
 						if ( $custom_field_key ) {
-							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
-						} else $key = '';
+							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
+						} else {
+							$key = '';
+						}
 
 						// If we have to reduce the length of the custom field value
 						if ( ! empty( $custom_field_count ) ) {
@@ -609,7 +611,7 @@ function pis_custom_field( $args ) {
 		$the_custom_field = get_post_meta( $post_id, $meta, false );
 		if ( $the_custom_field ) {
 			if ( $custom_field_key ) {
-				$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span> ';
+				$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
 			} else {
 				$key = '';
 			}

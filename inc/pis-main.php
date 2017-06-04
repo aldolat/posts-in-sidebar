@@ -45,6 +45,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
+		'posts_by_comments'   => false,     // Boolean. An array of post IDs will be used
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -226,6 +227,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'ctaxs_after_title'   => false,
 
 		// The custom field
+		'custom_field_all'    => false,
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
 		'meta'                => '',
@@ -493,6 +495,20 @@ function pis_get_posts_in_sidebar( $args ) {
 		$post_type = (array) explode( ', ', $post_type_multiple );
 	}
 
+	/*
+	 * Get posts by recent comments.
+	 *
+	 * @since 4.1
+	 */
+	if ( $posts_by_comments ) {
+		// Get the posts IDs.
+		$posts_id = pis_get_posts_by_recent_comments( $post_type, $number, 'DESC' );
+		// Preserve post ID order given in $posts_id array.
+		$orderby = 'post__in';
+		// Make sure to get only published posts.
+		$post_status = 'publish';
+	}
+
 	// Build the array for WP_Query object.
 	$params = array(
 		'post_type'           => $post_type,   // Uses a string with a single slug or an array of multiple slugs
@@ -734,6 +750,13 @@ function pis_get_posts_in_sidebar( $args ) {
 				} else { ?><?php
 
 					/*
+					 * Assign the ID of the post as a class.
+					 *
+					 * @since 4.1
+					 */
+					$post_id_class = ' pis-post-' . $pis_query->post->ID;
+
+					/*
 					 * Assign the class 'current-post' if this is the post of the main loop.
 					 *
 					 * @since 1.6
@@ -763,7 +786,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$pis_output .= '<li ' . pis_class( 'pis-li' . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
+					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 						// Define the containers for single sections to be concatenated later
 						$pis_thumbnail_content    = '';
@@ -921,6 +944,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						/* The post meta */
 						$pis_custom_field_content .= pis_custom_field( array(
 							'post_id'             => $pis_query->post->ID,
+							'custom_field_all'    => $custom_field_all,
 							'meta'                => $meta,
 							'custom_field_txt'    => $custom_field_txt,
 							'custom_field_key'    => $custom_field_key,
@@ -932,28 +956,28 @@ function pis_get_posts_in_sidebar( $args ) {
 						) );
 
 						// Concatenate the variables
-						if ( $display_image && $image_before_title )                                $pis_output .= $pis_thumbnail_content;
-						if ( $utility_before_title )                                                $pis_output .= $pis_utility_content;
-						if ( $categories && $categ_before_title )                                   $pis_output .= $pis_categories_content;
-						if ( $tags && $tags_before_title )                                          $pis_output .= $pis_tags_content;
-						if ( $display_custom_tax && $ctaxs_before_title )                           $pis_output .= $pis_custom_tax_content;
-						if ( $custom_field && $cf_before_title )                                    $pis_output .= $pis_custom_field_content;
+						if ( $display_image && $image_before_title )                                             $pis_output .= $pis_thumbnail_content;
+						if ( $utility_before_title )                                                             $pis_output .= $pis_utility_content;
+						if ( $categories && $categ_before_title )                                                $pis_output .= $pis_categories_content;
+						if ( $tags && $tags_before_title )                                                       $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && $ctaxs_before_title )                                        $pis_output .= $pis_custom_tax_content;
+						if ( ( $custom_field_all || $custom_field ) && $cf_before_title )                        $pis_output .= $pis_custom_field_content;
 
-						if ( $display_title )                                                       $pis_output .= $pis_title_content;
+						if ( $display_title )                                                                    $pis_output .= $pis_title_content;
 
-						if ( $utility_after_title )                                                 $pis_output .= $pis_utility_content;
-						if ( $categories && $categ_after_title )                                    $pis_output .= $pis_categories_content;
-						if ( $tags && $tags_after_title )                                           $pis_output .= $pis_tags_content;
-						if ( $display_custom_tax && $ctaxs_after_title )                            $pis_output .= $pis_custom_tax_content;
-						if ( $custom_field && $cf_after_title )                                     $pis_output .= $pis_custom_field_content;
+						if ( $utility_after_title )                                                              $pis_output .= $pis_utility_content;
+						if ( $categories && $categ_after_title )                                                 $pis_output .= $pis_categories_content;
+						if ( $tags && $tags_after_title )                                                        $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && $ctaxs_after_title )                                         $pis_output .= $pis_custom_tax_content;
+						if ( ( $custom_field_all || $custom_field ) && $cf_after_title )                         $pis_output .= $pis_custom_field_content;
 
-						if ( ! post_password_required() )                                           $pis_output .= $pis_text_content;
+						if ( ! post_password_required() )                                                        $pis_output .= $pis_text_content;
 
-						if ( ! $utility_before_title && ! $utility_after_title )                    $pis_output .= $pis_utility_content;
-						if ( $categories && ! $categ_before_title && ! $categ_after_title )         $pis_output .= $pis_categories_content;
-						if ( $tags && ! $tags_before_title && ! $tags_after_title )                 $pis_output .= $pis_tags_content;
-						if ( $display_custom_tax && ! $ctaxs_before_title && ! $ctaxs_after_title ) $pis_output .= $pis_custom_tax_content;
-						if ( $custom_field && ! $cf_before_title && ! $cf_after_title )             $pis_output .= $pis_custom_field_content;
+						if ( ! $utility_before_title && ! $utility_after_title )                                 $pis_output .= $pis_utility_content;
+						if ( $categories && ! $categ_before_title && ! $categ_after_title )                      $pis_output .= $pis_categories_content;
+						if ( $tags && ! $tags_before_title && ! $tags_after_title )                              $pis_output .= $pis_tags_content;
+						if ( $display_custom_tax && ! $ctaxs_before_title && ! $ctaxs_after_title )              $pis_output .= $pis_custom_tax_content;
+						if ( ( $custom_field_all || $custom_field ) && ! $cf_before_title && ! $cf_after_title ) $pis_output .= $pis_custom_field_content;
 
 					$pis_output .= '</li>';
 					// Close li
@@ -993,12 +1017,12 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	/* Debugging */
 	$pis_output .= pis_debug( array(
-		'admin_only'         => $admin_only,           // bool   If display debug informations to admin only.
-		'debug_query'        => $debug_query,          // bool   If display the parameters for the query.
-		'debug_params'       => $debug_params,         // bool   If display the complete set of parameters of the widget.
-		'params'             => $params,               // array  The parameters for the query.
-		'args'               => $args,                 // array  The complete set of parameters of the widget.
-		'cached'             => $cached,               // bool   If the cache is active.
+		'admin_only'   => $admin_only,   // bool   If display debug informations to admin only.
+		'debug_query'  => $debug_query,  // bool   If display the parameters for the query.
+		'debug_params' => $debug_params, // bool   If display the complete set of parameters of the widget.
+		'params'       => $params,       // array  The parameters for the query.
+		'args'         => $args,         // array  The complete set of parameters of the widget.
+		'cached'       => $cached,       // bool   If the cache is active.
 	) );
 
 	// Prints the version of Posts in Sidebar and if the cache is active

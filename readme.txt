@@ -4,7 +4,7 @@ Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.8
-Stable tag: 4.0
+Stable tag: 4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,6 +26,7 @@ Here are some of the functions you'll have:
 * get posts by modification date;
 * get posts children of other posts;
 * get posts by search;
+* get posts by recent comments;
 * get posts by complex taxonomies queries;
 * get posts by complex date queries;
 * get posts by complex custom fields queries;
@@ -97,10 +98,15 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Changelog ==
 
+= 4.1 =
+
+* Added option to get posts by recent comments.
+* Added option to display all the custom fields of the post.
+
 = 4.0 =
 
 * Added section for retrieving posts from multiple custom fields.
-* Added option for retrieving posts with/whitout password.
+* Added option for retrieving posts with/without password.
 * Added option for retrieving posts with a certain password.
 * Now panels do not collapse after saving the widget.
 

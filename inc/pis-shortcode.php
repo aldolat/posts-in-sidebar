@@ -27,6 +27,7 @@ function pis_shortcode( $atts ) {
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
+		'posts_by_comments'   => false,     // Uses an array of post IDs
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -180,6 +181,7 @@ function pis_shortcode( $atts ) {
 		'term_sep'            => ',',
 
 		// The custom field
+		'custom_field_all'    => false,
 		'custom_field'        => false,
 		'custom_field_txt'    => '',
 		'meta'                => '',

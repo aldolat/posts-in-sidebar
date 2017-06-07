@@ -269,9 +269,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['gravatar_position'] ) )    $instance['gravatar_position']    = 'next_author';
 		if ( ! isset( $instance['date_text'] ) )            $instance['date_text']            = esc_html__( 'Published on', 'posts-in-sidebar' );
 		if ( ! isset( $instance['linkify_date'] ) )         $instance['linkify_date']         = false;
+		if ( ! isset( $instance['display_time'] ) )         $instance['display_time']         = false;
 		if ( ! isset( $instance['display_mod_date'] ) )     $instance['display_mod_date']     = false;
 		if ( ! isset( $instance['mod_date_text'] ) )        $instance['mod_date_text']        = esc_html__( 'Modified on', 'posts-in-sidebar' );
 		if ( ! isset( $instance['linkify_mod_date'] ) )     $instance['linkify_mod_date']     = false;
+		if ( ! isset( $instance['display_mod_time'] ) )     $instance['display_mod_time']     = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = esc_html__( 'Comments:', 'posts-in-sidebar' );
 		if ( ! isset( $instance['linkify_comments'] ) )     $instance['linkify_comments']     = true;
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '|';
@@ -487,9 +489,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_date'        => $instance['display_date'],
 			'date_text'           => $instance['date_text'],
 			'linkify_date'        => $instance['linkify_date'],
+			'display_time'        => $instance['display_time'],
 			'display_mod_date'    => $instance['display_mod_date'],
 			'mod_date_text'       => $instance['mod_date_text'],
 			'linkify_mod_date'    => $instance['linkify_mod_date'],
+			'display_mod_time'    => $instance['display_mod_time'],
 			'comments'            => $instance['comments'],
 			'comments_text'       => $instance['comments_text'],
 			'linkify_comments'    => $instance['linkify_comments'],
@@ -817,9 +821,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['display_date']        = isset( $new_instance['display_date'] ) ? 1 : 0;
 		$instance['date_text']           = strip_tags( $new_instance['date_text'] );
 		$instance['linkify_date']        = isset( $new_instance['linkify_date'] ) ? 1 : 0;
+		$instance['display_date']        = isset( $new_instance['display_date'] ) ? 1 : 0;
+		$instance['display_time']        = isset( $new_instance['display_time'] ) ? 1 : 0;
 		$instance['display_mod_date']    = isset( $new_instance['display_mod_date'] ) ? 1 : 0;
 		$instance['mod_date_text']       = strip_tags( $new_instance['mod_date_text'] );
 		$instance['linkify_mod_date']    = isset( $new_instance['linkify_mod_date'] ) ? 1 : 0;
+		$instance['display_mod_time']    = isset( $new_instance['display_mod_time'] ) ? 1 : 0;
 		$instance['comments']            = isset( $new_instance['comments'] ) ? 1 : 0;
 		$instance['comments_text']       = strip_tags( $new_instance['comments_text'] );
 		$instance['linkify_comments']    = isset( $new_instance['linkify_comments'] ) ? 1 : 0;
@@ -1096,9 +1103,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_date'        => false,
 			'date_text'           => esc_html__( 'Published on', 'posts-in-sidebar' ),
 			'linkify_date'        => false,
+			'display_time'        => false,
 			'display_mod_date'    => false,
 			'mod_date_text'       => esc_html__( 'Modified on', 'posts-in-sidebar' ),
 			'linkify_mod_date'    => false,
+			'display_mod_time'    => false,
 			'comments'            => false,
 			'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
 			'linkify_comments'    => true,
@@ -1206,8 +1215,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$gravatar_display     = (bool) $instance['gravatar_display'];
 		$display_date         = (bool) $instance['display_date'];
 		$linkify_date         = (bool) $instance['linkify_date'];
+		$display_time         = (bool) $instance['display_time'];
 		$display_mod_date     = (bool) $instance['display_mod_date'];
 		$linkify_mod_date     = (bool) $instance['linkify_mod_date'];
+		$display_mod_time     = (bool) $instance['display_mod_time'];
 		$comments             = (bool) $instance['comments'];
 		$linkify_comments     = (bool) $instance['linkify_comments'];
 		$categories           = (bool) $instance['categories'];
@@ -3576,6 +3587,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Date link
 								pis_form_checkbox( esc_html__( 'Link the date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), checked( $linkify_date, true, false ) ); ?>
 
+								<?php // ================= Time
+								pis_form_checkbox( esc_html__( 'Display the time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_time' ), $this->get_field_name( 'display_time' ), checked( $display_time, true, false ) ); ?>
+
 							</div>
 
 							<div class="pis-column">
@@ -3635,6 +3649,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Modification Date link
 								pis_form_checkbox( esc_html__( 'Link the modification date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_mod_date' ), $this->get_field_name( 'linkify_mod_date' ), checked( $linkify_mod_date, true, false ) ); ?>
+
+								<?php // ================= Modification time
+								pis_form_checkbox( esc_html__( 'Displat the modification time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_time' ), $this->get_field_name( 'display_mod_time' ), checked( $display_mod_time, true, false ) ); ?>
 
 							</div>
 

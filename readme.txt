@@ -98,6 +98,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 == Changelog ==
 
+= 4.2 =
+
+* Added option to display the post time and modification time.
+
 = 4.1 =
 
 * Added option to get posts by recent comments.

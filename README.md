@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.8  
-**Stable tag:** 4.1  
+**Stable tag:** 4.2  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 

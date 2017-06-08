@@ -976,7 +976,7 @@ function pis_utility_section( $args ) {
 			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
 				if ( $date_text ) $output .= $date_text . ' ';
 				if ( $display_time ) {
-					$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">'. sprintf( esc_html_x( 'at %s', 'posts-in-sidebar', '%s is the time of the post.' ), get_the_time() ) . '</span>';
+					$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
 				} else {
 					$post_time = '';
 				}
@@ -1004,7 +1004,7 @@ function pis_utility_section( $args ) {
 				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
 					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
 					if ( $display_mod_time ) {
-						$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">'. sprintf( esc_html_x( 'at %s', 'posts-in-sidebar', '%s is the time of the post modified.' ), get_the_modified_time() ) . '</span>';
+						$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
 					} else {
 						$post_time = '';
 					}

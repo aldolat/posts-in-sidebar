@@ -478,7 +478,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'the_more'            => $instance['the_more'],
 			'exc_arrow'           => $instance['exc_arrow'],
 
-			// Author, date and comments
+			// Author, date/time and comments
 			'display_author'      => $instance['display_author'],
 			'author_text'         => $instance['author_text'],
 			'linkify_author'      => $instance['linkify_author'],
@@ -810,7 +810,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['the_more'] = str_replace( '...', '&hellip;', $instance['the_more'] );
 		$instance['exc_arrow']           = isset( $new_instance['exc_arrow'] ) ? 1 : 0;
 
-		// Author, date and comments
+		// Author, date/time and comments
 		$instance['display_author']      = isset( $new_instance['display_author'] ) ? 1 : 0;
 		$instance['author_text']         = strip_tags( $new_instance['author_text'] );
 		$instance['linkify_author']      = isset( $new_instance['linkify_author'] ) ? 1 : 0;
@@ -1092,7 +1092,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 			'exc_arrow'           => false,
 
-			// Author, date and comments
+			// Author, date/time and comments
 			'display_author'      => false,
 			'author_text'         => esc_html__( 'By', 'posts-in-sidebar' ),
 			'linkify_author'      => false,
@@ -3557,7 +3557,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<div class="pis-section">
 
-					<h5 data-panel="author-date-comments" class="pis-widget-title"><?php esc_html_e( 'Author, date and comments', 'posts-in-sidebar' ); ?></h5>
+					<h5 data-panel="author-date-comments" class="pis-widget-title"><?php esc_html_e( 'Author, date/time and comments', 'posts-in-sidebar' ); ?></h5>
 
 					<div class="pis-container">
 
@@ -3658,7 +3658,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Utility separator
-								pis_form_input_text( esc_html__( 'Use this separator between author, date and comments', 'posts-in-sidebar' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', esc_html__( 'A space will be added before and after the separator.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Use this separator between author, date/time and comments', 'posts-in-sidebar' ), $this->get_field_id( 'utility_sep' ), $this->get_field_name( 'utility_sep' ), esc_attr( $instance['utility_sep'] ), '|', esc_html__( 'A space will be added before and after the separator.', 'posts-in-sidebar' ) ); ?>
 
 							</div>
 

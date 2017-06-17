@@ -183,7 +183,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
-		// Author, date and comments
+		// Author, date/time and comments
 		'display_author'      => false,
 		'author_text'         => esc_html__( 'By', 'posts-in-sidebar' ),
 		'linkify_author'      => false,

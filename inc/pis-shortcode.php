@@ -160,7 +160,7 @@ function pis_shortcode( $atts ) {
 		'linkify_mod_date'    => false,
 		'comments'            => false,
 		'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-		'linkify_comments'    => true,
+		'linkify_comments'    => false,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 

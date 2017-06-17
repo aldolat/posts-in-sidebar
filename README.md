@@ -114,6 +114,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 4.2 ###
 
 * Added option to display the post time and modification time.
+* Comments are not linked to comments section in the post by default.
 
 ### 4.1 ###
 

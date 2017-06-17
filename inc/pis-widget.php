@@ -275,7 +275,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['linkify_mod_date'] ) )     $instance['linkify_mod_date']     = false;
 		if ( ! isset( $instance['display_mod_time'] ) )     $instance['display_mod_time']     = false;
 		if ( ! isset( $instance['comments_text'] ) )        $instance['comments_text']        = esc_html__( 'Comments:', 'posts-in-sidebar' );
-		if ( ! isset( $instance['linkify_comments'] ) )     $instance['linkify_comments']     = true;
+		if ( ! isset( $instance['linkify_comments'] ) )     $instance['linkify_comments']     = false;
 		if ( ! isset( $instance['utility_sep'] ) )          $instance['utility_sep']          = '|';
 		if ( ! isset( $instance['utility_after_title'] ) )  $instance['utility_after_title']  = false;
 		if ( ! isset( $instance['utility_before_title'] ) ) $instance['utility_before_title'] = false;
@@ -1110,7 +1110,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'display_mod_time'    => false,
 			'comments'            => false,
 			'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-			'linkify_comments'    => true,
+			'linkify_comments'    => false,
 			'utility_sep'         => '|',
 			'utility_after_title' => false,
 			'utility_before_title'=> false,

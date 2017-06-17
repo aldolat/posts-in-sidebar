@@ -201,7 +201,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'display_mod_time'    => false,
 		'comments'            => false,
 		'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-		'linkify_comments'    => true,
+		'linkify_comments'    => false,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
 		'utility_before_title'=> false,

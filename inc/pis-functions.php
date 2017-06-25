@@ -500,14 +500,14 @@ function pis_the_categories( $args ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
- *     @type string $post_id           The ID of the post.
- *     @type string $hashtag           The symbol to be used as hashtag.
- *     @type string $tag_sep           The separator for the tags.
- *     @type string $tags_margin       The margin for the tags.
- *     @type string $margin_unit       The measure unit for the margin.
- *                                     Accepted values:
- *                                     px (default), %, em, rem
- *     @type string $tags_text        The leading text for the tags.
+ *     @type string $post_id      The ID of the post.
+ *     @type string $hashtag      The symbol to be used as hashtag.
+ *     @type string $tag_sep      The separator for the tags.
+ *     @type string $tags_margin  The margin for the tags.
+ *     @type string $margin_unit  The measure unit for the margin.
+ *                                Accepted values:
+ *                                px (default), %, em, rem
+ *     @type string $tags_text    The leading text for the tags.
  * }
  * @return The HTML paragraph with the tags.
  * @uses pis_paragraph()
@@ -1258,12 +1258,12 @@ function pis_generated( $cached ) {
  */
 function pis_debug( $parameters ) {
 	$defaults = array (
-		'admin_only'         => true,
-		'debug_query'        => false,
-		'debug_params'       => false,
-		'params'             => '',
-		'args'               => '',
-		'cached'             => false,
+		'admin_only'   => true,
+		'debug_query'  => false,
+		'debug_params' => false,
+		'params'       => '',
+		'args'         => '',
+		'cached'       => false,
 	);
 	$parameters = wp_parse_args( $parameters, $defaults );
 	extract( $parameters, EXTR_SKIP );

@@ -500,14 +500,14 @@ function pis_the_categories( $args ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
- *     @type string $post_id           The ID of the post.
- *     @type string $hashtag           The symbol to be used as hashtag.
- *     @type string $tag_sep           The separator for the tags.
- *     @type string $tags_margin       The margin for the tags.
- *     @type string $margin_unit       The measure unit for the margin.
- *                                     Accepted values:
- *                                     px (default), %, em, rem
- *     @type string $tags_text        The leading text for the tags.
+ *     @type string $post_id      The ID of the post.
+ *     @type string $hashtag      The symbol to be used as hashtag.
+ *     @type string $tag_sep      The separator for the tags.
+ *     @type string $tags_margin  The margin for the tags.
+ *     @type string $margin_unit  The measure unit for the margin.
+ *                                Accepted values:
+ *                                px (default), %, em, rem
+ *     @type string $tags_text    The leading text for the tags.
  * }
  * @return The HTML paragraph with the tags.
  * @uses pis_paragraph()
@@ -913,7 +913,9 @@ function pis_utility_section( $args ) {
 	$defaults = array(
 		'display_author'    => false,
 		'display_date'      => false,
+		'display_time'      => false,
 		'display_mod_date'  => false,
+		'display_mod_time'  => false,
 		'comments'          => false,
 		'utility_margin'    => NULL,
 		'margin_unit'       => 'px',
@@ -973,12 +975,17 @@ function pis_utility_section( $args ) {
 			}
 			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
 				if ( $date_text ) $output .= $date_text . ' ';
+				if ( $display_time ) {
+					$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
+				} else {
+					$post_time = '';
+				}
 				if ( $linkify_date ) {
 					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-						$output .= get_the_date();
+						$output .= get_the_date() . $post_time;
 					$output .= '</a>';
 				} else {
-					$output .= get_the_date();
+					$output .= get_the_date() . $post_time;
 				}
 			$output .= '</span>';
 		}
@@ -996,12 +1003,17 @@ function pis_utility_section( $args ) {
 				}
 				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
 					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
+					if ( $display_mod_time ) {
+						$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
+					} else {
+						$post_time = '';
+					}
 					if ( $linkify_mod_date ) {
 						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-							$output .= get_the_modified_date();
+							$output .= get_the_modified_date() . $post_mod_time;
 						$output .= '</a>';
 					} else {
-						$output .= get_the_modified_date();
+						$output .= get_the_modified_date() . $post_mod_time;
 					}
 				$output .= '</span>';
 			}
@@ -1246,12 +1258,12 @@ function pis_generated( $cached ) {
  */
 function pis_debug( $parameters ) {
 	$defaults = array (
-		'admin_only'         => true,
-		'debug_query'        => false,
-		'debug_params'       => false,
-		'params'             => '',
-		'args'               => '',
-		'cached'             => false,
+		'admin_only'   => true,
+		'debug_query'  => false,
+		'debug_params' => false,
+		'params'       => '',
+		'args'         => '',
+		'cached'       => false,
 	);
 	$parameters = wp_parse_args( $parameters, $defaults );
 	extract( $parameters, EXTR_SKIP );

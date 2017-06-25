@@ -50,7 +50,26 @@ function pis_shortcode( $atts ) {
 		 * where we'll get posts from.
 		 */
 		//'get_from_same_cat'   => false, /* For widget only */
+		//'number_same_cat'     => '',    /* For widget only */
 		//'title_same_cat'      => '',    /* For widget only */
+		//'dont_ignore_params'  => false, /* For widget only */
+		//'sort_categories'     => false, /* For widget only */
+		/*
+		 * This is the author of the single post
+		 * where we'll get posts from.
+		 */
+		//'get_from_same_author'=> false, /* For widget only */
+		//'number_same_author'  => '',    /* For widget only */
+		//'title_same_author'   => '',    /* For widget only */
+		/*
+		 * This is the custom field
+		 * to be used when on single post
+		 */
+		//'get_from_custom_fld' => false, /* For widget only */
+		//'s_custom_field_key'  => '',    /* For widget only */
+		//'s_custom_field_tax'  => '',    /* For widget only */
+		//'number_custom_field' => '',    /* For widget only */
+		//'title_custom_field'  => '',    /* For widget only */
 
 		// Taxonomies
 		'relation'            => '',
@@ -144,7 +163,7 @@ function pis_shortcode( $atts ) {
 		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
-		// Author, date and comments
+		// Author, date/time and comments
 		'display_author'      => false,
 		'author_text'         => esc_html__( 'By', 'posts-in-sidebar' ),
 		'linkify_author'      => false,
@@ -155,30 +174,39 @@ function pis_shortcode( $atts ) {
 		'display_date'        => false,
 		'date_text'           => esc_html__( 'Published on', 'posts-in-sidebar' ),
 		'linkify_date'        => false,
+		'display_time'        => false,
 		'display_mod_date'    => false,
 		'mod_date_text'       => esc_html__( 'Modified on', 'posts-in-sidebar' ),
 		'linkify_mod_date'    => false,
+		'display_mod_time'    => false,
 		'comments'            => false,
 		'comments_text'       => esc_html__( 'Comments:', 'posts-in-sidebar' ),
 		'linkify_comments'    => false,
 		'utility_sep'         => '|',
 		'utility_after_title' => false,
+		'utility_before_title'=> false,
 
 		// The categories of the post
 		'categories'          => false,
 		'categ_text'          => esc_html__( 'Category:', 'posts-in-sidebar' ),
 		'categ_sep'           => ',',
+		'categ_before_title'  => false,
+		'categ_after_title'   => false,
 
 		// The tags of the post
 		'tags'                => false,
 		'tags_text'           => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 		'hashtag'             => '#',
 		'tag_sep'             => '',
+		'tags_before_title'  => false,
+		'tags_after_title'   => false,
 
 		// The custom taxonomies of the post
 		'display_custom_tax'  => false,
 		'term_hashtag'        => '',
 		'term_sep'            => ',',
+		'ctaxs_before_title'  => false,
+		'ctaxs_after_title'   => false,
 
 		// The custom field
 		'custom_field_all'    => false,
@@ -189,6 +217,8 @@ function pis_shortcode( $atts ) {
 		'custom_field_hellip' => '&hellip;',
 		'custom_field_key'    => false,
 		'custom_field_sep'    => ':',
+		'cf_before_title'     => false,
+		'cf_after_title'      => false,
 
 		// The link to the archive
 		'archive_link'        => false,
@@ -215,7 +245,7 @@ function pis_shortcode( $atts ) {
 		'custom_field_margin' => NULL,
 		'archive_margin'      => NULL,
 		'noposts_margin'      => NULL,
-		// 'custom_styles'       => '', /* For widget only */
+		//'custom_styles'       => '', /* For widget only */
 
 		// Extras
 		'list_element'        => 'ul',
@@ -227,9 +257,9 @@ function pis_shortcode( $atts ) {
 		//'widget_id'           => '',    /* For widget only */
 
 		// Debug
+		'admin_only'          => true,
 		'debug_query'         => false,
 		'debug_params'        => false,
-		'debug_query_number'  => false,
 	), $atts ) );
 
 	return do_shortcode( pis_get_posts_in_sidebar( $atts ) );

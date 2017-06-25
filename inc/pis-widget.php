@@ -3651,7 +3651,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Link the modification date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_mod_date' ), $this->get_field_name( 'linkify_mod_date' ), checked( $linkify_mod_date, true, false ) ); ?>
 
 								<?php // ================= Modification time
-								pis_form_checkbox( esc_html__( 'Displat the modification time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_time' ), $this->get_field_name( 'display_mod_time' ), checked( $display_mod_time, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the modification time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_time' ), $this->get_field_name( 'display_mod_time' ), checked( $display_mod_time, true, false ) ); ?>
 
 							</div>
 

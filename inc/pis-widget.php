@@ -82,17 +82,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		* @since 3.2
 		*/
 		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
-			$title = $instance['title_same_cat'];
-			$the_category = get_the_category( get_the_ID() );
-			$the_category_name = $the_category[0]->name;
-			$title = str_replace( '%s', $the_category_name, $title );
-
-			$title = $instance['title_same_cat'];
 			$the_category = wp_get_post_categories( get_the_ID() );
 			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
 			$the_category_name = $the_category->name;
+			$title = $instance['title_same_cat'];
 			$title = str_replace( '%s', $the_category_name, $title );
+		}
+
+		/*
+		* Change the widget title if the user wants a different title in single posts (for same tag).
+		*
+		* @since 4.3.0
+		*/
+		if ( isset( $instance['get_from_same_tag'] ) && $instance['get_from_same_tag'] && isset( $instance['title_same_tag'] ) && ! empty( $instance['title_same_tag'] ) && is_singular( 'post' ) ) {
+			$the_tag = wp_get_post_tags( get_the_ID() );
+			if ( $the_tag ) {
+				if ( $instance['sort_tags'] ) sort( $the_tag );
+				$the_tag = get_tag( $the_tag[0] );
+				$the_tag_name = $the_tag->name;
+				$title = $instance['title_same_tag'];
+				$title = str_replace( '%s', $the_tag_name, $title );
+			}
 		}
 
 		/*
@@ -182,6 +193,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
 		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']      = false;
+		if ( ! isset( $instance['get_from_same_tag'] ) )    $instance['get_from_same_tag']    = false;
+		if ( ! isset( $instance['number_same_tag'] ) )      $instance['number_same_tag']      = '';
+		if ( ! isset( $instance['title_same_tag'] ) )       $instance['title_same_tag']       = '';
+		if ( ! isset( $instance['sort_tags'] ) )            $instance['sort_tags']            = false;
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
@@ -371,6 +386,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_same_cat'      => $instance['title_same_cat'],
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'sort_categories'     => $instance['sort_categories'],
+			'get_from_same_tag'   => $instance['get_from_same_tag'],
+			'number_same_tag'     => $instance['number_same_tag'],
+			'title_same_tag'      => $instance['title_same_tag'],
+			'sort_tags'           => $instance['sort_tags'],
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
@@ -676,6 +695,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 		$instance['sort_categories']     = isset( $new_instance['sort_categories'] ) ? 1 : 0;
+		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
+		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
+			if ( 0 == $instance['number_same_tag'] || ! is_numeric( $instance['number_same_tag'] ) ) $instance['number_same_tag'] = '';
+		$instance['title_same_tag']      = strip_tags( $new_instance['title_same_tag'] );
+		$instance['sort_tags']           = isset( $new_instance['sort_tags'] ) ? 1 : 0;
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
@@ -977,8 +1001,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'get_from_same_cat'   => false,
 			'number_same_cat'     => '',
 			'title_same_cat'      => '',
-			'dont_ignore_params'  => false,
-			'sort_categories'     => false,
+			'dont_ignore_params' => false,
+			'sort_categories'    => false,
+			'get_from_same_tag'  => false,
+			'number_same_tag'    => '',
+			'title_same_tag'     => '',
+			'sort_tags'           => false,
 			'get_from_same_author'=> false,
 			'number_same_author'  => '',
 			'title_same_author'   => '',
@@ -1196,6 +1224,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
 		$sort_categories      = (bool) $instance['sort_categories'];
 		$dont_ignore_params   = (bool) $instance['dont_ignore_params'];
+		$get_from_same_tag    = (bool) $instance['get_from_same_tag'];
+		$sort_tags            = (bool) $instance['sort_tags'];
 		$get_from_same_author = (bool) $instance['get_from_same_author'];
 		$get_from_custom_fld  = (bool) $instance['get_from_custom_fld'];
 		$date_inclusive       = (bool) $instance['date_inclusive'];
@@ -1725,6 +1755,60 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'sort_categories' ),
 									checked( $sort_categories, true, false ),
 									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<h5><?php esc_html_e( 'Get posts from current tag', 'posts-in-sidebar' ); ?></h5>
+
+							<div class="pis-column">
+
+								<?php // ================= Get posts from same tag
+								pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current tag', 'posts-in-sidebar' ),
+									$this->get_field_id( 'get_from_same_tag' ),
+									$this->get_field_name( 'get_from_same_tag' ),
+									checked( $get_from_same_tag, true, false ),
+									esc_html__( 'When activated, this function will get posts from the first tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Posts quantity
+								pis_form_input_text(
+									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('number_same_tag'),
+									$this->get_field_name('number_same_tag'),
+									esc_attr( $instance['number_same_tag'] ),
+									'3',
+									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= The custom widget title when on single posts
+								pis_form_input_text(
+									esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
+									$this->get_field_id('title_same_tag'),
+									$this->get_field_name('title_same_tag'),
+									esc_attr( $instance['title_same_tag'] ),
+									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
+									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+								<?php // ================= Get posts from same category
+								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
+									$this->get_field_id( 'sort_tags' ),
+									$this->get_field_name( 'sort_tags' ),
+									checked( $sort_tags, true, false ),
+									esc_html__( 'When activated, this function will sort the tags of the main post so that the category, where the plugin will get posts from, will match the main tag of the main post, i.e. the tag with the lowest ID.', 'posts-in-sidebar' )
 								);
 								?>
 

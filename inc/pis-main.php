@@ -75,6 +75,14 @@ function pis_get_posts_in_sidebar( $args ) {
 		'dont_ignore_params'  => false,
 		'sort_categories'     => false,
 		/*
+		 * This is the tag of the single post
+		 * where we'll get posts from.
+		 */
+		'get_from_same_tag'   => false,
+		'number_same_tag'     => '',
+		'title_same_tag'      => '',
+		'sort_tags'           => false,
+		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
 		 */
@@ -585,6 +593,49 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['post_format']     = '';
 			$params['meta_key']        = '';
 			$params['meta_value']      = '';
+		}
+	}
+
+	/*
+	 * Check if the user wants to display posts from the same tag of the single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * This will work in single (regular) posts only, not in custom post types.
+	 *
+	 * @since 4.3.0
+	 */
+	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
+		// Set the post_type.
+		$params['post_type'] = 'post';
+
+		// Set the number of posts
+		if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
+			$params['posts_per_page'] = $number_same_tag;
+		}
+
+		// Set the tag.
+		$post_tags = wp_get_post_tags( $single_post_id );
+		if ( $post_tags ) {
+			// Sort the tags of the post in ascending order.
+			if ( $sort_tags ) {
+				sort( $post_tags );
+			}
+			$the_tag = get_tag( $post_tags[0] );
+			$params['tag'] = $the_tag->slug;
+
+			// Reset other parameters. The user can choose not to reset them.
+			if ( ! $dont_ignore_params ) {
+				$params['post__in']        = '';
+				$params['author_name']     = '';
+				$params['author__in']      = '';
+				$params['category_name']   = '';
+				$params['tax_query']       = '';
+				$params['date_query']      = '';
+				$params['meta_query']      = '';
+				$params['post_parent__in'] = '';
+				$params['post_format']     = '';
+				$params['meta_key']        = '';
+				$params['meta_value']      = '';
+			}
 		}
 	}
 

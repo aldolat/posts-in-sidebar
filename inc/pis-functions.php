@@ -1006,7 +1006,7 @@ function pis_utility_section( $args ) {
 					if ( $display_mod_time ) {
 						$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
 					} else {
-						$post_time = '';
+						$post_mod_time = '';
 					}
 					if ( $linkify_mod_date ) {
 						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';

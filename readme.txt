@@ -100,6 +100,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 4.2.1 =
 
+* Fixed post modification date/time.
 * Minor fixes.
 
 = 4.2.0 =

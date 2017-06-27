@@ -601,11 +601,6 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
 	 *
-	 * The tag used will be the first in the array ($post_tags[0]), i.e. the tag with the lowest ID.
-	 * In the permalink WordPress uses the tag with the lowest ID and we want to use this.
-	 * On the contrary, if we get the list of posts tags, these are returned by WordPress in an aphabetically ordered array,
-	 * where the lowest key ID has not always the tag used in the permalink.
-	 *
 	 * @since 4.3.0
 	 */
 	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
@@ -617,28 +612,30 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['posts_per_page'] = $number_same_tag;
 		}
 
-		// Set the category.
+		// Set the tag.
 		$post_tags = wp_get_post_tags( $single_post_id );
-		// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
-		if ( $sort_tags ) {
-			sort( $post_tags );
-		}
-		$the_tag = get_tag( $post_tags[0] );
-		$params['tag'] = $the_tag->slug;
+		if ( $post_tags ) {
+			// Sort the tags of the post in ascending order.
+			if ( $sort_tags ) {
+				sort( $post_tags );
+			}
+			$the_tag = get_tag( $post_tags[0] );
+			$params['tag'] = $the_tag->slug;
 
-		// Reset other parameters. The user can choose not to reset them.
-		if ( ! $dont_ignore_params ) {
-			$params['post__in']        = '';
-			$params['author_name']     = '';
-			$params['author__in']      = '';
-			$params['category_name']   = '';
-			$params['tax_query']       = '';
-			$params['date_query']      = '';
-			$params['meta_query']      = '';
-			$params['post_parent__in'] = '';
-			$params['post_format']     = '';
-			$params['meta_key']        = '';
-			$params['meta_value']      = '';
+			// Reset other parameters. The user can choose not to reset them.
+			if ( ! $dont_ignore_params ) {
+				$params['post__in']        = '';
+				$params['author_name']     = '';
+				$params['author__in']      = '';
+				$params['category_name']   = '';
+				$params['tax_query']       = '';
+				$params['date_query']      = '';
+				$params['meta_query']      = '';
+				$params['post_parent__in'] = '';
+				$params['post_format']     = '';
+				$params['meta_key']        = '';
+				$params['meta_value']      = '';
+			}
 		}
 	}
 

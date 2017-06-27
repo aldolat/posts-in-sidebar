@@ -96,6 +96,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/*
+		* Change the widget title if the user wants a different title in single posts (for same tag).
+		*
+		* @since 4.3.0
+		*/
+		if ( isset( $instance['get_from_same_tag'] ) && $instance['get_from_same_tag'] && isset( $instance['title_same_tag'] ) && ! empty( $instance['title_same_tag'] ) && is_singular( 'post' ) ) {
+			$title = $instance['title_same_tag'];
+			$the_tag = get_tags( get_the_ID() );
+			$the_tag_name = $the_tag[0]->name;
+			$title = str_replace( '%s', $the_tag_name, $title );
+
+			$title = $instance['title_same_tag'];
+			$the_tag = wp_get_post_tags( get_the_ID() );
+			if ( $instance['sort_tags'] ) sort( $the_tag );
+			$the_tag = get_category( $the_tag[0] );
+			$the_tag_name = $the_tag->name;
+			$title = str_replace( '%s', $the_tag_name, $title );
+		}
+
+		/*
 		* Change the widget title if the user wants a different title in single posts (for same author).
 		*
 		* @since 3.5

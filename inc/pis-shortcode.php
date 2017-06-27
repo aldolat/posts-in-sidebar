@@ -55,6 +55,15 @@ function pis_shortcode( $atts ) {
 		//'dont_ignore_params'  => false, /* For widget only */
 		//'sort_categories'     => false, /* For widget only */
 		/*
+		 * This is the tag of the single post
+		 * where we'll get posts from.
+		 */
+		//'get_from_same_tag'      => false, /* For widget only */
+		//'number_same_tag'        => '',    /* For widget only */
+		//'title_same_tag'         => '',    /* For widget only */
+		//'dont_ignore_params_tag' => false, /* For widget only */
+		//'sort_tags'              => false, /* For widget only */
+		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
 		 */

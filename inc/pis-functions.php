@@ -990,33 +990,33 @@ function pis_utility_section( $args ) {
 			$output .= '</span>';
 		}
 
-		/* The modification date */
-		if ( $display_mod_date ) {
-			/**
-			 * The modification date is displayed under these two conditions:
-			 * 1. if the creation date is not displayed OR
-			 * 2. if the creation date is displayed AND the modification date is different from the creation date.
-			 */
-			if ( ( ! $display_date ) || ( $display_date && get_the_modified_date() != get_the_date() ) ) {
-				if ( $display_author || $display_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-				}
-				$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
-					if ( $mod_date_text ) $output .= $mod_date_text . ' ';
-					if ( $display_mod_time ) {
-						$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
-					} else {
-						$post_mod_time = '';
-					}
-					if ( $linkify_mod_date ) {
-						$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-							$output .= get_the_modified_date() . $post_mod_time;
-						$output .= '</a>';
-					} else {
-						$output .= get_the_modified_date() . $post_mod_time;
-					}
-				$output .= '</span>';
+		/* The modification date
+		 * When publishing a new post, WordPress stores two dates:
+		 * - the creation date into `post_date` database column;
+		 * - the modification date into `post_modified` database column.
+		 * and the two dates and times are the same.
+		 * In this situation, in order to figure out if a post has been modified
+		 * after its publication, we have to compare the times (not simply the dates).
+		 */
+		if ( $display_mod_date && get_the_modified_time() != get_the_time() ) {
+			if ( $display_author || $display_date ) {
+				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 			}
+			$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
+				if ( $mod_date_text ) $output .= $mod_date_text . ' ';
+				if ( $display_mod_time ) {
+					$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
+				} else {
+					$post_mod_time = '';
+				}
+				if ( $linkify_mod_date ) {
+					$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+						$output .= get_the_modified_date() . $post_mod_time;
+					$output .= '</a>';
+				} else {
+					$output .= get_the_modified_date() . $post_mod_time;
+				}
+			$output .= '</span>';
 		}
 
 		/* The comments */

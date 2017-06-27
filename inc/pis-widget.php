@@ -82,16 +82,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		* @since 3.2
 		*/
 		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
-			$title = $instance['title_same_cat'];
-			$the_category = get_the_category( get_the_ID() );
-			$the_category_name = $the_category[0]->name;
-			$title = str_replace( '%s', $the_category_name, $title );
-
-			$title = $instance['title_same_cat'];
 			$the_category = wp_get_post_categories( get_the_ID() );
 			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
 			$the_category_name = $the_category->name;
+			$title = $instance['title_same_cat'];
 			$title = str_replace( '%s', $the_category_name, $title );
 		}
 

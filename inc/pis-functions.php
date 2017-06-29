@@ -1073,7 +1073,7 @@ function pis_custom_taxonomies_terms_links( $args ) {
 		if ( 'category' != $taxonomy_slug && 'post_tag' != $taxonomy_slug ) {
 			// get the terms related to post
 			$list_of_terms = get_the_term_list( $postID, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
-			if ( !(is_wp_error( $list_of_terms )) && ( $list_of_terms )) {
+			if ( ! ( is_wp_error( $list_of_terms ) ) && ( $list_of_terms ) ) {
 				$output .= '<p ' . pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
 					$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
 				$output .= '</p>';

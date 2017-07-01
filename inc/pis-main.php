@@ -899,7 +899,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 
 							// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag
-							if ( ! empty( $pis_the_text ) || $display_image )
+							if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) )
 							$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
 								if ( $display_image && ! $image_before_title ) {
@@ -936,7 +936,7 @@ function pis_get_posts_in_sidebar( $args ) {
 								/* The text */
 								$pis_text_content .= $pis_the_text;
 
-							if ( ! empty( $pis_the_text ) || $display_image )
+							if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) )
 							$pis_text_content .= '</p>';
 						endif;
 						// Close the post content

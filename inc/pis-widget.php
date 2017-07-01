@@ -1721,7 +1721,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_cat' ),
 									$this->get_field_name( 'get_from_same_cat' ),
 									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1749,7 +1749,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
-								<?php // ================= Get posts from same category
+								<?php // ================= Sort categories
 								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
 									$this->get_field_id( 'sort_categories' ),
 									$this->get_field_name( 'sort_categories' ),
@@ -1775,7 +1775,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_tag' ),
 									$this->get_field_name( 'get_from_same_tag' ),
 									checked( $get_from_same_tag, true, false ),
-									esc_html__( 'When activated, this function will get posts from the first tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1803,12 +1803,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
-								<?php // ================= Get posts from same category
+								<?php // ================= Sort tags
 								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
 									$this->get_field_id( 'sort_tags' ),
 									$this->get_field_name( 'sort_tags' ),
 									checked( $sort_tags, true, false ),
-									esc_html__( 'When activated, this function will sort the tags of the main post so that the category, where the plugin will get posts from, will match the main tag of the main post, i.e. the tag with the lowest ID.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
 								);
 								?>
 

@@ -113,8 +113,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 4.3.0 ###
 
-* Added option to get posts from the current tag, when on a single post.
-* Fixed post modification date/time.
+* Add option to get posts from the current tag, when on a single post.
+* Fix post type and number of posts when getting posts from the same tag.
+* Fix empty p tag when no excerpt or no image.
+* Fix post modification date/time.
 * Minor fixes.
 
 ### 4.2.0 ###

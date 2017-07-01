@@ -604,21 +604,23 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 4.3.0
 	 */
 	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
-		// Set the post_type.
-		$params['post_type'] = 'post';
-
-		// Set the number of posts
-		if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
-			$params['posts_per_page'] = $number_same_tag;
-		}
-
-		// Set the tag.
+		// Get post's tags.
 		$post_tags = wp_get_post_tags( $single_post_id );
 		if ( $post_tags ) {
+			// Set the post_type.
+			$params['post_type'] = 'post';
+
+			// Set the number of posts
+			if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
+				$params['posts_per_page'] = $number_same_tag;
+			}
+
 			// Sort the tags of the post in ascending order.
 			if ( $sort_tags ) {
 				sort( $post_tags );
 			}
+
+			// Set the tag.
 			$the_tag = get_tag( $post_tags[0] );
 			$params['tag'] = $the_tag->slug;
 

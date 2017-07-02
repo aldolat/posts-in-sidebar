@@ -278,6 +278,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
+		'add_wp_post_classes' => false,
 
 		// Cache
 		'cached'              => false,
@@ -831,7 +832,16 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
+					/*
+					 * Get WordPress post classes for the post.
+					 *
+					 * @uses get_post_class()
+					 * @since 4.3.0
+					 */
+					$wp_post_classes = '';
+					if ( $add_wp_post_classes ) {
+						$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
+					}
 
 					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>';
 

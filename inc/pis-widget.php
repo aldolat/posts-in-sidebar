@@ -82,17 +82,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		* @since 3.2
 		*/
 		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
-			$title = $instance['title_same_cat'];
-			$the_category = get_the_category( get_the_ID() );
-			$the_category_name = $the_category[0]->name;
-			$title = str_replace( '%s', $the_category_name, $title );
-
-			$title = $instance['title_same_cat'];
 			$the_category = wp_get_post_categories( get_the_ID() );
 			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
 			$the_category_name = $the_category->name;
+			$title = $instance['title_same_cat'];
 			$title = str_replace( '%s', $the_category_name, $title );
+		}
+
+		/*
+		* Change the widget title if the user wants a different title in single posts (for same tag).
+		*
+		* @since 4.3.0
+		*/
+		if ( isset( $instance['get_from_same_tag'] ) && $instance['get_from_same_tag'] && isset( $instance['title_same_tag'] ) && ! empty( $instance['title_same_tag'] ) && is_singular( 'post' ) ) {
+			$the_tag = wp_get_post_tags( get_the_ID() );
+			if ( $the_tag ) {
+				if ( $instance['sort_tags'] ) sort( $the_tag );
+				$the_tag = get_tag( $the_tag[0] );
+				$the_tag_name = $the_tag->name;
+				$title = $instance['title_same_tag'];
+				$title = str_replace( '%s', $the_tag_name, $title );
+			}
 		}
 
 		/*
@@ -112,11 +123,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		*
 		* @since 3.7
 		*/
-		if ( isset( $instance['get_from_custom_fld'] ) &&
-			 $instance['get_from_custom_fld'] &&
-			 isset( $instance['s_custom_field_key'] ) &&
-			 isset( $instance['s_custom_field_tax'] )  &&
-			 isset( $instance['title_custom_field'] ) &&
+		if ( isset( $instance['get_from_custom_fld'] )  &&
+			 $instance['get_from_custom_fld']           &&
+			 isset( $instance['s_custom_field_key'] )   &&
+			 isset( $instance['s_custom_field_tax'] )   &&
+			 isset( $instance['title_custom_field'] )   &&
 			 ! empty( $instance['title_custom_field'] ) &&
 			 is_singular( 'post' ) ) {
 
@@ -182,6 +193,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
 		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']      = false;
+		if ( ! isset( $instance['get_from_same_tag'] ) )    $instance['get_from_same_tag']    = false;
+		if ( ! isset( $instance['number_same_tag'] ) )      $instance['number_same_tag']      = '';
+		if ( ! isset( $instance['title_same_tag'] ) )       $instance['title_same_tag']       = '';
+		if ( ! isset( $instance['sort_tags'] ) )            $instance['sort_tags']            = false;
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
@@ -325,6 +340,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['custom_styles'] ) )        $instance['custom_styles']        = '';
 		if ( ! isset( $instance['list_element'] ) )         $instance['list_element']         = 'ul';
 		if ( ! isset( $instance['remove_bullets'] ) )       $instance['remove_bullets']       = false;
+		if ( ! isset( $instance['add_wp_post_classes'] ) )  $instance['add_wp_post_classes']  = false;
 		if ( ! isset( $instance['cached'] ) )               $instance['cached']               = false;
 		if ( ! isset( $instance['cache_time'] ) )           $instance['cache_time']           = 3600;
 		if ( ! isset( $instance['admin_only'] ) )           $instance['admin_only']           = true;
@@ -371,6 +387,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_same_cat'      => $instance['title_same_cat'],
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'sort_categories'     => $instance['sort_categories'],
+			'get_from_same_tag'   => $instance['get_from_same_tag'],
+			'number_same_tag'     => $instance['number_same_tag'],
+			'title_same_tag'      => $instance['title_same_tag'],
+			'sort_tags'           => $instance['sort_tags'],
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
@@ -565,6 +585,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// Extras
 			'list_element'        => $instance['list_element'],
 			'remove_bullets'      => $instance['remove_bullets'],
+			'add_wp_post_classes' => $instance['add_wp_post_classes'],
 
 			// Cache
 			'cached'              => $instance['cached'],
@@ -606,17 +627,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance = $old_instance;
 
 		// The title of the widget
-		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title']      = sanitize_text_field( $new_instance['title'] );
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget
 		$allowed_html = array(
-			'a' => array(
+			'a'      => array(
 				'href'  => array(),
 				'title' => array(),
 			),
-			'em' => array(),
+			'em'     => array(),
 			'strong' => array(),
+			'span'   => array(),
+			'br'     => array(),
 		);
 		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
 
@@ -676,6 +699,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 		$instance['sort_categories']     = isset( $new_instance['sort_categories'] ) ? 1 : 0;
+		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
+		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
+			if ( 0 == $instance['number_same_tag'] || ! is_numeric( $instance['number_same_tag'] ) ) $instance['number_same_tag'] = '';
+		$instance['title_same_tag']      = strip_tags( $new_instance['title_same_tag'] );
+		$instance['sort_tags']           = isset( $new_instance['sort_tags'] ) ? 1 : 0;
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
@@ -913,6 +941,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
 		$instance['list_element']        = $new_instance['list_element'];
 		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
+		$instance['add_wp_post_classes'] = isset( $new_instance['add_wp_post_classes'] ) ? 1 : 0;
 
 		// Cache
 		$instance['cached']              = isset( $new_instance['cached'] ) ? 1 : 0;
@@ -977,8 +1006,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'get_from_same_cat'   => false,
 			'number_same_cat'     => '',
 			'title_same_cat'      => '',
-			'dont_ignore_params'  => false,
-			'sort_categories'     => false,
+			'dont_ignore_params' => false,
+			'sort_categories'    => false,
+			'get_from_same_tag'  => false,
+			'number_same_tag'    => '',
+			'title_same_tag'     => '',
+			'sort_tags'           => false,
 			'get_from_same_author'=> false,
 			'number_same_author'  => '',
 			'title_same_author'   => '',
@@ -1180,6 +1213,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'container_class'     => '',
 			'list_element'        => 'ul',
 			'remove_bullets'      => false,
+			'add_wp_post_classes' => false,
 
 			// Cache
 			'cached'              => false,
@@ -1196,6 +1230,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
 		$sort_categories      = (bool) $instance['sort_categories'];
 		$dont_ignore_params   = (bool) $instance['dont_ignore_params'];
+		$get_from_same_tag    = (bool) $instance['get_from_same_tag'];
+		$sort_tags            = (bool) $instance['sort_tags'];
 		$get_from_same_author = (bool) $instance['get_from_same_author'];
 		$get_from_custom_fld  = (bool) $instance['get_from_custom_fld'];
 		$date_inclusive       = (bool) $instance['date_inclusive'];
@@ -1238,6 +1274,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$archive_link         = (bool) $instance['archive_link'];
 		$hide_widget          = (bool) $instance['hide_widget'];
 		$remove_bullets       = (bool) $instance['remove_bullets'];
+		$add_wp_post_classes  = (bool) $instance['add_wp_post_classes'];
 		$cached               = (bool) $instance['cached'];
 		$admin_only           = (bool) $instance['admin_only'];
 		$debug_query          = (bool) $instance['debug_query'];
@@ -1282,7 +1319,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
 				$style = 'resize: vertical; width: 100%; height: 80px;',
-				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>, <code>span</code>, <code>br</code>' )
 			); ?>
 
 		</div>
@@ -1691,7 +1728,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_cat' ),
 									$this->get_field_name( 'get_from_same_cat' ),
 									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the first category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1719,12 +1756,66 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
-								<?php // ================= Get posts from same category
+								<?php // ================= Sort categories
 								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
 									$this->get_field_id( 'sort_categories' ),
 									$this->get_field_name( 'sort_categories' ),
 									checked( $sort_categories, true, false ),
 									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<h5><?php esc_html_e( 'Get posts from current tag', 'posts-in-sidebar' ); ?></h5>
+
+							<div class="pis-column">
+
+								<?php // ================= Get posts from same tag
+								pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current tag', 'posts-in-sidebar' ),
+									$this->get_field_id( 'get_from_same_tag' ),
+									$this->get_field_name( 'get_from_same_tag' ),
+									checked( $get_from_same_tag, true, false ),
+									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Posts quantity
+								pis_form_input_text(
+									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('number_same_tag'),
+									$this->get_field_name('number_same_tag'),
+									esc_attr( $instance['number_same_tag'] ),
+									'3',
+									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= The custom widget title when on single posts
+								pis_form_input_text(
+									esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
+									$this->get_field_id('title_same_tag'),
+									$this->get_field_name('title_same_tag'),
+									esc_attr( $instance['title_same_tag'] ),
+									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
+									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+								<?php // ================= Sort tags
+								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
+									$this->get_field_id( 'sort_tags' ),
+									$this->get_field_name( 'sort_tags' ),
+									checked( $sort_tags, true, false ),
+									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -4199,7 +4290,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_attr( $instance['container_class'] ),
 							'posts-container',
 							sprintf(
-								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
+								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the widget title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
 						); ?>
 
 						<?php // ================= Type of HTML for list of posts
@@ -4228,6 +4319,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name( 'remove_bullets' ),
 							checked( $remove_bullets, true, false ),
 							sprintf( esc_html__( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'posts-in-sidebar' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
+						); ?>
+
+						<?php // ================= Get WordPress post classes for the post.
+						pis_form_checkbox(
+							esc_html__( 'Add the WordPress standard classes to the post in the widget', 'posts-in-sidebar' ),
+							$this->get_field_id( 'add_wp_post_classes' ),
+							$this->get_field_name( 'add_wp_post_classes' ),
+							checked( $add_wp_post_classes, true, false ),
+							sprintf( esc_html__( 'Every standard WordPress posts has a series of HTML classes, such as %s, and so on. Activating this option you can add these classes to the usual plugin\'s classes.', 'posts-in-sidebar' ), '<code>post</code>, <code>type-post</code>, <code>format-standard</code>, <code>category-categoryname</code>, <code>tag-tagname</code>' )
 						); ?>
 
 					</div>

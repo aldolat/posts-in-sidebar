@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.8  
-**Stable tag:** 4.2.0  
+**Stable tag:** 4.3.0  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -110,6 +110,14 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ![7. Displaying the full set of items (categories, date, author, tags, and so on).](https://ps.w.org/posts-in-sidebar/assets/screenshot-7.png)
 
 ## Changelog ##
+
+### 4.3.0 ###
+
+* Add option to get posts from the current tag, when on a single post.
+* Add option to assign post classes via `get_post_class()`.
+* Fix empty p tag when no excerpt or no image.
+* Fix post modification date/time.
+* Minor fixes.
 
 ### 4.2.0 ###
 

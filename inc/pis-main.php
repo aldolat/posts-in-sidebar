@@ -75,6 +75,14 @@ function pis_get_posts_in_sidebar( $args ) {
 		'dont_ignore_params'  => false,
 		'sort_categories'     => false,
 		/*
+		 * This is the tag of the single post
+		 * where we'll get posts from.
+		 */
+		'get_from_same_tag'   => false,
+		'number_same_tag'     => '',
+		'title_same_tag'      => '',
+		'sort_tags'           => false,
+		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
 		 */
@@ -270,6 +278,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
+		'add_wp_post_classes' => false,
 
 		// Cache
 		'cached'              => false,
@@ -589,6 +598,51 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/*
+	 * Check if the user wants to display posts from the same tag of the single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * This will work in single (regular) posts only, not in custom post types.
+	 *
+	 * @since 4.3.0
+	 */
+	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
+		// Get post's tags.
+		$post_tags = wp_get_post_tags( $single_post_id );
+		if ( $post_tags ) {
+			// Set the post_type.
+			$params['post_type'] = 'post';
+
+			// Set the number of posts
+			if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
+				$params['posts_per_page'] = $number_same_tag;
+			}
+
+			// Sort the tags of the post in ascending order.
+			if ( $sort_tags ) {
+				sort( $post_tags );
+			}
+
+			// Set the tag.
+			$the_tag = get_tag( $post_tags[0] );
+			$params['tag'] = $the_tag->slug;
+
+			// Reset other parameters. The user can choose not to reset them.
+			if ( ! $dont_ignore_params ) {
+				$params['post__in']        = '';
+				$params['author_name']     = '';
+				$params['author__in']      = '';
+				$params['category_name']   = '';
+				$params['tax_query']       = '';
+				$params['date_query']      = '';
+				$params['meta_query']      = '';
+				$params['post_parent__in'] = '';
+				$params['post_format']     = '';
+				$params['meta_key']        = '';
+				$params['meta_value']      = '';
+			}
+		}
+	}
+
+	/*
 	 * Check if the user wants to display posts from the same author of the single post.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 * This will work in single (regular) posts only, not in custom post types.
@@ -772,9 +826,10 @@ function pis_get_posts_in_sidebar( $args ) {
 					 * Assign the class 'sticky' if the post is sticky.
 					 *
 					 * @since 1.25
+					 * @since 4.3.0 Added control for new option add_wp_post_classes.
 					 */
 					$sticky_class = '';
-					 if ( is_sticky() ) {
+					 if ( is_sticky() && ! $add_wp_post_classes ) {
 						$sticky_class = ' sticky';
 					}
 
@@ -788,7 +843,18 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
+					/*
+					 * Get WordPress post classes for the post.
+					 *
+					 * @uses get_post_class()
+					 * @since 4.3.0
+					 */
+					$wp_post_classes = '';
+					if ( $add_wp_post_classes ) {
+						$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
+					}
+
+					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 						// Define the containers for single sections to be concatenated later
 						$pis_thumbnail_content    = '';
@@ -848,7 +914,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							) );
 
 							// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag
-							if ( ! empty( $pis_the_text ) || $display_image )
+							if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) )
 							$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 
 								if ( $display_image && ! $image_before_title ) {
@@ -885,7 +951,7 @@ function pis_get_posts_in_sidebar( $args ) {
 								/* The text */
 								$pis_text_content .= $pis_the_text;
 
-							if ( ! empty( $pis_the_text ) || $display_image )
+							if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) )
 							$pis_text_content .= '</p>';
 						endif;
 						// Close the post content

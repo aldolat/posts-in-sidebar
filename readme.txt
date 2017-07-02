@@ -101,6 +101,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 4.3.0 =
 
 * Add option to get posts from the current tag, when on a single post.
+* Assign post classes via `get_post_class()`.
 * Fix post type and number of posts when getting posts from the same tag.
 * Fix empty p tag when no excerpt or no image.
 * Fix post modification date/time.

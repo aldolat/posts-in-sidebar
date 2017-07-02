@@ -822,16 +822,6 @@ function pis_get_posts_in_sidebar( $args ) {
 					}
 
 					/*
-					 * Assign the class 'sticky' if the post is sticky.
-					 *
-					 * @since 1.25
-					 */
-					$sticky_class = '';
-					 if ( is_sticky() ) {
-						$sticky_class = ' sticky';
-					}
-
-					/*
 					 * Assign the class 'private' if the post is private.
 					 *
 					 * @since 3.0.1
@@ -841,7 +831,9 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
+					$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
+
+					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 						// Define the containers for single sections to be concatenated later
 						$pis_thumbnail_content    = '';

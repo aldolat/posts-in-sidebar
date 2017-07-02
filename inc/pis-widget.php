@@ -625,7 +625,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance = $old_instance;
 
 		// The title of the widget
-		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title']      = sanitize_text_field( $new_instance['title'] );
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget

@@ -4283,7 +4283,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_attr( $instance['container_class'] ),
 							'posts-container',
 							sprintf(
-								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
+								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the widget title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
 						); ?>
 
 						<?php // ================= Type of HTML for list of posts

@@ -630,12 +630,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// The introduction for the widget
 		$allowed_html = array(
-			'a' => array(
+			'a'      => array(
 				'href'  => array(),
 				'title' => array(),
 			),
-			'em' => array(),
+			'em'     => array(),
 			'strong' => array(),
+			'span'   => array(),
 		);
 		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
 
@@ -1312,7 +1313,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
 				$style = 'resize: vertical; width: 100%; height: 80px;',
-				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>, <code>span</code>' )
 			); ?>
 
 		</div>

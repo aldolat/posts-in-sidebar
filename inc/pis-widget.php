@@ -123,11 +123,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		*
 		* @since 3.7
 		*/
-		if ( isset( $instance['get_from_custom_fld'] ) &&
-			 $instance['get_from_custom_fld'] &&
-			 isset( $instance['s_custom_field_key'] ) &&
-			 isset( $instance['s_custom_field_tax'] )  &&
-			 isset( $instance['title_custom_field'] ) &&
+		if ( isset( $instance['get_from_custom_fld'] )  &&
+			 $instance['get_from_custom_fld']           &&
+			 isset( $instance['s_custom_field_key'] )   &&
+			 isset( $instance['s_custom_field_tax'] )   &&
+			 isset( $instance['title_custom_field'] )   &&
 			 ! empty( $instance['title_custom_field'] ) &&
 			 is_singular( 'post' ) ) {
 

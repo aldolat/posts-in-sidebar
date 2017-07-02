@@ -123,11 +123,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		*
 		* @since 3.7
 		*/
-		if ( isset( $instance['get_from_custom_fld'] ) &&
-			 $instance['get_from_custom_fld'] &&
-			 isset( $instance['s_custom_field_key'] ) &&
-			 isset( $instance['s_custom_field_tax'] )  &&
-			 isset( $instance['title_custom_field'] ) &&
+		if ( isset( $instance['get_from_custom_fld'] )  &&
+			 $instance['get_from_custom_fld']           &&
+			 isset( $instance['s_custom_field_key'] )   &&
+			 isset( $instance['s_custom_field_tax'] )   &&
+			 isset( $instance['title_custom_field'] )   &&
 			 ! empty( $instance['title_custom_field'] ) &&
 			 is_singular( 'post' ) ) {
 
@@ -340,6 +340,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['custom_styles'] ) )        $instance['custom_styles']        = '';
 		if ( ! isset( $instance['list_element'] ) )         $instance['list_element']         = 'ul';
 		if ( ! isset( $instance['remove_bullets'] ) )       $instance['remove_bullets']       = false;
+		if ( ! isset( $instance['add_wp_post_classes'] ) )  $instance['add_wp_post_classes']  = false;
 		if ( ! isset( $instance['cached'] ) )               $instance['cached']               = false;
 		if ( ! isset( $instance['cache_time'] ) )           $instance['cache_time']           = 3600;
 		if ( ! isset( $instance['admin_only'] ) )           $instance['admin_only']           = true;
@@ -584,6 +585,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// Extras
 			'list_element'        => $instance['list_element'],
 			'remove_bullets'      => $instance['remove_bullets'],
+			'add_wp_post_classes' => $instance['add_wp_post_classes'],
 
 			// Cache
 			'cached'              => $instance['cached'],
@@ -625,17 +627,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance = $old_instance;
 
 		// The title of the widget
-		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title']      = sanitize_text_field( $new_instance['title'] );
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget
 		$allowed_html = array(
-			'a' => array(
+			'a'      => array(
 				'href'  => array(),
 				'title' => array(),
 			),
-			'em' => array(),
+			'em'     => array(),
 			'strong' => array(),
+			'span'   => array(),
+			'br'     => array(),
 		);
 		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
 
@@ -937,6 +941,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
 		$instance['list_element']        = $new_instance['list_element'];
 		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
+		$instance['add_wp_post_classes'] = isset( $new_instance['add_wp_post_classes'] ) ? 1 : 0;
 
 		// Cache
 		$instance['cached']              = isset( $new_instance['cached'] ) ? 1 : 0;
@@ -1208,6 +1213,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'container_class'     => '',
 			'list_element'        => 'ul',
 			'remove_bullets'      => false,
+			'add_wp_post_classes' => false,
 
 			// Cache
 			'cached'              => false,
@@ -1268,6 +1274,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$archive_link         = (bool) $instance['archive_link'];
 		$hide_widget          = (bool) $instance['hide_widget'];
 		$remove_bullets       = (bool) $instance['remove_bullets'];
+		$add_wp_post_classes  = (bool) $instance['add_wp_post_classes'];
 		$cached               = (bool) $instance['cached'];
 		$admin_only           = (bool) $instance['admin_only'];
 		$debug_query          = (bool) $instance['debug_query'];
@@ -1312,7 +1319,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
 				$style = 'resize: vertical; width: 100%; height: 80px;',
-				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>' )
+				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>, <code>span</code>, <code>br</code>' )
 			); ?>
 
 		</div>
@@ -4283,7 +4290,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_attr( $instance['container_class'] ),
 							'posts-container',
 							sprintf(
-								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
+								esc_html__( 'Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the widget title to the last line.', 'posts-in-sidebar' ), '<code>my-container</code>', '<code>div</code>' )
 						); ?>
 
 						<?php // ================= Type of HTML for list of posts
@@ -4312,6 +4319,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name( 'remove_bullets' ),
 							checked( $remove_bullets, true, false ),
 							sprintf( esc_html__( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'posts-in-sidebar' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
+						); ?>
+
+						<?php // ================= Get WordPress post classes for the post.
+						pis_form_checkbox(
+							esc_html__( 'Add the WordPress standard classes to the post in the widget', 'posts-in-sidebar' ),
+							$this->get_field_id( 'add_wp_post_classes' ),
+							$this->get_field_name( 'add_wp_post_classes' ),
+							checked( $add_wp_post_classes, true, false ),
+							sprintf( esc_html__( 'Every standard WordPress posts has a series of HTML classes, such as %s, and so on. Activating this option you can add these classes to the usual plugin\'s classes.', 'posts-in-sidebar' ), '<code>post</code>, <code>type-post</code>, <code>format-standard</code>, <code>category-categoryname</code>, <code>tag-tagname</code>' )
 						); ?>
 
 					</div>

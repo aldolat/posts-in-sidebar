@@ -259,6 +259,7 @@ function pis_shortcode( $atts ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
+		'add_wp_post_classes' => false,
 
 		// Cache
 		//'cached'              => false, /* For widget only */

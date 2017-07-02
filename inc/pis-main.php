@@ -278,6 +278,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		// Extras
 		'list_element'        => 'ul',
 		'remove_bullets'      => false,
+		'add_wp_post_classes' => false,
 
 		// Cache
 		'cached'              => false,
@@ -604,21 +605,23 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * @since 4.3.0
 	 */
 	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
-		// Set the post_type.
-		$params['post_type'] = 'post';
-
-		// Set the number of posts
-		if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
-			$params['posts_per_page'] = $number_same_tag;
-		}
-
-		// Set the tag.
+		// Get post's tags.
 		$post_tags = wp_get_post_tags( $single_post_id );
 		if ( $post_tags ) {
+			// Set the post_type.
+			$params['post_type'] = 'post';
+
+			// Set the number of posts
+			if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
+				$params['posts_per_page'] = $number_same_tag;
+			}
+
 			// Sort the tags of the post in ascending order.
 			if ( $sort_tags ) {
 				sort( $post_tags );
 			}
+
+			// Set the tag.
 			$the_tag = get_tag( $post_tags[0] );
 			$params['tag'] = $the_tag->slug;
 
@@ -823,9 +826,10 @@ function pis_get_posts_in_sidebar( $args ) {
 					 * Assign the class 'sticky' if the post is sticky.
 					 *
 					 * @since 1.25
+					 * @since 4.3.0 Added control for new option add_wp_post_classes.
 					 */
 					$sticky_class = '';
-					 if ( is_sticky() ) {
+					 if ( is_sticky() && ! $add_wp_post_classes ) {
 						$sticky_class = ' sticky';
 					}
 
@@ -839,7 +843,18 @@ function pis_get_posts_in_sidebar( $args ) {
 						$private_class = ' private';
 					}
 
-					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class, apply_filters( 'pis_li_class', '' ), false ) . '>';
+					/*
+					 * Get WordPress post classes for the post.
+					 *
+					 * @uses get_post_class()
+					 * @since 4.3.0
+					 */
+					$wp_post_classes = '';
+					if ( $add_wp_post_classes ) {
+						$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
+					}
+
+					$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>';
 
 						// Define the containers for single sections to be concatenated later
 						$pis_thumbnail_content    = '';

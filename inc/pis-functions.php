@@ -412,6 +412,7 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
  *     @type integer $title_length      The length of the post title.
  *                                      Accepted values:
  *                                      0 (default, meaning no shortening), any positive integer.
+ *     @type boolean $title_hellipsis   If an horizontal ellipsis should be added after the shortened title.
  * }
  *
  * @return The HTML paragraph with the title.
@@ -430,6 +431,7 @@ function pis_the_title( $args ) {
 		'link_on_title'     => true,
 		'arrow'             => false,
 		'title_length'      => 0,
+		'title_hellipsis'   => true,
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -446,7 +448,8 @@ function pis_the_title( $args ) {
 		if ( $link_on_title ) {
 			$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 		}
-		$output .= wp_trim_words( get_the_title(), $title_length, '&hellip;' );
+		if ( $title_hellipsis ) $title_hellip = '&hellip;'; else $title_hellip = '';
+		$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
 		if ( $arrow ) {
 			$output .= pis_arrow();
 		}

@@ -269,6 +269,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['tag_not_in'] ) )           $instance['tag_not_in']           = '';
 		if ( ! isset( $instance['post_parent_not_in'] ) )   $instance['post_parent_not_in']   = '';
 		if ( ! isset( $instance['title_length'] ) )         $instance['title_length']         = 0;
+		if ( ! isset( $instance['title_hellipsis'] ) )      $instance['title_hellipsis']      = true;
 		if ( ! isset( $instance['image_align'] ) )          $instance['image_align']          = 'no_change';
 		if ( ! isset( $instance['image_before_title'] ) )   $instance['image_before_title']   = false;
 		if ( ! isset( $instance['image_link'] ) )           $instance['image_link']           = '';
@@ -483,6 +484,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_on_title'       => $instance['link_on_title'],
 			'arrow'               => $instance['arrow'],
 			'title_length'        => $instance['title_length'],
+			'title_hellipsis'     => $instance['title_hellipsis'],
 
 			// The featured image of the post
 			'display_image'       => $instance['display_image'],
@@ -823,6 +825,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['arrow']               = isset( $new_instance['arrow'] ) ? 1 : 0;
 		$instance['title_length']        = absint( strip_tags( $new_instance['title_length'] ) );
 			if ( '' == $instance['title_length'] || ! is_numeric( $instance['title_length'] ) ) $instance['title_length'] = 0;
+		$instance['title_hellipsis']     = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
 
 		// The featured image of the post
 		$instance['display_image']       = isset( $new_instance['display_image'] ) ? 1 : 0;
@@ -1113,6 +1116,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_on_title'       => true,
 			'arrow'               => false,
 			'title_length'        => 0,
+			'title_hellipsis'     => true,
 
 			// The featured image of the post
 			'display_image'       => false,
@@ -1243,6 +1247,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$exclude_current_post = (bool) $instance['exclude_current_post'];
 		$display_title        = (bool) $instance['display_title'];
 		$link_on_title        = (bool) $instance['link_on_title'];
+		$title_hellipsis      = (bool) $instance['title_hellipsis'];
 		$display_image        = (bool) $instance['display_image'];
 		$image_before_title   = (bool) $instance['image_before_title'];
 		$arrow                = (bool) $instance['arrow'];
@@ -3466,6 +3471,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_attr( $instance['title_length'] ),
 								'10',
 								sprintf( esc_html__( 'Use %s to leave the length unchanged.', 'posts-in-sidebar' ), '<code>0</code>' )
+							); ?>
+
+							<?php // ================= Title ellipsis
+							pis_form_checkbox(
+								esc_html__( 'Add an ellipsis after the shortened title', 'posts-in-sidebar' ),
+								$this->get_field_id( 'title_hellipsis' ),
+								$this->get_field_name( 'title_hellipsis' ),
+								checked( $title_hellipsis, true, false )
 							); ?>
 
 						</div>

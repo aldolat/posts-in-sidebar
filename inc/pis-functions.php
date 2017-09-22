@@ -437,6 +437,7 @@ function pis_the_title( $args ) {
 	extract( $args, EXTR_SKIP );
 
 	$output = '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+
 		// The Gravatar
 		if ( $gravatar_display && 'next_title' == $gravatar_position ) {
 			$output .= pis_get_gravatar( array(
@@ -445,17 +446,26 @@ function pis_the_title( $args ) {
 				'default' => $gravatar_default
 			) );
 		}
+
 		if ( $link_on_title ) {
 			$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 		}
-		if ( $title_hellipsis ) $title_hellip = '&hellip;'; else $title_hellip = '';
-		$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
+
+		if ( 0 == $title_length ) {
+			$output .= get_the_title();
+		} else {
+			$title_hellipsis ? $title_hellip = '&hellip;' : $title_hellip = '';
+			$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
+		}
+
 		if ( $arrow ) {
 			$output .= pis_arrow();
 		}
+
 		if ( $link_on_title ) {
 			$output .= '</a>';
 		}
+
 	$output .= '</p>';
 
 	return $output;

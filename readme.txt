@@ -100,14 +100,14 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 4.4.0 =
 
-* Add option to shorten post titles.
+* Added option to shorten post titles.
 
 = 4.3.0 =
 
-* Add option to get posts from the current tag, when on a single post.
-* Add option to assign post classes via `get_post_class()`.
-* Fix empty p tag when no excerpt or no image.
-* Fix post modification date/time.
+* Added option to get posts from the current tag, when on a single post.
+* Added option to assign post classes via `get_post_class()`.
+* Fixed empty p tag when no excerpt or no image.
+* Fixed post modification date/time.
 * Minor fixes.
 
 = 4.2.0 =

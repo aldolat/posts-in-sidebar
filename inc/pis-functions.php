@@ -418,6 +418,7 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
  * @return The HTML paragraph with the title.
  * @since 3.8.4
  * @since 4.4.0 Added `$title_length` option.
+ * @since 4.4.0 Added `$title_hellipsis` option.
  */
 function pis_the_title( $args ) {
 	$defaults = array(

@@ -409,10 +409,16 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
  *     @type string  $gravatar_default  The URL of the default Gravatar image.
  *     @type boolean $link_on_title     If the title should be linked to the post.
  *     @type boolean $arrow             If an HTML arrow should be added to the title.
+ *     @type integer $title_length      The length of the post title.
+ *                                      Accepted values:
+ *                                      0 (default, meaning no shortening), any positive integer.
+ *     @type boolean $title_hellipsis   If an horizontal ellipsis should be added after the shortened title.
  * }
  *
  * @return The HTML paragraph with the title.
  * @since 3.8.4
+ * @since 4.4.0 Added `$title_length` option.
+ * @since 4.4.0 Added `$title_hellipsis` option.
  */
 function pis_the_title( $args ) {
 	$defaults = array(
@@ -425,11 +431,14 @@ function pis_the_title( $args ) {
 		'gravatar_default'  => '',
 		'link_on_title'     => true,
 		'arrow'             => false,
+		'title_length'      => 0,
+		'title_hellipsis'   => true,
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
 
 	$output = '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+
 		// The Gravatar
 		if ( $gravatar_display && 'next_title' == $gravatar_position ) {
 			$output .= pis_get_gravatar( array(
@@ -438,16 +447,26 @@ function pis_the_title( $args ) {
 				'default' => $gravatar_default
 			) );
 		}
+
 		if ( $link_on_title ) {
 			$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 		}
-		$output .= get_the_title();
+
+		if ( 0 == $title_length ) {
+			$output .= get_the_title();
+		} else {
+			$title_hellipsis ? $title_hellip = '&hellip;' : $title_hellip = '';
+			$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
+		}
+
 		if ( $arrow ) {
 			$output .= pis_arrow();
 		}
+
 		if ( $link_on_title ) {
 			$output .= '</a>';
 		}
+
 	$output .= '</p>';
 
 	return $output;

@@ -174,6 +174,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'display_title'       => true,
 		'link_on_title'       => true,
 		'arrow'               => false,
+		'title_length'        => 0,
+		'title_hellipsis'     => true,
 
 		// The featured image of the post
 		'display_image'       => false,
@@ -893,6 +895,8 @@ function pis_get_posts_in_sidebar( $args ) {
 							'gravatar_default'  => $gravatar_default,
 							'link_on_title'     => $link_on_title,
 							'arrow'             => $arrow,
+							'title_length'      => $title_length,
+							'title_hellipsis'   => $title_hellipsis,
 						) );
 
 						/*

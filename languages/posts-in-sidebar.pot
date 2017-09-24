@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posts in Sidebar package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.4.0\n"
+"Project-Id-Version: Posts in Sidebar 4.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2017-09-24 07:42:58+00:00\n"
+"POT-Creation-Date: 2017-09-24 09:48:11+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -135,7 +135,7 @@ msgstr ""
 msgid "Display a list of posts in a widget"
 msgstr ""
 
-#. #-#-#-#-#  posts-in-sidebar.pot (Posts in Sidebar 4.4.0)  #-#-#-#-#
+#. #-#-#-#-#  posts-in-sidebar.pot (Posts in Sidebar 4.5.0)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: inc/pis-widget.php:51
 msgid "Posts in Sidebar"
@@ -454,8 +454,8 @@ msgid ""
 "When activated, this function will get posts from the category of the post, "
 "ignoring other parameters like tags, date, post formats, etc. If the post "
 "has multiple categories, the plugin will use the first category in the array "
-"of categories (the category with the lowest key ID in the array). Custom "
-"post types are excluded from this feature. If you don't want to ignore other "
+"of categories (the category with the lowest initial letter). Custom post "
+"types are excluded from this feature. If you don't want to ignore other "
 "parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 

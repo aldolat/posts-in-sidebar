@@ -1738,7 +1738,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_cat' ),
 									$this->get_field_name( 'get_from_same_cat' ),
 									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest key ID in the array). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 

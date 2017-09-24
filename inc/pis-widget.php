@@ -3465,7 +3465,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php // ================= Title length
 							pis_form_input_text(
-								esc_html__( 'The length of the title (in words).', 'posts-in-sidebar' ),
+								esc_html__( 'The length of the title (in words)', 'posts-in-sidebar' ),
 								$this->get_field_id( 'title_length' ),
 								$this->get_field_name( 'title_length' ),
 								esc_attr( $instance['title_length'] ),

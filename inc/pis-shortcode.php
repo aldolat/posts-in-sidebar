@@ -155,6 +155,8 @@ function pis_shortcode( $atts ) {
 		'display_title'       => true,
 		'link_on_title'       => true,
 		'arrow'               => false,
+		'title_length'        => 0,
+		'title_hellipsis'     => true,
 
 		// The featured image of the post
 		'display_image'       => false,

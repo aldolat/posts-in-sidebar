@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Sidebar 4.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
-"POT-Creation-Date: 2017-09-22 20:38:04+00:00\n"
+"POT-Creation-Date: 2017-09-24 07:42:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,108 +12,108 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: inc/pis-functions.php:497 inc/pis-main.php:221 inc/pis-shortcode.php:200
+#: inc/pis-functions.php:498 inc/pis-main.php:221 inc/pis-shortcode.php:202
 #: inc/pis-widget.php:300 inc/pis-widget.php:1162 inc/pis-widget.php:3818
 msgid "Category:"
 msgstr ""
 
-#: inc/pis-functions.php:541 inc/pis-main.php:228 inc/pis-shortcode.php:207
+#: inc/pis-functions.php:542 inc/pis-main.php:228 inc/pis-shortcode.php:209
 #: inc/pis-widget.php:305 inc/pis-widget.php:1169 inc/pis-widget.php:3840
 msgid "Tags:"
 msgstr ""
 
-#: inc/pis-functions.php:801 inc/pis-main.php:193 inc/pis-shortcode.php:172
+#: inc/pis-functions.php:802 inc/pis-main.php:193 inc/pis-shortcode.php:174
 #: inc/pis-widget.php:279 inc/pis-widget.php:1134 inc/pis-widget.php:3533
 msgid "Read more&hellip;"
 msgstr ""
 
-#: inc/pis-functions.php:940 inc/pis-main.php:198 inc/pis-shortcode.php:177
+#: inc/pis-functions.php:941 inc/pis-main.php:198 inc/pis-shortcode.php:179
 #: inc/pis-widget.php:281 inc/pis-widget.php:1139 inc/pis-widget.php:3691
 msgid "By"
 msgstr ""
 
-#: inc/pis-functions.php:943 inc/pis-main.php:205 inc/pis-shortcode.php:184
+#: inc/pis-functions.php:944 inc/pis-main.php:205 inc/pis-shortcode.php:186
 #: inc/pis-widget.php:287 inc/pis-widget.php:1146 inc/pis-widget.php:3704
 msgid "Published on"
 msgstr ""
 
-#: inc/pis-functions.php:945 inc/pis-main.php:209 inc/pis-shortcode.php:188
+#: inc/pis-functions.php:946 inc/pis-main.php:209 inc/pis-shortcode.php:190
 #: inc/pis-widget.php:291 inc/pis-widget.php:1150 inc/pis-widget.php:3767
 msgid "Modified on"
 msgstr ""
 
-#: inc/pis-functions.php:947 inc/pis-main.php:213 inc/pis-shortcode.php:192
+#: inc/pis-functions.php:948 inc/pis-main.php:213 inc/pis-shortcode.php:194
 #: inc/pis-widget.php:294 inc/pis-widget.php:1154 inc/pis-widget.php:3720
 msgid "Comments:"
 msgstr ""
 
-#: inc/pis-functions.php:997
+#: inc/pis-functions.php:998
 msgctxt "%s is the time of the post."
 msgid "at %s"
 msgstr ""
 
-#: inc/pis-functions.php:1026
+#: inc/pis-functions.php:1027
 msgctxt "%s is the time of the post modified."
 msgid "at %s"
 msgstr ""
 
-#: inc/pis-functions.php:1116
+#: inc/pis-functions.php:1117
 msgid "Comments are closed."
 msgstr ""
 
-#: inc/pis-functions.php:1120
+#: inc/pis-functions.php:1121
 msgid "1 Comment"
 msgstr ""
 
-#: inc/pis-functions.php:1122
+#: inc/pis-functions.php:1123
 msgid "%d Comments"
 msgstr ""
 
-#: inc/pis-functions.php:1124
+#: inc/pis-functions.php:1125
 msgid "Leave a comment"
 msgstr ""
 
-#: inc/pis-functions.php:1169
+#: inc/pis-functions.php:1170
 msgid "Display all posts"
 msgstr ""
 
-#: inc/pis-functions.php:1294
+#: inc/pis-functions.php:1295
 msgid "%s Debug"
 msgstr ""
 
-#: inc/pis-functions.php:1295
+#: inc/pis-functions.php:1296
 msgid "Environment informations:"
 msgstr ""
 
-#: inc/pis-functions.php:1297
+#: inc/pis-functions.php:1298
 msgid "Site URL: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1298
+#: inc/pis-functions.php:1299
 msgid "WP version: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1299
+#: inc/pis-functions.php:1300
 msgid "PiS version: %s"
 msgstr ""
 
-#: inc/pis-functions.php:1301
+#: inc/pis-functions.php:1302
 msgid "Cache: active"
 msgstr ""
 
-#: inc/pis-functions.php:1303
+#: inc/pis-functions.php:1304
 msgid "Cache: not active"
 msgstr ""
 
-#: inc/pis-functions.php:1305
+#: inc/pis-functions.php:1306
 msgid "Queries: %1$s queries in %2$s seconds"
 msgstr ""
 
-#: inc/pis-functions.php:1310
+#: inc/pis-functions.php:1311
 msgid "The parameters for the query:"
 msgstr ""
 
-#: inc/pis-functions.php:1315
+#: inc/pis-functions.php:1316
 msgid "The complete set of parameters of the widget:"
 msgstr ""
 
@@ -121,12 +121,12 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: inc/pis-main.php:258 inc/pis-shortcode.php:237 inc/pis-widget.php:1199
+#: inc/pis-main.php:258 inc/pis-shortcode.php:239 inc/pis-widget.php:1199
 #: inc/pis-widget.php:4163
 msgid "Display all posts under %s"
 msgstr ""
 
-#: inc/pis-main.php:261 inc/pis-shortcode.php:240 inc/pis-widget.php:327
+#: inc/pis-main.php:261 inc/pis-shortcode.php:242 inc/pis-widget.php:327
 #: inc/pis-widget.php:1202 inc/pis-widget.php:4184
 msgid "No posts yet."
 msgstr ""
@@ -1092,7 +1092,7 @@ msgid "Show an arrow after the title"
 msgstr ""
 
 #: inc/pis-widget.php:3468
-msgid "The length of the title (in words)."
+msgid "The length of the title (in words)"
 msgstr ""
 
 #: inc/pis-widget.php:3473

@@ -1454,6 +1454,7 @@ function pis_meta() {
  * @return string  $output The HTML arrow.
  * @uses pis_class()
  * @since 1.15
+ * @since 4.5.0 Added filter for HTML arrows in title and excerpt.
  */
 function pis_arrow( $pre_space = true ) {
 	$the_arrow = apply_filters( 'pis_arrow', '&rarr;' );

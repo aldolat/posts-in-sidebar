@@ -1456,7 +1456,7 @@ function pis_meta() {
  * @since 1.15
  */
 function pis_arrow( $pre_space = true ) {
-	$the_arrow = '&rarr;';
+	$the_arrow = apply_filters( 'pis_arrow', '&rarr;' );
 	if ( is_rtl() ) $the_arrow = '&larr;';
 
 	if ( $pre_space ) {

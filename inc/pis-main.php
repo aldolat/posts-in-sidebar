@@ -799,7 +799,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		} else {
 			$bullets_style = '';
 		}
-		$pis_output .= '<' . $list_element . ' ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
+		$pis_output .= '<' . $list_element . ' id="ul_' . $widget_id . '" ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
 
 			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?><?php
 

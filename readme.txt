@@ -101,6 +101,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 = 4.5.0 =
 
 * Added filter for HTML arrows in title and excerpt.
+* Added CSS ID selector to ul.
 
 = 4.4.0 =
 

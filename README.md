@@ -63,8 +63,8 @@ This plugin has been translated into these languages:
 
 * Persian, thanks to AlirezaJamali
 * French, thanks to Thérèse Lachance and [cilya](https://profiles.wordpress.org/cilya)
-* Hebrew, thanks to [Ahrale](http://www.atar4u.com)
-* Serbo-Croatian, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/)
+* Hebrew, thanks to Ahrale.
+* Serbo-Croatian, thanks to Borisa Djuraskovic.
 
 ## Installation ##
 

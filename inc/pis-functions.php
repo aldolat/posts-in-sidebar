@@ -182,7 +182,7 @@ function pis_tax_query( $args ) {
 /**
  * Build the query based on custom fields.
  *
- * @param array $args The array containing the custom parameters.
+ * @param  array $args The array containing the custom parameters.
  * @return array An array of array of parameters.
  * @since 4.0
  */
@@ -352,6 +352,7 @@ function pis_meta_query( $args ) {
  *                            Accepted values: 'desc' (default), 'asc'.
  *
  * @return array   $post_ids  The array with the IDs of the post.
+ *
  * @since 4.1
  */
 function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
@@ -1349,6 +1350,7 @@ function pis_debug( $parameters ) {
  * @param  string|array $default One or more classes, defined by plugin's developer, to add to the class list.
  * @param  string|array $class   One or more classes, defined by the user, to add to the class list.
  * @param  boolean      $echo    If the function should echo or not the output. Default true.
+ *
  * @return string       $output  HTML formatted list of classes, e.g class="class1 class2".
  */
 function pis_class( $default = '', $class = '', $echo = true ) {

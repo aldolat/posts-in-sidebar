@@ -269,7 +269,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['tag_not_in'] ) )           $instance['tag_not_in']           = '';
 		if ( ! isset( $instance['post_parent_not_in'] ) )   $instance['post_parent_not_in']   = '';
 		if ( ! isset( $instance['title_length'] ) )         $instance['title_length']         = 0;
+		if ( ! isset( $instance['title_length_unit'] ) )    $instance['title_length_unit']    = 'words';
 		if ( ! isset( $instance['title_hellipsis'] ) )      $instance['title_hellipsis']      = true;
+		if ( ! isset( $instance['exc_length_unit'] ) )    $instance['exc_length_unit']    = 'words';
 		if ( ! isset( $instance['image_align'] ) )          $instance['image_align']          = 'no_change';
 		if ( ! isset( $instance['image_before_title'] ) )   $instance['image_before_title']   = false;
 		if ( ! isset( $instance['image_link'] ) )           $instance['image_link']           = '';
@@ -484,6 +486,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_on_title'       => $instance['link_on_title'],
 			'arrow'               => $instance['arrow'],
 			'title_length'        => $instance['title_length'],
+			'title_length_unit'   => $instance['title_length_unit'],
 			'title_hellipsis'     => $instance['title_hellipsis'],
 
 			// The featured image of the post
@@ -499,6 +502,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The text of the post
 			'excerpt'             => $instance['excerpt'],
 			'exc_length'          => $instance['exc_length'],
+			'exc_length_unit'     => $instance['exc_length_unit'],
 			'the_more'            => $instance['the_more'],
 			'exc_arrow'           => $instance['exc_arrow'],
 
@@ -825,6 +829,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['arrow']               = isset( $new_instance['arrow'] ) ? 1 : 0;
 		$instance['title_length']        = absint( strip_tags( $new_instance['title_length'] ) );
 			if ( '' == $instance['title_length'] || ! is_numeric( $instance['title_length'] ) ) $instance['title_length'] = 0;
+		$instance['title_length_unit']   = strip_tags( $new_instance['title_length_unit'] );
 		$instance['title_hellipsis']     = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
 
 		// The featured image of the post
@@ -841,6 +846,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['excerpt']             = $new_instance['excerpt'];
 		$instance['exc_length']          = absint( strip_tags( $new_instance['exc_length'] ) );
 			if ( '' == $instance['exc_length'] || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
+		$instance['exc_length_unit']     = strip_tags( $new_instance['exc_length_unit'] );
 		$instance['the_more']            = strip_tags( $new_instance['the_more'] );
 			$instance['the_more'] = str_replace( '...', '&hellip;', $instance['the_more'] );
 		$instance['exc_arrow']           = isset( $new_instance['exc_arrow'] ) ? 1 : 0;
@@ -1116,6 +1122,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_on_title'       => true,
 			'arrow'               => false,
 			'title_length'        => 0,
+			'title_length_unit'   => 'words',
 			'title_hellipsis'     => true,
 
 			// The featured image of the post
@@ -1131,6 +1138,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// The text of the post
 			'excerpt'             => 'excerpt',
 			'exc_length'          => 20,
+			'exc_length_unit'     => 'words',
 			'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 			'exc_arrow'           => false,
 
@@ -3465,12 +3473,30 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php // ================= Title length
 							pis_form_input_text(
-								esc_html__( 'The length of the title (in words)', 'posts-in-sidebar' ),
+								esc_html__( 'The length of the title', 'posts-in-sidebar' ),
 								$this->get_field_id( 'title_length' ),
 								$this->get_field_name( 'title_length' ),
 								esc_attr( $instance['title_length'] ),
 								'10',
 								sprintf( esc_html__( 'Use %s to leave the length unchanged.', 'posts-in-sidebar' ), '<code>0</code>' )
+							); ?>
+
+							<?php // ================= Title length Unit
+							$options = array(
+								'words' => array(
+									'value' => 'words',
+									'desc' => esc_html__( 'Words', 'posts-in-sidebar' )
+								),
+								'chars' => array(
+									'value' => 'chars',
+									'desc' => esc_html__( 'Characters', 'posts-in-sidebar' )
+								),
+							);
+							pis_form_select(
+								esc_html__( 'Title length unit', 'posts-in-sidebar' ),
+								$this->get_field_id('title_length_unit'),
+								$this->get_field_name('title_length_unit'),
+								$options, $instance['title_length_unit']
 							); ?>
 
 							<?php // ================= Title ellipsis
@@ -3527,7 +3553,25 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							); ?>
 
 							<?php // ================= Excerpt length
-							pis_form_input_text( esc_html__( 'The WordPress generated excerpt length will be (in words)', 'posts-in-sidebar' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ), '20' ); ?>
+							pis_form_input_text( esc_html__( 'The WordPress generated excerpt length will be', 'posts-in-sidebar' ), $this->get_field_id( 'exc_length' ), $this->get_field_name( 'exc_length' ), esc_attr( $instance['exc_length'] ), '20' ); ?>
+
+							<?php // ================= Excerpt length Unit
+							$options = array(
+								'words' => array(
+									'value' => 'words',
+									'desc' => esc_html__( 'Words', 'posts-in-sidebar' )
+								),
+								'chars' => array(
+									'value' => 'chars',
+									'desc' => esc_html__( 'Characters', 'posts-in-sidebar' )
+								),
+							);
+							pis_form_select(
+								esc_html__( 'Excerpt length unit', 'posts-in-sidebar' ),
+								$this->get_field_id('exc_length_unit'),
+								$this->get_field_name('exc_length_unit'),
+								$options, $instance['exc_length_unit']
+							); ?>
 
 							<?php // ================= More link text
 							pis_form_input_text( esc_html__( 'Use this text for More link', 'posts-in-sidebar' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ), esc_html__( 'The "Read more" text will be automatically hidden if the length of the WordPress-generated excerpt is smaller than or equal to the user-defined length.', 'posts-in-sidebar' ) ); ?>

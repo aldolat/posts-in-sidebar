@@ -156,6 +156,7 @@ function pis_shortcode( $atts ) {
 		'link_on_title'       => true,
 		'arrow'               => false,
 		'title_length'        => 0,
+		'title_length_unit'   => 'words',
 		'title_hellipsis'     => true,
 
 		// The featured image of the post
@@ -170,7 +171,8 @@ function pis_shortcode( $atts ) {
 
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
-		'exc_length'          => 20,        // In words
+		'exc_length'          => 20,
+		'exc_length_unit'     => 'words',
 		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 

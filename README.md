@@ -113,6 +113,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 4.5.0 ###
 
+* Added options for title and WordPress-generated excerpt length unit.
 * Added filter for HTML arrows in title and excerpt.
 * Added CSS ID selector to ul.
 

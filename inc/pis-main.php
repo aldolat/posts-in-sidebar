@@ -175,6 +175,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'link_on_title'       => true,
 		'arrow'               => false,
 		'title_length'        => 0,
+		'title_length_unit'   => 'words',
 		'title_hellipsis'     => true,
 
 		// The featured image of the post
@@ -189,7 +190,8 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
-		'exc_length'          => 20,        // In words
+		'exc_length'          => 20,
+		'exc_length_unit'     => 'words',
 		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
@@ -520,6 +522,18 @@ function pis_get_posts_in_sidebar( $args ) {
 		$orderby = 'post__in';
 		// Make sure to get only published posts.
 		$post_status = 'publish';
+	}
+
+	/*
+	 * Verify if title and excerpt length unit are defined
+	 *
+	 * @since 4.5.0
+	 */
+	if ( ! isset( $title_length_unit ) || '' == $title_length_unit ) {
+		$title_length_unit = 'words';
+	}
+	if ( ! isset( $exc_length_unit ) || '' == $exc_length_unit ) {
+		$exc_length_unit = 'words';
 	}
 
 	// Build the array for WP_Query object.
@@ -903,6 +917,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							'link_on_title'     => $link_on_title,
 							'arrow'             => $arrow,
 							'title_length'      => $title_length,
+							'title_length_unit' => $title_length_unit,
 							'title_hellipsis'   => $title_hellipsis,
 						) );
 
@@ -917,11 +932,12 @@ function pis_get_posts_in_sidebar( $args ) {
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
 							// Prepare the variable $pis_the_text to contain the text of the post
 							$pis_the_text = pis_the_text( array(
-								'excerpt'    => $excerpt,
-								'pis_query'  => $pis_query,
-								'exc_length' => $exc_length,
-								'the_more'   => $the_more,
-								'exc_arrow'  => $exc_arrow,
+								'excerpt'         => $excerpt,
+								'pis_query'       => $pis_query,
+								'exc_length'      => $exc_length,
+								'exc_length_unit' => $exc_length_unit,
+								'the_more'        => $the_more,
+								'exc_arrow'       => $exc_arrow,
 							) );
 
 							// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag

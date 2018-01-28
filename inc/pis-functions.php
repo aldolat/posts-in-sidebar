@@ -828,7 +828,7 @@ function pis_the_text( $args ) {
 			/* Filter the post content. If not filtered, shortcodes (and other things) will not be executed.
 			 * See https://codex.wordpress.org/Function_Reference/get_the_content
 			 */
-			$output .= apply_filters( 'the_content', get_the_content() );
+			$output = apply_filters( 'the_content', get_the_content() );
 		break;
 
 		case 'rich_content':
@@ -836,7 +836,7 @@ function pis_the_text( $args ) {
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
 			$content = do_shortcode( $content );
-			$output .= apply_filters( 'pis_rich_content', $content );
+			$output = apply_filters( 'pis_rich_content', $content );
 		break;
 
 		case 'content':
@@ -846,7 +846,7 @@ function pis_the_text( $args ) {
 			$content = wp_kses( $content, array() );
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			$output .= apply_filters( 'pis_content', $content );
+			$output = apply_filters( 'pis_content', $content );
 		break;
 
 		case 'more_excerpt':
@@ -861,7 +861,7 @@ function pis_the_text( $args ) {
 					$excerpt_text = substr( $excerpt_text, 0, $exc_length ) . '&hellip;';
 				}
 			}
-			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 		break;
 
 		case 'excerpt':
@@ -879,7 +879,7 @@ function pis_the_text( $args ) {
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+				$output = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 				$output = trim( $output );
 			} else {
 			// ... else generate an excerpt
@@ -896,7 +896,7 @@ function pis_the_text( $args ) {
 					}
 					$excerpt_text = rtrim( substr( $excerpt_text, 0, $exc_length ) ) . $hellip;
 				}
-				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text );
+				$output = apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );
 				if ( $output ) $output .= pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
 			}
@@ -904,7 +904,7 @@ function pis_the_text( $args ) {
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 			$output = trim( $output );
 		break;
 

@@ -175,6 +175,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'link_on_title'       => true,
 		'arrow'               => false,
 		'title_length'        => 0,
+		'title_length_unit'   => 'words',
 		'title_hellipsis'     => true,
 
 		// The featured image of the post
@@ -189,7 +190,8 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// The text of the post
 		'excerpt'             => 'excerpt', // can be "full_content", "rich_content", "content", "more_excerpt", "excerpt", "none"
-		'exc_length'          => 20,        // In words
+		'exc_length'          => 20,
+		'exc_length_unit'     => 'words',
 		'the_more'            => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'           => false,
 
@@ -522,6 +524,18 @@ function pis_get_posts_in_sidebar( $args ) {
 		$post_status = 'publish';
 	}
 
+	/*
+	 * Verify if title and excerpt length unit are defined
+	 *
+	 * @since 4.5.0
+	 */
+	if ( ! isset( $title_length_unit ) || '' == $title_length_unit ) {
+		$title_length_unit = 'words';
+	}
+	if ( ! isset( $exc_length_unit ) || '' == $exc_length_unit ) {
+		$exc_length_unit = 'words';
+	}
+
 	// Build the array for WP_Query object.
 	$params = array(
 		'post_type'           => $post_type,   // Uses a string with a single slug or an array of multiple slugs
@@ -799,7 +813,14 @@ function pis_get_posts_in_sidebar( $args ) {
 		} else {
 			$bullets_style = '';
 		}
-		$pis_output .= '<' . $list_element . ' ' . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
+
+		/*
+		 * Add the ID selector to UL since some page builder plugins remove the section HTML tag.
+		 * @since 4.5.0
+		 */
+		$pis_ul_id = ' id="ul_' . $widget_id . '" ';
+
+		$pis_output .= '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
 
 			while ( $pis_query->have_posts() ) : $pis_query->the_post(); ?><?php
 
@@ -896,6 +917,7 @@ function pis_get_posts_in_sidebar( $args ) {
 							'link_on_title'     => $link_on_title,
 							'arrow'             => $arrow,
 							'title_length'      => $title_length,
+							'title_length_unit' => $title_length_unit,
 							'title_hellipsis'   => $title_hellipsis,
 						) );
 
@@ -910,11 +932,12 @@ function pis_get_posts_in_sidebar( $args ) {
 						if ( 'attachment' == $post_type || ( $display_image && ( has_post_thumbnail() || $custom_image_url ) ) || 'none' != $excerpt ) :
 							// Prepare the variable $pis_the_text to contain the text of the post
 							$pis_the_text = pis_the_text( array(
-								'excerpt'    => $excerpt,
-								'pis_query'  => $pis_query,
-								'exc_length' => $exc_length,
-								'the_more'   => $the_more,
-								'exc_arrow'  => $exc_arrow,
+								'excerpt'         => $excerpt,
+								'pis_query'       => $pis_query,
+								'exc_length'      => $exc_length,
+								'exc_length_unit' => $exc_length_unit,
+								'the_more'        => $the_more,
+								'exc_arrow'       => $exc_arrow,
 							) );
 
 							// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag

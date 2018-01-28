@@ -182,7 +182,7 @@ function pis_tax_query( $args ) {
 /**
  * Build the query based on custom fields.
  *
- * @param array $args The array containing the custom parameters.
+ * @param  array $args The array containing the custom parameters.
  * @return array An array of array of parameters.
  * @since 4.0
  */
@@ -352,6 +352,7 @@ function pis_meta_query( $args ) {
  *                            Accepted values: 'desc' (default), 'asc'.
  *
  * @return array   $post_ids  The array with the IDs of the post.
+ *
  * @since 4.1
  */
 function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
@@ -432,6 +433,7 @@ function pis_the_title( $args ) {
 		'link_on_title'     => true,
 		'arrow'             => false,
 		'title_length'      => 0,
+		'title_length_unit' => 'words',
 		'title_hellipsis'   => true,
 	);
 	$args = wp_parse_args( $args, $defaults );
@@ -456,7 +458,14 @@ function pis_the_title( $args ) {
 			$output .= get_the_title();
 		} else {
 			$title_hellipsis ? $title_hellip = '&hellip;' : $title_hellip = '';
-			$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
+			if ( 'words' == $title_length_unit ) {
+				$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
+			} else {
+				if ( strlen( get_the_title() ) <= $title_length ) {
+					$title_hellip = '';
+				}
+				$output .= rtrim( substr( get_the_title(), 0, $title_length ) ) . $title_hellip;
+			}
 		}
 
 		if ( $arrow ) {
@@ -796,11 +805,12 @@ function pis_the_thumbnail( $args ) {
  */
 function pis_the_text( $args ) {
 	$defaults = array(
-		'excerpt'    => 'excerpt',
-		'pis_query'  => '',
-		'exc_length' => 20,
-		'the_more'   => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
-		'exc_arrow'  => false,
+		'excerpt'         => 'excerpt',
+		'pis_query'       => '',
+		'exc_length'      => 20,
+		'exc_length_unit' => 'words',
+		'the_more'        => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
+		'exc_arrow'       => false,
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );
@@ -821,7 +831,7 @@ function pis_the_text( $args ) {
 			/* Filter the post content. If not filtered, shortcodes (and other things) will not be executed.
 			 * See https://codex.wordpress.org/Function_Reference/get_the_content
 			 */
-			$output .= apply_filters( 'the_content', get_the_content() );
+			$output = apply_filters( 'the_content', get_the_content() );
 		break;
 
 		case 'rich_content':
@@ -829,7 +839,7 @@ function pis_the_text( $args ) {
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
 			$content = do_shortcode( $content );
-			$output .= apply_filters( 'pis_rich_content', $content );
+			$output = apply_filters( 'pis_rich_content', $content );
 		break;
 
 		case 'content':
@@ -839,7 +849,7 @@ function pis_the_text( $args ) {
 			$content = wp_kses( $content, array() );
 			// Honor any paragraph break
 			$content = pis_break_text( $content );
-			$output .= apply_filters( 'pis_content', $content );
+			$output = apply_filters( 'pis_content', $content );
 		break;
 
 		case 'more_excerpt':
@@ -848,9 +858,13 @@ function pis_the_text( $args ) {
 			if ( $testformore ) {
 				$excerpt_text = substr( $excerpt_text, 0, $testformore );
 			} else {
-				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+				if ( 'words' == $exc_length_unit ) {
+					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+				} else {
+					$excerpt_text = substr( $excerpt_text, 0, $exc_length ) . '&hellip;';
+				}
 			}
-			$output .= apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 		break;
 
 		case 'excerpt':
@@ -868,15 +882,24 @@ function pis_the_text( $args ) {
 			if ( $pis_query->post->post_excerpt ) {
 				// Honor any paragraph break
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output .= apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+				$output = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 				$output = trim( $output );
 			} else {
 			// ... else generate an excerpt
-				$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
+				$excerpt_text =  wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
 				$no_the_more = false;
-				if ( count( explode( ' ', wp_strip_all_tags( $excerpt_text ) ) ) <= $exc_length ) $no_the_more = true;
-				$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
-				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text );
+				$hellip = '&hellip;';
+				if ( 'words' == $exc_length_unit ) {
+					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) $no_the_more = true;
+					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, $hellip );
+				} else {
+					if ( strlen( $excerpt_text ) <= $exc_length ) {
+						$no_the_more = true;
+						$hellip = '';
+					}
+					$excerpt_text = rtrim( substr( $excerpt_text, 0, $exc_length ) ) . $hellip;
+				}
+				$output = apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );
 				if ( $output ) $output .= pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
 			}
@@ -884,7 +907,7 @@ function pis_the_text( $args ) {
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output .= apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
 			$output = trim( $output );
 		break;
 
@@ -1349,6 +1372,7 @@ function pis_debug( $parameters ) {
  * @param  string|array $default One or more classes, defined by plugin's developer, to add to the class list.
  * @param  string|array $class   One or more classes, defined by the user, to add to the class list.
  * @param  boolean      $echo    If the function should echo or not the output. Default true.
+ *
  * @return string       $output  HTML formatted list of classes, e.g class="class1 class2".
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
@@ -1454,9 +1478,10 @@ function pis_meta() {
  * @return string  $output The HTML arrow.
  * @uses pis_class()
  * @since 1.15
+ * @since 4.5.0 Added filter for HTML arrows in title and excerpt.
  */
 function pis_arrow( $pre_space = true ) {
-	$the_arrow = '&rarr;';
+	$the_arrow = apply_filters( 'pis_arrow', '&rarr;' );
 	if ( is_rtl() ) $the_arrow = '&larr;';
 
 	if ( $pre_space ) {

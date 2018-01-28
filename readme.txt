@@ -4,7 +4,7 @@ Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
 Tested up to: 4.9
-Stable tag: 4.4.0
+Stable tag: 4.5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,8 +63,8 @@ This plugin has been translated into these languages:
 
 * Persian, thanks to AlirezaJamali
 * French, thanks to Thérèse Lachance and [cilya](https://profiles.wordpress.org/cilya)
-* Hebrew, thanks to [Ahrale](http://www.atar4u.com)
-* Serbo-Croatian, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/)
+* Hebrew, thanks to Ahrale.
+* Serbo-Croatian, thanks to Borisa Djuraskovic.
 
 == Installation ==
 
@@ -97,6 +97,12 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 4.5.0 =
+
+* Added options for title and WordPress-generated excerpt length unit.
+* Added filter for HTML arrows in title and excerpt.
+* Added CSS ID selector to ul.
 
 = 4.4.0 =
 

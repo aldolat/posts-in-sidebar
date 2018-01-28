@@ -461,7 +461,10 @@ function pis_the_title( $args ) {
 			if ( 'words' == $title_length_unit ) {
 				$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
 			} else {
-				$output .= substr( get_the_title(), 0, $title_length ) . $title_hellip;
+				if ( strlen( get_the_title() ) <= $title_length ) {
+					$title_hellip = '';
+				}
+				$output .= rtrim( substr( get_the_title(), 0, $title_length ) ) . $title_hellip;
 			}
 		}
 
@@ -885,11 +888,11 @@ function pis_the_text( $args ) {
 			// ... else generate an excerpt
 				$excerpt_text =  wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
 				$no_the_more = false;
+				$hellip = '&hellip;';
 				if ( 'words' == $exc_length_unit ) {
 					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) $no_the_more = true;
-					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, $hellip );
 				} else {
-					$hellip = '&hellip;';
 					if ( strlen( $excerpt_text ) <= $exc_length ) {
 						$no_the_more = true;
 						$hellip = '';

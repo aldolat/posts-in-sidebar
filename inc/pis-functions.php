@@ -885,11 +885,16 @@ function pis_the_text( $args ) {
 			// ... else generate an excerpt
 				$excerpt_text =  wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
 				$no_the_more = false;
-				if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) $no_the_more = true;
 				if ( 'words' == $exc_length_unit ) {
+					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) $no_the_more = true;
 					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 				} else {
-					$excerpt_text = substr( $excerpt_text, 0, $exc_length ) . '&hellip;';
+					$hellip = '&hellip;';
+					if ( strlen( $excerpt_text ) <= $exc_length ) {
+						$no_the_more = true;
+						$hellip = '';
+					}
+					$excerpt_text = rtrim( substr( $excerpt_text, 0, $exc_length ) ) . $hellip;
 				}
 				$output .= apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );

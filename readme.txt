@@ -3,8 +3,8 @@ Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.1
-Tested up to: 4.9
-Stable tag: 4.5.0
+Tested up to: 4.9.2
+Stable tag: 4.5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,6 +97,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Changelog ==
+
+= 4.5.1 =
+
+* Fixed displaying UTF-8 charset when shortening titles and excerpts.
 
 = 4.5.0 =
 

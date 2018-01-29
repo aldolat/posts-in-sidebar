@@ -464,7 +464,7 @@ function pis_the_title( $args ) {
 				if ( strlen( get_the_title() ) <= $title_length ) {
 					$title_hellip = '';
 				}
-				$output .= rtrim( substr( get_the_title(), 0, $title_length ) ) . $title_hellip;
+				$output .= rtrim( mb_substr( get_the_title(), 0, $title_length, get_option( 'blog_charset' ) ) ) . $title_hellip;
 			}
 		}
 
@@ -897,7 +897,7 @@ function pis_the_text( $args ) {
 						$no_the_more = true;
 						$hellip = '';
 					}
-					$excerpt_text = rtrim( substr( $excerpt_text, 0, $exc_length ) ) . $hellip;
+					$excerpt_text = rtrim( mb_substr( $excerpt_text, 0, $exc_length, get_option( 'blog_charset' ) ) ) . $hellip;
 				}
 				$output = apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );

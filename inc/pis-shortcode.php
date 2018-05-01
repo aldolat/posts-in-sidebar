@@ -17,7 +17,7 @@ function pis_shortcode( $atts ) {
 		//'container_class'     => '', /* For widget only */
 
 		// The title of the widget
-		//'title'               => __( 'Posts', 'posts-in-sidebar' ), /* For widget only */
+		//'title'               => esc_html__( 'Posts', 'posts-in-sidebar' ), /* For widget only */
 		//'title_link'          => '', /* For widget only */
 		//'intro'               => '', /* For widget only */
 
@@ -27,7 +27,7 @@ function pis_shortcode( $atts ) {
 		'posts_id'            => '',        // Post/Pages IDs, comma separated
 		'author'              => '',        // Author nicename
 		'author_in'           => '',        // Author IDs
-		'posts_by_comments'   => false,     // Uses an array of post IDs
+		'posts_by_comments'   => false,     // Boolean. An array of post IDs will be used
 		'cat'                 => '',        // Category slugs, comma separated
 		'tag'                 => '',        // Tag slugs, comma separated
 		'post_parent_in'      => '',
@@ -39,14 +39,16 @@ function pis_shortcode( $atts ) {
 		'post_status'         => 'publish',
 		'post_meta_key'       => '',
 		'post_meta_val'       => '',
-		/* The 's' (search) parameter must be not declared or must be empty
+		/*
+		 * The 's' (search) parameter must be not declared or must be empty
 		 * otherwise it will break sticky posts.
 		 */
 		'search'              => NULL,
 		'has_password'        => 'null', // Fake content that will be converted later into real null/true/false.
 		'post_password'       => '',
 		'ignore_sticky'       => false,
-		/* This is the category of the single post
+		/*
+		 * This is the category of the single post
 		 * where we'll get posts from.
 		 */
 		//'get_from_same_cat'   => false, /* For widget only */
@@ -83,23 +85,23 @@ function pis_shortcode( $atts ) {
 		// Taxonomies
 		'relation'            => '',
 		'taxonomy_aa'         => '',
-		'field_aa'            => 'slug',
+		'field_aa'            => '',
 		'terms_aa'            => '',
-		'operator_aa'         => 'IN',
+		'operator_aa'         => '',
 		'relation_a'          => '',
 		'taxonomy_ab'         => '',
-		'field_ab'            => 'slug',
+		'field_ab'            => '',
 		'terms_ab'            => '',
-		'operator_ab'         => 'IN',
+		'operator_ab'         => '',
 		'taxonomy_ba'         => '',
-		'field_ba'            => 'slug',
+		'field_ba'            => '',
 		'terms_ba'            => '',
-		'operator_ba'         => 'IN',
+		'operator_ba'         => '',
 		'relation_b'          => '',
 		'taxonomy_bb'         => '',
-		'field_bb'            => 'slug',
+		'field_bb'            => '',
 		'terms_bb'            => '',
-		'operator_bb'         => 'IN',
+		'operator_bb'         => '',
 
 		// Date query
 		'date_year'           => '',

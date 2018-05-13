@@ -113,3 +113,34 @@
 	margin-bottom: 1.67em;
 	margin-top: 1em;
 }
+
+/*
+Fix opening container when PiS is used with SiteOrigin
+@see https://wordpress.org/support/topic/in-siteorigin-pis-does-not-expand/
+*/
+.so-content .pis-widget-title {
+	cursor: default;
+}
+
+.so-content h4.pis-widget-title {
+	background-color: #777;
+	border: 1px solid #777;
+	color: #fff;
+}
+
+.so-content .pis-container {
+	border-left: 1px solid #777;
+	border-right: 1px solid #777;
+	border-bottom: 1px solid #777;
+	display: block;
+}
+
+.so-content h5 + .pis-container {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.so-content h5.pis-widget-title:hover {
+	border-color: #ddd;
+}

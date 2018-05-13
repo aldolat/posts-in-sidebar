@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.5.2 =
+
+* Fixed opening widgets containers when used with SiteOrigin page builder.
+
 = 4.5.1 =
 
 * Fixed displaying UTF-8 charset when shortening titles and excerpts.

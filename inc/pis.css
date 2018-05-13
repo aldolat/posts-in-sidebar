@@ -50,15 +50,15 @@
 /* Typography */
 .pis-widget-title {
 	clear: both;
-	padding:12px;
-	border:1px solid #ddd;
-	background-color:#fafafa;
-	font-size:1em;
+	padding: 12px;
+	border: 1px solid #ddd;
+	background-color: #fafafa;
+	font-size: 1em;
 	cursor: pointer;
 	margin: 0;
 }
 .pis-widget-title:hover {
-	border-color:#9d9d9d;
+	border-color: #9d9d9d;
 }
 .pis-title-center {
 	text-align: center;

@@ -55,16 +55,11 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 = Credits =
 
-I would like to say *Thank You* to all the people who helped me in making this plugin better.
+I would like to say *Thank You* to all the people who helped me in making this plugin better and translated it into their respective languages.
 
-= Translations of the plugin =
+= Privacy Policy =
 
-This plugin has been translated into these languages:
-
-* Persian, thanks to AlirezaJamali
-* French, thanks to Thérèse Lachance and [cilya](https://profiles.wordpress.org/cilya)
-* Hebrew, thanks to Ahrale.
-* Serbo-Croatian, thanks to Borisa Djuraskovic.
+This plugin does not collect any user data.
 
 == Installation ==
 

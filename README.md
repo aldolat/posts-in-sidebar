@@ -108,7 +108,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 4.5.3 ###
 
-* Added 'target' attribute to A element in the widget introduction.
+* Changed wp_kses to wp_kses_post for widget introduction.
 
 ### 4.5.2 ###
 

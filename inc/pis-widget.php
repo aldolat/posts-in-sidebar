@@ -639,18 +639,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget
-		$allowed_html = array(
-			'a'      => array(
-				'href'   => array(),
-				'title'  => array(),
-				'target' => array(),
-			),
-			'em'     => array(),
-			'strong' => array(),
-			'span'   => array(),
-			'br'     => array(),
-		);
-		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
+		$instance['intro'] = wp_kses_post( $new_instance['intro'] );
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];

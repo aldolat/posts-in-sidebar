@@ -641,8 +641,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// The introduction for the widget
 		$allowed_html = array(
 			'a'      => array(
-				'href'  => array(),
-				'title' => array(),
+				'href'   => array(),
+				'title'  => array(),
+				'target' => array(),
 			),
 			'em'     => array(),
 			'strong' => array(),

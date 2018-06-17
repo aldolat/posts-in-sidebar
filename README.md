@@ -109,6 +109,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 4.5.3 ###
 
 * Changed wp_kses to wp_kses_post for widget introduction.
+* Now debug options are displayed without execution.
 
 ### 4.5.2 ###
 

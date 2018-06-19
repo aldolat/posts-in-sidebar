@@ -54,7 +54,6 @@ function pis_shortcode( $atts ) {
 		//'get_from_same_cat'   => false, /* For widget only */
 		//'number_same_cat'     => '',    /* For widget only */
 		//'title_same_cat'      => '',    /* For widget only */
-		//'dont_ignore_params'  => false, /* For widget only */
 		//'sort_categories'     => false, /* For widget only */
 		/*
 		 * This is the tag of the single post
@@ -63,7 +62,6 @@ function pis_shortcode( $atts ) {
 		//'get_from_same_tag'      => false, /* For widget only */
 		//'number_same_tag'        => '',    /* For widget only */
 		//'title_same_tag'         => '',    /* For widget only */
-		//'dont_ignore_params_tag' => false, /* For widget only */
 		//'sort_tags'              => false, /* For widget only */
 		/*
 		 * This is the author of the single post
@@ -81,6 +79,33 @@ function pis_shortcode( $atts ) {
 		//'s_custom_field_tax'  => '',    /* For widget only */
 		//'number_custom_field' => '',    /* For widget only */
 		//'title_custom_field'  => '',    /* For widget only */
+		/*
+		 * Do not ignore other parameters when changing query on single posts.
+		 */
+		//'dont_ignore_params'  => false, /* For widget only */
+
+		/*
+		 * Get posts from the current category page.
+		 */
+		//'get_from_cat_page' => false, /* For widget only */
+		//'number_cat_page'   => '', /* For widget only */
+		//'title_cat_page'    => '', /* For widget only */
+		/*
+		 * Get posts from the current tag page.
+		 */
+		//'get_from_tag_page' => false, /* For widget only */
+		//'number_tag_page'   => '', /* For widget only */
+		//'title_tag_page'    => '', /* For widget only */
+		/*
+		 * Get posts from the current author page.
+		 */
+		//'get_from_author_page' => false, /* For widget only */
+		//'number_author_page'   => '', /* For widget only */
+		//'title_author_page'    => '', /* For widget only */
+		/*
+		 * Do not ignore other parameters when changing query on archive pages.
+		 */
+		//'dont_ignore_params_page'  => false, /* For widget only */
 
 		// Taxonomies
 		'relation'            => '',

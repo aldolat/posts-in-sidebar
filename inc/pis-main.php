@@ -72,7 +72,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'get_from_same_cat'   => false,
 		'number_same_cat'     => '',
 		'title_same_cat'      => '',
-		'dont_ignore_params'  => false,
 		'sort_categories'     => false,
 		/*
 		 * This is the tag of the single post
@@ -98,6 +97,33 @@ function pis_get_posts_in_sidebar( $args ) {
 		's_custom_field_tax'  => '',
 		'number_custom_field' => '',
 		'title_custom_field'  => '',
+		/*
+		 * Do not ignore other parameters when changing query on single posts.
+		 */
+		'dont_ignore_params'  => false,
+
+		/*
+		 * Get posts from the current category page.
+		 */
+		'get_from_cat_page' => false,
+		'number_cat_page'   => '',
+		'title_cat_page'    => '',
+		/*
+		 * Get posts from the current tag page.
+		 */
+		'get_from_tag_page' => false,
+		'number_tag_page'   => '',
+		'title_tag_page'    => '',
+		/*
+		 * Get posts from the current author page.
+		 */
+		'get_from_author_page' => false,
+		'number_author_page'   => '',
+		'title_author_page'    => '',
+		/*
+		 * Do not ignore other parameters when changing query on archive pages.
+		 */
+		'dont_ignore_params_page'  => false,
 
 		// Taxonomies
 		'relation'            => '',
@@ -745,6 +771,93 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['meta_value']      = '';
 				}
 			}
+		}
+	}
+
+	if ( isset( $get_from_cat_page ) && $get_from_cat_page && is_category() ) {
+		// Set the post_type.
+		$params['post_type'] = 'post';
+
+		// Set the number of posts
+		if ( isset( $number_cat_page ) && ! empty( $number_cat_page ) ) {
+			$params['posts_per_page'] = $number_cat_page;
+		}
+
+		// Set the category.
+		$current_archive_category = get_queried_object();
+		$params['category_name'] = $current_archive_category->slug;
+
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params_page ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['author__in']      = '';
+			$params['tag']             = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
+			$params['post_format']     = '';
+			$params['meta_key']        = '';
+			$params['meta_value']      = '';
+		}
+	}
+
+	if ( isset( $get_from_tag_page ) && $get_from_tag_page && is_tag() ) {
+		// Set the post_type.
+		$params['post_type'] = 'post';
+
+		// Set the number of posts
+		if ( isset( $number_tag_page ) && ! empty( $number_tag_page ) ) {
+			$params['posts_per_page'] = $number_tag_page;
+		}
+
+		// Set the tag.
+		$current_archive_tag = get_queried_object();
+		$params['tag'] = $current_archive_tag->slug;
+
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params_page ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['author__in']      = '';
+			$params['category_name']   = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
+			$params['post_format']     = '';
+			$params['meta_key']        = '';
+			$params['meta_value']      = '';
+		}
+	}
+
+	if ( isset( $get_from_author_page ) && $get_from_author_page && is_author() ) {
+		// Set the post_type.
+		$params['post_type'] = 'post';
+
+		// Set the number of posts
+		if ( isset( $number_author_page ) && ! empty( $number_author_page ) ) {
+			$params['posts_per_page'] = $number_author_page;
+		}
+
+		// Set the author.
+		$current_archive_author = get_queried_object();
+		$params['author__in'] = $current_archive_author->ID;
+
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params_page ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['category_name']   = '';
+			$params['tag']             = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
+			$params['post_format']     = '';
+			$params['meta_key']        = '';
+			$params['meta_value']      = '';
 		}
 	}
 

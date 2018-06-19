@@ -2108,7 +2108,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
-									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
+									esc_html__( 'WWhen on archive pages, get this number of posts', 'posts-in-sidebar' ),
 									$this->get_field_id('number_cat_page'),
 									$this->get_field_name('number_cat_page'),
 									esc_attr( $instance['number_cat_page'] ),
@@ -2153,7 +2153,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
-									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
+									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
 									$this->get_field_id('number_tag_page'),
 									$this->get_field_name('number_tag_page'),
 									esc_attr( $instance['number_tag_page'] ),

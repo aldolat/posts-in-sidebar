@@ -1,7 +1,8 @@
 == Changelog ==
 
-= 4.5.3 =
+= 4.6 =
 
+* Added option to get posts from the current archive page (category, tag, and author).
 * Changed wp_kses to wp_kses_post for widget introduction.
 * Now debug options are displayed without execution.
 

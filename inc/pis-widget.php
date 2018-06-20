@@ -1920,7 +1920,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('title_same_tag'),
 									esc_attr( $instance['title_same_tag'] ),
 									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
 								<?php // ================= Sort tags
@@ -2094,7 +2094,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Get posts from same category
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category archive page', 'posts-in-sidebar' ),
 									$this->get_field_id( 'get_from_cat_page' ),
 									$this->get_field_name( 'get_from_cat_page' ),
 									checked( $get_from_cat_page, true, false ),
@@ -2139,7 +2139,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Get posts from same tag
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag archive page', 'posts-in-sidebar' ),
 									$this->get_field_id( 'get_from_tag_page' ),
 									$this->get_field_name( 'get_from_tag_page' ),
 									checked( $get_from_tag_page, true, false ),
@@ -2168,7 +2168,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('title_tag_page'),
 									esc_attr( $instance['title_tag_page'] ),
 									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
 							</div>
@@ -2184,7 +2184,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Get posts from same author
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author archive page', 'posts-in-sidebar' ),
 									$this->get_field_id( 'get_from_author_page' ),
 									$this->get_field_name( 'get_from_author_page' ),
 									checked( $get_from_author_page, true, false ),

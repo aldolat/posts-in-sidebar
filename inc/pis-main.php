@@ -774,6 +774,12 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
+	/*
+	 * Check if the user wants to display posts from the same category when on category archive page.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 *
+	 * @since 4.6
+	 */
 	if ( isset( $get_from_cat_page ) && $get_from_cat_page && is_category() ) {
 		// Set the post_type.
 		$params['post_type'] = 'post';
@@ -803,6 +809,12 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
+	/*
+	 * Check if the user wants to display posts from the same tag when on tag archive page.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 *
+	 * @since 4.6
+	 */
 	if ( isset( $get_from_tag_page ) && $get_from_tag_page && is_tag() ) {
 		// Set the post_type.
 		$params['post_type'] = 'post';
@@ -832,6 +844,12 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
+	/*
+	 * Check if the user wants to display posts from the same author when on author archive page.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 *
+	 * @since 4.6
+	 */
 	if ( isset( $get_from_author_page ) && $get_from_author_page && is_author() ) {
 		// Set the post_type.
 		$params['post_type'] = 'post';

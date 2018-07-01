@@ -107,18 +107,21 @@ function pis_get_posts_in_sidebar( $args ) {
 		 */
 		'get_from_cat_page' => false,
 		'number_cat_page'   => '',
+		'offset_cat_page'   => '',
 		'title_cat_page'    => '',
 		/*
 		 * Get posts from the current tag page.
 		 */
 		'get_from_tag_page' => false,
 		'number_tag_page'   => '',
+		'offset_tag_page'   => '',
 		'title_tag_page'    => '',
 		/*
 		 * Get posts from the current author page.
 		 */
 		'get_from_author_page' => false,
 		'number_author_page'   => '',
+		'offset_author_page'   => '',
 		'title_author_page'    => '',
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.
@@ -793,6 +796,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		$current_archive_category = get_queried_object();
 		$params['category_name'] = $current_archive_category->slug;
 
+		// Set the number of posts to skip.
+		if ( isset( $offset_cat_page ) && ! empty( $offset_cat_page ) ) {
+			$params['offset'] = $offset_cat_page;
+		}
+
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {
 			$params['post__in']        = '';
@@ -828,6 +836,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		$current_archive_tag = get_queried_object();
 		$params['tag'] = $current_archive_tag->slug;
 
+		// Set the number of posts to skip.
+		if ( isset( $offset_tag_page ) && ! empty( $offset_tag_page ) ) {
+			$params['offset'] = $offset_tag_page;
+		}
+
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {
 			$params['post__in']        = '';
@@ -862,6 +875,11 @@ function pis_get_posts_in_sidebar( $args ) {
 		// Set the author.
 		$current_archive_author = get_queried_object();
 		$params['author__in'] = $current_archive_author->ID;
+
+		// Set the number of posts to skip.
+		if ( isset( $offset_author_page ) && ! empty( $offset_author_page ) ) {
+			$params['offset'] = $offset_author_page;
+		}
 
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {

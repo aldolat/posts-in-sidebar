@@ -262,12 +262,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
 		if ( ! isset( $instance['get_from_cat_page'] ) )    $instance['get_from_cat_page']    = false;
 		if ( ! isset( $instance['number_cat_page'] ) )      $instance['number_cat_page']      = '';
+		if ( ! isset( $instance['offset_cat_page'] ) )      $instance['offset_cat_page']      = '';
 		if ( ! isset( $instance['title_cat_page'] ) )       $instance['title_cat_page']       = '';
 		if ( ! isset( $instance['get_from_tag_page'] ) )    $instance['get_from_tag_page']    = false;
 		if ( ! isset( $instance['number_tag_page'] ) )      $instance['number_tag_page']      = '';
+		if ( ! isset( $instance['offset_tag_page'] ) )      $instance['offset_tag_page']      = '';
 		if ( ! isset( $instance['title_tag_page'] ) )       $instance['title_tag_page']       = '';
 		if ( ! isset( $instance['get_from_author_page'] ) ) $instance['get_from_author_page'] = false;
 		if ( ! isset( $instance['number_author_page'] ) )   $instance['number_author_page']   = '';
+		if ( ! isset( $instance['offset_author_page'] ) )   $instance['offset_author_page']   = '';
 		if ( ! isset( $instance['title_author_page'] ) )    $instance['title_author_page']    = '';
 		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
 		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
@@ -475,12 +478,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'get_from_cat_page'   => $instance['get_from_cat_page'],
 			'number_cat_page'     => $instance['number_cat_page'],
+			'offset_cat_page'     => $instance['offset_cat_page'],
 			'title_cat_page'      => $instance['title_cat_page'],
 			'get_from_tag_page'   => $instance['get_from_tag_page'],
 			'number_tag_page'     => $instance['number_tag_page'],
+			'offset_tag_page'     => $instance['offset_tag_page'],
 			'title_tag_page'      => $instance['title_tag_page'],
 			'get_from_author_page'=> $instance['get_from_author_page'],
 			'number_author_page'  => $instance['number_author_page'],
+			'offset_author_page'  => $instance['offset_author_page'],
 			'title_author_page'   => $instance['title_author_page'],
 			'dont_ignore_params_page' => $instance['dont_ignore_params_page'],
 
@@ -796,14 +802,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['get_from_cat_page']    = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
 		$instance['number_cat_page']      = intval( strip_tags( $new_instance['number_cat_page'] ) );
 			if ( 0 == $instance['number_cat_page'] || ! is_numeric( $instance['number_cat_page'] ) ) $instance['number_cat_page'] = '';
+		$instance['offset_cat_page']      = absint( strip_tags( $new_instance['offset_cat_page'] ) );
+			if ( 0 == $instance['offset_cat_page'] || ! is_numeric( $instance['offset_cat_page'] ) ) $instance['offset_cat_page'] = '';
 		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
 		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
 		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
 			if ( 0 == $instance['number_tag_page'] || ! is_numeric( $instance['number_tag_page'] ) ) $instance['number_tag_page'] = '';
+		$instance['offset_tag_page']      = absint( strip_tags( $new_instance['offset_tag_page'] ) );
+			if ( 0 == $instance['offset_tag_page'] || ! is_numeric( $instance['offset_tag_page'] ) ) $instance['offset_tag_page'] = '';
 		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
 		$instance['get_from_author_page'] = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
 		$instance['number_author_page']   = intval( strip_tags( $new_instance['number_author_page'] ) );
 			if ( 0 == $instance['number_author_page'] || ! is_numeric( $instance['number_author_page'] ) ) $instance['number_author_page'] = '';
+		$instance['offset_author_page']   = absint( strip_tags( $new_instance['offset_author_page'] ) );
+			if ( 0 == $instance['offset_author_page'] || ! is_numeric( $instance['offset_author_page'] ) ) $instance['offset_author_page'] = '';
 		$instance['title_author_page']    = strip_tags( $new_instance['title_author_page'] );
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
@@ -1119,12 +1131,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'dont_ignore_params'   => false,
 			'get_from_cat_page'    => false,
 			'number_cat_page'      => '',
+			'offset_cat_page'      => '',
 			'title_cat_page'       => '',
 			'get_from_tag_page'    => false,
 			'number_tag_page'      => '',
+			'offset_tag_page'      => '',
 			'title_tag_page'       => '',
 			'get_from_author_page' => false,
 			'number_author_page'   => '',
+			'offset_author_page'   => '',
 			'title_author_page'    => '',
 			'dont_ignore_params_page' => false,
 
@@ -2119,6 +2134,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
 								); ?>
 
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_cat_page'),
+									$this->get_field_name('offset_cat_page'),
+									esc_attr( $instance['offset_cat_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
@@ -2164,6 +2189,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
 								); ?>
 
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_tag_page'),
+									$this->get_field_name('offset_tag_page'),
+									esc_attr( $instance['offset_tag_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
@@ -2207,6 +2242,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_attr( $instance['number_author_page'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_author_page'),
+									$this->get_field_name('offset_author_page'),
+									esc_attr( $instance['offset_author_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
 								); ?>
 
 								<?php // ================= The custom widget title when on single posts

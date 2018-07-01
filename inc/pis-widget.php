@@ -795,12 +795,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$instance['get_from_cat_page']    = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
 		$instance['number_cat_page']      = intval( strip_tags( $new_instance['number_cat_page'] ) );
+			if ( 0 == $instance['number_cat_page'] || ! is_numeric( $instance['number_cat_page'] ) ) $instance['number_cat_page'] = '';
 		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
 		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
 		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
+			if ( 0 == $instance['number_tag_page'] || ! is_numeric( $instance['number_tag_page'] ) ) $instance['number_tag_page'] = '';
 		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
 		$instance['get_from_author_page'] = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
 		$instance['number_author_page']   = intval( strip_tags( $new_instance['number_author_page'] ) );
+			if ( 0 == $instance['number_author_page'] || ! is_numeric( $instance['number_author_page'] ) ) $instance['number_author_page'] = '';
 		$instance['title_author_page']    = strip_tags( $new_instance['title_author_page'] );
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 

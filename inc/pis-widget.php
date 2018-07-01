@@ -77,11 +77,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		/*
-		* Change the widget title if the user wants a different title in single posts (for same category).
-		*
-		* @since 3.2
-		*/
-		if ( isset( $instance['get_from_same_cat'] ) && $instance['get_from_same_cat'] && isset( $instance['title_same_cat'] ) && ! empty( $instance['title_same_cat'] ) && is_singular( 'post' ) ) {
+		 * Change the widget title if the user wants a different title in single posts (for same category).
+		 *
+		 * @since 3.2
+		 */
+		if ( isset( $instance['get_from_same_cat'] ) &&
+		     $instance['get_from_same_cat']          &&
+			 isset( $instance['title_same_cat'] )    &&
+			 ! empty( $instance['title_same_cat'] )  &&
+			 is_singular( 'post' ) ) {
 			$the_category = wp_get_post_categories( get_the_ID() );
 			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
@@ -91,11 +95,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/*
-		* Change the widget title if the user wants a different title in single posts (for same tag).
-		*
-		* @since 4.3.0
-		*/
-		if ( isset( $instance['get_from_same_tag'] ) && $instance['get_from_same_tag'] && isset( $instance['title_same_tag'] ) && ! empty( $instance['title_same_tag'] ) && is_singular( 'post' ) ) {
+		 * Change the widget title if the user wants a different title in single posts (for same tag).
+		 *
+		 * @since 4.3.0
+		 */
+		if ( isset( $instance['get_from_same_tag'] ) &&
+		     $instance['get_from_same_tag']          &&
+			 isset( $instance['title_same_tag'] )    &&
+			 ! empty( $instance['title_same_tag'] )  &&
+			 is_singular( 'post' ) ) {
 			$the_tag = wp_get_post_tags( get_the_ID() );
 			if ( $the_tag ) {
 				if ( $instance['sort_tags'] ) sort( $the_tag );
@@ -107,11 +115,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/*
-		* Change the widget title if the user wants a different title in single posts (for same author).
-		*
-		* @since 3.5
-		*/
-		if ( isset( $instance['get_from_same_author'] ) && $instance['get_from_same_author'] && isset( $instance['title_same_author'] ) && ! empty( $instance['title_same_author'] ) && is_singular( 'post' ) ) {
+		 * Change the widget title if the user wants a different title in single posts (for same author).
+		 *
+		 * @since 3.5
+		 */
+		if ( isset( $instance['get_from_same_author'] ) &&
+		     $instance['get_from_same_author']          &&
+			 isset( $instance['title_same_author'] )    &&
+			 ! empty( $instance['title_same_author'] )  &&
+			 is_singular( 'post' ) ) {
 			$title = $instance['title_same_author'];
 			$post_author_id = get_post_field( 'post_author', get_the_ID() );
 			$the_author_name = get_the_author_meta( 'display_name', $post_author_id );
@@ -119,10 +131,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/*
-		* Change the widget title if the user wants a different title in single posts (for for same category/tag using custom fields).
-		*
-		* @since 3.7
-		*/
+		 * Change the widget title if the user wants a different title in single posts (for for same category/tag using custom fields).
+		 *
+		 * @since 3.7
+		 */
 		if ( isset( $instance['get_from_custom_fld'] )  &&
 			 $instance['get_from_custom_fld']           &&
 			 isset( $instance['s_custom_field_key'] )   &&
@@ -156,6 +168,54 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				// Also change the %s into the term name, if required.
 				$title = str_replace( '%s', strip_tags( $the_term_name ), $title );
 			}
+		}
+
+		/*
+		 * Change the widget title if the user wants a different title in archive page (for same category).
+		 *
+		 * @since 4.6
+		 */
+		if ( isset( $instance['get_from_cat_page'] ) &&
+		     $instance['get_from_cat_page']          &&
+			 isset( $instance['title_cat_page'] )    &&
+			 ! empty( $instance['title_cat_page'] )  &&
+			 is_category() ) {
+			$current_archive_category = get_queried_object();
+ 			$the_category_name = $current_archive_category->name;
+ 			$title = $instance['title_cat_page'];
+ 			$title = str_replace( '%s', $the_category_name, $title );
+		}
+
+		/*
+		 * Change the widget title if the user wants a different title in archive page (for same tag).
+		 *
+		 * @since 4.6
+		 */
+		if ( isset( $instance['get_from_tag_page'] ) &&
+		     $instance['get_from_tag_page']          &&
+			 isset( $instance['title_tag_page'] )    &&
+			 ! empty( $instance['title_tag_page'] )  &&
+			 is_tag() ) {
+			$the_tag = get_queried_object();
+			$the_tag_name = $the_tag->name;
+			$title = $instance['title_tag_page'];
+			$title = str_replace( '%s', $the_tag_name, $title );
+		}
+
+		/*
+		 * Change the widget title if the user wants a different title in archive page (for same author).
+		 *
+		 * @since 4.6
+		 */
+		if ( isset( $instance['get_from_author_page'] ) &&
+		     $instance['get_from_author_page']          &&
+			 isset( $instance['title_author_page'] )    &&
+			 ! empty( $instance['title_author_page'] )  &&
+			 is_author() ) {
+			$the_author = get_queried_object();
+			$the_author_name = $the_author->display_name;
+			$title = $instance['title_author_page'];
+			$title = str_replace( '%s', $the_author_name, $title );
 		}
 
 		echo "\n" . '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->' . "\n";
@@ -200,6 +260,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
+		if ( ! isset( $instance['get_from_cat_page'] ) )    $instance['get_from_cat_page']    = false;
+		if ( ! isset( $instance['number_cat_page'] ) )      $instance['number_cat_page']      = '';
+		if ( ! isset( $instance['offset_cat_page'] ) )      $instance['offset_cat_page']      = '';
+		if ( ! isset( $instance['title_cat_page'] ) )       $instance['title_cat_page']       = '';
+		if ( ! isset( $instance['get_from_tag_page'] ) )    $instance['get_from_tag_page']    = false;
+		if ( ! isset( $instance['number_tag_page'] ) )      $instance['number_tag_page']      = '';
+		if ( ! isset( $instance['offset_tag_page'] ) )      $instance['offset_tag_page']      = '';
+		if ( ! isset( $instance['title_tag_page'] ) )       $instance['title_tag_page']       = '';
+		if ( ! isset( $instance['get_from_author_page'] ) ) $instance['get_from_author_page'] = false;
+		if ( ! isset( $instance['number_author_page'] ) )   $instance['number_author_page']   = '';
+		if ( ! isset( $instance['offset_author_page'] ) )   $instance['offset_author_page']   = '';
+		if ( ! isset( $instance['title_author_page'] ) )    $instance['title_author_page']    = '';
+		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
 		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
 		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
 		if ( ! isset( $instance['s_custom_field_tax'] ) )   $instance['s_custom_field_tax']   = '';
@@ -389,7 +462,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'number_same_cat'     => $instance['number_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
-			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'sort_categories'     => $instance['sort_categories'],
 			'get_from_same_tag'   => $instance['get_from_same_tag'],
 			'number_same_tag'     => $instance['number_same_tag'],
@@ -403,6 +475,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			's_custom_field_tax'  => $instance['s_custom_field_tax'],
 			'number_custom_field' => $instance['number_custom_field'],
 			'title_custom_field'  => $instance['title_custom_field'],
+			'dont_ignore_params'  => $instance['dont_ignore_params'],
+			'get_from_cat_page'   => $instance['get_from_cat_page'],
+			'number_cat_page'     => $instance['number_cat_page'],
+			'offset_cat_page'     => $instance['offset_cat_page'],
+			'title_cat_page'      => $instance['title_cat_page'],
+			'get_from_tag_page'   => $instance['get_from_tag_page'],
+			'number_tag_page'     => $instance['number_tag_page'],
+			'offset_tag_page'     => $instance['offset_tag_page'],
+			'title_tag_page'      => $instance['title_tag_page'],
+			'get_from_author_page'=> $instance['get_from_author_page'],
+			'number_author_page'  => $instance['number_author_page'],
+			'offset_author_page'  => $instance['offset_author_page'],
+			'title_author_page'   => $instance['title_author_page'],
+			'dont_ignore_params_page' => $instance['dont_ignore_params_page'],
 
 			// Taxonomies
 			'relation'            => $instance['relation'],
@@ -639,17 +725,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_link'] = esc_url( strip_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget
-		$allowed_html = array(
-			'a'      => array(
-				'href'  => array(),
-				'title' => array(),
-			),
-			'em'     => array(),
-			'strong' => array(),
-			'span'   => array(),
-			'br'     => array(),
-		);
-		$instance['intro'] = wp_kses( $new_instance['intro'], $allowed_html );
+		$instance['intro'] = wp_kses_post( $new_instance['intro'] );
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
@@ -705,7 +781,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['number_same_cat']     = intval( strip_tags( $new_instance['number_same_cat'] ) );
 			if ( 0 == $instance['number_same_cat'] || ! is_numeric( $instance['number_same_cat'] ) ) $instance['number_same_cat'] = '';
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
-		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 		$instance['sort_categories']     = isset( $new_instance['sort_categories'] ) ? 1 : 0;
 		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
 		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
@@ -722,6 +797,27 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['number_custom_field'] = intval( strip_tags( $new_instance['number_custom_field'] ) );
 			if ( 0 == $instance['number_custom_field'] || ! is_numeric( $instance['number_custom_field'] ) ) $instance['number_custom_field'] = '';
 		$instance['title_custom_field']  = strip_tags( $new_instance['title_custom_field'] );
+		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
+
+		$instance['get_from_cat_page']    = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
+		$instance['number_cat_page']      = intval( strip_tags( $new_instance['number_cat_page'] ) );
+			if ( 0 == $instance['number_cat_page'] || ! is_numeric( $instance['number_cat_page'] ) ) $instance['number_cat_page'] = '';
+		$instance['offset_cat_page']      = absint( strip_tags( $new_instance['offset_cat_page'] ) );
+			if ( 0 == $instance['offset_cat_page'] || ! is_numeric( $instance['offset_cat_page'] ) ) $instance['offset_cat_page'] = '';
+		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
+		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
+		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
+			if ( 0 == $instance['number_tag_page'] || ! is_numeric( $instance['number_tag_page'] ) ) $instance['number_tag_page'] = '';
+		$instance['offset_tag_page']      = absint( strip_tags( $new_instance['offset_tag_page'] ) );
+			if ( 0 == $instance['offset_tag_page'] || ! is_numeric( $instance['offset_tag_page'] ) ) $instance['offset_tag_page'] = '';
+		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
+		$instance['get_from_author_page'] = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
+		$instance['number_author_page']   = intval( strip_tags( $new_instance['number_author_page'] ) );
+			if ( 0 == $instance['number_author_page'] || ! is_numeric( $instance['number_author_page'] ) ) $instance['number_author_page'] = '';
+		$instance['offset_author_page']   = absint( strip_tags( $new_instance['offset_author_page'] ) );
+			if ( 0 == $instance['offset_author_page'] || ! is_numeric( $instance['offset_author_page'] ) ) $instance['offset_author_page'] = '';
+		$instance['title_author_page']    = strip_tags( $new_instance['title_author_page'] );
+		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
 		// Taxonomies
 		$instance['relation']            = $new_instance['relation'];
@@ -995,44 +1091,57 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'intro'               => '',
 
 			// Posts retrieving
-			'post_type'           => 'post',
-			'post_type_multiple'  => '',
-			'posts_id'            => '',
-			'author'              => '',
-			'author_in'           => '',
-			'posts_by_comments'   => false,
-			'cat'                 => '',
-			'tag'                 => '',
-			'post_parent_in'      => '',
-			'post_format'         => '',
-			'number'              => get_option( 'posts_per_page' ),
-			'orderby'             => 'date',
-			'order'               => 'DESC',
-			'offset_number'       => '',
-			'post_status'         => 'publish',
-			'post_meta_key'       => '',
-			'post_meta_val'       => '',
-			'search'              => NULL,
-			'has_password'        => 'null',
-			'post_password'       => '',
-			'ignore_sticky'       => false,
-			'get_from_same_cat'   => false,
-			'number_same_cat'     => '',
-			'title_same_cat'      => '',
-			'dont_ignore_params' => false,
-			'sort_categories'    => false,
-			'get_from_same_tag'  => false,
-			'number_same_tag'    => '',
-			'title_same_tag'     => '',
-			'sort_tags'           => false,
-			'get_from_same_author'=> false,
-			'number_same_author'  => '',
-			'title_same_author'   => '',
-			'get_from_custom_fld' => false,
-			's_custom_field_key'  => '',
-			's_custom_field_tax'  => '',
-			'number_custom_field' => '',
-			'title_custom_field'  => '',
+			'post_type'            => 'post',
+			'post_type_multiple'   => '',
+			'posts_id'             => '',
+			'author'               => '',
+			'author_in'            => '',
+			'posts_by_comments'    => false,
+			'cat'                  => '',
+			'tag'                  => '',
+			'post_parent_in'       => '',
+			'post_format'          => '',
+			'number'               => get_option( 'posts_per_page' ),
+			'orderby'              => 'date',
+			'order'                => 'DESC',
+			'offset_number'        => '',
+			'post_status'          => 'publish',
+			'post_meta_key'        => '',
+			'post_meta_val'        => '',
+			'search'               => NULL,
+			'has_password'         => 'null',
+			'post_password'        => '',
+			'ignore_sticky'        => false,
+			'get_from_same_cat'    => false,
+			'number_same_cat'      => '',
+			'title_same_cat'       => '',
+			'sort_categories'      => false,
+			'get_from_same_tag'    => false,
+			'number_same_tag'      => '',
+			'title_same_tag'       => '',
+			'sort_tags'            => false,
+			'get_from_same_author' => false,
+			'number_same_author'   => '',
+			'title_same_author'    => '',
+			'get_from_custom_fld'  => false,
+			's_custom_field_key'   => '',
+			's_custom_field_tax'   => '',
+			'number_custom_field'  => '',
+			'title_custom_field'   => '',
+			'dont_ignore_params'   => false,
+			'get_from_cat_page'    => false,
+			'number_cat_page'      => '',
+			'offset_cat_page'      => '',
+			'title_cat_page'       => '',
+			'get_from_tag_page'    => false,
+			'number_tag_page'      => '',
+			'offset_tag_page'      => '',
+			'title_tag_page'       => '',
+			'get_from_author_page' => false,
+			'number_author_page'   => '',
+			'offset_author_page'   => '',
+			'title_author_page'    => '',
+			'dont_ignore_params_page' => false,
 
 			// Taxonomies
 			'relation'            => '',
@@ -1241,62 +1350,66 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'debug_query'         => false,
 			'debug_params'        => false,
 		);
-		$instance             = wp_parse_args( (array) $instance, $defaults );
-		$posts_by_comments    = (bool) $instance['posts_by_comments'];
-		$ignore_sticky        = (bool) $instance['ignore_sticky'];
-		$get_from_same_cat    = (bool) $instance['get_from_same_cat'];
-		$sort_categories      = (bool) $instance['sort_categories'];
-		$dont_ignore_params   = (bool) $instance['dont_ignore_params'];
-		$get_from_same_tag    = (bool) $instance['get_from_same_tag'];
-		$sort_tags            = (bool) $instance['sort_tags'];
-		$get_from_same_author = (bool) $instance['get_from_same_author'];
-		$get_from_custom_fld  = (bool) $instance['get_from_custom_fld'];
-		$date_inclusive       = (bool) $instance['date_inclusive'];
-		$exclude_current_post = (bool) $instance['exclude_current_post'];
-		$display_title        = (bool) $instance['display_title'];
-		$link_on_title        = (bool) $instance['link_on_title'];
-		$title_hellipsis      = (bool) $instance['title_hellipsis'];
-		$display_image        = (bool) $instance['display_image'];
-		$image_before_title   = (bool) $instance['image_before_title'];
-		$arrow                = (bool) $instance['arrow'];
-		$custom_img_no_thumb  = (bool) $instance['custom_img_no_thumb'];
-		$image_link_to_post   = (bool) $instance['image_link_to_post'];
-		$exc_arrow            = (bool) $instance['exc_arrow'];
-		$utility_after_title  = (bool) $instance['utility_after_title'];
-		$utility_before_title = (bool) $instance['utility_before_title'];
-		$display_author       = (bool) $instance['display_author'];
-		$linkify_author       = (bool) $instance['linkify_author'];
-		$gravatar_display     = (bool) $instance['gravatar_display'];
-		$display_date         = (bool) $instance['display_date'];
-		$linkify_date         = (bool) $instance['linkify_date'];
-		$display_time         = (bool) $instance['display_time'];
-		$display_mod_date     = (bool) $instance['display_mod_date'];
-		$linkify_mod_date     = (bool) $instance['linkify_mod_date'];
-		$display_mod_time     = (bool) $instance['display_mod_time'];
-		$comments             = (bool) $instance['comments'];
-		$linkify_comments     = (bool) $instance['linkify_comments'];
-		$categories           = (bool) $instance['categories'];
-		$categ_before_title   = (bool) $instance['categ_before_title'];
-		$categ_after_title    = (bool) $instance['categ_after_title'];
-		$tags                 = (bool) $instance['tags'];
-		$tags_before_title    = (bool) $instance['tags_before_title'];
-		$tags_after_title     = (bool) $instance['tags_after_title'];
-		$display_custom_tax   = (bool) $instance['display_custom_tax'];
-		$ctaxs_before_title   = (bool) $instance['ctaxs_before_title'];
-		$ctaxs_after_title    = (bool) $instance['ctaxs_after_title'];
-		$custom_field_all     = (bool) $instance['custom_field_all'];
-		$custom_field         = (bool) $instance['custom_field'];
-		$custom_field_key     = (bool) $instance['custom_field_key'];
-		$cf_before_title      = (bool) $instance['cf_before_title'];
-		$cf_after_title       = (bool) $instance['cf_after_title'];
-		$archive_link         = (bool) $instance['archive_link'];
-		$hide_widget          = (bool) $instance['hide_widget'];
-		$remove_bullets       = (bool) $instance['remove_bullets'];
-		$add_wp_post_classes  = (bool) $instance['add_wp_post_classes'];
-		$cached               = (bool) $instance['cached'];
-		$admin_only           = (bool) $instance['admin_only'];
-		$debug_query          = (bool) $instance['debug_query'];
-		$debug_params         = (bool) $instance['debug_params'];
+		$instance                = wp_parse_args( (array) $instance, $defaults );
+		$posts_by_comments       = (bool) $instance['posts_by_comments'];
+		$ignore_sticky           = (bool) $instance['ignore_sticky'];
+		$get_from_same_cat       = (bool) $instance['get_from_same_cat'];
+		$sort_categories         = (bool) $instance['sort_categories'];
+		$dont_ignore_params      = (bool) $instance['dont_ignore_params'];
+		$get_from_same_tag       = (bool) $instance['get_from_same_tag'];
+		$sort_tags               = (bool) $instance['sort_tags'];
+		$get_from_same_author    = (bool) $instance['get_from_same_author'];
+		$get_from_custom_fld     = (bool) $instance['get_from_custom_fld'];
+		$get_from_cat_page       = (bool) $instance['get_from_cat_page'];
+		$get_from_tag_page       = (bool) $instance['get_from_tag_page'];
+		$get_from_author_page    = (bool) $instance['get_from_author_page'];
+		$dont_ignore_params_page = (bool) $instance['dont_ignore_params_page'];
+		$date_inclusive          = (bool) $instance['date_inclusive'];
+		$exclude_current_post    = (bool) $instance['exclude_current_post'];
+		$display_title           = (bool) $instance['display_title'];
+		$link_on_title           = (bool) $instance['link_on_title'];
+		$title_hellipsis         = (bool) $instance['title_hellipsis'];
+		$display_image           = (bool) $instance['display_image'];
+		$image_before_title      = (bool) $instance['image_before_title'];
+		$arrow                   = (bool) $instance['arrow'];
+		$custom_img_no_thumb     = (bool) $instance['custom_img_no_thumb'];
+		$image_link_to_post      = (bool) $instance['image_link_to_post'];
+		$exc_arrow               = (bool) $instance['exc_arrow'];
+		$utility_after_title     = (bool) $instance['utility_after_title'];
+		$utility_before_title    = (bool) $instance['utility_before_title'];
+		$display_author          = (bool) $instance['display_author'];
+		$linkify_author          = (bool) $instance['linkify_author'];
+		$gravatar_display        = (bool) $instance['gravatar_display'];
+		$display_date            = (bool) $instance['display_date'];
+		$linkify_date            = (bool) $instance['linkify_date'];
+		$display_time            = (bool) $instance['display_time'];
+		$display_mod_date        = (bool) $instance['display_mod_date'];
+		$linkify_mod_date        = (bool) $instance['linkify_mod_date'];
+		$display_mod_time        = (bool) $instance['display_mod_time'];
+		$comments                = (bool) $instance['comments'];
+		$linkify_comments        = (bool) $instance['linkify_comments'];
+		$categories              = (bool) $instance['categories'];
+		$categ_before_title      = (bool) $instance['categ_before_title'];
+		$categ_after_title       = (bool) $instance['categ_after_title'];
+		$tags                    = (bool) $instance['tags'];
+		$tags_before_title       = (bool) $instance['tags_before_title'];
+		$tags_after_title        = (bool) $instance['tags_after_title'];
+		$display_custom_tax      = (bool) $instance['display_custom_tax'];
+		$ctaxs_before_title      = (bool) $instance['ctaxs_before_title'];
+		$ctaxs_after_title       = (bool) $instance['ctaxs_after_title'];
+		$custom_field_all        = (bool) $instance['custom_field_all'];
+		$custom_field            = (bool) $instance['custom_field'];
+		$custom_field_key        = (bool) $instance['custom_field_key'];
+		$cf_before_title         = (bool) $instance['cf_before_title'];
+		$cf_after_title          = (bool) $instance['cf_after_title'];
+		$archive_link            = (bool) $instance['archive_link'];
+		$hide_widget             = (bool) $instance['hide_widget'];
+		$remove_bullets          = (bool) $instance['remove_bullets'];
+		$add_wp_post_classes     = (bool) $instance['add_wp_post_classes'];
+		$cached                  = (bool) $instance['cached'];
+		$admin_only              = (bool) $instance['admin_only'];
+		$debug_query             = (bool) $instance['debug_query'];
+		$debug_params            = (bool) $instance['debug_params'];
 
 		/*
 		 * When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
@@ -1733,7 +1846,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'In this section you can change some parameters of the query when on single posts. Activate only one of these.', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on single posts. %1$sActivate only one of these.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
 
 						<div class="pis-column-container">
 
@@ -1825,7 +1938,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('title_same_tag'),
 									esc_attr( $instance['title_same_tag'] ),
 									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the tags.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
 								<?php // ================= Sort tags
@@ -1854,7 +1967,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_author' ),
 									$this->get_field_name( 'get_from_same_author' ),
 									checked( $get_from_same_author, true, false ),
-									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -1899,7 +2012,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_custom_fld' ),
 									$this->get_field_name( 'get_from_custom_fld' ),
 									checked( $get_from_custom_fld, true, false ),
-									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Use#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 								);
 								?>
 
@@ -1974,7 +2087,197 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id( 'dont_ignore_params' ),
 								$this->get_field_name( 'dont_ignore_params' ),
 								checked( $dont_ignore_params, true, false ),
-								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
+								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
+								'pis-boxed pis-boxed-green'
+							); ?>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="pis-section pis-2col">
+
+					<h5 data-panel="change-query-archive" class="pis-widget-title"><?php esc_html_e( 'Change the query when on archive page', 'posts-in-sidebar' ); ?></h5>
+
+					<div class="pis-container">
+
+						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all toghether.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
+
+						<div class="pis-column-container">
+
+							<h5><?php esc_html_e( 'Get posts from current category archive page', 'posts-in-sidebar' ); ?></h5>
+
+							<div class="pis-column">
+
+								<?php // ================= Get posts from same category
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category archive page', 'posts-in-sidebar' ),
+									$this->get_field_id( 'get_from_cat_page' ),
+									$this->get_field_name( 'get_from_cat_page' ),
+									checked( $get_from_cat_page, true, false ),
+									esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Posts quantity
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('number_cat_page'),
+									$this->get_field_name('number_cat_page'),
+									esc_attr( $instance['number_cat_page'] ),
+									'3',
+									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_cat_page'),
+									$this->get_field_name('offset_cat_page'),
+									esc_attr( $instance['offset_cat_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= The custom widget title when on single posts
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+									$this->get_field_id('title_cat_page'),
+									$this->get_field_name('title_cat_page'),
+									esc_attr( $instance['title_cat_page'] ),
+									esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
+									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<h5><?php esc_html_e( 'Get posts from current tag archive page', 'posts-in-sidebar' ); ?></h5>
+
+							<div class="pis-column">
+
+								<?php // ================= Get posts from same tag
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag archive page', 'posts-in-sidebar' ),
+									$this->get_field_id( 'get_from_tag_page' ),
+									$this->get_field_name( 'get_from_tag_page' ),
+									checked( $get_from_tag_page, true, false ),
+									esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Posts quantity
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('number_tag_page'),
+									$this->get_field_name('number_tag_page'),
+									esc_attr( $instance['number_tag_page'] ),
+									'3',
+									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_tag_page'),
+									$this->get_field_name('offset_tag_page'),
+									esc_attr( $instance['offset_tag_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= The custom widget title when on single posts
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+									$this->get_field_id('title_tag_page'),
+									$this->get_field_name('title_tag_page'),
+									esc_attr( $instance['title_tag_page'] ),
+									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
+									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<h5><?php esc_html_e( 'Get posts from current author archive page', 'posts-in-sidebar' ); ?></h5>
+
+							<div class="pis-column">
+
+								<?php // ================= Get posts from same author
+								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author archive page', 'posts-in-sidebar' ),
+									$this->get_field_id( 'get_from_author_page' ),
+									$this->get_field_name( 'get_from_author_page' ),
+									checked( $get_from_author_page, true, false ),
+									esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php // ================= Posts quantity
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('number_author_page'),
+									$this->get_field_name('number_author_page'),
+									esc_attr( $instance['number_author_page'] ),
+									'3',
+									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= Offset
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_author_page'),
+									$this->get_field_name('offset_author_page'),
+									esc_attr( $instance['offset_author_page'] ),
+									'10',
+									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+								); ?>
+
+								<?php // ================= The custom widget title when on single posts
+								pis_form_input_text(
+									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+									$this->get_field_id('title_author_page'),
+									$this->get_field_name('title_author_page'),
+									esc_attr( $instance['title_author_page'] ),
+									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
+									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<div class="pis-column-container">
+
+							<?php // ================= Don't ignore other parameters
+							pis_form_checkbox( esc_html__( 'Do not ignore other parameters', 'posts-in-sidebar' ),
+								$this->get_field_id( 'dont_ignore_params_page' ),
+								$this->get_field_name( 'dont_ignore_params_page' ),
+								checked( $dont_ignore_params_page, true, false ),
+								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
 								'pis-boxed pis-boxed-green'
 							); ?>
 

@@ -89,18 +89,21 @@ function pis_shortcode( $atts ) {
 		 */
 		//'get_from_cat_page' => false, /* For widget only */
 		//'number_cat_page'   => '', /* For widget only */
+		//'offset_cat_page'   => '', /* For widget only */
 		//'title_cat_page'    => '', /* For widget only */
 		/*
 		 * Get posts from the current tag page.
 		 */
 		//'get_from_tag_page' => false, /* For widget only */
 		//'number_tag_page'   => '', /* For widget only */
+		//'offset_tag_page'   => '', /* For widget only */
 		//'title_tag_page'    => '', /* For widget only */
 		/*
 		 * Get posts from the current author page.
 		 */
 		//'get_from_author_page' => false, /* For widget only */
 		//'number_author_page'   => '', /* For widget only */
+		//'offset_author_page'   => '', /* For widget only */
 		//'title_author_page'    => '', /* For widget only */
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.

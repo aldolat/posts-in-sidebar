@@ -322,7 +322,6 @@ function pis_get_posts_in_sidebar( $args ) {
 		'admin_only'          => true,
 		'debug_query'         => false,
 		'debug_params'        => false,
-
 	);
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args, EXTR_SKIP );

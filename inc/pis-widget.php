@@ -1828,7 +1828,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'In this section you can change some parameters of the query when on single posts. Activate only one of these.', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on single posts. %1$sActivate only one of these.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
 
 						<div class="pis-column-container">
 
@@ -2085,7 +2085,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 					<div class="pis-container">
 
-						<p><em><?php esc_html_e( 'In this section you can change some parameters of the query when on archive pages.', 'posts-in-sidebar' ); ?></em></p>
+						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all toghether.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
 
 						<div class="pis-column-container">
 

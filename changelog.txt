@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 4.6 =
+= 4.6.0 =
 
 * Added option to get posts from the current archive page (category, tag, and author).
 * Changed wp_kses to wp_kses_post for widget introduction.

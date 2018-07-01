@@ -4,7 +4,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.1  
 **Tested up to:** 4.9.2  
-**Stable tag:** 4.6  
+**Stable tag:** 4.6.0  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -106,7 +106,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
-### 4.6 ###
+### 4.6.0 ###
 
 * Added option to get posts from the current archive page (category, tag, and author).
 * Changed wp_kses to wp_kses_post for widget introduction.

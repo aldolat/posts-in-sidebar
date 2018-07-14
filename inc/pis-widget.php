@@ -1449,8 +1449,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name('intro'),
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-				$style = 'resize: vertical; width: 100%; height: 80px;',
-				$comment = sprintf( esc_html__( 'Allowed HTML: %s. Other tags will be stripped.', 'posts-in-sidebar' ), '<code>a</code>, <code>strong</code>, <code>em</code>, <code>span</code>, <code>br</code>' )
+				$style = 'resize: vertical; width: 100%; height: 80px;'
 			); ?>
 
 		</div>

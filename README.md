@@ -106,6 +106,11 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ## Changelog ##
 
+### 4.7.0 ###
+
+* Updated existing options to change the query when on single posts or on archive page.
+* Removed old comment for HTML in widget introduction.
+
 ### 4.6.0 ###
 
 * Added option to get posts from the current archive page (category, tag, and author).

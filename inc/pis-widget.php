@@ -253,31 +253,56 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
 		if ( ! isset( $instance['dont_ignore_params'] ) )   $instance['dont_ignore_params']   = false;
 		if ( ! isset( $instance['sort_categories'] ) )      $instance['sort_categories']      = false;
+		if ( ! isset( $instance['orderby_same_cat'] ) )     $instance['orderby_same_cat']     = 'date';
+		if ( ! isset( $instance['order_same_cat'] ) )       $instance['order_same_cat']       = 'DESC';
+		if ( ! isset( $instance['offset_same_cat'] ) )      $instance['offset_same_cat']      = '';
+
 		if ( ! isset( $instance['get_from_same_tag'] ) )    $instance['get_from_same_tag']    = false;
 		if ( ! isset( $instance['number_same_tag'] ) )      $instance['number_same_tag']      = '';
 		if ( ! isset( $instance['title_same_tag'] ) )       $instance['title_same_tag']       = '';
 		if ( ! isset( $instance['sort_tags'] ) )            $instance['sort_tags']            = false;
+		if ( ! isset( $instance['orderby_same_tag'] ) )     $instance['orderby_same_tag']     = 'date';
+		if ( ! isset( $instance['order_same_tag'] ) )       $instance['order_same_tag']       = 'DESC';
+		if ( ! isset( $instance['offset_same_tag'] ) )      $instance['offset_same_tag']      = '';
+
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
 		if ( ! isset( $instance['title_same_author'] ) )    $instance['title_same_author']    = '';
+		if ( ! isset( $instance['orderby_same_author'] ) )  $instance['orderby_same_author']  = 'date';
+		if ( ! isset( $instance['order_same_author'] ) )    $instance['order_same_author']    = 'DESC';
+		if ( ! isset( $instance['offset_same_author'] ) )   $instance['offset_same_author']   = '';
+
 		if ( ! isset( $instance['get_from_cat_page'] ) )    $instance['get_from_cat_page']    = false;
 		if ( ! isset( $instance['number_cat_page'] ) )      $instance['number_cat_page']      = '';
 		if ( ! isset( $instance['offset_cat_page'] ) )      $instance['offset_cat_page']      = '';
 		if ( ! isset( $instance['title_cat_page'] ) )       $instance['title_cat_page']       = '';
+		if ( ! isset( $instance['orderby_cat_page'] ) )     $instance['orderby_cat_page']     = 'date';
+		if ( ! isset( $instance['order_cat_page'] ) )       $instance['order_cat_page']       = 'DESC';
+
 		if ( ! isset( $instance['get_from_tag_page'] ) )    $instance['get_from_tag_page']    = false;
 		if ( ! isset( $instance['number_tag_page'] ) )      $instance['number_tag_page']      = '';
 		if ( ! isset( $instance['offset_tag_page'] ) )      $instance['offset_tag_page']      = '';
 		if ( ! isset( $instance['title_tag_page'] ) )       $instance['title_tag_page']       = '';
+		if ( ! isset( $instance['orderby_tag_page'] ) )     $instance['orderby_tag_page']     = 'date';
+		if ( ! isset( $instance['order_tag_page'] ) )       $instance['order_tag_page']       = 'DESC';
+
 		if ( ! isset( $instance['get_from_author_page'] ) ) $instance['get_from_author_page'] = false;
 		if ( ! isset( $instance['number_author_page'] ) )   $instance['number_author_page']   = '';
 		if ( ! isset( $instance['offset_author_page'] ) )   $instance['offset_author_page']   = '';
 		if ( ! isset( $instance['title_author_page'] ) )    $instance['title_author_page']    = '';
+		if ( ! isset( $instance['orderby_author_page'] ) )  $instance['orderby_author_page']  = 'date';
+		if ( ! isset( $instance['order_author_page'] ) )    $instance['order_author_page']    = 'DESC';
+
 		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
 		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
 		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
 		if ( ! isset( $instance['s_custom_field_tax'] ) )   $instance['s_custom_field_tax']   = '';
 		if ( ! isset( $instance['number_custom_field'] ) )  $instance['number_custom_field']  = '';
 		if ( ! isset( $instance['title_custom_field'] ) )   $instance['title_custom_field']   = '';
+		if ( ! isset( $instance['orderby_custom_fld'] ) )   $instance['orderby_custom_fld']   = 'date';
+		if ( ! isset( $instance['order_custom_fld'] ) )     $instance['order_custom_fld']     = 'DESC';
+		if ( ! isset( $instance['offset_custom_fld'] ) )    $instance['offset_custom_fld']    = '';
+
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
 		if ( ! isset( $instance['field_aa'] ) )             $instance['field_aa']             = '';
@@ -463,31 +488,49 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number_same_cat'     => $instance['number_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
 			'sort_categories'     => $instance['sort_categories'],
+			'orderby_same_cat'    => $instance['orderby_same_cat'],
+			'order_same_cat'      => $instance['order_same_cat'],
+			'offset_same_cat'     => $instance['offset_same_cat'],
 			'get_from_same_tag'   => $instance['get_from_same_tag'],
 			'number_same_tag'     => $instance['number_same_tag'],
 			'title_same_tag'      => $instance['title_same_tag'],
 			'sort_tags'           => $instance['sort_tags'],
+			'orderby_same_tag'    => $instance['orderby_same_tag'],
+			'order_same_tag'      => $instance['order_same_tag'],
+			'offset_same_tag'     => $instance['offset_same_tag'],
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
+			'orderby_same_author' => $instance['orderby_same_author'],
+			'order_same_author'   => $instance['order_same_author'],
+			'offset_same_author'  => $instance['offset_same_author'],
 			'get_from_custom_fld' => $instance['get_from_custom_fld'],
 			's_custom_field_key'  => $instance['s_custom_field_key'],
 			's_custom_field_tax'  => $instance['s_custom_field_tax'],
 			'number_custom_field' => $instance['number_custom_field'],
 			'title_custom_field'  => $instance['title_custom_field'],
+			'orderby_custom_fld'  => $instance['orderby_custom_fld'],
+			'order_custom_fld'    => $instance['order_custom_fld'],
+			'offset_custom_fld'   => $instance['offset_custom_fld'],
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
 			'get_from_cat_page'   => $instance['get_from_cat_page'],
 			'number_cat_page'     => $instance['number_cat_page'],
 			'offset_cat_page'     => $instance['offset_cat_page'],
 			'title_cat_page'      => $instance['title_cat_page'],
+			'orderby_cat_page'    => $instance['orderby_cat_page'],
+			'order_cat_page'      => $instance['order_cat_page'],
 			'get_from_tag_page'   => $instance['get_from_tag_page'],
 			'number_tag_page'     => $instance['number_tag_page'],
 			'offset_tag_page'     => $instance['offset_tag_page'],
 			'title_tag_page'      => $instance['title_tag_page'],
+			'orderby_tag_page'    => $instance['orderby_tag_page'],
+			'order_tag_page'      => $instance['order_tag_page'],
 			'get_from_author_page'=> $instance['get_from_author_page'],
 			'number_author_page'  => $instance['number_author_page'],
 			'offset_author_page'  => $instance['offset_author_page'],
 			'title_author_page'   => $instance['title_author_page'],
+			'orderby_author_page' => $instance['orderby_author_page'],
+			'order_author_page'   => $instance['order_author_page'],
 			'dont_ignore_params_page' => $instance['dont_ignore_params_page'],
 
 			// Taxonomies
@@ -782,21 +825,37 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 0 == $instance['number_same_cat'] || ! is_numeric( $instance['number_same_cat'] ) ) $instance['number_same_cat'] = '';
 		$instance['title_same_cat']      = strip_tags( $new_instance['title_same_cat'] );
 		$instance['sort_categories']     = isset( $new_instance['sort_categories'] ) ? 1 : 0;
+		$instance['orderby_same_cat']    = $new_instance['orderby_same_cat'];
+		$instance['order_same_cat']      = $new_instance['order_same_cat'];
+		$instance['offset_same_cat']     = absint( strip_tags( $new_instance['offset_same_cat'] ) );
+			if ( 0 == $instance['offset_same_cat'] || ! is_numeric( $instance['offset_same_cat'] ) ) $instance['offset_same_cat'] = '';
 		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
 		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
 			if ( 0 == $instance['number_same_tag'] || ! is_numeric( $instance['number_same_tag'] ) ) $instance['number_same_tag'] = '';
 		$instance['title_same_tag']      = strip_tags( $new_instance['title_same_tag'] );
 		$instance['sort_tags']           = isset( $new_instance['sort_tags'] ) ? 1 : 0;
+		$instance['orderby_same_tag']    = $new_instance['orderby_same_tag'];
+		$instance['order_same_tag']      = $new_instance['order_same_tag'];
+		$instance['offset_same_tag']     = absint( strip_tags( $new_instance['offset_same_tag'] ) );
+			if ( 0 == $instance['offset_same_tag'] || ! is_numeric( $instance['offset_same_tag'] ) ) $instance['offset_same_tag'] = '';
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
 		$instance['title_same_author']   = strip_tags( $new_instance['title_same_author'] );
+		$instance['orderby_same_author'] = $new_instance['orderby_same_author'];
+		$instance['order_same_author']   = $new_instance['order_same_author'];
+		$instance['offset_same_author']  = absint( strip_tags( $new_instance['offset_same_author'] ) );
+			if ( 0 == $instance['offset_same_author'] || ! is_numeric( $instance['offset_same_author'] ) ) $instance['offset_same_author'] = '';
 		$instance['get_from_custom_fld'] = isset( $new_instance['get_from_custom_fld'] ) ? 1 : 0;
 		$instance['s_custom_field_key']  = strip_tags( $new_instance['s_custom_field_key'] );
 		$instance['s_custom_field_tax']  = $new_instance['s_custom_field_tax'];
 		$instance['number_custom_field'] = intval( strip_tags( $new_instance['number_custom_field'] ) );
 			if ( 0 == $instance['number_custom_field'] || ! is_numeric( $instance['number_custom_field'] ) ) $instance['number_custom_field'] = '';
 		$instance['title_custom_field']  = strip_tags( $new_instance['title_custom_field'] );
+		$instance['orderby_custom_fld']    = $new_instance['orderby_custom_fld'];
+		$instance['order_custom_fld']      = $new_instance['order_custom_fld'];
+		$instance['offset_custom_fld']     = absint( strip_tags( $new_instance['offset_custom_fld'] ) );
+			if ( 0 == $instance['offset_custom_fld'] || ! is_numeric( $instance['offset_custom_fld'] ) ) $instance['offset_custom_fld'] = '';
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 
 		$instance['get_from_cat_page']    = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
@@ -805,18 +864,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_cat_page']      = absint( strip_tags( $new_instance['offset_cat_page'] ) );
 			if ( 0 == $instance['offset_cat_page'] || ! is_numeric( $instance['offset_cat_page'] ) ) $instance['offset_cat_page'] = '';
 		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
+		$instance['orderby_cat_page']    = $new_instance['orderby_cat_page'];
+		$instance['order_cat_page']      = $new_instance['order_cat_page'];
 		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
 		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
 			if ( 0 == $instance['number_tag_page'] || ! is_numeric( $instance['number_tag_page'] ) ) $instance['number_tag_page'] = '';
 		$instance['offset_tag_page']      = absint( strip_tags( $new_instance['offset_tag_page'] ) );
 			if ( 0 == $instance['offset_tag_page'] || ! is_numeric( $instance['offset_tag_page'] ) ) $instance['offset_tag_page'] = '';
 		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
+		$instance['orderby_tag_page']    = $new_instance['orderby_tag_page'];
+		$instance['order_tag_page']      = $new_instance['order_tag_page'];
 		$instance['get_from_author_page'] = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
 		$instance['number_author_page']   = intval( strip_tags( $new_instance['number_author_page'] ) );
 			if ( 0 == $instance['number_author_page'] || ! is_numeric( $instance['number_author_page'] ) ) $instance['number_author_page'] = '';
 		$instance['offset_author_page']   = absint( strip_tags( $new_instance['offset_author_page'] ) );
 			if ( 0 == $instance['offset_author_page'] || ! is_numeric( $instance['offset_author_page'] ) ) $instance['offset_author_page'] = '';
 		$instance['title_author_page']    = strip_tags( $new_instance['title_author_page'] );
+		$instance['orderby_author_page']    = $new_instance['orderby_author_page'];
+		$instance['order_author_page']      = $new_instance['order_author_page'];
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
 		// Taxonomies
@@ -1116,31 +1181,49 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'number_same_cat'      => '',
 			'title_same_cat'       => '',
 			'sort_categories'      => false,
+			'orderby_same_cat'     => 'date',
+			'order_same_cat'       => 'DESC',
+			'offset_same_cat'      => '',
 			'get_from_same_tag'    => false,
 			'number_same_tag'      => '',
 			'title_same_tag'       => '',
 			'sort_tags'            => false,
+			'orderby_same_tag'     => 'date',
+			'order_same_tag'       => 'DESC',
+			'offset_same_tag'      => '',
 			'get_from_same_author' => false,
 			'number_same_author'   => '',
 			'title_same_author'    => '',
+			'orderby_same_author'  => 'date',
+			'order_same_author'    => 'DESC',
+			'offset_same_author'   => '',
 			'get_from_custom_fld'  => false,
 			's_custom_field_key'   => '',
 			's_custom_field_tax'   => '',
 			'number_custom_field'  => '',
 			'title_custom_field'   => '',
+			'orderby_custom_fld'   => 'date',
+			'order_custom_fld'     => 'DESC',
+			'offset_custom_fld'    => '',
 			'dont_ignore_params'   => false,
 			'get_from_cat_page'    => false,
 			'number_cat_page'      => '',
 			'offset_cat_page'      => '',
 			'title_cat_page'       => '',
+			'orderby_cat_page'     => 'date',
+			'order_cat_page'       => 'DESC',
 			'get_from_tag_page'    => false,
 			'number_tag_page'      => '',
 			'offset_tag_page'      => '',
 			'title_tag_page'       => '',
+			'orderby_tag_page'     => 'date',
+			'order_tag_page'       => 'DESC',
 			'get_from_author_page' => false,
 			'number_author_page'   => '',
 			'offset_author_page'   => '',
 			'title_author_page'    => '',
+			'orderby_author_page'  => 'date',
+			'order_author_page'    => 'DESC',
 			'dont_ignore_params_page' => false,
 
 			// Taxonomies
@@ -1762,6 +1845,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'value' => 'name',
 								'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 							),
+							'type' => array(
+								'value' => 'type',
+								'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+							),
 							'date' => array(
 								'value' => 'date',
 								'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -1782,6 +1869,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'value' => 'comment_count',
 								'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
 							),
+							'relevance' => array(
+								'value' => 'relevance',
+								'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
+							),
 							'menu_order' => array(
 								'value' => 'menu_order',
 								'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
@@ -1797,6 +1888,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							'post__in' => array(
 								'value' => 'post__in',
 								'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+							),
+							'post_parent__in' => array(
+								'value' => 'post_parent__in',
+								'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 							),
 						);
 						pis_form_select(
@@ -1862,6 +1957,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
+								<?php // ================= Sort categories
+								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
+									$this->get_field_id( 'sort_categories' ),
+									$this->get_field_name( 'sort_categories' ),
+									checked( $sort_categories, true, false ),
+									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 							<div class="pis-column">
@@ -1886,14 +1990,108 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
-								<?php // ================= Sort categories
-								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
-									$this->get_field_id( 'sort_categories' ),
-									$this->get_field_name( 'sort_categories' ),
-									checked( $sort_categories, true, false ),
-									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
 								);
-								?>
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_same_cat'),
+									$this->get_field_name('orderby_same_cat'),
+									$options,
+									$instance['orderby_same_cat']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_same_cat'),
+									$this->get_field_name('order_same_cat'),
+									$options,
+									$instance['order_same_cat']
+								); ?>
+
+								<?php // ================= Number of posts to skip
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_same_cat'),
+									$this->get_field_name('offset_same_cat'),
+									esc_attr( $instance['offset_same_cat'] ),
+									'5'
+								); ?>
 
 							</div>
 
@@ -1913,8 +2111,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'get_from_same_tag' ),
 									checked( $get_from_same_tag, true, false ),
 									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
+								); ?>
+
+								<?php // ================= Sort tags
+								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
+									$this->get_field_id( 'sort_tags' ),
+									$this->get_field_name( 'sort_tags' ),
+									checked( $sort_tags, true, false ),
+									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 
@@ -1940,14 +2145,108 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
-								<?php // ================= Sort tags
-								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
-									$this->get_field_id( 'sort_tags' ),
-									$this->get_field_name( 'sort_tags' ),
-									checked( $sort_tags, true, false ),
-									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
 								);
-								?>
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_same_tag'),
+									$this->get_field_name('orderby_same_tag'),
+									$options,
+									$instance['orderby_same_tag']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_same_tag'),
+									$this->get_field_name('order_same_tag'),
+									$options,
+									$instance['order_same_tag']
+								); ?>
+
+								<?php // ================= Number of posts to skip
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_same_tag'),
+									$this->get_field_name('offset_same_tag'),
+									esc_attr( $instance['offset_same_tag'] ),
+									'5'
+								); ?>
 
 							</div>
 
@@ -1992,6 +2291,109 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_attr( $instance['title_same_author'] ),
 									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_same_author'),
+									$this->get_field_name('orderby_same_author'),
+									$options,
+									$instance['orderby_same_author']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_same_author'),
+									$this->get_field_name('order_same_author'),
+									$options,
+									$instance['order_same_author']
+								); ?>
+
+								<?php // ================= Number of posts to skip
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_same_author'),
+									$this->get_field_name('offset_same_author'),
+									esc_attr( $instance['offset_same_author'] ),
+									'5'
 								); ?>
 
 							</div>
@@ -2071,6 +2473,109 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_attr( $instance['title_custom_field'] ),
 									esc_html__( 'Posts', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the taxonomy.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_custom_fld'),
+									$this->get_field_name('orderby_custom_fld'),
+									$options,
+									$instance['orderby_custom_fld']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_custom_fld'),
+									$this->get_field_name('order_custom_fld'),
+									$options,
+									$instance['order_custom_fld']
+								); ?>
+
+								<?php // ================= Number of posts to skip
+								pis_form_input_text(
+									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+									$this->get_field_id('offset_custom_fld'),
+									$this->get_field_name('offset_custom_fld'),
+									esc_attr( $instance['offset_custom_fld'] ),
+									'5'
 								); ?>
 
 							</div>
@@ -2153,6 +2658,100 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_cat_page'),
+									$this->get_field_name('orderby_cat_page'),
+									$options,
+									$instance['orderby_cat_page']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_cat_page'),
+									$this->get_field_name('order_cat_page'),
+									$options,
+									$instance['order_cat_page']
+								); ?>
+
 							</div>
 
 						</div>
@@ -2208,6 +2807,100 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
 								); ?>
 
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_tag_page'),
+									$this->get_field_name('orderby_tag_page'),
+									$options,
+									$instance['orderby_tag_page']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_tag_page'),
+									$this->get_field_name('order_tag_page'),
+									$options,
+									$instance['order_tag_page']
+								); ?>
+
 							</div>
 
 						</div>
@@ -2261,6 +2954,100 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_attr( $instance['title_author_page'] ),
 									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
+								); ?>
+
+								<?php // ================= Post order by
+								$options = array(
+									'none' => array(
+										'value' => 'none',
+										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+									),
+									'id' => array(
+										'value' => 'id',
+										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+									),
+									'author' => array(
+										'value' => 'author',
+										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+									),
+									'title' => array(
+										'value' => 'title',
+										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+									),
+									'name' => array(
+										'value' => 'name',
+										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
+									'date' => array(
+										'value' => 'date',
+										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+									),
+									'modified' => array(
+										'value' => 'modified',
+										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+									),
+									'parent' => array(
+										'value' => 'parent',
+										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+									),
+									'rand' => array(
+										'value' => 'rand',
+										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+									),
+									'comment_count' => array(
+										'value' => 'comment_count',
+										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'menu_order' => array(
+										'value' => 'menu_order',
+										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+									),
+									'meta_value' => array(
+										'value' => 'meta_value',
+										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+									),
+									'meta_value_num' => array(
+										'value' => 'meta_value_num',
+										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+									$this->get_field_id('orderby_author_page'),
+									$this->get_field_name('orderby_author_page'),
+									$options,
+									$instance['orderby_author_page']
+								); ?>
+
+								<?php // ================= Post order
+								$options = array(
+									'asc' => array(
+										'value' => 'ASC',
+										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+									),
+									'desc' => array(
+										'value' => 'DESC',
+										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+									),
+								);
+								pis_form_select(
+									esc_html__( 'The order will be', 'posts-in-sidebar' ),
+									$this->get_field_id('order_author_page'),
+									$this->get_field_name('order_author_page'),
+									$options,
+									$instance['order_author_page']
 								); ?>
 
 							</div>

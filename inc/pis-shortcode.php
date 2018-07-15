@@ -55,6 +55,9 @@ function pis_shortcode( $atts ) {
 		//'number_same_cat'     => '',    /* For widget only */
 		//'title_same_cat'      => '',    /* For widget only */
 		//'sort_categories'     => false, /* For widget only */
+		// 'orderby_same_cat'    => 'date', /* For widget only */
+		// 'order_same_cat'      => 'DESC', /* For widget only */
+		// 'offset_same_cat'     => '', /* For widget only */
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -63,6 +66,9 @@ function pis_shortcode( $atts ) {
 		//'number_same_tag'        => '',    /* For widget only */
 		//'title_same_tag'         => '',    /* For widget only */
 		//'sort_tags'              => false, /* For widget only */
+		// 'orderby_same_tag'    => 'date', /* For widget only */
+		// 'order_same_tag'      => 'DESC', /* For widget only */
+		// 'offset_same_tag'     => '', /* For widget only */
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -70,6 +76,9 @@ function pis_shortcode( $atts ) {
 		//'get_from_same_author'=> false, /* For widget only */
 		//'number_same_author'  => '',    /* For widget only */
 		//'title_same_author'   => '',    /* For widget only */
+		// 'orderby_same_author' => 'date', /* For widget only */
+		// 'order_same_author'   => 'DESC', /* For widget only */
+		// 'offset_same_author'  => '', /* For widget only */
 		/*
 		 * This is the custom field
 		 * to be used when on single post
@@ -79,6 +88,9 @@ function pis_shortcode( $atts ) {
 		//'s_custom_field_tax'  => '',    /* For widget only */
 		//'number_custom_field' => '',    /* For widget only */
 		//'title_custom_field'  => '',    /* For widget only */
+		// 'orderby_custom_fld'  => 'date', /* For widget only */
+		// 'order_custom_fld'    => 'DESC', /* For widget only */
+		// 'offset_custom_fld'   => '', /* For widget only */
 		/*
 		 * Do not ignore other parameters when changing query on single posts.
 		 */
@@ -91,6 +103,8 @@ function pis_shortcode( $atts ) {
 		//'number_cat_page'   => '', /* For widget only */
 		//'offset_cat_page'   => '', /* For widget only */
 		//'title_cat_page'    => '', /* For widget only */
+		// 'orderby_cat_page'  => 'date', /* For widget only */
+		// 'order_cat_page'    => 'DESC', /* For widget only */
 		/*
 		 * Get posts from the current tag page.
 		 */
@@ -98,6 +112,8 @@ function pis_shortcode( $atts ) {
 		//'number_tag_page'   => '', /* For widget only */
 		//'offset_tag_page'   => '', /* For widget only */
 		//'title_tag_page'    => '', /* For widget only */
+		// 'orderby_tag_page'  => 'date', /* For widget only */
+		// 'order_tag_page'    => 'DESC', /* For widget only */
 		/*
 		 * Get posts from the current author page.
 		 */
@@ -105,6 +121,8 @@ function pis_shortcode( $atts ) {
 		//'number_author_page'   => '', /* For widget only */
 		//'offset_author_page'   => '', /* For widget only */
 		//'title_author_page'    => '', /* For widget only */
+		// 'orderby_author_page'  => 'date', /* For widget only */
+		// 'order_author_page'    => 'DESC', /* For widget only */
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.
 		 */

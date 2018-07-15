@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.7.0 =
+
+* Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
+* Updated existing options to change the query when on single posts or on archive page.
+* Removed old comment for HTML in widget introduction.
+
 = 4.6.0 =
 
 * Added option to get posts from the current archive page (category, tag, and author).

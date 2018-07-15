@@ -2012,6 +2012,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2043,6 +2047,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2155,6 +2167,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2186,6 +2202,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2291,6 +2315,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2322,6 +2350,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2461,6 +2497,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2492,6 +2532,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2632,6 +2680,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2663,6 +2715,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2769,6 +2829,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2800,6 +2864,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2906,6 +2978,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'name',
 										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
 									),
+									'type' => array(
+										'value' => 'type',
+										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+									),
 									'date' => array(
 										'value' => 'date',
 										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
@@ -2937,6 +3013,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+									),
+									'post__in' => array(
+										'value' => 'post__in',
+										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+									),
+									'post_parent__in' => array(
+										'value' => 'post_parent__in',
+										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(

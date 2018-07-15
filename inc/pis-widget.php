@@ -1865,6 +1865,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'value' => 'comment_count',
 								'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
 							),
+							'relevance' => array(
+								'value' => 'relevance',
+								'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
+							),
 							'menu_order' => array(
 								'value' => 'menu_order',
 								'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )

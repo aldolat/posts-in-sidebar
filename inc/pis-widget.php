@@ -2032,10 +2032,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
 									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
-									),
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
@@ -2318,10 +2314,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
-									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(
@@ -2668,10 +2660,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
 									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
-									),
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
@@ -2949,10 +2937,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'meta_value_num' => array(
 										'value' => 'meta_value_num',
 										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
-									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
 									),
 								);
 								pis_form_select(

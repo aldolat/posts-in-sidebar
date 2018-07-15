@@ -2,7 +2,7 @@
 **Contributors:** aldolat  
 **Donate link:** https://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget, query, wp_query  
-**Requires at least:** 4.1  
+**Requires at least:** 4.6  
 **Tested up to:** 4.9.2  
 **Stable tag:** 4.7.0  
 **License:** GPLv3 or later  
@@ -109,7 +109,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 ### 4.7.0 ###
 
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
-* Updated existing options to change the query when on single posts or on archive page.
+* Added new options when changing the query in single posts or in an archive page.
 * Removed old comment for HTML in widget introduction.
 
 ### 4.6.0 ###
@@ -511,6 +511,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * First release of the plugin.
 
 ## Upgrade Notice ##
+
+### 4.7.0 ###
+
+This version of the plugin requires WordPress 4.6 (for post_parent__in option in orderby parameter).
 
 ### 2.0 ###
 

@@ -108,6 +108,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 ### 4.7.0 ###
 
+* Added "Relevance" in "Order posts by" option.
 * Updated existing options to change the query when on single posts or on archive page.
 * Removed old comment for HTML in widget introduction.
 

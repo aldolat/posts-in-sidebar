@@ -643,15 +643,15 @@ function pis_get_posts_in_sidebar( $args ) {
 		$the_category = get_category( $post_categories[0] );
 		$params['category_name'] = $the_category->slug;
 
-		if ( isset( $orderby_same_cat ) ) {
+		if ( isset( $orderby_same_cat ) && ! empty( $orderby_same_cat ) ) {
 			$params['orderby'] = $orderby_same_cat;
 		}
 
-		if ( isset( $order_same_cat ) ) {
+		if ( isset( $order_same_cat ) && ! empty( $order_same_cat ) ) {
 			$params['order'] = $order_same_cat;
 		}
 
-		if ( isset( $offset_same_cat ) ) {
+		if ( isset( $offset_same_cat ) && ! empty( $offset_same_cat ) ) {
 			$params['offset'] = $offset_same_cat;
 		}
 
@@ -699,15 +699,15 @@ function pis_get_posts_in_sidebar( $args ) {
 			$the_tag = get_tag( $post_tags[0] );
 			$params['tag'] = $the_tag->slug;
 
-			if ( isset( $orderby_same_tag ) ) {
+			if ( isset( $orderby_same_tag ) && ! empty( $orderby_same_tag ) ) {
 				$params['orderby'] = $orderby_same_tag;
 			}
 
-			if ( isset( $order_same_tag ) ) {
+			if ( isset( $order_same_tag ) && ! empty( $order_same_tag ) ) {
 				$params['order'] = $order_same_tag;
 			}
 
-			if ( isset( $offset_same_tag ) ) {
+			if ( isset( $offset_same_tag ) && ! empty( $offset_same_tag ) ) {
 				$params['offset'] = $offset_same_tag;
 			}
 
@@ -748,15 +748,15 @@ function pis_get_posts_in_sidebar( $args ) {
 		$the_author_id = get_post_field( 'post_author', $single_post_id );
 		$params['author__in'] = explode( ',', $the_author_id );
 
-		if ( isset( $orderby_same_author ) ) {
+		if ( isset( $orderby_same_author ) && ! empty( $orderby_same_author ) ) {
 			$params['orderby'] = $orderby_same_author;
 		}
 
-		if ( isset( $order_same_author ) ) {
+		if ( isset( $order_same_author ) && ! empty( $order_same_author ) ) {
 			$params['order'] = $order_same_author;
 		}
 
-		if ( isset( $offset_same_author ) ) {
+		if ( isset( $offset_same_author ) && ! empty( $offset_same_author ) ) {
 			$params['offset'] = $offset_same_author;
 		}
 
@@ -813,15 +813,15 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['posts_per_page'] = $number_custom_field;
 				}
 
-				if ( isset( $orderby_custom_fld ) ) {
+				if ( isset( $orderby_custom_fld ) && ! empty( $orderby_custom_fld ) ) {
 					$params['orderby'] = $orderby_custom_fld;
 				}
 
-				if ( isset( $order_custom_fld ) ) {
+				if ( isset( $order_custom_fld ) && ! empty( $order_custom_fld ) ) {
 					$params['order'] = $order_custom_fld;
 				}
 
-				if ( isset( $offset_custom_fld ) ) {
+				if ( isset( $offset_custom_fld ) && ! empty( $offset_custom_fld ) ) {
 					$params['offset'] = $offset_custom_fld;
 				}
 
@@ -866,11 +866,11 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['offset'] = $offset_cat_page;
 		}
 
-		if ( isset( $orderby_cat_page ) ) {
+		if ( isset( $orderby_cat_page ) && ! empty( $orderby_cat_page ) ) {
 			$params['orderby'] = $orderby_cat_page;
 		}
 
-		if ( isset( $order_cat_page ) ) {
+		if ( isset( $order_cat_page ) && ! empty( $order_cat_page ) ) {
 			$params['order'] = $order_cat_page;
 		}
 
@@ -914,11 +914,11 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['offset'] = $offset_tag_page;
 		}
 
-		if ( isset( $orderby_tag_page ) ) {
+		if ( isset( $orderby_tag_page ) && ! empty( $orderby_tag_page ) ) {
 			$params['orderby'] = $orderby_tag_page;
 		}
 
-		if ( isset( $order_tag_page ) ) {
+		if ( isset( $order_tag_page ) && ! empty( $order_tag_page ) ) {
 			$params['order'] = $order_tag_page;
 		}
 
@@ -962,11 +962,11 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['offset'] = $offset_author_page;
 		}
 
-		if ( isset( $orderby_author_page ) ) {
+		if ( isset( $orderby_author_page ) && ! empty( $orderby_author_page ) ) {
 			$params['orderby'] = $orderby_author_page;
 		}
 
-		if ( isset( $order_author_page ) ) {
+		if ( isset( $order_author_page ) && ! empty( $order_author_page ) ) {
 			$params['order'] = $order_author_page;
 		}
 

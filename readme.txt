@@ -2,7 +2,7 @@
 Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
-Requires at least: 4.1
+Requires at least: 4.6
 Tested up to: 4.9.2
 Stable tag: 4.7.0
 License: GPLv3 or later
@@ -92,6 +92,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Upgrade Notice ==
+
+= 4.7.0 =
+
+This version of the plugin requires WordPress 4.6 (for post_parent__in option in orderby parameter).
 
 = 2.0 =
 

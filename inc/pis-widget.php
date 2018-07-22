@@ -1503,7 +1503,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		/*
 		 * When upgrading from old version, $author, $cat, and $tag could be 'NULL' (as string).
-		 * See above for more informations (the long note on function update).
+		 * See above for some information (the long note on function update).
 		 *
 		 * @since 2.0.3
 		 */
@@ -4645,7 +4645,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name('excerpt'),
 								$options,
 								$instance['excerpt'],
-								sprintf( esc_html__( 'For informations regarding these types of text, please see %1$shere%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
+								sprintf( esc_html__( 'For more information regarding these types of text, please see %1$shere%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
 							); ?>
 
 							<?php // ================= Excerpt length
@@ -5557,10 +5557,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p class="pis-boxed pis-boxed-blue"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
 
-				<div class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging informations publicly on your site.', 'posts-in-sidebar' ); ?></strong>
-					<?php // ================= Debug: display debugging informations to admins only
+				<div class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging information publicly on your site.', 'posts-in-sidebar' ); ?></strong>
+					<?php // ================= Debug: display debugging information to admins only
 					pis_form_checkbox(
-						esc_html__( 'Display debugging informations to admins only', 'posts-in-sidebar' ),
+						esc_html__( 'Display debugging information to admins only', 'posts-in-sidebar' ),
 						$this->get_field_id( 'admin_only' ),
 						$this->get_field_name( 'admin_only' ),
 						checked( $admin_only, true, false )

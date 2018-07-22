@@ -797,6 +797,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
 		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
+			if ( 0 == $instance['author_in'] ) $instance['author_in'] = '';
 			// Make $author empty if $author_in is not empty.
 			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
 		$instance['posts_by_comments']   = isset( $new_instance['posts_by_comments'] ) ? 1 : 0;
@@ -805,6 +806,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['tag']                 = strip_tags( $new_instance['tag'] );
 			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
 		$instance['post_parent_in']      = strip_tags( $new_instance['post_parent_in'] );
+			if ( 0 == $instance['post_parent_in'] ) $instance['post_parent_in'] = '';
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
 			if ( 0 == $instance['number'] || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
@@ -978,11 +980,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts exclusion
 		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
-		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
-		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
+			if ( 0 == $instance['author_not_in'] ) $instance['author_not_in'] = '';
 		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
+			if ( 0 == $instance['cat_not_in'] ) $instance['cat_not_in'] = '';
 		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
+			if ( 0 == $instance['tag_not_in'] ) $instance['tag_not_in'] = '';
+		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
+			if ( 0 == $instance['post_not_in'] ) $instance['post_not_in'] = '';
 		$instance['post_parent_not_in']  = strip_tags( $new_instance['post_parent_not_in'] );
+			if ( 0 == $instance['post_parent_not_in'] ) $instance['post_parent_not_in'] = '';
+		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 
 		// The title of the post
 		$instance['display_title']       = isset( $new_instance['display_title'] ) ? 1 : 0;

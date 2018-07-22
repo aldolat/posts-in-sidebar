@@ -1619,7 +1619,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('cat'),
 							esc_attr( $instance['cat'] ),
 							esc_html__( 'books, ebooks', 'posts-in-sidebar' ),
-							sprintf( esc_html__( 'Enter slugs separated by commas. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
+							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 						); ?>
 
 					</div>
@@ -1633,7 +1633,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('tag'),
 							esc_attr( $instance['tag'] ),
 							esc_html__( 'best-sellers', 'posts-in-sidebar' ),
-							sprintf( esc_html__( 'Enter slugs separated by commas. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
+							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 						); ?>
 
 					</div>
@@ -1673,7 +1673,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('author_in'),
 							esc_attr( $instance['author_in'] ),
 							esc_html__( '1, 23, 45', 'posts-in-sidebar' ),
-							esc_html__( 'Enter IDs separated by commas. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
+							esc_html__( 'Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
 						); ?>
 
 						<?php // ================= Get posts by recent comments
@@ -1696,7 +1696,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name('post_parent_in'),
 							esc_attr( $instance['post_parent_in'] ),
 							esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
-							esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 						); ?>
 
 						<?php // ================= Post format
@@ -3106,7 +3106,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('author_not_in'),
 									esc_attr( $var ),
 									'1, 23, 45',
-									esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 								); ?>
 
 								<?php // ================= Exclude posts from categories
@@ -3120,7 +3120,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('cat_not_in'),
 									esc_attr( $var ),
 									'3, 31',
-									esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 								); ?>
 
 							</div>
@@ -3138,7 +3138,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('tag_not_in'),
 									esc_attr( $var ),
 									'7, 11',
-									esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 								); ?>
 
 								<?php // ================= Exclude posts that have these ids.
@@ -3148,7 +3148,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('post_not_in'),
 									esc_attr( $instance['post_not_in'] ),
 									'5, 29, 523, 4519',
-									esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 								); ?>
 
 							</div>
@@ -3162,7 +3162,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name('post_parent_not_in'),
 									esc_attr( $instance['post_parent_not_in'] ),
 									'5, 29, 523, 4519',
-									esc_html__( 'Enter IDs separated by commas.', 'posts-in-sidebar' )
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 								); ?>
 
 								<?php // ================= Exclude current post
@@ -3251,7 +3251,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Terms aa
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), esc_html__( 'gnu-linux,kde', 'posts-in-sidebar' ), esc_html__( 'Enter terms, separated by comma.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), esc_html__( 'gnu-linux,kde', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Operator aa
 								$options = array(
@@ -3327,7 +3327,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Terms ab
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), esc_html__( 'action,sci-fi', 'posts-in-sidebar' ), esc_html__( 'Enter terms, separated by comma.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), esc_html__( 'action,sci-fi', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Operator ab
 								$options = array(
@@ -3388,7 +3388,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Terms ba
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), esc_html__( 'system,apache', 'posts-in-sidebar' ), esc_html__( 'Enter terms, separated by comma.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), esc_html__( 'system,apache', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Operator ba
 								$options = array(
@@ -3468,7 +3468,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Terms bb
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), esc_html__( 'post-format-quote', 'posts-in-sidebar' ), esc_html__( 'Enter terms, separated by comma.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), esc_html__( 'post-format-quote', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Operator bb
 								$options = array(

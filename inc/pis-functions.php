@@ -1334,7 +1334,11 @@ function pis_debug( $parameters ) {
 		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>';
 		$output .= '<ul class="pis-debug-ul">';
 		foreach ( $params as $key => $value ) {
-			$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+			if ( is_array( $value ) ) {
+				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
+			} else {
+				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+			}
 		}
 		$output .= '</ul>';
 	}
@@ -1343,7 +1347,11 @@ function pis_debug( $parameters ) {
 		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The options of the widget:', 'posts-in-sidebar' ) . '</strong></p>';
 		$output .= '<ul class="pis-debug-ul">';
 		foreach ( $args as $key => $value ) {
-			$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+			if ( is_array( $value ) ) {
+				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
+			} else {
+				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+			}
 		}
 		$output .= '</ul>';
 	}

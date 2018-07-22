@@ -1683,6 +1683,17 @@ function pis_remove_dashes( $string = '' ) {
 }
 
 /**
+ * Transform any comma and space (in any number) into one comma + space (, ).
+ *
+ * @param string $string The string to be checked.
+ * @since 4.7.0
+ */
+function pis_check_commas( $string = '' ) {
+	$string = preg_replace( '([\s,]+)', ', ', $string );
+	return $string;
+}
+
+/**
  * Returns the tooltip text for the link to the post.
  *
  * @param $tooltip_text The text to be displayed in the tooltip.

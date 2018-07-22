@@ -772,7 +772,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
-		$instance['post_type_multiple']  = strip_tags( $new_instance['post_type_multiple'] );
+		$instance['post_type_multiple']  = pis_check_commas( strip_tags( $new_instance['post_type_multiple'] ) );
 			/*
 			 * Check post types entered.
 			 * The function removes any post type that has not been defined.
@@ -782,30 +782,30 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
 				$instance['post_type_multiple'] = pis_compare_string_to_array( $instance['post_type_multiple'], $post_type_wordpress );
 			}
-		$instance['posts_id']            = strip_tags( $new_instance['posts_id'] );
+		$instance['posts_id']            = pis_check_commas( strip_tags( $new_instance['posts_id'] ) );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
-			/*
-			 * For historical reasons (for example, see version 1.18 of this plugin),
-			 * the variables $author, $cat, and $tag could have a value of 'NULL' (as string, not the costant NULL).
-			 * This means that in the database we could have this value, so that WordPress will search, for example,
-			 * for posts by author with 'NULL' nicename. We have to convert this wrong value into an empty value.
-			 * This conversion should be safe because $author, $cat, and $tag must be all lowercase
-			 * (according to WordPress slugs management) and, for example, a 'NULL' (uppercase) author nicename couldn't exist.
-			 *
-			 * @since 1.28
-			 */
+		/*
+		 * For historical reasons (for example, see version 1.18 of this plugin),
+		 * the variables $author, $cat, and $tag could have a value of 'NULL' (as string, not the costant NULL).
+		 * This means that in the database we could have this value, so that WordPress will search, for example,
+		 * for posts by author with 'NULL' nicename. We have to convert this wrong value into an empty value.
+		 * This conversion should be safe because $author, $cat, and $tag must be all lowercase
+		 * (according to WordPress slugs management) and, for example, a 'NULL' (uppercase) author nicename couldn't exist.
+		 *
+		 * @since 1.28
+		 */
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
-		$instance['author_in']           = strip_tags( $new_instance['author_in'] );
+		$instance['author_in']           = pis_check_commas( strip_tags( $new_instance['author_in'] ) );
 			if ( 0 == $instance['author_in'] ) $instance['author_in'] = '';
 			// Make $author empty if $author_in is not empty.
 			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
 		$instance['posts_by_comments']   = isset( $new_instance['posts_by_comments'] ) ? 1 : 0;
-		$instance['cat']                 = strip_tags( $new_instance['cat'] );
+		$instance['cat']                 = pis_check_commas( strip_tags( $new_instance['cat'] ) );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
-		$instance['tag']                 = strip_tags( $new_instance['tag'] );
+		$instance['tag']                 = pis_check_commas( strip_tags( $new_instance['tag'] ) );
 			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
-		$instance['post_parent_in']      = strip_tags( $new_instance['post_parent_in'] );
+		$instance['post_parent_in']      = pis_check_commas( strip_tags( $new_instance['post_parent_in'] ) );
 			if ( 0 == $instance['post_parent_in'] ) $instance['post_parent_in'] = '';
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
@@ -891,24 +891,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$instance['taxonomy_aa']         = strip_tags( $new_instance['taxonomy_aa'] );
 		$instance['field_aa']            = $new_instance['field_aa'];
-		$instance['terms_aa']            = strip_tags( $new_instance['terms_aa'] );
+		$instance['terms_aa']            = pis_check_commas( strip_tags( $new_instance['terms_aa'] ) );
 		$instance['operator_aa']         = $new_instance['operator_aa'];
 
 		$instance['relation_a']          = $new_instance['relation_a'];
 
 		$instance['taxonomy_ab']         = strip_tags( $new_instance['taxonomy_ab'] );
 		$instance['field_ab']            = $new_instance['field_ab'];
-		$instance['terms_ab']            = strip_tags( $new_instance['terms_ab'] );
+		$instance['terms_ab']            = pis_check_commas( strip_tags( $new_instance['terms_ab'] ) );
 		$instance['operator_ab']         = $new_instance['operator_ab'];
 
 		$instance['taxonomy_ba']         = strip_tags( $new_instance['taxonomy_ba'] );
 		$instance['field_ba']            = $new_instance['field_ba'];
-		$instance['terms_ba']            = strip_tags( $new_instance['terms_ba'] );
+		$instance['terms_ba']            = pis_check_commas( strip_tags( $new_instance['terms_ba'] ) );
 		$instance['operator_ba']         = $new_instance['operator_ba'];
 
 		$instance['relation_b']          = $new_instance['relation_b'];
 
-		$instance['taxonomy_bb']         = strip_tags( $new_instance['taxonomy_bb'] );
+		$instance['taxonomy_bb']         = pis_check_commas( strip_tags( $new_instance['taxonomy_bb'] ) );
 		$instance['field_bb']            = $new_instance['field_bb'];
 		$instance['terms_bb']            = strip_tags( $new_instance['terms_bb'] );
 		$instance['operator_bb']         = $new_instance['operator_bb'];
@@ -955,39 +955,39 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['mq_relation']   = $new_instance['mq_relation'];
 
 		$instance['mq_key_aa']     = $new_instance['mq_key_aa'];
-		$instance['mq_value_aa']   = strip_tags( $new_instance['mq_value_aa'] );
+		$instance['mq_value_aa']   = pis_check_commas( strip_tags( $new_instance['mq_value_aa'] ) );
 		$instance['mq_compare_aa'] = $new_instance['mq_compare_aa'];
 		$instance['mq_type_aa']    = $new_instance['mq_type_aa'];
 
 		$instance['mq_relation_a'] = $new_instance['mq_relation_a'];
 
 		$instance['mq_key_ab']     = $new_instance['mq_key_ab'];
-		$instance['mq_value_ab']   = strip_tags( $new_instance['mq_value_ab'] );
+		$instance['mq_value_ab']   = pis_check_commas( strip_tags( $new_instance['mq_value_ab'] ) );
 		$instance['mq_compare_ab'] = $new_instance['mq_compare_ab'];
 		$instance['mq_type_ab']    = $new_instance['mq_type_ab'];
 
 		$instance['mq_key_ba']     = $new_instance['mq_key_ba'];
-		$instance['mq_value_ba']   = strip_tags( $new_instance['mq_value_ba'] );
+		$instance['mq_value_ba']   = pis_check_commas( strip_tags( $new_instance['mq_value_ba'] ) );
 		$instance['mq_compare_ba'] = $new_instance['mq_compare_ba'];
 		$instance['mq_type_ba']    = $new_instance['mq_type_ba'];
 
 		$instance['mq_relation_b'] = $new_instance['mq_relation_b'];
 
 		$instance['mq_key_bb']     = $new_instance['mq_key_bb'];
-		$instance['mq_value_bb']   = strip_tags( $new_instance['mq_value_bb'] );
+		$instance['mq_value_bb']   = pis_check_commas( strip_tags( $new_instance['mq_value_bb'] ) );
 		$instance['mq_compare_bb'] = $new_instance['mq_compare_bb'];
 		$instance['mq_type_bb']    = $new_instance['mq_type_bb'];
 
 		// Posts exclusion
-		$instance['author_not_in']       = strip_tags( $new_instance['author_not_in'] );
+		$instance['author_not_in']       = pis_check_commas( strip_tags( $new_instance['author_not_in'] ) );
 			if ( 0 == $instance['author_not_in'] ) $instance['author_not_in'] = '';
-		$instance['cat_not_in']          = strip_tags( $new_instance['cat_not_in'] );
+		$instance['cat_not_in']          = pis_check_commas( strip_tags( $new_instance['cat_not_in'] ) );
 			if ( 0 == $instance['cat_not_in'] ) $instance['cat_not_in'] = '';
-		$instance['tag_not_in']          = strip_tags( $new_instance['tag_not_in'] );
+		$instance['tag_not_in']          = pis_check_commas( strip_tags( $new_instance['tag_not_in'] ) );
 			if ( 0 == $instance['tag_not_in'] ) $instance['tag_not_in'] = '';
-		$instance['post_not_in']         = strip_tags( $new_instance['post_not_in'] );
+		$instance['post_not_in']         = pis_check_commas( strip_tags( $new_instance['post_not_in'] ) );
 			if ( 0 == $instance['post_not_in'] ) $instance['post_not_in'] = '';
-		$instance['post_parent_not_in']  = strip_tags( $new_instance['post_parent_not_in'] );
+		$instance['post_parent_not_in']  = pis_check_commas( strip_tags( $new_instance['post_parent_not_in'] ) );
 			if ( 0 == $instance['post_parent_not_in'] ) $instance['post_parent_not_in'] = '';
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 

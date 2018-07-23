@@ -1697,7 +1697,7 @@ function pis_sanitize_values( $string = '', $absint = false ) {
 	if ( $absint ) {
 		$string = explode( ', ', $string );
 		foreach ( $string as $key => $value ) {
-			$string[$key] = absint( $value );
+			$string[ $key ] = absint( $value );
 		}
 		$string = implode( ', ', $string );
 	}

@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [Unreleased]
 ### Added
 * Added new option to filter posts in the same taxonomy/author/custom field by searching for the title of the main post.
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.

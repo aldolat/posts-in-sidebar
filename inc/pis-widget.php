@@ -265,6 +265,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['orderby_same_tag'] ) )     $instance['orderby_same_tag']     = 'date';
 		if ( ! isset( $instance['order_same_tag'] ) )       $instance['order_same_tag']       = 'DESC';
 		if ( ! isset( $instance['offset_same_tag'] ) )      $instance['offset_same_tag']      = '';
+		if ( ! isset( $instance['search_same_tag'] ) )      $instance['search_same_tag']      = false;
 
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
@@ -272,6 +273,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['orderby_same_author'] ) )  $instance['orderby_same_author']  = 'date';
 		if ( ! isset( $instance['order_same_author'] ) )    $instance['order_same_author']    = 'DESC';
 		if ( ! isset( $instance['offset_same_author'] ) )   $instance['offset_same_author']   = '';
+		if ( ! isset( $instance['search_same_author'] ) )   $instance['search_same_author']   = false;
+
+		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
+		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
+		if ( ! isset( $instance['s_custom_field_tax'] ) )   $instance['s_custom_field_tax']   = '';
+		if ( ! isset( $instance['number_custom_field'] ) )  $instance['number_custom_field']  = '';
+		if ( ! isset( $instance['title_custom_field'] ) )   $instance['title_custom_field']   = '';
+		if ( ! isset( $instance['orderby_custom_fld'] ) )   $instance['orderby_custom_fld']   = 'date';
+		if ( ! isset( $instance['order_custom_fld'] ) )     $instance['order_custom_fld']     = 'DESC';
+		if ( ! isset( $instance['offset_custom_fld'] ) )    $instance['offset_custom_fld']    = '';
+		if ( ! isset( $instance['search_same_cf'] ) )       $instance['search_same_cf']       = false;
+
+		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
 
 		if ( ! isset( $instance['get_from_cat_page'] ) )    $instance['get_from_cat_page']    = false;
 		if ( ! isset( $instance['number_cat_page'] ) )      $instance['number_cat_page']      = '';
@@ -293,16 +307,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_author_page'] ) )    $instance['title_author_page']    = '';
 		if ( ! isset( $instance['orderby_author_page'] ) )  $instance['orderby_author_page']  = 'date';
 		if ( ! isset( $instance['order_author_page'] ) )    $instance['order_author_page']    = 'DESC';
-
-		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
-		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
-		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
-		if ( ! isset( $instance['s_custom_field_tax'] ) )   $instance['s_custom_field_tax']   = '';
-		if ( ! isset( $instance['number_custom_field'] ) )  $instance['number_custom_field']  = '';
-		if ( ! isset( $instance['title_custom_field'] ) )   $instance['title_custom_field']   = '';
-		if ( ! isset( $instance['orderby_custom_fld'] ) )   $instance['orderby_custom_fld']   = 'date';
-		if ( ! isset( $instance['order_custom_fld'] ) )     $instance['order_custom_fld']     = 'DESC';
-		if ( ! isset( $instance['offset_custom_fld'] ) )    $instance['offset_custom_fld']    = '';
 
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
@@ -485,6 +489,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'has_password'        => $instance['has_password'],
 			'post_password'       => $instance['post_password'],
 			'ignore_sticky'       => $instance['ignore_sticky'],
+
 			'get_from_same_cat'   => $instance['get_from_same_cat'],
 			'number_same_cat'     => $instance['number_same_cat'],
 			'title_same_cat'      => $instance['title_same_cat'],
@@ -493,6 +498,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_cat'      => $instance['order_same_cat'],
 			'offset_same_cat'     => $instance['offset_same_cat'],
 			'search_same_cat'     => $instance['search_same_cat'],
+
 			'get_from_same_tag'   => $instance['get_from_same_tag'],
 			'number_same_tag'     => $instance['number_same_tag'],
 			'title_same_tag'      => $instance['title_same_tag'],
@@ -500,12 +506,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_same_tag'    => $instance['orderby_same_tag'],
 			'order_same_tag'      => $instance['order_same_tag'],
 			'offset_same_tag'     => $instance['offset_same_tag'],
+			'search_same_tag'     => $instance['search_same_tag'],
+
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
 			'title_same_author'   => $instance['title_same_author'],
 			'orderby_same_author' => $instance['orderby_same_author'],
 			'order_same_author'   => $instance['order_same_author'],
 			'offset_same_author'  => $instance['offset_same_author'],
+			'search_same_author'  => $instance['search_same_author'],
+
 			'get_from_custom_fld' => $instance['get_from_custom_fld'],
 			's_custom_field_key'  => $instance['s_custom_field_key'],
 			's_custom_field_tax'  => $instance['s_custom_field_tax'],
@@ -514,25 +524,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_custom_fld'  => $instance['orderby_custom_fld'],
 			'order_custom_fld'    => $instance['order_custom_fld'],
 			'offset_custom_fld'   => $instance['offset_custom_fld'],
+			'search_same_cf'      => $instance['search_same_cf'],
+
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
-			'get_from_cat_page'   => $instance['get_from_cat_page'],
-			'number_cat_page'     => $instance['number_cat_page'],
-			'offset_cat_page'     => $instance['offset_cat_page'],
-			'title_cat_page'      => $instance['title_cat_page'],
-			'orderby_cat_page'    => $instance['orderby_cat_page'],
-			'order_cat_page'      => $instance['order_cat_page'],
-			'get_from_tag_page'   => $instance['get_from_tag_page'],
-			'number_tag_page'     => $instance['number_tag_page'],
-			'offset_tag_page'     => $instance['offset_tag_page'],
-			'title_tag_page'      => $instance['title_tag_page'],
-			'orderby_tag_page'    => $instance['orderby_tag_page'],
-			'order_tag_page'      => $instance['order_tag_page'],
-			'get_from_author_page'=> $instance['get_from_author_page'],
-			'number_author_page'  => $instance['number_author_page'],
-			'offset_author_page'  => $instance['offset_author_page'],
-			'title_author_page'   => $instance['title_author_page'],
-			'orderby_author_page' => $instance['orderby_author_page'],
-			'order_author_page'   => $instance['order_author_page'],
+
+			'get_from_cat_page'    => $instance['get_from_cat_page'],
+			'number_cat_page'      => $instance['number_cat_page'],
+			'offset_cat_page'      => $instance['offset_cat_page'],
+			'title_cat_page'       => $instance['title_cat_page'],
+			'orderby_cat_page'     => $instance['orderby_cat_page'],
+			'order_cat_page'       => $instance['order_cat_page'],
+
+			'get_from_tag_page'    => $instance['get_from_tag_page'],
+			'number_tag_page'      => $instance['number_tag_page'],
+			'offset_tag_page'      => $instance['offset_tag_page'],
+			'title_tag_page'       => $instance['title_tag_page'],
+			'orderby_tag_page'     => $instance['orderby_tag_page'],
+			'order_tag_page'       => $instance['order_tag_page'],
+
+			'get_from_author_page'    => $instance['get_from_author_page'],
+			'number_author_page'      => $instance['number_author_page'],
+			'offset_author_page'      => $instance['offset_author_page'],
+			'title_author_page'       => $instance['title_author_page'],
+			'orderby_author_page'     => $instance['orderby_author_page'],
+			'order_author_page'       => $instance['order_author_page'],
+
 			'dont_ignore_params_page' => $instance['dont_ignore_params_page'],
 
 			// Taxonomies
@@ -824,6 +840,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['has_password']        = $new_instance['has_password'];
 		$instance['post_password']       = $new_instance['post_password'];
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
+
 		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
 		$instance['number_same_cat']     = intval( strip_tags( $new_instance['number_same_cat'] ) );
 			if ( 0 == $instance['number_same_cat'] || ! is_numeric( $instance['number_same_cat'] ) ) $instance['number_same_cat'] = '';
@@ -834,6 +851,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_same_cat']     = absint( strip_tags( $new_instance['offset_same_cat'] ) );
 			if ( 0 == $instance['offset_same_cat'] || ! is_numeric( $instance['offset_same_cat'] ) ) $instance['offset_same_cat'] = '';
 		$instance['search_same_cat']     = $new_instance['search_same_cat'];
+
 		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
 		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
 			if ( 0 == $instance['number_same_tag'] || ! is_numeric( $instance['number_same_tag'] ) ) $instance['number_same_tag'] = '';
@@ -843,6 +861,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_tag']      = $new_instance['order_same_tag'];
 		$instance['offset_same_tag']     = absint( strip_tags( $new_instance['offset_same_tag'] ) );
 			if ( 0 == $instance['offset_same_tag'] || ! is_numeric( $instance['offset_same_tag'] ) ) $instance['offset_same_tag'] = '';
+		$instance['search_same_tag']     = $new_instance['search_same_tag'];
+
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
 			if ( 0 == $instance['number_same_author'] || ! is_numeric( $instance['number_same_author'] ) ) $instance['number_same_author'] = '';
@@ -851,6 +871,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_author']   = $new_instance['order_same_author'];
 		$instance['offset_same_author']  = absint( strip_tags( $new_instance['offset_same_author'] ) );
 			if ( 0 == $instance['offset_same_author'] || ! is_numeric( $instance['offset_same_author'] ) ) $instance['offset_same_author'] = '';
+		$instance['search_same_author']  = $new_instance['search_same_author'];
+
 		$instance['get_from_custom_fld'] = isset( $new_instance['get_from_custom_fld'] ) ? 1 : 0;
 		$instance['s_custom_field_key']  = strip_tags( $new_instance['s_custom_field_key'] );
 		$instance['s_custom_field_tax']  = $new_instance['s_custom_field_tax'];
@@ -861,6 +883,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_custom_fld']      = $new_instance['order_custom_fld'];
 		$instance['offset_custom_fld']     = absint( strip_tags( $new_instance['offset_custom_fld'] ) );
 			if ( 0 == $instance['offset_custom_fld'] || ! is_numeric( $instance['offset_custom_fld'] ) ) $instance['offset_custom_fld'] = '';
+		$instance['search_same_cf']      = $new_instance['search_same_cf'];
+
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 
 		$instance['get_from_cat_page']    = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
@@ -869,24 +893,27 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_cat_page']      = absint( strip_tags( $new_instance['offset_cat_page'] ) );
 			if ( 0 == $instance['offset_cat_page'] || ! is_numeric( $instance['offset_cat_page'] ) ) $instance['offset_cat_page'] = '';
 		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
-		$instance['orderby_cat_page']    = $new_instance['orderby_cat_page'];
-		$instance['order_cat_page']      = $new_instance['order_cat_page'];
+		$instance['orderby_cat_page']     = $new_instance['orderby_cat_page'];
+		$instance['order_cat_page']       = $new_instance['order_cat_page'];
+
 		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
 		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
 			if ( 0 == $instance['number_tag_page'] || ! is_numeric( $instance['number_tag_page'] ) ) $instance['number_tag_page'] = '';
 		$instance['offset_tag_page']      = absint( strip_tags( $new_instance['offset_tag_page'] ) );
 			if ( 0 == $instance['offset_tag_page'] || ! is_numeric( $instance['offset_tag_page'] ) ) $instance['offset_tag_page'] = '';
 		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
-		$instance['orderby_tag_page']    = $new_instance['orderby_tag_page'];
-		$instance['order_tag_page']      = $new_instance['order_tag_page'];
-		$instance['get_from_author_page'] = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
-		$instance['number_author_page']   = intval( strip_tags( $new_instance['number_author_page'] ) );
+		$instance['orderby_tag_page']     = $new_instance['orderby_tag_page'];
+		$instance['order_tag_page']       = $new_instance['order_tag_page'];
+
+		$instance['get_from_author_page']    = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
+		$instance['number_author_page']      = intval( strip_tags( $new_instance['number_author_page'] ) );
 			if ( 0 == $instance['number_author_page'] || ! is_numeric( $instance['number_author_page'] ) ) $instance['number_author_page'] = '';
-		$instance['offset_author_page']   = absint( strip_tags( $new_instance['offset_author_page'] ) );
+		$instance['offset_author_page']      = absint( strip_tags( $new_instance['offset_author_page'] ) );
 			if ( 0 == $instance['offset_author_page'] || ! is_numeric( $instance['offset_author_page'] ) ) $instance['offset_author_page'] = '';
-		$instance['title_author_page']    = strip_tags( $new_instance['title_author_page'] );
-		$instance['orderby_author_page']    = $new_instance['orderby_author_page'];
-		$instance['order_author_page']      = $new_instance['order_author_page'];
+		$instance['title_author_page']       = strip_tags( $new_instance['title_author_page'] );
+		$instance['orderby_author_page']     = $new_instance['orderby_author_page'];
+		$instance['order_author_page']       = $new_instance['order_author_page'];
+
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
 		// Taxonomies
@@ -1187,6 +1214,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'has_password'         => 'null',
 			'post_password'        => '',
 			'ignore_sticky'        => false,
+
 			'get_from_same_cat'    => false,
 			'number_same_cat'      => '',
 			'title_same_cat'       => '',
@@ -1195,6 +1223,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_cat'       => 'DESC',
 			'offset_same_cat'      => '',
 			'search_same_cat'      => false,
+
 			'get_from_same_tag'    => false,
 			'number_same_tag'      => '',
 			'title_same_tag'       => '',
@@ -1202,12 +1231,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_same_tag'     => 'date',
 			'order_same_tag'       => 'DESC',
 			'offset_same_tag'      => '',
+			'search_same_tag'      => false,
+
 			'get_from_same_author' => false,
 			'number_same_author'   => '',
 			'title_same_author'    => '',
 			'orderby_same_author'  => 'date',
 			'order_same_author'    => 'DESC',
 			'offset_same_author'   => '',
+			'search_same_author'   => false,
+
 			'get_from_custom_fld'  => false,
 			's_custom_field_key'   => '',
 			's_custom_field_tax'   => '',
@@ -1216,25 +1249,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_custom_fld'   => 'date',
 			'order_custom_fld'     => 'DESC',
 			'offset_custom_fld'    => '',
+			'search_same_cf'      => false,
+
 			'dont_ignore_params'   => false,
+
 			'get_from_cat_page'    => false,
 			'number_cat_page'      => '',
 			'offset_cat_page'      => '',
 			'title_cat_page'       => '',
 			'orderby_cat_page'     => 'date',
 			'order_cat_page'       => 'DESC',
+
 			'get_from_tag_page'    => false,
 			'number_tag_page'      => '',
 			'offset_tag_page'      => '',
 			'title_tag_page'       => '',
 			'orderby_tag_page'     => 'date',
 			'order_tag_page'       => 'DESC',
-			'get_from_author_page' => false,
-			'number_author_page'   => '',
-			'offset_author_page'   => '',
-			'title_author_page'    => '',
-			'orderby_author_page'  => 'date',
-			'order_author_page'    => 'DESC',
+
+			'get_from_author_page'    => false,
+			'number_author_page'      => '',
+			'offset_author_page'      => '',
+			'title_author_page'       => '',
+			'orderby_author_page'     => 'date',
+			'order_author_page'       => 'DESC',
+
 			'dont_ignore_params_page' => false,
 
 			// Taxonomies
@@ -1453,8 +1492,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$dont_ignore_params      = (bool) $instance['dont_ignore_params'];
 		$get_from_same_tag       = (bool) $instance['get_from_same_tag'];
 		$sort_tags               = (bool) $instance['sort_tags'];
+		$search_same_tag         = (bool) $instance['search_same_tag'];
 		$get_from_same_author    = (bool) $instance['get_from_same_author'];
+		$search_same_author      = (bool) $instance['search_same_author'];
 		$get_from_custom_fld     = (bool) $instance['get_from_custom_fld'];
+		$search_same_cf          = (bool) $instance['search_same_cf'];
 		$get_from_cat_page       = (bool) $instance['get_from_cat_page'];
 		$get_from_tag_page       = (bool) $instance['get_from_tag_page'];
 		$get_from_author_page    = (bool) $instance['get_from_author_page'];
@@ -2146,6 +2188,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_tag' ),
+									$this->get_field_name( 'search_same_tag' ),
+									checked( $search_same_tag, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same tag of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 							<div class="pis-column">
@@ -2215,6 +2266,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'comment_count' => array(
 										'value' => 'comment_count',
 										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'relevance' => array(
+										'value' => 'relevance',
+										'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
 									),
 									'menu_order' => array(
 										'value' => 'menu_order',
@@ -2294,6 +2349,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_author' ),
+									$this->get_field_name( 'search_same_author' ),
+									checked( $search_same_author, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts by the same author of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 							<div class="pis-column">
@@ -2363,6 +2427,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'comment_count' => array(
 										'value' => 'comment_count',
 										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'relevance' => array(
+										'value' => 'relevance',
+										'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
 									),
 									'menu_order' => array(
 										'value' => 'menu_order',
@@ -2476,6 +2544,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$instance['s_custom_field_tax']
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_cf' ),
+									$this->get_field_name( 'search_same_cf' ),
+									checked( $search_same_cf, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same custom field of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 							<div class="pis-column">
@@ -2545,6 +2622,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'comment_count' => array(
 										'value' => 'comment_count',
 										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'relevance' => array(
+										'value' => 'relevance',
+										'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
 									),
 									'menu_order' => array(
 										'value' => 'menu_order',

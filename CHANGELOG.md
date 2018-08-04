@@ -1,36 +1,41 @@
-== Changelog ==
+# Changelog
 
-= 4.7.0 =
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## Unreleased
 
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
 * Added new options when changing the query in single posts or in an archive page.
 * Removed old comment for HTML in widget introduction.
 
-= 4.6.0 =
+## [4.6.0] - 2018-07-01
 
 * Added option to get posts from the current archive page (category, tag, and author).
 * Changed wp_kses to wp_kses_post for widget introduction.
 * Now debug options are displayed without execution.
 
-= 4.5.2 =
+## [4.5.2] - 2018-05-13
 
 * Fixed opening widgets containers when used with SiteOrigin page builder.
 
-= 4.5.1 =
+## [4.5.1] - 2018-01-29
 
 * Fixed displaying UTF-8 charset when shortening titles and excerpts.
 
-= 4.5.0 =
+## [4.5.0] - 2018-01-28
 
 * Added options for title and WordPress-generated excerpt length unit.
 * Added filter for HTML arrows in title and excerpt.
 * Added CSS ID selector to ul.
 
-= 4.4.0 =
+## [4.4.0] - 2017-09-24
 
 * Added option to shorten post titles.
 
-= 4.3.0 =
+## [4.3.0] - 2017-07-02
 
 * Added option to get posts from the current tag, when on a single post.
 * Added option to assign post classes via `get_post_class()`.
@@ -38,45 +43,45 @@
 * Fixed post modification date/time.
 * Minor fixes.
 
-= 4.2.0 =
+## [4.2.0] - 2017-06-25
 
 * Added option to display the post time and modification time.
 * Aligned shortcode options to main options.
 * Comments are not linked to comments section in the post by default.
 
-= 4.1 =
+## [4.1] - 2017-06-04
 
 * Added option to get posts by recent comments.
 * Added option to display all the custom fields of the post.
 
-= 4.0 =
+## [4.0] - 2017-05-21
 
 * Added section for retrieving posts from multiple custom fields.
 * Added option for retrieving posts with/without password.
 * Added option for retrieving posts with a certain password.
 * Now panels do not collapse after saving the widget.
 
-= 3.8.8 =
+## [3.8.8] - 2017-04-30
 
 * Added option to get multiple post types.
 * Removed option for displaying query number (it's displayed by default now).
 
-= 3.8.7 =
+## [3.8.7] - 2017-04-16
 
 * Fixed link on titles and title arrows.
 * Fixed a bug where, regardless of the state of "Display the featured image of the post" checkbox, the featured image was always visible if the "Display this section before the title of the post" checkbox were active.
 
-= 3.8.6 =
+## [3.8.6] - 2017-04-15
 
 * Added option to get posts from a certain amount of time ago.
 * Removed empty items from the array for the query.
 * Removed some default settings in custom taxonomy query.
 
-= 3.8.5 =
+## [3.8.5] - 2017-04-11
 
 * Updated the description in "When on single posts, get posts from the current category".
 
-= 3.8.4 =
+## [3.8.4] - 2017-04-09
 
 * Added option to maintain active other parameters when on single post (props by techsmurfy).
 * Added option to sort categories of the main post before getting the posts for the sidebar. When the user wants to get posts from the current category, now the user can choose to fetch posts from the main category of the main post (i.e. the category with the lowest ID) or from the category with the lowest key ID in the array of categories (props by techsmurfy).
@@ -84,77 +89,77 @@
 * Removed empty lines in the HTML source.
 * Added Indonesian translation, thanks to Jordan Silaen.
 
-= 3.8.3 =
+## [3.8.3] - 2017-03-11
 
 * Added option to display debugging information to admins only.
 * Now the custom field value for getting posts via custom field key can be the taxonomy ID (props by morfe1).
 * Removed Italian l10n from `languages/` directory, because the Italian language pack in GlotPress is completed.
 * Hardening security on i18n.
 
-= 3.8.2 =
+## [3.8.2] - 2016-12-04
 
 * Rewritten function for displaying the Read more.
 * Completely removed the HTML title attribute on links.
 * Aligned widget and shortcode options.
 * Minor corrections.
 
-= 3.8.1 =
+## [3.8.1] - 2016-09-17
 
 * Exclude current post even if the user has specified a list of IDs.
 * Removed title attribute on links.
 
-= 3.8 =
+## [3.8] - 2016-06-02
 
 * FIX: The "Rich Content" option for excerpt correctly executes shortcodes now.
 * If the length of a WordPress-generated excerpt is smaller than or equal to the maximum length defined by the user for the excerpt, the "Read more..." text is automatically hidden.
 * Reduced widget width to 600px in the admin area.
 
-= 3.7 =
+## [3.7] - 2016-05-24
 
 * NEW: Added support to get posts, when on single post, from user-defined category/tag using custom field (props by Mike S).
 * NEW: Added support for changing number of posts when on single post.
 * FIX: fixed displaying comments string when using languages different from English.
 
-= 3.6 =
+## [3.6] - 2016-04-02
 
 * NEW: now the user can remove the link of the featured image.
 
-= 3.5 =
+## [3.5] - 2016-03-24
 
 * NEW: Added support to get posts by the author of the current post (props by Derek).
 * FIX: fixed getting posts by category slug.
 * Updated the shortcodes options.
 
-= 3.4 =
+## [3.4] - 2016-02-11
 
 * Updated the shortcodes options.
 
-= 3.3.1 =
+## [3.3.1] - 2016-02-06
 
 * FIX: fixed wrong characters displaying in custom field values (props by [bubdev](https://wordpress.org/support/profile/bubdev)).
 * Minor improvements.
 
-= 3.3 =
+## [3.3] - 2016-01-21
 
 * NEW: Added option to truncate the custom field content (props by [bubdev](https://wordpress.org/support/profile/bubdev)).
 
-= 3.2 =
+## [3.2] - 2015-12-31
 
 * NEW: Added support to get posts from the category of the current post (props by [wendygordon](https://wordpress.org/support/profile/wendygordon)).
 * Minor improvements.
 
-= 3.1 =
+## [3.1] - 2015-11-08
 
 * NEW: Added option to display the modification date (props by [ecdltf](https://wordpress.org/support/profile/ecdltf)).
 
-= 3.0.1 =
+## [3.0.1] - 2015-10-31
 
 * Fixed shortcodes execution in "Full content" type of text (thanks to [fabianfabian](https://wordpress.org/support/profile/fabianfabian) for reporting).
 * Added check if the post is private.
 * Added check for current post in pages.
 * Added link to review page in the plugins list page.
 
-= 3.0 =
+## [3.0] - 2015-10-03
 
 * NEW: Added the shortcode.
 * NEW: Added Gravatar support for authors.
@@ -164,26 +169,26 @@
 * Changed some files names.
 * Changed translation domain into posts-in-sidebar.
 
-= 2.0.4 =
+## [2.0.4] - 2015-08-12
 
 * Fixed custom container DIV (thanks to felipebadr).
 * Minor improvements.
 
-= 2.0.3 =
+## [2.0.3] - 2015-08-10
 
 * FIX: Fixed sticky posts.
 * The complete list of widget options is now fully displayed.
 * Other minor improvements.
 
-= 2.0.2 =
+## [2.0.2] - 2015-08-09
 
 * FIX: Fixed link on widget title.
 
-= 2.0.1 =
+## [2.0.1] - 2015-08-09
 
 * FIX: Fixed printing local style.
 
-= 2.0 =
+## [2.0] - 2015-08-09
 
 * NEW: Support for taxonomy complex queries (requires WordPress 4.1).
 * NEW: Support for date queries.
@@ -200,35 +205,35 @@
 * Fixed PHP notices when upgrading from previous versions.
 * Updated the Hebrew translation (thanks to Ahrale).
 
-= 1.28 =
+## [1.28] - 2015-04-12
 
 * Added check for "NULL" (as string) value in certain variables.
 * FIX: Now the plugin correctly displays attachment post type.
 * FIX: Custom featured images are now displayed when the user choose no text to display.
 
-= 1.27 =
+## [1.27] - 2015-03-29
 
 * NEW: Now it's possible to display the name of the taxonomy in the archive link.
 * FIX: resolved multiple PHP notices.
 
-= 1.26 =
+## [1.26] - 2015-03-22
 
 * Compatibility with Relevantssi plugin (props by KTS915).
 * Updated the Hebrew translation (thanks to Ahrale).
 
-= 1.25 =
+## [1.25] - 2015-03-14
 
 * NEW: Added options to use a custom image instead of the standard featured image (props by joaogsr).
 * NEW: Added class "sticky" if a post is sticky (props by acrok).
 * CHANGE: Added a checkbox to completely hide the widget if no posts are found (instead of removing the "no posts text" in order to do this).
 * Added placeholders in HTML fields.
 
-= 1.24 =
+## [1.24] - 2015-02-28
 
 * FIX: resolved "No posts" issue when upgrading from 1.22 version.
 * Updated Hebrew (thanks to Ahrale) and Italian translations.
 
-= 1.23 =
+## [1.23] - 2015-02-25
 
 * NEW: the widget can be hidden now if no posts are found (props by der_velli).
 * NEW: Added the option to display the full size of the featured image (props by Ilaria).
@@ -239,31 +244,31 @@
 * Updated the Hebrew translation (thanks to Ahrale).
 * Code improvements.
 
-= 1.22 =
+## [1.22] - 2014-11-05
 
 * NEW: Added an option to display only the "Read more..." link.
 * Updated the Hebrew translation (thanks to Ahrale).
 * Added Serbo-Croatian language (thanks to Borisa Djuraskovic).
 
-= 1.21 =
+## [1.21] - 2014-08-11
 
 * NEW: Added an option to exclude the current post in single post page or the current page in single page.
 * Added an alert in the widget admin if the current theme doesn't support the Post Thumbnail feature.
 
-= 1.20 =
+## [1.20] - 2014-06-29
 
 * FIX: Now the dropdown menu for post type selection correctly displays all the public post types (thanks to pathuri).
 
-= 1.19 =
+## [1.19] - 2014-05-24
 
 * NEW: Selection of categories and tags is in form of comma separated values. This will prevent server load in case there are too many terms. Also, now the user can get posts from multiple categories.
 
-= 1.18 =
+## [1.18] - 2014-03-16
 
 * NEW: The section with author, date, and comments can now be displayed before the post's excerpt.
 * Various small improvements.
 
-= 1.17 =
+## [1.17] - 2014-01-25
 
 * NEW: Added option to exclude posts with certain IDs.
 * NEW: Added option to display image before post title.
@@ -274,21 +279,21 @@
 * The custom container receives now only a single CSS class.
 * Completed the PhpDocumentor tags.
 
-= 1.16.1 =
+## [1.16.1] - 2014-01-06
 
 * NEW: The cache can be flushed now.
 * Updated Hebrew translation.
 
-= 1.16 =
+## [1.16] - 2014-01-05
 
 * NEW: Added a field to define a class for a container.
 * NEW: Now the user can define a cache when retrieving posts from database.
 
-= 1.15.1 =
+## [1.15.1] - 2013-12-15
 
 * FIX: The HTML for ul is now fixed.
 
-= 1.15 =
+## [1.15] - 2013-12-15
 
 * NEW: The posts can be retrieved using the ID (props by Matt).
 * NEW: The list of posts can now be displayed in a numbered list (props by Sean).
@@ -298,12 +303,12 @@
 * Deleted unused options in widgets dropdown menus.
 * Minor refinements.
 
-= 1.14 =
+## [1.14] - 2013-10-02
 
 * FIX: fetching posts from tags now works correctly.
 * Updated Hebrew translation, thanks to Ahrale.
 
-= 1.13 =
+## [1.13] - 2013-08-30
 
 * NEW: Added option for adding user defined styles (props by Ahrale).
 * NEW: Added option for setting the space around the image (props by Ahrale).
@@ -313,25 +318,25 @@
 * Minor bug fixings.
 * Minor enhancements.
 
-= 1.12 =
+## [1.12] - 2013-08-10
 
 * NEW: added option for rich content.
 * NEW: added option for displaying the custom fields value/key of the post.
 * NEW: added option for removing bullets and extra left space for the list elements.
 * Code improvements.
 
-= 1.11 =
+## [1.11] - 2013-07-24
 
 * FIX: image align has been fixed (thanks to Clarry).
 
-= 1.10 =
+## [1.10] - 2013-07-23
 
 * FIX: If the post is password protected, now the post password form is displayed before showing the post.
 * NEW: Now the user-defined excerpt can display a paragraph break, if any.
 * NEW: Added Hebrew translation, thanks to Ahrale.
 * Other minor changes.
 
-= 1.9 =
+## [1.9] - 2013-06-22
 
 * NEW: The space after each line can be defined via widget interface.
 * NEW: The featured image can be aligned with text.
@@ -340,14 +345,14 @@
 * Updated French translation, thanks to [cilya](http://wordpress.org/support/profile/cilya).
 * Minor bug fixings.
 
-= 1.8 =
+## [1.8] - 2013-06-08
 
 * New: added post format as option to get posts.
 * New: added option for link to custom post type archive.
 * New: added option for link to post format archive.
 * Other minor changes.
 
-= 1.7 =
+## [1.7] - 2013-06-01
 
 * New: The widget can display the author of the post.
 * New: Now the user can choose which type of posts to display: posts, pages, custom post types, etc.
@@ -356,23 +361,23 @@
 * Added French translation by Thérèse Lachance.
 * Code improvements and sanitization.
 
-= 1.6.1 =
+## [1.6.1] - 2013-04-17
 
 * Minor fixes.
 
-= 1.6 =
+## [1.6] - 2013-04-17
 
 * New: if in single post, the user can now stylize the current post in the sidebar (feature request from lleroy).
 
-= 1.5 =
+## [1.5] - 2013-03-28
 
 * New: Now the title of the widget can be linked to a user-defined URL (feature request from Mike).
 
-= 1.4 =
+## [1.4] - 2013-03-24
 
 * New: Now the user can add an introductory text to the widget (feature request from Mike).
 
-= 1.3 =
+## [1.3] - 2013-01-11
 
 * New: The date can be linkified or not.
 * New: The widget panel now shows empty categories and tags.
@@ -380,30 +385,94 @@
 * Bug fix: The markup no longer shows empty containers.
 * Some minor enhancements.
 
-= 1.2.1 =
+## 1.2.1 - 2012-11-02
 
 * Changed the minimum required WordPress version to 3.3.
 * Added Persian language, thanks to AlirezaJamali.
 
-= 1.2 =
+## 1.2 - 2012-10-20
 
 * Enhancement: Now the user can display the entire content for each post. Feature request from [sjmsing](http://wordpress.org/support/topic/plugin-posts-in-sidebar-great-plugin-feature-request)
 * Moved screenshots to `/assets/` directory.
 
-= 1.1 =
+## 1.1 - 2012-09-29
 
 * Enhancement: Now it is possible to show the categories of the post
 * Enhancement: Now it is possible to exclude posts coming from some categories and/or tags
 * Moved the widget section into a separate file.
 
-= 1.0.2 =
+## 1.0.2 - 2012-09-10
 
 * Updated *Credits* section.
 
-= 1.0.1 =
+## 1.0.1 - 2012-09-10
 
 * Small typo in `readme.txt`.
 
-= 1.0 =
+## 1.0 - 2012-09-10
 
 * First release of the plugin.
+
+[Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.6.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.2...4.6.0
+[4.5.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.1...4.5.2
+[4.5.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.0...4.5.1
+[4.5.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.4.0...4.5.0
+[4.4.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.3.0...4.4.0
+[4.3.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.2.0...4.3.0
+[4.2.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.1...4.2.0
+[4.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.0...4.1
+[4.0]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.8...4.0
+[3.8.8]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.7...3.8.8
+[3.8.7]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.6...3.8.7
+[3.8.6]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.5...3.8.6
+[3.8.5]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.4...3.8.5
+[3.8.4]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.3...3.8.4
+[3.8.3]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.2...3.8.3
+[3.8.2]: https://github.com/aldolat/posts-in-sidebar/compare/3.8.1...3.8.2
+[3.8.1]: https://github.com/aldolat/posts-in-sidebar/compare/3.8...3.8.1
+[3.8]: https://github.com/aldolat/posts-in-sidebar/compare/3.7...3.8
+[3.7]: https://github.com/aldolat/posts-in-sidebar/compare/3.6...3.7
+[3.6]: https://github.com/aldolat/posts-in-sidebar/compare/3.5...3.6
+[3.5]: https://github.com/aldolat/posts-in-sidebar/compare/3.4...3.5
+[3.4]: https://github.com/aldolat/posts-in-sidebar/compare/3.3.1...3.4
+[3.3.1]: https://github.com/aldolat/posts-in-sidebar/compare/3.3...3.3.1
+[3.3]: https://github.com/aldolat/posts-in-sidebar/compare/3.2...3.3
+[3.2]: https://github.com/aldolat/posts-in-sidebar/compare/3.1...3.2
+[3.1]: https://github.com/aldolat/posts-in-sidebar/compare/3.0.1...3.1
+[3.0.1]: https://github.com/aldolat/posts-in-sidebar/compare/3.0...3.0.1
+[3.0]: https://github.com/aldolat/posts-in-sidebar/compare/2.0.4...3.0
+[2.0.4]: https://github.com/aldolat/posts-in-sidebar/compare/2.0.3...2.0.4
+[2.0.3]: https://github.com/aldolat/posts-in-sidebar/compare/2.0.2...2.0.3
+[2.0.2]: https://github.com/aldolat/posts-in-sidebar/compare/2.0.1...2.0.2
+[2.0.1]: https://github.com/aldolat/posts-in-sidebar/compare/2.0...2.0.1
+[2.0]: https://github.com/aldolat/posts-in-sidebar/compare/1.28...2.0
+[1.28]: https://github.com/aldolat/posts-in-sidebar/compare/1.27...1.28
+[1.27]: https://github.com/aldolat/posts-in-sidebar/compare/1.26...1.27
+[1.26]: https://github.com/aldolat/posts-in-sidebar/compare/1.25...1.26
+[1.25]: https://github.com/aldolat/posts-in-sidebar/compare/1.24...1.25
+[1.24]: https://github.com/aldolat/posts-in-sidebar/compare/1.23...1.24
+[1.23]: https://github.com/aldolat/posts-in-sidebar/compare/1.22...1.23
+[1.22]: https://github.com/aldolat/posts-in-sidebar/compare/1.21...1.22
+[1.21]: https://github.com/aldolat/posts-in-sidebar/compare/1.20...1.21
+[1.20]: https://github.com/aldolat/posts-in-sidebar/compare/1.19...1.20
+[1.19]: https://github.com/aldolat/posts-in-sidebar/compare/1.18...1.19
+[1.18]: https://github.com/aldolat/posts-in-sidebar/compare/1.17...1.18
+[1.17]: https://github.com/aldolat/posts-in-sidebar/compare/v1.16.1...1.17
+[1.16.1]: https://github.com/aldolat/posts-in-sidebar/compare/v1.16...v1.16.1
+[1.16]: https://github.com/aldolat/posts-in-sidebar/compare/v1.15.1...v1.16
+[1.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/v1.15...v1.15.1
+[1.15]: https://github.com/aldolat/posts-in-sidebar/compare/v1.14...v1.15
+[1.14]: https://github.com/aldolat/posts-in-sidebar/compare/v1.13...v1.14
+[1.13]: https://github.com/aldolat/posts-in-sidebar/compare/v1.12...v1.13
+[1.12]: https://github.com/aldolat/posts-in-sidebar/compare/v1.11...v1.12
+[1.11]: https://github.com/aldolat/posts-in-sidebar/compare/v1.10...v1.11
+[1.10]: https://github.com/aldolat/posts-in-sidebar/compare/v1.9...v1.10
+[1.9]: https://github.com/aldolat/posts-in-sidebar/compare/v1.8...v1.9
+[1.8]: https://github.com/aldolat/posts-in-sidebar/compare/v1.7...v1.8
+[1.7]: https://github.com/aldolat/posts-in-sidebar/compare/v1.6.1...v1.7
+[1.6.1]: https://github.com/aldolat/posts-in-sidebar/compare/v1.6...v1.6.1
+[1.6]: https://github.com/aldolat/posts-in-sidebar/compare/v1.5...v1.6
+[1.5]: https://github.com/aldolat/posts-in-sidebar/compare/v1.4...v1.5
+[1.4]: https://github.com/aldolat/posts-in-sidebar/compare/v1.3...v1.4
+[1.3]: https://github.com/aldolat/posts-in-sidebar/releases/tag/v1.3

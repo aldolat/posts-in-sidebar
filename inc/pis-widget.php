@@ -256,6 +256,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['orderby_same_cat'] ) )     $instance['orderby_same_cat']     = 'date';
 		if ( ! isset( $instance['order_same_cat'] ) )       $instance['order_same_cat']       = 'DESC';
 		if ( ! isset( $instance['offset_same_cat'] ) )      $instance['offset_same_cat']      = '';
+		if ( ! isset( $instance['search_same_cat'] ) )      $instance['search_same_cat']      = false;
 
 		if ( ! isset( $instance['get_from_same_tag'] ) )    $instance['get_from_same_tag']    = false;
 		if ( ! isset( $instance['number_same_tag'] ) )      $instance['number_same_tag']      = '';
@@ -369,7 +370,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_length'] ) )         $instance['title_length']         = 0;
 		if ( ! isset( $instance['title_length_unit'] ) )    $instance['title_length_unit']    = 'words';
 		if ( ! isset( $instance['title_hellipsis'] ) )      $instance['title_hellipsis']      = true;
-		if ( ! isset( $instance['exc_length_unit'] ) )    $instance['exc_length_unit']    = 'words';
+		if ( ! isset( $instance['exc_length_unit'] ) )      $instance['exc_length_unit']    = 'words';
 		if ( ! isset( $instance['image_align'] ) )          $instance['image_align']          = 'no_change';
 		if ( ! isset( $instance['image_before_title'] ) )   $instance['image_before_title']   = false;
 		if ( ! isset( $instance['image_link'] ) )           $instance['image_link']           = '';
@@ -491,6 +492,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_same_cat'    => $instance['orderby_same_cat'],
 			'order_same_cat'      => $instance['order_same_cat'],
 			'offset_same_cat'     => $instance['offset_same_cat'],
+			'search_same_cat'     => $instance['search_same_cat'],
 			'get_from_same_tag'   => $instance['get_from_same_tag'],
 			'number_same_tag'     => $instance['number_same_tag'],
 			'title_same_tag'      => $instance['title_same_tag'],
@@ -831,6 +833,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_cat']      = $new_instance['order_same_cat'];
 		$instance['offset_same_cat']     = absint( strip_tags( $new_instance['offset_same_cat'] ) );
 			if ( 0 == $instance['offset_same_cat'] || ! is_numeric( $instance['offset_same_cat'] ) ) $instance['offset_same_cat'] = '';
+		$instance['search_same_cat']     = $new_instance['search_same_cat'];
 		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
 		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
 			if ( 0 == $instance['number_same_tag'] || ! is_numeric( $instance['number_same_tag'] ) ) $instance['number_same_tag'] = '';
@@ -1191,6 +1194,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_same_cat'     => 'date',
 			'order_same_cat'       => 'DESC',
 			'offset_same_cat'      => '',
+			'search_same_cat'      => false,
 			'get_from_same_tag'    => false,
 			'number_same_tag'      => '',
 			'title_same_tag'       => '',
@@ -1445,6 +1449,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$ignore_sticky           = (bool) $instance['ignore_sticky'];
 		$get_from_same_cat       = (bool) $instance['get_from_same_cat'];
 		$sort_categories         = (bool) $instance['sort_categories'];
+		$search_same_cat         = (bool) $instance['search_same_cat'];
 		$dont_ignore_params      = (bool) $instance['dont_ignore_params'];
 		$get_from_same_tag       = (bool) $instance['get_from_same_tag'];
 		$sort_tags               = (bool) $instance['sort_tags'];
@@ -1973,6 +1978,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_cat' ),
+									$this->get_field_name( 'search_same_cat' ),
+									checked( $search_same_cat, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts under the same category of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 							<div class="pis-column">
@@ -2042,6 +2056,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'comment_count' => array(
 										'value' => 'comment_count',
 										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+									),
+									'relevance' => array(
+										'value' => 'relevance',
+										'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' )
 									),
 									'menu_order' => array(
 										'value' => 'menu_order',

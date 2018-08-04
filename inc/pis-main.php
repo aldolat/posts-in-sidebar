@@ -76,6 +76,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'orderby_same_cat'    => 'date',
 		'order_same_cat'      => 'DESC',
 		'offset_same_cat'     => '',
+		'search_same_cat'     => false,
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -653,6 +654,10 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		if ( isset( $offset_same_cat ) && ! empty( $offset_same_cat ) ) {
 			$params['offset'] = $offset_same_cat;
+		}
+
+		if ( $search_same_cat ) {
+			$params['s'] = pis_get_post_title();
 		}
 
 		// Reset other parameters. The user can choose not to reset them.

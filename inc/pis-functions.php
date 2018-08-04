@@ -1715,3 +1715,10 @@ function pis_sanitize_values( $string = '', $absint = false ) {
 	$tooltip_text = rtrim( $tooltip_text ) . ' ';
 	return $tooltip_text;
 }*/
+
+function pis_get_post_title() {
+	$post_title = get_the_title();
+	$post_title = preg_replace( '/[^a-zA-Z]+/', '+', $post_title );
+	$post_title = strtolower( $post_title );
+	return $post_title;
+}

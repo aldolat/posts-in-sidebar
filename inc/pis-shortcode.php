@@ -58,6 +58,7 @@ function pis_shortcode( $atts ) {
 		// 'orderby_same_cat'    => 'date', /* For widget only */
 		// 'order_same_cat'      => 'DESC', /* For widget only */
 		// 'offset_same_cat'     => '', /* For widget only */
+		// 'search_same_cat'     => false, /* For widget only */
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -69,6 +70,7 @@ function pis_shortcode( $atts ) {
 		// 'orderby_same_tag'    => 'date', /* For widget only */
 		// 'order_same_tag'      => 'DESC', /* For widget only */
 		// 'offset_same_tag'     => '', /* For widget only */
+		// 'search_same_tag'     => false, /* For widget only */
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -79,6 +81,7 @@ function pis_shortcode( $atts ) {
 		// 'orderby_same_author' => 'date', /* For widget only */
 		// 'order_same_author'   => 'DESC', /* For widget only */
 		// 'offset_same_author'  => '', /* For widget only */
+		// 'search_same_author'  => false, /* For widget only */
 		/*
 		 * This is the custom field
 		 * to be used when on single post
@@ -91,6 +94,7 @@ function pis_shortcode( $atts ) {
 		// 'orderby_custom_fld'  => 'date', /* For widget only */
 		// 'order_custom_fld'    => 'DESC', /* For widget only */
 		// 'offset_custom_fld'   => '', /* For widget only */
+		// 'search_same_cf'      => false, /* For widget only */
 		/*
 		 * Do not ignore other parameters when changing query on single posts.
 		 */

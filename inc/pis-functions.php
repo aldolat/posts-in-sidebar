@@ -1715,3 +1715,17 @@ function pis_sanitize_values( $string = '', $absint = false ) {
 	$tooltip_text = rtrim( $tooltip_text ) . ' ';
 	return $tooltip_text;
 }*/
+
+/**
+ * Returns the title of the main post,
+ * changing spaces into a plus and lowering the letters.
+ *
+ * @since 4.7.0
+ * @return string $post_title The title of the main post with pluses and lowercase. 
+ */
+function pis_get_post_title() {
+	$post_title = get_the_title();
+	$post_title = preg_replace( '/[^a-zA-Z]+/', '+', $post_title );
+	$post_title = strtolower( $post_title );
+	return $post_title;
+}

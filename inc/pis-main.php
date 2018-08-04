@@ -76,6 +76,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'orderby_same_cat'    => 'date',
 		'order_same_cat'      => 'DESC',
 		'offset_same_cat'     => '',
+		'search_same_cat'     => false,
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -87,6 +88,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'orderby_same_tag'    => 'date',
 		'order_same_tag'      => 'DESC',
 		'offset_same_tag'     => '',
+		'search_same_tag'     => false,
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -97,6 +99,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'orderby_same_author' => 'date',
 		'order_same_author'   => 'DESC',
 		'offset_same_author'  => '',
+		'search_same_author'  => false,
 		/*
 		 * This is the custom field
 		 * to be used when on single post
@@ -109,6 +112,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		'orderby_custom_fld'  => 'date',
 		'order_custom_fld'    => 'DESC',
 		'offset_custom_fld'   => '',
+		'search_same_cf'      => false,
 		/*
 		 * Do not ignore other parameters when changing query on single posts.
 		 */
@@ -117,30 +121,30 @@ function pis_get_posts_in_sidebar( $args ) {
 		/*
 		 * Get posts from the current category page.
 		 */
-		'get_from_cat_page' => false,
-		'number_cat_page'   => '',
-		'offset_cat_page'   => '',
-		'title_cat_page'    => '',
-		'orderby_cat_page'  => 'date',
-		'order_cat_page'    => 'DESC',
+		'get_from_cat_page'    => false,
+		'number_cat_page'      => '',
+		'offset_cat_page'      => '',
+		'title_cat_page'       => '',
+		'orderby_cat_page'     => 'date',
+		'order_cat_page'       => 'DESC',
 		/*
 		 * Get posts from the current tag page.
 		 */
-		'get_from_tag_page' => false,
-		'number_tag_page'   => '',
-		'offset_tag_page'   => '',
-		'title_tag_page'    => '',
-		'orderby_tag_page'  => 'date',
-		'order_tag_page'    => 'DESC',
+		'get_from_tag_page'    => false,
+		'number_tag_page'      => '',
+		'offset_tag_page'      => '',
+		'title_tag_page'       => '',
+		'orderby_tag_page'     => 'date',
+		'order_tag_page'       => 'DESC',
 		/*
 		 * Get posts from the current author page.
 		 */
-		'get_from_author_page' => false,
-		'number_author_page'   => '',
-		'offset_author_page'   => '',
-		'title_author_page'    => '',
-		'orderby_author_page'  => 'date',
-		'order_author_page'    => 'DESC',
+		'get_from_author_page'    => false,
+		'number_author_page'      => '',
+		'offset_author_page'      => '',
+		'title_author_page'       => '',
+		'orderby_author_page'     => 'date',
+		'order_author_page'       => 'DESC',
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.
 		 */
@@ -655,6 +659,10 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['offset'] = $offset_same_cat;
 		}
 
+		if ( $search_same_cat ) {
+			$params['s'] = pis_get_post_title();
+		}
+
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params ) {
 			$params['post__in']        = '';
@@ -711,6 +719,10 @@ function pis_get_posts_in_sidebar( $args ) {
 				$params['offset'] = $offset_same_tag;
 			}
 
+			if ( $search_same_tag ) {
+				$params['s'] = pis_get_post_title();
+			}
+
 			// Reset other parameters. The user can choose not to reset them.
 			if ( ! $dont_ignore_params ) {
 				$params['post__in']        = '';
@@ -758,6 +770,10 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		if ( isset( $offset_same_author ) && ! empty( $offset_same_author ) ) {
 			$params['offset'] = $offset_same_author;
+		}
+
+		if ( $search_same_author ) {
+			$params['s'] = pis_get_post_title();
 		}
 
 		// Reset other parameters. The user can choose not to reset them.
@@ -825,6 +841,10 @@ function pis_get_posts_in_sidebar( $args ) {
 					$params['offset'] = $offset_custom_fld;
 				}
 
+				if ( $search_same_cf ) {
+					$params['s'] = pis_get_post_title();
+				}
+
 				// Reset other parameters. The user can choose not to reset them.
 				if ( ! $dont_ignore_params ) {
 					$params['post__in']        = '';
@@ -872,6 +892,10 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		if ( isset( $order_cat_page ) && ! empty( $order_cat_page ) ) {
 			$params['order'] = $order_cat_page;
+		}
+
+		if ( $search_same_cat_page ) {
+			$params['s'] = pis_get_post_title();
 		}
 
 		// Reset other parameters. The user can choose not to reset them.
@@ -922,6 +946,10 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['order'] = $order_tag_page;
 		}
 
+		if ( $search_same_tag_page ) {
+			$params['s'] = pis_get_post_title();
+		}
+
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {
 			$params['post__in']        = '';
@@ -968,6 +996,10 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		if ( isset( $order_author_page ) && ! empty( $order_author_page ) ) {
 			$params['order'] = $order_author_page;
+		}
+
+		if ( $search_same_author_page ) {
+			$params['s'] = pis_get_post_title();
 		}
 
 		// Reset other parameters. The user can choose not to reset them.

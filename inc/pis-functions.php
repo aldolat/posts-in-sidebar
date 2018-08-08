@@ -1721,11 +1721,21 @@ function pis_sanitize_values( $string = '', $absint = false ) {
  * changing spaces into a plus and lowering the letters.
  *
  * @since 4.7.0
- * @return string $post_title The title of the main post with pluses and lowercase. 
+ * @return string $post_title The title of the main post with pluses and lowercase.
  */
 function pis_get_post_title() {
 	$post_title = get_the_title();
-	$post_title = preg_replace( '/[^a-zA-Z]+/', '+', $post_title );
+	/*
+	 * Remove punctuation.
+	 *
+ 	 * We cannot simply use:
+ 	 * $post_title = preg_replace( '/[^a-zA-Z0-9]+/', '+', $post_title );
+ 	 * or
+ 	 * $post_title = preg_replace( '/[^\w|\s]/', '', $post_title );
+ 	 * because preg_replace() will remove characters like Russian and such.
+	 */
+	$remove_chars = array( ',', ';', '.', ':', '\'', '*', '°', '@', '#', '+', '"', '!', '?', '–', '—', '―' );
+	$post_title = str_replace( $remove_chars, '', $post_title );
 	$post_title = strtolower( $post_title );
 	return $post_title;
 }

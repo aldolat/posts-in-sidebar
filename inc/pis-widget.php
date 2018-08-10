@@ -2021,7 +2021,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								?>
 
 								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_cat' ),
 									$this->get_field_name( 'search_same_cat' ),
 									checked( $search_same_cat, true, false ),
@@ -2189,7 +2189,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_tag' ),
 									$this->get_field_name( 'search_same_tag' ),
 									checked( $search_same_tag, true, false ),
@@ -2350,7 +2350,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								?>
 
 								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_author' ),
 									$this->get_field_name( 'search_same_author' ),
 									checked( $search_same_author, true, false ),
@@ -2545,7 +2545,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Match post title', 'posts-in-sidebar' ),
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_cf' ),
 									$this->get_field_name( 'search_same_cf' ),
 									checked( $search_same_cf, true, false ),

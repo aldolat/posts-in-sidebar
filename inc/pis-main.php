@@ -77,6 +77,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'order_same_cat'      => 'DESC',
 		'offset_same_cat'     => '',
 		'search_same_cat'     => false,
+		'post_type_same_cat'  => 'post',
+		'ptm_sc'              => '',
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -89,6 +91,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'order_same_tag'      => 'DESC',
 		'offset_same_tag'     => '',
 		'search_same_tag'     => false,
+		'post_type_same_tag'  => 'post',
+		'ptm_st'              => '',
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -100,6 +104,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'order_same_author'   => 'DESC',
 		'offset_same_author'  => '',
 		'search_same_author'  => false,
+		'post_type_same_author'  => 'post',
+		'ptm_sa'              => '',
 		/*
 		 * This is the custom field
 		 * to be used when on single post
@@ -113,6 +119,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'order_custom_fld'    => 'DESC',
 		'offset_custom_fld'   => '',
 		'search_same_cf'      => false,
+		'post_type_same_cf'   => 'post',
+		'ptm_scf'             => '',
 		/*
 		 * Do not ignore other parameters when changing query on single posts.
 		 */
@@ -127,6 +135,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'title_cat_page'       => '',
 		'orderby_cat_page'     => 'date',
 		'order_cat_page'       => 'DESC',
+		'post_type_cat_page'   => 'post',
+		'ptm_scp'              => '',
 		/*
 		 * Get posts from the current tag page.
 		 */
@@ -136,6 +146,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'title_tag_page'       => '',
 		'orderby_tag_page'     => 'date',
 		'order_tag_page'       => 'DESC',
+		'post_type_tag_page'   => 'post',
+		'ptm_stp'              => '',
 		/*
 		 * Get posts from the current author page.
 		 */
@@ -145,6 +157,8 @@ function pis_get_posts_in_sidebar( $args ) {
 		'title_author_page'       => '',
 		'orderby_author_page'     => 'date',
 		'order_author_page'       => 'DESC',
+		'post_type_author_page'   => 'post',
+		'ptm_sap'                 => '',
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.
 		 */
@@ -629,9 +643,13 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.2
 	 */
-	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular( 'post' ) ) {
+	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_single() ) {
 		// Set the post_type.
-		$params['post_type'] = 'post';
+		if ( isset( $ptm_sc ) && ! empty( $ptm_sc ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_sc );
+		} else {
+			$params['post_type'] = $post_type_same_cat;
+		}
 
 		// Set the number of posts
 		if ( isset( $number_same_cat ) && ! empty( $number_same_cat ) ) {
@@ -686,12 +704,16 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 4.3.0
 	 */
-	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular( 'post' ) ) {
+	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_single() ) {
 		// Get post's tags.
 		$post_tags = wp_get_post_tags( $single_post_id );
 		if ( $post_tags ) {
 			// Set the post_type.
-			$params['post_type'] = 'post';
+			if ( isset( $ptm_st ) && ! empty( $ptm_st ) ) {
+				$params['post_type'] = (array) explode( ', ', $ptm_st );
+			} else {
+				$params['post_type'] = $post_type_same_tag;
+			}
 
 			// Set the number of posts
 			if ( isset( $number_same_tag ) && ! empty( $number_same_tag ) ) {
@@ -747,9 +769,13 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.5
 	 */
-	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular( 'post' ) ) {
+	if ( isset( $get_from_same_author ) && $get_from_same_author && is_single() ) {
 		// Set the post_type.
-		$params['post_type'] = 'post';
+		if ( isset( $ptm_sa ) && ! empty( $ptm_sa ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_sa );
+		} else {
+			$params['post_type'] = $post_type_same_author;
+		}
 
 		// Set the number of posts
 		if ( isset( $number_same_author ) && ! empty( $number_same_author ) ) {
@@ -802,7 +828,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.7
 	 */
-	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular( 'post' ) ) {
+	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_single() ) {
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
 			/**
@@ -822,7 +848,11 @@ function pis_get_posts_in_sidebar( $args ) {
 				}
 
 				// Set the post_type.
-				$params['post_type'] = 'post';
+				if ( isset( $ptm_scf ) && ! empty( $ptm_scf ) ) {
+					$params['post_type'] = (array) explode( ', ', $ptm_scf );
+				} else {
+					$params['post_type'] = $post_type_same_cf;
+				}
 
 				// Set the number of posts
 				if ( isset( $number_custom_field ) && ! empty( $number_custom_field ) ) {
@@ -870,7 +900,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( isset( $get_from_cat_page ) && $get_from_cat_page && is_category() ) {
 		// Set the post_type.
-		$params['post_type'] = 'post';
+		if ( isset( $ptm_scp ) && ! empty( $ptm_scp ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_scp );
+		} else {
+			$params['post_type'] = $post_type_cat_page;
+		}
 
 		// Set the number of posts
 		if ( isset( $number_cat_page ) && ! empty( $number_cat_page ) ) {
@@ -922,7 +956,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( isset( $get_from_tag_page ) && $get_from_tag_page && is_tag() ) {
 		// Set the post_type.
-		$params['post_type'] = 'post';
+		if ( isset( $ptm_stp ) && ! empty( $ptm_stp ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_stp );
+		} else {
+			$params['post_type'] = $post_type_tag_page;
+		}
 
 		// Set the number of posts
 		if ( isset( $number_tag_page ) && ! empty( $number_tag_page ) ) {
@@ -974,7 +1012,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	if ( isset( $get_from_author_page ) && $get_from_author_page && is_author() ) {
 		// Set the post_type.
-		$params['post_type'] = 'post';
+		if ( isset( $ptm_sap ) && ! empty( $ptm_sap ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_sap );
+		} else {
+			$params['post_type'] = $post_type_author_page;
+		}
 
 		// Set the number of posts
 		if ( isset( $number_author_page ) && ! empty( $number_author_page ) ) {

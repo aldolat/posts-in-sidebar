@@ -85,7 +85,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		     $instance['get_from_same_cat']          &&
 			 isset( $instance['title_same_cat'] )    &&
 			 ! empty( $instance['title_same_cat'] )  &&
-			 is_singular( 'post' ) ) {
+			 is_single() ) {
 			$the_category = wp_get_post_categories( get_the_ID() );
 			if ( $instance['sort_categories'] ) sort( $the_category );
 			$the_category = get_category( $the_category[0] );
@@ -103,7 +103,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		     $instance['get_from_same_tag']          &&
 			 isset( $instance['title_same_tag'] )    &&
 			 ! empty( $instance['title_same_tag'] )  &&
-			 is_singular( 'post' ) ) {
+			 is_single() ) {
 			$the_tag = wp_get_post_tags( get_the_ID() );
 			if ( $the_tag ) {
 				if ( $instance['sort_tags'] ) sort( $the_tag );
@@ -123,7 +123,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		     $instance['get_from_same_author']          &&
 			 isset( $instance['title_same_author'] )    &&
 			 ! empty( $instance['title_same_author'] )  &&
-			 is_singular( 'post' ) ) {
+			 is_single() ) {
 			$title = $instance['title_same_author'];
 			$post_author_id = get_post_field( 'post_author', get_the_ID() );
 			$the_author_name = get_the_author_meta( 'display_name', $post_author_id );
@@ -141,7 +141,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 isset( $instance['s_custom_field_tax'] )   &&
 			 isset( $instance['title_custom_field'] )   &&
 			 ! empty( $instance['title_custom_field'] ) &&
-			 is_singular( 'post' ) ) {
+			 is_single() ) {
 
 			// Get the custom field value of the custom field key
 			$the_term_slug = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
@@ -248,6 +248,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['search'] ) )               $instance['search']               = NULL;
 		if ( ! isset( $instance['has_password'] ) )         $instance['has_password']         = 'null';
 		if ( ! isset( $instance['post_password'] ) )        $instance['post_password']        = '';
+
 		if ( ! isset( $instance['get_from_same_cat'] ) )    $instance['get_from_same_cat']    = false;
 		if ( ! isset( $instance['number_same_cat'] ) )      $instance['number_same_cat']      = '';
 		if ( ! isset( $instance['title_same_cat'] ) )       $instance['title_same_cat']       = '';
@@ -257,6 +258,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['order_same_cat'] ) )       $instance['order_same_cat']       = 'DESC';
 		if ( ! isset( $instance['offset_same_cat'] ) )      $instance['offset_same_cat']      = '';
 		if ( ! isset( $instance['search_same_cat'] ) )      $instance['search_same_cat']      = false;
+		if ( ! isset( $instance['post_type_same_cat'] ) )   $instance['post_type_same_cat']   = 'post';
+		if ( ! isset( $instance['ptm_sc'] ) )               $instance['ptm_sc']               = '';
 
 		if ( ! isset( $instance['get_from_same_tag'] ) )    $instance['get_from_same_tag']    = false;
 		if ( ! isset( $instance['number_same_tag'] ) )      $instance['number_same_tag']      = '';
@@ -266,6 +269,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['order_same_tag'] ) )       $instance['order_same_tag']       = 'DESC';
 		if ( ! isset( $instance['offset_same_tag'] ) )      $instance['offset_same_tag']      = '';
 		if ( ! isset( $instance['search_same_tag'] ) )      $instance['search_same_tag']      = false;
+		if ( ! isset( $instance['post_type_same_tag'] ) )   $instance['post_type_same_tag']   = 'post';
+		if ( ! isset( $instance['ptm_st'] ) )               $instance['ptm_st']               = '';
 
 		if ( ! isset( $instance['get_from_same_author'] ) ) $instance['get_from_same_author'] = false;
 		if ( ! isset( $instance['number_same_author'] ) )   $instance['number_same_author']   = '';
@@ -274,6 +279,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['order_same_author'] ) )    $instance['order_same_author']    = 'DESC';
 		if ( ! isset( $instance['offset_same_author'] ) )   $instance['offset_same_author']   = '';
 		if ( ! isset( $instance['search_same_author'] ) )   $instance['search_same_author']   = false;
+		if ( ! isset( $instance['post_type_same_author'] ) ) $instance['post_type_same_author'] = 'post';
+		if ( ! isset( $instance['ptm_sa'] ) )               $instance['ptm_sa']               = '';
 
 		if ( ! isset( $instance['get_from_custom_fld'] ) )  $instance['get_from_custom_fld']  = false;
 		if ( ! isset( $instance['s_custom_field_key'] ) )   $instance['s_custom_field_key']   = '';
@@ -284,6 +291,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['order_custom_fld'] ) )     $instance['order_custom_fld']     = 'DESC';
 		if ( ! isset( $instance['offset_custom_fld'] ) )    $instance['offset_custom_fld']    = '';
 		if ( ! isset( $instance['search_same_cf'] ) )       $instance['search_same_cf']       = false;
+		if ( ! isset( $instance['post_type_same_cf'] ) )    $instance['post_type_same_cf']    = 'post';
+		if ( ! isset( $instance['ptm_scf'] ) )              $instance['ptm_scf']              = '';
 
 		if ( ! isset( $instance['dont_ignore_params_page'] ) ) $instance['dont_ignore_params_page'] = false;
 
@@ -293,6 +302,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_cat_page'] ) )       $instance['title_cat_page']       = '';
 		if ( ! isset( $instance['orderby_cat_page'] ) )     $instance['orderby_cat_page']     = 'date';
 		if ( ! isset( $instance['order_cat_page'] ) )       $instance['order_cat_page']       = 'DESC';
+		if ( ! isset( $instance['post_type_cat_page'] ) )   $instance['post_type_cat_page']   = 'post';
+		if ( ! isset( $instance['ptm_scp'] ) )              $instance['ptm_scp']               = '';
 
 		if ( ! isset( $instance['get_from_tag_page'] ) )    $instance['get_from_tag_page']    = false;
 		if ( ! isset( $instance['number_tag_page'] ) )      $instance['number_tag_page']      = '';
@@ -300,6 +311,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_tag_page'] ) )       $instance['title_tag_page']       = '';
 		if ( ! isset( $instance['orderby_tag_page'] ) )     $instance['orderby_tag_page']     = 'date';
 		if ( ! isset( $instance['order_tag_page'] ) )       $instance['order_tag_page']       = 'DESC';
+		if ( ! isset( $instance['post_type_tag_page'] ) )   $instance['post_type_tag_page']   = 'post';
+		if ( ! isset( $instance['ptm_stp'] ) )              $instance['ptm_stp']              = '';
 
 		if ( ! isset( $instance['get_from_author_page'] ) ) $instance['get_from_author_page'] = false;
 		if ( ! isset( $instance['number_author_page'] ) )   $instance['number_author_page']   = '';
@@ -307,6 +320,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['title_author_page'] ) )    $instance['title_author_page']    = '';
 		if ( ! isset( $instance['orderby_author_page'] ) )  $instance['orderby_author_page']  = 'date';
 		if ( ! isset( $instance['order_author_page'] ) )    $instance['order_author_page']    = 'DESC';
+		if ( ! isset( $instance['post_type_author_page'] ) ) $instance['post_type_author_page'] = 'post';
+		if ( ! isset( $instance['ptm_sap'] ) )              $instance['ptm_sap']              = '';
 
 		if ( ! isset( $instance['relation'] ) )             $instance['relation']             = '';
 		if ( ! isset( $instance['taxonomy_aa'] ) )          $instance['taxonomy_aa']          = '';
@@ -498,6 +513,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_cat'      => $instance['order_same_cat'],
 			'offset_same_cat'     => $instance['offset_same_cat'],
 			'search_same_cat'     => $instance['search_same_cat'],
+			'post_type_same_cat'  => $instance['post_type_same_cat'],
+			'ptm_sc'              => $instance['ptm_sc'],
 
 			'get_from_same_tag'   => $instance['get_from_same_tag'],
 			'number_same_tag'     => $instance['number_same_tag'],
@@ -507,6 +524,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_tag'      => $instance['order_same_tag'],
 			'offset_same_tag'     => $instance['offset_same_tag'],
 			'search_same_tag'     => $instance['search_same_tag'],
+			'post_type_same_tag'  => $instance['post_type_same_tag'],
+			'ptm_st'              => $instance['ptm_st'],
 
 			'get_from_same_author'=> $instance['get_from_same_author'],
 			'number_same_author'  => $instance['number_same_author'],
@@ -515,6 +534,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_author'   => $instance['order_same_author'],
 			'offset_same_author'  => $instance['offset_same_author'],
 			'search_same_author'  => $instance['search_same_author'],
+			'post_type_same_author' => $instance['post_type_same_author'],
+			'ptm_sa'              => $instance['ptm_sa'],
 
 			'get_from_custom_fld' => $instance['get_from_custom_fld'],
 			's_custom_field_key'  => $instance['s_custom_field_key'],
@@ -525,6 +546,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_custom_fld'    => $instance['order_custom_fld'],
 			'offset_custom_fld'   => $instance['offset_custom_fld'],
 			'search_same_cf'      => $instance['search_same_cf'],
+			'post_type_same_cf'   => $instance['post_type_same_cf'],
+			'ptm_scf'             => $instance['ptm_scf'],
 
 			'dont_ignore_params'  => $instance['dont_ignore_params'],
 
@@ -534,6 +557,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_cat_page'       => $instance['title_cat_page'],
 			'orderby_cat_page'     => $instance['orderby_cat_page'],
 			'order_cat_page'       => $instance['order_cat_page'],
+			'post_type_cat_page'   => $instance['post_type_cat_page'],
+			'ptm_scp'              => $instance['ptm_scp'],
 
 			'get_from_tag_page'    => $instance['get_from_tag_page'],
 			'number_tag_page'      => $instance['number_tag_page'],
@@ -541,6 +566,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_tag_page'       => $instance['title_tag_page'],
 			'orderby_tag_page'     => $instance['orderby_tag_page'],
 			'order_tag_page'       => $instance['order_tag_page'],
+			'post_type_tag_page'   => $instance['post_type_tag_page'],
+			'ptm_stp'              => $instance['ptm_stp'],
 
 			'get_from_author_page'    => $instance['get_from_author_page'],
 			'number_author_page'      => $instance['number_author_page'],
@@ -548,6 +575,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_author_page'       => $instance['title_author_page'],
 			'orderby_author_page'     => $instance['orderby_author_page'],
 			'order_author_page'       => $instance['order_author_page'],
+			'post_type_author_page'   => $instance['post_type_author_page'],
+			'ptm_sap'                 => $instance['ptm_sap'],
 
 			'dont_ignore_params_page' => $instance['dont_ignore_params_page'],
 
@@ -797,8 +826,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			 * @since 3.8.8
 			 */
 			if ( ! empty( $instance['post_type_multiple'] ) ) {
-				$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
-				$instance['post_type_multiple'] = pis_compare_string_to_array( $instance['post_type_multiple'], $post_type_wordpress );
+				$instance['post_type_multiple'] = pis_check_post_types( $instance['post_type_multiple'] );
 			}
 		$instance['posts_id']            = pis_sanitize_values( strip_tags( $new_instance['posts_id'] ), true );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
@@ -851,6 +879,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_same_cat']     = absint( strip_tags( $new_instance['offset_same_cat'] ) );
 			if ( 0 == $instance['offset_same_cat'] || ! is_numeric( $instance['offset_same_cat'] ) ) $instance['offset_same_cat'] = '';
 		$instance['search_same_cat']     = $new_instance['search_same_cat'];
+		$instance['post_type_same_cat']  = $new_instance['post_type_same_cat'];
+		$instance['ptm_sc']              = $new_instance['ptm_sc'];
+			if ( ! empty( $instance['ptm_sc'] ) ) {
+				$instance['ptm_sc'] = pis_check_post_types( $instance['ptm_sc'] );
+			}
 
 		$instance['get_from_same_tag']   = isset( $new_instance['get_from_same_tag'] ) ? 1 : 0;
 		$instance['number_same_tag']     = intval( strip_tags( $new_instance['number_same_tag'] ) );
@@ -862,6 +895,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_same_tag']     = absint( strip_tags( $new_instance['offset_same_tag'] ) );
 			if ( 0 == $instance['offset_same_tag'] || ! is_numeric( $instance['offset_same_tag'] ) ) $instance['offset_same_tag'] = '';
 		$instance['search_same_tag']     = $new_instance['search_same_tag'];
+		$instance['post_type_same_tag']  = $new_instance['post_type_same_tag'];
+		$instance['ptm_st']              = $new_instance['ptm_st'];
+			if ( ! empty( $instance['ptm_st'] ) ) {
+				$instance['ptm_st'] = pis_check_post_types( $instance['ptm_st'] );
+			}
 
 		$instance['get_from_same_author']= isset( $new_instance['get_from_same_author'] ) ? 1 : 0;
 		$instance['number_same_author']  = intval( strip_tags( $new_instance['number_same_author'] ) );
@@ -872,6 +910,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_same_author']  = absint( strip_tags( $new_instance['offset_same_author'] ) );
 			if ( 0 == $instance['offset_same_author'] || ! is_numeric( $instance['offset_same_author'] ) ) $instance['offset_same_author'] = '';
 		$instance['search_same_author']  = $new_instance['search_same_author'];
+		$instance['post_type_same_author'] = $new_instance['post_type_same_author'];
+		$instance['ptm_sa']              = $new_instance['ptm_sa'];
+			if ( ! empty( $instance['ptm_sa'] ) ) {
+				$instance['ptm_sa'] = pis_check_post_types( $instance['ptm_sa'] );
+			}
 
 		$instance['get_from_custom_fld'] = isset( $new_instance['get_from_custom_fld'] ) ? 1 : 0;
 		$instance['s_custom_field_key']  = strip_tags( $new_instance['s_custom_field_key'] );
@@ -884,6 +927,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['offset_custom_fld']     = absint( strip_tags( $new_instance['offset_custom_fld'] ) );
 			if ( 0 == $instance['offset_custom_fld'] || ! is_numeric( $instance['offset_custom_fld'] ) ) $instance['offset_custom_fld'] = '';
 		$instance['search_same_cf']      = $new_instance['search_same_cf'];
+		$instance['post_type_same_cf']   = $new_instance['post_type_same_cf'];
+		$instance['ptm_scf']             = $new_instance['ptm_scf'];
+			if ( ! empty( $instance['ptm_scf'] ) ) {
+				$instance['ptm_scf'] = pis_check_post_types( $instance['ptm_scf'] );
+			}
 
 		$instance['dont_ignore_params']  = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 
@@ -895,6 +943,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_cat_page']       = strip_tags( $new_instance['title_cat_page'] );
 		$instance['orderby_cat_page']     = $new_instance['orderby_cat_page'];
 		$instance['order_cat_page']       = $new_instance['order_cat_page'];
+		$instance['post_type_cat_page']   = $new_instance['post_type_cat_page'];
+		$instance['ptm_scp']              = $new_instance['ptm_scp'];
+			if ( ! empty( $instance['ptm_scp'] ) ) {
+				$instance['ptm_scp'] = pis_check_post_types( $instance['ptm_scp'] );
+			}
 
 		$instance['get_from_tag_page']    = isset( $new_instance['get_from_tag_page'] ) ? 1 : 0;
 		$instance['number_tag_page']      = intval( strip_tags( $new_instance['number_tag_page'] ) );
@@ -904,6 +957,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_tag_page']       = strip_tags( $new_instance['title_tag_page'] );
 		$instance['orderby_tag_page']     = $new_instance['orderby_tag_page'];
 		$instance['order_tag_page']       = $new_instance['order_tag_page'];
+		$instance['post_type_tag_page']   = $new_instance['post_type_tag_page'];
+		$instance['ptm_stp']              = $new_instance['ptm_stp'];
+			if ( ! empty( $instance['ptm_stp'] ) ) {
+				$instance['ptm_stp'] = pis_check_post_types( $instance['ptm_stp'] );
+			}
 
 		$instance['get_from_author_page']    = isset( $new_instance['get_from_author_page'] ) ? 1 : 0;
 		$instance['number_author_page']      = intval( strip_tags( $new_instance['number_author_page'] ) );
@@ -913,6 +971,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_author_page']       = strip_tags( $new_instance['title_author_page'] );
 		$instance['orderby_author_page']     = $new_instance['orderby_author_page'];
 		$instance['order_author_page']       = $new_instance['order_author_page'];
+		$instance['post_type_author_page']   = $new_instance['post_type_author_page'];
+		$instance['ptm_sap']                 = $new_instance['ptm_sap'];
+			if ( ! empty( $instance['ptm_sap'] ) ) {
+				$instance['ptm_sap'] = pis_check_post_types( $instance['ptm_sap'] );
+			}
 
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
@@ -1223,6 +1286,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_cat'       => 'DESC',
 			'offset_same_cat'      => '',
 			'search_same_cat'      => false,
+			'post_type_same_cat'   => 'post',
+			'ptm_sc'               => '',
 
 			'get_from_same_tag'    => false,
 			'number_same_tag'      => '',
@@ -1232,6 +1297,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_tag'       => 'DESC',
 			'offset_same_tag'      => '',
 			'search_same_tag'      => false,
+			'post_type_same_tag'   => 'post',
+			'ptm_st'               => '',
 
 			'get_from_same_author' => false,
 			'number_same_author'   => '',
@@ -1240,6 +1307,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'order_same_author'    => 'DESC',
 			'offset_same_author'   => '',
 			'search_same_author'   => false,
+			'post_type_same_author' => 'post',
+			'ptm_sa'               => '',
 
 			'get_from_custom_fld'  => false,
 			's_custom_field_key'   => '',
@@ -1249,7 +1318,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'orderby_custom_fld'   => 'date',
 			'order_custom_fld'     => 'DESC',
 			'offset_custom_fld'    => '',
-			'search_same_cf'      => false,
+			'search_same_cf'       => false,
+			'post_type_same_cf'    => 'post',
+			'ptm_scf'              => '',
 
 			'dont_ignore_params'   => false,
 
@@ -1259,6 +1330,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_cat_page'       => '',
 			'orderby_cat_page'     => 'date',
 			'order_cat_page'       => 'DESC',
+			'post_type_cat_page'   => 'post',
+			'ptm_scp'              => '',
 
 			'get_from_tag_page'    => false,
 			'number_tag_page'      => '',
@@ -1266,6 +1339,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_tag_page'       => '',
 			'orderby_tag_page'     => 'date',
 			'order_tag_page'       => 'DESC',
+			'post_type_tag_page'   => 'post',
+			'ptm_stp'              => '',
 
 			'get_from_author_page'    => false,
 			'number_author_page'      => '',
@@ -1273,6 +1348,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'title_author_page'       => '',
 			'orderby_author_page'     => 'date',
 			'order_author_page'       => 'DESC',
+			'post_type_author_page'   => 'post',
+			'ptm_sap'                 => '',
 
 			'dont_ignore_params_page' => false,
 
@@ -2007,9 +2084,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_cat' ),
 									$this->get_field_name( 'get_from_same_cat' ),
 									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
+
+								<?php // ================= Post types from same category
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_same_cat' ),
+									$this->get_field_name( 'post_type_same_cat' ),
+									$options,
+									$instance['post_type_same_cat'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same category
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_sc'),
+									$this->get_field_name('ptm_sc'),
+									esc_attr( $instance['ptm_sc'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Sort categories
 								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
@@ -2017,15 +2131,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'sort_categories' ),
 									checked( $sort_categories, true, false ),
 									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
-									$this->get_field_id( 'search_same_cat' ),
-									$this->get_field_name( 'search_same_cat' ),
-									checked( $search_same_cat, true, false ),
-									esc_html__( 'Show posts that match the main post title. WordPress will show posts under the same category of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -2160,6 +2265,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'5'
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_cat' ),
+									$this->get_field_name( 'search_same_cat' ),
+									checked( $search_same_cat, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts under the same category of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 						</div>
@@ -2177,7 +2291,44 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_tag' ),
 									$this->get_field_name( 'get_from_same_tag' ),
 									checked( $get_from_same_tag, true, false ),
-									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Post types from same tag
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_same_tag' ),
+									$this->get_field_name( 'post_type_same_tag' ),
+									$options,
+									$instance['post_type_same_tag'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same tag
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_st'),
+									$this->get_field_name('ptm_st'),
+									esc_attr( $instance['ptm_st'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 								); ?>
 
 								<?php // ================= Sort tags
@@ -2187,15 +2338,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									checked( $sort_tags, true, false ),
 									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
 								); ?>
-
-								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
-									$this->get_field_id( 'search_same_tag' ),
-									$this->get_field_name( 'search_same_tag' ),
-									checked( $search_same_tag, true, false ),
-									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same tag of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
-								);
-								?>
 
 							</div>
 
@@ -2328,6 +2470,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'5'
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_tag' ),
+									$this->get_field_name( 'search_same_tag' ),
+									checked( $search_same_tag, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same tag of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 						</div>
@@ -2345,18 +2496,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_same_author' ),
 									$this->get_field_name( 'get_from_same_author' ),
 									checked( $get_from_same_author, true, false ),
-									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
 
-								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
-									$this->get_field_id( 'search_same_author' ),
-									$this->get_field_name( 'search_same_author' ),
-									checked( $search_same_author, true, false ),
-									esc_html__( 'Show posts that match the main post title. WordPress will show posts by the same author of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								<?php // ================= Post types from same author
+								$args = array(
+									'public' => true,
 								);
-								?>
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_same_author' ),
+									$this->get_field_name( 'post_type_same_author' ),
+									$options,
+									$instance['post_type_same_author'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same author
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_sa'),
+									$this->get_field_name('ptm_sa'),
+									esc_attr( $instance['ptm_sa'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 
@@ -2489,6 +2668,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'5'
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_author' ),
+									$this->get_field_name( 'search_same_author' ),
+									checked( $search_same_author, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts by the same author of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 						</div>
@@ -2506,9 +2694,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_custom_fld' ),
 									$this->get_field_name( 'get_from_custom_fld' ),
 									checked( $get_from_custom_fld, true, false ),
-									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 								);
 								?>
+
+								<?php // ================= Post types from same custom field
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_same_cf' ),
+									$this->get_field_name( 'post_type_same_cf' ),
+									$options,
+									$instance['post_type_same_cf'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same custom field
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_scf'),
+									$this->get_field_name('ptm_scf'),
+									esc_attr( $instance['ptm_scf'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 								<?php // ================= Define the custom field key
 								pis_form_input_text(
@@ -2543,15 +2768,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$options,
 									$instance['s_custom_field_tax']
 								); ?>
-
-								<?php // ================= Search post title
-								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
-									$this->get_field_id( 'search_same_cf' ),
-									$this->get_field_name( 'search_same_cf' ),
-									checked( $search_same_cf, true, false ),
-									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same custom field of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
-								);
-								?>
 
 							</div>
 
@@ -2684,6 +2900,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									'5'
 								); ?>
 
+								<?php // ================= Search post title
+								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
+									$this->get_field_id( 'search_same_cf' ),
+									$this->get_field_name( 'search_same_cf' ),
+									checked( $search_same_cf, true, false ),
+									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same custom field of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+								);
+								?>
+
 							</div>
 
 						</div>
@@ -2726,9 +2951,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_cat_page' ),
 									$this->get_field_name( 'get_from_cat_page' ),
 									checked( $get_from_cat_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
+
+								<?php // ================= Post types from same category archive page
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_cat_page' ),
+									$this->get_field_name( 'post_type_cat_page' ),
+									$options,
+									$instance['post_type_cat_page'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same category archive page
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_scp'),
+									$this->get_field_name('ptm_scp'),
+									esc_attr( $instance['ptm_scp'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 
@@ -2875,9 +3137,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_tag_page' ),
 									$this->get_field_name( 'get_from_tag_page' ),
 									checked( $get_from_tag_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
+
+								<?php // ================= Post types from same tag archive page
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_tag_page' ),
+									$this->get_field_name( 'post_type_tag_page' ),
+									$options,
+									$instance['post_type_tag_page'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same tag archive page
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_stp'),
+									$this->get_field_name('ptm_stp'),
+									esc_attr( $instance['ptm_stp'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 
@@ -3024,9 +3323,46 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_id( 'get_from_author_page' ),
 									$this->get_field_name( 'get_from_author_page' ),
 									checked( $get_from_author_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. Custom post types are excluded from this feature. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 								);
 								?>
+
+								<?php // ================= Post types from same author archive page
+								$args = array(
+									'public' => true,
+								);
+								$post_types = (array) get_post_types( $args, 'objects', 'and' );
+								$options = array(
+									array(
+										'value' => 'any',
+										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+									)
+								);
+								foreach ( $post_types as $post_type ) {
+									$options[] = array(
+										'value' => $post_type->name,
+										'desc'  => $post_type->labels->singular_name,
+									);
+								}
+
+								pis_form_select(
+									esc_html__( 'Post type', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_type_author_page' ),
+									$this->get_field_name( 'post_type_author_page' ),
+									$options,
+									$instance['post_type_author_page'],
+									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+								); ?>
+
+								<?php // ================= Multiple post types in same author archive page
+								pis_form_input_text(
+									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+									$this->get_field_id('ptm_sap'),
+									$this->get_field_name('ptm_sap'),
+									esc_attr( $instance['ptm_sap'] ),
+									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 

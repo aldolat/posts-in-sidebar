@@ -1739,3 +1739,15 @@ function pis_get_post_title() {
 	$post_title = strtolower( $post_title );
 	return $post_title;
 }
+
+/**
+ * Check post types entered.
+ * The function removes any post type that has not been defined.
+ *
+ * @since 4.7.0
+ */
+function pis_check_post_types( $post_type ) {
+	$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
+	$post_type = pis_compare_string_to_array( $post_type, $post_type_wordpress );
+	return $post_type;
+}

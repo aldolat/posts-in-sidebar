@@ -1643,24 +1643,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<?php pis_form_input_text(
 				esc_html__( 'Title', 'posts-in-sidebar' ),
-				$this->get_field_id('title'),
-				$this->get_field_name('title'),
+				$this->get_field_id( 'title' ),
+				$this->get_field_name( 'title' ),
 				esc_attr( $instance['title'] ),
 				esc_html__( 'From the archive', 'posts-in-sidebar' )
 			); ?>
 
 			<?php pis_form_input_text(
 				esc_html__( 'Link the title of the widget to this URL', 'posts-in-sidebar' ),
-				$this->get_field_id('title_link'),
-				$this->get_field_name('title_link'),
+				$this->get_field_id( 'title_link' ),
+				$this->get_field_name( 'title_link' ),
 				esc_url( strip_tags( $instance['title_link'] ) ),
 				'http://example.com/readings-series/'
 			); ?>
 
 			<?php pis_form_textarea(
 				esc_html__( 'Place this text after the title', 'posts-in-sidebar' ),
-				$this->get_field_id('intro'),
-				$this->get_field_name('intro'),
+				$this->get_field_id( 'intro' ),
+				$this->get_field_name( 'intro' ),
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
 				$style = 'resize: vertical; width: 100%; height: 80px;'
@@ -1705,8 +1705,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						pis_form_select(
 							esc_html__( 'Post type', 'posts-in-sidebar' ),
-							$this->get_field_id('post_type'),
-							$this->get_field_name('post_type'),
+							$this->get_field_id( 'post_type' ),
+							$this->get_field_name( 'post_type' ),
 							$options,
 							$instance['post_type'],
 							esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
@@ -1715,8 +1715,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Multiple post types
 						pis_form_input_text(
 							esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-							$this->get_field_id('post_type_multiple'),
-							$this->get_field_name('post_type_multiple'),
+							$this->get_field_id( 'post_type_multiple' ),
+							$this->get_field_name( 'post_type_multiple' ),
 							esc_attr( $instance['post_type_multiple'] ),
 							esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -1725,8 +1725,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Posts ID
 						pis_form_input_text(
 							esc_html__( 'Get these posts exactly', 'posts-in-sidebar' ),
-							$this->get_field_id('posts_id'),
-							$this->get_field_name('posts_id'),
+							$this->get_field_id( 'posts_id' ),
+							$this->get_field_name( 'posts_id' ),
 							esc_attr( $instance['posts_id'] ),
 							'5, 29, 523, 4519',
 							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -1739,8 +1739,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Category
 						pis_form_input_text(
 							esc_html__( 'Get posts with these categories', 'posts-in-sidebar' ),
-							$this->get_field_id('cat'),
-							$this->get_field_name('cat'),
+							$this->get_field_id( 'cat' ),
+							$this->get_field_name( 'cat' ),
 							esc_attr( $instance['cat'] ),
 							esc_html__( 'books, ebooks', 'posts-in-sidebar' ),
 							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
@@ -1753,8 +1753,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Tag
 						pis_form_input_text(
 							esc_html__( 'Get posts with these tags', 'posts-in-sidebar' ),
-							$this->get_field_id('tag'),
-							$this->get_field_name('tag'),
+							$this->get_field_id( 'tag' ),
+							$this->get_field_name( 'tag' ),
 							esc_attr( $instance['tag'] ),
 							esc_html__( 'best-sellers', 'posts-in-sidebar' ),
 							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
@@ -1784,8 +1784,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						}
 						pis_form_select(
 							esc_html__( 'Get posts by this author', 'posts-in-sidebar' ),
-							$this->get_field_id('author'),
-							$this->get_field_name('author'),
+							$this->get_field_id( 'author' ),
+							$this->get_field_name( 'author' ),
 							$options,
 							$instance['author']
 						); ?>
@@ -1793,8 +1793,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Multiple authors
 						pis_form_input_text(
 							esc_html__( 'Get posts by these authors', 'posts-in-sidebar' ),
-							$this->get_field_id('author_in'),
-							$this->get_field_name('author_in'),
+							$this->get_field_id( 'author_in' ),
+							$this->get_field_name( 'author_in' ),
 							esc_attr( $instance['author_in'] ),
 							esc_html__( '1, 23, 45', 'posts-in-sidebar' ),
 							esc_html__( 'Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
@@ -1816,8 +1816,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Post parent
 						pis_form_input_text(
 							esc_html__( 'Get posts whose parent is in these IDs', 'posts-in-sidebar' ),
-							$this->get_field_id('post_parent_in'),
-							$this->get_field_name('post_parent_in'),
+							$this->get_field_id( 'post_parent_in' ),
+							$this->get_field_name( 'post_parent_in' ),
 							esc_attr( $instance['post_parent_in'] ),
 							esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
 							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -1839,8 +1839,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						}
 						pis_form_select(
 							esc_html__( 'Get posts with this post format', 'posts-in-sidebar' ),
-							$this->get_field_id('post_format'),
-							$this->get_field_name('post_format'),
+							$this->get_field_id( 'post_format' ),
+							$this->get_field_name( 'post_format' ),
 							$options,
 							$instance['post_format']
 						); ?>
@@ -1859,8 +1859,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						}
 						pis_form_select(
 							esc_html__( 'Get posts with this post status', 'posts-in-sidebar' ),
-							$this->get_field_id('post_status'),
-							$this->get_field_name('post_status'),
+							$this->get_field_id( 'post_status' ),
+							$this->get_field_name( 'post_status' ),
 							$options,
 							$instance['post_status']
 						); ?>
@@ -1872,8 +1872,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Post meta key
 						pis_form_input_text(
 							esc_html__( 'Get posts with this meta key', 'posts-in-sidebar' ),
-							$this->get_field_id('post_meta_key'),
-							$this->get_field_name('post_meta_key'),
+							$this->get_field_id( 'post_meta_key' ),
+							$this->get_field_name( 'post_meta_key' ),
 							esc_attr( $instance['post_meta_key'] ),
 							esc_html__( 'meta-key', 'posts-in-sidebar' )
 						); ?>
@@ -1881,8 +1881,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Post meta value
 						pis_form_input_text(
 							esc_html__( 'Get posts with this meta value', 'posts-in-sidebar' ),
-							$this->get_field_id('post_meta_val'),
-							$this->get_field_name('post_meta_val'),
+							$this->get_field_id( 'post_meta_val' ),
+							$this->get_field_name( 'post_meta_val' ),
 							esc_attr( $instance['post_meta_val'] ),
 							esc_html__( 'meta-value', 'posts-in-sidebar' )
 						); ?>
@@ -1890,8 +1890,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Search
 						pis_form_input_text(
 							esc_html__( 'Get posts from this search', 'posts-in-sidebar' ),
-							$this->get_field_id('search'),
-							$this->get_field_name('search'),
+							$this->get_field_id( 'search' ),
+							$this->get_field_name( 'search' ),
 							esc_attr( $instance['search'] ),
 							esc_html__( 'words to search', 'posts-in-sidebar' )
 						); ?>
@@ -1913,8 +1913,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						pis_form_select(
 							esc_html__( 'Get posts with/without password', 'posts-in-sidebar' ),
-							$this->get_field_id('has_password'),
-							$this->get_field_name('has_password'),
+							$this->get_field_id( 'has_password' ),
+							$this->get_field_name( 'has_password' ),
 							$options,
 							$instance['has_password']
 						); ?>
@@ -1922,8 +1922,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Post password
 						pis_form_input_text(
 							esc_html__( 'Get posts with this password', 'posts-in-sidebar' ),
-							$this->get_field_id('post_password'),
-							$this->get_field_name('post_password'),
+							$this->get_field_id( 'post_password' ),
+							$this->get_field_name( 'post_password' ),
 							esc_attr( $instance['post_password'] ),
 							// XKCD, Password Strength, https://xkcd.com/936/
 							'correct horse battery staple'
@@ -1940,8 +1940,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Posts quantity
 						pis_form_input_text(
 							esc_html__( 'Get this number of posts', 'posts-in-sidebar' ),
-							$this->get_field_id('number'),
-							$this->get_field_name('number'),
+							$this->get_field_id( 'number' ),
+							$this->get_field_name( 'number' ),
 							esc_attr( $instance['number'] ),
 							'3',
 							sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -2027,8 +2027,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						pis_form_select(
 							esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-							$this->get_field_id('orderby'),
-							$this->get_field_name('orderby'),
+							$this->get_field_id( 'orderby' ),
+							$this->get_field_name( 'orderby' ),
 							$options,
 							$instance['orderby']
 						); ?>
@@ -2046,8 +2046,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						pis_form_select(
 							esc_html__( 'The order will be', 'posts-in-sidebar' ),
-							$this->get_field_id('order'),
-							$this->get_field_name('order'),
+							$this->get_field_id( 'order' ),
+							$this->get_field_name( 'order' ),
 							$options,
 							$instance['order']
 						); ?>
@@ -2055,8 +2055,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Number of posts to skip
 						pis_form_input_text(
 							esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-							$this->get_field_id('offset_number'),
-							$this->get_field_name('offset_number'),
+							$this->get_field_id( 'offset_number' ),
+							$this->get_field_name( 'offset_number' ),
 							esc_attr( $instance['offset_number'] ),
 							'5'
 						); ?>
@@ -2118,8 +2118,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same category
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_sc'),
-									$this->get_field_name('ptm_sc'),
+									$this->get_field_id( 'ptm_sc' ),
+									$this->get_field_name( 'ptm_sc' ),
 									esc_attr( $instance['ptm_sc'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -2141,8 +2141,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_same_cat'),
-									$this->get_field_name('number_same_cat'),
+									$this->get_field_id( 'number_same_cat' ),
+									$this->get_field_name( 'number_same_cat' ),
 									esc_attr( $instance['number_same_cat'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -2151,8 +2151,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_same_cat'),
-									$this->get_field_name('title_same_cat'),
+									$this->get_field_id( 'title_same_cat' ),
+									$this->get_field_name( 'title_same_cat' ),
 									esc_attr( $instance['title_same_cat'] ),
 									esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -2231,8 +2231,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_same_cat'),
-									$this->get_field_name('orderby_same_cat'),
+									$this->get_field_id( 'orderby_same_cat' ),
+									$this->get_field_name( 'orderby_same_cat' ),
 									$options,
 									$instance['orderby_same_cat']
 								); ?>
@@ -2250,8 +2250,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_same_cat'),
-									$this->get_field_name('order_same_cat'),
+									$this->get_field_id( 'order_same_cat' ),
+									$this->get_field_name( 'order_same_cat' ),
 									$options,
 									$instance['order_same_cat']
 								); ?>
@@ -2259,8 +2259,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Number of posts to skip
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_same_cat'),
-									$this->get_field_name('offset_same_cat'),
+									$this->get_field_id( 'offset_same_cat' ),
+									$this->get_field_name( 'offset_same_cat' ),
 									esc_attr( $instance['offset_same_cat'] ),
 									'5'
 								); ?>
@@ -2324,8 +2324,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same tag
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_st'),
-									$this->get_field_name('ptm_st'),
+									$this->get_field_id( 'ptm_st' ),
+									$this->get_field_name( 'ptm_st' ),
 									esc_attr( $instance['ptm_st'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -2346,8 +2346,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_same_tag'),
-									$this->get_field_name('number_same_tag'),
+									$this->get_field_id( 'number_same_tag' ),
+									$this->get_field_name( 'number_same_tag' ),
 									esc_attr( $instance['number_same_tag'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -2356,8 +2356,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_same_tag'),
-									$this->get_field_name('title_same_tag'),
+									$this->get_field_id( 'title_same_tag' ),
+									$this->get_field_name( 'title_same_tag' ),
 									esc_attr( $instance['title_same_tag'] ),
 									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -2436,8 +2436,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_same_tag'),
-									$this->get_field_name('orderby_same_tag'),
+									$this->get_field_id( 'orderby_same_tag' ),
+									$this->get_field_name( 'orderby_same_tag' ),
 									$options,
 									$instance['orderby_same_tag']
 								); ?>
@@ -2455,8 +2455,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_same_tag'),
-									$this->get_field_name('order_same_tag'),
+									$this->get_field_id( 'order_same_tag' ),
+									$this->get_field_name( 'order_same_tag' ),
 									$options,
 									$instance['order_same_tag']
 								); ?>
@@ -2464,8 +2464,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Number of posts to skip
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_same_tag'),
-									$this->get_field_name('offset_same_tag'),
+									$this->get_field_id( 'offset_same_tag' ),
+									$this->get_field_name( 'offset_same_tag' ),
 									esc_attr( $instance['offset_same_tag'] ),
 									'5'
 								); ?>
@@ -2530,8 +2530,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same author
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_sa'),
-									$this->get_field_name('ptm_sa'),
+									$this->get_field_id( 'ptm_sa' ),
+									$this->get_field_name( 'ptm_sa' ),
 									esc_attr( $instance['ptm_sa'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -2544,8 +2544,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_same_author'),
-									$this->get_field_name('number_same_author'),
+									$this->get_field_id( 'number_same_author' ),
+									$this->get_field_name( 'number_same_author' ),
 									esc_attr( $instance['number_same_author'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -2554,8 +2554,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_same_author'),
-									$this->get_field_name('title_same_author'),
+									$this->get_field_id( 'title_same_author' ),
+									$this->get_field_name( 'title_same_author' ),
 									esc_attr( $instance['title_same_author'] ),
 									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -2634,8 +2634,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_same_author'),
-									$this->get_field_name('orderby_same_author'),
+									$this->get_field_id( 'orderby_same_author' ),
+									$this->get_field_name( 'orderby_same_author' ),
 									$options,
 									$instance['orderby_same_author']
 								); ?>
@@ -2653,8 +2653,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_same_author'),
-									$this->get_field_name('order_same_author'),
+									$this->get_field_id( 'order_same_author' ),
+									$this->get_field_name( 'order_same_author' ),
 									$options,
 									$instance['order_same_author']
 								); ?>
@@ -2662,8 +2662,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Number of posts to skip
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_same_author'),
-									$this->get_field_name('offset_same_author'),
+									$this->get_field_id( 'offset_same_author' ),
+									$this->get_field_name( 'offset_same_author' ),
 									esc_attr( $instance['offset_same_author'] ),
 									'5'
 								); ?>
@@ -2728,8 +2728,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same custom field
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_scf'),
-									$this->get_field_name('ptm_scf'),
+									$this->get_field_id( 'ptm_scf' ),
+									$this->get_field_name( 'ptm_scf' ),
 									esc_attr( $instance['ptm_scf'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -2763,8 +2763,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								}
 								pis_form_select(
 									esc_html__( 'Type of the taxonomy', 'posts-in-sidebar' ),
-									$this->get_field_id('s_custom_field_tax'),
-									$this->get_field_name('s_custom_field_tax'),
+									$this->get_field_id( 's_custom_field_tax' ),
+									$this->get_field_name( 's_custom_field_tax' ),
 									$options,
 									$instance['s_custom_field_tax']
 								); ?>
@@ -2776,8 +2776,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_custom_field'),
-									$this->get_field_name('number_custom_field'),
+									$this->get_field_id( 'number_custom_field' ),
+									$this->get_field_name( 'number_custom_field' ),
 									esc_attr( $instance['number_custom_field'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -2866,8 +2866,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_custom_fld'),
-									$this->get_field_name('orderby_custom_fld'),
+									$this->get_field_id( 'orderby_custom_fld' ),
+									$this->get_field_name( 'orderby_custom_fld' ),
 									$options,
 									$instance['orderby_custom_fld']
 								); ?>
@@ -2885,8 +2885,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_custom_fld'),
-									$this->get_field_name('order_custom_fld'),
+									$this->get_field_id( 'order_custom_fld' ),
+									$this->get_field_name( 'order_custom_fld' ),
 									$options,
 									$instance['order_custom_fld']
 								); ?>
@@ -2894,8 +2894,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Number of posts to skip
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_custom_fld'),
-									$this->get_field_name('offset_custom_fld'),
+									$this->get_field_id( 'offset_custom_fld' ),
+									$this->get_field_name( 'offset_custom_fld' ),
 									esc_attr( $instance['offset_custom_fld'] ),
 									'5'
 								); ?>
@@ -2985,8 +2985,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same category archive page
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_scp'),
-									$this->get_field_name('ptm_scp'),
+									$this->get_field_id( 'ptm_scp' ),
+									$this->get_field_name( 'ptm_scp' ),
 									esc_attr( $instance['ptm_scp'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -2999,8 +2999,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_cat_page'),
-									$this->get_field_name('number_cat_page'),
+									$this->get_field_id( 'number_cat_page' ),
+									$this->get_field_name( 'number_cat_page' ),
 									esc_attr( $instance['number_cat_page'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3009,8 +3009,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Offset
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_cat_page'),
-									$this->get_field_name('offset_cat_page'),
+									$this->get_field_id( 'offset_cat_page' ),
+									$this->get_field_name( 'offset_cat_page' ),
 									esc_attr( $instance['offset_cat_page'] ),
 									'10',
 									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3019,8 +3019,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_cat_page'),
-									$this->get_field_name('title_cat_page'),
+									$this->get_field_id( 'title_cat_page' ),
+									$this->get_field_name( 'title_cat_page' ),
 									esc_attr( $instance['title_cat_page'] ),
 									esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -3095,8 +3095,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_cat_page'),
-									$this->get_field_name('orderby_cat_page'),
+									$this->get_field_id( 'orderby_cat_page' ),
+									$this->get_field_name( 'orderby_cat_page' ),
 									$options,
 									$instance['orderby_cat_page']
 								); ?>
@@ -3114,8 +3114,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_cat_page'),
-									$this->get_field_name('order_cat_page'),
+									$this->get_field_id( 'order_cat_page' ),
+									$this->get_field_name( 'order_cat_page' ),
 									$options,
 									$instance['order_cat_page']
 								); ?>
@@ -3171,8 +3171,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same tag archive page
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_stp'),
-									$this->get_field_name('ptm_stp'),
+									$this->get_field_id( 'ptm_stp' ),
+									$this->get_field_name( 'ptm_stp' ),
 									esc_attr( $instance['ptm_stp'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -3185,8 +3185,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_tag_page'),
-									$this->get_field_name('number_tag_page'),
+									$this->get_field_id( 'number_tag_page' ),
+									$this->get_field_name( 'number_tag_page' ),
 									esc_attr( $instance['number_tag_page'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3195,8 +3195,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Offset
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_tag_page'),
-									$this->get_field_name('offset_tag_page'),
+									$this->get_field_id( 'offset_tag_page' ),
+									$this->get_field_name( 'offset_tag_page' ),
 									esc_attr( $instance['offset_tag_page'] ),
 									'10',
 									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3205,8 +3205,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_tag_page'),
-									$this->get_field_name('title_tag_page'),
+									$this->get_field_id( 'title_tag_page' ),
+									$this->get_field_name( 'title_tag_page' ),
 									esc_attr( $instance['title_tag_page'] ),
 									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -3281,8 +3281,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_tag_page'),
-									$this->get_field_name('orderby_tag_page'),
+									$this->get_field_id( 'orderby_tag_page' ),
+									$this->get_field_name( 'orderby_tag_page' ),
 									$options,
 									$instance['orderby_tag_page']
 								); ?>
@@ -3300,8 +3300,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_tag_page'),
-									$this->get_field_name('order_tag_page'),
+									$this->get_field_id( 'order_tag_page' ),
+									$this->get_field_name( 'order_tag_page' ),
 									$options,
 									$instance['order_tag_page']
 								); ?>
@@ -3357,8 +3357,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Multiple post types in same author archive page
 								pis_form_input_text(
 									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id('ptm_sap'),
-									$this->get_field_name('ptm_sap'),
+									$this->get_field_id( 'ptm_sap' ),
+									$this->get_field_name( 'ptm_sap' ),
 									esc_attr( $instance['ptm_sap'] ),
 									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
@@ -3371,8 +3371,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Posts quantity
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('number_author_page'),
-									$this->get_field_name('number_author_page'),
+									$this->get_field_id( 'number_author_page' ),
+									$this->get_field_name( 'number_author_page' ),
 									esc_attr( $instance['number_author_page'] ),
 									'3',
 									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3381,8 +3381,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Offset
 								pis_form_input_text(
 									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id('offset_author_page'),
-									$this->get_field_name('offset_author_page'),
+									$this->get_field_id( 'offset_author_page' ),
+									$this->get_field_name( 'offset_author_page' ),
 									esc_attr( $instance['offset_author_page'] ),
 									'10',
 									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
@@ -3391,8 +3391,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The custom widget title when on single posts
 								pis_form_input_text(
 									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id('title_author_page'),
-									$this->get_field_name('title_author_page'),
+									$this->get_field_id( 'title_author_page' ),
+									$this->get_field_name( 'title_author_page' ),
 									esc_attr( $instance['title_author_page'] ),
 									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
 									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -3467,8 +3467,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id('orderby_author_page'),
-									$this->get_field_name('orderby_author_page'),
+									$this->get_field_id( 'orderby_author_page' ),
+									$this->get_field_name( 'orderby_author_page' ),
 									$options,
 									$instance['orderby_author_page']
 								); ?>
@@ -3486,8 +3486,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id('order_author_page'),
-									$this->get_field_name('order_author_page'),
+									$this->get_field_id( 'order_author_page' ),
+									$this->get_field_name( 'order_author_page' ),
 									$options,
 									$instance['order_author_page']
 								); ?>
@@ -3537,8 +3537,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$var = $instance['author_not_in'];
 								pis_form_input_text(
 									esc_html__( 'Exclude posts by these authors', 'posts-in-sidebar' ),
-									$this->get_field_id('author_not_in'),
-									$this->get_field_name('author_not_in'),
+									$this->get_field_id( 'author_not_in' ),
+									$this->get_field_name( 'author_not_in' ),
 									esc_attr( $var ),
 									'1, 23, 45',
 									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -3551,8 +3551,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$var = $instance['cat_not_in'];
 								pis_form_input_text(
 									esc_html__( 'Exclude posts from these categories', 'posts-in-sidebar' ),
-									$this->get_field_id('cat_not_in'),
-									$this->get_field_name('cat_not_in'),
+									$this->get_field_id( 'cat_not_in' ),
+									$this->get_field_name( 'cat_not_in' ),
 									esc_attr( $var ),
 									'3, 31',
 									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -3569,8 +3569,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$var = $instance['tag_not_in'];
 								pis_form_input_text(
 									esc_html__( 'Exclude posts from these tags', 'posts-in-sidebar' ),
-									$this->get_field_id('tag_not_in'),
-									$this->get_field_name('tag_not_in'),
+									$this->get_field_id( 'tag_not_in' ),
+									$this->get_field_name( 'tag_not_in' ),
 									esc_attr( $var ),
 									'7, 11',
 									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -3579,8 +3579,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Exclude posts that have these ids.
 								pis_form_input_text(
 									esc_html__( 'Exclude posts with these IDs', 'posts-in-sidebar' ),
-									$this->get_field_id('post_not_in'),
-									$this->get_field_name('post_not_in'),
+									$this->get_field_id( 'post_not_in' ),
+									$this->get_field_name( 'post_not_in' ),
 									esc_attr( $instance['post_not_in'] ),
 									'5, 29, 523, 4519',
 									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -3593,8 +3593,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Exclude posts whose parent is in these IDs.
 								pis_form_input_text(
 									esc_html__( 'Exclude posts whose parent is in these IDs', 'posts-in-sidebar' ),
-									$this->get_field_id('post_parent_not_in'),
-									$this->get_field_name('post_parent_not_in'),
+									$this->get_field_id( 'post_parent_not_in' ),
+									$this->get_field_name( 'post_parent_not_in' ),
 									esc_attr( $instance['post_parent_not_in'] ),
 									'5, 29, 523, 4519',
 									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
@@ -3642,7 +3642,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'OR'
 									),
 								);
-								pis_form_select( esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ), $this->get_field_id('relation'), $this->get_field_name('relation'), $options, $instance['relation'], esc_html__( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ), $this->get_field_id( 'relation'), $this->get_field_name( 'relation'), $options, $instance['relation'], esc_html__( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'posts-in-sidebar' ) );   ?>
 
 							</div>
 
@@ -3657,8 +3657,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Taxonomy aa
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Taxonomy A1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('taxonomy_aa'),
-									$this->get_field_name('taxonomy_aa'),
+									$this->get_field_id( 'taxonomy_aa' ),
+									$this->get_field_name( 'taxonomy_aa' ),
 									esc_attr( $instance['taxonomy_aa'] ),
 									esc_html__( 'category', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
@@ -3683,10 +3683,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' )
 									),
 								);
-								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_aa'), $this->get_field_name('field_aa'), $options, $instance['field_aa'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id( 'field_aa'), $this->get_field_name( 'field_aa'), $options, $instance['field_aa'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Terms aa
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_aa'), $this->get_field_name('terms_aa'), esc_attr( $instance['terms_aa'] ), esc_html__( 'gnu-linux,kde', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id( 'terms_aa'), $this->get_field_name( 'terms_aa'), esc_attr( $instance['terms_aa'] ), esc_html__( 'gnu-linux,kde', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Operator aa
 								$options = array(
@@ -3707,7 +3707,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'AND'
 									),
 								);
-								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id('operator_aa'), $this->get_field_name('operator_aa'), $options, $instance['operator_aa'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id( 'operator_aa'), $this->get_field_name( 'operator_aa'), $options, $instance['operator_aa'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) );   ?>
 
 								<hr />
 
@@ -3726,15 +3726,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'OR'
 									),
 								);
-								pis_form_select( esc_html__( 'Relation between A1 and A2 taxonomies', 'posts-in-sidebar' ), $this->get_field_id('relation_a'), $this->get_field_name('relation_a'), $options, $instance['relation_a'] ); ?>
+								pis_form_select( esc_html__( 'Relation between A1 and A2 taxonomies', 'posts-in-sidebar' ), $this->get_field_id( 'relation_a'), $this->get_field_name( 'relation_a'), $options, $instance['relation_a'] );   ?>
 
 								<hr />
 
 								<?php // ================= Taxonomy ab
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Taxonomy A2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('taxonomy_ab'),
-									$this->get_field_name('taxonomy_ab'),
+									$this->get_field_id( 'taxonomy_ab' ),
+									$this->get_field_name( 'taxonomy_ab' ),
 									esc_attr( $instance['taxonomy_ab'] ),
 									esc_html__( 'movie-genre', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
@@ -3759,10 +3759,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' )
 									),
 								);
-								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_ab'), $this->get_field_name('field_ab'), $options, $instance['field_ab'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id( 'field_ab'), $this->get_field_name( 'field_ab'), $options, $instance['field_ab'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Terms ab
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ab'), $this->get_field_name('terms_ab'), esc_attr( $instance['terms_ab'] ), esc_html__( 'action,sci-fi', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id( 'terms_ab'), $this->get_field_name( 'terms_ab'), esc_attr( $instance['terms_ab'] ), esc_html__( 'action,sci-fi', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Operator ab
 								$options = array(
@@ -3783,7 +3783,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'AND'
 									),
 								);
-								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id('operator_ab'), $this->get_field_name('operator_ab'), $options, $instance['operator_ab'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id( 'operator_ab'), $this->get_field_name( 'operator_ab'), $options, $instance['operator_ab'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) );   ?>
 
 							</div>
 
@@ -3794,8 +3794,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Taxonomy ba
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Taxonomy B1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('taxonomy_ba'),
-									$this->get_field_name('taxonomy_ba'),
+									$this->get_field_id( 'taxonomy_ba' ),
+									$this->get_field_name( 'taxonomy_ba' ),
 									esc_attr( $instance['taxonomy_ba'] ),
 									esc_html__( 'post_tag', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
@@ -3820,10 +3820,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' )
 									),
 								);
-								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_ba'), $this->get_field_name('field_ba'), $options, $instance['field_ba'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id( 'field_ba'), $this->get_field_name( 'field_ba'), $options, $instance['field_ba'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Terms ba
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_ba'), $this->get_field_name('terms_ba'), esc_attr( $instance['terms_ba'] ), esc_html__( 'system,apache', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id( 'terms_ba'), $this->get_field_name( 'terms_ba'), esc_attr( $instance['terms_ba'] ), esc_html__( 'system,apache', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Operator ba
 								$options = array(
@@ -3844,7 +3844,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'AND'
 									),
 								);
-								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id('operator_ba'), $this->get_field_name('operator_ba'), $options, $instance['operator_ba'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id( 'operator_ba'), $this->get_field_name( 'operator_ba'), $options, $instance['operator_ba'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) );   ?>
 
 								<hr />
 
@@ -3867,15 +3867,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'OR'
 									),
 								);
-								pis_form_select( esc_html__( 'Relation between B1 and B2 taxonomies', 'posts-in-sidebar' ), $this->get_field_id('relation_b'), $this->get_field_name('relation_b'), $options, $instance['relation_b'] ); ?>
+								pis_form_select( esc_html__( 'Relation between B1 and B2 taxonomies', 'posts-in-sidebar' ), $this->get_field_id( 'relation_b'), $this->get_field_name( 'relation_b'), $options, $instance['relation_b'] );   ?>
 
 								<hr />
 
 								<?php // ================= Taxonomy bb
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Taxonomy B2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('taxonomy_bb'),
-									$this->get_field_name('taxonomy_bb'),
+									$this->get_field_id( 'taxonomy_bb' ),
+									$this->get_field_name( 'taxonomy_bb' ),
 									esc_attr( $instance['taxonomy_bb'] ),
 									esc_html__( 'post_format', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the slug of the taxonomy.', 'posts-in-sidebar' )
@@ -3900,10 +3900,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' )
 									),
 								);
-								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id('field_bb'), $this->get_field_name('field_bb'), $options, $instance['field_bb'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Field', 'posts-in-sidebar' ), $this->get_field_id( 'field_bb'), $this->get_field_name( 'field_bb'), $options, $instance['field_bb'], esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Terms bb
-								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id('terms_bb'), $this->get_field_name('terms_bb'), esc_attr( $instance['terms_bb'] ), esc_html__( 'post-format-quote', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) ); ?>
+								pis_form_input_text( esc_html__( 'Terms', 'posts-in-sidebar' ), $this->get_field_id( 'terms_bb'), $this->get_field_name( 'terms_bb'), esc_attr( $instance['terms_bb'] ), esc_html__( 'post-format-quote', 'posts-in-sidebar' ), esc_html__( 'Enter terms, comma separated.', 'posts-in-sidebar' ) );   ?>
 
 								<?php // ================= Operator bb
 								$options = array(
@@ -3924,7 +3924,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => 'AND'
 									),
 								);
-								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id('operator_bb'), $this->get_field_name('operator_bb'), $options, $instance['operator_bb'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) ); ?>
+								pis_form_select( esc_html__( 'Operator', 'posts-in-sidebar' ), $this->get_field_id( 'operator_bb'), $this->get_field_name( 'operator_bb'), $options, $instance['operator_bb'], esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' ) );   ?>
 
 							</div>
 
@@ -3953,8 +3953,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Year', 'posts-in-sidebar' ),
-									$this->get_field_id('date_year'),
-									$this->get_field_name('date_year'),
+									$this->get_field_id( 'date_year' ),
+									$this->get_field_name( 'date_year' ),
 									esc_attr( $instance['date_year'] ),
 									'2015',
 									esc_html__( '4 digits year (e.g. 2015).', 'posts-in-sidebar' )
@@ -3962,8 +3962,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Month', 'posts-in-sidebar' ),
-									$this->get_field_id('date_month'),
-									$this->get_field_name('date_month'),
+									$this->get_field_id( 'date_month' ),
+									$this->get_field_name( 'date_month' ),
 									esc_attr( $instance['date_month'] ),
 									'06',
 									esc_html__( 'Month number (from 1 to 12).', 'posts-in-sidebar' )
@@ -3971,8 +3971,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Week', 'posts-in-sidebar' ),
-									$this->get_field_id('date_week'),
-									$this->get_field_name('date_week'),
+									$this->get_field_id( 'date_week' ),
+									$this->get_field_name( 'date_week' ),
 									esc_attr( $instance['date_week'] ),
 									'32',
 									esc_html__( 'Week of the year (from 0 to 53).', 'posts-in-sidebar' )
@@ -3980,8 +3980,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Day', 'posts-in-sidebar' ),
-									$this->get_field_id('date_day'),
-									$this->get_field_name('date_day'),
+									$this->get_field_id( 'date_day' ),
+									$this->get_field_name( 'date_day' ),
 									esc_attr( $instance['date_day'] ),
 									'12',
 									esc_html__( 'Day of the month (from 1 to 31).', 'posts-in-sidebar' )
@@ -3993,8 +3993,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Hour', 'posts-in-sidebar' ),
-									$this->get_field_id('date_hour'),
-									$this->get_field_name('date_hour'),
+									$this->get_field_id( 'date_hour' ),
+									$this->get_field_name( 'date_hour' ),
 									esc_attr( $instance['date_hour'] ),
 									'09',
 									esc_html__( 'Hour (from 0 to 23).', 'posts-in-sidebar' )
@@ -4002,8 +4002,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Minute', 'posts-in-sidebar' ),
-									$this->get_field_id('date_minute'),
-									$this->get_field_name('date_minute'),
+									$this->get_field_id( 'date_minute' ),
+									$this->get_field_name( 'date_minute' ),
 									esc_attr( $instance['date_minute'] ),
 									'24',
 									esc_html__( 'Minute (from 0 to 59).', 'posts-in-sidebar' )
@@ -4011,8 +4011,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Second', 'posts-in-sidebar' ),
-									$this->get_field_id('date_second'),
-									$this->get_field_name('date_second'),
+									$this->get_field_id( 'date_second' ),
+									$this->get_field_name( 'date_second' ),
 									esc_attr( $instance['date_second'] ),
 									'32',
 									esc_html__( 'Second (from 0 to 59).', 'posts-in-sidebar' )
@@ -4038,8 +4038,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Year', 'posts-in-sidebar' ),
-									$this->get_field_id('date_after_year'),
-									$this->get_field_name('date_after_year'),
+									$this->get_field_id( 'date_after_year' ),
+									$this->get_field_name( 'date_after_year' ),
 									esc_attr( $instance['date_after_year'] ),
 									'2011',
 									esc_html__( 'Accepts any four-digit year.', 'posts-in-sidebar' )
@@ -4047,8 +4047,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Month', 'posts-in-sidebar' ),
-									$this->get_field_id('date_after_month'),
-									$this->get_field_name('date_after_month'),
+									$this->get_field_id( 'date_after_month' ),
+									$this->get_field_name( 'date_after_month' ),
 									esc_attr( $instance['date_after_month'] ),
 									'10',
 									esc_html__( 'The month of the year. Accepts numbers 1-12.', 'posts-in-sidebar' )
@@ -4056,8 +4056,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Day', 'posts-in-sidebar' ),
-									$this->get_field_id('date_after_day'),
-									$this->get_field_name('date_after_day'),
+									$this->get_field_id( 'date_after_day' ),
+									$this->get_field_name( 'date_after_day' ),
 									esc_attr( $instance['date_after_day'] ),
 									'10',
 									esc_html__( 'The day of the month. Accepts numbers 1-31.', 'posts-in-sidebar' )
@@ -4073,8 +4073,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Year', 'posts-in-sidebar' ),
-									$this->get_field_id('date_before_year'),
-									$this->get_field_name('date_before_year'),
+									$this->get_field_id( 'date_before_year' ),
+									$this->get_field_name( 'date_before_year' ),
 									esc_attr( $instance['date_before_year'] ),
 									'2011',
 									esc_html__( 'Accepts any four-digit year.', 'posts-in-sidebar' )
@@ -4082,8 +4082,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Month', 'posts-in-sidebar' ),
-									$this->get_field_id('date_before_month'),
-									$this->get_field_name('date_before_month'),
+									$this->get_field_id( 'date_before_month' ),
+									$this->get_field_name( 'date_before_month' ),
 									esc_attr( $instance['date_before_month'] ),
 									'10',
 									esc_html__( 'The month of the year. Accepts numbers 1-12.', 'posts-in-sidebar' )
@@ -4091,8 +4091,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php pis_form_input_text(
 									esc_html__( 'Day', 'posts-in-sidebar' ),
-									$this->get_field_id('date_before_day'),
-									$this->get_field_name('date_before_day'),
+									$this->get_field_id( 'date_before_day' ),
+									$this->get_field_name( 'date_before_day' ),
 									esc_attr( $instance['date_before_day'] ),
 									'10',
 									esc_html__( 'The day of the month. Accepts numbers 1-31.', 'posts-in-sidebar' )
@@ -4140,8 +4140,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Column', 'posts-in-sidebar' ),
-									$this->get_field_id('date_column'),
-									$this->get_field_name('date_column'),
+									$this->get_field_id( 'date_column' ),
+									$this->get_field_name( 'date_column' ),
 									$options,
 									$instance['date_column'],
 									esc_html__( 'Column to query against.', 'posts-in-sidebar' )
@@ -4168,8 +4168,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The amount of time for the dynamic date
 								pis_form_input_text(
 									esc_html__( 'Amount of time', 'posts-in-sidebar' ),
-									$this->get_field_id('date_after_dyn_num'),
-									$this->get_field_name('date_after_dyn_num'),
+									$this->get_field_id( 'date_after_dyn_num' ),
+									$this->get_field_name( 'date_after_dyn_num' ),
 									esc_attr( $instance['date_after_dyn_num'] ),
 									'1'
 								); ?>
@@ -4211,8 +4211,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type of date', 'posts-in-sidebar' ),
-									$this->get_field_id('date_after_dyn_date'),
-									$this->get_field_name('date_after_dyn_date'),
+									$this->get_field_id( 'date_after_dyn_date' ),
+									$this->get_field_name( 'date_after_dyn_date' ),
 									$options,
 									$instance['date_after_dyn_date']
 								); ?>
@@ -4226,8 +4226,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= The amount of time for the dynamic date
 								pis_form_input_text(
 									esc_html__( 'Amount of time', 'posts-in-sidebar' ),
-									$this->get_field_id('date_before_dyn_num'),
-									$this->get_field_name('date_before_dyn_num'),
+									$this->get_field_id( 'date_before_dyn_num' ),
+									$this->get_field_name( 'date_before_dyn_num' ),
 									esc_attr( $instance['date_before_dyn_num'] ),
 									'1'
 								); ?>
@@ -4269,8 +4269,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type of date', 'posts-in-sidebar' ),
-									$this->get_field_id('date_before_dyn_date'),
-									$this->get_field_name('date_before_dyn_date'),
+									$this->get_field_id( 'date_before_dyn_date' ),
+									$this->get_field_name( 'date_before_dyn_date' ),
 									$options,
 									$instance['date_before_dyn_date']
 								); ?>
@@ -4313,8 +4313,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_relation'),
-									$this->get_field_name('mq_relation'),
+									$this->get_field_id( 'mq_relation' ),
+									$this->get_field_name( 'mq_relation' ),
 									$options,
 									$instance['mq_relation'],
 									esc_html__( 'The logical relationship between each inner meta_query array when there is more than one.', 'posts-in-sidebar' )
@@ -4333,8 +4333,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field key aa
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Custom field key A1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('mq_key_aa'),
-									$this->get_field_name('mq_key_aa'),
+									$this->get_field_id( 'mq_key_aa' ),
+									$this->get_field_name( 'mq_key_aa' ),
 									esc_attr( $instance['mq_key_aa'] ),
 									esc_html__( 'color', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
@@ -4343,8 +4343,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field value aa
 								pis_form_input_text(
 									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_value_aa'),
-									$this->get_field_name('mq_value_aa'),
+									$this->get_field_id( 'mq_value_aa' ),
+									$this->get_field_name( 'mq_value_aa' ),
 									esc_attr( $instance['mq_value_aa'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
 									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
@@ -4415,8 +4415,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_compare_aa'),
-									$this->get_field_name('mq_compare_aa'),
+									$this->get_field_id( 'mq_compare_aa' ),
+									$this->get_field_name( 'mq_compare_aa' ),
 									$options, $instance['mq_compare_aa'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								); ?>
@@ -4466,8 +4466,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_type_aa'),
-									$this->get_field_name('mq_type_aa'),
+									$this->get_field_id( 'mq_type_aa' ),
+									$this->get_field_name( 'mq_type_aa' ),
 									$options, $instance['mq_type_aa'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								); ?>
@@ -4495,8 +4495,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Relation between A1 and A2 custom fields', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_relation_a'),
-									$this->get_field_name('mq_relation_a'),
+									$this->get_field_id( 'mq_relation_a' ),
+									$this->get_field_name( 'mq_relation_a' ),
 									$options, $instance['mq_relation_a']
 								); ?>
 
@@ -4505,8 +4505,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field key ab
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Custom field key A2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('mq_key_ab'),
-									$this->get_field_name('mq_key_ab'),
+									$this->get_field_id( 'mq_key_ab' ),
+									$this->get_field_name( 'mq_key_ab' ),
 									esc_attr( $instance['mq_key_ab'] ),
 									esc_html__( 'color', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
@@ -4515,8 +4515,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field value ab
 								pis_form_input_text(
 									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_value_ab'),
-									$this->get_field_name('mq_value_ab'),
+									$this->get_field_id( 'mq_value_ab' ),
+									$this->get_field_name( 'mq_value_ab' ),
 									esc_attr( $instance['mq_value_ab'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
 									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
@@ -4587,8 +4587,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_compare_ab'),
-									$this->get_field_name('mq_compare_ab'),
+									$this->get_field_id( 'mq_compare_ab' ),
+									$this->get_field_name( 'mq_compare_ab' ),
 									$options, $instance['mq_compare_ab'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								); ?>
@@ -4638,8 +4638,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_type_ab'),
-									$this->get_field_name('mq_type_ab'),
+									$this->get_field_id( 'mq_type_ab' ),
+									$this->get_field_name( 'mq_type_ab' ),
 									$options, $instance['mq_type_ab'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								); ?>
@@ -4653,8 +4653,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field key ba
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Custom field key B1', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('mq_key_ba'),
-									$this->get_field_name('mq_key_ba'),
+									$this->get_field_id( 'mq_key_ba' ),
+									$this->get_field_name( 'mq_key_ba' ),
 									esc_attr( $instance['mq_key_ba'] ),
 									esc_html__( 'color', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
@@ -4663,8 +4663,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field value ba
 								pis_form_input_text(
 									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_value_ba'),
-									$this->get_field_name('mq_value_ba'),
+									$this->get_field_id( 'mq_value_ba' ),
+									$this->get_field_name( 'mq_value_ba' ),
 									esc_attr( $instance['mq_value_ba'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
 									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
@@ -4735,8 +4735,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_compare_ba'),
-									$this->get_field_name('mq_compare_ba'),
+									$this->get_field_id( 'mq_compare_ba' ),
+									$this->get_field_name( 'mq_compare_ba' ),
 									$options, $instance['mq_compare_ba'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								); ?>
@@ -4786,8 +4786,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_type_ba'),
-									$this->get_field_name('mq_type_ba'),
+									$this->get_field_id( 'mq_type_ba' ),
+									$this->get_field_name( 'mq_type_ba' ),
 									$options, $instance['mq_type_ba'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								); ?>
@@ -4815,8 +4815,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Relation between B1 and B2 custom fields', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_relation_b'),
-									$this->get_field_name('mq_relation_b'),
+									$this->get_field_id( 'mq_relation_b' ),
+									$this->get_field_name( 'mq_relation_b' ),
 									$options, $instance['mq_relation_b']
 								); ?>
 
@@ -4825,8 +4825,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field key bb
 								pis_form_input_text(
 									sprintf( '%1$s' . esc_html__( 'Custom field key B2', 'posts-in-sidebar' ) . '%2$s', '<strong>', '</strong>' ),
-									$this->get_field_id('mq_key_bb'),
-									$this->get_field_name('mq_key_bb'),
+									$this->get_field_id( 'mq_key_bb' ),
+									$this->get_field_name( 'mq_key_bb' ),
 									esc_attr( $instance['mq_key_bb'] ),
 									esc_html__( 'color', 'posts-in-sidebar' ),
 									esc_html__( 'Enter the custom field key.', 'posts-in-sidebar' )
@@ -4835,8 +4835,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php // ================= Custom field value bb
 								pis_form_input_text(
 									esc_html__( 'Custom field value', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_value_bb'),
-									$this->get_field_name('mq_value_bb'),
+									$this->get_field_id( 'mq_value_bb' ),
+									$this->get_field_name( 'mq_value_bb' ),
 									esc_attr( $instance['mq_value_bb'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
 									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
@@ -4907,8 +4907,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_compare_bb'),
-									$this->get_field_name('mq_compare_bb'),
+									$this->get_field_id( 'mq_compare_bb' ),
+									$this->get_field_name( 'mq_compare_bb' ),
 									$options, $instance['mq_compare_bb'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								); ?>
@@ -4958,8 +4958,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
-									$this->get_field_id('mq_type_bb'),
-									$this->get_field_name('mq_type_bb'),
+									$this->get_field_id( 'mq_type_bb' ),
+									$this->get_field_name( 'mq_type_bb' ),
 									$options, $instance['mq_type_bb'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								); ?>
@@ -5025,8 +5025,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							);
 							pis_form_select(
 								esc_html__( 'Title length unit', 'posts-in-sidebar' ),
-								$this->get_field_id('title_length_unit'),
-								$this->get_field_name('title_length_unit'),
+								$this->get_field_id( 'title_length_unit' ),
+								$this->get_field_name( 'title_length_unit' ),
 								$options, $instance['title_length_unit']
 							); ?>
 
@@ -5076,8 +5076,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							);
 							pis_form_select(
 								esc_html__( 'Display this type of text', 'posts-in-sidebar' ),
-								$this->get_field_id('excerpt'),
-								$this->get_field_name('excerpt'),
+								$this->get_field_id( 'excerpt' ),
+								$this->get_field_name( 'excerpt' ),
 								$options,
 								$instance['excerpt'],
 								sprintf( esc_html__( 'For more information regarding these types of text, please see %1$shere%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
@@ -5099,8 +5099,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							);
 							pis_form_select(
 								esc_html__( 'Excerpt length unit', 'posts-in-sidebar' ),
-								$this->get_field_id('exc_length_unit'),
-								$this->get_field_name('exc_length_unit'),
+								$this->get_field_id( 'exc_length_unit' ),
+								$this->get_field_name( 'exc_length_unit' ),
 								$options, $instance['exc_length_unit']
 							); ?>
 
@@ -5145,8 +5145,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								}
 								pis_form_select(
 									esc_html__( 'The size of the thumbnail will be', 'posts-in-sidebar' ),
-									$this->get_field_id('image_size'),
-									$this->get_field_name('image_size'),
+									$this->get_field_id( 'image_size' ),
+									$this->get_field_name( 'image_size' ),
 									$options,
 									$instance['image_size']
 								); ?>
@@ -5173,8 +5173,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								pis_form_select(
 									esc_html__( 'Align the image to', 'posts-in-sidebar' ),
-									$this->get_field_id('image_align'),
-									$this->get_field_name('image_align'),
+									$this->get_field_id( 'image_align' ),
+									$this->get_field_name( 'image_align' ),
 									$options,
 									$instance['image_align']
 								); ?>
@@ -5329,7 +5329,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										'desc'  => esc_html__( 'Next to the author name', 'posts-in-sidebar' )
 									),
 								);
-								pis_form_select( esc_html__( 'Gravatar position', 'posts-in-sidebar' ), $this->get_field_id('gravatar_position'), $this->get_field_name('gravatar_position'), $options, $instance['gravatar_position'] ); ?>
+								pis_form_select( esc_html__( 'Gravatar position', 'posts-in-sidebar' ), $this->get_field_id( 'gravatar_position'), $this->get_field_name( 'gravatar_position'), $options, $instance['gravatar_position'] );   ?>
 
 							</div>
 
@@ -5577,8 +5577,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								}
 								pis_form_select(
 									esc_html__( 'Display this custom field', 'posts-in-sidebar' ),
-									$this->get_field_id('meta'),
-									$this->get_field_name('meta'),
+									$this->get_field_id( 'meta' ),
+									$this->get_field_name( 'meta' ),
 									$options,
 									$instance['meta']
 								); ?>
@@ -5687,8 +5687,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								}
 								pis_form_select(
 									esc_html__( 'Link to the archive of', 'posts-in-sidebar' ),
-									$this->get_field_id('link_to'),
-									$this->get_field_name('link_to'),
+									$this->get_field_id( 'link_to' ),
+									$this->get_field_name( 'link_to' ),
 									$options,
 									$instance['link_to'],
 									'',
@@ -5810,8 +5810,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						pis_form_select(
 							esc_html__( 'Unit for margins', 'posts-in-sidebar' ),
-							$this->get_field_id('margin_unit'),
-							$this->get_field_name('margin_unit'),
+							$this->get_field_id( 'margin_unit' ),
+							$this->get_field_name( 'margin_unit' ),
 							$options,
 							$instance['margin_unit']
 						); ?>
@@ -5867,8 +5867,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Custom styles
 						pis_form_textarea(
 							esc_html__( 'Custom styles', 'posts-in-sidebar' ),
-							$this->get_field_id('custom_styles'),
-							$this->get_field_name('custom_styles'),
+							$this->get_field_id( 'custom_styles' ),
+							$this->get_field_name( 'custom_styles' ),
 							$instance['custom_styles'],
 							esc_html__( 'Enter here your CSS styles', 'posts-in-sidebar' ),
 							$style = 'resize: vertical; width: 100%; height: 80px;'
@@ -5888,8 +5888,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Container Class
 						pis_form_input_text(
 							esc_html__( 'Add a global container with this CSS class', 'posts-in-sidebar' ),
-							$this->get_field_id('container_class'),
-							$this->get_field_name('container_class'),
+							$this->get_field_id( 'container_class' ),
+							$this->get_field_name( 'container_class' ),
 							esc_attr( $instance['container_class'] ),
 							'posts-container',
 							sprintf(
@@ -5909,8 +5909,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						pis_form_select(
 							esc_html__( 'Use this type of list for the posts', 'posts-in-sidebar' ),
-							$this->get_field_id('list_element'),
-							$this->get_field_name('list_element'),
+							$this->get_field_id( 'list_element' ),
+							$this->get_field_name( 'list_element' ),
 							$options,
 							$instance['list_element']
 						); ?>
@@ -5967,8 +5967,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<?php // ================= Cache duration
 						pis_form_input_text(
 							esc_html__( 'The cache will be used for (in seconds)', 'posts-in-sidebar' ),
-							$this->get_field_id('cache_time'),
-							$this->get_field_name('cache_time'),
+							$this->get_field_id( 'cache_time' ),
+							$this->get_field_name( 'cache_time' ),
 							esc_attr( $instance['cache_time'] ),
 							'3600',
 							sprintf( esc_html__( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'posts-in-sidebar' ), '<code>3600</code>', '<code>0</code>' )

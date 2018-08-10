@@ -2073,70 +2073,72 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on single posts. %1$sActivate only one of these.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
 
-						<div class="pis-column-container">
+						<h6 data-panel="get-posts-current-category" class="pis-widget-title"><?php esc_html_e( 'Get posts from current category', 'posts-in-sidebar' ); ?></h6>
 
-							<h5><?php esc_html_e( 'Get posts from current category', 'posts-in-sidebar' ); ?></h5>
+						<div class="pis-container">
 
-							<div class="pis-column">
+							<div class="pis-column-container">
 
-								<?php // ================= Get posts from same category
-								pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current category', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_same_cat' ),
-									$this->get_field_name( 'get_from_same_cat' ),
-									checked( $get_from_same_cat, true, false ),
-									esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
+								<div class="pis-column">
 
-								<?php // ================= Post types from same category
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
+									<?php // ================= Get posts from same category
+									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current category', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_same_cat' ),
+										$this->get_field_name( 'get_from_same_cat' ),
+										checked( $get_from_same_cat, true, false ),
+										esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
-								}
+									?>
 
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_same_cat' ),
-									$this->get_field_name( 'post_type_same_cat' ),
-									$options,
-									$instance['post_type_same_cat'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
+									<?php // ================= Post types from same category
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
 
-								<?php // ================= Multiple post types in same category
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_sc' ),
-									$this->get_field_name( 'ptm_sc' ),
-									esc_attr( $instance['ptm_sc'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_same_cat' ),
+										$this->get_field_name( 'post_type_same_cat' ),
+										$options,
+										$instance['post_type_same_cat'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
 
-								<?php // ================= Sort categories
-								pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
-									$this->get_field_id( 'sort_categories' ),
-									$this->get_field_name( 'sort_categories' ),
-									checked( $sort_categories, true, false ),
-									esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
-								);
-								?>
+									<?php // ================= Multiple post types in same category
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_sc' ),
+										$this->get_field_name( 'ptm_sc' ),
+										esc_attr( $instance['ptm_sc'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
 
-							</div>
+									<?php // ================= Sort categories
+									pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
+										$this->get_field_id( 'sort_categories' ),
+										$this->get_field_name( 'sort_categories' ),
+										checked( $sort_categories, true, false ),
+										esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
+									);
+									?>
 
-							<div class="pis-column">
+								</div>
+
+								<div class="pis-column">
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
@@ -2276,72 +2278,74 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							</div>
 
-						</div>
-
-						<hr>
-
-						<div class="pis-column-container">
-
-							<h5><?php esc_html_e( 'Get posts from current tag', 'posts-in-sidebar' ); ?></h5>
-
-							<div class="pis-column">
-
-								<?php // ================= Get posts from same tag
-								pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current tag', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_same_tag' ),
-									$this->get_field_name( 'get_from_same_tag' ),
-									checked( $get_from_same_tag, true, false ),
-									esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Post types from same tag
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
-									);
-								}
-
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_same_tag' ),
-									$this->get_field_name( 'post_type_same_tag' ),
-									$options,
-									$instance['post_type_same_tag'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Multiple post types in same tag
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_st' ),
-									$this->get_field_name( 'ptm_st' ),
-									esc_attr( $instance['ptm_st'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Sort tags
-								pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
-									$this->get_field_id( 'sort_tags' ),
-									$this->get_field_name( 'sort_tags' ),
-									checked( $sort_tags, true, false ),
-									esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
-								); ?>
-
 							</div>
 
-							<div class="pis-column">
+						</div>
+
+						<h6 data-panel="get-posts-current-tag" class="pis-widget-title"><?php esc_html_e( 'Get posts from current tag', 'posts-in-sidebar' ); ?></h6>
+
+						<div class="pis-container">
+
+							<div class="pis-column-container">
+
+								<div class="pis-column">
+
+									<?php // ================= Get posts from same tag
+									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current tag', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_same_tag' ),
+										$this->get_field_name( 'get_from_same_tag' ),
+										checked( $get_from_same_tag, true, false ),
+										esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Post types from same tag
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
+
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_same_tag' ),
+										$this->get_field_name( 'post_type_same_tag' ),
+										$options,
+										$instance['post_type_same_tag'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Multiple post types in same tag
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_st' ),
+										$this->get_field_name( 'ptm_st' ),
+										esc_attr( $instance['ptm_st'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Sort tags
+									pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
+										$this->get_field_id( 'sort_tags' ),
+										$this->get_field_name( 'sort_tags' ),
+										checked( $sort_tags, true, false ),
+										esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
+									); ?>
+
+								</div>
+
+								<div class="pis-column">
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
@@ -2481,65 +2485,67 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							</div>
 
-						</div>
-
-						<hr>
-
-						<div class="pis-column-container">
-
-							<h5><?php esc_html_e( 'Get posts from current author', 'posts-in-sidebar' ); ?></h5>
-
-							<div class="pis-column">
-
-								<?php // ================= Get posts from same author
-								pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current author', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_same_author' ),
-									$this->get_field_name( 'get_from_same_author' ),
-									checked( $get_from_same_author, true, false ),
-									esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php // ================= Post types from same author
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
-									);
-								}
-
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_same_author' ),
-									$this->get_field_name( 'post_type_same_author' ),
-									$options,
-									$instance['post_type_same_author'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Multiple post types in same author
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_sa' ),
-									$this->get_field_name( 'ptm_sa' ),
-									esc_attr( $instance['ptm_sa'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
-
 							</div>
 
-							<div class="pis-column">
+						</div>
+
+						<h6 data-panel="get-posts-current-author" class="pis-widget-title"><?php esc_html_e( 'Get posts from current author', 'posts-in-sidebar' ); ?></h6>
+
+						<div class="pis-container">
+
+							<div class="pis-column-container">
+
+								<div class="pis-column">
+
+									<?php // ================= Get posts from same author
+									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current author', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_same_author' ),
+										$this->get_field_name( 'get_from_same_author' ),
+										checked( $get_from_same_author, true, false ),
+										esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									);
+									?>
+
+									<?php // ================= Post types from same author
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
+
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_same_author' ),
+										$this->get_field_name( 'post_type_same_author' ),
+										$options,
+										$instance['post_type_same_author'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Multiple post types in same author
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_sa' ),
+										$this->get_field_name( 'ptm_sa' ),
+										esc_attr( $instance['ptm_sa'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
+
+								</div>
+
+								<div class="pis-column">
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
@@ -2679,99 +2685,101 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							</div>
 
-						</div>
-
-						<hr>
-
-						<div class="pis-column-container">
-
-							<h5><?php esc_html_e( 'Get posts from taxonomy using custom field', 'posts-in-sidebar' ); ?></h5>
-
-							<div class="pis-column">
-
-								<?php // ================= Get posts from category/tags using custom field when on single post
-								pis_form_checkbox( esc_html__( 'When on single posts, get posts from this custom field', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_custom_fld' ),
-									$this->get_field_name( 'get_from_custom_fld' ),
-									checked( $get_from_custom_fld, true, false ),
-									sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
-								);
-								?>
-
-								<?php // ================= Post types from same custom field
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
-									);
-								}
-
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_same_cf' ),
-									$this->get_field_name( 'post_type_same_cf' ),
-									$options,
-									$instance['post_type_same_cf'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Multiple post types in same custom field
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_scf' ),
-									$this->get_field_name( 'ptm_scf' ),
-									esc_attr( $instance['ptm_scf'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
-
-								<?php // ================= Define the custom field key
-								pis_form_input_text(
-									esc_html__( 'Get posts with this custom field key', 'posts-in-sidebar' ),
-									$this->get_field_id( 's_custom_field_key' ),
-									$this->get_field_name( 's_custom_field_key' ),
-									esc_attr( $instance['s_custom_field_key'] ),
-									'custom_field_key'
-								); ?>
-
-								<?php // ================= Type of the taxonomy
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => ''
-									),
-								);
-								$args = array(
-									'public' => true,
-								);
-								$registered_taxonomies = get_taxonomies( $args, 'object' );
-								foreach ( $registered_taxonomies as $registered_taxonomy ) {
-									$options[] = array(
-										'value' => $registered_taxonomy->name,
-										'desc'  => $registered_taxonomy->labels->singular_name
-									);
-								}
-								pis_form_select(
-									esc_html__( 'Type of the taxonomy', 'posts-in-sidebar' ),
-									$this->get_field_id( 's_custom_field_tax' ),
-									$this->get_field_name( 's_custom_field_tax' ),
-									$options,
-									$instance['s_custom_field_tax']
-								); ?>
-
 							</div>
 
-							<div class="pis-column">
+						</div>
+
+						<h6 data-panel="get-posts-current-cf" class="pis-widget-title"><?php esc_html_e( 'Get posts from taxonomy using custom field', 'posts-in-sidebar' ); ?></h6>
+
+						<div class="pis-container">
+
+							<div class="pis-column-container">
+
+								<div class="pis-column">
+
+									<?php // ================= Get posts from category/tags using custom field when on single post
+									pis_form_checkbox( esc_html__( 'When on single posts, get posts from this custom field', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_custom_fld' ),
+										$this->get_field_name( 'get_from_custom_fld' ),
+										checked( $get_from_custom_fld, true, false ),
+										sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									);
+									?>
+
+									<?php // ================= Post types from same custom field
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
+
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_same_cf' ),
+										$this->get_field_name( 'post_type_same_cf' ),
+										$options,
+										$instance['post_type_same_cf'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Multiple post types in same custom field
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_scf' ),
+										$this->get_field_name( 'ptm_scf' ),
+										esc_attr( $instance['ptm_scf'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
+
+									<?php // ================= Define the custom field key
+									pis_form_input_text(
+										esc_html__( 'Get posts with this custom field key', 'posts-in-sidebar' ),
+										$this->get_field_id( 's_custom_field_key' ),
+										$this->get_field_name( 's_custom_field_key' ),
+										esc_attr( $instance['s_custom_field_key'] ),
+										'custom_field_key'
+									); ?>
+
+									<?php // ================= Type of the taxonomy
+									$options = array(
+										'empty' => array(
+											'value' => '',
+											'desc'  => ''
+										),
+									);
+									$args = array(
+										'public' => true,
+									);
+									$registered_taxonomies = get_taxonomies( $args, 'object' );
+									foreach ( $registered_taxonomies as $registered_taxonomy ) {
+										$options[] = array(
+											'value' => $registered_taxonomy->name,
+											'desc'  => $registered_taxonomy->labels->singular_name
+										);
+									}
+									pis_form_select(
+										esc_html__( 'Type of the taxonomy', 'posts-in-sidebar' ),
+										$this->get_field_id( 's_custom_field_tax' ),
+										$this->get_field_name( 's_custom_field_tax' ),
+										$options,
+										$instance['s_custom_field_tax']
+									); ?>
+
+								</div>
+
+								<div class="pis-column">
 
 								<?php // ================= Posts quantity
 								pis_form_input_text(
@@ -2911,9 +2919,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							</div>
 
-						</div>
+							</div>
 
-						<hr>
+						</div>
 
 						<div class="pis-column-container">
 
@@ -2940,563 +2948,569 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p><em><?php printf( esc_html__( 'In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all toghether.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' ); ?></em></p>
 
-						<div class="pis-column-container">
+						<h6 data-panel="get-posts-category-archive-page" class="pis-widget-title"><?php esc_html_e( 'Get posts from current category archive page', 'posts-in-sidebar' ); ?></h6>
 
-							<h5><?php esc_html_e( 'Get posts from current category archive page', 'posts-in-sidebar' ); ?></h5>
+						<div class="pis-container">
 
-							<div class="pis-column">
+							<div class="pis-column-container">
 
-								<?php // ================= Get posts from same category
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category archive page', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_cat_page' ),
-									$this->get_field_name( 'get_from_cat_page' ),
-									checked( $get_from_cat_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
+								<div class="pis-column">
 
-								<?php // ================= Post types from same category archive page
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
+									<?php // ================= Get posts from same category
+									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category archive page', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_cat_page' ),
+										$this->get_field_name( 'get_from_cat_page' ),
+										checked( $get_from_cat_page, true, false ),
+										esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
-								}
+									?>
 
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_cat_page' ),
-									$this->get_field_name( 'post_type_cat_page' ),
-									$options,
-									$instance['post_type_cat_page'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
+									<?php // ================= Post types from same category archive page
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
 
-								<?php // ================= Multiple post types in same category archive page
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_scp' ),
-									$this->get_field_name( 'ptm_scp' ),
-									esc_attr( $instance['ptm_scp'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_cat_page' ),
+										$this->get_field_name( 'post_type_cat_page' ),
+										$options,
+										$instance['post_type_cat_page'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
 
-							</div>
+									<?php // ================= Multiple post types in same category archive page
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_scp' ),
+										$this->get_field_name( 'ptm_scp' ),
+										esc_attr( $instance['ptm_scp'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
 
-							<div class="pis-column">
+								</div>
 
-								<?php // ================= Posts quantity
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'number_cat_page' ),
-									$this->get_field_name( 'number_cat_page' ),
-									esc_attr( $instance['number_cat_page'] ),
-									'3',
-									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+								<div class="pis-column">
 
-								<?php // ================= Offset
-								pis_form_input_text(
-									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'offset_cat_page' ),
-									$this->get_field_name( 'offset_cat_page' ),
-									esc_attr( $instance['offset_cat_page'] ),
-									'10',
-									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+									<?php // ================= Posts quantity
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'number_cat_page' ),
+										$this->get_field_name( 'number_cat_page' ),
+										esc_attr( $instance['number_cat_page'] ),
+										'3',
+										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= The custom widget title when on single posts
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id( 'title_cat_page' ),
-									$this->get_field_name( 'title_cat_page' ),
-									esc_attr( $instance['title_cat_page'] ),
-									esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
-								); ?>
+									<?php // ================= Offset
+									pis_form_input_text(
+										esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'offset_cat_page' ),
+										$this->get_field_name( 'offset_cat_page' ),
+										esc_attr( $instance['offset_cat_page'] ),
+										'10',
+										sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= Post order by
-								$options = array(
-									'none' => array(
-										'value' => 'none',
-										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
-									),
-									'id' => array(
-										'value' => 'id',
-										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
-									),
-									'author' => array(
-										'value' => 'author',
-										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
-									),
-									'title' => array(
-										'value' => 'title',
-										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
-									),
-									'name' => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
-									),
-									'type' => array(
-										'value' => 'type',
-										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
-									),
-									'date' => array(
-										'value' => 'date',
-										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
-									),
-									'modified' => array(
-										'value' => 'modified',
-										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
-									),
-									'parent' => array(
-										'value' => 'parent',
-										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
-									),
-									'rand' => array(
-										'value' => 'rand',
-										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
-									),
-									'comment_count' => array(
-										'value' => 'comment_count',
-										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
-									),
-									'menu_order' => array(
-										'value' => 'menu_order',
-										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
-									),
-									'meta_value' => array(
-										'value' => 'meta_value',
-										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
-									),
-									'meta_value_num' => array(
-										'value' => 'meta_value_num',
-										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
-									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
-									),
-									'post_parent__in' => array(
-										'value' => 'post_parent__in',
-										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id( 'orderby_cat_page' ),
-									$this->get_field_name( 'orderby_cat_page' ),
-									$options,
-									$instance['orderby_cat_page']
-								); ?>
+									<?php // ================= The custom widget title when on single posts
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+										$this->get_field_id( 'title_cat_page' ),
+										$this->get_field_name( 'title_cat_page' ),
+										esc_attr( $instance['title_cat_page'] ),
+										esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
+										sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									); ?>
 
-								<?php // ================= Post order
-								$options = array(
-									'asc' => array(
-										'value' => 'ASC',
-										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
-									),
-									'desc' => array(
-										'value' => 'DESC',
-										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id( 'order_cat_page' ),
-									$this->get_field_name( 'order_cat_page' ),
-									$options,
-									$instance['order_cat_page']
-								); ?>
+									<?php // ================= Post order by
+									$options = array(
+										'none' => array(
+											'value' => 'none',
+											'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+										),
+										'id' => array(
+											'value' => 'id',
+											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+										),
+										'author' => array(
+											'value' => 'author',
+											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+										),
+										'title' => array(
+											'value' => 'title',
+											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+										),
+										'name' => array(
+											'value' => 'name',
+											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+										),
+										'type' => array(
+											'value' => 'type',
+											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+										),
+										'date' => array(
+											'value' => 'date',
+											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+										),
+										'modified' => array(
+											'value' => 'modified',
+											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+										),
+										'parent' => array(
+											'value' => 'parent',
+											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+										),
+										'rand' => array(
+											'value' => 'rand',
+											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+										),
+										'comment_count' => array(
+											'value' => 'comment_count',
+											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+										),
+										'menu_order' => array(
+											'value' => 'menu_order',
+											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+										),
+										'meta_value' => array(
+											'value' => 'meta_value',
+											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+										),
+										'meta_value_num' => array(
+											'value' => 'meta_value_num',
+											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+										),
+										'post__in' => array(
+											'value' => 'post__in',
+											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+										),
+										'post_parent__in' => array(
+											'value' => 'post_parent__in',
+											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+										$this->get_field_id( 'orderby_cat_page' ),
+										$this->get_field_name( 'orderby_cat_page' ),
+										$options,
+										$instance['orderby_cat_page']
+									); ?>
+
+									<?php // ================= Post order
+									$options = array(
+										'asc' => array(
+											'value' => 'ASC',
+											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+										),
+										'desc' => array(
+											'value' => 'DESC',
+											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'The order will be', 'posts-in-sidebar' ),
+										$this->get_field_id( 'order_cat_page' ),
+										$this->get_field_name( 'order_cat_page' ),
+										$options,
+										$instance['order_cat_page']
+									); ?>
+
+								</div>
 
 							</div>
 
 						</div>
 
-						<hr>
+						<h6 data-panel="get-posts-tag-archive-page" class="pis-widget-title"><?php esc_html_e( 'Get posts from current tag archive page', 'posts-in-sidebar' ); ?></h6>
 
-						<div class="pis-column-container">
+						<div class="pis-container">
 
-							<h5><?php esc_html_e( 'Get posts from current tag archive page', 'posts-in-sidebar' ); ?></h5>
+							<div class="pis-column-container">
 
-							<div class="pis-column">
+								<div class="pis-column">
 
-								<?php // ================= Get posts from same tag
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag archive page', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_tag_page' ),
-									$this->get_field_name( 'get_from_tag_page' ),
-									checked( $get_from_tag_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php // ================= Post types from same tag archive page
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
+									<?php // ================= Get posts from same tag
+									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag archive page', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_tag_page' ),
+										$this->get_field_name( 'get_from_tag_page' ),
+										checked( $get_from_tag_page, true, false ),
+										esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
-								}
+									?>
 
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_tag_page' ),
-									$this->get_field_name( 'post_type_tag_page' ),
-									$options,
-									$instance['post_type_tag_page'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
+									<?php // ================= Post types from same tag archive page
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
 
-								<?php // ================= Multiple post types in same tag archive page
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_stp' ),
-									$this->get_field_name( 'ptm_stp' ),
-									esc_attr( $instance['ptm_stp'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_tag_page' ),
+										$this->get_field_name( 'post_type_tag_page' ),
+										$options,
+										$instance['post_type_tag_page'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
 
-							</div>
+									<?php // ================= Multiple post types in same tag archive page
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_stp' ),
+										$this->get_field_name( 'ptm_stp' ),
+										esc_attr( $instance['ptm_stp'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
 
-							<div class="pis-column">
+								</div>
 
-								<?php // ================= Posts quantity
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'number_tag_page' ),
-									$this->get_field_name( 'number_tag_page' ),
-									esc_attr( $instance['number_tag_page'] ),
-									'3',
-									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+								<div class="pis-column">
 
-								<?php // ================= Offset
-								pis_form_input_text(
-									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'offset_tag_page' ),
-									$this->get_field_name( 'offset_tag_page' ),
-									esc_attr( $instance['offset_tag_page'] ),
-									'10',
-									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+									<?php // ================= Posts quantity
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'number_tag_page' ),
+										$this->get_field_name( 'number_tag_page' ),
+										esc_attr( $instance['number_tag_page'] ),
+										'3',
+										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= The custom widget title when on single posts
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id( 'title_tag_page' ),
-									$this->get_field_name( 'title_tag_page' ),
-									esc_attr( $instance['title_tag_page'] ),
-									esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
-								); ?>
+									<?php // ================= Offset
+									pis_form_input_text(
+										esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'offset_tag_page' ),
+										$this->get_field_name( 'offset_tag_page' ),
+										esc_attr( $instance['offset_tag_page'] ),
+										'10',
+										sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= Post order by
-								$options = array(
-									'none' => array(
-										'value' => 'none',
-										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
-									),
-									'id' => array(
-										'value' => 'id',
-										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
-									),
-									'author' => array(
-										'value' => 'author',
-										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
-									),
-									'title' => array(
-										'value' => 'title',
-										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
-									),
-									'name' => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
-									),
-									'type' => array(
-										'value' => 'type',
-										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
-									),
-									'date' => array(
-										'value' => 'date',
-										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
-									),
-									'modified' => array(
-										'value' => 'modified',
-										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
-									),
-									'parent' => array(
-										'value' => 'parent',
-										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
-									),
-									'rand' => array(
-										'value' => 'rand',
-										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
-									),
-									'comment_count' => array(
-										'value' => 'comment_count',
-										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
-									),
-									'menu_order' => array(
-										'value' => 'menu_order',
-										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
-									),
-									'meta_value' => array(
-										'value' => 'meta_value',
-										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
-									),
-									'meta_value_num' => array(
-										'value' => 'meta_value_num',
-										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
-									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
-									),
-									'post_parent__in' => array(
-										'value' => 'post_parent__in',
-										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id( 'orderby_tag_page' ),
-									$this->get_field_name( 'orderby_tag_page' ),
-									$options,
-									$instance['orderby_tag_page']
-								); ?>
+									<?php // ================= The custom widget title when on single posts
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+										$this->get_field_id( 'title_tag_page' ),
+										$this->get_field_name( 'title_tag_page' ),
+										esc_attr( $instance['title_tag_page'] ),
+										esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
+										sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									); ?>
 
-								<?php // ================= Post order
-								$options = array(
-									'asc' => array(
-										'value' => 'ASC',
-										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
-									),
-									'desc' => array(
-										'value' => 'DESC',
-										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id( 'order_tag_page' ),
-									$this->get_field_name( 'order_tag_page' ),
-									$options,
-									$instance['order_tag_page']
-								); ?>
+									<?php // ================= Post order by
+									$options = array(
+										'none' => array(
+											'value' => 'none',
+											'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+										),
+										'id' => array(
+											'value' => 'id',
+											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+										),
+										'author' => array(
+											'value' => 'author',
+											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+										),
+										'title' => array(
+											'value' => 'title',
+											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+										),
+										'name' => array(
+											'value' => 'name',
+											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+										),
+										'type' => array(
+											'value' => 'type',
+											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+										),
+										'date' => array(
+											'value' => 'date',
+											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+										),
+										'modified' => array(
+											'value' => 'modified',
+											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+										),
+										'parent' => array(
+											'value' => 'parent',
+											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+										),
+										'rand' => array(
+											'value' => 'rand',
+											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+										),
+										'comment_count' => array(
+											'value' => 'comment_count',
+											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+										),
+										'menu_order' => array(
+											'value' => 'menu_order',
+											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+										),
+										'meta_value' => array(
+											'value' => 'meta_value',
+											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+										),
+										'meta_value_num' => array(
+											'value' => 'meta_value_num',
+											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+										),
+										'post__in' => array(
+											'value' => 'post__in',
+											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+										),
+										'post_parent__in' => array(
+											'value' => 'post_parent__in',
+											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+										$this->get_field_id( 'orderby_tag_page' ),
+										$this->get_field_name( 'orderby_tag_page' ),
+										$options,
+										$instance['orderby_tag_page']
+									); ?>
+
+									<?php // ================= Post order
+									$options = array(
+										'asc' => array(
+											'value' => 'ASC',
+											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+										),
+										'desc' => array(
+											'value' => 'DESC',
+											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'The order will be', 'posts-in-sidebar' ),
+										$this->get_field_id( 'order_tag_page' ),
+										$this->get_field_name( 'order_tag_page' ),
+										$options,
+										$instance['order_tag_page']
+									); ?>
+
+								</div>
 
 							</div>
 
 						</div>
 
-						<hr>
+						<h6 data-panel="get-posts-author-archive-page" class="pis-widget-title"><?php esc_html_e( 'Get posts from current author archive page', 'posts-in-sidebar' ); ?></h6>
 
-						<div class="pis-column-container">
+						<div class="pis-container">
 
-							<h5><?php esc_html_e( 'Get posts from current author archive page', 'posts-in-sidebar' ); ?></h5>
+							<div class="pis-column-container">
 
-							<div class="pis-column">
+								<div class="pis-column">
 
-								<?php // ================= Get posts from same author
-								pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author archive page', 'posts-in-sidebar' ),
-									$this->get_field_id( 'get_from_author_page' ),
-									$this->get_field_name( 'get_from_author_page' ),
-									checked( $get_from_author_page, true, false ),
-									esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php // ================= Post types from same author archive page
-								$args = array(
-									'public' => true,
-								);
-								$post_types = (array) get_post_types( $args, 'objects', 'and' );
-								$options = array(
-									array(
-										'value' => 'any',
-										'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-									)
-								);
-								foreach ( $post_types as $post_type ) {
-									$options[] = array(
-										'value' => $post_type->name,
-										'desc'  => $post_type->labels->singular_name,
+									<?php // ================= Get posts from same author
+									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author archive page', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_author_page' ),
+										$this->get_field_name( 'get_from_author_page' ),
+										checked( $get_from_author_page, true, false ),
+										esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
-								}
+									?>
 
-								pis_form_select(
-									esc_html__( 'Post type', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_type_author_page' ),
-									$this->get_field_name( 'post_type_author_page' ),
-									$options,
-									$instance['post_type_author_page'],
-									esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-								); ?>
+									<?php // ================= Post types from same author archive page
+									$args = array(
+										'public' => true,
+									);
+									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$options = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										)
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
 
-								<?php // ================= Multiple post types in same author archive page
-								pis_form_input_text(
-									esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-									$this->get_field_id( 'ptm_sap' ),
-									$this->get_field_name( 'ptm_sap' ),
-									esc_attr( $instance['ptm_sap'] ),
-									esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-									esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-								); ?>
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_author_page' ),
+										$this->get_field_name( 'post_type_author_page' ),
+										$options,
+										$instance['post_type_author_page'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									); ?>
 
-							</div>
+									<?php // ================= Multiple post types in same author archive page
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_sap' ),
+										$this->get_field_name( 'ptm_sap' ),
+										esc_attr( $instance['ptm_sap'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									); ?>
 
-							<div class="pis-column">
+								</div>
 
-								<?php // ================= Posts quantity
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'number_author_page' ),
-									$this->get_field_name( 'number_author_page' ),
-									esc_attr( $instance['number_author_page'] ),
-									'3',
-									sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+								<div class="pis-column">
 
-								<?php // ================= Offset
-								pis_form_input_text(
-									esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
-									$this->get_field_id( 'offset_author_page' ),
-									$this->get_field_name( 'offset_author_page' ),
-									esc_attr( $instance['offset_author_page'] ),
-									'10',
-									sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
-								); ?>
+									<?php // ================= Posts quantity
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'number_author_page' ),
+										$this->get_field_name( 'number_author_page' ),
+										esc_attr( $instance['number_author_page'] ),
+										'3',
+										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= The custom widget title when on single posts
-								pis_form_input_text(
-									esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
-									$this->get_field_id( 'title_author_page' ),
-									$this->get_field_name( 'title_author_page' ),
-									esc_attr( $instance['title_author_page'] ),
-									esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
-									sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
-								); ?>
+									<?php // ================= Offset
+									pis_form_input_text(
+										esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'offset_author_page' ),
+										$this->get_field_name( 'offset_author_page' ),
+										esc_attr( $instance['offset_author_page'] ),
+										'10',
+										sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									); ?>
 
-								<?php // ================= Post order by
-								$options = array(
-									'none' => array(
-										'value' => 'none',
-										'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
-									),
-									'id' => array(
-										'value' => 'id',
-										'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
-									),
-									'author' => array(
-										'value' => 'author',
-										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
-									),
-									'title' => array(
-										'value' => 'title',
-										'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
-									),
-									'name' => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
-									),
-									'type' => array(
-										'value' => 'type',
-										'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
-									),
-									'date' => array(
-										'value' => 'date',
-										'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
-									),
-									'modified' => array(
-										'value' => 'modified',
-										'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
-									),
-									'parent' => array(
-										'value' => 'parent',
-										'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
-									),
-									'rand' => array(
-										'value' => 'rand',
-										'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
-									),
-									'comment_count' => array(
-										'value' => 'comment_count',
-										'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
-									),
-									'menu_order' => array(
-										'value' => 'menu_order',
-										'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
-									),
-									'meta_value' => array(
-										'value' => 'meta_value',
-										'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
-									),
-									'meta_value_num' => array(
-										'value' => 'meta_value_num',
-										'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
-									),
-									'post__in' => array(
-										'value' => 'post__in',
-										'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
-									),
-									'post_parent__in' => array(
-										'value' => 'post_parent__in',
-										'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'Order posts by', 'posts-in-sidebar' ),
-									$this->get_field_id( 'orderby_author_page' ),
-									$this->get_field_name( 'orderby_author_page' ),
-									$options,
-									$instance['orderby_author_page']
-								); ?>
+									<?php // ================= The custom widget title when on single posts
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+										$this->get_field_id( 'title_author_page' ),
+										$this->get_field_name( 'title_author_page' ),
+										esc_attr( $instance['title_author_page'] ),
+										esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
+										sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									); ?>
 
-								<?php // ================= Post order
-								$options = array(
-									'asc' => array(
-										'value' => 'ASC',
-										'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
-									),
-									'desc' => array(
-										'value' => 'DESC',
-										'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
-									),
-								);
-								pis_form_select(
-									esc_html__( 'The order will be', 'posts-in-sidebar' ),
-									$this->get_field_id( 'order_author_page' ),
-									$this->get_field_name( 'order_author_page' ),
-									$options,
-									$instance['order_author_page']
-								); ?>
+									<?php // ================= Post order by
+									$options = array(
+										'none' => array(
+											'value' => 'none',
+											'desc'  => esc_html__( 'None', 'posts-in-sidebar' )
+										),
+										'id' => array(
+											'value' => 'id',
+											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' )
+										),
+										'author' => array(
+											'value' => 'author',
+											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' )
+										),
+										'title' => array(
+											'value' => 'title',
+											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' )
+										),
+										'name' => array(
+											'value' => 'name',
+											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' )
+										),
+										'type' => array(
+											'value' => 'type',
+											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' )
+										),
+										'date' => array(
+											'value' => 'date',
+											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' )
+										),
+										'modified' => array(
+											'value' => 'modified',
+											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' )
+										),
+										'parent' => array(
+											'value' => 'parent',
+											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' )
+										),
+										'rand' => array(
+											'value' => 'rand',
+											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' )
+										),
+										'comment_count' => array(
+											'value' => 'comment_count',
+											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' )
+										),
+										'menu_order' => array(
+											'value' => 'menu_order',
+											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' )
+										),
+										'meta_value' => array(
+											'value' => 'meta_value',
+											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' )
+										),
+										'meta_value_num' => array(
+											'value' => 'meta_value_num',
+											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' )
+										),
+										'post__in' => array(
+											'value' => 'post__in',
+											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' )
+										),
+										'post_parent__in' => array(
+											'value' => 'post_parent__in',
+											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+										$this->get_field_id( 'orderby_author_page' ),
+										$this->get_field_name( 'orderby_author_page' ),
+										$options,
+										$instance['orderby_author_page']
+									); ?>
+
+									<?php // ================= Post order
+									$options = array(
+										'asc' => array(
+											'value' => 'ASC',
+											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' )
+										),
+										'desc' => array(
+											'value' => 'DESC',
+											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' )
+										),
+									);
+									pis_form_select(
+										esc_html__( 'The order will be', 'posts-in-sidebar' ),
+										$this->get_field_id( 'order_author_page' ),
+										$this->get_field_name( 'order_author_page' ),
+										$options,
+										$instance['order_author_page']
+									); ?>
+
+								</div>
 
 							</div>
 
 						</div>
-
-						<hr>
 
 						<div class="pis-column-container">
 

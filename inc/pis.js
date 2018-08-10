@@ -17,11 +17,16 @@ var pis_namespace = {
 		jQuery( element ).toggleClass( 'open' ).next().stop().slideToggle();
 		// Get the data-panel attribute, for example "custom-taxonomy-query"
 		var panel = element.getAttribute( 'data-panel' );
-		// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in parent panels
+		// 1st LEVEL PANELS: Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8"
 		var id = jQuery( element ).parent().parent().parent().parent().parent().attr( 'id' );
-		// Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8", in child panels
-		if ( id === undefined )
+		// 2nd LEVEL (CHILD) PANELS: Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8"
+		if ( id === undefined ) {
 			var id = jQuery( element ).parent().parent().parent().parent().parent().parent().parent().attr( 'id' );
+		}
+		// 3rd LEVEL (CHILD) PANELS: Get the id of the widget, for example "widget-32_pis_posts_in_sidebar-8"
+		if ( id === undefined ) {
+			var id = jQuery( element ).parent().parent().parent().parent().parent().parent().parent().parent().attr( 'id' );
+		}
 		var o = {};
 		if ( this.open_panels.hasOwnProperty( id ) ) {
 			o = this.open_panels[id];

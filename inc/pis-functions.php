@@ -1683,7 +1683,7 @@ function pis_remove_dashes( $string = '' ) {
 }
 
 /**
- * Sanitize entered values making these checks:
+ * Normalize entered values making these checks:
  * 1) transform any comma and space (in any number) into one comma + space (, );
  * 2) if $string contains numbers, the numbers can be converted into positive, non-decimal values.
  *
@@ -1691,7 +1691,7 @@ function pis_remove_dashes( $string = '' ) {
  * @param bool   $absint If $string contains number to be converted into positive non-decimal values.
  * @since 4.7.0
  */
-function pis_sanitize_values( $string = '', $absint = false ) {
+function pis_normalize_values( $string = '', $absint = false ) {
 	$string = preg_replace( '([\s,]+)', ', ', $string );
 
 	if ( $absint ) {

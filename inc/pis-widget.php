@@ -819,7 +819,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts retrieving
 		$instance['post_type']           = $new_instance['post_type'];
-		$instance['post_type_multiple']  = pis_sanitize_values( strip_tags( $new_instance['post_type_multiple'] ) );
+		$instance['post_type_multiple']  = pis_normalize_values( strip_tags( $new_instance['post_type_multiple'] ) );
 			/*
 			 * Check post types entered.
 			 * The function removes any post type that has not been defined.
@@ -828,7 +828,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( ! empty( $instance['post_type_multiple'] ) ) {
 				$instance['post_type_multiple'] = pis_check_post_types( $instance['post_type_multiple'] );
 			}
-		$instance['posts_id']            = pis_sanitize_values( strip_tags( $new_instance['posts_id'] ), true );
+		$instance['posts_id']            = pis_normalize_values( strip_tags( $new_instance['posts_id'] ), true );
 			if ( 0 == $instance['posts_id'] ) $instance['posts_id'] = '';
 		/*
 		 * For historical reasons (for example, see version 1.18 of this plugin),
@@ -842,16 +842,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		$instance['author']              = $new_instance['author'];
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
-		$instance['author_in']           = pis_sanitize_values( strip_tags( $new_instance['author_in'] ), true );
+		$instance['author_in']           = pis_normalize_values( strip_tags( $new_instance['author_in'] ), true );
 			if ( 0 == $instance['author_in'] ) $instance['author_in'] = '';
 			// Make $author empty if $author_in is not empty.
 			if ( ! empty( $instance['author_in'] ) ) $instance['author'] = '';
 		$instance['posts_by_comments']   = isset( $new_instance['posts_by_comments'] ) ? 1 : 0;
-		$instance['cat']                 = pis_sanitize_values( strip_tags( $new_instance['cat'] ) );
+		$instance['cat']                 = pis_normalize_values( strip_tags( $new_instance['cat'] ) );
 			if ( 'NULL' == $instance['cat'] ) $instance['cat'] = '';
-		$instance['tag']                 = pis_sanitize_values( strip_tags( $new_instance['tag'] ) );
+		$instance['tag']                 = pis_normalize_values( strip_tags( $new_instance['tag'] ) );
 			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
-		$instance['post_parent_in']      = pis_sanitize_values( strip_tags( $new_instance['post_parent_in'] ), true );
+		$instance['post_parent_in']      = pis_normalize_values( strip_tags( $new_instance['post_parent_in'] ), true );
 			if ( 0 == $instance['post_parent_in'] ) $instance['post_parent_in'] = '';
 		$instance['post_format']         = $new_instance['post_format'];
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
@@ -984,24 +984,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		$instance['taxonomy_aa']         = strip_tags( $new_instance['taxonomy_aa'] );
 		$instance['field_aa']            = $new_instance['field_aa'];
-		$instance['terms_aa']            = pis_sanitize_values( strip_tags( $new_instance['terms_aa'] ) );
+		$instance['terms_aa']            = pis_normalize_values( strip_tags( $new_instance['terms_aa'] ) );
 		$instance['operator_aa']         = $new_instance['operator_aa'];
 
 		$instance['relation_a']          = $new_instance['relation_a'];
 
 		$instance['taxonomy_ab']         = strip_tags( $new_instance['taxonomy_ab'] );
 		$instance['field_ab']            = $new_instance['field_ab'];
-		$instance['terms_ab']            = pis_sanitize_values( strip_tags( $new_instance['terms_ab'] ) );
+		$instance['terms_ab']            = pis_normalize_values( strip_tags( $new_instance['terms_ab'] ) );
 		$instance['operator_ab']         = $new_instance['operator_ab'];
 
 		$instance['taxonomy_ba']         = strip_tags( $new_instance['taxonomy_ba'] );
 		$instance['field_ba']            = $new_instance['field_ba'];
-		$instance['terms_ba']            = pis_sanitize_values( strip_tags( $new_instance['terms_ba'] ) );
+		$instance['terms_ba']            = pis_normalize_values( strip_tags( $new_instance['terms_ba'] ) );
 		$instance['operator_ba']         = $new_instance['operator_ba'];
 
 		$instance['relation_b']          = $new_instance['relation_b'];
 
-		$instance['taxonomy_bb']         = pis_sanitize_values( strip_tags( $new_instance['taxonomy_bb'] ) );
+		$instance['taxonomy_bb']         = pis_normalize_values( strip_tags( $new_instance['taxonomy_bb'] ) );
 		$instance['field_bb']            = $new_instance['field_bb'];
 		$instance['terms_bb']            = strip_tags( $new_instance['terms_bb'] );
 		$instance['operator_bb']         = $new_instance['operator_bb'];
@@ -1048,39 +1048,39 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['mq_relation']   = $new_instance['mq_relation'];
 
 		$instance['mq_key_aa']     = $new_instance['mq_key_aa'];
-		$instance['mq_value_aa']   = pis_sanitize_values( strip_tags( $new_instance['mq_value_aa'] ) );
+		$instance['mq_value_aa']   = pis_normalize_values( strip_tags( $new_instance['mq_value_aa'] ) );
 		$instance['mq_compare_aa'] = $new_instance['mq_compare_aa'];
 		$instance['mq_type_aa']    = $new_instance['mq_type_aa'];
 
 		$instance['mq_relation_a'] = $new_instance['mq_relation_a'];
 
 		$instance['mq_key_ab']     = $new_instance['mq_key_ab'];
-		$instance['mq_value_ab']   = pis_sanitize_values( strip_tags( $new_instance['mq_value_ab'] ) );
+		$instance['mq_value_ab']   = pis_normalize_values( strip_tags( $new_instance['mq_value_ab'] ) );
 		$instance['mq_compare_ab'] = $new_instance['mq_compare_ab'];
 		$instance['mq_type_ab']    = $new_instance['mq_type_ab'];
 
 		$instance['mq_key_ba']     = $new_instance['mq_key_ba'];
-		$instance['mq_value_ba']   = pis_sanitize_values( strip_tags( $new_instance['mq_value_ba'] ) );
+		$instance['mq_value_ba']   = pis_normalize_values( strip_tags( $new_instance['mq_value_ba'] ) );
 		$instance['mq_compare_ba'] = $new_instance['mq_compare_ba'];
 		$instance['mq_type_ba']    = $new_instance['mq_type_ba'];
 
 		$instance['mq_relation_b'] = $new_instance['mq_relation_b'];
 
 		$instance['mq_key_bb']     = $new_instance['mq_key_bb'];
-		$instance['mq_value_bb']   = pis_sanitize_values( strip_tags( $new_instance['mq_value_bb'] ) );
+		$instance['mq_value_bb']   = pis_normalize_values( strip_tags( $new_instance['mq_value_bb'] ) );
 		$instance['mq_compare_bb'] = $new_instance['mq_compare_bb'];
 		$instance['mq_type_bb']    = $new_instance['mq_type_bb'];
 
 		// Posts exclusion
-		$instance['author_not_in']       = pis_sanitize_values( strip_tags( $new_instance['author_not_in'] ), true );
+		$instance['author_not_in']       = pis_normalize_values( strip_tags( $new_instance['author_not_in'] ), true );
 			if ( 0 == $instance['author_not_in'] ) $instance['author_not_in'] = '';
-		$instance['cat_not_in']          = pis_sanitize_values( strip_tags( $new_instance['cat_not_in'] ), true );
+		$instance['cat_not_in']          = pis_normalize_values( strip_tags( $new_instance['cat_not_in'] ), true );
 			if ( 0 == $instance['cat_not_in'] ) $instance['cat_not_in'] = '';
-		$instance['tag_not_in']          = pis_sanitize_values( strip_tags( $new_instance['tag_not_in'] ), true );
+		$instance['tag_not_in']          = pis_normalize_values( strip_tags( $new_instance['tag_not_in'] ), true );
 			if ( 0 == $instance['tag_not_in'] ) $instance['tag_not_in'] = '';
-		$instance['post_not_in']         = pis_sanitize_values( strip_tags( $new_instance['post_not_in'] ), true );
+		$instance['post_not_in']         = pis_normalize_values( strip_tags( $new_instance['post_not_in'] ), true );
 			if ( 0 == $instance['post_not_in'] ) $instance['post_not_in'] = '';
-		$instance['post_parent_not_in']  = pis_sanitize_values( strip_tags( $new_instance['post_parent_not_in'] ), true );
+		$instance['post_parent_not_in']  = pis_normalize_values( strip_tags( $new_instance['post_parent_not_in'] ), true );
 			if ( 0 == $instance['post_parent_not_in'] ) $instance['post_parent_not_in'] = '';
 		$instance['exclude_current_post']= isset( $new_instance['exclude_current_post'] ) ? 1 : 0 ;
 

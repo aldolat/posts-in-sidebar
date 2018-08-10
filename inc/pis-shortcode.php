@@ -59,6 +59,8 @@ function pis_shortcode( $atts ) {
 		// 'order_same_cat'      => 'DESC', /* For widget only */
 		// 'offset_same_cat'     => '', /* For widget only */
 		// 'search_same_cat'     => false, /* For widget only */
+		// 'post_type_same_cat'  => 'post',
+		// 'ptm_sc'              => '',
 		/*
 		 * This is the tag of the single post
 		 * where we'll get posts from.
@@ -71,6 +73,8 @@ function pis_shortcode( $atts ) {
 		// 'order_same_tag'      => 'DESC', /* For widget only */
 		// 'offset_same_tag'     => '', /* For widget only */
 		// 'search_same_tag'     => false, /* For widget only */
+		// 'post_type_same_tag'  => 'post',
+		// 'ptm_st'              => '',
 		/*
 		 * This is the author of the single post
 		 * where we'll get posts from.
@@ -82,6 +86,8 @@ function pis_shortcode( $atts ) {
 		// 'order_same_author'   => 'DESC', /* For widget only */
 		// 'offset_same_author'  => '', /* For widget only */
 		// 'search_same_author'  => false, /* For widget only */
+		// 'post_type_same_author'  => 'post',
+		// 'ptm_sa'              => '',
 		/*
 		 * This is the custom field
 		 * to be used when on single post
@@ -95,6 +101,8 @@ function pis_shortcode( $atts ) {
 		// 'order_custom_fld'    => 'DESC', /* For widget only */
 		// 'offset_custom_fld'   => '', /* For widget only */
 		// 'search_same_cf'      => false, /* For widget only */
+		// 'post_type_same_cf'   => 'post',
+		// 'ptm_scf'             => '',
 		/*
 		 * Do not ignore other parameters when changing query on single posts.
 		 */
@@ -109,6 +117,8 @@ function pis_shortcode( $atts ) {
 		//'title_cat_page'    => '', /* For widget only */
 		// 'orderby_cat_page'  => 'date', /* For widget only */
 		// 'order_cat_page'    => 'DESC', /* For widget only */
+		// 'post_type_cat_page'   => 'post',
+		// 'ptm_scp'              => '',
 		/*
 		 * Get posts from the current tag page.
 		 */
@@ -118,6 +128,8 @@ function pis_shortcode( $atts ) {
 		//'title_tag_page'    => '', /* For widget only */
 		// 'orderby_tag_page'  => 'date', /* For widget only */
 		// 'order_tag_page'    => 'DESC', /* For widget only */
+		// 'post_type_tag_page'   => 'post',
+		// 'ptm_stp'              => '',
 		/*
 		 * Get posts from the current author page.
 		 */
@@ -127,6 +139,8 @@ function pis_shortcode( $atts ) {
 		//'title_author_page'    => '', /* For widget only */
 		// 'orderby_author_page'  => 'date', /* For widget only */
 		// 'order_author_page'    => 'DESC', /* For widget only */
+		// 'post_type_author_page'   => 'post',
+		// 'ptm_sap'                 => '',
 		/*
 		 * Do not ignore other parameters when changing query on archive pages.
 		 */

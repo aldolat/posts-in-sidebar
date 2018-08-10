@@ -10,8 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Added new option to filter posts in the same taxonomy/author/custom field by searching for the title of the main post.
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
 * Added new options when changing the query in single posts or in an archive page.
+### Changed
+* Now custom post types are supported when changing query in single posts.
+* Reorganized some sub-panels and added colors in panel titles.
 ### Removed
 * Removed old comment for HTML in widget introduction.
+### Security
+* Hardened security.
 
 ## [4.6.0] - 2018-07-01
 ### Added

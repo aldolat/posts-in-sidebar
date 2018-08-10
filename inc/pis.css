@@ -75,6 +75,21 @@ h5.pis-widget-title:hover {
 h6.pis-widget-title:hover {
 	border-color: #7f7b89;
 }
+h4.pis-widget-title + .pis-container {
+	border-left: 1px solid #cee7a5;
+	border-right: 1px solid #cee7a5;
+	border-bottom: 1px solid #cee7a5;
+}
+h5.pis-widget-title + .pis-container {
+	border-left: 1px solid #bfe7f4;
+	border-right: 1px solid #bfe7f4;
+	border-bottom: 1px solid #bfe7f4;
+}
+h6.pis-widget-title + .pis-container {
+	border-left: 1px solid #cdc5e1;
+	border-right: 1px solid #cdc5e1;
+	border-bottom: 1px solid #cdc5e1;
+}
 .pis-title-center {
 	text-align: center;
 }

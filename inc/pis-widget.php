@@ -818,7 +818,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['intro'] = wp_kses_post( $new_instance['intro'] );
 
 		// Posts retrieving
-		$instance['post_type']           = $new_instance['post_type'];
+		$instance['post_type']           = strip_tags( $new_instance['post_type'] );
 		$instance['post_type_multiple']  = pis_normalize_values( strip_tags( $new_instance['post_type_multiple'] ) );
 			/*
 			 * Check post types entered.
@@ -840,7 +840,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 *
 		 * @since 1.28
 		 */
-		$instance['author']              = $new_instance['author'];
+		$instance['author']              = strip_tags( $new_instance['author'] );
 			if ( 'NULL' == $instance['author'] ) $instance['author'] = '';
 		$instance['author_in']           = pis_normalize_values( strip_tags( $new_instance['author_in'] ), true );
 			if ( 0 == $instance['author_in'] ) $instance['author_in'] = '';
@@ -853,20 +853,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			if ( 'NULL' == $instance['tag'] ) $instance['tag'] = '';
 		$instance['post_parent_in']      = pis_normalize_values( strip_tags( $new_instance['post_parent_in'] ), true );
 			if ( 0 == $instance['post_parent_in'] ) $instance['post_parent_in'] = '';
-		$instance['post_format']         = $new_instance['post_format'];
+		$instance['post_format']         = strip_tags( $new_instance['post_format'] );
 		$instance['number']              = intval( strip_tags( $new_instance['number'] ) );
 			if ( 0 == $instance['number'] || ! is_numeric( $instance['number'] ) ) $instance['number'] = get_option( 'posts_per_page' );
-		$instance['orderby']             = $new_instance['orderby'];
-		$instance['order']               = $new_instance['order'];
+		$instance['orderby']             = strip_tags( $new_instance['orderby'] );
+		$instance['order']               = strip_tags( $new_instance['order'] );
 		$instance['offset_number']       = absint( strip_tags( $new_instance['offset_number'] ) );
 			if ( 0 == $instance['offset_number'] || ! is_numeric( $instance['offset_number'] ) ) $instance['offset_number'] = '';
-		$instance['post_status']         = $new_instance['post_status'];
+		$instance['post_status']         = strip_tags( $new_instance['post_status'] );
 		$instance['post_meta_key']       = strip_tags( $new_instance['post_meta_key'] );
 		$instance['post_meta_val']       = strip_tags( $new_instance['post_meta_val'] );
 		$instance['search']              = strip_tags( $new_instance['search'] );
 			if ( '' == $instance['search'] ) $instance['search'] = NULL;
-		$instance['has_password']        = $new_instance['has_password'];
-		$instance['post_password']       = $new_instance['post_password'];
+		$instance['has_password']        = strip_tags( $new_instance['has_password'] );
+		$instance['post_password']       = strip_tags( $new_instance['post_password'] );
 		$instance['ignore_sticky']       = isset( $new_instance['ignore_sticky'] ) ? 1 : 0;
 
 		$instance['get_from_same_cat']   = isset( $new_instance['get_from_same_cat'] ) ? 1 : 0;
@@ -980,31 +980,31 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
 
 		// Taxonomies
-		$instance['relation']            = $new_instance['relation'];
+		$instance['relation']            = strip_tags( $new_instance['relation'] );
 
 		$instance['taxonomy_aa']         = strip_tags( $new_instance['taxonomy_aa'] );
-		$instance['field_aa']            = $new_instance['field_aa'];
+		$instance['field_aa']            = strip_tags( $new_instance['field_aa'] );
 		$instance['terms_aa']            = pis_normalize_values( strip_tags( $new_instance['terms_aa'] ) );
-		$instance['operator_aa']         = $new_instance['operator_aa'];
+		$instance['operator_aa']         = strip_tags( $new_instance['operator_aa'] );
 
-		$instance['relation_a']          = $new_instance['relation_a'];
+		$instance['relation_a']          = strip_tags( $new_instance['relation_a'] );
 
 		$instance['taxonomy_ab']         = strip_tags( $new_instance['taxonomy_ab'] );
-		$instance['field_ab']            = $new_instance['field_ab'];
+		$instance['field_ab']            = strip_tags( $new_instance['field_ab'] );
 		$instance['terms_ab']            = pis_normalize_values( strip_tags( $new_instance['terms_ab'] ) );
-		$instance['operator_ab']         = $new_instance['operator_ab'];
+		$instance['operator_ab']         = strip_tags( $new_instance['operator_ab'] );
 
 		$instance['taxonomy_ba']         = strip_tags( $new_instance['taxonomy_ba'] );
-		$instance['field_ba']            = $new_instance['field_ba'];
+		$instance['field_ba']            = strip_tags( $new_instance['field_ba'] );
 		$instance['terms_ba']            = pis_normalize_values( strip_tags( $new_instance['terms_ba'] ) );
-		$instance['operator_ba']         = $new_instance['operator_ba'];
+		$instance['operator_ba']         = strip_tags( $new_instance['operator_ba'] );
 
-		$instance['relation_b']          = $new_instance['relation_b'];
+		$instance['relation_b']          = strip_tags( $new_instance['relation_b'] );
 
 		$instance['taxonomy_bb']         = pis_normalize_values( strip_tags( $new_instance['taxonomy_bb'] ) );
-		$instance['field_bb']            = $new_instance['field_bb'];
+		$instance['field_bb']            = strip_tags( $new_instance['field_bb'] );
 		$instance['terms_bb']            = strip_tags( $new_instance['terms_bb'] );
-		$instance['operator_bb']         = $new_instance['operator_bb'];
+		$instance['operator_bb']         = strip_tags( $new_instance['operator_bb'] );
 
 		// Date query
 		$instance['date_year']           = strip_tags( $new_instance['date_year'] );
@@ -1034,42 +1034,42 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['date_before_day']     = strip_tags( $new_instance['date_before_day'] );
 			if ( 1 > $instance['date_before_day'] || 31 < $instance['date_before_day'] || ! is_numeric( $instance['date_before_day'] ) ) $instance['date_before_day'] = '';
 		$instance['date_inclusive']      = isset( $new_instance['date_inclusive'] ) ? 1 : 0 ;
-		$instance['date_column']         = $new_instance['date_column'];
+		$instance['date_column']         = strip_tags( $new_instance['date_column'] );
 		$instance['date_after_dyn_num']  = absint( strip_tags( $new_instance['date_after_dyn_num'] ) );
 			if ( ! is_numeric( $instance['date_after_dyn_num'] ) || 0 == $instance['date_after_dyn_num'] ) $instance['date_after_dyn_num'] = '';
-		$instance['date_after_dyn_date'] = $new_instance['date_after_dyn_date'];
+		$instance['date_after_dyn_date'] = strip_tags( $new_instance['date_after_dyn_date'] );
 			if ( '' == $instance['date_after_dyn_num'] ) $instance['date_after_dyn_date'] = '';
 		$instance['date_before_dyn_num'] = absint( strip_tags( $new_instance['date_before_dyn_num'] ) );
 			if ( ! is_numeric( $instance['date_before_dyn_num'] ) || 0 == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_num'] = '';
-		$instance['date_before_dyn_date']= $new_instance['date_before_dyn_date'];
+		$instance['date_before_dyn_date']= strip_tags( $new_instance['date_before_dyn_date'] );
 			if ( '' == $instance['date_before_dyn_num'] ) $instance['date_before_dyn_date'] = '';
 
 		//Meta query
-		$instance['mq_relation']   = $new_instance['mq_relation'];
+		$instance['mq_relation']   = strip_tags( $new_instance['mq_relation'] );
 
-		$instance['mq_key_aa']     = $new_instance['mq_key_aa'];
+		$instance['mq_key_aa']     = strip_tags( $new_instance['mq_key_aa'] );
 		$instance['mq_value_aa']   = pis_normalize_values( strip_tags( $new_instance['mq_value_aa'] ) );
-		$instance['mq_compare_aa'] = $new_instance['mq_compare_aa'];
-		$instance['mq_type_aa']    = $new_instance['mq_type_aa'];
+		$instance['mq_compare_aa'] = strip_tags( $new_instance['mq_compare_aa'] );
+		$instance['mq_type_aa']    = strip_tags( $new_instance['mq_type_aa'] );
 
-		$instance['mq_relation_a'] = $new_instance['mq_relation_a'];
+		$instance['mq_relation_a'] = strip_tags( $new_instance['mq_relation_a'] );
 
-		$instance['mq_key_ab']     = $new_instance['mq_key_ab'];
+		$instance['mq_key_ab']     = strip_tags( $new_instance['mq_key_ab'] );
 		$instance['mq_value_ab']   = pis_normalize_values( strip_tags( $new_instance['mq_value_ab'] ) );
-		$instance['mq_compare_ab'] = $new_instance['mq_compare_ab'];
-		$instance['mq_type_ab']    = $new_instance['mq_type_ab'];
+		$instance['mq_compare_ab'] = strip_tags( $new_instance['mq_compare_ab'] );
+		$instance['mq_type_ab']    = strip_tags( $new_instance['mq_type_ab'] );
 
-		$instance['mq_key_ba']     = $new_instance['mq_key_ba'];
+		$instance['mq_key_ba']     = strip_tags( $new_instance['mq_key_ba'] );
 		$instance['mq_value_ba']   = pis_normalize_values( strip_tags( $new_instance['mq_value_ba'] ) );
-		$instance['mq_compare_ba'] = $new_instance['mq_compare_ba'];
-		$instance['mq_type_ba']    = $new_instance['mq_type_ba'];
+		$instance['mq_compare_ba'] = strip_tags( $new_instance['mq_compare_ba'] );
+		$instance['mq_type_ba']    = strip_tags( $new_instance['mq_type_ba'] );
 
-		$instance['mq_relation_b'] = $new_instance['mq_relation_b'];
+		$instance['mq_relation_b'] = strip_tags( $new_instance['mq_relation_b'] );
 
-		$instance['mq_key_bb']     = $new_instance['mq_key_bb'];
+		$instance['mq_key_bb']     = strip_tags( $new_instance['mq_key_bb'] );
 		$instance['mq_value_bb']   = pis_normalize_values( strip_tags( $new_instance['mq_value_bb'] ) );
-		$instance['mq_compare_bb'] = $new_instance['mq_compare_bb'];
-		$instance['mq_type_bb']    = $new_instance['mq_type_bb'];
+		$instance['mq_compare_bb'] = strip_tags( $new_instance['mq_compare_bb'] );
+		$instance['mq_type_bb']    = strip_tags( $new_instance['mq_type_bb'] );
 
 		// Posts exclusion
 		$instance['author_not_in']       = pis_normalize_values( strip_tags( $new_instance['author_not_in'] ), true );
@@ -1095,8 +1095,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// The featured image of the post
 		$instance['display_image']       = isset( $new_instance['display_image'] ) ? 1 : 0;
-		$instance['image_size']          = $new_instance['image_size'];
-		$instance['image_align']         = $new_instance['image_align'];
+		$instance['image_size']          = strip_tags( $new_instance['image_size'] );
+		$instance['image_align']         = strip_tags( $new_instance['image_align'] );
 		$instance['image_before_title']  = isset( $new_instance['image_before_title'] ) ? 1 : 0;
 		$instance['image_link']          = esc_url( strip_tags( $new_instance['image_link'] ) );
 		$instance['custom_image_url']    = esc_url( strip_tags( $new_instance['custom_image_url'] ) );
@@ -1104,7 +1104,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['image_link_to_post']  = isset( $new_instance['image_link_to_post'] ) ? 1 : 0;
 
 		// The text of the post
-		$instance['excerpt']             = $new_instance['excerpt'];
+		$instance['excerpt']             = strip_tags( $new_instance['excerpt'] );
 		$instance['exc_length']          = absint( strip_tags( $new_instance['exc_length'] ) );
 			if ( '' == $instance['exc_length'] || ! is_numeric( $instance['exc_length'] ) ) $instance['exc_length'] = 20;
 		$instance['exc_length_unit']     = strip_tags( $new_instance['exc_length_unit'] );
@@ -1119,7 +1119,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['gravatar_display']    = isset( $new_instance['gravatar_display'] ) ? 1 : 0;
 		$instance['gravatar_size']       = strip_tags( $new_instance['gravatar_size'] );
 		$instance['gravatar_default']    = esc_url( $new_instance['gravatar_default'] );
-		$instance['gravatar_position']   = $new_instance['gravatar_position'];
+		$instance['gravatar_position']   = strip_tags( $new_instance['gravatar_position'] );
 		$instance['display_date']        = isset( $new_instance['display_date'] ) ? 1 : 0;
 		$instance['date_text']           = strip_tags( $new_instance['date_text'] );
 		$instance['linkify_date']        = isset( $new_instance['linkify_date'] ) ? 1 : 0;
@@ -1174,7 +1174,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// The link to the archive
 		$instance['archive_link']        = isset( $new_instance['archive_link'] ) ? 1 : 0;
-		$instance['link_to']             = $new_instance['link_to'];
+		$instance['link_to']             = strip_tags( $new_instance['link_to'] );
 		$instance['tax_name']            = strip_tags( $new_instance['tax_name'] );
 		$instance['tax_term_name']       = strip_tags( $new_instance['tax_term_name'] );
 		$instance['archive_text']        = strip_tags( $new_instance['archive_text'] );
@@ -1184,14 +1184,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['hide_widget']         = isset( $new_instance['hide_widget'] ) ? 1 : 0;
 
 		// Styles
-		$instance['margin_unit']         = $new_instance['margin_unit'];
+		$instance['margin_unit']         = strip_tags( $new_instance['margin_unit'] );
 		$instance['intro_margin']        = strip_tags( $new_instance['intro_margin'] );
 			if ( ! is_numeric( $instance['intro_margin'] ) ) $instance['intro_margin'] = NULL;
 		$instance['title_margin']        = strip_tags( $new_instance['title_margin'] );
 			if ( ! is_numeric( $instance['title_margin'] ) ) $instance['title_margin'] = NULL;
-		$instance['side_image_margin']   = $new_instance['side_image_margin'];
+		$instance['side_image_margin']   = strip_tags( $new_instance['side_image_margin'] );
 			if ( ! is_numeric( $instance['side_image_margin'] ) ) $instance['side_image_margin'] = NULL;
-		$instance['bottom_image_margin'] = $new_instance['bottom_image_margin'];
+		$instance['bottom_image_margin'] = strip_tags( $new_instance['bottom_image_margin'] );
 			if ( ! is_numeric( $instance['bottom_image_margin'] ) ) $instance['bottom_image_margin'] = NULL;
 		$instance['excerpt_margin']      = strip_tags( $new_instance['excerpt_margin'] );
 			if ( ! is_numeric( $instance['excerpt_margin'] ) ) $instance['excerpt_margin'] = NULL;
@@ -1213,7 +1213,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Extras
 		$instance['container_class']     = sanitize_html_class( $new_instance['container_class'] );
-		$instance['list_element']        = $new_instance['list_element'];
+		$instance['list_element']        = strip_tags( $new_instance['list_element'] );
 		$instance['remove_bullets']      = isset( $new_instance['remove_bullets'] ) ? 1 : 0;
 		$instance['add_wp_post_classes'] = isset( $new_instance['add_wp_post_classes'] ) ? 1 : 0;
 

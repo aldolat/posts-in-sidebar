@@ -371,6 +371,10 @@ function pis_get_posts_in_sidebar( $args ) {
 	$args = pis_array_remove_empty_keys( $args, true );
 
 	/*
+	 * Prepare the variables before the array for WP_Query object is created.
+	 **************************************************************************/
+
+	/*
 	 * Check if $author or $cat or $tag are equal to 'NULL' (string).
 	 * If so, make them empty.
 	 * For more informations, see inc/posts-in-sidebar-widget.php, function update().
@@ -600,6 +604,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		$exc_length_unit = 'words';
 	}
 
+	/*
+	 * The array for WP_Query object is created.
+	 **************************************************************************/
+
 	// Build the array for WP_Query object.
 	$params = array(
 		'post_type'           => $post_type,   // Uses a string with a single slug or an array of multiple slugs
@@ -630,6 +638,10 @@ function pis_get_posts_in_sidebar( $args ) {
 		'post_password'       => $post_password,
 		'ignore_sticky_posts' => $ignore_sticky,
 	);
+
+	/*
+	 * Change the array for WP_Query object after it has been created.
+	 **************************************************************************/
 
 	/*
 	 * Check if the user wants to display posts from the same category of the single post.
@@ -1090,6 +1102,10 @@ function pis_get_posts_in_sidebar( $args ) {
 			break;
 	}
 
+	/*
+	 * Check if we must use a cached WP_Query or if a new one must be fired.
+	 **************************************************************************/
+
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {
 		// Get the cached query
@@ -1099,10 +1115,14 @@ function pis_get_posts_in_sidebar( $args ) {
 			$pis_query = new WP_Query( $params );
 			set_transient( $widget_id . '_query_cache', $pis_query, $cache_time );
 		}
-	// ... otherwise serve a not-cached version of the output.
+	// ... otherwise serve a non-cached version of the output.
 	} else {
 		$pis_query = new WP_Query( $params );
 	}
+
+	/*
+	 * Start the loop.
+	 **************************************************************************/
 
 	/*
 	 * Define the main variable that will concatenate all the output;
@@ -1111,7 +1131,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 	$pis_output = '';
 
-	/* The Loop */
+	// The Loop.
 	if ( $pis_query->have_posts() ) : ?><?php
 		if ( $intro ) {
 			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
@@ -1410,7 +1430,7 @@ function pis_get_posts_in_sidebar( $args ) {
 				'margin_unit'    => $margin_unit
 			) );
 		} ?><?php
-	// If we have no posts yet
+	// If we have no posts yet.
 	else :
 
 		if ( $nopost_text ) {
@@ -1424,7 +1444,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	endif;
 
-	/* Debugging */
+	// Debugging.
 	$pis_output .= pis_debug( array(
 		'admin_only'   => $admin_only,   // bool   If display debug informations to admin only.
 		'debug_query'  => $debug_query,  // bool   If display the parameters for the query.
@@ -1434,12 +1454,13 @@ function pis_get_posts_in_sidebar( $args ) {
 		'cached'       => $cached,       // bool   If the cache is active.
 	) );
 
-	// Prints the version of Posts in Sidebar and if the cache is active
+	// Prints the version of Posts in Sidebar and if the cache is active.
 	$pis_output .= pis_generated( $cached );
 
-	// Reset the custom query
+	// Reset the custom query.
 	wp_reset_postdata();
 
+	// Return the variable.
 	return $pis_output;
 }
 

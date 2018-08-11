@@ -878,7 +878,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_cat']      = $new_instance['order_same_cat'];
 		$instance['offset_same_cat']     = absint( strip_tags( $new_instance['offset_same_cat'] ) );
 			if ( 0 == $instance['offset_same_cat'] || ! is_numeric( $instance['offset_same_cat'] ) ) $instance['offset_same_cat'] = '';
-		$instance['search_same_cat']     = $new_instance['search_same_cat'];
+		$instance['search_same_cat']     = isset( $new_instance['search_same_cat'] ) ? 1 : 0;
 		$instance['post_type_same_cat']  = $new_instance['post_type_same_cat'];
 		$instance['ptm_sc']              = $new_instance['ptm_sc'];
 			if ( ! empty( $instance['ptm_sc'] ) ) {
@@ -894,7 +894,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_tag']      = $new_instance['order_same_tag'];
 		$instance['offset_same_tag']     = absint( strip_tags( $new_instance['offset_same_tag'] ) );
 			if ( 0 == $instance['offset_same_tag'] || ! is_numeric( $instance['offset_same_tag'] ) ) $instance['offset_same_tag'] = '';
-		$instance['search_same_tag']     = $new_instance['search_same_tag'];
+		$instance['search_same_tag']     = isset( $new_instance['search_same_tag'] ) ? 1 : 0;
 		$instance['post_type_same_tag']  = $new_instance['post_type_same_tag'];
 		$instance['ptm_st']              = $new_instance['ptm_st'];
 			if ( ! empty( $instance['ptm_st'] ) ) {
@@ -909,7 +909,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_same_author']   = $new_instance['order_same_author'];
 		$instance['offset_same_author']  = absint( strip_tags( $new_instance['offset_same_author'] ) );
 			if ( 0 == $instance['offset_same_author'] || ! is_numeric( $instance['offset_same_author'] ) ) $instance['offset_same_author'] = '';
-		$instance['search_same_author']  = $new_instance['search_same_author'];
+		$instance['search_same_author']  = isset( $new_instance['search_same_author'] ) ? 1 : 0;
 		$instance['post_type_same_author'] = $new_instance['post_type_same_author'];
 		$instance['ptm_sa']              = $new_instance['ptm_sa'];
 			if ( ! empty( $instance['ptm_sa'] ) ) {
@@ -926,7 +926,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['order_custom_fld']      = $new_instance['order_custom_fld'];
 		$instance['offset_custom_fld']     = absint( strip_tags( $new_instance['offset_custom_fld'] ) );
 			if ( 0 == $instance['offset_custom_fld'] || ! is_numeric( $instance['offset_custom_fld'] ) ) $instance['offset_custom_fld'] = '';
-		$instance['search_same_cf']      = $new_instance['search_same_cf'];
+		$instance['search_same_cf']      = isset( $new_instance['search_same_cf'] ) ? 1 : 0;
 		$instance['post_type_same_cf']   = $new_instance['post_type_same_cf'];
 		$instance['ptm_scf']             = $new_instance['ptm_scf'];
 			if ( ! empty( $instance['ptm_scf'] ) ) {

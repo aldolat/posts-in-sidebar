@@ -1693,6 +1693,7 @@ function pis_remove_dashes( $string = '' ) {
  */
 function pis_normalize_values( $string = '', $absint = false ) {
 	$string = preg_replace( '([\s,]+)', ', ', $string );
+	$string = trim( $string, ', ' );
 
 	if ( $absint ) {
 		$string = explode( ', ', $string );

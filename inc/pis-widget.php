@@ -1679,261 +1679,264 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em><?php printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' ); ?></em></p>
 
-				<div class="pis-column-container">
+				<!-- Basic setup -->
+				<div class="pis-section">
 
-					<div class="pis-column">
+					<div class="pis-column-container">
 
-						<?php // ================= Post types
+						<div class="pis-column">
 
-						$args = array(
-							'public' => true,
-						);
-						$post_types = (array) get_post_types( $args, 'objects', 'and' );
+							<?php // ================= Post types
 
-						$options = array(
-							array(
+							$args = array(
+								'public' => true,
+							);
+							$post_types = (array) get_post_types( $args, 'objects', 'and' );
+
+							$options = array(
+								array(
+									'value' => 'any',
+									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+								)
+							);
+							foreach ( $post_types as $post_type ) {
+								$options[] = array(
+									'value' => $post_type->name,
+									'desc'  => $post_type->labels->singular_name,
+								);
+							}
+
+							pis_form_select(
+								esc_html__( 'Post type', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_type' ),
+								$this->get_field_name( 'post_type' ),
+								$options,
+								$instance['post_type'],
+								esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Multiple post types
+							pis_form_input_text(
+								esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_type_multiple' ),
+								$this->get_field_name( 'post_type_multiple' ),
+								esc_attr( $instance['post_type_multiple'] ),
+								esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+								esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Posts ID
+							pis_form_input_text(
+								esc_html__( 'Get these posts exactly', 'posts-in-sidebar' ),
+								$this->get_field_id( 'posts_id' ),
+								$this->get_field_name( 'posts_id' ),
+								esc_attr( $instance['posts_id'] ),
+								'5, 29, 523, 4519',
+								esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+							); ?>
+
+						</div>
+
+						<div class="pis-column">
+
+							<?php // ================= Category
+							pis_form_input_text(
+								esc_html__( 'Get posts with these categories', 'posts-in-sidebar' ),
+								$this->get_field_id( 'cat' ),
+								$this->get_field_name( 'cat' ),
+								esc_attr( $instance['cat'] ),
+								esc_html__( 'books, ebooks', 'posts-in-sidebar' ),
+								sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
+							); ?>
+
+						</div>
+
+						<div class="pis-column">
+
+							<?php // ================= Tag
+							pis_form_input_text(
+								esc_html__( 'Get posts with these tags', 'posts-in-sidebar' ),
+								$this->get_field_id( 'tag' ),
+								$this->get_field_name( 'tag' ),
+								esc_attr( $instance['tag'] ),
+								esc_html__( 'best-sellers', 'posts-in-sidebar' ),
+								sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
+							); ?>
+
+						</div>
+
+					</div>
+
+					<div class="pis-column-container">
+
+						<div class="pis-column">
+
+							<?php // ================= Author
+							$options = array(
+								array(
+									'value' => '',
+									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' )
+								)
+							);
+							$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
+							foreach ( $authors as $author ) {
+								$options[] = array(
+									'value' => $author->user_nicename,
+									'desc'  => $author->display_name,
+								);
+							}
+							pis_form_select(
+								esc_html__( 'Get posts by this author', 'posts-in-sidebar' ),
+								$this->get_field_id( 'author' ),
+								$this->get_field_name( 'author' ),
+								$options,
+								$instance['author']
+							); ?>
+
+							<?php // ================= Multiple authors
+							pis_form_input_text(
+								esc_html__( 'Get posts by these authors', 'posts-in-sidebar' ),
+								$this->get_field_id( 'author_in' ),
+								$this->get_field_name( 'author_in' ),
+								esc_attr( $instance['author_in'] ),
+								esc_html__( '1, 23, 45', 'posts-in-sidebar' ),
+								esc_html__( 'Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Get posts by recent comments
+							pis_form_checkbox( esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
+								$this->get_field_id( 'posts_by_comments' ),
+								$this->get_field_name( 'posts_by_comments' ),
+								checked( $posts_by_comments, true, false ),
+								esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
+							);
+							?>
+
+						</div>
+
+						<div class="pis-column">
+
+							<?php // ================= Post parent
+							pis_form_input_text(
+								esc_html__( 'Get posts whose parent is in these IDs', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_parent_in' ),
+								$this->get_field_name( 'post_parent_in' ),
+								esc_attr( $instance['post_parent_in'] ),
+								esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
+								esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Post format
+							$options = array(
+								array(
+									'value' => '',
+									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' )
+								)
+							);
+							$post_formats = get_terms( 'post_format' );
+							foreach ( $post_formats as $post_format ) {
+								$options[] = array(
+									'value' => $post_format->slug,
+									'desc'  => $post_format->name,
+								);
+							}
+							pis_form_select(
+								esc_html__( 'Get posts with this post format', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_format' ),
+								$this->get_field_name( 'post_format' ),
+								$options,
+								$instance['post_format']
+							); ?>
+
+							<?php // ================= Post status
+							$options = array( array(
 								'value' => 'any',
-								'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-							)
-						);
-						foreach ( $post_types as $post_type ) {
-							$options[] = array(
-								'value' => $post_type->name,
-								'desc'  => $post_type->labels->singular_name,
+								'desc'  => 'Any',
+							) );
+							$statuses = get_post_stati( array(), 'objects' );
+							foreach( $statuses as $status ) {
+								$options[] = array(
+									'value' => $status->name,
+									'desc'  => $status->label,
+								);
+							}
+							pis_form_select(
+								esc_html__( 'Get posts with this post status', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_status' ),
+								$this->get_field_name( 'post_status' ),
+								$options,
+								$instance['post_status']
+							); ?>
+
+						</div>
+
+						<div class="pis-column">
+
+							<?php // ================= Post meta key
+							pis_form_input_text(
+								esc_html__( 'Get posts with this meta key', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_meta_key' ),
+								$this->get_field_name( 'post_meta_key' ),
+								esc_attr( $instance['post_meta_key'] ),
+								esc_html__( 'meta-key', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Post meta value
+							pis_form_input_text(
+								esc_html__( 'Get posts with this meta value', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_meta_val' ),
+								$this->get_field_name( 'post_meta_val' ),
+								esc_attr( $instance['post_meta_val'] ),
+								esc_html__( 'meta-value', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Search
+							pis_form_input_text(
+								esc_html__( 'Get posts from this search', 'posts-in-sidebar' ),
+								$this->get_field_id( 'search' ),
+								$this->get_field_name( 'search' ),
+								esc_attr( $instance['search'] ),
+								esc_html__( 'words to search', 'posts-in-sidebar' )
+							); ?>
+
+							<?php // ================= Post with/without password
+							$options = array(
+								array(
+									'value' => 'null',
+									'desc'  => esc_html__( 'With and without password', 'posts-in-sidebar' )
+								),
+								array(
+									'value' => 'true',
+									'desc'  => esc_html__( 'With password', 'posts-in-sidebar' )
+								),
+								array(
+									'value' => 'false',
+									'desc'  => esc_html__( 'Without password', 'posts-in-sidebar' )
+								)
 							);
-						}
+							pis_form_select(
+								esc_html__( 'Get posts with/without password', 'posts-in-sidebar' ),
+								$this->get_field_id( 'has_password' ),
+								$this->get_field_name( 'has_password' ),
+								$options,
+								$instance['has_password']
+							); ?>
 
-						pis_form_select(
-							esc_html__( 'Post type', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_type' ),
-							$this->get_field_name( 'post_type' ),
-							$options,
-							$instance['post_type'],
-							esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
-						); ?>
+							<?php // ================= Post password
+							pis_form_input_text(
+								esc_html__( 'Get posts with this password', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_password' ),
+								$this->get_field_name( 'post_password' ),
+								esc_attr( $instance['post_password'] ),
+								// XKCD, Password Strength, https://xkcd.com/936/
+								'correct horse battery staple'
+							); ?>
 
-						<?php // ================= Multiple post types
-						pis_form_input_text(
-							esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_type_multiple' ),
-							$this->get_field_name( 'post_type_multiple' ),
-							esc_attr( $instance['post_type_multiple'] ),
-							esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
-							esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Posts ID
-						pis_form_input_text(
-							esc_html__( 'Get these posts exactly', 'posts-in-sidebar' ),
-							$this->get_field_id( 'posts_id' ),
-							$this->get_field_name( 'posts_id' ),
-							esc_attr( $instance['posts_id'] ),
-							'5, 29, 523, 4519',
-							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-						); ?>
+						</div>
 
 					</div>
 
-					<div class="pis-column">
-
-						<?php // ================= Category
-						pis_form_input_text(
-							esc_html__( 'Get posts with these categories', 'posts-in-sidebar' ),
-							$this->get_field_id( 'cat' ),
-							$this->get_field_name( 'cat' ),
-							esc_attr( $instance['cat'] ),
-							esc_html__( 'books, ebooks', 'posts-in-sidebar' ),
-							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
-						); ?>
-
-					</div>
-
-					<div class="pis-column">
-
-						<?php // ================= Tag
-						pis_form_input_text(
-							esc_html__( 'Get posts with these tags', 'posts-in-sidebar' ),
-							$this->get_field_id( 'tag' ),
-							$this->get_field_name( 'tag' ),
-							esc_attr( $instance['tag'] ),
-							esc_html__( 'best-sellers', 'posts-in-sidebar' ),
-							sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
-						); ?>
-
-					</div>
-
-				</div>
-
-				<div class="pis-column-container">
-
-					<div class="pis-column">
-
-						<?php // ================= Author
-						$options = array(
-							array(
-								'value' => '',
-								'desc'  => esc_html__( 'Any', 'posts-in-sidebar' )
-							)
-						);
-						$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
-						foreach ( $authors as $author ) {
-							$options[] = array(
-								'value' => $author->user_nicename,
-								'desc'  => $author->display_name,
-							);
-						}
-						pis_form_select(
-							esc_html__( 'Get posts by this author', 'posts-in-sidebar' ),
-							$this->get_field_id( 'author' ),
-							$this->get_field_name( 'author' ),
-							$options,
-							$instance['author']
-						); ?>
-
-						<?php // ================= Multiple authors
-						pis_form_input_text(
-							esc_html__( 'Get posts by these authors', 'posts-in-sidebar' ),
-							$this->get_field_id( 'author_in' ),
-							$this->get_field_name( 'author_in' ),
-							esc_attr( $instance['author_in'] ),
-							esc_html__( '1, 23, 45', 'posts-in-sidebar' ),
-							esc_html__( 'Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Get posts by recent comments
-						pis_form_checkbox( esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
-							$this->get_field_id( 'posts_by_comments' ),
-							$this->get_field_name( 'posts_by_comments' ),
-							checked( $posts_by_comments, true, false ),
-							esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
-						);
-						?>
-
-					</div>
-
-					<div class="pis-column">
-
-						<?php // ================= Post parent
-						pis_form_input_text(
-							esc_html__( 'Get posts whose parent is in these IDs', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_parent_in' ),
-							$this->get_field_name( 'post_parent_in' ),
-							esc_attr( $instance['post_parent_in'] ),
-							esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
-							esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Post format
-						$options = array(
-							array(
-								'value' => '',
-								'desc'  => esc_html__( 'Any', 'posts-in-sidebar' )
-							)
-						);
-						$post_formats = get_terms( 'post_format' );
-						foreach ( $post_formats as $post_format ) {
-							$options[] = array(
-								'value' => $post_format->slug,
-								'desc'  => $post_format->name,
-							);
-						}
-						pis_form_select(
-							esc_html__( 'Get posts with this post format', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_format' ),
-							$this->get_field_name( 'post_format' ),
-							$options,
-							$instance['post_format']
-						); ?>
-
-						<?php // ================= Post status
-						$options = array( array(
-							'value' => 'any',
-							'desc'  => 'Any',
-						) );
-						$statuses = get_post_stati( array(), 'objects' );
-						foreach( $statuses as $status ) {
-							$options[] = array(
-								'value' => $status->name,
-								'desc'  => $status->label,
-							);
-						}
-						pis_form_select(
-							esc_html__( 'Get posts with this post status', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_status' ),
-							$this->get_field_name( 'post_status' ),
-							$options,
-							$instance['post_status']
-						); ?>
-
-					</div>
-
-					<div class="pis-column">
-
-						<?php // ================= Post meta key
-						pis_form_input_text(
-							esc_html__( 'Get posts with this meta key', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_meta_key' ),
-							$this->get_field_name( 'post_meta_key' ),
-							esc_attr( $instance['post_meta_key'] ),
-							esc_html__( 'meta-key', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Post meta value
-						pis_form_input_text(
-							esc_html__( 'Get posts with this meta value', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_meta_val' ),
-							$this->get_field_name( 'post_meta_val' ),
-							esc_attr( $instance['post_meta_val'] ),
-							esc_html__( 'meta-value', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Search
-						pis_form_input_text(
-							esc_html__( 'Get posts from this search', 'posts-in-sidebar' ),
-							$this->get_field_id( 'search' ),
-							$this->get_field_name( 'search' ),
-							esc_attr( $instance['search'] ),
-							esc_html__( 'words to search', 'posts-in-sidebar' )
-						); ?>
-
-						<?php // ================= Post with/without password
-						$options = array(
-							array(
-								'value' => 'null',
-								'desc'  => esc_html__( 'With and without password', 'posts-in-sidebar' )
-							),
-							array(
-								'value' => 'true',
-								'desc'  => esc_html__( 'With password', 'posts-in-sidebar' )
-							),
-							array(
-								'value' => 'false',
-								'desc'  => esc_html__( 'Without password', 'posts-in-sidebar' )
-							)
-						);
-						pis_form_select(
-							esc_html__( 'Get posts with/without password', 'posts-in-sidebar' ),
-							$this->get_field_id( 'has_password' ),
-							$this->get_field_name( 'has_password' ),
-							$options,
-							$instance['has_password']
-						); ?>
-
-						<?php // ================= Post password
-						pis_form_input_text(
-							esc_html__( 'Get posts with this password', 'posts-in-sidebar' ),
-							$this->get_field_id( 'post_password' ),
-							$this->get_field_name( 'post_password' ),
-							esc_attr( $instance['post_password'] ),
-							// XKCD, Password Strength, https://xkcd.com/936/
-							'correct horse battery staple'
-						); ?>
-
-					</div>
-
-				</div>
-
-				<div class="pis-column-container pis-2col">
+					<div class="pis-column-container pis-2col">
 
 					<div class="pis-column">
 
@@ -2065,6 +2068,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
+				</div>
+
+				<!-- Changing query on single posts -->
 				<div class="pis-section pis-2col">
 
 					<h5 data-panel="change-query" class="pis-widget-title"><?php esc_html_e( 'Change the query when on single posts', 'posts-in-sidebar' ); ?></h5>
@@ -2940,6 +2946,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
+				<!-- Changing query on archive pages -->
 				<div class="pis-section pis-2col">
 
 					<h5 data-panel="change-query-archive" class="pis-widget-title"><?php esc_html_e( 'Change the query when on archive page', 'posts-in-sidebar' ); ?></h5>

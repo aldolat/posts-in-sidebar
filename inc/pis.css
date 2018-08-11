@@ -59,12 +59,15 @@
 }
 h4.pis-widget-title {
 	background-color: #cee7a5;
+	border: 1px solid #cee7a5;
 }
 h5.pis-widget-title {
 	background-color: #bfe7f4;
+	border: 1px solid #bfe7f4;
 }
 h6.pis-widget-title {
 	background-color: #cdc5e1;
+	border: 1px solid #cdc5e1;
 }
 h4.pis-widget-title:hover {
 	border-color: #859668;

@@ -643,7 +643,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.2
 	 */
-	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_single() ) {
+	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular() ) {
 		// Set the post_type.
 		if ( isset( $ptm_sc ) && ! empty( $ptm_sc ) ) {
 			$params['post_type'] = (array) explode( ', ', $ptm_sc );
@@ -704,7 +704,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 4.3.0
 	 */
-	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_single() ) {
+	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular() ) {
 		// Get post's tags.
 		$post_tags = wp_get_post_tags( $single_post_id );
 		if ( $post_tags ) {
@@ -769,7 +769,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.5
 	 */
-	if ( isset( $get_from_same_author ) && $get_from_same_author && is_single() ) {
+	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular() ) {
 		// Set the post_type.
 		if ( isset( $ptm_sa ) && ! empty( $ptm_sa ) ) {
 			$params['post_type'] = (array) explode( ', ', $ptm_sa );
@@ -828,7 +828,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.7
 	 */
-	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_single() ) {
+	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular() ) {
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
 			/**

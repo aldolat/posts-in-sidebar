@@ -2,6 +2,8 @@
 /**
  * This file contains the functions of the plugin
  *
+ * @package WordPress
+ * @subpackage Posts in Sidebar
  * @since 1.23
  */
 
@@ -16,7 +18,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 /*
  * Queries section
- ******************************************************************************/
+ *******************************************************************************
+ */
 
 /**
  * Build the query based on taxonomies.
@@ -26,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @since 1.29
  */
 function pis_tax_query( $args ) {
-	$defaults = array (
+	$defaults = array(
 		'relation'    => '',
 		'taxonomy_aa' => '',
 		'field_aa'    => 'slug',
@@ -47,127 +50,134 @@ function pis_tax_query( $args ) {
 		'terms_bb'    => '',
 		'operator_bb' => 'IN',
 	);
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
-	if ( '' == $taxonomy_aa || '' == $field_aa || '' == $terms_aa ) {
+	$args = wp_parse_args( $args, $defaults );
+
+	if ( '' === $args['taxonomy_aa'] || '' === $args['field_aa'] || '' === $args['terms_aa'] ) {
 		$tax_query = '';
 	} else {
-		// Convert terms into arrays
-		$terms_aa = explode( ',', preg_replace( '/\s+/', '', $terms_aa ) );
-		if ( $terms_ab ) $terms_ab = explode( ',', preg_replace( '/\s+/', '', $terms_ab ) );
-		if ( $terms_ba ) $terms_ba = explode( ',', preg_replace( '/\s+/', '', $terms_ba ) );
-		if ( $terms_bb ) $terms_bb = explode( ',', preg_replace( '/\s+/', '', $terms_bb ) );
+		// Convert terms into arrays.
+		$args['terms_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_aa'] ) );
 
-		// Let's figure out the tax_query to build
-		if ( $taxonomy_aa && ! $taxonomy_ab && ! $taxonomy_ba && ! $taxonomy_bb ) {
+		if ( $args['terms_ab'] ) {
+			$args['terms_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_ab'] ) );
+		}
+		if ( $args['terms_ba'] ) {
+			$args['terms_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_ba'] ) );
+		}
+		if ( $args['terms_bb'] ) {
+			$args['terms_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_bb'] ) );
+		}
+
+		// Let's figure out the tax_query to build.
+		if ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && ! $args['taxonomy_ba'] && ! $args['taxonomy_bb'] ) {
 			$tax_query = array(
 				array(
-					'taxonomy' => $taxonomy_aa,
-					'field'    => $field_aa,
-					'terms'    => $terms_aa, // This must be an array
-					'operator' => $operator_aa,
-				)
+					'taxonomy' => $args['taxonomy_aa'],
+					'field'    => $args['field_aa'],
+					'terms'    => $args['terms_aa'], // This must be an array.
+					'operator' => $args['operator_aa'],
+				),
 			);
-		} elseif ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && $args['taxonomy_ba'] && ! $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
 			$tax_query = array(
-				'relation' => $relation,
+				'relation' => $args['relation'],
 				array(
-					'taxonomy' => $taxonomy_aa,
-					'field'    => $field_aa,
-					'terms'    => $terms_aa, // This must be an array
-					'operator' => $operator_aa,
+					'taxonomy' => $args['taxonomy_aa'],
+					'field'    => $args['field_aa'],
+					'terms'    => $args['terms_aa'], // This must be an array.
+					'operator' => $args['operator_aa'],
 				),
 				array(
-					'taxonomy' => $taxonomy_ba,
-					'field'    => $field_ba,
-					'terms'    => $terms_ba, // This must be an array
-					'operator' => $operator_ba,
-				)
+					'taxonomy' => $args['taxonomy_ba'],
+					'field'    => $args['field_ba'],
+					'terms'    => $args['terms_ba'], // This must be an array.
+					'operator' => $args['operator_ba'],
+				),
 			);
-		} elseif ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && ! $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $args['taxonomy_aa'] && $args['taxonomy_ab'] && $args['taxonomy_ba'] && ! $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
 			$tax_query = array(
-				'relation' => $relation,
+				'relation' => $args['relation'],
 				array(
-					'relation_a' => $relation_a,
-					array (
-						'taxonomy' => $taxonomy_aa,
-						'field'    => $field_aa,
-						'terms'    => $terms_aa, // This must be an array
-						'operator' => $operator_aa,
+					'relation_a' => $args['relation_a'],
+					array(
+						'taxonomy' => $args['taxonomy_aa'],
+						'field'    => $args['field_aa'],
+						'terms'    => $args['terms_aa'], // This must be an array.
+						'operator' => $args['operator_aa'],
 					),
-					array (
-						'taxonomy' => $taxonomy_ab,
-						'field'    => $field_ab,
-						'terms'    => $terms_ab, // This must be an array
-						'operator' => $operator_ab,
-					)
+					array(
+						'taxonomy' => $args['taxonomy_ab'],
+						'field'    => $args['field_ab'],
+						'terms'    => $args['terms_ab'], // This must be an array.
+						'operator' => $args['operator_ab'],
+					),
 				),
 				array(
-					'taxonomy' => $taxonomy_ba,
-					'field'    => $field_ba,
-					'terms'    => $terms_ba, // This must be an array
-					'operator' => $operator_ba,
-				)
+					'taxonomy' => $args['taxonomy_ba'],
+					'field'    => $args['field_ba'],
+					'terms'    => $args['terms_ba'], // This must be an array.
+					'operator' => $args['operator_ba'],
+				),
 			);
-		} elseif ( $taxonomy_aa && ! $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && $args['taxonomy_ba'] && $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
 			$tax_query = array(
-				'relation' => $relation,
+				'relation' => $args['relation'],
 				array(
-					'taxonomy' => $taxonomy_aa,
-					'field'    => $field_aa,
-					'terms'    => $terms_aa, // This must be an array
-					'operator' => $operator_aa,
+					'taxonomy' => $args['taxonomy_aa'],
+					'field'    => $args['field_aa'],
+					'terms'    => $args['terms_aa'], // This must be an array.
+					'operator' => $args['operator_aa'],
 				),
 				array(
-					'relation_b' => $relation_b,
-					array (
-						'taxonomy' => $taxonomy_ba,
-						'field'    => $field_ba,
-						'terms'    => $terms_ba, // This must be an array
-						'operator' => $operator_ba,
+					'relation_b' => $args['relation_b'],
+					array(
+						'taxonomy' => $args['taxonomy_ba'],
+						'field'    => $args['field_ba'],
+						'terms'    => $args['terms_ba'], // This must be an array.
+						'operator' => $args['operator_ba'],
 					),
-					array (
-						'taxonomy' => $taxonomy_bb,
-						'field'    => $field_bb,
-						'terms'    => $terms_bb, // This must be an array
-						'operator' => $operator_bb,
-					)
-				)
+					array(
+						'taxonomy' => $args['taxonomy_bb'],
+						'field'    => $args['field_bb'],
+						'terms'    => $args['terms_bb'], // This must be an array.
+						'operator' => $args['operator_bb'],
+					),
+				),
 			);
-		} elseif ( $taxonomy_aa && $taxonomy_ab && $taxonomy_ba && $taxonomy_bb && ! empty( $relation ) ) {
+		} elseif ( $args['taxonomy_aa'] && $args['taxonomy_ab'] && $args['taxonomy_ba'] && $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
 			$tax_query = array(
-				'relation' => $relation,
+				'relation' => $args['relation'],
 				array(
-					'relation_a' => $relation_a,
-					array (
-						'taxonomy' => $taxonomy_aa,
-						'field'    => $field_aa,
-						'terms'    => $terms_aa, // This must be an array
-						'operator' => $operator_aa,
+					'relation_a' => $args['relation_a'],
+					array(
+						'taxonomy' => $args['taxonomy_aa'],
+						'field'    => $args['field_aa'],
+						'terms'    => $args['terms_aa'], // This must be an array.
+						'operator' => $args['operator_aa'],
 					),
-					array (
-						'taxonomy' => $taxonomy_ab,
-						'field'    => $field_ab,
-						'terms'    => $terms_ab, // This must be an array
-						'operator' => $operator_ab,
-					)
+					array(
+						'taxonomy' => $args['taxonomy_ab'],
+						'field'    => $args['field_ab'],
+						'terms'    => $args['terms_ab'], // This must be an array.
+						'operator' => $args['operator_ab'],
+					),
 				),
 				array(
-					'relation_b' => $relation_b,
-					array (
-						'taxonomy' => $taxonomy_ba,
-						'field'    => $field_ba,
-						'terms'    => $terms_ba, // This must be an array
-						'operator' => $operator_ba,
+					'relation_b' => $args['relation_b'],
+					array(
+						'taxonomy' => $args['taxonomy_ba'],
+						'field'    => $args['field_ba'],
+						'terms'    => $args['terms_ba'], // This must be an array.
+						'operator' => $args['operator_ba'],
 					),
-					array (
-						'taxonomy' => $taxonomy_bb,
-						'field'    => $field_bb,
-						'terms'    => $terms_bb, // This must be an array
-						'operator' => $operator_bb,
-					)
-				)
+					array(
+						'taxonomy' => $args['taxonomy_bb'],
+						'field'    => $args['field_bb'],
+						'terms'    => $args['terms_bb'], // This must be an array.
+						'operator' => $args['operator_bb'],
+					),
+				),
 			);
 		}
 	}
@@ -187,7 +197,7 @@ function pis_tax_query( $args ) {
  * @since 4.0
  */
 function pis_meta_query( $args ) {
-	$defaults = array (
+	$defaults = array(
 		'mq_relation'   => '',
 		'mq_key_aa'     => '',
 		'mq_value_aa'   => '',
@@ -208,130 +218,134 @@ function pis_meta_query( $args ) {
 		'mq_compare_bb' => '',
 		'mq_type_bb'    => '',
 	);
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
-	if ( '' == $mq_key_aa || '' == $mq_value_aa ) {
+	$args = wp_parse_args( $args, $defaults );
+
+	if ( '' === $args['mq_key_aa'] || '' === $args['mq_value_aa'] ) {
 		$meta_query = '';
 	} else {
 		$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
-		if ( strpos( $mq_value_aa, ',' ) && in_array( $mq_compare_aa, $compare_array ) )
-			$mq_value_aa = explode( ',', preg_replace( '/\s+/', '', $mq_value_aa ) );
-		if ( $mq_value_ab && strpos( $mq_value_ab, ',' ) && in_array( $mq_compare_ab, $compare_array ) )
-			$mq_value_ab = explode( ',', preg_replace( '/\s+/', '', $mq_value_ab ) );
-		if ( $mq_value_ba && strpos( $mq_value_ba, ',' ) && in_array( $mq_compare_ba, $compare_array ) )
-			$mq_value_ba = explode( ',', preg_replace( '/\s+/', '', $mq_value_ba ) );
-		if ( $mq_value_bb && strpos( $mq_value_bb, ',' ) && in_array( $mq_compare_bb, $compare_array ) )
-			$mq_value_bb = explode( ',', preg_replace( '/\s+/', '', $mq_value_bb ) );
+		if ( strpos( $args['mq_value_aa'], ',' ) && in_array( $args['mq_compare_aa'], $compare_array, true ) ) {
+			$args['mq_value_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_aa'] ) );
+		}
+		if ( $args['mq_value_ab'] && strpos( $args['mq_value_ab'], ',' ) && in_array( $args['mq_compare_ab'], $compare_array, true ) ) {
+			$args['mq_value_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ab'] ) );
+		}
+		if ( $args['mq_value_ba'] && strpos( $args['mq_value_ba'], ',' ) && in_array( $args['mq_compare_ba'], $compare_array, true ) ) {
+			$args['mq_value_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ba'] ) );
+		}
+		if ( $args['mq_value_bb'] && strpos( $args['mq_value_bb'], ',' ) && in_array( $args['mq_compare_bb'], $compare_array, true ) ) {
+			$args['mq_value_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_bb'] ) );
+		}
 
-		if ( $mq_key_aa && ! $mq_key_ab && ! $mq_key_ba && ! $mq_key_bb ) {
+		if ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && ! $args['mq_key_ba'] && ! $args['mq_key_bb'] ) {
 			$meta_query = array(
 				array(
-					'key'     => $mq_key_aa,
-					'value'   => $mq_value_aa, // This could be an array
-					'compare' => $mq_compare_aa,
-					'type'    => $mq_type_aa,
-				)
-			);
-		} elseif ( $mq_key_aa && ! $mq_key_ab && $mq_key_ba && ! $mq_key_bb && ! empty( $mq_relation ) ) {
-			$meta_query = array(
-				'relation' => $mq_relation,
-				array(
-					'key'     => $mq_key_aa,
-					'value'   => $mq_value_aa, // This could be an array
-					'compare' => $mq_compare_aa,
-					'type'    => $mq_type_aa,
-				),
-				array(
-					'key'     => $mq_key_ba,
-					'value'   => $mq_value_ba, // This could be an array
-					'compare' => $mq_compare_ba,
-					'type'    => $mq_type_ba,
+					'key'     => $args['mq_key_aa'],
+					'value'   => $args['mq_value_aa'], // This could be an array.
+					'compare' => $args['mq_compare_aa'],
+					'type'    => $args['mq_type_aa'],
 				),
 			);
-		}  elseif ( $mq_key_aa && $mq_key_ab && $mq_key_ba && ! $mq_key_bb && ! empty( $mq_relation ) ) {
+		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 			$meta_query = array(
-				'relation' => $mq_relation,
+				'relation' => $args['mq_relation'],
 				array(
-					'relation' => $mq_relation_a,
-					array(
-						'key'     => $mq_key_aa,
-						'value'   => $mq_value_aa, // This could be an array
-						'compare' => $mq_compare_aa,
-						'type'    => $mq_type_aa,
-					),
-					array(
-						'key'     => $mq_key_ab,
-						'value'   => $mq_value_ab, // This could be an array
-						'compare' => $mq_compare_ab,
-						'type'    => $mq_type_ab,
-					),
+					'key'     => $args['mq_key_aa'],
+					'value'   => $args['mq_value_aa'], // This could be an array.
+					'compare' => $args['mq_compare_aa'],
+					'type'    => $args['mq_type_aa'],
 				),
 				array(
-					'key'     => $mq_key_ba,
-					'value'   => $mq_value_ba, // This could be an array
-					'compare' => $mq_compare_ba,
-					'type'    => $mq_type_ba,
+					'key'     => $args['mq_key_ba'],
+					'value'   => $args['mq_value_ba'], // This could be an array.
+					'compare' => $args['mq_compare_ba'],
+					'type'    => $args['mq_type_ba'],
 				),
 			);
-		} elseif ( $mq_key_aa && ! $mq_key_ab && $mq_key_ba && $mq_key_bb && ! empty( $mq_relation ) ) {
+		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 			$meta_query = array(
-				'relation' => $mq_relation,
+				'relation' => $args['mq_relation'],
 				array(
-					'key'     => $mq_key_aa,
-					'value'   => $mq_value_aa, // This could be an array
-					'compare' => $mq_compare_aa,
-					'type'    => $mq_type_aa,
-				),
-				array(
-					'relation' => $mq_relation_b,
+					'relation' => $args['mq_relation_a'],
 					array(
-						'key'     => $mq_key_ba,
-						'value'   => $mq_value_ba, // This could be an array
-						'compare' => $mq_compare_ba,
-						'type'    => $mq_type_ba,
+						'key'     => $args['mq_key_aa'],
+						'value'   => $args['mq_value_aa'], // This could be an array.
+						'compare' => $args['mq_compare_aa'],
+						'type'    => $args['mq_type_aa'],
 					),
 					array(
-						'key'     => $mq_key_bb,
-						'value'   => $mq_value_bb, // This could be an array
-						'compare' => $mq_compare_bb,
-						'type'    => $mq_type_bb,
+						'key'     => $args['mq_key_ab'],
+						'value'   => $args['mq_value_ab'], // This could be an array.
+						'compare' => $args['mq_compare_ab'],
+						'type'    => $args['mq_type_ab'],
+					),
+				),
+				array(
+					'key'     => $args['mq_key_ba'],
+					'value'   => $args['mq_value_ba'], // This could be an array.
+					'compare' => $args['mq_compare_ba'],
+					'type'    => $args['mq_type_ba'],
+				),
+			);
+		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+			$meta_query = array(
+				'relation' => $args['mq_relation'],
+				array(
+					'key'     => $args['mq_key_aa'],
+					'value'   => $args['mq_value_aa'], // This could be an array.
+					'compare' => $args['mq_compare_aa'],
+					'type'    => $args['mq_type_aa'],
+				),
+				array(
+					'relation' => $args['mq_relation_b'],
+					array(
+						'key'     => $args['mq_key_ba'],
+						'value'   => $args['mq_value_ba'], // This could be an array.
+						'compare' => $args['mq_compare_ba'],
+						'type'    => $args['mq_type_ba'],
+					),
+					array(
+						'key'     => $args['mq_key_bb'],
+						'value'   => $args['mq_value_bb'], // This could be an array.
+						'compare' => $args['mq_compare_bb'],
+						'type'    => $args['mq_type_bb'],
 					),
 				),
 			);
-		} elseif ( $mq_key_aa && $mq_key_ab && $mq_key_ba && $mq_key_bb && ! empty( $mq_relation ) ) {
+		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 			$meta_query = array(
-				'relation' => $mq_relation,
+				'relation' => $args['mq_relation'],
 				array(
 					'relation' => $relation_a,
-					array (
-						'key'     => $mq_key_aa,
-						'value'   => $mq_value_aa, // This could be an array
-						'compare' => $mq_compare_aa,
-						'type'    => $mq_type_aa,
+					array(
+						'key'     => $args['mq_key_aa'],
+						'value'   => $args['mq_value_aa'], // This could be an array.
+						'compare' => $args['mq_compare_aa'],
+						'type'    => $args['mq_type_aa'],
 					),
-					array (
-						'key'     => $mq_key_ab,
-						'value'   => $mq_value_ab, // This could be an array
-						'compare' => $mq_compare_ab,
-						'type'    => $mq_type_ab,
-					)
+					array(
+						'key'     => $args['mq_key_ab'],
+						'value'   => $args['mq_value_ab'], // This could be an array.
+						'compare' => $args['mq_compare_ab'],
+						'type'    => $args['mq_type_ab'],
+					),
 				),
 				array(
 					'relation' => $relation_b,
-					array (
-						'key'     => $mq_key_ba,
-						'value'   => $mq_value_ba, // This could be an array
-						'compare' => $mq_compare_ba,
-						'type'    => $mq_type_ba,
+					array(
+						'key'     => $args['mq_key_ba'],
+						'value'   => $args['mq_value_ba'], // This could be an array.
+						'compare' => $args['mq_compare_ba'],
+						'type'    => $args['mq_type_ba'],
 					),
-					array (
-						'key'     => $mq_key_bb,
-						'value'   => $mq_value_bb, // This could be an array
-						'compare' => $mq_compare_bb,
-						'type'    => $mq_type_bb,
-					)
-				)
+					array(
+						'key'     => $args['mq_key_bb'],
+						'value'   => $args['mq_value_bb'], // This could be an array.
+						'compare' => $args['mq_compare_bb'],
+						'type'    => $args['mq_type_bb'],
+					),
+				),
 			);
 		}
 	}
@@ -390,7 +404,8 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
 
 /*
  * Display section
- ******************************************************************************/
+ ******************************************************************************
+ */
 
 /**
  * Returns the title of the post.
@@ -436,45 +451,45 @@ function pis_the_title( $args ) {
 		'title_length_unit' => 'words',
 		'title_hellipsis'   => true,
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
-	$output = '<p ' . pis_paragraph( $title_margin, $margin_unit, 'pis-title', 'pis_title_class' ) . '>';
+	$output = '<p ' . pis_paragraph( $args['title_margin'], $args['margin_unit'], 'pis-title', 'pis_title_class' ) . '>';
 
-		// The Gravatar
-		if ( $gravatar_display && 'next_title' == $gravatar_position ) {
-			$output .= pis_get_gravatar( array(
-				'author'  => $gravatar_author,
-				'size'    => $gravatar_size,
-				'default' => $gravatar_default
-			) );
-		}
+	// The Gravatar.
+	if ( $args['gravatar_display'] && 'next_title' === $args['gravatar_position'] ) {
+		$output .= pis_get_gravatar( array(
+			'author'  => $args['gravatar_author'],
+			'size'    => $args['gravatar_size'],
+			'default' => $args['gravatar_default'],
+		) );
+	}
 
-		if ( $link_on_title ) {
-			$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-		}
+	if ( $args['link_on_title'] ) {
+		$output .= '<a ' . pis_class( 'pis-title-link', apply_filters( 'pis_title_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+	}
 
-		if ( 0 == $title_length ) {
-			$output .= get_the_title();
+	if ( 0 === $args['title_length'] ) {
+		$output .= get_the_title();
+	} else {
+		$args['title_hellipsis'] ? $title_hellip = '&hellip;' : $title_hellip = '';
+		if ( 'words' === $args['title_length_unit'] ) {
+			$output .= wp_trim_words( get_the_title(), $args['title_length'], $title_hellip );
 		} else {
-			$title_hellipsis ? $title_hellip = '&hellip;' : $title_hellip = '';
-			if ( 'words' == $title_length_unit ) {
-				$output .= wp_trim_words( get_the_title(), $title_length, $title_hellip );
-			} else {
-				if ( strlen( get_the_title() ) <= $title_length ) {
-					$title_hellip = '';
-				}
-				$output .= rtrim( mb_substr( get_the_title(), 0, $title_length, get_option( 'blog_charset' ) ) ) . $title_hellip;
+			if ( strlen( get_the_title() ) <= $args['title_length'] ) {
+				$title_hellip = '';
 			}
+			$output .= rtrim( mb_substr( get_the_title(), 0, $args['title_length'], get_option( 'blog_charset' ) ) ) . $title_hellip;
 		}
+	}
 
-		if ( $arrow ) {
-			$output .= pis_arrow();
-		}
+	if ( $args['arrow'] ) {
+		$output .= pis_arrow();
+	}
 
-		if ( $link_on_title ) {
-			$output .= '</a>';
-		}
+	if ( $args['link_on_title'] ) {
+		$output .= '</a>';
+	}
 
 	$output .= '</p>';
 
@@ -506,17 +521,19 @@ function pis_the_categories( $args ) {
 		'margin_unit'       => 'px',
 		'categ_text'        => esc_html__( 'Category:', 'posts-in-sidebar' ),
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
 	$output = '';
 
-	$list_of_categories = get_the_term_list( $post_id, 'category', '', $categ_sep . ' ', '' );
+	$list_of_categories = get_the_term_list( $args['post_id'], 'category', '', $args['categ_sep'] . ' ', '' );
 
 	if ( $list_of_categories ) {
-		$output = '<p ' . pis_paragraph( $categories_margin, $margin_unit, 'pis-categories-links', 'pis_categories_class' ) . '>';
-			if ( $categ_text ) $output .= $categ_text . '&nbsp';
-			$output .= apply_filters(  'pis_categories_list', $list_of_categories );
+		$output = '<p ' . pis_paragraph( $args['categories_margin'], $args['margin_unit'], 'pis-categories-links', 'pis_categories_class' ) . '>';
+		if ( $args['categ_text'] ) {
+			$output .= $args['categ_text'] . '&nbsp';
+		}
+		$output .= apply_filters( 'pis_categories_list', $list_of_categories );
 		$output .= '</p>';
 	}
 
@@ -550,17 +567,19 @@ function pis_the_tags( $args ) {
 		'margin_unit' => 'px',
 		'tags_text'   => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
 	$output = '';
 
-	$list_of_tags = get_the_term_list( $post_id, 'post_tag', $hashtag, $tag_sep . ' ' . $hashtag, '' );
+	$list_of_tags = get_the_term_list( $args['post_id'], 'post_tag', $args['hashtag'], $args['tag_sep'] . ' ' . $args['hashtag'], '' );
 
 	if ( $list_of_tags ) {
-		$output .= '<p ' . pis_paragraph( $tags_margin, $margin_unit, 'pis-tags-links', 'pis_tags_class' ) . '>';
-			if ( $tags_text ) $output .= $tags_text . '&nbsp;';
-			$output .= apply_filters( 'pis_tags_list', $list_of_tags );
+		$output .= '<p ' . pis_paragraph( $args['tags_margin'], $args['margin_unit'], 'pis-tags-links', 'pis_tags_class' ) . '>';
+		if ( $args['tags_text'] ) {
+			$output .= $args['tags_text'] . '&nbsp;';
+		}
+		$output .= apply_filters( 'pis_tags_list', $list_of_tags );
 		$output .= '</p>';
 	}
 
@@ -570,6 +589,19 @@ function pis_the_tags( $args ) {
 /**
  * Return the custom fields of the post.
  *
+ * @param array $args {
+ *     The array containing the custom parameters.
+ *     @type string  $post_id             The ID of the post.
+ *     @type boolean $custom_field_all    If the user want to display all the custom fields of the post.
+ *     @type string  $meta                The post meta.
+ *     @type string  $custom_field_txt    The leading text for custom fields.
+ *     @type boolean $custom_field_key    If the user want to display the custom field key.
+ *     @type string  $custom_field_sep    The separator between meta key and value.
+ *     @type string  $custom_field_count  The custom field content length (in characters).
+ *     @type string  $custom_field_hellip The separator between meta key and value.
+ *     @type string  $custom_field_margin The custom field bottom margin.
+ *     @type string  $margin_unit         The unit for margin.
+ * }
  * @since 3.8.4
  */
 function pis_custom_field( $args ) {
@@ -585,51 +617,66 @@ function pis_custom_field( $args ) {
 		'custom_field_margin' => '',
 		'margin_unit'         => 'px',
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
+	$post_id             = $args['post_id'];
+	$custom_field_all    = $args['custom_field_all'];
+	$meta                = $args['meta'];
+	$custom_field_txt    = $args['custom_field_txt'];
+	$custom_field_key    = $args['custom_field_key'];
+	$custom_field_sep    = $args['custom_field_sep'];
+	$custom_field_count  = $args['custom_field_count'];
+	$custom_field_hellip = $args['custom_field_hellip'];
+	$custom_field_margin = $args['custom_field_margin'];
+	$margin_unit         = $args['margin_unit'];
 
 	$output = '';
 
-	// The leading text for the custom fields
+	// The leading text for the custom fields.
 	if ( $custom_field_txt ) {
 		$cf_text = '<span class="pis-custom-field-text-before">' . rtrim( $custom_field_txt ) . '</span> ';
 	} else {
 		$cf_text = '';
 	}
 
-	// If the user want to display all the custom fields of the post
+	// If the user want to display all the custom fields of the post.
 	if ( $custom_field_all ) {
 		$the_custom_fields = get_post_custom( $post_id );
 		if ( $the_custom_fields ) {
 			foreach ( $the_custom_fields as $cf_key => $cf_value ) {
-				// Make sure to avoid custom fields starting with _ (an underscore)
-				if ( '_' != substr( $cf_key, 0, 1 ) ) {
+				// Make sure to avoid custom fields starting with _ (an underscore).
+				if ( '_' !== substr( $cf_key, 0, 1 ) ) {
 					foreach ( $cf_value as $k => $cf_v ) {
 
-						// If we have to display a text before the custom field
+						// If we have to display a text before the custom field.
 						if ( $custom_field_key ) {
-							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
+							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span><span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
 						} else {
 							$key = '';
 						}
 
-						// If we have to reduce the length of the custom field value
+						// If we have to reduce the length of the custom field value.
 						if ( ! empty( $custom_field_count ) ) {
-							$custom_field_count > strlen( $cf_v ) ? $cf_h = '' : $cf_h = $custom_field_hellip;
+							if ( $custom_field_count > strlen( $cf_v ) ) {
+								$cf_h = '';
+							} else {
+								$cf_h = $custom_field_hellip;
+							}
 							$cf_text_value = rtrim( mb_substr( $cf_v, 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $cf_h;
 						} else {
 							$cf_text_value = $cf_v;
 						}
 
-						// Build the custom field value line
+						// Build the custom field value line.
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
-						// Create the class from the key of the custom field key
+						// Create the class from the key of the custom field key.
 						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key, ' -' ) );
 
-						// Build the final output
+						// Build the final output.
 						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
-							$output .= $cf_text . $key . $cf_value;
+						$output .= $cf_text . $key . $cf_value;
 						$output .= '</p>';
 					}
 				}
@@ -639,20 +686,27 @@ function pis_custom_field( $args ) {
 		$the_custom_field = get_post_meta( $post_id, $meta, false );
 		if ( $the_custom_field ) {
 			if ( $custom_field_key ) {
-				$key = '<span class="pis-custom-field-key">' . $meta . '</span>' . '<span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
+				$key = '<span class="pis-custom-field-key">' . $meta . '</span><span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
 			} else {
 				$key = '';
 			}
 			if ( ! empty( $custom_field_count ) ) {
-				if ( $custom_field_count > strlen( $the_custom_field[0] ) ) $custom_field_hellip = '';
-				// $cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );
+				if ( $custom_field_count > strlen( $the_custom_field[0] ) ) {
+					$custom_field_hellip = '';
+				}
+				/* It was originally: `$cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );` */
 				$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
 			} else {
-				if ( isset( $the_custom_field[0] ) ) $cf_text_value = $the_custom_field[0]; else  $cf_text_value = '';
+				if ( isset( $the_custom_field[0] ) ) {
+					$cf_text_value = $the_custom_field[0];
+				} else {
+					$cf_text_value = '';
+				}
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+
 			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key, ' -' ) ), 'pis_custom_fields_class' ) . '>';
-				$output .= $cf_text . $key . $cf_value;
+			$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}
 	}
@@ -667,8 +721,8 @@ function pis_custom_field( $args ) {
  *    The array of parameters.
  *
  *    @type string  image_align         Alignment of the image. Accepts 'no_change', 'left', 'right', 'center'. Default 'no_change'.
- *    @type string  side_image_margin   The left/right margin for the image. Default NULL.
- *    @type string  bottom_image_margin The left/right margin for the image. Default NULL.
+ *    @type string  side_image_margin   The left/right margin for the image. Default null.
+ *    @type string  bottom_image_margin The left/right margin for the image. Default null.
  *    @type string  margin_unit         The margin unit. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
  *    @type string  pis_query           The query containing the post. Default empty.
  *    @type string  image_size          The size of the image. Default 'thumbnail'.
@@ -685,8 +739,8 @@ function pis_custom_field( $args ) {
 function pis_the_thumbnail( $args ) {
 	$defaults = array(
 		'image_align'         => 'no_change',
-		'side_image_margin'   => NULL,
-		'bottom_image_margin' => NULL,
+		'side_image_margin'   => null,
+		'bottom_image_margin' => null,
 		'margin_unit'         => 'px',
 		'pis_query'           => '',
 		'image_size'          => 'thumbnail',
@@ -697,46 +751,59 @@ function pis_the_thumbnail( $args ) {
 		'image_link'          => '',
 		'image_link_to_post'  => true,
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
+	$image_align         = $args['image_align'];
+	$side_image_margin   = $args['side_image_margin'];
+	$bottom_image_margin = $args['bottom_image_margin'];
+	$margin_unit         = $args['margin_unit'];
+	$pis_query           = $args['pis_query'];
+	$image_size          = $args['image_size'];
+	$thumb_wrap          = $args['thumb_wrap'];
+	$custom_image_url    = $args['custom_image_url'];
+	$custom_img_no_thumb = $args['custom_img_no_thumb'];
+	$post_type           = $args['post_type'];
+	$image_link          = $args['image_link'];
+	$image_link_to_post  = $args['image_link_to_post'];
 
 	if ( $thumb_wrap ) {
-		$open_wrap = '<p class="pis-thumbnail">';
+		$open_wrap  = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
 	} else {
-		$open_wrap = '';
+		$open_wrap  = '';
 		$close_wrap = '';
 	}
 
 	switch ( $image_align ) {
-		case 'left' :
+		case 'left':
 			$image_class = ' alignleft';
 			$image_style = '';
 			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
-				$image_style = str_replace( ' margin-right: px;', '', $image_style);
-				$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+				$image_style = str_replace( ' margin-right: px;', '', $image_style );
+				$image_style = str_replace( ' margin-bottom: px;', '', $image_style );
 			}
-		break;
+			break;
 		case 'right':
 			$image_class = ' alignright';
 			$image_style = '';
 			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
-				$image_style = str_replace( ' margin-left: px;', '', $image_style);
-				$image_style = str_replace( ' margin-bottom: px;', '', $image_style);
+				$image_style = str_replace( ' margin-left: px;', '', $image_style );
+				$image_style = str_replace( ' margin-bottom: px;', '', $image_style );
 			}
-		break;
+			break;
 		case 'center':
 			$image_class = ' aligncenter';
 			$image_style = '';
-			if ( ! is_null( $bottom_image_margin ) )
+			if ( ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
-		break;
+			}
+			break;
 		default:
 			$image_class = '';
 			$image_style = '';
-		break;
 	}
 
 	$output = $open_wrap;
@@ -748,7 +815,7 @@ function pis_the_thumbnail( $args ) {
 		} else {
 			$the_image_link = get_permalink();
 		}
-		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( strip_tags( $the_image_link ) ) . '" rel="bookmark">';
+		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . 'href="' . esc_url( wp_strip_all_tags( $the_image_link ) ) . '" rel="bookmark">';
 	}
 
 	/**
@@ -757,7 +824,7 @@ function pis_the_thumbnail( $args ) {
 	 *
 	 * @since 1.28
 	 */
-	if ( 'attachment' == $post_type ) {
+	if ( 'attachment' === $post_type ) {
 		$image_html = wp_get_attachment_image(
 			$pis_query->post->ID,
 			$image_size,

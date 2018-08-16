@@ -1,6 +1,6 @@
 <?php
 /**
- * Posts in Sidebar plugin.
+ * Posts in Sidebar plugin index.php plugin.
  *
  * @package WordPress
  * @subpackage Posts in Sidebar

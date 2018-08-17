@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
  * The core function.
  *
  * @since 1.0
- * @param mixed $args The options for the main function.
+ * @param array $args The options for the main function.
  * @return string The HTML output.
  */
 function pis_get_posts_in_sidebar( $args ) {

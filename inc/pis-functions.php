@@ -777,7 +777,7 @@ function pis_the_thumbnail( $args ) {
 
 	switch ( $image_align ) {
 		case 'left':
-			$image_class = ' alignleft';
+			$image_class = 'alignleft ';
 			$image_style = '';
 			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
@@ -786,7 +786,7 @@ function pis_the_thumbnail( $args ) {
 			}
 			break;
 		case 'right':
-			$image_class = ' alignright';
+			$image_class = 'alignright ';
 			$image_style = '';
 			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
@@ -795,7 +795,7 @@ function pis_the_thumbnail( $args ) {
 			}
 			break;
 		case 'center':
-			$image_class = ' aligncenter';
+			$image_class = 'aligncenter ';
 			$image_style = '';
 			if ( ! is_null( $bottom_image_margin ) ) {
 				$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
@@ -825,27 +825,27 @@ function pis_the_thumbnail( $args ) {
 	 * @since 1.28
 	 */
 	if ( 'attachment' === $post_type ) {
-		$image_html = wp_get_attachment_image(
+		$final_image_class = rtrim( "attachment-$image_size pis-thumbnail-img " . $image_class . apply_filters( 'pis_thumbnail_class', '' ) );
+		$image_html        = wp_get_attachment_image(
 			$pis_query->post->ID,
 			$image_size,
 			false,
-			array(
-				'class' => "attachment-$image_size pis-thumbnail-img" . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class,
-			)
+			array( 'class' => $final_image_class )
 		);
 	} else {
+		$final_image_class = rtrim( 'pis-thumbnail-img ' . $image_class . apply_filters( 'pis_thumbnail_class', '' ) );
 		/**
 		 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
 		 * OR
 		 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
 		 */
 		if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
-			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class . '">';
+			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="' . $final_image_class . '">';
 		} else {
 			$image_html = get_the_post_thumbnail(
 				$pis_query->post->ID,
 				$image_size,
-				array( 'class' => 'pis-thumbnail-img' . ' ' . apply_filters( 'pis_thumbnail_class', '' ) . $image_class, )
+				array( 'class' => $final_image_class )
 			);
 		}
 	}
@@ -879,8 +879,15 @@ function pis_the_text( $args ) {
 		'the_more'        => esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ),
 		'exc_arrow'       => false,
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
+	$excerpt         = $args['excerpt'];
+	$pis_query       = $args['pis_query'];
+	$exc_length      = $args['exc_length'];
+	$exc_length_unit = $args['exc_length_unit'];
+	$the_more        = $args['the_more'];
+	$exc_arrow       = $args['exc_arrow'];
 
 	$output = '';
 
@@ -895,50 +902,51 @@ function pis_the_text( $args ) {
 	switch ( $excerpt ) :
 
 		case 'full_content':
-			/* Filter the post content. If not filtered, shortcodes (and other things) will not be executed.
+			/**
+			 * Filter the post content. If not filtered, shortcodes (and other things) will not be executed.
 			 * See https://codex.wordpress.org/Function_Reference/get_the_content
 			 */
 			$output = apply_filters( 'the_content', get_the_content() );
-		break;
+			break;
 
 		case 'rich_content':
 			$content = $pis_query->post->post_content;
-			// Honor any paragraph break
+			// Honor any paragraph break.
 			$content = pis_break_text( $content );
 			$content = do_shortcode( $content );
-			$output = apply_filters( 'pis_rich_content', $content );
-		break;
+			$output  = apply_filters( 'pis_rich_content', $content );
+			break;
 
 		case 'content':
-			// Remove shortcodes
+			// Remove shortcodes.
 			$content = strip_shortcodes( $pis_query->post->post_content );
-			// remove any HTML tag
+			// remove any HTML tag.
 			$content = wp_kses( $content, array() );
-			// Honor any paragraph break
+			// Honor any paragraph break.
 			$content = pis_break_text( $content );
-			$output = apply_filters( 'pis_content', $content );
-		break;
+			$output  = apply_filters( 'pis_content', $content );
+			break;
 
 		case 'more_excerpt':
 			$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
-			$testformore = strpos( $excerpt_text, '<!--more-->' );
+			$testformore  = strpos( $excerpt_text, '<!--more-->' );
 			if ( $testformore ) {
 				$excerpt_text = substr( $excerpt_text, 0, $testformore );
 			} else {
-				if ( 'words' == $exc_length_unit ) {
+				if ( 'words' === $exc_length_unit ) {
 					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
 				} else {
 					$excerpt_text = substr( $excerpt_text, 0, $exc_length ) . '&hellip;';
 				}
 			}
 			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
-		break;
+			break;
 
 		case 'excerpt':
 			/**
 			 * Check if the Relevanssi plugin is active and restore the user-defined excerpt in place of the Relevanssi-generated excerpt.
-			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
 			 *
+			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
 			 * @since 1.26
 			 */
 			if ( function_exists( 'relevanssi_do_excerpt' ) && isset( $pis_query->post->original_excerpt ) ) {
@@ -947,39 +955,40 @@ function pis_the_text( $args ) {
 
 			// If we have a user-defined excerpt...
 			if ( $pis_query->post->post_excerpt ) {
-				// Honor any paragraph break
+				// Honor any paragraph break.
 				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
-				$output = trim( $output );
-			} else {
-			// ... else generate an excerpt
-				$excerpt_text =  wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
-				$no_the_more = false;
-				$hellip = '&hellip;';
-				if ( 'words' == $exc_length_unit ) {
-					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) $no_the_more = true;
+				$output       = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+				$output       = trim( $output );
+			} else { // ... else generate an excerpt.
+				$excerpt_text = wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
+				$no_the_more  = false;
+				$hellip       = '&hellip;';
+				if ( 'words' === $exc_length_unit ) {
+					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) {
+						$no_the_more = true;
+					}
 					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, $hellip );
 				} else {
 					if ( strlen( $excerpt_text ) <= $exc_length ) {
 						$no_the_more = true;
-						$hellip = '';
+						$hellip      = '';
 					}
 					$excerpt_text = rtrim( mb_substr( $excerpt_text, 0, $exc_length, get_option( 'blog_charset' ) ) ) . $hellip;
 				}
 				$output = apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );
-				if ( $output ) $output .= pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
+				if ( $output ) {
+					$output .= pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
+				}
 			}
-		break;
+			break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
-			$output = trim( $output );
-		break;
+			$output       = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output       = trim( $output );
 
-	endswitch;
-	// Close The text
+	endswitch; // Close The text.
 
 	return $output;
 }
@@ -994,7 +1003,7 @@ function pis_the_text( $args ) {
  *    @type boolean display_date      If display the post's date. Default false.
  *    @type boolean display_mod_date  If display the modification date of the post. Default false.
  *    @type boolean comments          If display comments number. Default false.
- *    @type integer utility_margin    The CSS margin value for the section. Default NULL value.
+ *    @type integer utility_margin    The CSS margin value for the section. Default null value.
  *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
  *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
  *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
@@ -1026,7 +1035,7 @@ function pis_utility_section( $args ) {
 		'display_mod_date'  => false,
 		'display_mod_time'  => false,
 		'comments'          => false,
-		'utility_margin'    => NULL,
+		'utility_margin'    => null,
 		'margin_unit'       => 'px',
 		'author_text'       => esc_html__( 'By', 'posts-in-sidebar' ),
 		'linkify_author'    => false,
@@ -1044,8 +1053,32 @@ function pis_utility_section( $args ) {
 		'gravatar_size'     => 32,
 		'gravatar_default'  => '',
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
+	$display_author    = $args['display_author'];
+	$display_date      = $args['display_date'];
+	$display_time      = $args['display_time'];
+	$display_mod_date  = $args['display_mod_date'];
+	$display_mod_time  = $args['display_mod_time'];
+	$comments          = $args['comments'];
+	$utility_margin    = $args['utility_margin'];
+	$margin_unit       = $args['margin_unit'];
+	$author_text       = $args['author_text'];
+	$linkify_author    = $args['linkify_author'];
+	$utility_sep       = $args['utility_sep'];
+	$date_text         = $args['date_text'];
+	$linkify_date      = $args['linkify_date'];
+	$mod_date_text     = $args['mod_date_text'];
+	$linkify_mod_date  = $args['linkify_mod_date'];
+	$comments_text     = $args['comments_text'];
+	$pis_post_id       = $args['pis_post_id'];
+	$link_to_comments  = $args['link_to_comments'];
+	$gravatar_display  = $args['gravatar_display'];
+	$gravatar_position = $args['gravatar_position'];
+	$gravatar_author   = $args['gravatar_author'];
+	$gravatar_size     = $args['gravatar_size'];
+	$gravatar_default  = $args['gravatar_default'];
 
 	$output = '';
 
@@ -1053,93 +1086,104 @@ function pis_utility_section( $args ) {
 		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
 	}
 
-		/* The Gravatar */
-		if ( $gravatar_display && 'next_author' == $gravatar_position ) {
-			$output .= pis_get_gravatar( array(
-				'author'  => $gravatar_author,
-				'size'    => $gravatar_size,
-				'default' => $gravatar_default,
-			) );
-		}
+	/* The Gravatar */
+	if ( $gravatar_display && 'next_author' === $gravatar_position ) {
+		$output .= pis_get_gravatar( array(
+			'author'  => $gravatar_author,
+			'size'    => $gravatar_size,
+			'default' => $gravatar_default,
+		) );
+	}
 
-		/* The author */
+	/* The author */
+	if ( $display_author ) {
+		$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
+		if ( $author_text ) {
+			$output .= $author_text . ' ';
+		}
+		if ( $linkify_author ) {
+			$author_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
+			$output     .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
+			$output     .= get_the_author();
+			$output     .= '</a>';
+		} else {
+			$output .= get_the_author();
+		}
+		$output .= '</span>';
+	}
+
+	/* The date */
+	if ( $display_date ) {
 		if ( $display_author ) {
-			$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
-				if ( $author_text ) $output .= $author_text . ' ';
-				if ( $linkify_author ) {
-					$author_link  = get_author_posts_url( get_the_author_meta( 'ID' ) );
-					$output .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
-						$output .= get_the_author();
-					$output .= '</a>';
-				} else {
-					$output .= get_the_author();
-				}
-			$output .= '</span>';
+			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 		}
+		$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
+		if ( $date_text ) {
+			$output .= $date_text . ' ';
+		}
+		if ( $display_time ) {
+			// translators: %s is the time of the post.
+			$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
+		} else {
+			$post_time = '';
+		}
+		if ( $linkify_date ) {
+			$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+			$output .= get_the_date() . $post_time;
+			$output .= '</a>';
+		} else {
+			$output .= get_the_date() . $post_time;
+		}
+		$output .= '</span>';
+	}
 
-		/* The date */
-		if ( $display_date ) {
-			if ( $display_author ) {
+	/**
+	 * The modification date.
+	 * When publishing a new post, WordPress stores two dates:
+	 * - the creation date into `post_date` database column;
+	 * - the modification date into `post_modified` database column.
+	 * and the two dates and times are the same.
+	 * In this situation, in order to figure out if a post has been modified
+	 * after its publication, we have to compare the times (not simply the dates).
+	 */
+	if ( $display_mod_date && get_the_modified_time() !== get_the_time() ) {
+		if ( $display_author || $display_date ) {
+			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+		}
+		$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
+		if ( $mod_date_text ) {
+			$output .= $mod_date_text . ' ';
+		}
+		if ( $display_mod_time ) {
+			// translators: %s is the time of the post modified.
+			$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
+		} else {
+			$post_mod_time = '';
+		}
+		if ( $linkify_mod_date ) {
+			$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+			$output .= get_the_modified_date() . $post_mod_time;
+			$output .= '</a>';
+		} else {
+			$output .= get_the_modified_date() . $post_mod_time;
+		}
+		$output .= '</span>';
+	}
+
+	/* The comments */
+	if ( ! post_password_required() ) {
+		if ( $comments ) {
+			if ( $display_author || $display_date || $display_mod_date ) {
 				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
 			}
-			$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
-				if ( $date_text ) $output .= $date_text . ' ';
-				if ( $display_time ) {
-					$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
-				} else {
-					$post_time = '';
-				}
-				if ( $linkify_date ) {
-					$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-						$output .= get_the_date() . $post_time;
-					$output .= '</a>';
-				} else {
-					$output .= get_the_date() . $post_time;
-				}
+			$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
+			if ( $comments_text ) {
+				$output .= $comments_text . ' ';
+			}
+			$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
 			$output .= '</span>';
 		}
-
-		/* The modification date
-		 * When publishing a new post, WordPress stores two dates:
-		 * - the creation date into `post_date` database column;
-		 * - the modification date into `post_modified` database column.
-		 * and the two dates and times are the same.
-		 * In this situation, in order to figure out if a post has been modified
-		 * after its publication, we have to compare the times (not simply the dates).
-		 */
-		if ( $display_mod_date && get_the_modified_time() != get_the_time() ) {
-			if ( $display_author || $display_date ) {
-				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-			}
-			$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
-				if ( $mod_date_text ) $output .= $mod_date_text . ' ';
-				if ( $display_mod_time ) {
-					$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
-				} else {
-					$post_mod_time = '';
-				}
-				if ( $linkify_mod_date ) {
-					$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-						$output .= get_the_modified_date() . $post_mod_time;
-					$output .= '</a>';
-				} else {
-					$output .= get_the_modified_date() . $post_mod_time;
-				}
-			$output .= '</span>';
-		}
-
-		/* The comments */
-		if ( ! post_password_required() ) {
-			if ( $comments ) {
-				if ( $display_author || $display_date || $display_mod_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
-				}
-				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-					if ( $comments_text ) $output .= $comments_text . ' ';
-					$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
-				$output .= '</span>';
-			}
-		}
+	}
 
 	if ( $display_author || $display_date || $display_mod_date || $comments ) {
 		$output .= '</p>';
@@ -1157,34 +1201,40 @@ function pis_utility_section( $args ) {
  */
 function pis_custom_taxonomies_terms_links( $args ) {
 	$defaults = array(
-		'postID'       => '',
+		'post_id'      => '',
 		'term_hashtag' => '',
 		'term_sep'     => ',',
-		'terms_margin' => NULL,
+		'terms_margin' => null,
 		'margin_unit'  => 'px',
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
-	// get post by post id
-	$post = get_post( $postID );
+	$post_id      = $args['post_id'];
+	$term_hashtag = $args['term_hashtag'];
+	$term_sep     = $args['term_sep'];
+	$terms_margin = $args['terms_margin'];
+	$margin_unit  = $args['margin_unit'];
 
-	// get post type by post
+	// Get post by post id.
+	$post = get_post( $post_id );
+
+	// Get post type by post.
 	$post_type = $post->post_type;
 
-	// get post type taxonomies
+	// Get post type taxonomies.
 	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
 	$output = '';
 
 	foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
 		// Exclude the standard WordPress 'category' and 'post_tag' taxonomies otherwise we'll have a duplicate in the front-end.
-		if ( 'category' != $taxonomy_slug && 'post_tag' != $taxonomy_slug ) {
-			// get the terms related to post
-			$list_of_terms = get_the_term_list( $postID, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
+		if ( 'category' !== $taxonomy_slug && 'post_tag' !== $taxonomy_slug ) {
+			// Get the terms related to post.
+			$list_of_terms = get_the_term_list( $post_id, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
 			if ( ! ( is_wp_error( $list_of_terms ) ) && ( $list_of_terms ) ) {
 				$output .= '<p ' . pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
-					$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
+				$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
 				$output .= '</p>';
 			}
 		}
@@ -1201,15 +1251,16 @@ function pis_custom_taxonomies_terms_links( $args ) {
  * @since 3.0
  */
 function pis_get_comments_number( $pis_post_id, $link ) {
-	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value
+	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value.
 
-	if ( 0 == $num_comments && ! comments_open( $pis_post_id ) ) {
+	if ( 0 === $num_comments && ! comments_open( $pis_post_id ) ) {
 		$output = esc_html__( 'Comments are closed.', 'posts-in-sidebar' );
 	} else {
 		// Construct the comments string.
-		if ( 1 == $num_comments ) {
+		if ( 1 === $num_comments ) {
 			$comments = esc_html__( '1 Comment', 'posts-in-sidebar' );
 		} elseif ( 1 < $num_comments ) {
+			// translators: %d is the number of comments.
 			$comments = sprintf( esc_html__( '%d Comments', 'posts-in-sidebar' ), $num_comments );
 		} else {
 			$comments = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
@@ -1234,14 +1285,14 @@ function pis_get_comments_number( $pis_post_id, $link ) {
  */
 function pis_get_gravatar( $args ) {
 	$defaults = array(
-		'author'    => '',
-		'size'      => 32,
-		'default'   => '',
+		'author'  => '',
+		'size'    => 32,
+		'default' => '',
 	);
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
 
-	$output = '<span ' . pis_class( 'pis-gravatar', apply_filters( 'pis_gravatar_class', '' ), false ) . '>' . get_avatar( $author, $size, $default ) . '</span>';
+	$args = wp_parse_args( $args, $defaults );
+
+	$output = '<span ' . pis_class( 'pis-gravatar', apply_filters( 'pis_gravatar_class', '' ), false ) . '>' . get_avatar( $args['author'], $args['size'], $args['default'] ) . '</span>';
 
 	return $output;
 }
@@ -1258,11 +1309,18 @@ function pis_archive_link( $args ) {
 		'tax_name'       => '',
 		'tax_term_name'  => '',
 		'archive_text'   => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
-		'archive_margin' => NULL,
-		'margin_unit'    => 'px'
+		'archive_margin' => null,
+		'margin_unit'    => 'px',
 	);
+
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
+	$link_to        = $args['link_to'];
+	$tax_name       = $args['tax_name'];
+	$tax_term_name  = $args['tax_term_name'];
+	$archive_text   = $args['archive_text'];
+	$archive_margin = $args['archive_margin'];
+	$margin_unit    = $args['margin_unit'];
 
 	switch ( $link_to ) {
 		case 'author':
@@ -1291,9 +1349,9 @@ function pis_archive_link( $args ) {
 
 		case 'custom_post_type':
 			if ( post_type_exists( $tax_term_name ) ) {
-				$term_link = get_post_type_archive_link( $tax_term_name );
+				$term_link        = get_post_type_archive_link( $tax_term_name );
 				$post_type_object = get_post_type_object( $tax_term_name );
-				$term_name = $post_type_object->labels->name;
+				$term_name        = $post_type_object->labels->name;
 			}
 			break;
 
@@ -1305,7 +1363,7 @@ function pis_archive_link( $args ) {
 			}
 			break;
 
-		default : // This is the case of post formats
+		default: // This is the case of post formats.
 			$term_identity = get_term_by( 'slug', $link_to, 'post_format' );
 			if ( $term_identity ) {
 				$term_link = get_post_format_link( substr( $link_to, 12 ) );
@@ -1318,10 +1376,10 @@ function pis_archive_link( $args ) {
 		if ( strpos( $archive_text, '%s' ) ) {
 			$archive_text = str_replace( '%s', $term_name, $archive_text );
 		}
-		$output = '<p ' . pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ) . '>';
-			$output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . esc_url( $term_link ) . '" rel="bookmark">';
-				$output .= esc_html( $archive_text );
-			$output .= '</a>';
+		$output  = '<p ' . pis_paragraph( $archive_margin, $margin_unit, 'pis-archive-link', 'pis_archive_class' ) . '>';
+		$output .= '<a ' . pis_class( 'pis-archive-link-class', apply_filters( 'pis_archive_link_class', '' ), false ) . ' href="' . esc_url( $term_link ) . '" rel="bookmark">';
+		$output .= esc_html( $archive_text );
+		$output .= '</a>';
 		$output .= '</p>';
 	}
 
@@ -1366,34 +1424,51 @@ function pis_generated( $cached ) {
  * @since 2.0.3
  */
 function pis_debug( $parameters ) {
-	$defaults = array (
+	$defaults = array(
 		'admin_only'   => true,
 		'debug_query'  => false,
 		'debug_params' => false,
 		'params'       => '',
 		'args'         => '',
 		'cached'       => false,
+		'widget_id'    => '',
 	);
+
 	$parameters = wp_parse_args( $parameters, $defaults );
-	extract( $parameters, EXTR_SKIP );
+
+	$admin_only   = $parameters['admin_only'];
+	$debug_query  = $parameters['debug_query'];
+	$debug_params = $parameters['debug_params'];
+	$params       = $parameters['params'];
+	$args         = $parameters['args'];
+	$cached       = $parameters['cached'];
+	$widget_id    = $parameters['widget_id'];
 
 	$output = '';
 
 	if ( $debug_query || $debug_params ) {
 		global $wp_version;
 		$output .= '<!-- Start PiS Debug -->';
+		// translators: %s is the name of the plugin.
 		$output .= '<h3 class="pis-debug-title-main">' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>';
-		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'Environment informations:', 'posts-in-sidebar' ) . '</strong></p>';
+		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'Environment information:', 'posts-in-sidebar' ) . '</strong></p>';
 		$output .= '<ul class="pis-debug-ul">';
-			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '</li>' );
-			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '</li>' );
-			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '</li>' );
-			if ( $cached ) {
-				$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: active', 'posts-in-sidebar' ) . '</li>';
-			} else {
-				$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>';
-			}
-			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Queries: %1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</li>';
+		// translators: %s is the site URL.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() . '</li>' );
+		// translators: %s is the WordPress version.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version . '</li>' );
+		// translators: %s is the plugin version.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION . '</li>' );
+		// translators: %s is the ID of the widget.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $widget_id . '</li>' );
+
+		if ( $cached ) {
+			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: active', 'posts-in-sidebar' ) . '</li>';
+		} else {
+			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>';
+		}
+		// translators: %1$s is the number of queries, %2$s is the number of seconds.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Queries: %1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</li>';
 		$output .= '</ul>';
 	}
 
@@ -1402,9 +1477,9 @@ function pis_debug( $parameters ) {
 		$output .= '<ul class="pis-debug-ul">';
 		foreach ( $params as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
+				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
 			} else {
-				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>';
 			}
 		}
 		$output .= '</ul>';
@@ -1415,9 +1490,9 @@ function pis_debug( $parameters ) {
 		$output .= '<ul class="pis-debug-ul">';
 		foreach ( $args as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
+				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>';
 			} else {
-				$output .= '<li class="pis-debug-li">'. $key . ': <code>' . esc_html( $value ) . '</code></li>';
+				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>';
 			}
 		}
 		$output .= '</ul>';
@@ -1445,7 +1520,8 @@ function pis_debug( $parameters ) {
 
 /*
  * Posts in Sidebar tools section
- ******************************************************************************/
+ *******************************************************************************
+ */
 
 /**
  * Return the class for the HTML element.
@@ -1460,7 +1536,7 @@ function pis_debug( $parameters ) {
  */
 function pis_class( $default = '', $class = '', $echo = true ) {
 
-	// Define $classes as array
+	// Define $classes as array.
 	$classes = array();
 
 	// If $default is not empty, remove any leading and trailing dot, space, and dash,
@@ -1481,9 +1557,9 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 		$classes = array_merge( $classes, $class );
 	}
 
-	// Remove null or empty or space-only-filled elements from the array
+	// Remove null or empty or space-only-filled elements from the array.
 	foreach ( $classes as $key => $value ) {
-		if ( is_null( $value ) || $value == '' || $value == ' ' ) {
+		if ( is_null( $value ) || '' === $value || ' ' === $value ) {
 			unset( $classes[ $key ] );
 		}
 	}
@@ -1492,7 +1568,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	$classes = array_map( 'sanitize_html_class', $classes );
 	$classes = array_map( 'pis_remove_dashes', $classes );
 
-	// Convert the array into string and build the final output
+	// Convert the array into string and build the final output.
 	$classes = 'class="' . implode( ' ', $classes ) . '"';
 
 	if ( true === $echo ) {
@@ -1507,15 +1583,19 @@ function pis_class( $default = '', $class = '', $echo = true ) {
  *
  * @since 1.12
  *
- * @param string  $margin       The margin of the paragraph.
- * @param string  $unit         The unit measure to be used.
- * @param string  $class        The default class defined by the plugin's developer.
- * @param string  $class_filter The name of the class filter.
- * @return string $output       The class and the inline style.
+ * @param string $margin       The margin of the paragraph.
+ * @param string $unit         The unit measure to be used.
+ * @param string $class        The default class defined by the plugin's developer.
+ * @param string $class_filter The name of the class filter.
+ * @return string $output      The class and the inline style.
  * @uses pis_class()
  */
 function pis_paragraph( $margin, $unit, $class, $class_filter ) {
-	( ! is_null( $margin ) ) ? $style = ' style="margin-bottom: ' . $margin . $unit . ';"' : $style = '';
+	if ( ! is_null( $margin ) ) {
+		$style = ' style="margin-bottom: ' . $margin . $unit . ';"';
+	} else {
+		$style = '';
+	}
 	$output = pis_class( $class, apply_filters( $class_filter, '' ), false ) . $style;
 	return $output;
 }
@@ -1524,12 +1604,12 @@ function pis_paragraph( $margin, $unit, $class, $class_filter ) {
  * Return the given text with paragraph breaks (HTML <br />).
  *
  * @since 1.12
- * @param string  $text The text to be checked.
+ * @param string $text The text to be checked.
  * @return string $text The checked text with paragraph breaks.
  */
 function pis_break_text( $text ) {
-	// Convert cross-platform newlines into HTML '<br />'
-	$text = str_replace( array( "\r\n", "\n", "\r" ), "<br />", $text );
+	// Convert cross-platform newlines into HTML '<br />'.
+	$text = str_replace( array( "\r\n", "\n", "\r" ), '<br />', $text );
 	return $text;
 }
 
@@ -1541,31 +1621,39 @@ function pis_break_text( $text ) {
  */
 function pis_meta() {
 	global $wpdb;
+
 	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
+
 	$sql = "SELECT DISTINCT meta_key
 		FROM $wpdb->postmeta
 		WHERE meta_key NOT BETWEEN '_' AND '_z'
 		HAVING meta_key NOT LIKE %s
 		ORDER BY meta_key
 		LIMIT %d";
+
 	$keys = $wpdb->get_col( $wpdb->prepare( $sql, $wpdb->esc_like( '_' ) . '%', $limit ) );
-	if ( $keys )
-		natcasesort($keys);
+
+	if ( $keys ) {
+		natcasesort( $keys );
+	}
+
 	return $keys;
 }
 
 /**
  * Generate an HTML arrow.
  *
- * @param  boolean $pre_space If a space must be prepended before the arrow.
- * @return string  $output The HTML arrow.
+ * @param boolean $pre_space If a space must be prepended before the arrow.
+ * @return string $output The HTML arrow.
  * @uses pis_class()
  * @since 1.15
  * @since 4.5.0 Added filter for HTML arrows in title and excerpt.
  */
 function pis_arrow( $pre_space = true ) {
 	$the_arrow = apply_filters( 'pis_arrow', '&rarr;' );
-	if ( is_rtl() ) $the_arrow = '&larr;';
+	if ( is_rtl() ) {
+		$the_arrow = '&larr;';
+	}
 
 	if ( $pre_space ) {
 		$space = '&nbsp;';
@@ -1585,6 +1673,7 @@ function pis_arrow( $pre_space = true ) {
  * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
  * @param boolean $exc_arrow   If the arrow must be displayed or not. Default false.
  * @param boolean $echo        If echo the output or return.
+ * @param boolean $pre_space   If a space must be prepended.
  *
  * @since 1.15
  * @uses pis_arrow()
@@ -1594,27 +1683,23 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
 	$output = '';
 	// If we do not want any "Read more" nor any arrow
 	// or the user doesn't want any "Read more" nor any arrow.
-	if ( ( true == $no_the_more && false == $exc_arrow ) || ( '' == $the_more && false == $exc_arrow ) ) {
+	if ( ( true === $no_the_more && false === $exc_arrow ) || ( '' === $the_more && false === $exc_arrow ) ) {
 		$output = '';
 	} else {
 		// Else if we do not want any "Read more" but the user wants an arrow
 		// or the user doesn't want the "Read more" but only the arrow.
-		if ( ( true == $no_the_more && true == $exc_arrow ) || ( ! $the_more && $exc_arrow ) ) {
-			$the_more = '';
+		if ( ( true === $no_the_more && true === $exc_arrow ) || ( ! $the_more && $exc_arrow ) ) {
+			$the_more  = '';
 			$the_arrow = pis_arrow( false );
-		}
-		// The user wants the "Read more" and the arrow.
-		elseif ( $the_more && $exc_arrow ) {
+		} elseif ( $the_more && $exc_arrow ) { // The user wants the "Read more" and the arrow.
 			$the_arrow = pis_arrow();
-		}
-		// The user wants the "Read more" but not the arrow
-		else {
+		} else { // The user wants the "Read more" but not the arrow.
 			$the_arrow = '';
 		}
-		$output = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
-			$output .= '<a ' . pis_class( 'pis-more-link', apply_filters( 'pis_more_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-				$output .= $the_more . $the_arrow;
-			$output .= '</a>';
+		$output  = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
+		$output .= '<a ' . pis_class( 'pis-more-link', apply_filters( 'pis_more_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
+		$output .= $the_more . $the_arrow;
+		$output .= '</a>';
 		$output .= '</span>';
 	}
 
@@ -1633,7 +1718,6 @@ function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = fals
  * Add the custom styles to wp_head hook.
  *
  * @since 1.13
- * @return The HTML for custom styles in the HEAD section.
  */
 function pis_add_styles_to_head() {
 	// Get the options from the database.
@@ -1654,9 +1738,9 @@ function pis_add_styles_to_head() {
 	 *
 	 * Invoking array_filter without a callback function
 	 * will remove any element with one of these values:
-	 *     - false
-	 *     - null
-     *     - '' (empty)
+	 *		- false
+	 *		- null
+	 *		- '' (empty)
 	 *
 	 * For multidimensional arrays, use pis_array_remove_empty_keys() function.
 	 *
@@ -1679,7 +1763,8 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
 
 /*
  * Generic tools section
- ******************************************************************************/
+ *******************************************************************************
+ */
 
 /**
  * Remove empty keys from an array recursively.
@@ -1696,10 +1781,10 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
 
 	foreach ( $array as $key => $value ) {
 		if ( is_array( $value ) ) {
-			$array[$key] = pis_array_remove_empty_keys( $array[$key] );
+			$array[ $key ] = pis_array_remove_empty_keys( $array[ $key ] );
 		}
-		if ( empty( $array[$key] ) ) {
-			unset( $array[$key] );
+		if ( empty( $array[ $key ] ) ) {
+			unset( $array[ $key ] );
 		}
 	}
 
@@ -1721,18 +1806,18 @@ function pis_array_remove_empty_keys( $array, $make_empty = false ) {
  * @since 3.8.8
  */
 function pis_compare_string_to_array( $string = '', $array = array() ) {
-	// Convert the string to lowercase
+	// Convert the string to lowercase.
 	$string = strtolower( $string );
-	// Remove any space from the string
+	// Remove any space from the string.
 	$string = str_replace( ' ', '', $string );
-	// Remove any comma at the beginning and at the end of the string
+	// Remove any comma at the beginning and at the end of the string.
 	$string = trim( $string, ',' );
-	// Convert the string into an array
+	// Convert the string into an array.
 	$string = explode( ',', $string );
 
-	// Compare the two arrays and return the intersection (the common values)
+	// Compare the two arrays and return the intersection (the common values).
 	$output = array_intersect( $string, $array );
-	// Convert the returned array into a string
+	// Convert the returned array into a string.
 	$output = implode( ', ', $output );
 
 	return $output;
@@ -1774,17 +1859,6 @@ function pis_normalize_values( $string = '', $absint = false ) {
 }
 
 /**
- * Returns the tooltip text for the link to the post.
- *
- * @param $tooltip_text The text to be displayed in the tooltip.
- * @since 3.9
- */
-/*function pis_tooltip( $tooltip_text ) {
-	$tooltip_text = rtrim( $tooltip_text ) . ' ';
-	return $tooltip_text;
-}*/
-
-/**
  * Returns the title of the main post,
  * changing spaces into a plus and lowering the letters.
  *
@@ -1793,18 +1867,19 @@ function pis_normalize_values( $string = '', $absint = false ) {
  */
 function pis_get_post_title() {
 	$post_title = get_the_title();
+
 	/*
 	 * Remove punctuation.
 	 *
- 	 * We cannot simply use:
- 	 * $post_title = preg_replace( '/[^a-zA-Z0-9]+/', '+', $post_title );
- 	 * or
- 	 * $post_title = preg_replace( '/[^\w|\s]/', '', $post_title );
- 	 * because preg_replace() will remove characters like Russian and such.
+	 * We cannot simply use:
+	 * $post_title = preg_replace( '/[^a-zA-Z0-9]+/', '+', $post_title );
+	 * or
+	 * $post_title = preg_replace( '/[^\w|\s]/', '', $post_title );
+	 * because preg_replace() will remove characters like Russian and such.
 	 */
 	$remove_chars = array( ',', ';', '.', ':', '\'', '*', '°', '@', '#', '+', '"', '!', '?', '–', '—', '―' );
-	$post_title = str_replace( $remove_chars, '', $post_title );
-	$post_title = strtolower( $post_title );
+	$post_title   = str_replace( $remove_chars, '', $post_title );
+	$post_title   = strtolower( $post_title );
 	return $post_title;
 }
 
@@ -1812,10 +1887,11 @@ function pis_get_post_title() {
  * Check post types entered.
  * The function removes any post type that has not been defined.
  *
+ * @param string $post_type The post type.
  * @since 4.7.0
  */
 function pis_check_post_types( $post_type ) {
 	$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
-	$post_type = pis_compare_string_to_array( $post_type, $post_type_wordpress );
+	$post_type           = pis_compare_string_to_array( $post_type, $post_type_wordpress );
 	return $post_type;
 }

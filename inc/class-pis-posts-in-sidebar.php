@@ -223,7 +223,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$title           = str_replace( '%s', $the_author_name, $title );
 		}
 
-		echo "\n" . '<!-- Start Posts in Sidebar - ' . $widget_id . ' -->' . "\n";
+		echo "\n" . '<!-- Start Posts in Sidebar - ' . esc_html( $widget_id ) . ' -->' . "\n";
 
 		echo $before_widget;
 
@@ -233,9 +233,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		if ( $title && isset( $instance['title_link'] ) && ! empty( $instance['title_link'] ) ) {
-			echo $before_title . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $title . '</a>' . $after_title;
+			echo $before_title . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . esc_html( $title ) . '</a>' . $after_title;
 		} elseif ( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $before_title . esc_html( $title ) . $after_title;
 		}
 
 		/*
@@ -1243,7 +1243,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		echo $after_widget;
 
-		echo "\n" . '<!-- End Posts in Sidebar - ' . $widget_id . ' -->' . "\n\n";
+		echo "\n" . '<!-- End Posts in Sidebar - ' . esc_html( $widget_id ) . ' -->' . "\n\n";
 	}
 
 	/**

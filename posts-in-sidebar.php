@@ -160,7 +160,7 @@ function pis_load_widgets() {
 	 *
 	 * @since 1.1
 	 */
-	require_once plugin_dir_path( __FILE__ ) . 'inc/pis-widget.php';
+	require_once plugin_dir_path( __FILE__ ) . 'inc/class-pis-posts-in-sidebar.php';
 
 	register_widget( 'PIS_Posts_In_Sidebar' );
 }

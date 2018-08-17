@@ -1180,7 +1180,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 */
 		$pis_ul_id = ' id="ul_' . $widget_id . '" ';
 
-		$pis_output .= '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>';
+		$pis_output .= '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>' . "\n";
 
 		while ( $pis_query->have_posts() ) :
 			$pis_query->the_post();
@@ -1237,7 +1237,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
 				}
 
-				$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>';
+				$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>' . "\n";
 
 				// Define the containers for single sections to be concatenated later.
 				$pis_thumbnail_content    = '';
@@ -1263,7 +1263,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'post_type'           => $post_type,
 					'image_link'          => $image_link,
 					'image_link_to_post'  => $image_link_to_post,
-				) );
+				) ) . "\n";
 
 				/* The title */
 				$pis_title_content .= pis_the_title( array(
@@ -1279,7 +1279,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'title_length'      => $title_length,
 					'title_length_unit' => $title_length_unit,
 					'title_hellipsis'   => $title_hellipsis,
-				) );
+				) ) . "\n";
 
 				/*
 				 * The post content.
@@ -1340,7 +1340,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_text_content .= $pis_the_text;
 
 					if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) ) {
-						$pis_text_content .= '</p>';
+						$pis_text_content .= '</p>' . "\n";
 					}
 				endif;
 				/* Close the post content */
@@ -1370,7 +1370,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'gravatar_author'   => get_the_author_meta( 'ID' ),
 					'gravatar_size'     => $gravatar_size,
 					'gravatar_default'  => $gravatar_default,
-				) );
+				) ) . "\n";
 
 				/* The categories */
 				$pis_categories_content .= pis_the_categories( array(
@@ -1379,7 +1379,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'categories_margin' => $categories_margin,
 					'margin_unit'       => $margin_unit,
 					'categ_text'        => $categ_text,
-				) );
+				) ) . "\n";
 
 				/* The tags */
 				$pis_tags_content .= pis_the_tags( array(
@@ -1389,7 +1389,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'tags_margin' => $tags_margin,
 					'margin_unit' => $margin_unit,
 					'tags_text'   => $tags_text,
-				) );
+				) ) . "\n";
 
 				/* The custom taxonomies */
 				$pis_custom_tax_content .= pis_custom_taxonomies_terms_links( array(
@@ -1398,7 +1398,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'term_sep'     => $term_sep,
 					'terms_margin' => $terms_margin,
 					'margin_unit'  => $margin_unit,
-				) );
+				) ) . "\n";
 
 				/* The post meta */
 				$pis_custom_field_content .= pis_custom_field( array(
@@ -1412,7 +1412,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'custom_field_hellip' => $custom_field_hellip,
 					'custom_field_margin' => $custom_field_margin,
 					'margin_unit'         => $margin_unit,
-				) );
+				) ) . "\n";
 
 				// Concatenate the variables.
 				if ( $display_image && $image_before_title ) {
@@ -1474,7 +1474,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_output .= $pis_custom_field_content;
 				}
 
-				$pis_output .= '</li>';
+				$pis_output .= '</li>' . "\n";
 				/* Close li */
 
 			}
@@ -1483,7 +1483,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		endwhile;
 		/* Close while */
 
-		$pis_output .= '</' . $list_element . '>';
+		$pis_output .= '</' . $list_element . '>' . "\n";
 
 		/* The link to the entire archive */
 		if ( $archive_link ) {

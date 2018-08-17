@@ -1807,7 +1807,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_checkbox( esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
 								$this->get_field_id( 'posts_by_comments' ),
 								$this->get_field_name( 'posts_by_comments' ),
-								checked( $posts_by_comments, true, false ),
+								$posts_by_comments,
 								esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
 							);
 							?>
@@ -1951,7 +1951,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						); ?>
 
 						<?php // ================= Ignore sticky post
-						pis_form_checkbox( esc_html__( 'Do not display sticky posts on top of other posts', 'posts-in-sidebar' ), $this->get_field_id( 'ignore_sticky' ), $this->get_field_name( 'ignore_sticky' ), checked( $ignore_sticky, true, false ), esc_html__( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'posts-in-sidebar' ) ); ?>
+						pis_form_checkbox(
+							esc_html__( 'Do not display sticky posts on top of other posts', 'posts-in-sidebar' ),
+							$this->get_field_id( 'ignore_sticky' ),
+							$this->get_field_name( 'ignore_sticky' ),
+							$ignore_sticky,
+							esc_html__( 'If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget.', 'posts-in-sidebar' ) ); ?>
 
 					</div>
 
@@ -2091,7 +2096,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current category', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_same_cat' ),
 										$this->get_field_name( 'get_from_same_cat' ),
-										checked( $get_from_same_cat, true, false ),
+										$get_from_same_cat,
 										esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
@@ -2137,7 +2142,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'Sort categories', 'posts-in-sidebar' ),
 										$this->get_field_id( 'sort_categories' ),
 										$this->get_field_name( 'sort_categories' ),
-										checked( $sort_categories, true, false ),
+										$sort_categories,
 										esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
 									);
 									?>
@@ -2277,7 +2282,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_cat' ),
 									$this->get_field_name( 'search_same_cat' ),
-									checked( $search_same_cat, true, false ),
+									$search_same_cat,
 									esc_html__( 'Show posts that match the main post title. WordPress will show posts under the same category of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
 								);
 								?>
@@ -2300,7 +2305,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current tag', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_same_tag' ),
 										$this->get_field_name( 'get_from_same_tag' ),
-										checked( $get_from_same_tag, true, false ),
+										$get_from_same_tag,
 										esc_html__( 'When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									); ?>
 
@@ -2345,7 +2350,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'Sort tags', 'posts-in-sidebar' ),
 										$this->get_field_id( 'sort_tags' ),
 										$this->get_field_name( 'sort_tags' ),
-										checked( $sort_tags, true, false ),
+										$sort_tags,
 										esc_html__( 'When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID.', 'posts-in-sidebar' )
 									); ?>
 
@@ -2484,7 +2489,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_tag' ),
 									$this->get_field_name( 'search_same_tag' ),
-									checked( $search_same_tag, true, false ),
+									$search_same_tag,
 									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same tag of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
 								);
 								?>
@@ -2507,7 +2512,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on single posts, get posts from the current author', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_same_author' ),
 										$this->get_field_name( 'get_from_same_author' ),
-										checked( $get_from_same_author, true, false ),
+										$get_from_same_author,
 										esc_html__( 'When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
@@ -2684,7 +2689,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_author' ),
 									$this->get_field_name( 'search_same_author' ),
-									checked( $search_same_author, true, false ),
+									$search_same_author,
 									esc_html__( 'Show posts that match the main post title. WordPress will show posts by the same author of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
 								);
 								?>
@@ -2707,7 +2712,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on single posts, get posts from this custom field', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_custom_fld' ),
 										$this->get_field_name( 'get_from_custom_fld' ),
-										checked( $get_from_custom_fld, true, false ),
+										$get_from_custom_fld,
 										sprintf( esc_html__( 'When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. %1$sRead more on this%2$s. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
 									);
 									?>
@@ -2918,7 +2923,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Post title matching', 'posts-in-sidebar' ),
 									$this->get_field_id( 'search_same_cf' ),
 									$this->get_field_name( 'search_same_cf' ),
-									checked( $search_same_cf, true, false ),
+									$search_same_cf,
 									esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same custom field of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
 								);
 								?>
@@ -2935,7 +2940,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_checkbox( esc_html__( 'Do not ignore other parameters', 'posts-in-sidebar' ),
 								$this->get_field_id( 'dont_ignore_params' ),
 								$this->get_field_name( 'dont_ignore_params' ),
-								checked( $dont_ignore_params, true, false ),
+								$dont_ignore_params,
 								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
 								'pis-boxed pis-boxed-green'
 							); ?>
@@ -2967,7 +2972,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current category archive page', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_cat_page' ),
 										$this->get_field_name( 'get_from_cat_page' ),
-										checked( $get_from_cat_page, true, false ),
+										$get_from_cat_page,
 										esc_html__( 'When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
@@ -3155,7 +3160,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current tag archive page', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_tag_page' ),
 										$this->get_field_name( 'get_from_tag_page' ),
-										checked( $get_from_tag_page, true, false ),
+										$get_from_tag_page,
 										esc_html__( 'When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
@@ -3343,7 +3348,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'When on archive pages, get posts from the current author archive page', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_author_page' ),
 										$this->get_field_name( 'get_from_author_page' ),
-										checked( $get_from_author_page, true, false ),
+										$get_from_author_page,
 										esc_html__( 'When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
@@ -3525,7 +3530,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_checkbox( esc_html__( 'Do not ignore other parameters', 'posts-in-sidebar' ),
 								$this->get_field_id( 'dont_ignore_params_page' ),
 								$this->get_field_name( 'dont_ignore_params_page' ),
-								checked( $dont_ignore_params_page, true, false ),
+								$dont_ignore_params_page,
 								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
 								'pis-boxed pis-boxed-green'
 							); ?>
@@ -3622,7 +3627,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Exclude current post
-								pis_form_checkbox( esc_html__( 'Automatically exclude the current post in single post or the current page in single page', 'posts-in-sidebar' ), $this->get_field_id( 'exclude_current_post' ), $this->get_field_name( 'exclude_current_post' ), checked( $exclude_current_post, true, false ) ); ?>
+								pis_form_checkbox(
+									esc_html__( 'Automatically exclude the current post in single post or the current page in single page', 'posts-in-sidebar' ),
+									$this->get_field_id( 'exclude_current_post' ),
+									$this->get_field_name( 'exclude_current_post' ),
+									$exclude_current_post
+								); ?>
 
 							</div>
 
@@ -4130,7 +4140,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php
-								pis_form_checkbox( esc_html__( 'Inclusive', 'posts-in-sidebar' ), $this->get_field_id( 'date_inclusive' ), $this->get_field_name( 'date_inclusive' ), checked( $date_inclusive, true, false ), esc_html__( 'For after/before, whether exact value should be matched or not', 'posts-in-sidebar' ) ); ?>
+								pis_form_checkbox(
+									esc_html__( 'Inclusive', 'posts-in-sidebar' ),
+									$this->get_field_id( 'date_inclusive' ),
+									$this->get_field_name( 'date_inclusive' ),
+									$date_inclusive,
+									esc_html__( 'For after/before, whether exact value should be matched or not', 'posts-in-sidebar' )
+								); ?>
 
 							</div>
 
@@ -5015,13 +5031,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<h5><?php esc_html_e( 'The title of the post', 'posts-in-sidebar' ); ?></h5>
 
 							<?php // ================= Title of the post
-							pis_form_checkbox( esc_html__( 'Display the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), checked( $display_title, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Display the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_title' ), $this->get_field_name( 'display_title' ), $display_title ); ?>
 
 							<?php // ================= Link to the title
-							pis_form_checkbox( esc_html__( 'Link the title to the post', 'posts-in-sidebar' ), $this->get_field_id( 'link_on_title' ), $this->get_field_name( 'link_on_title' ), checked( $link_on_title, true, false ) ); ?>
+							pis_form_checkbox(
+								esc_html__( 'Link the title to the post', 'posts-in-sidebar' ),
+								$this->get_field_id( 'link_on_title' ),
+								$this->get_field_name( 'link_on_title' ),
+								$link_on_title
+							);
+							?>
 
 							<?php // ================= Arrow after the title
-							pis_form_checkbox( esc_html__( 'Show an arrow after the title', 'posts-in-sidebar' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), checked( $arrow, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Show an arrow after the title', 'posts-in-sidebar' ), $this->get_field_id( 'arrow' ), $this->get_field_name( 'arrow' ), $arrow ); ?>
 
 							<?php // ================= Title length
 							pis_form_input_text(
@@ -5056,7 +5078,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Add an ellipsis after the shortened title', 'posts-in-sidebar' ),
 								$this->get_field_id( 'title_hellipsis' ),
 								$this->get_field_name( 'title_hellipsis' ),
-								checked( $title_hellipsis, true, false )
+								$title_hellipsis
 							); ?>
 
 						</div>
@@ -5129,7 +5151,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_input_text( esc_html__( 'Use this text for More link', 'posts-in-sidebar' ), $this->get_field_id( 'the_more' ), $this->get_field_name( 'the_more' ), esc_attr( $instance['the_more'] ), esc_html__( 'Read more&hellip;', 'posts-in-sidebar' ), esc_html__( 'The "Read more" text will be automatically hidden if the length of the WordPress-generated excerpt is smaller than or equal to the user-defined length.', 'posts-in-sidebar' ) ); ?>
 
 							<?php // ================= Arrow after the excerpt
-							pis_form_checkbox( esc_html__( 'Display an arrow after the text of the post', 'posts-in-sidebar' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), checked( $exc_arrow, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Display an arrow after the text of the post', 'posts-in-sidebar' ), $this->get_field_id( 'exc_arrow' ), $this->get_field_name( 'exc_arrow' ), $exc_arrow ); ?>
 
 						</div>
 
@@ -5152,7 +5174,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<?php } ?>
 
 								<?php // ================= Featured image
-								pis_form_checkbox( esc_html__( 'Display the featured image of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), checked( $display_image, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the featured image of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_image' ), $this->get_field_name( 'display_image' ), $display_image ); ?>
 
 								<?php // ================= Image sizes
 								$options = array();
@@ -5224,7 +5246,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'Link the image to the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'image_link_to_post' ),
 									$this->get_field_name( 'image_link_to_post' ),
-									checked( $image_link_to_post, true, false ),
+									$image_link_to_post,
 									esc_html__( 'If activated, the image will be linked to the post. If you want to change the link, enter another URL in the box below.', 'posts-in-sidebar' )
 								); ?>
 
@@ -5251,7 +5273,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								); ?>
 
 								<?php // ================= Use custom image URL only if the post thumbnail is not defined.
-								pis_form_checkbox( esc_html__( 'Use custom image URL only if the post has not a featured image.', 'posts-in-sidebar' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), checked( $custom_img_no_thumb, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Use custom image URL only if the post has not a featured image.', 'posts-in-sidebar' ), $this->get_field_id( 'custom_img_no_thumb' ), $this->get_field_name( 'custom_img_no_thumb' ), $custom_img_no_thumb ); ?>
 
 							</div>
 
@@ -5262,7 +5284,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
 							<?php // ================= Positioning image before title
-							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), checked( $image_before_title, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'image_before_title' ), $this->get_field_name( 'image_before_title' ), $image_before_title ); ?>
 
 						</div>
 
@@ -5281,42 +5303,42 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Author
-								pis_form_checkbox( esc_html__( 'Display the author of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), checked( $display_author, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the author of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_author' ), $this->get_field_name( 'display_author' ), $display_author ); ?>
 
 								<?php // ================= Author text
 								pis_form_input_text( esc_html__( 'Use this text before author\'s name', 'posts-in-sidebar' ), $this->get_field_id( 'author_text' ), $this->get_field_name( 'author_text' ), esc_attr( $instance['author_text'] ), esc_html__( 'By', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Author archive
-								pis_form_checkbox( esc_html__( 'Link the author to his archive', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), checked( $linkify_author, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Link the author to his archive', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_author' ), $this->get_field_name( 'linkify_author' ), $linkify_author ); ?>
 
 							</div>
 
 							<div class="pis-column">
 
 								<?php // ================= Date
-								pis_form_checkbox( esc_html__( 'Display the date of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), checked( $display_date, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the date of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_date' ), $this->get_field_name( 'display_date' ), $display_date ); ?>
 
 								<?php // ================= Date text
 								pis_form_input_text( esc_html__( 'Use this text before date', 'posts-in-sidebar' ), $this->get_field_id( 'date_text' ), $this->get_field_name( 'date_text' ), esc_attr( $instance['date_text'] ), esc_html__( 'Published on', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Date link
-								pis_form_checkbox( esc_html__( 'Link the date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), checked( $linkify_date, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Link the date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_date' ), $this->get_field_name( 'linkify_date' ), $linkify_date ); ?>
 
 								<?php // ================= Time
-								pis_form_checkbox( esc_html__( 'Display the time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_time' ), $this->get_field_name( 'display_time' ), checked( $display_time, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_time' ), $this->get_field_name( 'display_time' ), $display_time ); ?>
 
 							</div>
 
 							<div class="pis-column">
 
 								<?php // ================= Number of comments
-								pis_form_checkbox( esc_html__( 'Display the number of comments', 'posts-in-sidebar' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), checked( $comments, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the number of comments', 'posts-in-sidebar' ), $this->get_field_id( 'comments' ), $this->get_field_name( 'comments' ), $comments ); ?>
 
 								<?php // ================= Comments text
 								pis_form_input_text( esc_html__( 'Use this text before comments', 'posts-in-sidebar' ), $this->get_field_id( 'comments_text' ), $this->get_field_name( 'comments_text' ), esc_attr( $instance['comments_text'] ), esc_html__( 'Comments:', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Comments link
-								pis_form_checkbox( esc_html__( 'Link the comments to post\'s comments', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_comments' ), $this->get_field_name( 'linkify_comments' ), checked( $linkify_comments, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Link the comments to post\'s comments', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_comments' ), $this->get_field_name( 'linkify_comments' ), $linkify_comments ); ?>
 
 							</div>
 
@@ -5327,7 +5349,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Author gravatar
-								pis_form_checkbox( esc_html__( 'Display author\'s Gravatar', 'posts-in-sidebar' ), $this->get_field_id( 'gravatar_display' ), $this->get_field_name( 'gravatar_display' ), checked( $gravatar_display, true, false ), '', 'pis-gravatar' ); ?>
+								pis_form_checkbox( esc_html__( 'Display author\'s Gravatar', 'posts-in-sidebar' ), $this->get_field_id( 'gravatar_display' ), $this->get_field_name( 'gravatar_display' ), $gravatar_display, '', 'pis-gravatar' ); ?>
 
 								<?php // ================= Gravatar size
 								pis_form_input_text( esc_html__( 'Gravatar size', 'posts-in-sidebar' ), $this->get_field_id( 'gravatar_size' ), $this->get_field_name( 'gravatar_size' ), esc_attr( $instance['gravatar_size'] ), '32' ); ?>
@@ -5357,16 +5379,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Modification Date
-								pis_form_checkbox( esc_html__( 'Display the modification date of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_date' ), $this->get_field_name( 'display_mod_date' ), checked( $display_mod_date, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the modification date of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_date' ), $this->get_field_name( 'display_mod_date' ), $display_mod_date ); ?>
 
 								<?php // ================= Modification Date text
 								pis_form_input_text( esc_html__( 'Use this text before modification date', 'posts-in-sidebar' ), $this->get_field_id( 'mod_date_text' ), $this->get_field_name( 'mod_date_text' ), esc_attr( $instance['mod_date_text'] ), esc_html__( 'Modified on', 'posts-in-sidebar' ) ); ?>
 
 								<?php // ================= Modification Date link
-								pis_form_checkbox( esc_html__( 'Link the modification date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_mod_date' ), $this->get_field_name( 'linkify_mod_date' ), checked( $linkify_mod_date, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Link the modification date to the post', 'posts-in-sidebar' ), $this->get_field_id( 'linkify_mod_date' ), $this->get_field_name( 'linkify_mod_date' ), $linkify_mod_date ); ?>
 
 								<?php // ================= Modification time
-								pis_form_checkbox( esc_html__( 'Display the modification time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_time' ), $this->get_field_name( 'display_mod_time' ), checked( $display_mod_time, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the modification time of the post', 'posts-in-sidebar' ), $this->get_field_id( 'display_mod_time' ), $this->get_field_name( 'display_mod_time' ), $display_mod_time ); ?>
 
 							</div>
 
@@ -5384,10 +5406,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
 							<?php // ================= Section position
-							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_before_title' ), $this->get_field_name( 'utility_before_title' ), checked( $utility_before_title, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_before_title' ), $this->get_field_name( 'utility_before_title' ), $utility_before_title ); ?>
 
 							<?php // ================= Section position
-							pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), checked( $utility_after_title, true, false ) ); ?>
+							pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ), $this->get_field_id( 'utility_after_title' ), $this->get_field_name( 'utility_after_title' ), $utility_after_title ); ?>
 
 						</div>
 
@@ -5408,7 +5430,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h5><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Post categories
-								pis_form_checkbox( esc_html__( 'Show the categories', 'posts-in-sidebar' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), checked( $categories, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Show the categories', 'posts-in-sidebar' ), $this->get_field_id( 'categories' ), $this->get_field_name( 'categories' ), $categories ); ?>
 
 								<?php // ================= Categories text
 								pis_form_input_text( esc_html__( 'Use this text before categories list', 'posts-in-sidebar' ), $this->get_field_id( 'categ_text' ), $this->get_field_name( 'categ_text' ), esc_attr( $instance['categ_text'] ), esc_html__( 'Category:', 'posts-in-sidebar' ) ); ?>
@@ -5430,7 +5452,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h5><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h5>
 
 								<?php // ================= Post tags
-								pis_form_checkbox( esc_html__( 'Show the tags', 'posts-in-sidebar' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), checked( $tags, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Show the tags', 'posts-in-sidebar' ), $this->get_field_id( 'tags' ), $this->get_field_name( 'tags' ), $tags ); ?>
 
 								<?php // ================= Tags text
 								pis_form_input_text( esc_html__( 'Use this text before tags list', 'posts-in-sidebar' ), $this->get_field_id( 'tags_text' ), $this->get_field_name( 'tags_text' ), esc_attr( $instance['tags_text'] ), esc_html__( 'Tags:', 'posts-in-sidebar' ) ); ?>
@@ -5458,7 +5480,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								pis_form_checkbox( esc_html__( 'Show the custom taxonomies', 'posts-in-sidebar' ),
 								$this->get_field_id( 'display_custom_tax' ),
 								$this->get_field_name( 'display_custom_tax' ),
-								checked( $display_custom_tax, true, false ) ); ?>
+								$display_custom_tax ); ?>
 
 								<?php // ================= Terms hashtag
 								pis_form_input_text( esc_html__( 'Use this hashtag for terms', 'posts-in-sidebar' ), $this->get_field_id( 'term_hashtag' ), $this->get_field_name( 'term_hashtag' ), esc_attr( $instance['term_hashtag'] ), '#' ); ?>
@@ -5489,13 +5511,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'Display the categories before the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'categ_before_title' ),
 									$this->get_field_name( 'categ_before_title' ),
-									checked( $categ_before_title, true, false ) ); ?>
+									$categ_before_title ); ?>
 
 									<?php // ================= Section position
 									pis_form_checkbox( esc_html__( 'Display the categories after the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'categ_after_title' ),
 									$this->get_field_name( 'categ_after_title' ),
-									checked( $categ_after_title, true, false ) ); ?>
+									$categ_after_title ); ?>
 
 								</div>
 
@@ -5511,13 +5533,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'Display the tags before the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'tags_before_title' ),
 									$this->get_field_name( 'tags_before_title' ),
-									checked( $tags_before_title, true, false ) ); ?>
+									$tags_before_title ); ?>
 
 									<?php // ================= Section position
 									pis_form_checkbox( esc_html__( 'Display the tags after the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'tags_after_title' ),
 									$this->get_field_name( 'tags_after_title' ),
-									checked( $tags_after_title, true, false ) ); ?>
+									$tags_after_title ); ?>
 
 								</div>
 
@@ -5533,13 +5555,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_form_checkbox( esc_html__( 'Display the custom taxonomies before the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'ctaxs_before_title' ),
 									$this->get_field_name( 'ctaxs_before_title' ),
-									checked( $ctaxs_before_title, true, false ) ); ?>
+									$ctaxs_before_title ); ?>
 
 									<?php // ================= Section position
 									pis_form_checkbox( esc_html__( 'Display the custom taxonomies after the title of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'ctaxs_after_title' ),
 									$this->get_field_name( 'ctaxs_after_title' ),
-									checked( $ctaxs_after_title, true, false ) ); ?>
+									$ctaxs_after_title ); ?>
 
 								</div>
 
@@ -5568,7 +5590,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'Display all the custom fields of the post', 'posts-in-sidebar' ),
 									$this->get_field_id( 'custom_field_all' ),
 									$this->get_field_name( 'custom_field_all' ),
-									checked( $custom_field_all, true, false )
+									$custom_field_all
 								); ?>
 
 							</div>
@@ -5578,7 +5600,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								<h6><?php esc_html_e( 'Display a single custom field', 'posts-in-sidebar' ); ?></h6>
 
 								<?php // ================= Display a single custom field
-								pis_form_checkbox( esc_html__( 'Display the custom field of the post', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), checked( $custom_field, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the custom field of the post', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field' ), $this->get_field_name( 'custom_field' ), $custom_field ); ?>
 
 								<?php // ================= Which custom field
 								$options = array(
@@ -5618,7 +5640,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						pis_form_input_text( esc_html__( 'Use this text for horizontal ellipsis', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_hellip' ), $this->get_field_name( 'custom_field_hellip' ), esc_attr( $instance['custom_field_hellip'] ), '&hellip;' ); ?>
 
 						<?php // ================= Custom field key
-						pis_form_checkbox( esc_html__( 'Also display the key of the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), checked( $custom_field_key, true, false ) ); ?>
+						pis_form_checkbox( esc_html__( 'Also display the key of the custom field', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_key' ), $this->get_field_name( 'custom_field_key' ), $custom_field_key ); ?>
 
 						<?php // ================= Custom field separator
 						pis_form_input_text( esc_html__( 'Use this separator between meta key and value', 'posts-in-sidebar' ), $this->get_field_id( 'custom_field_sep' ), $this->get_field_name( 'custom_field_sep' ), esc_attr( $instance['custom_field_sep'] ), ':' ); ?>
@@ -5631,13 +5653,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							pis_form_checkbox( esc_html__( 'Display this section before the title of the post', 'posts-in-sidebar' ),
 							$this->get_field_id( 'cf_before_title' ),
 							$this->get_field_name( 'cf_before_title' ),
-							checked( $cf_before_title, true, false ) ); ?>
+							$cf_before_title ); ?>
 
 							<?php // ================= Section position
 							pis_form_checkbox( esc_html__( 'Display this section after the title of the post', 'posts-in-sidebar' ),
 							$this->get_field_id( 'cf_after_title' ),
 							$this->get_field_name( 'cf_after_title' ),
-							checked( $cf_after_title, true, false ) ); ?>
+							$cf_after_title ); ?>
 
 						</div>
 
@@ -5656,7 +5678,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php // ================= Taxonomy archive link
-								pis_form_checkbox( esc_html__( 'Display the link to the taxonomy archive', 'posts-in-sidebar' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), checked( $archive_link, true, false ) ); ?>
+								pis_form_checkbox( esc_html__( 'Display the link to the taxonomy archive', 'posts-in-sidebar' ), $this->get_field_id( 'archive_link' ), $this->get_field_name( 'archive_link' ), $archive_link ); ?>
 
 								<?php // ================= Which taxonomy
 								$options = array(
@@ -5786,7 +5808,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Completely hide the widget if no posts are found', 'posts-in-sidebar' ),
 								$this->get_field_id( 'hide_widget' ),
 								$this->get_field_name( 'hide_widget' ),
-								checked( $hide_widget, true, false )
+								$hide_widget
 							); ?>
 
 					</div>
@@ -5941,7 +5963,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_html__( 'Try to remove the bullets and the extra left space from the list elements', 'posts-in-sidebar' ),
 							$this->get_field_id( 'remove_bullets' ),
 							$this->get_field_name( 'remove_bullets' ),
-							checked( $remove_bullets, true, false ),
+							$remove_bullets,
 							sprintf( esc_html__( 'If the plugin doesn\'t remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually.', 'posts-in-sidebar' ), '<a href="' . admin_url( 'theme-editor.php' ) . '" target="_blank">', '</a>' )
 						); ?>
 
@@ -5950,7 +5972,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							esc_html__( 'Add the WordPress standard classes to the post in the widget', 'posts-in-sidebar' ),
 							$this->get_field_id( 'add_wp_post_classes' ),
 							$this->get_field_name( 'add_wp_post_classes' ),
-							checked( $add_wp_post_classes, true, false ),
+							$add_wp_post_classes,
 							sprintf( esc_html__( 'Every standard WordPress posts has a series of HTML classes, such as %s, and so on. Activating this option you can add these classes to the usual plugin\'s classes.', 'posts-in-sidebar' ), '<code>post</code>, <code>type-post</code>, <code>format-standard</code>, <code>category-categoryname</code>, <code>tag-tagname</code>' )
 						); ?>
 
@@ -5977,7 +5999,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						pis_form_checkbox( esc_html__( 'Use a cache to serve the output', 'posts-in-sidebar' ),
 							$this->get_field_id( 'cached' ),
 							$this->get_field_name( 'cached' ),
-							checked( $cached, true, false ),
+							$cached,
 							esc_html__( 'This option, if activated, will increase the performance but will show the same output during the defined cache time.', 'posts-in-sidebar' )
 						); ?>
 
@@ -6019,7 +6041,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						esc_html__( 'Display debugging information to admins only', 'posts-in-sidebar' ),
 						$this->get_field_id( 'admin_only' ),
 						$this->get_field_name( 'admin_only' ),
-						checked( $admin_only, true, false )
+						$admin_only
 					); ?>
 				</div>
 
@@ -6028,7 +6050,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					esc_html__( 'Display the query for the widget', 'posts-in-sidebar' ),
 					$this->get_field_id( 'debug_query' ),
 					$this->get_field_name( 'debug_query' ),
-					checked( $debug_query, true, false )
+					$debug_query
 				); ?>
 
 				<?php // ================= Debug: display the complete set of parameters for the widget
@@ -6036,7 +6058,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					esc_html__( 'Display the complete set of parameters for the widget', 'posts-in-sidebar' ),
 					$this->get_field_id( 'debug_params' ),
 					$this->get_field_name( 'debug_params' ),
-					checked( $debug_params, true, false )
+					$debug_params
 				); ?>
 
 			</div>

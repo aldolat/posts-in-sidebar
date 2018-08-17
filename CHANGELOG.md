@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 * Now custom post types are supported when changing query in single posts.
 * Reorganized some sub-panels and added colors in panel titles.
+* Checked all files with [WordPress Coding Standard for PHPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
 ### Removed
 * Removed old comment for HTML in widget introduction.
 ### Security

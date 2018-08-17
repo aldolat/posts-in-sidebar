@@ -7,6 +7,7 @@
 * Added new options when changing the query in single posts or in an archive page.
 * Now custom post types are supported when changing query in single posts.
 * Reorganized some sub-panels and added colors in panel titles.
+Checked all files with WordPress Coding Standard for PHPCS.
 * Removed old comment for HTML in widget introduction.
 * Hardened security.
 

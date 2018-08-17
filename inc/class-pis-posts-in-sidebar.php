@@ -1281,7 +1281,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		$instance['posts_id'] = pis_normalize_values( wp_strip_all_tags( $new_instance['posts_id'] ), true );
-		if ( 0 === $instance['posts_id'] ) {
+		if ( 0 == $instance['posts_id'] ) {
 			$instance['posts_id'] = '';
 		}
 
@@ -1300,7 +1300,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['author'] = '';
 		}
 		$instance['author_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['author_in'] ), true );
-		if ( 0 === $instance['author_in'] ) {
+		if ( 0 == $instance['author_in'] ) {
 			$instance['author_in'] = '';
 		}
 		// Make $author empty if $author_in is not empty.
@@ -1317,7 +1317,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['tag'] = '';
 		}
 		$instance['post_parent_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['post_parent_in'] ), true );
-		if ( 0 === $instance['post_parent_in'] ) {
+		if ( 0 == $instance['post_parent_in'] ) {
 			$instance['post_parent_in'] = '';
 		}
 		$instance['post_format'] = wp_strip_all_tags( $new_instance['post_format'] );
@@ -1608,23 +1608,23 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Posts exclusion.
 		$instance['author_not_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['author_not_in'] ), true );
-		if ( 0 === $instance['author_not_in'] ) {
+		if ( 0 == $instance['author_not_in'] ) {
 			$instance['author_not_in'] = '';
 		}
 		$instance['cat_not_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['cat_not_in'] ), true );
-		if ( 0 === $instance['cat_not_in'] ) {
+		if ( 0 == $instance['cat_not_in'] ) {
 			$instance['cat_not_in'] = '';
 		}
 		$instance['tag_not_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['tag_not_in'] ), true );
-		if ( 0 === $instance['tag_not_in'] ) {
+		if ( 0 == $instance['tag_not_in'] ) {
 			$instance['tag_not_in'] = '';
 		}
 		$instance['post_not_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['post_not_in'] ), true );
-		if ( 0 === $instance['post_not_in'] ) {
+		if ( 0 == $instance['post_not_in'] ) {
 			$instance['post_not_in'] = '';
 		}
 		$instance['post_parent_not_in'] = pis_normalize_values( wp_strip_all_tags( $new_instance['post_parent_not_in'] ), true );
-		if ( 0 === $instance['post_parent_not_in'] ) {
+		if ( 0 == $instance['post_parent_not_in'] ) {
 			$instance['post_parent_not_in'] = '';
 		}
 		$instance['exclude_current_post'] = isset( $new_instance['exclude_current_post'] ) ? 1 : 0;

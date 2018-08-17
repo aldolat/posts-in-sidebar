@@ -671,7 +671,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	/*
 	 * Check if the user wants to display posts from the same category of the single post.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
-	 * This will work in single (regular) posts only, not in custom post types.
+	 * This will work in single (regular) posts and in custom post types.
 	 *
 	 * The category used will be the first in the array ($post_categories[0]), i.e. the category with the lowest ID.
 	 * In the permalink WordPress uses the category with the lowest ID and we want to use this.
@@ -680,7 +680,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	 *
 	 * @since 3.2
 	 */
-	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_singular() ) {
+	if ( isset( $get_from_same_cat ) && $get_from_same_cat && is_single() ) {
 		// Set the post_type.
 		if ( isset( $ptm_sc ) && ! empty( $ptm_sc ) ) {
 			$params['post_type'] = (array) explode( ', ', $ptm_sc );
@@ -737,11 +737,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	/*
 	 * Check if the user wants to display posts from the same tag of the single post.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
-	 * This will work in single (regular) posts only, not in custom post types.
+	 * This will work in single (regular) posts and in custom post types.
 	 *
 	 * @since 4.3.0
 	 */
-	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_singular() ) {
+	if ( isset( $get_from_same_tag ) && $get_from_same_tag && is_single() ) {
 		// Get post's tags.
 		$post_tags = wp_get_post_tags( $single_post_id );
 		if ( $post_tags ) {
@@ -802,11 +802,11 @@ function pis_get_posts_in_sidebar( $args ) {
 	/*
 	 * Check if the user wants to display posts from the same author of the single post.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
-	 * This will work in single (regular) posts only, not in custom post types.
+	 * This will work in single (regular) posts and in custom post types.
 	 *
 	 * @since 3.5
 	 */
-	if ( isset( $get_from_same_author ) && $get_from_same_author && is_singular() ) {
+	if ( isset( $get_from_same_author ) && $get_from_same_author && is_single() ) {
 		// Set the post_type.
 		if ( isset( $ptm_sa ) && ! empty( $ptm_sa ) ) {
 			$params['post_type'] = (array) explode( ', ', $ptm_sa );
@@ -858,14 +858,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	/*
 	 * Check if, when on single post, the user wants to display posts from a certain category chosen by the user using custom field.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
-	 * This will work in single (regular) posts only, not in custom post types.
+	 * This will work in single (regular) posts and in custom post types.
 	 *
 	 * This piece of code will see if the current (main) post has a custom field defined in the widget panel.
 	 * If true, the code will change the query parameters for category/tag using the custom field value as taxonomy term.
 	 *
 	 * @since 3.7
 	 */
-	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_singular() ) {
+	if ( isset( $get_from_custom_fld ) && $get_from_custom_fld && is_single() ) {
 		if ( isset( $s_custom_field_key ) && isset( $s_custom_field_tax ) ) {
 			$taxonomy_name = get_post_meta( $single_post_id, $s_custom_field_key, true );
 			/**

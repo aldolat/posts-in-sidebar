@@ -10,8 +10,7 @@
  * Domain Path: /languages/
  * License: GPLv3 or later
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  */
 
 /*

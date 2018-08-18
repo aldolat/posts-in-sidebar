@@ -2,8 +2,7 @@
 /**
  * This file contains the functions of the plugin
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  * @since 1.23
  */
 

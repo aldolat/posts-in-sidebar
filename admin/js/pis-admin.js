@@ -3,8 +3,7 @@
  * This file is a modified version of Category Posts Widget's js file from @kometschuh
  * released under GPLv2 or later.
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  * @since 2.0
  * @since 4.0 Now the panels remain open if Save button is clicked.
  */

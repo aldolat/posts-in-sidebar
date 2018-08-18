@@ -2,8 +2,7 @@
 /**
  * This file contains the shortcode for the plugin
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  * @since 3.0
  */
 

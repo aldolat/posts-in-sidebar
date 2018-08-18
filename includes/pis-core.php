@@ -9,8 +9,7 @@
  * The function pis_posts_in_sidebar( $args ) is a simple
  * function to echo the main one.
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  * @since 3.8.2
  */
 

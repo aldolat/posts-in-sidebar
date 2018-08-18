@@ -2,8 +2,7 @@
 /**
  * Posts in Sidebar plugin index.php plugin.
  *
- * @package WordPress
- * @subpackage Posts in Sidebar
+ * @package PostsInSidebar
  */
 
 /* Silence is golden */

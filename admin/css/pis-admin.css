@@ -108,6 +108,10 @@ h6.pis-widget-title + .pis-container {
 	border-color: rgba(128, 128, 128, 0.5);
 	background-color: rgba(128, 128, 128, 0.15);
 }
+.pis-boxed-light-blue {
+	border-color: rgba(191, 231, 244, 1);
+	background-color: rgba(191, 231, 244, 0.5);
+}
 .pis-boxed-orange {
 	border-color: rgba(243, 166, 33, 0.5);
 	background-color: rgba(243, 166, 33, 0.15);

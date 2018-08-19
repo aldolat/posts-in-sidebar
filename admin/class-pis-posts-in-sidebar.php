@@ -3672,7 +3672,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'dont_ignore_params' ),
 								$dont_ignore_params,
 								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
-								'pis-boxed pis-boxed-green'
+								'pis-boxed pis-boxed-gray'
 							);
 							?>
 
@@ -4326,7 +4326,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'dont_ignore_params_page' ),
 								$dont_ignore_params_page,
 								esc_html__( 'By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
-								'pis-boxed pis-boxed-green'
+								'pis-boxed pis-boxed-gray'
 							);
 							?>
 
@@ -6395,7 +6395,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<div class="pis-boxed pis-boxed-green">
+						<div class="pis-boxed pis-boxed-gray">
 
 							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -6668,7 +6668,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
-						<div class="pis-boxed pis-boxed-green">
+						<div class="pis-boxed pis-boxed-gray">
 
 							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -6840,7 +6840,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<div class="pis-boxed pis-boxed-green">
+								<div class="pis-boxed pis-boxed-gray">
 
 									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -6870,7 +6870,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<div class="pis-boxed pis-boxed-green">
+								<div class="pis-boxed pis-boxed-gray">
 
 									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -6900,7 +6900,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<div class="pis-boxed pis-boxed-green">
+								<div class="pis-boxed pis-boxed-gray">
 
 									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -7057,7 +7057,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						?>
 
-						<div class="pis-boxed pis-boxed-green">
+						<div class="pis-boxed pis-boxed-gray">
 
 							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
 
@@ -7171,7 +7171,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
-								<div class="pis-linkto-tax-name pis-boxed pis-boxed-green">
+								<div class="pis-linkto-tax-name pis-boxed pis-boxed-gray">
 									<?php
 									// ================= Taxonomy name for archive link
 									pis_form_input_text(
@@ -7553,7 +7553,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					?>
 				</p>
 
-				<p class="pis-boxed pis-boxed-blue"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
+				<p class="pis-boxed pis-boxed-orange"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
 
 				<div class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging information publicly on your site.', 'posts-in-sidebar' ); ?></strong>
 					<?php

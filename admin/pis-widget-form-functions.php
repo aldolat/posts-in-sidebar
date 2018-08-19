@@ -114,7 +114,7 @@ function pis_form_checkbox( $label, $id, $name, $checked, $comment = '', $class 
 function pis_form_select( $label, $id, $name, $options, $value, $comment = '', $class = '' ) {
 	echo '<p>';
 	pis_form_label( $label, $id );
-	$class = rtrim( 'pis-select ' . sanitize_html_class( $class ) );
+	$class = rtrim( 'pis-select ' . $class );
 	echo '&nbsp;<select name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">';
 	foreach ( $options as $option ) {
 		echo '<option ' . selected( $option['value'], $value, false ) . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['desc'] ) . '</option>';

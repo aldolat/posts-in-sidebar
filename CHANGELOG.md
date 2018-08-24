@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
 * Added new options when changing the query in single posts or in an archive page.
 ### Changed
-* Now custom post types are supported when changing query in single posts.
+* Now custom post types are supported when changing the query in single posts.
 * Reorganized some sub-panels and added colors in panel titles.
 * Checked all files with [WordPress Coding Standard for PHPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
 ### Removed

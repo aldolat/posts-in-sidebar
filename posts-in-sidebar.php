@@ -89,7 +89,7 @@ function pis_setup() {
 	 *
 	 * @since 1.23
 	 */
-	require_once plugin_dir_path( __FILE__ ) . 'admin/pis-functions.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions.php';
 
 	/*
 	 * Load Posts in Sidebar's widgets.
@@ -131,11 +131,11 @@ function pis_load_scripts( $hook ) {
 	}
 
 	// Register and enqueue the JS file.
-	wp_register_script( 'pis_js', plugins_url( 'admin/js/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
+	wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 	wp_enqueue_script( 'pis_js' );
 
 	// Register and enqueue the CSS file.
-	wp_register_style( 'pis_style', plugins_url( 'admin/css/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
+	wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
 	wp_enqueue_style( 'pis_style' );
 }
 
@@ -152,14 +152,14 @@ function pis_load_widgets() {
 	 *
 	 * @since 1.12
 	 */
-	require_once plugin_dir_path( __FILE__ ) . 'admin/pis-widget-form-functions.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-widget-form-functions.php';
 
 	/**
 	 * Load the widget's PHP file.
 	 *
 	 * @since 1.1
 	 */
-	require_once plugin_dir_path( __FILE__ ) . 'admin/class-pis-posts-in-sidebar.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pis-posts-in-sidebar.php';
 
 	register_widget( 'PIS_Posts_In_Sidebar' );
 }

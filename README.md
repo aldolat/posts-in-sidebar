@@ -160,7 +160,7 @@ No notice to display.
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./gpl-3.0.txt
 [README]: ./README.md
-[version-badge]: https://img.shields.io/badge/version-4.7.0-blue.svg
-[requires-badge]: https://img.shields.io/badge/requires__WP-4.6.0-green.svg
-[tested-badge]: https://img.shields.io/badge/tested__WP-5.0.0-green.svg
-[license-badge]: https://img.shields.io/badge/license-GPLv3-ff69b4.svg
+[version-badge]: https://img.shields.io/badge/Version-4.7.0-blue.svg
+[requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
+[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.0.0-green.svg
+[license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

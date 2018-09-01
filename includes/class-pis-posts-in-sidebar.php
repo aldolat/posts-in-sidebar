@@ -137,7 +137,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		/*
-		 * Change the widget title if the user wants a different title in single posts (for for same category/tag using custom fields).
+		 * Change the widget title if the user wants a different title
+		 * in single posts (for same category/tag using custom fields).
 		 *
 		 * @since 3.7
 		 */

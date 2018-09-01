@@ -694,42 +694,44 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		// Set the category.
 		$post_categories = wp_get_post_categories( $single_post_id );
-		// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
-		if ( $sort_categories ) {
-			sort( $post_categories );
-		}
-		$the_category            = get_category( $post_categories[0] );
-		$params['category_name'] = $the_category->slug;
+		if ( $post_categories ) {
+			// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
+			if ( $sort_categories ) {
+				sort( $post_categories );
+			}
+			$the_category            = get_category( $post_categories[0] );
+			$params['category_name'] = $the_category->slug;
 
-		if ( isset( $orderby_same_cat ) && ! empty( $orderby_same_cat ) ) {
-			$params['orderby'] = $orderby_same_cat;
-		}
+			if ( isset( $orderby_same_cat ) && ! empty( $orderby_same_cat ) ) {
+				$params['orderby'] = $orderby_same_cat;
+			}
 
-		if ( isset( $order_same_cat ) && ! empty( $order_same_cat ) ) {
-			$params['order'] = $order_same_cat;
-		}
+			if ( isset( $order_same_cat ) && ! empty( $order_same_cat ) ) {
+				$params['order'] = $order_same_cat;
+			}
 
-		if ( isset( $offset_same_cat ) && ! empty( $offset_same_cat ) ) {
-			$params['offset'] = $offset_same_cat;
-		}
+			if ( isset( $offset_same_cat ) && ! empty( $offset_same_cat ) ) {
+				$params['offset'] = $offset_same_cat;
+			}
 
-		if ( $search_same_cat ) {
-			$params['s'] = pis_get_post_title();
-		}
+			if ( $search_same_cat ) {
+				$params['s'] = pis_get_post_title();
+			}
 
-		// Reset other parameters. The user can choose not to reset them.
-		if ( ! $dont_ignore_params ) {
-			$params['post__in']        = '';
-			$params['author_name']     = '';
-			$params['author__in']      = '';
-			$params['tag']             = '';
-			$params['tax_query']       = '';
-			$params['date_query']      = '';
-			$params['meta_query']      = '';
-			$params['post_parent__in'] = '';
-			$params['post_format']     = '';
-			$params['meta_key']        = '';
-			$params['meta_value']      = '';
+			// Reset other parameters. The user can choose not to reset them.
+			if ( ! $dont_ignore_params ) {
+				$params['post__in']        = '';
+				$params['author_name']     = '';
+				$params['author__in']      = '';
+				$params['tag']             = '';
+				$params['tax_query']       = '';
+				$params['date_query']      = '';
+				$params['meta_query']      = '';
+				$params['post_parent__in'] = '';
+				$params['post_format']     = '';
+				$params['meta_key']        = '';
+				$params['meta_value']      = '';
+			}
 		}
 	}
 

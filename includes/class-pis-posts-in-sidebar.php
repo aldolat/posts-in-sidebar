@@ -87,13 +87,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			! empty( $instance['title_same_cat'] ) &&
 			is_single() ) {
 			$the_category = wp_get_post_categories( get_the_ID() );
-			if ( $instance['sort_categories'] ) {
-				sort( $the_category );
+			if ( $the_category ) {
+				if ( $instance['sort_categories'] ) {
+					sort( $the_category );
+				}
+				$the_category      = get_category( $the_category[0] );
+				$the_category_name = $the_category->name;
+				$title             = $instance['title_same_cat'];
+				$title             = str_replace( '%s', $the_category_name, $title );
 			}
-			$the_category      = get_category( $the_category[0] );
-			$the_category_name = $the_category->name;
-			$title             = $instance['title_same_cat'];
-			$title             = str_replace( '%s', $the_category_name, $title );
 		}
 
 		/*

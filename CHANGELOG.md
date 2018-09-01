@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-* Added new option to filter posts in the same taxonomy/author/custom field by searching for the title of the main post.
+* Added new option to filter posts in the same category/tag/author/custom-field by searching for the title of the main post.
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
 * Added new options when changing the query in single posts or in an archive page.
 ### Changed

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.7.0] - 2018-09-01
 ### Added
 * Added new option to filter posts in the same category/tag/author/custom-field by searching for the title of the main post.
 * Added "Post type", "Relevance (when searching)", and "Preserve post parent order" in "Order posts by" option.
@@ -472,6 +474,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.7.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.6.0...4.7.0
 [4.6.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.2...4.6.0
 [4.5.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.1...4.5.2
 [4.5.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.5.0...4.5.1

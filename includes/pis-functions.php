@@ -1876,7 +1876,26 @@ function pis_get_post_title() {
 	 * $post_title = preg_replace( '/[^\w|\s]/', '', $post_title );
 	 * because preg_replace() will remove characters like Russian and such.
 	 */
-	$remove_chars = array( ',', ';', '.', ':', '\'', '*', '°', '@', '#', '+', '"', '!', '?', '–', '—', '―' );
+	$remove_chars = array(
+		',',
+		';',
+		'.',
+		':',
+		'\'',
+		'*',
+		'°',
+		'@',
+		'#',
+		'+',
+		'"',
+		'!',
+		'?',
+		'–',
+		'—',
+		'―',
+		'(',
+		')',
+	);
 	$post_title   = str_replace( $remove_chars, '', $post_title );
 	$post_title   = strtolower( $post_title );
 	return $post_title;

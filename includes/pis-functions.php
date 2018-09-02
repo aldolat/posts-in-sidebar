@@ -316,7 +316,7 @@ function pis_meta_query( $args ) {
 			$meta_query = array(
 				'relation' => $args['mq_relation'],
 				array(
-					'relation' => $relation_a,
+					'relation' => $args['mq_relation_a'],
 					array(
 						'key'     => $args['mq_key_aa'],
 						'value'   => $args['mq_value_aa'], // This could be an array.
@@ -331,7 +331,7 @@ function pis_meta_query( $args ) {
 					),
 				),
 				array(
-					'relation' => $relation_b,
+					'relation' => $args['mq_relation_b'],
 					array(
 						'key'     => $args['mq_key_ba'],
 						'value'   => $args['mq_value_ba'], // This could be an array.

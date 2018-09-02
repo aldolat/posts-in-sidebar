@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Checked all files with [WordPress Coding Standard for PHPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
 ### Removed
 * Removed old comment for HTML in widget introduction.
+### Fixed
+* Fixed displaying the query in debug section when the query contains multidimensional arrays.
 ### Security
 * Hardened security.
 

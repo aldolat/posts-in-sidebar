@@ -9,6 +9,7 @@
 * Reorganized some sub-panels and added colors in panel titles.
 Checked all files with WordPress Coding Standard for PHPCS.
 * Removed old comment for HTML in widget introduction.
+* Fixed displaying the query in debug section when the query contains multidimensional arrays.
 * Hardened security.
 
 = 4.6.0 =

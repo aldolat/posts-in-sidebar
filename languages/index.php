@@ -1,2 +1,8 @@
 <?php
-// Silence is golden.
+/**
+ * Posts in Sidebar plugin index.php plugin.
+ *
+ * @package PostsInSidebar
+ */
+
+/* Silence is golden */

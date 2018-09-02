@@ -1,5 +1,7 @@
 /**
  * Posts in Sidebar CSS for admin UI
+ *
+ * @package PostsInSidebar
  * @since 2.0
  */
 
@@ -57,8 +59,42 @@
 	cursor: pointer;
 	margin: 0;
 }
-.pis-widget-title:hover {
-	border-color: #9d9d9d;
+h4.pis-widget-title {
+	background-color: #cee7a5;
+	border: 1px solid #cee7a5;
+}
+h5.pis-widget-title {
+	background-color: #bfe7f4;
+	border: 1px solid #bfe7f4;
+}
+h6.pis-widget-title {
+	background-color: #cdc5e1;
+	border: 1px solid #cdc5e1;
+}
+h4.pis-widget-title:hover {
+	border-color: #859668;
+}
+h5.pis-widget-title:hover {
+	border-color: #81a2ad;
+}
+h6.pis-widget-title:hover {
+	border-color: #7f7b89;
+}
+h4.pis-widget-title + .pis-container,
+h5.pis-widget-title + .pis-container,
+h6.pis-widget-title + .pis-container {
+	border-width: 2px;
+	border-style: solid;
+	border-top-width: 0;
+}
+h4.pis-widget-title + .pis-container {
+	border-color: #cee7a5;
+}
+h5.pis-widget-title + .pis-container {
+	border-color: #bfe7f4;
+}
+h6.pis-widget-title + .pis-container {
+	border-color: #cdc5e1;
 }
 .pis-title-center {
 	text-align: center;
@@ -68,14 +104,21 @@
 	border-style: solid;
 	padding: 1em;
 }
-.pis-boxed-green {
-	border-color: rgba(76, 175, 80, 0.5);
+.pis-boxed-gray {
+	border-color: rgba(128, 128, 128, 0.5);
+	background-color: rgba(128, 128, 128, 0.15);
 }
-.pis-boxed-blue {
-	border-color: rgba(33, 150, 243, 0.5);
+.pis-boxed-light-blue {
+	border-color: rgba(191, 231, 244, 1);
+	background-color: rgba(191, 231, 244, 0.5);
+}
+.pis-boxed-orange {
+	border-color: rgba(243, 166, 33, 0.5);
+	background-color: rgba(243, 166, 33, 0.15);
 }
 .pis-boxed-red {
 	border-color: rgba(233, 30, 99, 0.5);
+	background-color: rgba(233, 30, 99, 0.15);
 }
 .pis-section select {
 	width: 99%;
@@ -111,6 +154,10 @@
 }
 .pis-container h6 {
 	margin-bottom: 1.67em;
+	margin-top: 1em;
+}
+.pis-container h6.pis-widget-title {
+	margin-bottom: 0;
 	margin-top: 1em;
 }
 

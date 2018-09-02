@@ -2,9 +2,9 @@
 Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
-Requires at least: 4.1
+Requires at least: 4.6
 Tested up to: 4.9.2
-Stable tag: 4.6.0
+Stable tag: 4.7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,13 +85,17 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 1. The widget panel (all sections are closed).
 2. The widget panel (all sections are open).
-3. A simple output of the widget: title, excerpt and link to the entire archive.
+3. A simple output of the widget: title, excerpt, and link to the entire archive.
 4. Displaying the featured image, floating left.
-5. The same image as before, but in larger size.
+5. The same image as before, but in a larger size.
 6. The introductory text for the widget.
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
 == Upgrade Notice ==
+
+= 4.7.0 =
+
+This version of the plugin requires WordPress 4.6 (for post_parent__in option in orderby parameter).
 
 = 2.0 =
 
@@ -99,7 +103,7 @@ This version requires WordPress 4.1 (for nested taxonomy handling).
 
 = 1.28 =
 
-This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widgets of this plugin.
+This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widget of this plugin.
 
 = 1.27 =
 

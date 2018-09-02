@@ -85,9 +85,9 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 1. The widget panel (all sections are closed).
 2. The widget panel (all sections are open).
-3. A simple output of the widget: title, excerpt and link to the entire archive.
+3. A simple output of the widget: title, excerpt, and link to the entire archive.
 4. Displaying the featured image, floating left.
-5. The same image as before, but in larger size.
+5. The same image as before, but in a larger size.
 6. The introductory text for the widget.
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
@@ -103,7 +103,7 @@ This version requires WordPress 4.1 (for nested taxonomy handling).
 
 = 1.28 =
 
-This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widgets of this plugin.
+This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widget of this plugin.
 
 = 1.27 =
 

@@ -1476,7 +1476,8 @@ function pis_debug( $parameters ) {
 		$output .= '<ul class="pis-debug-ul">' . "\n";
 		foreach ( $params as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
+				$output .= '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
+				$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
 			} else {
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
@@ -1912,4 +1913,26 @@ function pis_check_post_types( $post_type ) {
 	$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
 	$post_type           = pis_compare_string_to_array( $post_type, $post_type_wordpress );
 	return $post_type;
+}
+
+/**
+ * Print a multidimensional array.
+ *
+ * @param array $array The array to be printed.
+ * @see https://stackoverflow.com/questions/46343168/how-to-display-values-of-a-multidimensional-associative-array-using-foreach-loop
+ * @since 4.7.0
+ */
+function pis_array2string( $array ) {
+	$output = '';
+	foreach ( $array as $key => $value ) {
+		if ( is_array( $value ) ) {
+			$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . "\n";
+			$output .= pis_array2string( $value );
+			$output .= '</ul>';
+		} else {
+			$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
+		}
+	}
+
+	return $output;
 }

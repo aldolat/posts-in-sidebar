@@ -17,6 +17,21 @@
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Description](#description)
+- [Documentation, Help & Bugs](#documentation-help-bugs)
+- [Installation](#installation)
+	- [Installing Posts in Sidebar](#installing-posts-in-sidebar)
+	- [Uninstalling Posts in Sidebar](#uninstalling-posts-in-sidebar)
+- [Screenshots](#screenshots)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [License](#license)
+- [Credits](#credits)
+- [Privacy Policy](#privacy-policy)
+
+<!-- /TOC -->
+
 ## Description
 
 Posts in Sidebar is a plugin for WordPress that lets you show a list of your posts using the criteria you want. This plugin gives you almost all the power of WordPress to retrieve the posts you want and show them in your sidebars.
@@ -50,7 +65,7 @@ This plugin is [free software](https://en.wikipedia.org/wiki/Free_software) and 
 
 Enjoy!
 
-### Documentation, Help & Bugs
+## Documentation, Help & Bugs
 
 The plugin's documentation is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/wiki). Please refer to it before asking for support.
 
@@ -60,17 +75,9 @@ If you have found a bug, please report it on [GitHub](https://github.com/aldolat
 
 This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-sidebar). If you wrote an enhancement and would share it with the world, please send me a [Pull request](https://github.com/aldolat/posts-in-sidebar/pulls).
 
-### Credits
-
-I would like to say *Thank You* to all the people who helped me in making this plugin better and translated it into their respective languages.
-
-### Privacy Policy
-
-This plugin does not collect any user data.
-
 ## Installation
 
-**Installing Posts in Sidebar**
+### Installing Posts in Sidebar
 
 This section describes how to install the plugin and get it working.
 
@@ -80,82 +87,29 @@ This section describes how to install the plugin and get it working.
 1. Adjust the options to fit your needs
 1. Save and test your results.
 
-**Uninstalling**
+### Uninstalling Posts in Sidebar
 
 Posts in Sidebar cleans up after itself. All plugin settings will be removed from your database when the plugin is uninstalled via the Plugins screen.
+
+## Screenshots
+
+The updated screenshots are available in the [official wiki](https://github.com/aldolat/posts-in-sidebar/wiki/Screenshots) of this plugin.
 
 ## Frequently Asked Questions
 
 Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on GitHub.
 
-## Screenshots
+## License
 
-### 1. The widget panel (all sections are closed).
-![1. The widget panel (all sections are closed).](https://ps.w.org/posts-in-sidebar/assets/screenshot-1.png)
+This software is released under the terms of the [GNU GPLv3](https://github.com/aldolat/posts-in-sidebar/blob/master/LICENSE) or later.
 
-### 2. The widget panel (all sections are open).
-![2. The widget panel (all sections are open).](https://ps.w.org/posts-in-sidebar/assets/screenshot-2.png)
+## Credits
 
-### 3. A simple output of the widget: title, excerpt, and link to the entire archive.
-![3. A simple output of the widget: title, excerpt and link to the entire archive.](https://ps.w.org/posts-in-sidebar/assets/screenshot-3.png)
+I would like to say *Thank You* to all the people who helped me in making this plugin better and translated it into their respective languages.
 
-### 4. Displaying the featured image, floating left.
-![4. Displaying the featured image, floating left.](https://ps.w.org/posts-in-sidebar/assets/screenshot-4.png)
+## Privacy Policy
 
-### 5. The same image as before, but in a larger size.
-![5. The same image as before, but in larger size.](https://ps.w.org/posts-in-sidebar/assets/screenshot-5.png)
-
-### 6. The introductory text for the widget.
-![6. The introductory text for the widget.](https://ps.w.org/posts-in-sidebar/assets/screenshot-6.png)
-
-### 7. Displaying the full set of items (categories, date, author, tags, and so on).
-![7. Displaying the full set of items (categories, date, author, tags, and so on).](https://ps.w.org/posts-in-sidebar/assets/screenshot-7.png)
-
-## Upgrade Notice
-
-### 4.7.0
-
-This version of the plugin requires WordPress 4.6 (for post_parent__in option in orderby parameter).
-
-### 2.0
-
-This version requires WordPress 4.1 (for nested taxonomy handling).
-
-### 1.28
-
-This upgrade will check if the "NULL" string exists in certain variables and convert it to an empty value. After upgrading, the user must save every widget of this plugin.
-
-### 1.27
-
-This version resolves multiple PHP notices.
-
-### 1.24
-
-Bugfix for the issue when upgrading from 1.22 to 1.23.
-
-### 1.17
-
-This version requires WordPress 3.5 (for "post__in" option in "Order by" field).
-
-### 1.10
-
-Bugfix for password-protected posts.
-
-### 1.2
-
-Version 1.2 has changed the option to display the text of the post. When upgrading to version 1.2, check every Posts in Sidebar widget at section The text of the post to make sure that the option fits your needs.
-
-### 1.0.2
-
-No notice to display.
-
-### 1.0.1
-
-No notice to display.
-
-### 1.0
-
-No notice to display.
+This plugin does not collect any user data.
 
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./gpl-3.0.txt

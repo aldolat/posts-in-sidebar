@@ -74,7 +74,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		extract( $args );
 
-		$title = apply_filters( 'widget_title', $instance['title'] );
+		$title = apply_filters( 'widget_title', $instance['title'], esc_html( $widget_id ) );
 
 		/*
 		 * Change the widget title if the user wants a different title in single posts (for same category).

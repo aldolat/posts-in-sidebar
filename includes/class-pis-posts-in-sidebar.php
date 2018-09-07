@@ -235,9 +235,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 
 		if ( $title && isset( $instance['title_link'] ) && ! empty( $instance['title_link'] ) ) {
-			echo $before_title . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . esc_html( $title ) . '</a>' . $after_title . "\n";
+			echo $before_title . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $title . '</a>' . $after_title . "\n";
 		} elseif ( $title ) {
-			echo $before_title . esc_html( $title ) . $after_title . "\n";
+			echo $before_title . $title . $after_title . "\n";
 		}
 
 		/*

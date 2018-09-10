@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.7.1 =
+
+* Reverted widget title escaping which can break use of the widget_title filter.
+
 = 4.7.0 =
 
 * Added new option to filter posts in the same category/tag/author/custom-field by searching for the title of the main post.

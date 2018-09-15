@@ -13,7 +13,7 @@
 **Tested up to:** 5.0.0  
 **Stable tag:** 4.7.1  
 **License:** GPLv3 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
+**License URI:** https://www.gnu.org/licenses/gpl-3.0.html  
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
 

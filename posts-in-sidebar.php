@@ -172,7 +172,7 @@ function pis_load_widgets() {
  * @since 3.1
  */
 function pis_add_links( $links, $file ) {
-	if ( plugin_basename( __FILE__ ) !== $file ) {
+	if ( plugin_basename( __FILE__ ) === $file ) {
 		$rate_url = 'https://wordpress.org/support/plugin/' . basename( dirname( __FILE__ ) ) . '/reviews/#new-post';
 		$links[]  = '<a target="_blank" href="' . $rate_url . '" title="' . esc_html__( 'Click here to rate and review this plugin on WordPress.org', 'posts-in-sidebar' ) . '">' . esc_html__( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
 	}

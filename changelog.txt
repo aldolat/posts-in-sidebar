@@ -3,6 +3,7 @@
 = 4.7.1 =
 
 * Reverted widget title escaping which can break use of the widget_title filter. Thanks to @mlang38 for reporting this.
+* Fixed link to review page on wordpress.org when viewing the plugin list page.
 
 = 4.7.0 =
 

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.7.1] - 2018-09-01
 ## Fixed
 * Reverted widget title escaping which can break use of the widget_title filter. Thanks to [@mlang38](https://github.com/mlang38) for [reporting this](https://github.com/aldolat/posts-in-sidebar/issues/37).
+* Fixed link to review page on wordpress.org when viewing the plugin list page.
 
 ## [4.7.0] - 2018-09-01
 ### Added

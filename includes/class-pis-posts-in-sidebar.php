@@ -3695,7 +3695,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<p><em>
 							<?php
 							// translators: there is some code in placeholders.
-							printf( esc_html__( 'In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all toghether.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' );
+							printf( esc_html__( 'In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all together.%2$s', 'posts-in-sidebar' ), '<strong>', '</strong>' );
 							?>
 						</em></p>
 

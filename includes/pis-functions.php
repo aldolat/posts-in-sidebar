@@ -430,7 +430,7 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
  *     @type boolean $title_hellipsis   If an horizontal ellipsis should be added after the shortened title.
  * }
  *
- * @return The HTML paragraph with the title.
+ * @return string The HTML paragraph with the title.
  * @since 3.8.4
  * @since 4.4.0 Added `$title_length` option.
  * @since 4.4.0 Added `$title_hellipsis` option.
@@ -457,11 +457,13 @@ function pis_the_title( $args ) {
 
 	// The Gravatar.
 	if ( $args['gravatar_display'] && 'next_title' === $args['gravatar_position'] ) {
-		$output .= pis_get_gravatar( array(
-			'author'  => $args['gravatar_author'],
-			'size'    => $args['gravatar_size'],
-			'default' => $args['gravatar_default'],
-		) );
+		$output .= pis_get_gravatar(
+			array(
+				'author'  => $args['gravatar_author'],
+				'size'    => $args['gravatar_size'],
+				'default' => $args['gravatar_default'],
+			)
+		);
 	}
 
 	if ( $args['link_on_title'] ) {
@@ -509,7 +511,7 @@ function pis_the_title( $args ) {
  *     @type string $categ_text        The leading text for the categories.
  * }
  *
- * @return The HTML paragraph with the categories.
+ * @return string The HTML paragraph with the categories.
  * @since 3.8.4
  */
 function pis_the_categories( $args ) {
@@ -553,7 +555,7 @@ function pis_the_categories( $args ) {
  *                                px (default), %, em, rem
  *     @type string $tags_text    The leading text for the tags.
  * }
- * @return The HTML paragraph with the tags.
+ * @return string The HTML paragraph with the tags.
  * @uses pis_paragraph()
  * @since 3.8.4
  */
@@ -733,7 +735,7 @@ function pis_custom_field( $args ) {
  *    @type boolean image_link_to_post  If the thumbnail should be linked to the post. Default true.
  * }
  * @since 1.18
- * @return The HTML for the thumbnail.
+ * @return string The HTML for the thumbnail.
  */
 function pis_the_thumbnail( $args ) {
 	$defaults = array(
@@ -865,7 +867,7 @@ function pis_the_thumbnail( $args ) {
  *
  * @since 1.18
  * @param array $args The array containing the custom parameters.
- * @return The HTML for the text of the post.
+ * @return string The HTML for the text of the post.
  * @uses pis_break_text()
  * @uses pis_more_arrow()
  */
@@ -1021,7 +1023,7 @@ function pis_the_text( $args ) {
  *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
  * }
  * @since 1.18
- * @return The HTML for the section.
+ * @return string The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()
  * @uses pis_get_comments_number()
@@ -1087,11 +1089,13 @@ function pis_utility_section( $args ) {
 
 	/* The Gravatar */
 	if ( $gravatar_display && 'next_author' === $gravatar_position ) {
-		$output .= pis_get_gravatar( array(
-			'author'  => $gravatar_author,
-			'size'    => $gravatar_size,
-			'default' => $gravatar_default,
-		) );
+		$output .= pis_get_gravatar(
+			array(
+				'author'  => $gravatar_author,
+				'size'    => $gravatar_size,
+				'default' => $gravatar_default,
+			)
+		);
 	}
 
 	/* The author */
@@ -1250,27 +1254,47 @@ function pis_custom_taxonomies_terms_links( $args ) {
  * @since 3.0
  */
 function pis_get_comments_number( $pis_post_id, $link ) {
-	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value.
+	// get_comments_number() returns only a numeric value in form of a string.
+	$num_comments = get_comments_number( $pis_post_id );
 
-	if ( 0 === $num_comments && ! comments_open( $pis_post_id ) ) {
-		$output = esc_html__( 'Comments are closed.', 'posts-in-sidebar' );
+	/**
+	 * Build the comments number string.
+	 *
+	 * The value returned by get_comments_number() is
+	 * "a numeric string representing the number of comments the post has".
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/get_comments_number/
+	 */
+	if ( '0' === $num_comments ) {
+		// Zero comments.
+		if ( comments_open( $pis_post_id ) ) {
+			$comments_text = esc_html( 'Leave a comment', 'posts-in-sidebar' );
+			$comments_text = apply_filters( 'pis_zero_comments', $comments_text );
+		} else {
+			$comments_text = esc_html( 'Comments are closed', 'posts-in-sidebar' );
+			$comments_text = apply_filters( 'pis_zero_comments_closed', $comments_text );
+		}
+	} elseif ( '1' === $num_comments ) {
+		// 1 comment.
+		$comments_text = esc_html( '1 Comment', 'posts-in-sidebar' );
+		$comments_text = apply_filters( 'pis_one_comment', $comments_text );
 	} else {
-		// Construct the comments string.
-		if ( 1 === $num_comments ) {
-			$comments = esc_html__( '1 Comment', 'posts-in-sidebar' );
-		} elseif ( 1 < $num_comments ) {
-			// translators: %d is the number of comments.
-			$comments = sprintf( esc_html__( '%d Comments', 'posts-in-sidebar' ), $num_comments );
-		} else {
-			$comments = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
-		}
+		// More than 1 comments.
+		// translators: %d is the number of comments.
+		$comments_text = sprintf( esc_html( '%s Comments', 'posts-in-sidebar' ), $num_comments );
+		$comments_text = apply_filters( 'pis_more_comments', $comments_text );
+	}
 
-		// Contruct the HTML string for the comments.
-		if ( $link ) {
-			$output = '<a ' . pis_class( 'pis-comments-link', apply_filters( 'pis_comments_link_class', '' ), false ) . ' href="' . get_comments_link( $pis_post_id ) . '">' . $comments . '</a>';
+	// Build the HTML string for the comments.
+	if ( $link ) {
+		// If there is no comment and comments are closed, do not create a link to comment form, since there is no #respond CSS id.
+		if ( '0' === $num_comments && ! comments_open( $pis_post_id ) ) {
+			$output = $comments_text;
 		} else {
-			$output = $comments;
+			$output = '<a ' . pis_class( 'pis-comments-link', apply_filters( 'pis_comments_link_class', '' ), false ) . ' href="' . get_comments_link( $pis_post_id ) . '">' . $comments_text . '</a>';
 		}
+	} else {
+		$output = $comments_text;
 	}
 
 	return $output;

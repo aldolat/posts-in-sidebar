@@ -757,6 +757,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['display_comm_num_only'] ) ) {
 			$instance['display_comm_num_only'] = false;
 		}
+		if ( ! isset( $instance['hide_zero_comments'] ) ) {
+			$instance['hide_zero_comments'] = false;
+		}
 		if ( ! isset( $instance['utility_sep'] ) ) {
 			$instance['utility_sep'] = '|';
 		}
@@ -1156,6 +1159,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'comments_text'           => $instance['comments_text'],
 			'linkify_comments'        => $instance['linkify_comments'],
 			'display_comm_num_only'   => $instance['display_comm_num_only'],
+			'hide_zero_comments'      => $instance['hide_zero_comments'],
 			'utility_sep'             => $instance['utility_sep'],
 			'utility_after_title'     => $instance['utility_after_title'],
 			'utility_before_title'    => $instance['utility_before_title'],
@@ -1688,6 +1692,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['comments_text']         = wp_strip_all_tags( $new_instance['comments_text'] );
 		$instance['linkify_comments']      = isset( $new_instance['linkify_comments'] ) ? 1 : 0;
 		$instance['display_comm_num_only'] = isset( $new_instance['display_comm_num_only'] ) ? 1 : 0;
+		$instance['hide_zero_comments']    = isset( $new_instance['hide_zero_comments'] ) ? 1 : 0;
 		$instance['utility_sep']           = wp_strip_all_tags( $new_instance['utility_sep'] );
 		$instance['utility_after_title']   = isset( $new_instance['utility_after_title'] ) ? 1 : 0;
 		$instance['utility_before_title']  = isset( $new_instance['utility_before_title'] ) ? 1 : 0;
@@ -2063,6 +2068,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'comments_text'           => esc_html__( 'Comments:', 'posts-in-sidebar' ),
 			'linkify_comments'        => false,
 			'display_comm_num_only'   => false,
+			'hide_zero_comments'      => false,
 			'utility_sep'             => '|',
 			'utility_after_title'     => false,
 			'utility_before_title'    => false,
@@ -2187,6 +2193,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$comments                = (bool) $instance['comments'];
 		$linkify_comments        = (bool) $instance['linkify_comments'];
 		$display_comm_num_only   = (bool) $instance['display_comm_num_only'];
+		$hide_zero_comments      = (bool) $instance['hide_zero_comments'];
 		$categories              = (bool) $instance['categories'];
 		$categ_before_title      = (bool) $instance['categ_before_title'];
 		$categ_after_title       = (bool) $instance['categ_after_title'];
@@ -6671,6 +6678,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 							<div class="pis-column">
+
+								<?php
+								// ================= Hide comments section if there is no comment
+								pis_form_checkbox(
+									esc_html__( 'Hide the comments section if there is no comment', 'posts-in-sidebar' ),
+									$this->get_field_id( 'hide_zero_comments' ),
+									$this->get_field_name( 'hide_zero_comments' ),
+									$hide_zero_comments
+								);
+								?>
 
 								<?php
 								// ================= Utility separator

@@ -644,56 +644,58 @@ function pis_the_text( $args ) {
  */
 function pis_utility_section( $args ) {
 	$defaults = array(
-		'display_author'    => false,
-		'display_date'      => false,
-		'display_time'      => false,
-		'display_mod_date'  => false,
-		'display_mod_time'  => false,
-		'comments'          => false,
-		'utility_margin'    => null,
-		'margin_unit'       => 'px',
-		'author_text'       => esc_html__( 'By', 'posts-in-sidebar' ),
-		'linkify_author'    => false,
-		'utility_sep'       => '|',
-		'date_text'         => esc_html__( 'Published on', 'posts-in-sidebar' ),
-		'linkify_date'      => false,
-		'mod_date_text'     => esc_html__( 'Modified on', 'posts-in-sidebar' ),
-		'linkify_mod_date'  => false,
-		'comments_text'     => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-		'pis_post_id'       => '',
-		'link_to_comments'  => true,
-		'gravatar_display'  => false,
-		'gravatar_position' => '',
-		'gravatar_author'   => '',
-		'gravatar_size'     => 32,
-		'gravatar_default'  => '',
+		'display_author'        => false,
+		'display_date'          => false,
+		'display_time'          => false,
+		'display_mod_date'      => false,
+		'display_mod_time'      => false,
+		'comments'              => false,
+		'utility_margin'        => null,
+		'margin_unit'           => 'px',
+		'author_text'           => esc_html__( 'By', 'posts-in-sidebar' ),
+		'linkify_author'        => false,
+		'utility_sep'           => '|',
+		'date_text'             => esc_html__( 'Published on', 'posts-in-sidebar' ),
+		'linkify_date'          => false,
+		'mod_date_text'         => esc_html__( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'      => false,
+		'comments_text'         => esc_html__( 'Comments:', 'posts-in-sidebar' ),
+		'pis_post_id'           => '',
+		'link_to_comments'      => true,
+		'display_comm_num_only' => false,
+		'gravatar_display'      => false,
+		'gravatar_position'     => '',
+		'gravatar_author'       => '',
+		'gravatar_size'         => 32,
+		'gravatar_default'      => '',
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$display_author    = $args['display_author'];
-	$display_date      = $args['display_date'];
-	$display_time      = $args['display_time'];
-	$display_mod_date  = $args['display_mod_date'];
-	$display_mod_time  = $args['display_mod_time'];
-	$comments          = $args['comments'];
-	$utility_margin    = $args['utility_margin'];
-	$margin_unit       = $args['margin_unit'];
-	$author_text       = $args['author_text'];
-	$linkify_author    = $args['linkify_author'];
-	$utility_sep       = $args['utility_sep'];
-	$date_text         = $args['date_text'];
-	$linkify_date      = $args['linkify_date'];
-	$mod_date_text     = $args['mod_date_text'];
-	$linkify_mod_date  = $args['linkify_mod_date'];
-	$comments_text     = $args['comments_text'];
-	$pis_post_id       = $args['pis_post_id'];
-	$link_to_comments  = $args['link_to_comments'];
-	$gravatar_display  = $args['gravatar_display'];
-	$gravatar_position = $args['gravatar_position'];
-	$gravatar_author   = $args['gravatar_author'];
-	$gravatar_size     = $args['gravatar_size'];
-	$gravatar_default  = $args['gravatar_default'];
+	$display_author        = $args['display_author'];
+	$display_date          = $args['display_date'];
+	$display_time          = $args['display_time'];
+	$display_mod_date      = $args['display_mod_date'];
+	$display_mod_time      = $args['display_mod_time'];
+	$comments              = $args['comments'];
+	$utility_margin        = $args['utility_margin'];
+	$margin_unit           = $args['margin_unit'];
+	$author_text           = $args['author_text'];
+	$linkify_author        = $args['linkify_author'];
+	$utility_sep           = $args['utility_sep'];
+	$date_text             = $args['date_text'];
+	$linkify_date          = $args['linkify_date'];
+	$mod_date_text         = $args['mod_date_text'];
+	$linkify_mod_date      = $args['linkify_mod_date'];
+	$comments_text         = $args['comments_text'];
+	$pis_post_id           = $args['pis_post_id'];
+	$link_to_comments      = $args['link_to_comments'];
+	$display_comm_num_only = $args['display_comm_num_only'];
+	$gravatar_display      = $args['gravatar_display'];
+	$gravatar_position     = $args['gravatar_position'];
+	$gravatar_author       = $args['gravatar_author'];
+	$gravatar_size         = $args['gravatar_size'];
+	$gravatar_default      = $args['gravatar_default'];
 
 	$output = '';
 
@@ -797,7 +799,7 @@ function pis_utility_section( $args ) {
 			if ( $comments_text ) {
 				$output .= $comments_text . ' ';
 			}
-			$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
+			$output .= pis_get_comments_number( $pis_post_id, $link_to_comments, $display_comm_num_only );
 			$output .= '</span>';
 		}
 	}
@@ -865,9 +867,10 @@ function pis_custom_taxonomies_terms_links( $args ) {
  *
  * @param integer $pis_post_id The ID of the post.
  * @param boolean $link If the output is to be wrapped into a link to comments.
+ * @param boolean $display_comm_num_only If displaying the number of comments only.
  * @since 3.0
  */
-function pis_get_comments_number( $pis_post_id, $link ) {
+function pis_get_comments_number( $pis_post_id, $link, $display_comm_num_only ) {
 	// get_comments_number() returns only a numeric value in form of a string.
 	$num_comments = get_comments_number( $pis_post_id );
 
@@ -883,6 +886,9 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 		// Zero comments.
 		if ( comments_open( $pis_post_id ) ) {
 			$comments_text = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
+			if ( $display_comm_num_only ) {
+				$comments_text = $num_comments;
+			}
 			$comments_text = apply_filters( 'pis_zero_comments', $comments_text );
 		} else {
 			$comments_text = esc_html__( 'Comments are closed', 'posts-in-sidebar' );
@@ -891,11 +897,17 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 	} elseif ( '1' === $num_comments ) {
 		// 1 comment.
 		$comments_text = esc_html__( '1 Comment', 'posts-in-sidebar' );
+		if ( $display_comm_num_only ) {
+			$comments_text = $num_comments;
+		}
 		$comments_text = apply_filters( 'pis_one_comment', $comments_text );
 	} else {
 		// More than 1 comments.
 		// translators: %d is the number of comments.
 		$comments_text = sprintf( esc_html__( '%s Comments', 'posts-in-sidebar' ), $num_comments );
+		if ( $display_comm_num_only ) {
+			$comments_text = $num_comments;
+		}
 		$comments_text = apply_filters( 'pis_more_comments', $comments_text );
 	}
 

@@ -154,6 +154,7 @@ function pis_shortcode( $atts ) {
 		'comments_text'         => esc_html__( 'Comments:', 'posts-in-sidebar' ),
 		'linkify_comments'      => false,
 		'display_comm_num_only' => false,
+		'hide_zero_comments'    => false,
 		'utility_sep'           => '|',
 		'utility_after_title'   => false,
 		'utility_before_title'  => false,

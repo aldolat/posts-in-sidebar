@@ -663,6 +663,7 @@ function pis_utility_section( $args ) {
 		'pis_post_id'           => '',
 		'link_to_comments'      => true,
 		'display_comm_num_only' => false,
+		'hide_zero_comments'    => false,
 		'gravatar_display'      => false,
 		'gravatar_position'     => '',
 		'gravatar_author'       => '',
@@ -691,6 +692,7 @@ function pis_utility_section( $args ) {
 	$pis_post_id           = $args['pis_post_id'];
 	$link_to_comments      = $args['link_to_comments'];
 	$display_comm_num_only = $args['display_comm_num_only'];
+	$hide_zero_comments    = $args['hide_zero_comments'];
 	$gravatar_display      = $args['gravatar_display'];
 	$gravatar_position     = $args['gravatar_position'];
 	$gravatar_author       = $args['gravatar_author'];
@@ -792,15 +794,20 @@ function pis_utility_section( $args ) {
 	/* The comments */
 	if ( ! post_password_required() ) {
 		if ( $comments ) {
-			if ( $display_author || $display_date || $display_mod_date ) {
-				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+			$num_comments = get_comments_number( $pis_post_id );
+			if ( '0' === $num_comments && $hide_zero_comments ) {
+				$output .= '';
+			} else {
+				if ( $display_author || $display_date || $display_mod_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
+				if ( $comments_text ) {
+					$output .= $comments_text . ' ';
+				}
+				$output .= pis_get_comments_number( $pis_post_id, $link_to_comments, $display_comm_num_only );
+				$output .= '</span>';
 			}
-			$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-			if ( $comments_text ) {
-				$output .= $comments_text . ' ';
-			}
-			$output .= pis_get_comments_number( $pis_post_id, $link_to_comments, $display_comm_num_only );
-			$output .= '</span>';
 		}
 	}
 

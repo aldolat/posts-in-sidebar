@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.7.2] - 2018-10-07
 ### Added
 * Added option to display the number of comments only.
+* Added option to hide the comments section if there is no comment.
 ### Fixed
 * Fixed the displaying of comments number.
 

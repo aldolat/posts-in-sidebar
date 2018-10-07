@@ -882,20 +882,20 @@ function pis_get_comments_number( $pis_post_id, $link ) {
 	if ( '0' === $num_comments ) {
 		// Zero comments.
 		if ( comments_open( $pis_post_id ) ) {
-			$comments_text = esc_html( 'Leave a comment', 'posts-in-sidebar' );
+			$comments_text = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
 			$comments_text = apply_filters( 'pis_zero_comments', $comments_text );
 		} else {
-			$comments_text = esc_html( 'Comments are closed', 'posts-in-sidebar' );
+			$comments_text = esc_html__( 'Comments are closed', 'posts-in-sidebar' );
 			$comments_text = apply_filters( 'pis_zero_comments_closed', $comments_text );
 		}
 	} elseif ( '1' === $num_comments ) {
 		// 1 comment.
-		$comments_text = esc_html( '1 Comment', 'posts-in-sidebar' );
+		$comments_text = esc_html__( '1 Comment', 'posts-in-sidebar' );
 		$comments_text = apply_filters( 'pis_one_comment', $comments_text );
 	} else {
 		// More than 1 comments.
 		// translators: %d is the number of comments.
-		$comments_text = sprintf( esc_html( '%s Comments', 'posts-in-sidebar' ), $num_comments );
+		$comments_text = sprintf( esc_html__( '%s Comments', 'posts-in-sidebar' ), $num_comments );
 		$comments_text = apply_filters( 'pis_more_comments', $comments_text );
 	}
 

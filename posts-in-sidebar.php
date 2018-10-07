@@ -89,7 +89,10 @@ function pis_setup() {
 	 *
 	 * @since 1.23
 	 */
-	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions-queries.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions-display.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions-general.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-functions-tools.php';
 
 	/*
 	 * Load Posts in Sidebar's widgets.

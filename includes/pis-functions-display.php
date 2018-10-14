@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the functions of the plugin
+ * This file contains the display functions of the plugin.
  *
  * @package PostsInSidebar
  * @since 1.23
@@ -16,393 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /*
- * Queries section
- *******************************************************************************
- */
-
-/**
- * Build the query based on taxonomies.
- *
- * @param  array $args      The array containing the custom parameters.
- * @return array $tax_query An array of array of parameters.
- * @since 1.29
- */
-function pis_tax_query( $args ) {
-	$defaults = array(
-		'relation'    => '',
-		'taxonomy_aa' => '',
-		'field_aa'    => 'slug',
-		'terms_aa'    => '',
-		'operator_aa' => 'IN',
-		'relation_a'  => '',
-		'taxonomy_ab' => '',
-		'field_ab'    => 'slug',
-		'terms_ab'    => '',
-		'operator_ab' => 'IN',
-		'taxonomy_ba' => '',
-		'field_ba'    => 'slug',
-		'terms_ba'    => '',
-		'operator_ba' => 'IN',
-		'relation_b'  => '',
-		'taxonomy_bb' => '',
-		'field_bb'    => 'slug',
-		'terms_bb'    => '',
-		'operator_bb' => 'IN',
-	);
-
-	$args = wp_parse_args( $args, $defaults );
-
-	if ( '' === $args['taxonomy_aa'] || '' === $args['field_aa'] || '' === $args['terms_aa'] ) {
-		$tax_query = '';
-	} else {
-		// Convert terms into arrays.
-		$args['terms_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_aa'] ) );
-
-		if ( $args['terms_ab'] ) {
-			$args['terms_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_ab'] ) );
-		}
-		if ( $args['terms_ba'] ) {
-			$args['terms_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_ba'] ) );
-		}
-		if ( $args['terms_bb'] ) {
-			$args['terms_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['terms_bb'] ) );
-		}
-
-		// Let's figure out the tax_query to build.
-		if ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && ! $args['taxonomy_ba'] && ! $args['taxonomy_bb'] ) {
-			$tax_query = array(
-				array(
-					'taxonomy' => $args['taxonomy_aa'],
-					'field'    => $args['field_aa'],
-					'terms'    => $args['terms_aa'], // This must be an array.
-					'operator' => $args['operator_aa'],
-				),
-			);
-		} elseif ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && $args['taxonomy_ba'] && ! $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
-			$tax_query = array(
-				'relation' => $args['relation'],
-				array(
-					'taxonomy' => $args['taxonomy_aa'],
-					'field'    => $args['field_aa'],
-					'terms'    => $args['terms_aa'], // This must be an array.
-					'operator' => $args['operator_aa'],
-				),
-				array(
-					'taxonomy' => $args['taxonomy_ba'],
-					'field'    => $args['field_ba'],
-					'terms'    => $args['terms_ba'], // This must be an array.
-					'operator' => $args['operator_ba'],
-				),
-			);
-		} elseif ( $args['taxonomy_aa'] && $args['taxonomy_ab'] && $args['taxonomy_ba'] && ! $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
-			$tax_query = array(
-				'relation' => $args['relation'],
-				array(
-					'relation_a' => $args['relation_a'],
-					array(
-						'taxonomy' => $args['taxonomy_aa'],
-						'field'    => $args['field_aa'],
-						'terms'    => $args['terms_aa'], // This must be an array.
-						'operator' => $args['operator_aa'],
-					),
-					array(
-						'taxonomy' => $args['taxonomy_ab'],
-						'field'    => $args['field_ab'],
-						'terms'    => $args['terms_ab'], // This must be an array.
-						'operator' => $args['operator_ab'],
-					),
-				),
-				array(
-					'taxonomy' => $args['taxonomy_ba'],
-					'field'    => $args['field_ba'],
-					'terms'    => $args['terms_ba'], // This must be an array.
-					'operator' => $args['operator_ba'],
-				),
-			);
-		} elseif ( $args['taxonomy_aa'] && ! $args['taxonomy_ab'] && $args['taxonomy_ba'] && $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
-			$tax_query = array(
-				'relation' => $args['relation'],
-				array(
-					'taxonomy' => $args['taxonomy_aa'],
-					'field'    => $args['field_aa'],
-					'terms'    => $args['terms_aa'], // This must be an array.
-					'operator' => $args['operator_aa'],
-				),
-				array(
-					'relation_b' => $args['relation_b'],
-					array(
-						'taxonomy' => $args['taxonomy_ba'],
-						'field'    => $args['field_ba'],
-						'terms'    => $args['terms_ba'], // This must be an array.
-						'operator' => $args['operator_ba'],
-					),
-					array(
-						'taxonomy' => $args['taxonomy_bb'],
-						'field'    => $args['field_bb'],
-						'terms'    => $args['terms_bb'], // This must be an array.
-						'operator' => $args['operator_bb'],
-					),
-				),
-			);
-		} elseif ( $args['taxonomy_aa'] && $args['taxonomy_ab'] && $args['taxonomy_ba'] && $args['taxonomy_bb'] && ! empty( $args['relation'] ) ) {
-			$tax_query = array(
-				'relation' => $args['relation'],
-				array(
-					'relation_a' => $args['relation_a'],
-					array(
-						'taxonomy' => $args['taxonomy_aa'],
-						'field'    => $args['field_aa'],
-						'terms'    => $args['terms_aa'], // This must be an array.
-						'operator' => $args['operator_aa'],
-					),
-					array(
-						'taxonomy' => $args['taxonomy_ab'],
-						'field'    => $args['field_ab'],
-						'terms'    => $args['terms_ab'], // This must be an array.
-						'operator' => $args['operator_ab'],
-					),
-				),
-				array(
-					'relation_b' => $args['relation_b'],
-					array(
-						'taxonomy' => $args['taxonomy_ba'],
-						'field'    => $args['field_ba'],
-						'terms'    => $args['terms_ba'], // This must be an array.
-						'operator' => $args['operator_ba'],
-					),
-					array(
-						'taxonomy' => $args['taxonomy_bb'],
-						'field'    => $args['field_bb'],
-						'terms'    => $args['terms_bb'], // This must be an array.
-						'operator' => $args['operator_bb'],
-					),
-				),
-			);
-		}
-	}
-
-	if ( isset( $tax_query ) ) {
-		return $tax_query;
-	} else {
-		return '';
-	}
-}
-
-/**
- * Build the query based on custom fields.
- *
- * @param  array $args The array containing the custom parameters.
- * @return array An array of array of parameters.
- * @since 4.0
- */
-function pis_meta_query( $args ) {
-	$defaults = array(
-		'mq_relation'   => '',
-		'mq_key_aa'     => '',
-		'mq_value_aa'   => '',
-		'mq_compare_aa' => '',
-		'mq_type_aa'    => '',
-		'mq_relation_a' => '',
-		'mq_key_ab'     => '',
-		'mq_value_ab'   => '',
-		'mq_compare_ab' => '',
-		'mq_type_ab'    => '',
-		'mq_key_ba'     => '',
-		'mq_value_ba'   => '',
-		'mq_compare_ba' => '',
-		'mq_type_ba'    => '',
-		'mq_relation_b' => '',
-		'mq_key_bb'     => '',
-		'mq_value_bb'   => '',
-		'mq_compare_bb' => '',
-		'mq_type_bb'    => '',
-	);
-
-	$args = wp_parse_args( $args, $defaults );
-
-	if ( '' === $args['mq_key_aa'] || '' === $args['mq_value_aa'] ) {
-		$meta_query = '';
-	} else {
-		$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
-		if ( strpos( $args['mq_value_aa'], ',' ) && in_array( $args['mq_compare_aa'], $compare_array, true ) ) {
-			$args['mq_value_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_aa'] ) );
-		}
-		if ( $args['mq_value_ab'] && strpos( $args['mq_value_ab'], ',' ) && in_array( $args['mq_compare_ab'], $compare_array, true ) ) {
-			$args['mq_value_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ab'] ) );
-		}
-		if ( $args['mq_value_ba'] && strpos( $args['mq_value_ba'], ',' ) && in_array( $args['mq_compare_ba'], $compare_array, true ) ) {
-			$args['mq_value_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ba'] ) );
-		}
-		if ( $args['mq_value_bb'] && strpos( $args['mq_value_bb'], ',' ) && in_array( $args['mq_compare_bb'], $compare_array, true ) ) {
-			$args['mq_value_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_bb'] ) );
-		}
-
-		if ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && ! $args['mq_key_ba'] && ! $args['mq_key_bb'] ) {
-			$meta_query = array(
-				array(
-					'key'     => $args['mq_key_aa'],
-					'value'   => $args['mq_value_aa'], // This could be an array.
-					'compare' => $args['mq_compare_aa'],
-					'type'    => $args['mq_type_aa'],
-				),
-			);
-		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
-				array(
-					'key'     => $args['mq_key_aa'],
-					'value'   => $args['mq_value_aa'], // This could be an array.
-					'compare' => $args['mq_compare_aa'],
-					'type'    => $args['mq_type_aa'],
-				),
-				array(
-					'key'     => $args['mq_key_ba'],
-					'value'   => $args['mq_value_ba'], // This could be an array.
-					'compare' => $args['mq_compare_ba'],
-					'type'    => $args['mq_type_ba'],
-				),
-			);
-		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
-				array(
-					'relation' => $args['mq_relation_a'],
-					array(
-						'key'     => $args['mq_key_aa'],
-						'value'   => $args['mq_value_aa'], // This could be an array.
-						'compare' => $args['mq_compare_aa'],
-						'type'    => $args['mq_type_aa'],
-					),
-					array(
-						'key'     => $args['mq_key_ab'],
-						'value'   => $args['mq_value_ab'], // This could be an array.
-						'compare' => $args['mq_compare_ab'],
-						'type'    => $args['mq_type_ab'],
-					),
-				),
-				array(
-					'key'     => $args['mq_key_ba'],
-					'value'   => $args['mq_value_ba'], // This could be an array.
-					'compare' => $args['mq_compare_ba'],
-					'type'    => $args['mq_type_ba'],
-				),
-			);
-		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
-				array(
-					'key'     => $args['mq_key_aa'],
-					'value'   => $args['mq_value_aa'], // This could be an array.
-					'compare' => $args['mq_compare_aa'],
-					'type'    => $args['mq_type_aa'],
-				),
-				array(
-					'relation' => $args['mq_relation_b'],
-					array(
-						'key'     => $args['mq_key_ba'],
-						'value'   => $args['mq_value_ba'], // This could be an array.
-						'compare' => $args['mq_compare_ba'],
-						'type'    => $args['mq_type_ba'],
-					),
-					array(
-						'key'     => $args['mq_key_bb'],
-						'value'   => $args['mq_value_bb'], // This could be an array.
-						'compare' => $args['mq_compare_bb'],
-						'type'    => $args['mq_type_bb'],
-					),
-				),
-			);
-		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
-				array(
-					'relation' => $args['mq_relation_a'],
-					array(
-						'key'     => $args['mq_key_aa'],
-						'value'   => $args['mq_value_aa'], // This could be an array.
-						'compare' => $args['mq_compare_aa'],
-						'type'    => $args['mq_type_aa'],
-					),
-					array(
-						'key'     => $args['mq_key_ab'],
-						'value'   => $args['mq_value_ab'], // This could be an array.
-						'compare' => $args['mq_compare_ab'],
-						'type'    => $args['mq_type_ab'],
-					),
-				),
-				array(
-					'relation' => $args['mq_relation_b'],
-					array(
-						'key'     => $args['mq_key_ba'],
-						'value'   => $args['mq_value_ba'], // This could be an array.
-						'compare' => $args['mq_compare_ba'],
-						'type'    => $args['mq_type_ba'],
-					),
-					array(
-						'key'     => $args['mq_key_bb'],
-						'value'   => $args['mq_value_bb'], // This could be an array.
-						'compare' => $args['mq_compare_bb'],
-						'type'    => $args['mq_type_bb'],
-					),
-				),
-			);
-		}
-	}
-
-	if ( isset( $meta_query ) ) {
-		return $meta_query;
-	} else {
-		return '';
-	}
-}
-
-/**
- * Get posts by most recent comments.
- *
- * @param  string  $post_type The post type.
- * @param  integer $limit     The number of post IDs to retrieve.
- * @param  string  $order     The order parameter.
- *                            Accepted values: 'desc' (default), 'asc'.
- *
- * @return array   $post_ids  The array with the IDs of the post.
- *
- * @since 4.1
- */
-function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
-	global $wpdb;
-
-	/*
-	 * $wpdb properties for database prefix:
-	 *     $wpdb->base_prefix = Get the prefix defined in wp-config.php;
-	 *     $wpdb->prefix      = Get the prefix for the current site (useful in a multisite installation).
-	 * @see https://codex.wordpress.org/Class_Reference/wpdb#Class_Variables
-	 */
-	$posts_table = $wpdb->prefix . 'posts'; // Will output, for example, 'wp_posts'.
-
-	$number = (int) apply_filters( 'pis_get_posts_by_recent_comments', $limit );
-
-	$sql = "SELECT $posts_table.*,
-	coalesce(
-		(
-			select max(comment_date)
-			from $wpdb->comments wpc
-			where wpc.comment_post_id = $posts_table.id
-		),
-		$posts_table.post_date
-	) as mcomment_date
-	from $wpdb->posts $posts_table
-	where post_type = '$post_type'
-	and post_status = 'publish'
-	order by mcomment_date $order
-	limit $number";
-
-	$post_ids = $wpdb->get_col( $sql );
-
-	return $post_ids;
-}
-
-/*
- * Display section
+ * Display functions.
  ******************************************************************************
  */
 
@@ -430,7 +44,7 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
  *     @type boolean $title_hellipsis   If an horizontal ellipsis should be added after the shortened title.
  * }
  *
- * @return The HTML paragraph with the title.
+ * @return string The HTML paragraph with the title.
  * @since 3.8.4
  * @since 4.4.0 Added `$title_length` option.
  * @since 4.4.0 Added `$title_hellipsis` option.
@@ -457,11 +71,13 @@ function pis_the_title( $args ) {
 
 	// The Gravatar.
 	if ( $args['gravatar_display'] && 'next_title' === $args['gravatar_position'] ) {
-		$output .= pis_get_gravatar( array(
-			'author'  => $args['gravatar_author'],
-			'size'    => $args['gravatar_size'],
-			'default' => $args['gravatar_default'],
-		) );
+		$output .= pis_get_gravatar(
+			array(
+				'author'  => $args['gravatar_author'],
+				'size'    => $args['gravatar_size'],
+				'default' => $args['gravatar_default'],
+			)
+		);
 	}
 
 	if ( $args['link_on_title'] ) {
@@ -509,7 +125,7 @@ function pis_the_title( $args ) {
  *     @type string $categ_text        The leading text for the categories.
  * }
  *
- * @return The HTML paragraph with the categories.
+ * @return string The HTML paragraph with the categories.
  * @since 3.8.4
  */
 function pis_the_categories( $args ) {
@@ -553,7 +169,7 @@ function pis_the_categories( $args ) {
  *                                px (default), %, em, rem
  *     @type string $tags_text    The leading text for the tags.
  * }
- * @return The HTML paragraph with the tags.
+ * @return string The HTML paragraph with the tags.
  * @uses pis_paragraph()
  * @since 3.8.4
  */
@@ -733,7 +349,7 @@ function pis_custom_field( $args ) {
  *    @type boolean image_link_to_post  If the thumbnail should be linked to the post. Default true.
  * }
  * @since 1.18
- * @return The HTML for the thumbnail.
+ * @return string The HTML for the thumbnail.
  */
 function pis_the_thumbnail( $args ) {
 	$defaults = array(
@@ -865,7 +481,7 @@ function pis_the_thumbnail( $args ) {
  *
  * @since 1.18
  * @param array $args The array containing the custom parameters.
- * @return The HTML for the text of the post.
+ * @return string The HTML for the text of the post.
  * @uses pis_break_text()
  * @uses pis_more_arrow()
  */
@@ -1021,63 +637,67 @@ function pis_the_text( $args ) {
  *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
  * }
  * @since 1.18
- * @return The HTML for the section.
+ * @return string The HTML for the section.
  * @uses pis_paragraph()
  * @uses pis_class()
  * @uses pis_get_comments_number()
  */
 function pis_utility_section( $args ) {
 	$defaults = array(
-		'display_author'    => false,
-		'display_date'      => false,
-		'display_time'      => false,
-		'display_mod_date'  => false,
-		'display_mod_time'  => false,
-		'comments'          => false,
-		'utility_margin'    => null,
-		'margin_unit'       => 'px',
-		'author_text'       => esc_html__( 'By', 'posts-in-sidebar' ),
-		'linkify_author'    => false,
-		'utility_sep'       => '|',
-		'date_text'         => esc_html__( 'Published on', 'posts-in-sidebar' ),
-		'linkify_date'      => false,
-		'mod_date_text'     => esc_html__( 'Modified on', 'posts-in-sidebar' ),
-		'linkify_mod_date'  => false,
-		'comments_text'     => esc_html__( 'Comments:', 'posts-in-sidebar' ),
-		'pis_post_id'       => '',
-		'link_to_comments'  => true,
-		'gravatar_display'  => false,
-		'gravatar_position' => '',
-		'gravatar_author'   => '',
-		'gravatar_size'     => 32,
-		'gravatar_default'  => '',
+		'display_author'        => false,
+		'display_date'          => false,
+		'display_time'          => false,
+		'display_mod_date'      => false,
+		'display_mod_time'      => false,
+		'comments'              => false,
+		'utility_margin'        => null,
+		'margin_unit'           => 'px',
+		'author_text'           => esc_html__( 'By', 'posts-in-sidebar' ),
+		'linkify_author'        => false,
+		'utility_sep'           => '|',
+		'date_text'             => esc_html__( 'Published on', 'posts-in-sidebar' ),
+		'linkify_date'          => false,
+		'mod_date_text'         => esc_html__( 'Modified on', 'posts-in-sidebar' ),
+		'linkify_mod_date'      => false,
+		'comments_text'         => esc_html__( 'Comments:', 'posts-in-sidebar' ),
+		'pis_post_id'           => '',
+		'link_to_comments'      => true,
+		'display_comm_num_only' => false,
+		'hide_zero_comments'    => false,
+		'gravatar_display'      => false,
+		'gravatar_position'     => '',
+		'gravatar_author'       => '',
+		'gravatar_size'         => 32,
+		'gravatar_default'      => '',
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$display_author    = $args['display_author'];
-	$display_date      = $args['display_date'];
-	$display_time      = $args['display_time'];
-	$display_mod_date  = $args['display_mod_date'];
-	$display_mod_time  = $args['display_mod_time'];
-	$comments          = $args['comments'];
-	$utility_margin    = $args['utility_margin'];
-	$margin_unit       = $args['margin_unit'];
-	$author_text       = $args['author_text'];
-	$linkify_author    = $args['linkify_author'];
-	$utility_sep       = $args['utility_sep'];
-	$date_text         = $args['date_text'];
-	$linkify_date      = $args['linkify_date'];
-	$mod_date_text     = $args['mod_date_text'];
-	$linkify_mod_date  = $args['linkify_mod_date'];
-	$comments_text     = $args['comments_text'];
-	$pis_post_id       = $args['pis_post_id'];
-	$link_to_comments  = $args['link_to_comments'];
-	$gravatar_display  = $args['gravatar_display'];
-	$gravatar_position = $args['gravatar_position'];
-	$gravatar_author   = $args['gravatar_author'];
-	$gravatar_size     = $args['gravatar_size'];
-	$gravatar_default  = $args['gravatar_default'];
+	$display_author        = $args['display_author'];
+	$display_date          = $args['display_date'];
+	$display_time          = $args['display_time'];
+	$display_mod_date      = $args['display_mod_date'];
+	$display_mod_time      = $args['display_mod_time'];
+	$comments              = $args['comments'];
+	$utility_margin        = $args['utility_margin'];
+	$margin_unit           = $args['margin_unit'];
+	$author_text           = $args['author_text'];
+	$linkify_author        = $args['linkify_author'];
+	$utility_sep           = $args['utility_sep'];
+	$date_text             = $args['date_text'];
+	$linkify_date          = $args['linkify_date'];
+	$mod_date_text         = $args['mod_date_text'];
+	$linkify_mod_date      = $args['linkify_mod_date'];
+	$comments_text         = $args['comments_text'];
+	$pis_post_id           = $args['pis_post_id'];
+	$link_to_comments      = $args['link_to_comments'];
+	$display_comm_num_only = $args['display_comm_num_only'];
+	$hide_zero_comments    = $args['hide_zero_comments'];
+	$gravatar_display      = $args['gravatar_display'];
+	$gravatar_position     = $args['gravatar_position'];
+	$gravatar_author       = $args['gravatar_author'];
+	$gravatar_size         = $args['gravatar_size'];
+	$gravatar_default      = $args['gravatar_default'];
 
 	$output = '';
 
@@ -1087,11 +707,13 @@ function pis_utility_section( $args ) {
 
 	/* The Gravatar */
 	if ( $gravatar_display && 'next_author' === $gravatar_position ) {
-		$output .= pis_get_gravatar( array(
-			'author'  => $gravatar_author,
-			'size'    => $gravatar_size,
-			'default' => $gravatar_default,
-		) );
+		$output .= pis_get_gravatar(
+			array(
+				'author'  => $gravatar_author,
+				'size'    => $gravatar_size,
+				'default' => $gravatar_default,
+			)
+		);
 	}
 
 	/* The author */
@@ -1172,15 +794,20 @@ function pis_utility_section( $args ) {
 	/* The comments */
 	if ( ! post_password_required() ) {
 		if ( $comments ) {
-			if ( $display_author || $display_date || $display_mod_date ) {
-				$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+			$num_comments = get_comments_number( $pis_post_id );
+			if ( '0' === $num_comments && $hide_zero_comments ) {
+				$output .= '';
+			} else {
+				if ( $display_author || $display_date || $display_mod_date ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				}
+				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
+				if ( $comments_text ) {
+					$output .= $comments_text . ' ';
+				}
+				$output .= pis_get_comments_number( $pis_post_id, $link_to_comments, $display_comm_num_only );
+				$output .= '</span>';
 			}
-			$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-			if ( $comments_text ) {
-				$output .= $comments_text . ' ';
-			}
-			$output .= pis_get_comments_number( $pis_post_id, $link_to_comments );
-			$output .= '</span>';
 		}
 	}
 
@@ -1247,30 +874,60 @@ function pis_custom_taxonomies_terms_links( $args ) {
  *
  * @param integer $pis_post_id The ID of the post.
  * @param boolean $link If the output is to be wrapped into a link to comments.
+ * @param boolean $display_comm_num_only If displaying the number of comments only.
  * @since 3.0
  */
-function pis_get_comments_number( $pis_post_id, $link ) {
-	$num_comments = get_comments_number( $pis_post_id ); // get_comments_number returns only a numeric value.
+function pis_get_comments_number( $pis_post_id, $link, $display_comm_num_only ) {
+	// get_comments_number() returns only a numeric value in form of a string.
+	$num_comments = get_comments_number( $pis_post_id );
 
-	if ( 0 === $num_comments && ! comments_open( $pis_post_id ) ) {
-		$output = esc_html__( 'Comments are closed.', 'posts-in-sidebar' );
+	/**
+	 * Build the comments number string.
+	 *
+	 * The value returned by get_comments_number() is
+	 * "a numeric string representing the number of comments the post has".
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/get_comments_number/
+	 */
+	if ( '0' === $num_comments ) {
+		// Zero comments.
+		if ( comments_open( $pis_post_id ) ) {
+			$comments_text = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
+			if ( $display_comm_num_only ) {
+				$comments_text = $num_comments;
+			}
+			$comments_text = apply_filters( 'pis_zero_comments', $comments_text );
+		} else {
+			$comments_text = esc_html__( 'Comments are closed', 'posts-in-sidebar' );
+			$comments_text = apply_filters( 'pis_zero_comments_closed', $comments_text );
+		}
+	} elseif ( '1' === $num_comments ) {
+		// 1 comment.
+		$comments_text = esc_html__( '1 Comment', 'posts-in-sidebar' );
+		if ( $display_comm_num_only ) {
+			$comments_text = $num_comments;
+		}
+		$comments_text = apply_filters( 'pis_one_comment', $comments_text );
 	} else {
-		// Construct the comments string.
-		if ( 1 === $num_comments ) {
-			$comments = esc_html__( '1 Comment', 'posts-in-sidebar' );
-		} elseif ( 1 < $num_comments ) {
-			// translators: %d is the number of comments.
-			$comments = sprintf( esc_html__( '%d Comments', 'posts-in-sidebar' ), $num_comments );
-		} else {
-			$comments = esc_html__( 'Leave a comment', 'posts-in-sidebar' );
+		// More than 1 comments.
+		// translators: %d is the number of comments.
+		$comments_text = sprintf( esc_html__( '%s Comments', 'posts-in-sidebar' ), $num_comments );
+		if ( $display_comm_num_only ) {
+			$comments_text = $num_comments;
 		}
+		$comments_text = apply_filters( 'pis_more_comments', $comments_text );
+	}
 
-		// Contruct the HTML string for the comments.
-		if ( $link ) {
-			$output = '<a ' . pis_class( 'pis-comments-link', apply_filters( 'pis_comments_link_class', '' ), false ) . ' href="' . get_comments_link( $pis_post_id ) . '">' . $comments . '</a>';
+	// Build the HTML string for the comments.
+	if ( $link ) {
+		// If there is no comment and comments are closed, do not create a link to comment form, since there is no #respond CSS id.
+		if ( '0' === $num_comments && ! comments_open( $pis_post_id ) ) {
+			$output = $comments_text;
 		} else {
-			$output = $comments;
+			$output = '<a ' . pis_class( 'pis-comments-link', apply_filters( 'pis_comments_link_class', '' ), false ) . ' href="' . get_comments_link( $pis_post_id ) . '">' . $comments_text . '</a>';
 		}
+	} else {
+		$output = $comments_text;
 	}
 
 	return $output;
@@ -1516,423 +1173,4 @@ function pis_debug( $parameters ) {
 	} else {
 		return $output;
 	}
-}
-
-/*
- * Posts in Sidebar tools section
- *******************************************************************************
- */
-
-/**
- * Return the class for the HTML element.
- *
- * @since 1.9
- *
- * @param  string|array $default One or more classes, defined by plugin's developer, to add to the class list.
- * @param  string|array $class   One or more classes, defined by the user, to add to the class list.
- * @param  boolean      $echo    If the function should echo or not the output. Default true.
- *
- * @return string       $output  HTML formatted list of classes, e.g class="class1 class2".
- */
-function pis_class( $default = '', $class = '', $echo = true ) {
-
-	// Define $classes as array.
-	$classes = array();
-
-	// If $default is not empty, remove any leading and trailing dot, space, and dash,
-	// transform it into an array using internal spaces, and merge it with $classes.
-	if ( ! empty( $default ) ) {
-		if ( ! is_array( $default ) ) {
-			$default = preg_split( '/[\s]+/', trim( $default, ' -' ) );
-		}
-		$classes = array_merge( $classes, $default );
-	}
-
-	// If $class is not empty, remove any leading and trailing space,
-	// transform it into an array using internal spaces, and merge it with $classes.
-	if ( ! empty( $class ) ) {
-		if ( ! is_array( $class ) ) {
-			$class = preg_split( '/[\s]+/', trim( $class, ' -' ) );
-		}
-		$classes = array_merge( $classes, $class );
-	}
-
-	// Remove null or empty or space-only-filled elements from the array.
-	foreach ( $classes as $key => $value ) {
-		if ( is_null( $value ) || '' === $value || ' ' === $value ) {
-			unset( $classes[ $key ] );
-		}
-	}
-
-	// Sanitize a HTML classname to ensure it only contains valid characters.
-	$classes = array_map( 'sanitize_html_class', $classes );
-	$classes = array_map( 'pis_remove_dashes', $classes );
-
-	// Convert the array into string and build the final output.
-	$classes = 'class="' . implode( ' ', $classes ) . '"';
-
-	if ( true === $echo ) {
-		echo apply_filters( 'pis_classes', $classes );
-	} else {
-		return apply_filters( 'pis_classes', $classes );
-	}
-}
-
-/**
- * Return the paragraph class with inline style.
- *
- * @since 1.12
- *
- * @param string $margin       The margin of the paragraph.
- * @param string $unit         The unit measure to be used.
- * @param string $class        The default class defined by the plugin's developer.
- * @param string $class_filter The name of the class filter.
- * @return string $output      The class and the inline style.
- * @uses pis_class()
- */
-function pis_paragraph( $margin, $unit, $class, $class_filter ) {
-	if ( ! is_null( $margin ) ) {
-		$style = ' style="margin-bottom: ' . $margin . $unit . ';"';
-	} else {
-		$style = '';
-	}
-	$output = pis_class( $class, apply_filters( $class_filter, '' ), false ) . $style;
-	return $output;
-}
-
-/**
- * Return the given text with paragraph breaks (HTML <br />).
- *
- * @since 1.12
- * @param string $text The text to be checked.
- * @return string $text The checked text with paragraph breaks.
- */
-function pis_break_text( $text ) {
-	// Convert cross-platform newlines into HTML '<br />'.
-	$text = str_replace( array( "\r\n", "\n", "\r" ), '<br />', $text );
-	return $text;
-}
-
-/**
- * Return the array containing the custom fields of the post.
- *
- * @since 1.12
- * @return array The custom fields of the post.
- */
-function pis_meta() {
-	global $wpdb;
-
-	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
-
-	$sql = "SELECT DISTINCT meta_key
-		FROM $wpdb->postmeta
-		WHERE meta_key NOT BETWEEN '_' AND '_z'
-		HAVING meta_key NOT LIKE %s
-		ORDER BY meta_key
-		LIMIT %d";
-
-	$keys = $wpdb->get_col( $wpdb->prepare( $sql, $wpdb->esc_like( '_' ) . '%', $limit ) );
-
-	if ( $keys ) {
-		natcasesort( $keys );
-	}
-
-	return $keys;
-}
-
-/**
- * Generate an HTML arrow.
- *
- * @param boolean $pre_space If a space must be prepended before the arrow.
- * @return string $output The HTML arrow.
- * @uses pis_class()
- * @since 1.15
- * @since 4.5.0 Added filter for HTML arrows in title and excerpt.
- */
-function pis_arrow( $pre_space = true ) {
-	$the_arrow = apply_filters( 'pis_arrow', '&rarr;' );
-	if ( is_rtl() ) {
-		$the_arrow = '&larr;';
-	}
-
-	if ( $pre_space ) {
-		$space = '&nbsp;';
-	} else {
-		$space = '';
-	}
-
-	$output = $space . '<span ' . pis_class( 'pis-arrow', apply_filters( 'pis_arrow_class', '' ), false ) . '>' . $the_arrow . '</span>';
-
-	return $output;
-}
-
-/**
- * Generate the output for the more and/or the HTML arrow.
- *
- * @param string  $the_more    The text to be displayed for "Continue reading". Default empty.
- * @param boolean $no_the_more If the text for "Continue reading" must be hidden. Default false.
- * @param boolean $exc_arrow   If the arrow must be displayed or not. Default false.
- * @param boolean $echo        If echo the output or return.
- * @param boolean $pre_space   If a space must be prepended.
- *
- * @since 1.15
- * @uses pis_arrow()
- * @return string The HTML arrow linked to the post.
- */
-function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true, $pre_space = true ) {
-	$output = '';
-	// If we do not want any "Read more" nor any arrow
-	// or the user doesn't want any "Read more" nor any arrow.
-	if ( ( true === $no_the_more && false === $exc_arrow ) || ( '' === $the_more && false === $exc_arrow ) ) {
-		$output = '';
-	} else {
-		// Else if we do not want any "Read more" but the user wants an arrow
-		// or the user doesn't want the "Read more" but only the arrow.
-		if ( ( true === $no_the_more && true === $exc_arrow ) || ( ! $the_more && $exc_arrow ) ) {
-			$the_more  = '';
-			$the_arrow = pis_arrow( false );
-		} elseif ( $the_more && $exc_arrow ) { // The user wants the "Read more" and the arrow.
-			$the_arrow = pis_arrow();
-		} else { // The user wants the "Read more" but not the arrow.
-			$the_arrow = '';
-		}
-		$output  = '<span ' . pis_class( 'pis-more', apply_filters( 'pis_more_class', '' ), false ) . '>';
-		$output .= '<a ' . pis_class( 'pis-more-link', apply_filters( 'pis_more_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-		$output .= $the_more . $the_arrow;
-		$output .= '</a>';
-		$output .= '</span>';
-	}
-
-	if ( $pre_space ) {
-		$output = ' ' . $output;
-	}
-
-	if ( $echo ) {
-		echo $output;
-	} else {
-		return $output;
-	}
-}
-
-/**
- * Add the custom styles to wp_head hook.
- *
- * @since 1.13
- */
-function pis_add_styles_to_head() {
-	// Get the options from the database.
-	$custom_styles = (array) get_option( 'widget_pis_posts_in_sidebar' );
-
-	// Define $styles as an array.
-	$styles = array();
-
-	// Get all the values of "custom_styles" key into $styles.
-	foreach ( $custom_styles as $key => $value ) {
-		if ( isset( $value['custom_styles'] ) ) {
-			$styles[] = $value['custom_styles'];
-		}
-	}
-
-	/*
-	 * Remove any empty elements from the array.
-	 *
-	 * Invoking array_filter without a callback function
-	 * will remove any element with one of these values:
-	 *		- false
-	 *		- null
-	 *		- '' (empty)
-	 *
-	 * For multidimensional arrays, use pis_array_remove_empty_keys() function.
-	 *
-	 * @see http://php.net/manual/en/function.array-filter.php#example-5568
-	 */
-	$styles = array_filter( $styles );
-
-	// Transform the array into a string.
-	$styles = implode( "\n", $styles );
-
-	// Print the output if it's not empty.
-	if ( $styles ) {
-		$output  = "\n\n" . '<!-- Styles generated by Posts in Sidebar plugin -->' . "\n";
-		$output .= '<style type="text/css">' . "\n" . $styles . "\n" . '</style>';
-		$output .= "\n" . '<!-- / Styles generated by Posts in Sidebar plugin -->' . "\n\n";
-		echo $output;
-	}
-}
-add_action( 'wp_head', 'pis_add_styles_to_head' );
-
-/*
- * Generic tools section
- *******************************************************************************
- */
-
-/**
- * Remove empty keys from an array recursively.
- *
- * @param array   $array      The array to be checked.
- * @param boolean $make_empty If the output is to return as an empty string.
- * @since 1.29
- * @see http://stackoverflow.com/questions/7696548/php-how-to-remove-empty-entries-of-an-array-recursively
- */
-function pis_array_remove_empty_keys( $array, $make_empty = false ) {
-	if ( ! is_array( $array ) ) {
-		return;
-	}
-
-	foreach ( $array as $key => $value ) {
-		if ( is_array( $value ) ) {
-			$array[ $key ] = pis_array_remove_empty_keys( $array[ $key ] );
-		}
-		if ( empty( $array[ $key ] ) ) {
-			unset( $array[ $key ] );
-		}
-	}
-
-	if ( empty( $array ) && $make_empty ) {
-		$array = '';
-	}
-
-	return $array;
-}
-
-/**
- * Compare a string and an array and return the common elements as a string.
- *
- * @param string $string The string to be compared.
- * @param array  $array  The array to be compared.
- *
- * @return string $output The string containing the common values.
- *
- * @since 3.8.8
- */
-function pis_compare_string_to_array( $string = '', $array = array() ) {
-	// Convert the string to lowercase.
-	$string = strtolower( $string );
-	// Remove any space from the string.
-	$string = str_replace( ' ', '', $string );
-	// Remove any comma at the beginning and at the end of the string.
-	$string = trim( $string, ',' );
-	// Convert the string into an array.
-	$string = explode( ',', $string );
-
-	// Compare the two arrays and return the intersection (the common values).
-	$output = array_intersect( $string, $array );
-	// Convert the returned array into a string.
-	$output = implode( ', ', $output );
-
-	return $output;
-}
-
-/**
- * Remove any leading and trailing dash from a string.
- *
- * @param string $string The string to be trimmed.
- * @since 4.1
- */
-function pis_remove_dashes( $string = '' ) {
-	$string = trim( $string, '-' );
-	return $string;
-}
-
-/**
- * Normalize entered values making these checks:
- * 1) transform any comma and space (in any number) into one comma + space (, );
- * 2) if $string contains numbers, the numbers can be converted into positive, non-decimal values.
- *
- * @param string $string The string to be checked.
- * @param bool   $absint If $string contains number to be converted into positive non-decimal values.
- * @since 4.7.0
- */
-function pis_normalize_values( $string = '', $absint = false ) {
-	$string = preg_replace( '([\s,]+)', ', ', $string );
-	$string = trim( $string, ', ' );
-
-	if ( $absint ) {
-		$string = explode( ', ', $string );
-		foreach ( $string as $key => $value ) {
-			$string[ $key ] = absint( $value );
-		}
-		$string = implode( ', ', $string );
-	}
-
-	return $string;
-}
-
-/**
- * Returns the title of the main post,
- * changing spaces into a plus and lowering the letters.
- *
- * @since 4.7.0
- * @return string $post_title The title of the main post with pluses and lowercase.
- */
-function pis_get_post_title() {
-	$post_title = get_the_title();
-
-	/*
-	 * Remove punctuation.
-	 *
-	 * We cannot simply use:
-	 * $post_title = preg_replace( '/[^a-zA-Z0-9]+/', '+', $post_title );
-	 * or
-	 * $post_title = preg_replace( '/[^\w|\s]/', '', $post_title );
-	 * because preg_replace() will remove characters like Russian and such.
-	 */
-	$remove_chars = array(
-		',',
-		';',
-		'.',
-		':',
-		'\'',
-		'*',
-		'°',
-		'@',
-		'#',
-		'+',
-		'"',
-		'!',
-		'?',
-		'–',
-		'—',
-		'―',
-		'(',
-		')',
-	);
-	$post_title   = str_replace( $remove_chars, '', $post_title );
-	$post_title   = strtolower( $post_title );
-	return $post_title;
-}
-
-/**
- * Check post types entered.
- * The function removes any post type that has not been defined.
- *
- * @param string $post_type The post type.
- * @since 4.7.0
- */
-function pis_check_post_types( $post_type ) {
-	$post_type_wordpress = get_post_types( array( 'public' => true ), 'names' );
-	$post_type           = pis_compare_string_to_array( $post_type, $post_type_wordpress );
-	return $post_type;
-}
-
-/**
- * Print a multidimensional array.
- *
- * @param array $array The array to be printed.
- * @see https://stackoverflow.com/questions/46343168/how-to-display-values-of-a-multidimensional-associative-array-using-foreach-loop
- * @since 4.7.0
- */
-function pis_array2string( $array ) {
-	$output = '';
-	foreach ( $array as $key => $value ) {
-		if ( is_array( $value ) ) {
-			$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . "\n";
-			$output .= pis_array2string( $value );
-			$output .= '</ul>';
-		} else {
-			$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
-		}
-	}
-
-	return $output;
 }

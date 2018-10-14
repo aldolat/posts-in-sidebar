@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.7.2 =
+
+* Added option to display the number of comments only.
+* Added option to hide the comments section if there is no comment.
+* Fixed the displaying of comments number.
+
 = 4.7.1 =
 
 * Reverted widget title escaping which can break use of the widget_title filter. Thanks to @mlang38 for reporting this.

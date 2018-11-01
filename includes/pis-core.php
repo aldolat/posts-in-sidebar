@@ -64,7 +64,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * otherwise it will break sticky posts.
 		 */
 		'search'                  => null,
-		'has_password'            => 'null',                                                        // Fake content that will be converted later into real null/true/false.
+		'has_password'            => 'null', // Fake content that will be converted later into real null/true/false.
 		'post_password'           => '',
 		'ignore_sticky'           => false,
 

@@ -1025,7 +1025,6 @@ function pis_archive_link( $args ) {
 				$term_link = get_post_format_link( substr( $link_to, 12 ) );
 				$term_name = $term_identity->name;
 			}
-			break;
 	}
 
 	if ( isset( $term_link ) ) {

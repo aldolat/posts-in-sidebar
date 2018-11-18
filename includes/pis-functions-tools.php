@@ -164,7 +164,7 @@ function pis_get_post_title() {
  * @since 4.7.0
  */
 function pis_check_post_types( $post_type ) {
-	$post_type_wordpress = get_post_types( array( 'public' => false ), 'names' );
+	$post_type_wordpress = get_post_types( '', 'names' );
 	$post_type           = pis_compare_string_to_array( $post_type, $post_type_wordpress );
 	return $post_type;
 }

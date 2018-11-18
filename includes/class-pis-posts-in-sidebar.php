@@ -2297,10 +2297,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Post types.
-							$args       = array(
-								'public' => true,
-							);
-							$post_types = (array) get_post_types( $args, 'objects', 'and' );
+							$post_types = (array) get_post_types( '', 'objects' );
 
 							$options = array(
 								array(
@@ -2764,10 +2761,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same category
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -2993,10 +2987,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same tag
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -3222,10 +3213,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same author
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -3442,10 +3430,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same custom field
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -3733,10 +3718,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same category archive page
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -3940,10 +3922,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same tag archive page
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',
@@ -4147,10 +4126,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same author archive page
-									$args       = array(
-										'public' => true,
-									);
-									$post_types = (array) get_post_types( $args, 'objects', 'and' );
+									$post_types = (array) get_post_types( '', 'objects' );
 									$options    = array(
 										array(
 											'value' => 'any',

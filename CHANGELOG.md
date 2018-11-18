@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.7.3] - 2018-11-18
+
+* Added support for private custom post types.
+
 ## [4.7.2] - 2018-10-14
 ### Added
 * Added option to display the number of comments only.
@@ -488,6 +492,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.7.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.2...4.7.3
 [4.7.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.1...4.7.2
 [4.7.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.0...4.7.1
 [4.7.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.6.0...4.7.0

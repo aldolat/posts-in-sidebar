@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.7.3 =
+
+* Added support for private custom post types.
+
 = 4.7.2 =
 
 * Added option to display the number of comments only.
@@ -18,7 +22,7 @@
 * Added new options when changing the query in single posts or in an archive page.
 * Now custom post types are supported when changing the query in single posts.
 * Reorganized some sub-panels and added colors in panel titles.
-Checked all files with WordPress Coding Standard for PHPCS.
+* Checked all files with WordPress Coding Standard for PHPCS.
 * Removed old comment for HTML in widget introduction.
 * Fixed displaying the query in debug section when the query contains multidimensional arrays.
 * Hardened security.

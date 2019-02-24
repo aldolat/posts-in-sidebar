@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.7.4 =
+
+* It is no longer necessary to enter the custom field value in the "Custom field query" panel.
+
 = 4.7.3 =
 
 * Added support for private custom post types.

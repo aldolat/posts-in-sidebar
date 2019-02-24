@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.7.3] - 2018-11-18
+## [4.7.4] - 2019-02-24
+### Changed
+* It is no longer necessary to enter the custom field value in the "Custom field query" panel.
 
+## [4.7.3] - 2018-11-18
+### Added
 * Added support for private custom post types.
 
 ## [4.7.2] - 2018-10-14
@@ -492,6 +496,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.7.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.3...4.7.4
 [4.7.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.2...4.7.3
 [4.7.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.1...4.7.2
 [4.7.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.0...4.7.1

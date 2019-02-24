@@ -220,76 +220,116 @@ function pis_meta_query( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	if ( '' === $args['mq_key_aa'] || '' === $args['mq_value_aa'] ) {
-		$meta_query = '';
-	} else {
-		$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
-		if ( strpos( $args['mq_value_aa'], ',' ) && in_array( $args['mq_compare_aa'], $compare_array, true ) ) {
-			$args['mq_value_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_aa'] ) );
-		}
-		if ( $args['mq_value_ab'] && strpos( $args['mq_value_ab'], ',' ) && in_array( $args['mq_compare_ab'], $compare_array, true ) ) {
-			$args['mq_value_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ab'] ) );
-		}
-		if ( $args['mq_value_ba'] && strpos( $args['mq_value_ba'], ',' ) && in_array( $args['mq_compare_ba'], $compare_array, true ) ) {
-			$args['mq_value_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ba'] ) );
-		}
-		if ( $args['mq_value_bb'] && strpos( $args['mq_value_bb'], ',' ) && in_array( $args['mq_compare_bb'], $compare_array, true ) ) {
-			$args['mq_value_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_bb'] ) );
-		}
+	// If the first meta key (i.e. "Custom field key A1") is empty, return an empty string and stop the function.
+	if ( '' === $args['mq_key_aa'] ) {
+		return '';
+	}
 
-		if ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && ! $args['mq_key_ba'] && ! $args['mq_key_bb'] ) {
-			$meta_query = array(
+	// If `mq_compare_xx` is one of `IN`, `NOT IN`, `BETWEEN`, `NOT BETWEEN`, then make `mq_value_xx` an array.
+	// See https://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters.
+	$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
+	if ( strpos( $args['mq_value_aa'], ',' ) && in_array( $args['mq_compare_aa'], $compare_array, true ) ) {
+		$args['mq_value_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_aa'] ) );
+	}
+	if ( $args['mq_value_ab'] && strpos( $args['mq_value_ab'], ',' ) && in_array( $args['mq_compare_ab'], $compare_array, true ) ) {
+		$args['mq_value_ab'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ab'] ) );
+	}
+	if ( $args['mq_value_ba'] && strpos( $args['mq_value_ba'], ',' ) && in_array( $args['mq_compare_ba'], $compare_array, true ) ) {
+		$args['mq_value_ba'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_ba'] ) );
+	}
+	if ( $args['mq_value_bb'] && strpos( $args['mq_value_bb'], ',' ) && in_array( $args['mq_compare_bb'], $compare_array, true ) ) {
+		$args['mq_value_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_bb'] ) );
+	}
+
+	// We have "Custom field key A1".
+	if ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && ! $args['mq_key_ba'] && ! $args['mq_key_bb'] ) {
+		$meta_query = array(
+			array(
+				'key'     => $args['mq_key_aa'],
+				'value'   => $args['mq_value_aa'], // This could be an array.
+				'compare' => $args['mq_compare_aa'],
+				'type'    => $args['mq_type_aa'],
+			),
+		);
+	}
+	// We have "Custom field key A1" + "Custom field key B1".
+	elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+		$meta_query = array(
+			'relation' => $args['mq_relation'],
+			array(
+				'key'     => $args['mq_key_aa'],
+				'value'   => $args['mq_value_aa'], // This could be an array.
+				'compare' => $args['mq_compare_aa'],
+				'type'    => $args['mq_type_aa'],
+			),
+			array(
+				'key'     => $args['mq_key_ba'],
+				'value'   => $args['mq_value_ba'], // This could be an array.
+				'compare' => $args['mq_compare_ba'],
+				'type'    => $args['mq_type_ba'],
+			),
+		);
+	}
+	// We have "Custom field key A1" + "Custom field key A2" + "Custom field key B1".
+	elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+		$meta_query = array(
+			'relation' => $args['mq_relation'],
+			array(
+				'relation' => $args['mq_relation_a'],
 				array(
 					'key'     => $args['mq_key_aa'],
 					'value'   => $args['mq_value_aa'], // This could be an array.
 					'compare' => $args['mq_compare_aa'],
 					'type'    => $args['mq_type_aa'],
 				),
-			);
-		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
 				array(
-					'key'     => $args['mq_key_aa'],
-					'value'   => $args['mq_value_aa'], // This could be an array.
-					'compare' => $args['mq_compare_aa'],
-					'type'    => $args['mq_type_aa'],
+					'key'     => $args['mq_key_ab'],
+					'value'   => $args['mq_value_ab'], // This could be an array.
+					'compare' => $args['mq_compare_ab'],
+					'type'    => $args['mq_type_ab'],
 				),
+			),
+			array(
+				'key'     => $args['mq_key_ba'],
+				'value'   => $args['mq_value_ba'], // This could be an array.
+				'compare' => $args['mq_compare_ba'],
+				'type'    => $args['mq_type_ba'],
+			),
+		);
+	}
+	// We have "Custom field key A1" + "Custom field key B1" + "Custom field key B2".
+	elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+		$meta_query = array(
+			'relation' => $args['mq_relation'],
+			array(
+				'key'     => $args['mq_key_aa'],
+				'value'   => $args['mq_value_aa'], // This could be an array.
+				'compare' => $args['mq_compare_aa'],
+				'type'    => $args['mq_type_aa'],
+			),
+			array(
+				'relation' => $args['mq_relation_b'],
 				array(
 					'key'     => $args['mq_key_ba'],
 					'value'   => $args['mq_value_ba'], // This could be an array.
 					'compare' => $args['mq_compare_ba'],
 					'type'    => $args['mq_type_ba'],
 				),
-			);
-		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
 				array(
-					'relation' => $args['mq_relation_a'],
-					array(
-						'key'     => $args['mq_key_aa'],
-						'value'   => $args['mq_value_aa'], // This could be an array.
-						'compare' => $args['mq_compare_aa'],
-						'type'    => $args['mq_type_aa'],
-					),
-					array(
-						'key'     => $args['mq_key_ab'],
-						'value'   => $args['mq_value_ab'], // This could be an array.
-						'compare' => $args['mq_compare_ab'],
-						'type'    => $args['mq_type_ab'],
-					),
+					'key'     => $args['mq_key_bb'],
+					'value'   => $args['mq_value_bb'], // This could be an array.
+					'compare' => $args['mq_compare_bb'],
+					'type'    => $args['mq_type_bb'],
 				),
-				array(
-					'key'     => $args['mq_key_ba'],
-					'value'   => $args['mq_value_ba'], // This could be an array.
-					'compare' => $args['mq_compare_ba'],
-					'type'    => $args['mq_type_ba'],
-				),
-			);
-		} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
+			),
+		);
+	}
+	// We have "Custom field key A1" + "Custom field key A2" + "Custom field key B1" + "Custom field key B2".
+	elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+		$meta_query = array(
+			'relation' => $args['mq_relation'],
+			array(
+				'relation' => $args['mq_relation_a'],
 				array(
 					'key'     => $args['mq_key_aa'],
 					'value'   => $args['mq_value_aa'], // This could be an array.
@@ -297,56 +337,28 @@ function pis_meta_query( $args ) {
 					'type'    => $args['mq_type_aa'],
 				),
 				array(
-					'relation' => $args['mq_relation_b'],
-					array(
-						'key'     => $args['mq_key_ba'],
-						'value'   => $args['mq_value_ba'], // This could be an array.
-						'compare' => $args['mq_compare_ba'],
-						'type'    => $args['mq_type_ba'],
-					),
-					array(
-						'key'     => $args['mq_key_bb'],
-						'value'   => $args['mq_value_bb'], // This could be an array.
-						'compare' => $args['mq_compare_bb'],
-						'type'    => $args['mq_type_bb'],
-					),
+					'key'     => $args['mq_key_ab'],
+					'value'   => $args['mq_value_ab'], // This could be an array.
+					'compare' => $args['mq_compare_ab'],
+					'type'    => $args['mq_type_ab'],
 				),
-			);
-		} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
-			$meta_query = array(
-				'relation' => $args['mq_relation'],
+			),
+			array(
+				'relation' => $args['mq_relation_b'],
 				array(
-					'relation' => $args['mq_relation_a'],
-					array(
-						'key'     => $args['mq_key_aa'],
-						'value'   => $args['mq_value_aa'], // This could be an array.
-						'compare' => $args['mq_compare_aa'],
-						'type'    => $args['mq_type_aa'],
-					),
-					array(
-						'key'     => $args['mq_key_ab'],
-						'value'   => $args['mq_value_ab'], // This could be an array.
-						'compare' => $args['mq_compare_ab'],
-						'type'    => $args['mq_type_ab'],
-					),
+					'key'     => $args['mq_key_ba'],
+					'value'   => $args['mq_value_ba'], // This could be an array.
+					'compare' => $args['mq_compare_ba'],
+					'type'    => $args['mq_type_ba'],
 				),
 				array(
-					'relation' => $args['mq_relation_b'],
-					array(
-						'key'     => $args['mq_key_ba'],
-						'value'   => $args['mq_value_ba'], // This could be an array.
-						'compare' => $args['mq_compare_ba'],
-						'type'    => $args['mq_type_ba'],
-					),
-					array(
-						'key'     => $args['mq_key_bb'],
-						'value'   => $args['mq_value_bb'], // This could be an array.
-						'compare' => $args['mq_compare_bb'],
-						'type'    => $args['mq_type_bb'],
-					),
+					'key'     => $args['mq_key_bb'],
+					'value'   => $args['mq_value_bb'], // This could be an array.
+					'compare' => $args['mq_compare_bb'],
+					'type'    => $args['mq_type_bb'],
 				),
-			);
-		}
+			),
+		);
 	}
 
 	if ( isset( $meta_query ) ) {

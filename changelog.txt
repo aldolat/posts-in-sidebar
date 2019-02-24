@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 4.7.4 =
+
+* It is no longer necessary to enter the custom field value in the "Custom field query" panel.
+* Fixed the stripping of operators containing `<` or `>` in custom field query.
+
 = 4.7.3 =
 
 * Added support for private custom post types.

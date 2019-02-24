@@ -220,10 +220,13 @@ function pis_meta_query( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
+	// If the first meta key (i.e. "Custom field key A1") is empty, return an empty string and stop the function.
 	if ( '' === $args['mq_key_aa'] ) {
 		return '';
 	}
 
+	// If `mq_compare_xx` is one of `IN`, `NOT IN`, `BETWEEN`, `NOT BETWEEN`, then make `mq_value_xx` an array.
+	// See https://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters.
 	$compare_array = array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
 	if ( strpos( $args['mq_value_aa'], ',' ) && in_array( $args['mq_compare_aa'], $compare_array, true ) ) {
 		$args['mq_value_aa'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_aa'] ) );
@@ -238,6 +241,7 @@ function pis_meta_query( $args ) {
 		$args['mq_value_bb'] = explode( ',', preg_replace( '/\s+/', '', $args['mq_value_bb'] ) );
 	}
 
+	// We have "Custom field key A1".
 	if ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && ! $args['mq_key_ba'] && ! $args['mq_key_bb'] ) {
 		$meta_query = array(
 			array(
@@ -247,7 +251,9 @@ function pis_meta_query( $args ) {
 				'type'    => $args['mq_type_aa'],
 			),
 		);
-	} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+	}
+	// We have "Custom field key A1" + "Custom field key B1".
+	elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 		$meta_query = array(
 			'relation' => $args['mq_relation'],
 			array(
@@ -263,7 +269,9 @@ function pis_meta_query( $args ) {
 				'type'    => $args['mq_type_ba'],
 			),
 		);
-	} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+	}
+	// We have "Custom field key A1" + "Custom field key A2" + "Custom field key B1".
+	elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && ! $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 		$meta_query = array(
 			'relation' => $args['mq_relation'],
 			array(
@@ -288,7 +296,9 @@ function pis_meta_query( $args ) {
 				'type'    => $args['mq_type_ba'],
 			),
 		);
-	} elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+	}
+	// We have "Custom field key A1" + "Custom field key B1" + "Custom field key B2".
+	elseif ( $args['mq_key_aa'] && ! $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 		$meta_query = array(
 			'relation' => $args['mq_relation'],
 			array(
@@ -313,7 +323,9 @@ function pis_meta_query( $args ) {
 				),
 			),
 		);
-	} elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
+	}
+	// We have "Custom field key A1" + "Custom field key A2" + "Custom field key B1" + "Custom field key B2".
+	elseif ( $args['mq_key_aa'] && $args['mq_key_ab'] && $args['mq_key_ba'] && $args['mq_key_bb'] && ! empty( $args['mq_relation'] ) ) {
 		$meta_query = array(
 			'relation' => $args['mq_relation'],
 			array(

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.7.4] - 2019-02-24
 ### Changed
 * It is no longer necessary to enter the custom field value in the "Custom field query" panel.
+### Fixed
+* Fixed the stripping of operators containing `<` or `>` in custom field query.
 
 ## [4.7.3] - 2018-11-18
 ### Added

@@ -1592,28 +1592,30 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// Meta query.
 		$instance['mq_relation'] = wp_strip_all_tags( $new_instance['mq_relation'] );
 
+		// Notice that `$instance['mq_compare_xx']` cannot be passed through a stripping function
+		// otherwise we cannot use operators like `<`.
 		$instance['mq_key_aa']     = wp_strip_all_tags( $new_instance['mq_key_aa'] );
 		$instance['mq_value_aa']   = pis_normalize_values( wp_strip_all_tags( $new_instance['mq_value_aa'] ) );
-		$instance['mq_compare_aa'] = wp_strip_all_tags( $new_instance['mq_compare_aa'] );
+		$instance['mq_compare_aa'] = $new_instance['mq_compare_aa'];
 		$instance['mq_type_aa']    = wp_strip_all_tags( $new_instance['mq_type_aa'] );
 
 		$instance['mq_relation_a'] = wp_strip_all_tags( $new_instance['mq_relation_a'] );
 
 		$instance['mq_key_ab']     = wp_strip_all_tags( $new_instance['mq_key_ab'] );
 		$instance['mq_value_ab']   = pis_normalize_values( wp_strip_all_tags( $new_instance['mq_value_ab'] ) );
-		$instance['mq_compare_ab'] = wp_strip_all_tags( $new_instance['mq_compare_ab'] );
+		$instance['mq_compare_ab'] = $new_instance['mq_compare_ab'];
 		$instance['mq_type_ab']    = wp_strip_all_tags( $new_instance['mq_type_ab'] );
 
 		$instance['mq_key_ba']     = wp_strip_all_tags( $new_instance['mq_key_ba'] );
 		$instance['mq_value_ba']   = pis_normalize_values( wp_strip_all_tags( $new_instance['mq_value_ba'] ) );
-		$instance['mq_compare_ba'] = wp_strip_all_tags( $new_instance['mq_compare_ba'] );
+		$instance['mq_compare_ba'] = $new_instance['mq_compare_ba'];
 		$instance['mq_type_ba']    = wp_strip_all_tags( $new_instance['mq_type_ba'] );
 
 		$instance['mq_relation_b'] = wp_strip_all_tags( $new_instance['mq_relation_b'] );
 
 		$instance['mq_key_bb']     = wp_strip_all_tags( $new_instance['mq_key_bb'] );
 		$instance['mq_value_bb']   = pis_normalize_values( wp_strip_all_tags( $new_instance['mq_value_bb'] ) );
-		$instance['mq_compare_bb'] = wp_strip_all_tags( $new_instance['mq_compare_bb'] );
+		$instance['mq_compare_bb'] = $new_instance['mq_compare_bb'];
 		$instance['mq_type_bb']    = wp_strip_all_tags( $new_instance['mq_type_bb'] );
 
 		// Posts exclusion.
@@ -1722,7 +1724,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		// The custom field.
 		$instance['custom_field_all']   = isset( $new_instance['custom_field_all'] ) ? 1 : 0;
 		$instance['custom_field']       = isset( $new_instance['custom_field'] ) ? 1 : 0;
-		$instance['custom_field_txt']   = rtrim( wp_strip_all_tags( $new_instance['custom_field_txt'] ) );
+		$instance['custom_field_txt']   = wp_strip_all_tags( $new_instance['custom_field_txt'] );
 		$instance['meta']               = wp_strip_all_tags( $new_instance['meta'] );
 		$instance['custom_field_count'] = wp_strip_all_tags( $new_instance['custom_field_count'] );
 		if ( 0 >= $instance['custom_field_count'] || ! is_numeric( $instance['custom_field_count'] ) ) {
@@ -1731,9 +1733,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['custom_field_hellip'] = wp_strip_all_tags( $new_instance['custom_field_hellip'] );
 		$instance['custom_field_hellip'] = str_replace( '...', '&hellip;', $instance['custom_field_hellip'] );
 		$instance['custom_field_key']    = isset( $new_instance['custom_field_key'] ) ? 1 : 0;
-		$instance['custom_field_sep']    = wp_strip_all_tags( $new_instance['custom_field_sep'] );
-		$instance['cf_before_title']     = isset( $new_instance['cf_before_title'] ) ? 1 : 0;
-		$instance['cf_after_title']      = isset( $new_instance['cf_after_title'] ) ? 1 : 0;
+		// In the following line do not use `wp_strip_all_tags()` because it removes a possible trailing space.
+		$instance['custom_field_sep'] = strip_tags( $new_instance['custom_field_sep'] );
+		$instance['cf_before_title']  = isset( $new_instance['cf_before_title'] ) ? 1 : 0;
+		$instance['cf_after_title']   = isset( $new_instance['cf_after_title'] ) ? 1 : 0;
 
 		// The link to the archive.
 		$instance['archive_link']  = isset( $new_instance['archive_link'] ) ? 1 : 0;

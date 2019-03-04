@@ -318,7 +318,7 @@ function pis_custom_field( $args ) {
 					$cf_text_value = '';
 				}
 			}
-			$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+			$cf_value = '<span class="pis-custom-field-value">' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
 
 			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key, ' -' ) ), 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;

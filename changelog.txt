@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 4.7.5 =
+
+* The displayed custom field value can now be filtered.
+* The returned output of a meta query can now be filtered.
+
 = 4.7.4 =
 
 * It is no longer necessary to enter the custom field value in the "Custom field query" panel.

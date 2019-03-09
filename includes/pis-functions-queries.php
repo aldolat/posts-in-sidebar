@@ -362,7 +362,7 @@ function pis_meta_query( $args ) {
 	}
 
 	if ( isset( $meta_query ) ) {
-		return $meta_query;
+		return apply_filters( 'pis_meta_query', $meta_query );
 	} else {
 		return '';
 	}

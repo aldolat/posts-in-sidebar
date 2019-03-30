@@ -1509,14 +1509,16 @@ function pis_get_posts_in_sidebar( $args ) {
 		if ( $archive_link ) {
 			$pis_output .= pis_archive_link(
 				array(
-					'link_to'        => $link_to,
-					'tax_name'       => $tax_name,
-					'tax_term_name'  => $tax_term_name,
-					'auto_term_name' => $auto_term_name,
-					'archive_text'   => $archive_text,
-					'archive_margin' => $archive_margin,
-					'margin_unit'    => $margin_unit,
-					'post_id'        => $single_post_id,
+					'link_to'         => $link_to,
+					'tax_name'        => $tax_name,
+					'tax_term_name'   => $tax_term_name,
+					'auto_term_name'  => $auto_term_name,
+					'archive_text'    => $archive_text,
+					'archive_margin'  => $archive_margin,
+					'margin_unit'     => $margin_unit,
+					'post_id'         => $single_post_id,
+					'sort_categories' => $sort_categories,
+					'sort_tags'       => $sort_tags,
 				)
 			);
 		}

@@ -2293,7 +2293,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				<p><em>
 					<?php
-					// translators: %1$s and %2$s are opening and closing HTML tags, respectively.
+					// translators: there is some code in placeholders.
 					printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' );
 					?>
 				</em></p>
@@ -3067,7 +3067,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_same_tag' ),
 										$this->get_field_name( 'title_same_tag' ),
 										esc_attr( $instance['title_same_tag'] ),
-										// translators: %s is the name of taxonomy.
+										// translators: %s is the name of the tag.
 										esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
 										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -3285,7 +3285,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										esc_attr( $instance['title_same_author'] ),
 										// translators: %s is the name of the author.
 										esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
-										// translators: %s is a `%s`.
+										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
 									?>
@@ -3801,9 +3801,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_cat_page' ),
 										$this->get_field_name( 'title_cat_page' ),
 										esc_attr( $instance['title_cat_page'] ),
-										// translators: %s is the name of the taxnomy.
+										// translators: %s is a placeholder for a taxonomy.
 										esc_html__( 'Posts under %s', 'posts-in-sidebar' ),
-										// translators: %s is a `%s`.
+										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the category.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
 									?>
@@ -4005,7 +4005,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_tag_page' ),
 										$this->get_field_name( 'title_tag_page' ),
 										esc_attr( $instance['title_tag_page'] ),
-										// translators: %s is the name f the tag.
+										// translators: %s is the name of the tag.
 										esc_html__( 'Posts tagged with %s', 'posts-in-sidebar' ),
 										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the tag.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -4184,7 +4184,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'number_author_page' ),
 										esc_attr( $instance['number_author_page'] ),
 										'3',
-										// translators: %s ia -1.
+										// translators: %s is -1.
 										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
 									);
 									?>
@@ -4197,7 +4197,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'offset_author_page' ),
 										esc_attr( $instance['offset_author_page'] ),
 										'10',
-										// translators: there is some code in placeholders.
+										// translators: %s is -1.
 										sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
 									);
 									?>
@@ -4209,7 +4209,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_author_page' ),
 										$this->get_field_name( 'title_author_page' ),
 										esc_attr( $instance['title_author_page'] ),
-										// translators: the name of the author.
+										// translators: %s is the name of the author.
 										esc_html__( 'Posts by %s', 'posts-in-sidebar' ),
 										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the author.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -7243,11 +7243,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<?php
 									// ================= Automatic taxonomy term name
 									pis_form_checkbox(
-										esc_html__( 'Get automatic link', 'posts-in-sidebar' ),
+										esc_html__( 'Enable dynamic link in single posts and archive pages', 'posts-in-sidebar' ),
 										$this->get_field_id( 'auto_term_name' ),
 										$this->get_field_name( 'auto_term_name' ),
 										$auto_term_name,
-										esc_html__( 'Enable automatic... If activated, the previous option will be ignored.', 'posts-in-sidebar' )
+										esc_html__( 'When activated, this function will get the term name automatically in single posts and archive pages. The only required option is the field "Link to the archive of". If activated, the content of the field "Taxonomy term name" will be ignored in single posts and archive pages. This option will not work on post formats archives.', 'posts-in-sidebar' )
 									);
 									?>
 								</div>
@@ -7263,7 +7263,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_id( 'archive_text' ),
 							$this->get_field_name( 'archive_text' ),
 							esc_attr( $instance['archive_text'] ),
-							// translators: %s is the name of the taxonomy.
+							// translators: %s is the name of the taxonomy for the archive page link.
 							esc_html__( 'Display all posts under %s', 'posts-in-sidebar' ),
 							sprintf(
 								// translators: %s contains some code.

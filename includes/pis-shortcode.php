@@ -198,6 +198,7 @@ function pis_shortcode( $atts ) {
 		'link_to'               => 'category',
 		'tax_name'              => '',
 		'tax_term_name'         => '',
+		'auto_term_name'        => false,
 		// translators: %s is the name of the taxonomy for the archive page link.
 		'archive_text'          => esc_html__( 'Display all posts under %s', 'posts-in-sidebar' ),
 

@@ -964,9 +964,11 @@ function pis_archive_link( $args ) {
 		'link_to'        => 'category',
 		'tax_name'       => '',
 		'tax_term_name'  => '',
+		'auto_term_name' => false,
 		'archive_text'   => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
 		'archive_margin' => null,
 		'margin_unit'    => 'px',
+		'post_id'        => '',
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -974,16 +976,28 @@ function pis_archive_link( $args ) {
 	$link_to        = $args['link_to'];
 	$tax_name       = $args['tax_name'];
 	$tax_term_name  = $args['tax_term_name'];
+	$auto_term_name = $args['auto_term_name'];
 	$archive_text   = $args['archive_text'];
 	$archive_margin = $args['archive_margin'];
 	$margin_unit    = $args['margin_unit'];
+	$post_id        = $args['post_id'];
 
 	switch ( $link_to ) {
 		case 'author':
-			$term_identity = get_user_by( 'slug', $tax_term_name );
-			if ( $term_identity ) {
-				$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
-				$term_name = $term_identity->display_name;
+			if ( $auto_term_name && ( is_author() || is_single() ) ) {
+				// Get the ID of the author.
+				$the_author_id = get_post_field( 'post_author', $post_id );
+				// Get the nicename of the author.
+				$the_author_nicename = get_the_author_meta( 'user_nicename', $the_author_id );
+				// Get the link to author archive page and the author name to be displayed.
+				$term_link = get_author_posts_url( $the_author_id, $the_author_nicename );
+				$term_name = get_the_author_meta( 'display_name', $the_author_id );
+			} else {
+				$term_identity = get_user_by( 'slug', $tax_term_name );
+				if ( $term_identity ) {
+					$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
+					$term_name = $term_identity->display_name;
+				}
 			}
 			break;
 

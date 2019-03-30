@@ -972,10 +972,6 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['order'] = $order_cat_page;
 		}
 
-		if ( $search_same_cat_page ) {
-			$params['s'] = pis_get_post_title();
-		}
-
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {
 			$params['post__in']        = '';
@@ -1028,10 +1024,6 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['order'] = $order_tag_page;
 		}
 
-		if ( $search_same_tag_page ) {
-			$params['s'] = pis_get_post_title();
-		}
-
 		// Reset other parameters. The user can choose not to reset them.
 		if ( ! $dont_ignore_params_page ) {
 			$params['post__in']        = '';
@@ -1082,10 +1074,6 @@ function pis_get_posts_in_sidebar( $args ) {
 
 		if ( isset( $order_author_page ) && ! empty( $order_author_page ) ) {
 			$params['order'] = $order_author_page;
-		}
-
-		if ( $search_same_author_page ) {
-			$params['s'] = pis_get_post_title();
 		}
 
 		// Reset other parameters. The user can choose not to reset them.

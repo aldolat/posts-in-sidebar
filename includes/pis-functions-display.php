@@ -961,61 +961,164 @@ function pis_get_gravatar( $args ) {
  */
 function pis_archive_link( $args ) {
 	$defaults = array(
-		'link_to'        => 'category',
-		'tax_name'       => '',
-		'tax_term_name'  => '',
-		'archive_text'   => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
-		'archive_margin' => null,
-		'margin_unit'    => 'px',
+		'link_to'         => 'category',
+		'tax_name'        => '',
+		'tax_term_name'   => '',
+		'auto_term_name'  => false,
+		'archive_text'    => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
+		'archive_margin'  => null,
+		'margin_unit'     => 'px',
+		'post_id'         => '',
+		'sort_categories' => false,
+		'sort_tags'       => false,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$link_to        = $args['link_to'];
-	$tax_name       = $args['tax_name'];
-	$tax_term_name  = $args['tax_term_name'];
-	$archive_text   = $args['archive_text'];
-	$archive_margin = $args['archive_margin'];
-	$margin_unit    = $args['margin_unit'];
+	$link_to         = $args['link_to'];
+	$tax_name        = $args['tax_name'];
+	$tax_term_name   = $args['tax_term_name'];
+	$auto_term_name  = $args['auto_term_name'];
+	$archive_text    = $args['archive_text'];
+	$archive_margin  = $args['archive_margin'];
+	$margin_unit     = $args['margin_unit'];
+	$post_id         = $args['post_id'];
+	$sort_categories = $args['sort_categories'];
+	$sort_tags       = $args['sort_tags'];
 
 	switch ( $link_to ) {
 		case 'author':
-			$term_identity = get_user_by( 'slug', $tax_term_name );
-			if ( $term_identity ) {
-				$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
-				$term_name = $term_identity->display_name;
+			if ( $auto_term_name && ( is_author() || is_single() ) ) {
+				// Get the ID of the author.
+				$the_author_id = get_post_field( 'post_author', $post_id );
+				// Get the nicename of the author.
+				$the_author_nicename = get_the_author_meta( 'user_nicename', $the_author_id );
+				// Get the link to author archive page and the author name to be displayed.
+				$term_link = get_author_posts_url( $the_author_id, $the_author_nicename );
+				$term_name = get_the_author_meta( 'display_name', $the_author_id );
+			} else {
+				// Get the object with the necessary details.
+				$term_identity = get_user_by( 'slug', $tax_term_name );
+				if ( $term_identity ) {
+					$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
+					$term_name = $term_identity->display_name;
+				}
 			}
 			break;
 
 		case 'category':
-			$term_identity = get_term_by( 'slug', $tax_term_name, 'category' );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, 'category' );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_category() || is_single() ) ) {
+				if ( is_category() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to category archive page and the category name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, 'category' );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the categories of the post.
+					$post_categories = wp_get_post_categories( $post_id );
+					if ( $post_categories ) {
+						// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
+						if ( $sort_categories ) {
+							sort( $post_categories );
+						}
+						// Get the object with the necessary details.
+						$the_category = get_category( $post_categories[0] );
+						// Get the link to category archive page and the category name to be displayed.
+						$term_link = get_term_link( $the_category->term_id, 'category' );
+						$term_name = $the_category->name;
+					}
+				}
+			} else {
+				// Get the object with the necessary details.
+				$term_identity = get_term_by( 'slug', $tax_term_name, 'category' );
+				if ( $term_identity ) {
+					// Get the link to category archive page and the category name to be displayed.
+					$term_link = get_term_link( $term_identity->term_id, 'category' );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 
 		case 'tag':
-			$term_identity = get_term_by( 'slug', $tax_term_name, 'post_tag' );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, 'post_tag' );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_tag() || is_single() ) ) {
+				if ( is_tag() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to tag archive page and the tag name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, 'post_tag' );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the tags of the post.
+					$post_tags = wp_get_post_tags( $post_id );
+					if ( $post_tags ) {
+						// Sort the tags of the post in ascending order, so to use the tag used by WordPress in the permalink.
+						if ( $sort_tags ) {
+							sort( $post_tags );
+						}
+						// Get the object with the necessary details.
+						$the_tag = get_tag( $post_tags[0] );
+						// Get the link to tag archive page and the tag name to be displayed.
+						$term_link = get_term_link( $the_tag->term_id, 'post_tag' );
+						$term_name = $the_tag->name;
+					}
+				}
+			} else {
+				$term_identity = get_term_by( 'slug', $tax_term_name, 'post_tag' );
+				if ( $term_identity ) {
+					$term_link = get_term_link( $term_identity->term_id, 'post_tag' );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 
 		case 'custom_post_type':
-			if ( post_type_exists( $tax_term_name ) ) {
-				$term_link        = get_post_type_archive_link( $tax_term_name );
-				$post_type_object = get_post_type_object( $tax_term_name );
-				$term_name        = $post_type_object->labels->name;
+			if ( $auto_term_name ) {
+				$queried_object = get_queried_object();
+				if ( is_archive() ) {
+					$post_type = $queried_object->name;
+				} elseif ( is_single() ) {
+					$post_type = $queried_object->post_type;
+				}
+				if ( is_post_type_archive( $post_type ) || is_singular( $post_type ) ) {
+					$term_link        = get_post_type_archive_link( $post_type );
+					$post_type_object = get_post_type_object( $post_type );
+					$term_name        = $post_type_object->labels->name;
+				}
+			} else {
+				if ( post_type_exists( $tax_term_name ) ) {
+					$term_link        = get_post_type_archive_link( $tax_term_name );
+					$post_type_object = get_post_type_object( $tax_term_name );
+					$term_name        = $post_type_object->labels->name;
+				}
 			}
 			break;
 
 		case 'custom_taxonomy':
-			$term_identity = get_term_by( 'slug', $tax_term_name, $tax_name );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, $tax_name );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_tax() || is_single() ) ) {
+				if ( is_tax() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to tag archive page and the tag name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, $queried_object->taxonomy );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the tags of the post.
+					$post_terms = get_the_terms( $post_id, $tax_name );
+					if ( $post_terms ) {
+						// Get the object with the necessary details.
+						$the_term = get_term( $post_terms[0] );
+						// Get the link to tag archive page and the tag name to be displayed.
+						$term_link = get_term_link( $the_term->term_id, $tax_name );
+						$term_name = $the_term->name;
+					}
+				}
+			} else {
+				$term_identity = get_term_by( 'slug', $tax_term_name, $tax_name );
+				if ( $term_identity ) {
+					$term_link = get_term_link( $term_identity->term_id, $tax_name );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 

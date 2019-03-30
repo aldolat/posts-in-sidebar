@@ -853,6 +853,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( ! isset( $instance['tax_term_name'] ) ) {
 			$instance['tax_term_name'] = '';
 		}
+		if ( ! isset( $instance['auto_term_name'] ) ) {
+			$instance['auto_term_name'] = false;
+		}
 		if ( ! isset( $instance['nopost_text'] ) ) {
 			$instance['nopost_text'] = esc_html__( 'No posts yet.', 'posts-in-sidebar' );
 		}
@@ -1203,6 +1206,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'                 => $instance['link_to'],
 			'tax_name'                => $instance['tax_name'],
 			'tax_term_name'           => $instance['tax_term_name'],
+			'auto_term_name'          => $instance['auto_term_name'],
 			'archive_text'            => $instance['archive_text'],
 
 			// Text when no posts found.
@@ -1739,11 +1743,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['cf_after_title']   = isset( $new_instance['cf_after_title'] ) ? 1 : 0;
 
 		// The link to the archive.
-		$instance['archive_link']  = isset( $new_instance['archive_link'] ) ? 1 : 0;
-		$instance['link_to']       = wp_strip_all_tags( $new_instance['link_to'] );
-		$instance['tax_name']      = wp_strip_all_tags( $new_instance['tax_name'] );
-		$instance['tax_term_name'] = wp_strip_all_tags( $new_instance['tax_term_name'] );
-		$instance['archive_text']  = wp_strip_all_tags( $new_instance['archive_text'] );
+		$instance['archive_link']   = isset( $new_instance['archive_link'] ) ? 1 : 0;
+		$instance['link_to']        = wp_strip_all_tags( $new_instance['link_to'] );
+		$instance['tax_name']       = wp_strip_all_tags( $new_instance['tax_name'] );
+		$instance['tax_term_name']  = wp_strip_all_tags( $new_instance['tax_term_name'] );
+		$instance['auto_term_name'] = isset( $new_instance['auto_term_name'] ) ? 1 : 0;
+		$instance['archive_text']   = wp_strip_all_tags( $new_instance['archive_text'] );
 
 		// Text when no posts found.
 		$instance['nopost_text'] = wp_strip_all_tags( $new_instance['nopost_text'] );
@@ -2115,6 +2120,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			'link_to'                 => 'category',
 			'tax_name'                => '',
 			'tax_term_name'           => '',
+			'auto_term_name'          => false,
 			// translators: %s is the name of the taxonomy for the archive page link.
 			'archive_text'            => esc_html__( 'Display all posts under %s', 'posts-in-sidebar' ),
 
@@ -2212,6 +2218,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$cf_before_title         = (bool) $instance['cf_before_title'];
 		$cf_after_title          = (bool) $instance['cf_after_title'];
 		$archive_link            = (bool) $instance['archive_link'];
+		$auto_term_name          = (bool) $instance['auto_term_name'];
 		$hide_widget             = (bool) $instance['hide_widget'];
 		$remove_bullets          = (bool) $instance['remove_bullets'];
 		$add_wp_post_classes     = (bool) $instance['add_wp_post_classes'];
@@ -7221,10 +7228,26 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										esc_html__( 'science', 'posts-in-sidebar' ),
 										sprintf(
 											// translators: %s contains some code.
-											esc_html__( 'Enter the name of the taxonomy term (e.g., %1$sscience%2$s if the taxonomy is "genre").%3$sIf you selected "Author" in "Link to the archive of" field, enter the author slug; if you selected "Category", enter the category slug, and so on.', 'posts-in-sidebar' ),
-											'<code>', '</code>', '<br />'
+											esc_html__(
+												'Enter the name of the taxonomy term (e.g., %1$sscience%2$s if the taxonomy is "genre").%3$sIf you selected "Author" in "Link to the archive of" field, enter the author slug; if you selected "Category", enter the category slug, and so on.',
+												'posts-in-sidebar'
+											),
+											'<code>',
+											'</code>',
+											'<br />'
 										),
 										'margin: 0; padding: 0.5em;'
+									);
+									?>
+
+									<?php
+									// ================= Automatic taxonomy term name
+									pis_form_checkbox(
+										esc_html__( 'Get automatic link', 'posts-in-sidebar' ),
+										$this->get_field_id( 'auto_term_name' ),
+										$this->get_field_name( 'auto_term_name' ),
+										$auto_term_name,
+										esc_html__( 'Enable automatic... If activated, the previous option will be ignored.', 'posts-in-sidebar' )
 									);
 									?>
 								</div>

@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 4.8.0 =
+= 4.7.6 =
 
 * The link to the archive page can be automatically generated in single post or archive pages.
 * The default options are in a separate function now to simplify the plugin.

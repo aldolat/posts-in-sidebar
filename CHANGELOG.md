@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.8.0] - 2019-03-31
+## [4.7.6] - 2019-03-31
 ### Added
 * The link to the archive page can be automatically generated in single post or archive pages.
 ### Changed
@@ -509,7 +509,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
-[4.8.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.5...4.8.0
+[4.7.6]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.5...4.7.5
 [4.7.5]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.4...4.7.5
 [4.7.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.3...4.7.4
 [4.7.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.2...4.7.3

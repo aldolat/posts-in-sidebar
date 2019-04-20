@@ -2,15 +2,15 @@
 # This file is distributed under the same license as the Posts in Sidebar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.7.5\n"
+"Project-Id-Version: Posts in Sidebar 4.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-03-31T09:57:32+02:00\n"
-"PO-Revision-Date: 2019-03-31T09:57:32+02:00\n"
+"POT-Creation-Date: 2019-04-20T15:15:46+02:00\n"
+"PO-Revision-Date: 2019-04-20T15:15:46+02:00\n"
 "X-Generator: WP-CLI 2.0.1\n"
 "X-Domain: posts-in-sidebar\n"
 
@@ -43,82 +43,61 @@ msgstr ""
 msgid "Rate this plugin"
 msgstr ""
 
-#: includes/pis-shortcode.php:134
+#: includes/pis-functions-general.php:35
+#: includes/class-pis-posts-in-sidebar.php:2217
+msgid "Posts"
+msgstr ""
+
+#: includes/pis-functions-general.php:266
 #: includes/pis-functions-display.php:494
-#: includes/pis-core.php:270
-#: includes/class-pis-posts-in-sidebar.php:707
-#: includes/class-pis-posts-in-sidebar.php:2056
-#: includes/class-pis-posts-in-sidebar.php:6232
+#: includes/class-pis-posts-in-sidebar.php:4926
 msgid "Read more&hellip;"
 msgstr ""
 
-#: includes/pis-shortcode.php:139
+#: includes/pis-functions-general.php:271
 #: includes/pis-functions-display.php:655
-#: includes/pis-core.php:275
-#: includes/class-pis-posts-in-sidebar.php:713
-#: includes/class-pis-posts-in-sidebar.php:2061
-#: includes/class-pis-posts-in-sidebar.php:6448
+#: includes/class-pis-posts-in-sidebar.php:5146
 msgid "By"
 msgstr ""
 
-#: includes/pis-shortcode.php:146
+#: includes/pis-functions-general.php:278
 #: includes/pis-functions-display.php:658
-#: includes/pis-core.php:282
-#: includes/class-pis-posts-in-sidebar.php:731
-#: includes/class-pis-posts-in-sidebar.php:2068
-#: includes/class-pis-posts-in-sidebar.php:6483
+#: includes/class-pis-posts-in-sidebar.php:5181
 msgid "Published on"
 msgstr ""
 
-#: includes/pis-shortcode.php:150
+#: includes/pis-functions-general.php:282
 #: includes/pis-functions-display.php:660
-#: includes/pis-core.php:286
-#: includes/class-pis-posts-in-sidebar.php:743
-#: includes/class-pis-posts-in-sidebar.php:2072
-#: includes/class-pis-posts-in-sidebar.php:6640
+#: includes/class-pis-posts-in-sidebar.php:5338
 msgid "Modified on"
 msgstr ""
 
-#: includes/pis-shortcode.php:154
+#: includes/pis-functions-general.php:286
 #: includes/pis-functions-display.php:662
-#: includes/pis-core.php:290
-#: includes/class-pis-posts-in-sidebar.php:752
-#: includes/class-pis-posts-in-sidebar.php:2076
-#: includes/class-pis-posts-in-sidebar.php:6528
+#: includes/class-pis-posts-in-sidebar.php:5226
 msgid "Comments:"
 msgstr ""
 
-#: includes/pis-shortcode.php:164
+#: includes/pis-functions-general.php:296
 #: includes/pis-functions-display.php:137
-#: includes/pis-core.php:300
-#: includes/class-pis-posts-in-sidebar.php:776
-#: includes/class-pis-posts-in-sidebar.php:2086
-#: includes/class-pis-posts-in-sidebar.php:6753
+#: includes/class-pis-posts-in-sidebar.php:5451
 msgid "Category:"
 msgstr ""
 
-#: includes/pis-shortcode.php:171
+#: includes/pis-functions-general.php:303
 #: includes/pis-functions-display.php:183
-#: includes/pis-core.php:307
-#: includes/class-pis-posts-in-sidebar.php:791
-#: includes/class-pis-posts-in-sidebar.php:2093
-#: includes/class-pis-posts-in-sidebar.php:6792
+#: includes/class-pis-posts-in-sidebar.php:5490
 msgid "Tags:"
 msgstr ""
 
 #. translators: %s is the name of the taxonomy for the archive page link.
-#: includes/pis-shortcode.php:203
-#: includes/pis-core.php:339
-#: includes/class-pis-posts-in-sidebar.php:2125
-#: includes/class-pis-posts-in-sidebar.php:7267
+#: includes/pis-functions-general.php:335
+#: includes/class-pis-posts-in-sidebar.php:5975
 msgid "Display all posts under %s"
 msgstr ""
 
-#: includes/pis-shortcode.php:206
-#: includes/pis-core.php:342
-#: includes/class-pis-posts-in-sidebar.php:860
-#: includes/class-pis-posts-in-sidebar.php:2128
-#: includes/class-pis-posts-in-sidebar.php:7294
+#: includes/pis-functions-general.php:338
+#: includes/class-pis-posts-in-sidebar.php:6002
 msgid "No posts yet."
 msgstr ""
 
@@ -206,1959 +185,1953 @@ msgstr ""
 msgid "The options of the widget:"
 msgstr ""
 
-#: includes/pis-core.php:39
-#: includes/class-pis-posts-in-sidebar.php:1849
-#: includes/class-pis-posts-in-sidebar.php:3543
-msgid "Posts"
-msgstr ""
-
 #: includes/class-pis-posts-in-sidebar.php:39
 msgid "Display a list of posts in a widget"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2250
+#: includes/class-pis-posts-in-sidebar.php:914
 msgid "The title of the widget"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2254
-#: includes/class-pis-posts-in-sidebar.php:2638
-#: includes/class-pis-posts-in-sidebar.php:2868
-#: includes/class-pis-posts-in-sidebar.php:3094
-#: includes/class-pis-posts-in-sidebar.php:3310
-#: includes/class-pis-posts-in-sidebar.php:3566
-#: includes/class-pis-posts-in-sidebar.php:3828
-#: includes/class-pis-posts-in-sidebar.php:4032
-#: includes/class-pis-posts-in-sidebar.php:4236
+#: includes/class-pis-posts-in-sidebar.php:918
+#: includes/class-pis-posts-in-sidebar.php:1303
+#: includes/class-pis-posts-in-sidebar.php:1535
+#: includes/class-pis-posts-in-sidebar.php:1764
+#: includes/class-pis-posts-in-sidebar.php:1982
+#: includes/class-pis-posts-in-sidebar.php:2240
+#: includes/class-pis-posts-in-sidebar.php:2505
+#: includes/class-pis-posts-in-sidebar.php:2710
+#: includes/class-pis-posts-in-sidebar.php:2915
 msgid "Title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2258
+#: includes/class-pis-posts-in-sidebar.php:922
 msgid "From the archive"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2264
+#: includes/class-pis-posts-in-sidebar.php:928
 msgid "Link the title of the widget to this URL"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2274
+#: includes/class-pis-posts-in-sidebar.php:938
 msgid "Place this text after the title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2278
+#: includes/class-pis-posts-in-sidebar.php:942
 msgid "These posts are part of my Readings series."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2288
+#: includes/class-pis-posts-in-sidebar.php:952
 msgid "Getting posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2292
+#: includes/class-pis-posts-in-sidebar.php:956
 msgid "In this section you can define which type of posts you want to retrieve and which taxonomy the plugin will use. Other parameters are available to better define the query."
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:2297
-#: includes/class-pis-posts-in-sidebar.php:4358
-#: includes/class-pis-posts-in-sidebar.php:4479
+#: includes/class-pis-posts-in-sidebar.php:961
+#: includes/class-pis-posts-in-sidebar.php:3038
+#: includes/class-pis-posts-in-sidebar.php:3159
 msgid "If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2315
-#: includes/class-pis-posts-in-sidebar.php:2406
-#: includes/class-pis-posts-in-sidebar.php:2468
-#: includes/class-pis-posts-in-sidebar.php:2778
-#: includes/class-pis-posts-in-sidebar.php:3004
-#: includes/class-pis-posts-in-sidebar.php:3230
-#: includes/class-pis-posts-in-sidebar.php:3447
-#: includes/class-pis-posts-in-sidebar.php:3735
-#: includes/class-pis-posts-in-sidebar.php:3939
-#: includes/class-pis-posts-in-sidebar.php:4143
+#: includes/class-pis-posts-in-sidebar.php:979
+#: includes/class-pis-posts-in-sidebar.php:1070
+#: includes/class-pis-posts-in-sidebar.php:1133
+#: includes/class-pis-posts-in-sidebar.php:1444
+#: includes/class-pis-posts-in-sidebar.php:1673
+#: includes/class-pis-posts-in-sidebar.php:1902
+#: includes/class-pis-posts-in-sidebar.php:2121
+#: includes/class-pis-posts-in-sidebar.php:2412
+#: includes/class-pis-posts-in-sidebar.php:2617
+#: includes/class-pis-posts-in-sidebar.php:2822
 msgid "Any"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2326
-#: includes/class-pis-posts-in-sidebar.php:2646
-#: includes/class-pis-posts-in-sidebar.php:2789
-#: includes/class-pis-posts-in-sidebar.php:2876
-#: includes/class-pis-posts-in-sidebar.php:3015
-#: includes/class-pis-posts-in-sidebar.php:3102
-#: includes/class-pis-posts-in-sidebar.php:3241
-#: includes/class-pis-posts-in-sidebar.php:3318
-#: includes/class-pis-posts-in-sidebar.php:3458
-#: includes/class-pis-posts-in-sidebar.php:3574
-#: includes/class-pis-posts-in-sidebar.php:3746
-#: includes/class-pis-posts-in-sidebar.php:3836
-#: includes/class-pis-posts-in-sidebar.php:3950
-#: includes/class-pis-posts-in-sidebar.php:4040
-#: includes/class-pis-posts-in-sidebar.php:4154
-#: includes/class-pis-posts-in-sidebar.php:4244
+#: includes/class-pis-posts-in-sidebar.php:990
+#: includes/class-pis-posts-in-sidebar.php:1311
+#: includes/class-pis-posts-in-sidebar.php:1455
+#: includes/class-pis-posts-in-sidebar.php:1543
+#: includes/class-pis-posts-in-sidebar.php:1684
+#: includes/class-pis-posts-in-sidebar.php:1772
+#: includes/class-pis-posts-in-sidebar.php:1913
+#: includes/class-pis-posts-in-sidebar.php:1990
+#: includes/class-pis-posts-in-sidebar.php:2132
+#: includes/class-pis-posts-in-sidebar.php:2248
+#: includes/class-pis-posts-in-sidebar.php:2423
+#: includes/class-pis-posts-in-sidebar.php:2513
+#: includes/class-pis-posts-in-sidebar.php:2628
+#: includes/class-pis-posts-in-sidebar.php:2718
+#: includes/class-pis-posts-in-sidebar.php:2833
+#: includes/class-pis-posts-in-sidebar.php:2923
 msgid "Post type"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2331
-#: includes/class-pis-posts-in-sidebar.php:2794
-#: includes/class-pis-posts-in-sidebar.php:3020
-#: includes/class-pis-posts-in-sidebar.php:3246
-#: includes/class-pis-posts-in-sidebar.php:3463
-#: includes/class-pis-posts-in-sidebar.php:3751
-#: includes/class-pis-posts-in-sidebar.php:3955
-#: includes/class-pis-posts-in-sidebar.php:4159
+#: includes/class-pis-posts-in-sidebar.php:995
+#: includes/class-pis-posts-in-sidebar.php:1460
+#: includes/class-pis-posts-in-sidebar.php:1689
+#: includes/class-pis-posts-in-sidebar.php:1918
+#: includes/class-pis-posts-in-sidebar.php:2137
+#: includes/class-pis-posts-in-sidebar.php:2428
+#: includes/class-pis-posts-in-sidebar.php:2633
+#: includes/class-pis-posts-in-sidebar.php:2838
 msgid "Select a single post type."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2338
-#: includes/class-pis-posts-in-sidebar.php:2801
-#: includes/class-pis-posts-in-sidebar.php:3027
-#: includes/class-pis-posts-in-sidebar.php:3253
-#: includes/class-pis-posts-in-sidebar.php:3470
-#: includes/class-pis-posts-in-sidebar.php:3758
-#: includes/class-pis-posts-in-sidebar.php:3962
-#: includes/class-pis-posts-in-sidebar.php:4166
+#: includes/class-pis-posts-in-sidebar.php:1002
+#: includes/class-pis-posts-in-sidebar.php:1467
+#: includes/class-pis-posts-in-sidebar.php:1696
+#: includes/class-pis-posts-in-sidebar.php:1925
+#: includes/class-pis-posts-in-sidebar.php:2144
+#: includes/class-pis-posts-in-sidebar.php:2435
+#: includes/class-pis-posts-in-sidebar.php:2640
+#: includes/class-pis-posts-in-sidebar.php:2845
 msgid "Multiple post types"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2342
-#: includes/class-pis-posts-in-sidebar.php:2805
-#: includes/class-pis-posts-in-sidebar.php:3031
-#: includes/class-pis-posts-in-sidebar.php:3257
-#: includes/class-pis-posts-in-sidebar.php:3474
-#: includes/class-pis-posts-in-sidebar.php:3762
-#: includes/class-pis-posts-in-sidebar.php:3966
-#: includes/class-pis-posts-in-sidebar.php:4170
+#: includes/class-pis-posts-in-sidebar.php:1006
+#: includes/class-pis-posts-in-sidebar.php:1471
+#: includes/class-pis-posts-in-sidebar.php:1700
+#: includes/class-pis-posts-in-sidebar.php:1929
+#: includes/class-pis-posts-in-sidebar.php:2148
+#: includes/class-pis-posts-in-sidebar.php:2439
+#: includes/class-pis-posts-in-sidebar.php:2644
+#: includes/class-pis-posts-in-sidebar.php:2849
 msgid "post, page, book, recipe"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2343
-#: includes/class-pis-posts-in-sidebar.php:2806
-#: includes/class-pis-posts-in-sidebar.php:3032
-#: includes/class-pis-posts-in-sidebar.php:3258
-#: includes/class-pis-posts-in-sidebar.php:3475
-#: includes/class-pis-posts-in-sidebar.php:3763
-#: includes/class-pis-posts-in-sidebar.php:3967
-#: includes/class-pis-posts-in-sidebar.php:4171
+#: includes/class-pis-posts-in-sidebar.php:1007
+#: includes/class-pis-posts-in-sidebar.php:1472
+#: includes/class-pis-posts-in-sidebar.php:1701
+#: includes/class-pis-posts-in-sidebar.php:1930
+#: includes/class-pis-posts-in-sidebar.php:2149
+#: includes/class-pis-posts-in-sidebar.php:2440
+#: includes/class-pis-posts-in-sidebar.php:2645
+#: includes/class-pis-posts-in-sidebar.php:2850
 msgid "Enter post types slugs, comma separated. This option, if filled, overrides the option above."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2350
+#: includes/class-pis-posts-in-sidebar.php:1014
 msgid "Get these posts exactly"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2355
-#: includes/class-pis-posts-in-sidebar.php:2459
-#: includes/class-pis-posts-in-sidebar.php:4379
-#: includes/class-pis-posts-in-sidebar.php:4396
-#: includes/class-pis-posts-in-sidebar.php:4417
-#: includes/class-pis-posts-in-sidebar.php:4429
-#: includes/class-pis-posts-in-sidebar.php:4445
+#: includes/class-pis-posts-in-sidebar.php:1019
+#: includes/class-pis-posts-in-sidebar.php:1124
+#: includes/class-pis-posts-in-sidebar.php:3059
+#: includes/class-pis-posts-in-sidebar.php:3076
+#: includes/class-pis-posts-in-sidebar.php:3097
+#: includes/class-pis-posts-in-sidebar.php:3109
+#: includes/class-pis-posts-in-sidebar.php:3125
 msgid "Enter IDs, comma separated."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2366
+#: includes/class-pis-posts-in-sidebar.php:1030
 msgid "Get posts with these categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2370
+#: includes/class-pis-posts-in-sidebar.php:1034
 msgid "books, ebooks"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:2372
+#: includes/class-pis-posts-in-sidebar.php:1036
 msgid "Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2383
+#: includes/class-pis-posts-in-sidebar.php:1047
 msgid "Get posts with these tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2387
+#: includes/class-pis-posts-in-sidebar.php:1051
 msgid "best-sellers"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:2389
+#: includes/class-pis-posts-in-sidebar.php:1053
 msgid "Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2417
+#: includes/class-pis-posts-in-sidebar.php:1081
 msgid "Get posts by this author"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2428
+#: includes/class-pis-posts-in-sidebar.php:1092
 msgid "Get posts by these authors"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2432
+#: includes/class-pis-posts-in-sidebar.php:1096
 msgid "1, 23, 45"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2433
+#: includes/class-pis-posts-in-sidebar.php:1097
 msgid "Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2439
+#: includes/class-pis-posts-in-sidebar.php:1104
 msgid "Get posts by recent comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2443
+#: includes/class-pis-posts-in-sidebar.php:1108
 msgid "Only published posts, in descending order, will be retrieved."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2454
+#: includes/class-pis-posts-in-sidebar.php:1119
 msgid "Get posts whose parent is in these IDs"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2458
+#: includes/class-pis-posts-in-sidebar.php:1123
 msgid "2, 5, 12, 14, 20"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2479
+#: includes/class-pis-posts-in-sidebar.php:1144
 msgid "Get posts with this post format"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2503
+#: includes/class-pis-posts-in-sidebar.php:1168
 msgid "Get posts with this post status"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2518
+#: includes/class-pis-posts-in-sidebar.php:1183
 msgid "Get posts with this meta key"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2522
+#: includes/class-pis-posts-in-sidebar.php:1187
 msgid "meta-key"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2529
+#: includes/class-pis-posts-in-sidebar.php:1194
 msgid "Get posts with this meta value"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2533
+#: includes/class-pis-posts-in-sidebar.php:1198
 msgid "meta-value"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2540
+#: includes/class-pis-posts-in-sidebar.php:1205
 msgid "Get posts from this search"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2544
+#: includes/class-pis-posts-in-sidebar.php:1209
 msgid "words to search"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2553
+#: includes/class-pis-posts-in-sidebar.php:1218
 msgid "With and without password"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2557
+#: includes/class-pis-posts-in-sidebar.php:1222
 msgid "With password"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2561
+#: includes/class-pis-posts-in-sidebar.php:1226
 msgid "Without password"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2565
+#: includes/class-pis-posts-in-sidebar.php:1230
 msgid "Get posts with/without password"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2576
+#: includes/class-pis-posts-in-sidebar.php:1241
 msgid "Get posts with this password"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2596
+#: includes/class-pis-posts-in-sidebar.php:1261
 msgid "Get this number of posts"
 msgstr ""
 
 #. translators: %s is -1.
-#: includes/class-pis-posts-in-sidebar.php:2602
-#: includes/class-pis-posts-in-sidebar.php:2833
-#: includes/class-pis-posts-in-sidebar.php:3059
-#: includes/class-pis-posts-in-sidebar.php:3275
-#: includes/class-pis-posts-in-sidebar.php:3532
-#: includes/class-pis-posts-in-sidebar.php:3780
-#: includes/class-pis-posts-in-sidebar.php:3984
-#: includes/class-pis-posts-in-sidebar.php:4188
+#: includes/class-pis-posts-in-sidebar.php:1267
+#: includes/class-pis-posts-in-sidebar.php:1500
+#: includes/class-pis-posts-in-sidebar.php:1729
+#: includes/class-pis-posts-in-sidebar.php:1947
+#: includes/class-pis-posts-in-sidebar.php:2206
+#: includes/class-pis-posts-in-sidebar.php:2457
+#: includes/class-pis-posts-in-sidebar.php:2662
+#: includes/class-pis-posts-in-sidebar.php:2867
 msgid "The value %s shows all the posts."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2609
+#: includes/class-pis-posts-in-sidebar.php:1274
 msgid "Do not display sticky posts on top of other posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2613
+#: includes/class-pis-posts-in-sidebar.php:1278
 msgid "If you activate this option, sticky posts will be managed as other posts. Sticky post status will be automatically ignored if you set up an author or a taxonomy in this widget."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2626
-#: includes/class-pis-posts-in-sidebar.php:2856
-#: includes/class-pis-posts-in-sidebar.php:3082
-#: includes/class-pis-posts-in-sidebar.php:3298
-#: includes/class-pis-posts-in-sidebar.php:3554
-#: includes/class-pis-posts-in-sidebar.php:3816
-#: includes/class-pis-posts-in-sidebar.php:4020
-#: includes/class-pis-posts-in-sidebar.php:4224
+#: includes/class-pis-posts-in-sidebar.php:1291
+#: includes/class-pis-posts-in-sidebar.php:1523
+#: includes/class-pis-posts-in-sidebar.php:1752
+#: includes/class-pis-posts-in-sidebar.php:1970
+#: includes/class-pis-posts-in-sidebar.php:2228
+#: includes/class-pis-posts-in-sidebar.php:2493
+#: includes/class-pis-posts-in-sidebar.php:2698
+#: includes/class-pis-posts-in-sidebar.php:2903
 msgid "None"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2630
-#: includes/class-pis-posts-in-sidebar.php:2860
-#: includes/class-pis-posts-in-sidebar.php:3086
-#: includes/class-pis-posts-in-sidebar.php:3302
-#: includes/class-pis-posts-in-sidebar.php:3558
-#: includes/class-pis-posts-in-sidebar.php:3820
-#: includes/class-pis-posts-in-sidebar.php:4024
-#: includes/class-pis-posts-in-sidebar.php:4228
+#: includes/class-pis-posts-in-sidebar.php:1295
+#: includes/class-pis-posts-in-sidebar.php:1527
+#: includes/class-pis-posts-in-sidebar.php:1756
+#: includes/class-pis-posts-in-sidebar.php:1974
+#: includes/class-pis-posts-in-sidebar.php:2232
+#: includes/class-pis-posts-in-sidebar.php:2497
+#: includes/class-pis-posts-in-sidebar.php:2702
+#: includes/class-pis-posts-in-sidebar.php:2907
 msgid "ID"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2634
-#: includes/class-pis-posts-in-sidebar.php:2864
-#: includes/class-pis-posts-in-sidebar.php:3090
-#: includes/class-pis-posts-in-sidebar.php:3306
-#: includes/class-pis-posts-in-sidebar.php:3562
-#: includes/class-pis-posts-in-sidebar.php:3824
-#: includes/class-pis-posts-in-sidebar.php:4028
-#: includes/class-pis-posts-in-sidebar.php:4232
-#: includes/class-pis-posts-in-sidebar.php:7139
+#: includes/class-pis-posts-in-sidebar.php:1299
+#: includes/class-pis-posts-in-sidebar.php:1531
+#: includes/class-pis-posts-in-sidebar.php:1760
+#: includes/class-pis-posts-in-sidebar.php:1978
+#: includes/class-pis-posts-in-sidebar.php:2236
+#: includes/class-pis-posts-in-sidebar.php:2501
+#: includes/class-pis-posts-in-sidebar.php:2706
+#: includes/class-pis-posts-in-sidebar.php:2911
+#: includes/class-pis-posts-in-sidebar.php:5837
 msgid "Author"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2642
-#: includes/class-pis-posts-in-sidebar.php:2872
-#: includes/class-pis-posts-in-sidebar.php:3098
-#: includes/class-pis-posts-in-sidebar.php:3314
-#: includes/class-pis-posts-in-sidebar.php:3570
-#: includes/class-pis-posts-in-sidebar.php:3832
-#: includes/class-pis-posts-in-sidebar.php:4036
-#: includes/class-pis-posts-in-sidebar.php:4240
+#: includes/class-pis-posts-in-sidebar.php:1307
+#: includes/class-pis-posts-in-sidebar.php:1539
+#: includes/class-pis-posts-in-sidebar.php:1768
+#: includes/class-pis-posts-in-sidebar.php:1986
+#: includes/class-pis-posts-in-sidebar.php:2244
+#: includes/class-pis-posts-in-sidebar.php:2509
+#: includes/class-pis-posts-in-sidebar.php:2714
+#: includes/class-pis-posts-in-sidebar.php:2919
 msgid "Name (post slug)"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2650
-#: includes/class-pis-posts-in-sidebar.php:2880
-#: includes/class-pis-posts-in-sidebar.php:3106
-#: includes/class-pis-posts-in-sidebar.php:3322
-#: includes/class-pis-posts-in-sidebar.php:3578
-#: includes/class-pis-posts-in-sidebar.php:3840
-#: includes/class-pis-posts-in-sidebar.php:4044
-#: includes/class-pis-posts-in-sidebar.php:4248
+#: includes/class-pis-posts-in-sidebar.php:1315
+#: includes/class-pis-posts-in-sidebar.php:1547
+#: includes/class-pis-posts-in-sidebar.php:1776
+#: includes/class-pis-posts-in-sidebar.php:1994
+#: includes/class-pis-posts-in-sidebar.php:2252
+#: includes/class-pis-posts-in-sidebar.php:2517
+#: includes/class-pis-posts-in-sidebar.php:2722
+#: includes/class-pis-posts-in-sidebar.php:2927
 msgid "Date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2654
-#: includes/class-pis-posts-in-sidebar.php:2884
-#: includes/class-pis-posts-in-sidebar.php:3110
-#: includes/class-pis-posts-in-sidebar.php:3326
-#: includes/class-pis-posts-in-sidebar.php:3582
-#: includes/class-pis-posts-in-sidebar.php:3844
-#: includes/class-pis-posts-in-sidebar.php:4048
-#: includes/class-pis-posts-in-sidebar.php:4252
+#: includes/class-pis-posts-in-sidebar.php:1319
+#: includes/class-pis-posts-in-sidebar.php:1551
+#: includes/class-pis-posts-in-sidebar.php:1780
+#: includes/class-pis-posts-in-sidebar.php:1998
+#: includes/class-pis-posts-in-sidebar.php:2256
+#: includes/class-pis-posts-in-sidebar.php:2521
+#: includes/class-pis-posts-in-sidebar.php:2726
+#: includes/class-pis-posts-in-sidebar.php:2931
 msgid "Modified"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2658
-#: includes/class-pis-posts-in-sidebar.php:2888
-#: includes/class-pis-posts-in-sidebar.php:3114
-#: includes/class-pis-posts-in-sidebar.php:3330
-#: includes/class-pis-posts-in-sidebar.php:3586
-#: includes/class-pis-posts-in-sidebar.php:3848
-#: includes/class-pis-posts-in-sidebar.php:4052
-#: includes/class-pis-posts-in-sidebar.php:4256
+#: includes/class-pis-posts-in-sidebar.php:1323
+#: includes/class-pis-posts-in-sidebar.php:1555
+#: includes/class-pis-posts-in-sidebar.php:1784
+#: includes/class-pis-posts-in-sidebar.php:2002
+#: includes/class-pis-posts-in-sidebar.php:2260
+#: includes/class-pis-posts-in-sidebar.php:2525
+#: includes/class-pis-posts-in-sidebar.php:2730
+#: includes/class-pis-posts-in-sidebar.php:2935
 msgid "Parent"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2662
-#: includes/class-pis-posts-in-sidebar.php:2892
-#: includes/class-pis-posts-in-sidebar.php:3118
-#: includes/class-pis-posts-in-sidebar.php:3334
-#: includes/class-pis-posts-in-sidebar.php:3590
-#: includes/class-pis-posts-in-sidebar.php:3852
-#: includes/class-pis-posts-in-sidebar.php:4056
-#: includes/class-pis-posts-in-sidebar.php:4260
+#: includes/class-pis-posts-in-sidebar.php:1327
+#: includes/class-pis-posts-in-sidebar.php:1559
+#: includes/class-pis-posts-in-sidebar.php:1788
+#: includes/class-pis-posts-in-sidebar.php:2006
+#: includes/class-pis-posts-in-sidebar.php:2264
+#: includes/class-pis-posts-in-sidebar.php:2529
+#: includes/class-pis-posts-in-sidebar.php:2734
+#: includes/class-pis-posts-in-sidebar.php:2939
 msgid "Random"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2666
-#: includes/class-pis-posts-in-sidebar.php:2896
-#: includes/class-pis-posts-in-sidebar.php:3122
-#: includes/class-pis-posts-in-sidebar.php:3338
-#: includes/class-pis-posts-in-sidebar.php:3594
-#: includes/class-pis-posts-in-sidebar.php:3856
-#: includes/class-pis-posts-in-sidebar.php:4060
-#: includes/class-pis-posts-in-sidebar.php:4264
+#: includes/class-pis-posts-in-sidebar.php:1331
+#: includes/class-pis-posts-in-sidebar.php:1563
+#: includes/class-pis-posts-in-sidebar.php:1792
+#: includes/class-pis-posts-in-sidebar.php:2010
+#: includes/class-pis-posts-in-sidebar.php:2268
+#: includes/class-pis-posts-in-sidebar.php:2533
+#: includes/class-pis-posts-in-sidebar.php:2738
+#: includes/class-pis-posts-in-sidebar.php:2943
 msgid "Comment count"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2670
-#: includes/class-pis-posts-in-sidebar.php:2900
-#: includes/class-pis-posts-in-sidebar.php:3126
-#: includes/class-pis-posts-in-sidebar.php:3342
-#: includes/class-pis-posts-in-sidebar.php:3598
+#: includes/class-pis-posts-in-sidebar.php:1335
+#: includes/class-pis-posts-in-sidebar.php:1567
+#: includes/class-pis-posts-in-sidebar.php:1796
+#: includes/class-pis-posts-in-sidebar.php:2014
+#: includes/class-pis-posts-in-sidebar.php:2272
 msgid "Relevance (when searching)"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2674
-#: includes/class-pis-posts-in-sidebar.php:2904
-#: includes/class-pis-posts-in-sidebar.php:3130
-#: includes/class-pis-posts-in-sidebar.php:3346
-#: includes/class-pis-posts-in-sidebar.php:3602
-#: includes/class-pis-posts-in-sidebar.php:3860
-#: includes/class-pis-posts-in-sidebar.php:4064
-#: includes/class-pis-posts-in-sidebar.php:4268
+#: includes/class-pis-posts-in-sidebar.php:1339
+#: includes/class-pis-posts-in-sidebar.php:1571
+#: includes/class-pis-posts-in-sidebar.php:1800
+#: includes/class-pis-posts-in-sidebar.php:2018
+#: includes/class-pis-posts-in-sidebar.php:2276
+#: includes/class-pis-posts-in-sidebar.php:2537
+#: includes/class-pis-posts-in-sidebar.php:2742
+#: includes/class-pis-posts-in-sidebar.php:2947
 msgid "Menu order"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2678
-#: includes/class-pis-posts-in-sidebar.php:2908
-#: includes/class-pis-posts-in-sidebar.php:3134
-#: includes/class-pis-posts-in-sidebar.php:3350
-#: includes/class-pis-posts-in-sidebar.php:3606
-#: includes/class-pis-posts-in-sidebar.php:3864
-#: includes/class-pis-posts-in-sidebar.php:4068
-#: includes/class-pis-posts-in-sidebar.php:4272
+#: includes/class-pis-posts-in-sidebar.php:1343
+#: includes/class-pis-posts-in-sidebar.php:1575
+#: includes/class-pis-posts-in-sidebar.php:1804
+#: includes/class-pis-posts-in-sidebar.php:2022
+#: includes/class-pis-posts-in-sidebar.php:2280
+#: includes/class-pis-posts-in-sidebar.php:2541
+#: includes/class-pis-posts-in-sidebar.php:2746
+#: includes/class-pis-posts-in-sidebar.php:2951
 msgid "Meta value"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2682
-#: includes/class-pis-posts-in-sidebar.php:2912
-#: includes/class-pis-posts-in-sidebar.php:3138
-#: includes/class-pis-posts-in-sidebar.php:3354
-#: includes/class-pis-posts-in-sidebar.php:3610
-#: includes/class-pis-posts-in-sidebar.php:3868
-#: includes/class-pis-posts-in-sidebar.php:4072
-#: includes/class-pis-posts-in-sidebar.php:4276
+#: includes/class-pis-posts-in-sidebar.php:1347
+#: includes/class-pis-posts-in-sidebar.php:1579
+#: includes/class-pis-posts-in-sidebar.php:1808
+#: includes/class-pis-posts-in-sidebar.php:2026
+#: includes/class-pis-posts-in-sidebar.php:2284
+#: includes/class-pis-posts-in-sidebar.php:2545
+#: includes/class-pis-posts-in-sidebar.php:2750
+#: includes/class-pis-posts-in-sidebar.php:2955
 msgid "Meta value number"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2686
-#: includes/class-pis-posts-in-sidebar.php:2916
-#: includes/class-pis-posts-in-sidebar.php:3142
-#: includes/class-pis-posts-in-sidebar.php:3358
-#: includes/class-pis-posts-in-sidebar.php:3614
-#: includes/class-pis-posts-in-sidebar.php:3872
-#: includes/class-pis-posts-in-sidebar.php:4076
-#: includes/class-pis-posts-in-sidebar.php:4280
+#: includes/class-pis-posts-in-sidebar.php:1351
+#: includes/class-pis-posts-in-sidebar.php:1583
+#: includes/class-pis-posts-in-sidebar.php:1812
+#: includes/class-pis-posts-in-sidebar.php:2030
+#: includes/class-pis-posts-in-sidebar.php:2288
+#: includes/class-pis-posts-in-sidebar.php:2549
+#: includes/class-pis-posts-in-sidebar.php:2754
+#: includes/class-pis-posts-in-sidebar.php:2959
 msgid "Preserve ID order"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2690
-#: includes/class-pis-posts-in-sidebar.php:2920
-#: includes/class-pis-posts-in-sidebar.php:3146
-#: includes/class-pis-posts-in-sidebar.php:3362
-#: includes/class-pis-posts-in-sidebar.php:3618
-#: includes/class-pis-posts-in-sidebar.php:3876
-#: includes/class-pis-posts-in-sidebar.php:4080
-#: includes/class-pis-posts-in-sidebar.php:4284
+#: includes/class-pis-posts-in-sidebar.php:1355
+#: includes/class-pis-posts-in-sidebar.php:1587
+#: includes/class-pis-posts-in-sidebar.php:1816
+#: includes/class-pis-posts-in-sidebar.php:2034
+#: includes/class-pis-posts-in-sidebar.php:2292
+#: includes/class-pis-posts-in-sidebar.php:2553
+#: includes/class-pis-posts-in-sidebar.php:2758
+#: includes/class-pis-posts-in-sidebar.php:2963
 msgid "Preserve post parent order"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2694
-#: includes/class-pis-posts-in-sidebar.php:2924
-#: includes/class-pis-posts-in-sidebar.php:3150
-#: includes/class-pis-posts-in-sidebar.php:3366
-#: includes/class-pis-posts-in-sidebar.php:3622
-#: includes/class-pis-posts-in-sidebar.php:3880
-#: includes/class-pis-posts-in-sidebar.php:4084
-#: includes/class-pis-posts-in-sidebar.php:4288
+#: includes/class-pis-posts-in-sidebar.php:1359
+#: includes/class-pis-posts-in-sidebar.php:1591
+#: includes/class-pis-posts-in-sidebar.php:1820
+#: includes/class-pis-posts-in-sidebar.php:2038
+#: includes/class-pis-posts-in-sidebar.php:2296
+#: includes/class-pis-posts-in-sidebar.php:2557
+#: includes/class-pis-posts-in-sidebar.php:2762
+#: includes/class-pis-posts-in-sidebar.php:2967
 msgid "Order posts by"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2707
-#: includes/class-pis-posts-in-sidebar.php:2937
-#: includes/class-pis-posts-in-sidebar.php:3163
-#: includes/class-pis-posts-in-sidebar.php:3379
-#: includes/class-pis-posts-in-sidebar.php:3635
-#: includes/class-pis-posts-in-sidebar.php:3893
-#: includes/class-pis-posts-in-sidebar.php:4097
-#: includes/class-pis-posts-in-sidebar.php:4301
+#: includes/class-pis-posts-in-sidebar.php:1372
+#: includes/class-pis-posts-in-sidebar.php:1604
+#: includes/class-pis-posts-in-sidebar.php:1833
+#: includes/class-pis-posts-in-sidebar.php:2051
+#: includes/class-pis-posts-in-sidebar.php:2309
+#: includes/class-pis-posts-in-sidebar.php:2570
+#: includes/class-pis-posts-in-sidebar.php:2775
+#: includes/class-pis-posts-in-sidebar.php:2980
 msgid "Ascending"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2711
-#: includes/class-pis-posts-in-sidebar.php:2941
-#: includes/class-pis-posts-in-sidebar.php:3167
-#: includes/class-pis-posts-in-sidebar.php:3383
-#: includes/class-pis-posts-in-sidebar.php:3639
-#: includes/class-pis-posts-in-sidebar.php:3897
-#: includes/class-pis-posts-in-sidebar.php:4101
-#: includes/class-pis-posts-in-sidebar.php:4305
+#: includes/class-pis-posts-in-sidebar.php:1376
+#: includes/class-pis-posts-in-sidebar.php:1608
+#: includes/class-pis-posts-in-sidebar.php:1837
+#: includes/class-pis-posts-in-sidebar.php:2055
+#: includes/class-pis-posts-in-sidebar.php:2313
+#: includes/class-pis-posts-in-sidebar.php:2574
+#: includes/class-pis-posts-in-sidebar.php:2779
+#: includes/class-pis-posts-in-sidebar.php:2984
 msgid "Descending"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2715
-#: includes/class-pis-posts-in-sidebar.php:2945
-#: includes/class-pis-posts-in-sidebar.php:3171
-#: includes/class-pis-posts-in-sidebar.php:3387
-#: includes/class-pis-posts-in-sidebar.php:3643
-#: includes/class-pis-posts-in-sidebar.php:3901
-#: includes/class-pis-posts-in-sidebar.php:4105
-#: includes/class-pis-posts-in-sidebar.php:4309
+#: includes/class-pis-posts-in-sidebar.php:1380
+#: includes/class-pis-posts-in-sidebar.php:1612
+#: includes/class-pis-posts-in-sidebar.php:1841
+#: includes/class-pis-posts-in-sidebar.php:2059
+#: includes/class-pis-posts-in-sidebar.php:2317
+#: includes/class-pis-posts-in-sidebar.php:2578
+#: includes/class-pis-posts-in-sidebar.php:2783
+#: includes/class-pis-posts-in-sidebar.php:2988
 msgid "The order will be"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2726
-#: includes/class-pis-posts-in-sidebar.php:2956
-#: includes/class-pis-posts-in-sidebar.php:3182
-#: includes/class-pis-posts-in-sidebar.php:3398
-#: includes/class-pis-posts-in-sidebar.php:3654
-#: includes/class-pis-posts-in-sidebar.php:3787
-#: includes/class-pis-posts-in-sidebar.php:3991
-#: includes/class-pis-posts-in-sidebar.php:4195
+#: includes/class-pis-posts-in-sidebar.php:1391
+#: includes/class-pis-posts-in-sidebar.php:1623
+#: includes/class-pis-posts-in-sidebar.php:1852
+#: includes/class-pis-posts-in-sidebar.php:2070
+#: includes/class-pis-posts-in-sidebar.php:2328
+#: includes/class-pis-posts-in-sidebar.php:2464
+#: includes/class-pis-posts-in-sidebar.php:2669
+#: includes/class-pis-posts-in-sidebar.php:2874
 msgid "Skip this number of posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2743
+#: includes/class-pis-posts-in-sidebar.php:1408
 msgid "Change the query when on single posts"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:2750
+#: includes/class-pis-posts-in-sidebar.php:1415
 msgid "In this section you can change some parameters of the query when on single posts. %1$sActivate only one of these.%2$s"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2754
+#: includes/class-pis-posts-in-sidebar.php:1419
 msgid "Get posts from current category"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2764
+#: includes/class-pis-posts-in-sidebar.php:1430
 msgid "When on single posts, get posts from the current category"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2768
+#: includes/class-pis-posts-in-sidebar.php:1434
 msgid "When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2812
+#: includes/class-pis-posts-in-sidebar.php:1479
 msgid "Sort categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2816
+#: includes/class-pis-posts-in-sidebar.php:1483
 msgid "When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2827
-#: includes/class-pis-posts-in-sidebar.php:3053
-#: includes/class-pis-posts-in-sidebar.php:3269
-#: includes/class-pis-posts-in-sidebar.php:3526
+#: includes/class-pis-posts-in-sidebar.php:1494
+#: includes/class-pis-posts-in-sidebar.php:1723
+#: includes/class-pis-posts-in-sidebar.php:1941
+#: includes/class-pis-posts-in-sidebar.php:2200
 msgid "When on single posts, get this number of posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2840
-#: includes/class-pis-posts-in-sidebar.php:3066
-#: includes/class-pis-posts-in-sidebar.php:3282
-#: includes/class-pis-posts-in-sidebar.php:3539
+#: includes/class-pis-posts-in-sidebar.php:1507
+#: includes/class-pis-posts-in-sidebar.php:1736
+#: includes/class-pis-posts-in-sidebar.php:1954
+#: includes/class-pis-posts-in-sidebar.php:2213
 msgid "When on single posts, use this widget title"
 msgstr ""
 
 #. translators: %s is a placeholder for a taxonomy.
-#: includes/class-pis-posts-in-sidebar.php:2845
-#: includes/class-pis-posts-in-sidebar.php:3805
+#: includes/class-pis-posts-in-sidebar.php:1512
+#: includes/class-pis-posts-in-sidebar.php:2482
 msgid "Posts under %s"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:2847
-#: includes/class-pis-posts-in-sidebar.php:3807
+#: includes/class-pis-posts-in-sidebar.php:1514
+#: includes/class-pis-posts-in-sidebar.php:2484
 msgid "Use %s to display the name of the category."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2966
-#: includes/class-pis-posts-in-sidebar.php:3192
-#: includes/class-pis-posts-in-sidebar.php:3408
-#: includes/class-pis-posts-in-sidebar.php:3664
+#: includes/class-pis-posts-in-sidebar.php:1634
+#: includes/class-pis-posts-in-sidebar.php:1863
+#: includes/class-pis-posts-in-sidebar.php:2081
+#: includes/class-pis-posts-in-sidebar.php:2339
 msgid "Post title matching"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2970
+#: includes/class-pis-posts-in-sidebar.php:1638
 msgid "Show posts that match the main post title. WordPress will show posts under the same category of the main post and matching in a search for the title of the main post."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2980
+#: includes/class-pis-posts-in-sidebar.php:1648
 msgid "Get posts from current tag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2990
+#: includes/class-pis-posts-in-sidebar.php:1659
 msgid "When on single posts, get posts from the current tag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:2994
+#: includes/class-pis-posts-in-sidebar.php:1663
 msgid "When activated, this function will get posts from the tag of the post, ignoring other parameters like categories, date, post formats, etc. If the post has multiple tags, the plugin will use the first tag in the array of tags (the tag with the lowest initial letter). If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3038
+#: includes/class-pis-posts-in-sidebar.php:1708
 msgid "Sort tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3042
+#: includes/class-pis-posts-in-sidebar.php:1712
 msgid "When activated, this function will sort the tags of the main post by tag ID. In this way the plugin will get posts from the tag with the lowest ID."
 msgstr ""
 
 #. translators: %s is the name of the tag.
-#: includes/class-pis-posts-in-sidebar.php:3071
-#: includes/class-pis-posts-in-sidebar.php:4009
+#: includes/class-pis-posts-in-sidebar.php:1741
+#: includes/class-pis-posts-in-sidebar.php:2687
 msgid "Posts tagged with %s"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:3073
-#: includes/class-pis-posts-in-sidebar.php:4011
+#: includes/class-pis-posts-in-sidebar.php:1743
+#: includes/class-pis-posts-in-sidebar.php:2689
 msgid "Use %s to display the name of the tag."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3196
+#: includes/class-pis-posts-in-sidebar.php:1867
 msgid "Show posts that match the main post title. WordPress will show posts with the same tag of the main post and matching in a search for the title of the main post."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3206
+#: includes/class-pis-posts-in-sidebar.php:1877
 msgid "Get posts from current author"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3216
+#: includes/class-pis-posts-in-sidebar.php:1888
 msgid "When on single posts, get posts from the current author"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3220
+#: includes/class-pis-posts-in-sidebar.php:1892
 msgid "When activated, this function will get posts by the author of the post, ignoring other parameters like categories, tags, date, post formats, etc. If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
 #. translators: %s is the name of the author.
-#: includes/class-pis-posts-in-sidebar.php:3287
-#: includes/class-pis-posts-in-sidebar.php:4213
+#: includes/class-pis-posts-in-sidebar.php:1959
+#: includes/class-pis-posts-in-sidebar.php:2892
 msgid "Posts by %s"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:3289
-#: includes/class-pis-posts-in-sidebar.php:4215
+#: includes/class-pis-posts-in-sidebar.php:1961
+#: includes/class-pis-posts-in-sidebar.php:2894
 msgid "Use %s to display the name of the author."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3412
+#: includes/class-pis-posts-in-sidebar.php:2085
 msgid "Show posts that match the main post title. WordPress will show posts by the same author of the main post and matching in a search for the title of the main post."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3422
+#: includes/class-pis-posts-in-sidebar.php:2095
 msgid "Get posts from taxonomy using custom field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3432
+#: includes/class-pis-posts-in-sidebar.php:2106
 msgid "When on single posts, get posts from this custom field"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:3437
+#: includes/class-pis-posts-in-sidebar.php:2111
 msgid "When activated, this function will get posts from the category defined by the user via custom field, ignoring other parameters like categories, tags, date, post formats, etc. %1$sRead more on this%2$s. If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3482
+#: includes/class-pis-posts-in-sidebar.php:2156
 msgid "Get posts with this custom field key"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3511
+#: includes/class-pis-posts-in-sidebar.php:2185
 msgid "Type of the taxonomy"
 msgstr ""
 
 #. translators: %s is a `%s`.
-#: includes/class-pis-posts-in-sidebar.php:3545
+#: includes/class-pis-posts-in-sidebar.php:2219
 msgid "Use %s to display the name of the taxonomy."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3668
+#: includes/class-pis-posts-in-sidebar.php:2343
 msgid "Show posts that match the main post title. WordPress will show posts with the same custom field of the main post and matching in a search for the title of the main post."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3682
-#: includes/class-pis-posts-in-sidebar.php:4327
+#: includes/class-pis-posts-in-sidebar.php:2358
+#: includes/class-pis-posts-in-sidebar.php:3007
 msgid "Do not ignore other parameters"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3686
-#: includes/class-pis-posts-in-sidebar.php:4331
+#: includes/class-pis-posts-in-sidebar.php:2362
+#: includes/class-pis-posts-in-sidebar.php:3011
 msgid "By default, when you activate one of the options above to change the query on single posts, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3700
+#: includes/class-pis-posts-in-sidebar.php:2376
 msgid "Change the query when on archive page"
 msgstr ""
 
 #. translators: there is some code in placeholders.
-#: includes/class-pis-posts-in-sidebar.php:3707
+#: includes/class-pis-posts-in-sidebar.php:2383
 msgid "In this section you can change some parameters of the query when on archive pages. %1$sYou can activate them all together.%2$s"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3711
+#: includes/class-pis-posts-in-sidebar.php:2387
 msgid "Get posts from current category archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3721
+#: includes/class-pis-posts-in-sidebar.php:2398
 msgid "When on archive pages, get posts from the current category archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3725
+#: includes/class-pis-posts-in-sidebar.php:2402
 msgid "When activated, this function will get posts from the archive page of the current category, ignoring other parameters like tags, date, post formats, etc. If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3774
-#: includes/class-pis-posts-in-sidebar.php:3978
-#: includes/class-pis-posts-in-sidebar.php:4182
+#: includes/class-pis-posts-in-sidebar.php:2451
+#: includes/class-pis-posts-in-sidebar.php:2656
+#: includes/class-pis-posts-in-sidebar.php:2861
 msgid "When on archive pages, get this number of posts"
 msgstr ""
 
 #. translators: %s is -1.
-#: includes/class-pis-posts-in-sidebar.php:3793
-#: includes/class-pis-posts-in-sidebar.php:3997
-#: includes/class-pis-posts-in-sidebar.php:4201
+#: includes/class-pis-posts-in-sidebar.php:2470
+#: includes/class-pis-posts-in-sidebar.php:2675
+#: includes/class-pis-posts-in-sidebar.php:2880
 msgid "If you entered %s in the previous field, this option will be ignored."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3800
-#: includes/class-pis-posts-in-sidebar.php:4004
-#: includes/class-pis-posts-in-sidebar.php:4208
+#: includes/class-pis-posts-in-sidebar.php:2477
+#: includes/class-pis-posts-in-sidebar.php:2682
+#: includes/class-pis-posts-in-sidebar.php:2887
 msgid "When on archive pages, use this widget title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3915
+#: includes/class-pis-posts-in-sidebar.php:2592
 msgid "Get posts from current tag archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3925
+#: includes/class-pis-posts-in-sidebar.php:2603
 msgid "When on archive pages, get posts from the current tag archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:3929
+#: includes/class-pis-posts-in-sidebar.php:2607
 msgid "When activated, this function will get posts from the archive page of the current tag, ignoring other parameters like categories, date, post formats, etc. If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4119
+#: includes/class-pis-posts-in-sidebar.php:2797
 msgid "Get posts from current author archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4129
+#: includes/class-pis-posts-in-sidebar.php:2808
 msgid "When on archive pages, get posts from the current author archive page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4133
+#: includes/class-pis-posts-in-sidebar.php:2812
 msgid "When activated, this function will get posts from the archive page of the current author, ignoring other parameters like categories, tags, date, post formats, etc. If you don't want to ignore other parameters, activate the checkbox below, at the end of this panel."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4345
+#: includes/class-pis-posts-in-sidebar.php:3025
 msgid "Excluding posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4351
+#: includes/class-pis-posts-in-sidebar.php:3031
 msgid "Define here which posts must be excluded from the query."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4374
+#: includes/class-pis-posts-in-sidebar.php:3054
 msgid "Exclude posts by these authors"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4391
+#: includes/class-pis-posts-in-sidebar.php:3071
 msgid "Exclude posts from these categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4412
+#: includes/class-pis-posts-in-sidebar.php:3092
 msgid "Exclude posts from these tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4424
+#: includes/class-pis-posts-in-sidebar.php:3104
 msgid "Exclude posts with these IDs"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4440
+#: includes/class-pis-posts-in-sidebar.php:3120
 msgid "Exclude posts whose parent is in these IDs"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4452
+#: includes/class-pis-posts-in-sidebar.php:3132
 msgid "Automatically exclude the current post in single post or the current page in single page"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4470
+#: includes/class-pis-posts-in-sidebar.php:3150
 msgid "Custom taxonomy query"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4474
+#: includes/class-pis-posts-in-sidebar.php:3154
 msgid "This section lets you retrieve posts from any taxonomy (category, tags, and custom taxonomies). If you want to use only one taxonomy, use the \"Taxonomy A1\" field. If you have to put in relation two taxonomies (e.g., display posts that are in the \"quotes\" category but not in the \"wisdom\" tag), then use also the \"Taxonomy B1\" field. If you have to put in relation more taxonomies, start using also the \"A2\" and \"B2\" fields (e.g., display posts that are in the \"quotes\" category [A1] OR both have the \"Quote\" post format [B1] AND are in the \"wisdom\" category [B2])."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4505
-#: includes/class-pis-posts-in-sidebar.php:5355
+#: includes/class-pis-posts-in-sidebar.php:3185
+#: includes/class-pis-posts-in-sidebar.php:4037
 msgid "Relation between Column A and Column B"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4510
+#: includes/class-pis-posts-in-sidebar.php:3190
 msgid "The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4522
-#: includes/class-pis-posts-in-sidebar.php:5372
+#: includes/class-pis-posts-in-sidebar.php:3202
+#: includes/class-pis-posts-in-sidebar.php:4054
 msgid "Column A"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4527
+#: includes/class-pis-posts-in-sidebar.php:3207
 msgid "Taxonomy A1"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4531
+#: includes/class-pis-posts-in-sidebar.php:3211
 msgid "category"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4532
-#: includes/class-pis-posts-in-sidebar.php:4645
-#: includes/class-pis-posts-in-sidebar.php:4734
-#: includes/class-pis-posts-in-sidebar.php:4850
+#: includes/class-pis-posts-in-sidebar.php:3212
+#: includes/class-pis-posts-in-sidebar.php:3325
+#: includes/class-pis-posts-in-sidebar.php:3415
+#: includes/class-pis-posts-in-sidebar.php:3532
 msgid "Enter the slug of the taxonomy."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4545
-#: includes/class-pis-posts-in-sidebar.php:4658
-#: includes/class-pis-posts-in-sidebar.php:4747
-#: includes/class-pis-posts-in-sidebar.php:4863
+#: includes/class-pis-posts-in-sidebar.php:3225
+#: includes/class-pis-posts-in-sidebar.php:3338
+#: includes/class-pis-posts-in-sidebar.php:3428
+#: includes/class-pis-posts-in-sidebar.php:3545
 msgid "Term ID"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4549
-#: includes/class-pis-posts-in-sidebar.php:4662
-#: includes/class-pis-posts-in-sidebar.php:4751
-#: includes/class-pis-posts-in-sidebar.php:4867
+#: includes/class-pis-posts-in-sidebar.php:3229
+#: includes/class-pis-posts-in-sidebar.php:3342
+#: includes/class-pis-posts-in-sidebar.php:3432
+#: includes/class-pis-posts-in-sidebar.php:3549
 msgid "Slug"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4553
-#: includes/class-pis-posts-in-sidebar.php:4666
-#: includes/class-pis-posts-in-sidebar.php:4755
-#: includes/class-pis-posts-in-sidebar.php:4871
+#: includes/class-pis-posts-in-sidebar.php:3233
+#: includes/class-pis-posts-in-sidebar.php:3346
+#: includes/class-pis-posts-in-sidebar.php:3436
+#: includes/class-pis-posts-in-sidebar.php:3553
 msgid "Name"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4557
-#: includes/class-pis-posts-in-sidebar.php:4670
-#: includes/class-pis-posts-in-sidebar.php:4759
-#: includes/class-pis-posts-in-sidebar.php:4875
+#: includes/class-pis-posts-in-sidebar.php:3237
+#: includes/class-pis-posts-in-sidebar.php:3350
+#: includes/class-pis-posts-in-sidebar.php:3440
+#: includes/class-pis-posts-in-sidebar.php:3557
 msgid "Field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4562
-#: includes/class-pis-posts-in-sidebar.php:4674
-#: includes/class-pis-posts-in-sidebar.php:4763
-#: includes/class-pis-posts-in-sidebar.php:4880
+#: includes/class-pis-posts-in-sidebar.php:3242
+#: includes/class-pis-posts-in-sidebar.php:3355
+#: includes/class-pis-posts-in-sidebar.php:3445
+#: includes/class-pis-posts-in-sidebar.php:3562
 msgid "Select taxonomy term by this field."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4569
-#: includes/class-pis-posts-in-sidebar.php:4681
-#: includes/class-pis-posts-in-sidebar.php:4770
-#: includes/class-pis-posts-in-sidebar.php:4887
+#: includes/class-pis-posts-in-sidebar.php:3249
+#: includes/class-pis-posts-in-sidebar.php:3362
+#: includes/class-pis-posts-in-sidebar.php:3452
+#: includes/class-pis-posts-in-sidebar.php:3569
 msgid "Terms"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4573
+#: includes/class-pis-posts-in-sidebar.php:3253
 msgid "gnu-linux,kde"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4574
-#: includes/class-pis-posts-in-sidebar.php:4686
-#: includes/class-pis-posts-in-sidebar.php:4775
-#: includes/class-pis-posts-in-sidebar.php:4892
+#: includes/class-pis-posts-in-sidebar.php:3254
+#: includes/class-pis-posts-in-sidebar.php:3367
+#: includes/class-pis-posts-in-sidebar.php:3457
+#: includes/class-pis-posts-in-sidebar.php:3574
 msgid "Enter terms, comma separated."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4599
-#: includes/class-pis-posts-in-sidebar.php:4711
-#: includes/class-pis-posts-in-sidebar.php:4800
-#: includes/class-pis-posts-in-sidebar.php:4917
-#: includes/class-pis-posts-in-sidebar.php:5463
-#: includes/class-pis-posts-in-sidebar.php:5645
-#: includes/class-pis-posts-in-sidebar.php:5801
-#: includes/class-pis-posts-in-sidebar.php:5983
+#: includes/class-pis-posts-in-sidebar.php:3279
+#: includes/class-pis-posts-in-sidebar.php:3392
+#: includes/class-pis-posts-in-sidebar.php:3482
+#: includes/class-pis-posts-in-sidebar.php:3599
+#: includes/class-pis-posts-in-sidebar.php:4145
+#: includes/class-pis-posts-in-sidebar.php:4330
+#: includes/class-pis-posts-in-sidebar.php:4488
+#: includes/class-pis-posts-in-sidebar.php:4673
 msgid "Operator"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4604
-#: includes/class-pis-posts-in-sidebar.php:4716
-#: includes/class-pis-posts-in-sidebar.php:4805
-#: includes/class-pis-posts-in-sidebar.php:4922
+#: includes/class-pis-posts-in-sidebar.php:3284
+#: includes/class-pis-posts-in-sidebar.php:3397
+#: includes/class-pis-posts-in-sidebar.php:3487
+#: includes/class-pis-posts-in-sidebar.php:3604
 msgid "Operator to test for terms."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4627
+#: includes/class-pis-posts-in-sidebar.php:3307
 msgid "Relation between A1 and A2 taxonomies"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4640
+#: includes/class-pis-posts-in-sidebar.php:3320
 msgid "Taxonomy A2"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4644
+#: includes/class-pis-posts-in-sidebar.php:3324
 msgid "movie-genre"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4685
+#: includes/class-pis-posts-in-sidebar.php:3366
 msgid "action,sci-fi"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4724
-#: includes/class-pis-posts-in-sidebar.php:5710
+#: includes/class-pis-posts-in-sidebar.php:3405
+#: includes/class-pis-posts-in-sidebar.php:4397
 msgid "Column B"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4729
+#: includes/class-pis-posts-in-sidebar.php:3410
 msgid "Taxonomy B1"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4733
+#: includes/class-pis-posts-in-sidebar.php:3414
 msgid "post_tag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4774
+#: includes/class-pis-posts-in-sidebar.php:3456
 msgid "system,apache"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4832
+#: includes/class-pis-posts-in-sidebar.php:3514
 msgid "Relation between B1 and B2 taxonomies"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4845
+#: includes/class-pis-posts-in-sidebar.php:3527
 msgid "Taxonomy B2"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4849
+#: includes/class-pis-posts-in-sidebar.php:3531
 msgid "post_format"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4891
+#: includes/class-pis-posts-in-sidebar.php:3573
 msgid "post-format-quote"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4937
+#: includes/class-pis-posts-in-sidebar.php:3619
 msgid "Date query"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4941
+#: includes/class-pis-posts-in-sidebar.php:3623
 msgid "In this section you can define the period within posts have been published. You can get posts published in a certain period or after/before a date or in a dynamic period (based on current date)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4945
+#: includes/class-pis-posts-in-sidebar.php:3627
 msgid "Get posts published in a certain period"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4947
+#: includes/class-pis-posts-in-sidebar.php:3629
 msgid "Define the period within posts are published. For example, you can pick up the posts published on 15 January, 2017 at 10."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4953
-#: includes/class-pis-posts-in-sidebar.php:5052
-#: includes/class-pis-posts-in-sidebar.php:5093
+#: includes/class-pis-posts-in-sidebar.php:3635
+#: includes/class-pis-posts-in-sidebar.php:3734
+#: includes/class-pis-posts-in-sidebar.php:3775
 msgid "Year"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4958
+#: includes/class-pis-posts-in-sidebar.php:3640
 msgid "4 digits year (e.g. 2015)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4964
-#: includes/class-pis-posts-in-sidebar.php:5063
-#: includes/class-pis-posts-in-sidebar.php:5104
+#: includes/class-pis-posts-in-sidebar.php:3646
+#: includes/class-pis-posts-in-sidebar.php:3745
+#: includes/class-pis-posts-in-sidebar.php:3786
 msgid "Month"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4969
+#: includes/class-pis-posts-in-sidebar.php:3651
 msgid "Month number (from 1 to 12)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4975
+#: includes/class-pis-posts-in-sidebar.php:3657
 msgid "Week"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4980
+#: includes/class-pis-posts-in-sidebar.php:3662
 msgid "Week of the year (from 0 to 53)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4986
-#: includes/class-pis-posts-in-sidebar.php:5074
-#: includes/class-pis-posts-in-sidebar.php:5115
+#: includes/class-pis-posts-in-sidebar.php:3668
+#: includes/class-pis-posts-in-sidebar.php:3756
+#: includes/class-pis-posts-in-sidebar.php:3797
 msgid "Day"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:4991
+#: includes/class-pis-posts-in-sidebar.php:3673
 msgid "Day of the month (from 1 to 31)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5001
+#: includes/class-pis-posts-in-sidebar.php:3683
 msgid "Hour"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5006
+#: includes/class-pis-posts-in-sidebar.php:3688
 msgid "Hour (from 0 to 23)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5012
+#: includes/class-pis-posts-in-sidebar.php:3694
 msgid "Minute"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5017
+#: includes/class-pis-posts-in-sidebar.php:3699
 msgid "Minute (from 0 to 59)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5023
+#: includes/class-pis-posts-in-sidebar.php:3705
 msgid "Second"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5028
+#: includes/class-pis-posts-in-sidebar.php:3710
 msgid "Second (from 0 to 59)."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5040
+#: includes/class-pis-posts-in-sidebar.php:3722
 msgid "Get posts published after/before a date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5042
+#: includes/class-pis-posts-in-sidebar.php:3724
 msgid "Here you can get posts published after/before a certain date. You can also use the two options together, for example, to get posts published between 2017-01-15 and 2017-01-31."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5046
+#: includes/class-pis-posts-in-sidebar.php:3728
 msgid "Get posts after this date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5048
+#: includes/class-pis-posts-in-sidebar.php:3730
 msgid "Get posts published after a certain date."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5057
-#: includes/class-pis-posts-in-sidebar.php:5098
+#: includes/class-pis-posts-in-sidebar.php:3739
+#: includes/class-pis-posts-in-sidebar.php:3780
 msgid "Accepts any four-digit year."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5068
-#: includes/class-pis-posts-in-sidebar.php:5109
+#: includes/class-pis-posts-in-sidebar.php:3750
+#: includes/class-pis-posts-in-sidebar.php:3791
 msgid "The month of the year. Accepts numbers 1-12."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5079
-#: includes/class-pis-posts-in-sidebar.php:5120
+#: includes/class-pis-posts-in-sidebar.php:3761
+#: includes/class-pis-posts-in-sidebar.php:3802
 msgid "The day of the month. Accepts numbers 1-31."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5087
+#: includes/class-pis-posts-in-sidebar.php:3769
 msgid "Get posts before this date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5089
+#: includes/class-pis-posts-in-sidebar.php:3771
 msgid "Get posts published before a certain date."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5130
+#: includes/class-pis-posts-in-sidebar.php:3812
 msgid "Other options for after/before"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5136
+#: includes/class-pis-posts-in-sidebar.php:3818
 msgid "Inclusive"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5140
+#: includes/class-pis-posts-in-sidebar.php:3822
 msgid "For after/before, whether exact value should be matched or not"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5156
+#: includes/class-pis-posts-in-sidebar.php:3838
 msgid "Post date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5160
+#: includes/class-pis-posts-in-sidebar.php:3842
 msgid "Post date GMT"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5164
+#: includes/class-pis-posts-in-sidebar.php:3846
 msgid "Post modified"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5168
+#: includes/class-pis-posts-in-sidebar.php:3850
 msgid "Post modified GMT"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5172
+#: includes/class-pis-posts-in-sidebar.php:3854
 msgid "Column"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5177
+#: includes/class-pis-posts-in-sidebar.php:3859
 msgid "Column to query against."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5189
+#: includes/class-pis-posts-in-sidebar.php:3871
 msgid "Dynamic date query"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5191
+#: includes/class-pis-posts-in-sidebar.php:3873
 msgid "Define the amount of time from now within the posts have been published. For example, you can get posts published 1 month ago or 2 years ago, and so on. An expression like \"1 month ago\" means: get posts that have been published in the last month, and not only published exactly one month ago."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5193
+#: includes/class-pis-posts-in-sidebar.php:3875
 msgid "Also, please note that these options will override the corresponding options under \"Get posts published after/before a date\"."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5197
+#: includes/class-pis-posts-in-sidebar.php:3879
 msgid "Get posts after this amount of time"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5202
-#: includes/class-pis-posts-in-sidebar.php:5264
+#: includes/class-pis-posts-in-sidebar.php:3884
+#: includes/class-pis-posts-in-sidebar.php:3946
 msgid "Amount of time"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5219
-#: includes/class-pis-posts-in-sidebar.php:5281
+#: includes/class-pis-posts-in-sidebar.php:3901
+#: includes/class-pis-posts-in-sidebar.php:3963
 msgid "Years"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5223
-#: includes/class-pis-posts-in-sidebar.php:5285
+#: includes/class-pis-posts-in-sidebar.php:3905
+#: includes/class-pis-posts-in-sidebar.php:3967
 msgid "Months"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5227
-#: includes/class-pis-posts-in-sidebar.php:5289
+#: includes/class-pis-posts-in-sidebar.php:3909
+#: includes/class-pis-posts-in-sidebar.php:3971
 msgid "Weeks"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5231
-#: includes/class-pis-posts-in-sidebar.php:5293
+#: includes/class-pis-posts-in-sidebar.php:3913
+#: includes/class-pis-posts-in-sidebar.php:3975
 msgid "Days"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5235
-#: includes/class-pis-posts-in-sidebar.php:5297
+#: includes/class-pis-posts-in-sidebar.php:3917
+#: includes/class-pis-posts-in-sidebar.php:3979
 msgid "Hours"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5239
-#: includes/class-pis-posts-in-sidebar.php:5301
+#: includes/class-pis-posts-in-sidebar.php:3921
+#: includes/class-pis-posts-in-sidebar.php:3983
 msgid "Minutes"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5243
+#: includes/class-pis-posts-in-sidebar.php:3925
 msgid "seconds"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5247
-#: includes/class-pis-posts-in-sidebar.php:5309
+#: includes/class-pis-posts-in-sidebar.php:3929
+#: includes/class-pis-posts-in-sidebar.php:3991
 msgid "Type of date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5259
+#: includes/class-pis-posts-in-sidebar.php:3941
 msgid "Get posts before this amount of time"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5305
+#: includes/class-pis-posts-in-sidebar.php:3987
 msgid "Seconds"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5328
+#: includes/class-pis-posts-in-sidebar.php:4010
 msgid "Custom fields query"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5332
+#: includes/class-pis-posts-in-sidebar.php:4014
 msgid "This section lets you retrieve posts from any custom field. If you want to use only one custom field, use the \"Custom field key A1\" field. If you have to put in relation two custom fields (e.g., display posts that have the meta key \"color\" and value \"red\" but meta key \"price\" with values between 10 and 20), then use also the \"Custom field key B1\" field. If you have to put in relation more custom fields, start using also the \"A2\" and \"B2\" fields."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5360
+#: includes/class-pis-posts-in-sidebar.php:4042
 msgid "The logical relationship between each inner meta_query array when there is more than one."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5377
+#: includes/class-pis-posts-in-sidebar.php:4059
 msgid "Custom field key A1"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5381
-#: includes/class-pis-posts-in-sidebar.php:5563
-#: includes/class-pis-posts-in-sidebar.php:5719
-#: includes/class-pis-posts-in-sidebar.php:5901
+#: includes/class-pis-posts-in-sidebar.php:4063
+#: includes/class-pis-posts-in-sidebar.php:4248
+#: includes/class-pis-posts-in-sidebar.php:4406
+#: includes/class-pis-posts-in-sidebar.php:4591
 msgid "color"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5382
-#: includes/class-pis-posts-in-sidebar.php:5564
-#: includes/class-pis-posts-in-sidebar.php:5720
-#: includes/class-pis-posts-in-sidebar.php:5902
+#: includes/class-pis-posts-in-sidebar.php:4064
+#: includes/class-pis-posts-in-sidebar.php:4249
+#: includes/class-pis-posts-in-sidebar.php:4407
+#: includes/class-pis-posts-in-sidebar.php:4592
 msgid "Enter the custom field key."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5389
-#: includes/class-pis-posts-in-sidebar.php:5571
-#: includes/class-pis-posts-in-sidebar.php:5727
-#: includes/class-pis-posts-in-sidebar.php:5909
+#: includes/class-pis-posts-in-sidebar.php:4071
+#: includes/class-pis-posts-in-sidebar.php:4256
+#: includes/class-pis-posts-in-sidebar.php:4414
+#: includes/class-pis-posts-in-sidebar.php:4599
 msgid "Custom field value"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5393
-#: includes/class-pis-posts-in-sidebar.php:5575
-#: includes/class-pis-posts-in-sidebar.php:5731
-#: includes/class-pis-posts-in-sidebar.php:5913
+#: includes/class-pis-posts-in-sidebar.php:4075
+#: includes/class-pis-posts-in-sidebar.php:4260
+#: includes/class-pis-posts-in-sidebar.php:4418
+#: includes/class-pis-posts-in-sidebar.php:4603
 msgid "blue, orange, red"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5394
-#: includes/class-pis-posts-in-sidebar.php:5576
-#: includes/class-pis-posts-in-sidebar.php:5732
-#: includes/class-pis-posts-in-sidebar.php:5914
+#: includes/class-pis-posts-in-sidebar.php:4076
+#: includes/class-pis-posts-in-sidebar.php:4261
+#: includes/class-pis-posts-in-sidebar.php:4419
+#: includes/class-pis-posts-in-sidebar.php:4604
 msgid "Enter one or more values of the custom field, comma separated."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5467
-#: includes/class-pis-posts-in-sidebar.php:5649
-#: includes/class-pis-posts-in-sidebar.php:5805
-#: includes/class-pis-posts-in-sidebar.php:5987
+#: includes/class-pis-posts-in-sidebar.php:4150
+#: includes/class-pis-posts-in-sidebar.php:4335
+#: includes/class-pis-posts-in-sidebar.php:4493
+#: includes/class-pis-posts-in-sidebar.php:4678
 msgid "Operator to test for values."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5516
-#: includes/class-pis-posts-in-sidebar.php:5698
-#: includes/class-pis-posts-in-sidebar.php:5854
-#: includes/class-pis-posts-in-sidebar.php:6036
+#: includes/class-pis-posts-in-sidebar.php:4199
+#: includes/class-pis-posts-in-sidebar.php:4384
+#: includes/class-pis-posts-in-sidebar.php:4542
+#: includes/class-pis-posts-in-sidebar.php:4727
 msgid "Type"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5520
-#: includes/class-pis-posts-in-sidebar.php:5702
-#: includes/class-pis-posts-in-sidebar.php:5858
-#: includes/class-pis-posts-in-sidebar.php:6040
+#: includes/class-pis-posts-in-sidebar.php:4204
+#: includes/class-pis-posts-in-sidebar.php:4389
+#: includes/class-pis-posts-in-sidebar.php:4547
+#: includes/class-pis-posts-in-sidebar.php:4732
 msgid "Custom field type."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5547
+#: includes/class-pis-posts-in-sidebar.php:4231
 msgid "Relation between A1 and A2 custom fields"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5559
+#: includes/class-pis-posts-in-sidebar.php:4244
 msgid "Custom field key A2"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5715
+#: includes/class-pis-posts-in-sidebar.php:4402
 msgid "Custom field key B1"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5885
+#: includes/class-pis-posts-in-sidebar.php:4574
 msgid "Relation between B1 and B2 custom fields"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:5897
+#: includes/class-pis-posts-in-sidebar.php:4587
 msgid "Custom field key B2"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6059
+#: includes/class-pis-posts-in-sidebar.php:4751
 msgid "Displaying posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6063
+#: includes/class-pis-posts-in-sidebar.php:4755
 msgid "Define here which elements you want to display in the widget."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6071
+#: includes/class-pis-posts-in-sidebar.php:4763
 msgid "The title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6076
+#: includes/class-pis-posts-in-sidebar.php:4768
 msgid "Display the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6086
+#: includes/class-pis-posts-in-sidebar.php:4778
 msgid "Link the title to the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6096
+#: includes/class-pis-posts-in-sidebar.php:4788
 msgid "Show an arrow after the title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6106
+#: includes/class-pis-posts-in-sidebar.php:4798
 msgid "The length of the title"
 msgstr ""
 
 #. translators: there is some code.
-#: includes/class-pis-posts-in-sidebar.php:6112
+#: includes/class-pis-posts-in-sidebar.php:4804
 msgid "Use %s to leave the length unchanged."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6121
-#: includes/class-pis-posts-in-sidebar.php:6210
+#: includes/class-pis-posts-in-sidebar.php:4813
+#: includes/class-pis-posts-in-sidebar.php:4903
 msgid "Words"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6125
-#: includes/class-pis-posts-in-sidebar.php:6214
+#: includes/class-pis-posts-in-sidebar.php:4817
+#: includes/class-pis-posts-in-sidebar.php:4907
 msgid "Characters"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6129
+#: includes/class-pis-posts-in-sidebar.php:4821
 msgid "Title length unit"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6139
+#: includes/class-pis-posts-in-sidebar.php:4832
 msgid "Add an ellipsis after the shortened title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6149
+#: includes/class-pis-posts-in-sidebar.php:4842
 msgid "The text of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6156
+#: includes/class-pis-posts-in-sidebar.php:4849
 msgid "The full content"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6160
+#: includes/class-pis-posts-in-sidebar.php:4853
 msgid "The rich content"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6164
+#: includes/class-pis-posts-in-sidebar.php:4857
 msgid "The simple text"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6168
+#: includes/class-pis-posts-in-sidebar.php:4861
 msgid "The excerpt up to \"more\" tag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6172
+#: includes/class-pis-posts-in-sidebar.php:4865
 msgid "The excerpt"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6176
+#: includes/class-pis-posts-in-sidebar.php:4869
 msgid "Display only the Read more link"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6180
+#: includes/class-pis-posts-in-sidebar.php:4873
 msgid "Do not show any text"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6184
+#: includes/class-pis-posts-in-sidebar.php:4877
 msgid "Display this type of text"
 msgstr ""
 
 #. translators: there is some code.
-#: includes/class-pis-posts-in-sidebar.php:6190
+#: includes/class-pis-posts-in-sidebar.php:4883
 msgid "For more information regarding these types of text, please see %1$shere%2$s."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6197
+#: includes/class-pis-posts-in-sidebar.php:4890
 msgid "The WordPress generated excerpt length will be"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6218
+#: includes/class-pis-posts-in-sidebar.php:4911
 msgid "Excerpt length unit"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6228
+#: includes/class-pis-posts-in-sidebar.php:4922
 msgid "Use this text for More link"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6233
+#: includes/class-pis-posts-in-sidebar.php:4927
 msgid "The \"Read more\" text will be automatically hidden if the length of the WordPress-generated excerpt is smaller than or equal to the user-defined length."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6240
+#: includes/class-pis-posts-in-sidebar.php:4934
 msgid "Display an arrow after the text of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6255
+#: includes/class-pis-posts-in-sidebar.php:4949
 msgid "The featured image of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6264
+#: includes/class-pis-posts-in-sidebar.php:4958
 msgid "Your theme does not support the Post Thumbnail feature. No image will be displayed."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6270
+#: includes/class-pis-posts-in-sidebar.php:4964
 msgid "Display the featured image of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6289
+#: includes/class-pis-posts-in-sidebar.php:4983
 msgid "The size of the thumbnail will be"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6302
+#: includes/class-pis-posts-in-sidebar.php:4996
 msgid "Do not change"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6306
+#: includes/class-pis-posts-in-sidebar.php:5000
 msgid "Left"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6310
+#: includes/class-pis-posts-in-sidebar.php:5004
 msgid "Right"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6314
+#: includes/class-pis-posts-in-sidebar.php:5008
 msgid "Center"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6319
+#: includes/class-pis-posts-in-sidebar.php:5013
 msgid "Align the image to"
 msgstr ""
 
 #. translators: there is some code.
-#: includes/class-pis-posts-in-sidebar.php:6331
+#: includes/class-pis-posts-in-sidebar.php:5025
 msgid "Note that in order to use image sizes different from the WordPress standards, add them to your theme's %3$sfunctions.php%4$s file. See the %1$sCodex%2$s for further information."
 msgstr ""
 
 #. translators: there is some code.
-#: includes/class-pis-posts-in-sidebar.php:6338
+#: includes/class-pis-posts-in-sidebar.php:5035
 msgid "You can also use %1$sa plugin%2$s that could help you in doing it."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6348
+#: includes/class-pis-posts-in-sidebar.php:5046
 msgid "The link of the featured image"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6353
+#: includes/class-pis-posts-in-sidebar.php:5051
 msgid "Link the image to the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6357
+#: includes/class-pis-posts-in-sidebar.php:5055
 msgid "If activated, the image will be linked to the post. If you want to change the link, enter another URL in the box below."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6364
+#: includes/class-pis-posts-in-sidebar.php:5062
 msgid "Link the image to this URL"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6369
+#: includes/class-pis-posts-in-sidebar.php:5067
 msgid "By default the featured image is linked to the post. Use this field to link the image to a URL of your choice. Please, note that every featured image of this widget will be linked to the same URL."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6373
+#: includes/class-pis-posts-in-sidebar.php:5071
 msgid "Custom featured image"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6378
+#: includes/class-pis-posts-in-sidebar.php:5076
 msgid "Use this image instead of the standard featured image"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6383
+#: includes/class-pis-posts-in-sidebar.php:5081
 msgid "Paste here the URL of the image. Note that the same image will be used for all the posts in the widget, unless you activate the checkbox below."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6390
+#: includes/class-pis-posts-in-sidebar.php:5088
 msgid "Use custom image URL only if the post has not a featured image."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6403
-#: includes/class-pis-posts-in-sidebar.php:6696
-#: includes/class-pis-posts-in-sidebar.php:6868
-#: includes/class-pis-posts-in-sidebar.php:6898
-#: includes/class-pis-posts-in-sidebar.php:6928
-#: includes/class-pis-posts-in-sidebar.php:7085
+#: includes/class-pis-posts-in-sidebar.php:5101
+#: includes/class-pis-posts-in-sidebar.php:5394
+#: includes/class-pis-posts-in-sidebar.php:5566
+#: includes/class-pis-posts-in-sidebar.php:5596
+#: includes/class-pis-posts-in-sidebar.php:5626
+#: includes/class-pis-posts-in-sidebar.php:5783
 msgid "Move this section"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6408
-#: includes/class-pis-posts-in-sidebar.php:6701
-#: includes/class-pis-posts-in-sidebar.php:7090
+#: includes/class-pis-posts-in-sidebar.php:5106
+#: includes/class-pis-posts-in-sidebar.php:5399
+#: includes/class-pis-posts-in-sidebar.php:5788
 msgid "Display this section before the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6423
+#: includes/class-pis-posts-in-sidebar.php:5121
 msgid "Author, date/time and comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6434
+#: includes/class-pis-posts-in-sidebar.php:5132
 msgid "Display the author of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6444
+#: includes/class-pis-posts-in-sidebar.php:5142
 msgid "Use this text before author's name"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6455
+#: includes/class-pis-posts-in-sidebar.php:5153
 msgid "Link the author to his archive"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6469
+#: includes/class-pis-posts-in-sidebar.php:5167
 msgid "Display the date of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6479
+#: includes/class-pis-posts-in-sidebar.php:5177
 msgid "Use this text before date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6490
+#: includes/class-pis-posts-in-sidebar.php:5188
 msgid "Link the date to the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6500
+#: includes/class-pis-posts-in-sidebar.php:5198
 msgid "Display the time of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6514
+#: includes/class-pis-posts-in-sidebar.php:5212
 msgid "Display the number of comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6524
+#: includes/class-pis-posts-in-sidebar.php:5222
 msgid "Use this text before comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6535
+#: includes/class-pis-posts-in-sidebar.php:5233
 msgid "Link the comments to post's comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6545
+#: includes/class-pis-posts-in-sidebar.php:5243
 msgid "Display the number of comments only"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6563
+#: includes/class-pis-posts-in-sidebar.php:5261
 msgid "Display author's Gravatar"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6575
+#: includes/class-pis-posts-in-sidebar.php:5273
 msgid "Gravatar size"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6586
+#: includes/class-pis-posts-in-sidebar.php:5284
 msgid "URL of the default Gravatar image"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6599
+#: includes/class-pis-posts-in-sidebar.php:5297
 msgid "Next to the post title"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6603
+#: includes/class-pis-posts-in-sidebar.php:5301
 msgid "Next to the post content"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6607
+#: includes/class-pis-posts-in-sidebar.php:5305
 msgid "Next to the author name"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6611
+#: includes/class-pis-posts-in-sidebar.php:5309
 msgid "Gravatar position"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6626
+#: includes/class-pis-posts-in-sidebar.php:5324
 msgid "Display the modification date of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6636
+#: includes/class-pis-posts-in-sidebar.php:5334
 msgid "Use this text before modification date"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6647
+#: includes/class-pis-posts-in-sidebar.php:5345
 msgid "Link the modification date to the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6657
+#: includes/class-pis-posts-in-sidebar.php:5355
 msgid "Display the modification time of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6671
+#: includes/class-pis-posts-in-sidebar.php:5369
 msgid "Hide the comments section if there is no comment"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6681
+#: includes/class-pis-posts-in-sidebar.php:5379
 msgid "Use this separator between author, date/time and comments"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6686
+#: includes/class-pis-posts-in-sidebar.php:5384
 msgid "A space will be added before and after the separator."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6711
-#: includes/class-pis-posts-in-sidebar.php:7100
+#: includes/class-pis-posts-in-sidebar.php:5409
+#: includes/class-pis-posts-in-sidebar.php:5798
 msgid "Display this section after the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6726
+#: includes/class-pis-posts-in-sidebar.php:5424
 msgid "Taxonomies"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6734
+#: includes/class-pis-posts-in-sidebar.php:5432
 msgid "Categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6739
+#: includes/class-pis-posts-in-sidebar.php:5437
 msgid "Show the categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6749
+#: includes/class-pis-posts-in-sidebar.php:5447
 msgid "Use this text before categories list"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6760
+#: includes/class-pis-posts-in-sidebar.php:5458
 msgid "Use this separator between categories"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6765
-#: includes/class-pis-posts-in-sidebar.php:6815
-#: includes/class-pis-posts-in-sidebar.php:6854
+#: includes/class-pis-posts-in-sidebar.php:5463
+#: includes/class-pis-posts-in-sidebar.php:5513
+#: includes/class-pis-posts-in-sidebar.php:5552
 msgid "A space will be added after the separator."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6773
+#: includes/class-pis-posts-in-sidebar.php:5471
 msgid "Tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6778
+#: includes/class-pis-posts-in-sidebar.php:5476
 msgid "Show the tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6788
+#: includes/class-pis-posts-in-sidebar.php:5486
 msgid "Use this text before tags list"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6799
+#: includes/class-pis-posts-in-sidebar.php:5497
 msgid "Use this hashtag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6810
+#: includes/class-pis-posts-in-sidebar.php:5508
 msgid "Use this separator between tags"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6823
+#: includes/class-pis-posts-in-sidebar.php:5521
 msgid "Custom taxonomies"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6828
+#: includes/class-pis-posts-in-sidebar.php:5526
 msgid "Show the custom taxonomies"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6838
+#: includes/class-pis-posts-in-sidebar.php:5536
 msgid "Use this hashtag for terms"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6849
+#: includes/class-pis-posts-in-sidebar.php:5547
 msgid "Use this separator between terms"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6873
+#: includes/class-pis-posts-in-sidebar.php:5571
 msgid "Display the categories before the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6883
+#: includes/class-pis-posts-in-sidebar.php:5581
 msgid "Display the categories after the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6903
+#: includes/class-pis-posts-in-sidebar.php:5601
 msgid "Display the tags before the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6913
+#: includes/class-pis-posts-in-sidebar.php:5611
 msgid "Display the tags after the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6933
+#: includes/class-pis-posts-in-sidebar.php:5631
 msgid "Display the custom taxonomies before the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6943
+#: includes/class-pis-posts-in-sidebar.php:5641
 msgid "Display the custom taxonomies after the title of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6962
+#: includes/class-pis-posts-in-sidebar.php:5660
 msgid "The custom fields"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6970
+#: includes/class-pis-posts-in-sidebar.php:5668
 msgid "Display all the custom fields"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6975
+#: includes/class-pis-posts-in-sidebar.php:5673
 msgid "Display all the custom fields of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6986
+#: includes/class-pis-posts-in-sidebar.php:5684
 msgid "Display a single custom field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:6991
+#: includes/class-pis-posts-in-sidebar.php:5689
 msgid "Display the custom field of the post"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7017
+#: includes/class-pis-posts-in-sidebar.php:5715
 msgid "Display this custom field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7032
+#: includes/class-pis-posts-in-sidebar.php:5730
 msgid "Use this text before the custom field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7036
+#: includes/class-pis-posts-in-sidebar.php:5734
 msgid "Custom field:"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7043
+#: includes/class-pis-posts-in-sidebar.php:5741
 msgid "The custom field content length will be (in characters)"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7054
+#: includes/class-pis-posts-in-sidebar.php:5752
 msgid "Use this text for horizontal ellipsis"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7065
+#: includes/class-pis-posts-in-sidebar.php:5763
 msgid "Also display the key of the custom field"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7075
+#: includes/class-pis-posts-in-sidebar.php:5773
 msgid "Use this separator between meta key and value"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7115
+#: includes/class-pis-posts-in-sidebar.php:5813
 msgid "The link to the archive"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7126
+#: includes/class-pis-posts-in-sidebar.php:5824
 msgid "Display the link to the taxonomy archive"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7144
+#: includes/class-pis-posts-in-sidebar.php:5842
 msgid "Category"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7149
+#: includes/class-pis-posts-in-sidebar.php:5847
 msgid "Tag"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7159
+#: includes/class-pis-posts-in-sidebar.php:5859
 msgid "Custom post type"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7170
+#: includes/class-pis-posts-in-sidebar.php:5872
 msgid "Custom taxonomy"
 msgstr ""
 
 #. translators: This is the name of the post format.
-#: includes/class-pis-posts-in-sidebar.php:7180
+#: includes/class-pis-posts-in-sidebar.php:5882
 msgid "Post format: %s"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7187
+#: includes/class-pis-posts-in-sidebar.php:5889
 msgid "Link to the archive of"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7201
+#: includes/class-pis-posts-in-sidebar.php:5903
 msgid "Taxonomy name"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7205
+#: includes/class-pis-posts-in-sidebar.php:5907
 msgid "genre"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7208
+#: includes/class-pis-posts-in-sidebar.php:5910
 msgid "Enter the term name of the custom taxonomy (e.g., %1$sgenre%2$s). %3$sUse this field only if you selected \"Custom taxonomy\" in the \"Link to the archive of\" dropdown menu.%4$s"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7224
+#: includes/class-pis-posts-in-sidebar.php:5932
 msgid "Taxonomy term name"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7228
+#: includes/class-pis-posts-in-sidebar.php:5936
 msgid "science"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7231
+#: includes/class-pis-posts-in-sidebar.php:5939
 msgid "Enter the name of the taxonomy term (e.g., %1$sscience%2$s if the taxonomy is \"genre\").%3$sIf you selected \"Author\" in \"Link to the archive of\" field, enter the author slug; if you selected \"Category\", enter the category slug, and so on."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7246
+#: includes/class-pis-posts-in-sidebar.php:5954
 msgid "Enable dynamic link in single posts and archive pages"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7250
+#: includes/class-pis-posts-in-sidebar.php:5958
 msgid "When activated, this function will get the term name automatically in single posts and archive pages. The only required option is the field \"Link to the archive of\". If activated, the content of the field \"Taxonomy term name\" will be ignored in single posts and archive pages. This option will not work on post formats archives."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7262
+#: includes/class-pis-posts-in-sidebar.php:5970
 msgid "Use this text for archive link"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7270
+#: includes/class-pis-posts-in-sidebar.php:5978
 msgid "Use %s to display the taxonomy term name."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7282
+#: includes/class-pis-posts-in-sidebar.php:5990
 msgid "When no posts are found"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7290
+#: includes/class-pis-posts-in-sidebar.php:5998
 msgid "Use this text when there are no posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7301
+#: includes/class-pis-posts-in-sidebar.php:6009
 msgid "Completely hide the widget if no posts are found"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7319
+#: includes/class-pis-posts-in-sidebar.php:6027
 msgid "Styles"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7323
+#: includes/class-pis-posts-in-sidebar.php:6031
 msgid "This section defines the margin for each line of the widget. Leave blank if you don't want to add any local style."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7350
+#: includes/class-pis-posts-in-sidebar.php:6058
 msgid "Unit for margins"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7362
+#: includes/class-pis-posts-in-sidebar.php:6070
 msgid "Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don't want any space."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7377
+#: includes/class-pis-posts-in-sidebar.php:6086
 msgid "Introduction bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7378
+#: includes/class-pis-posts-in-sidebar.php:6087
 msgid "Title bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7379
+#: includes/class-pis-posts-in-sidebar.php:6088
 msgid "Image left &amp; right margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7380
+#: includes/class-pis-posts-in-sidebar.php:6089
 msgid "Image bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7384
+#: includes/class-pis-posts-in-sidebar.php:6093
 msgid "Excerpt bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7385
+#: includes/class-pis-posts-in-sidebar.php:6094
 msgid "Utility bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7386
+#: includes/class-pis-posts-in-sidebar.php:6095
 msgid "Categories bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7387
+#: includes/class-pis-posts-in-sidebar.php:6096
 msgid "Tags bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7391
+#: includes/class-pis-posts-in-sidebar.php:6100
 msgid "Terms bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7392
+#: includes/class-pis-posts-in-sidebar.php:6101
 msgid "Custom field bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7393
+#: includes/class-pis-posts-in-sidebar.php:6102
 msgid "Archive bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7394
+#: includes/class-pis-posts-in-sidebar.php:6103
 msgid "No-posts bottom margin"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7402
-#: includes/class-pis-posts-in-sidebar.php:7435
+#: includes/class-pis-posts-in-sidebar.php:6111
+#: includes/class-pis-posts-in-sidebar.php:6144
 msgid "Custom styles"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7410
+#: includes/class-pis-posts-in-sidebar.php:6119
 msgid "In this field you can add your own styles, for example: %s"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7418
+#: includes/class-pis-posts-in-sidebar.php:6127
 msgid "To apply a style only to elements of this widget, prefix every style with this ID selector: %s"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7426
+#: includes/class-pis-posts-in-sidebar.php:6135
 msgid "For example: %s"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7439
+#: includes/class-pis-posts-in-sidebar.php:6148
 msgid "Enter here your CSS styles"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7451
+#: includes/class-pis-posts-in-sidebar.php:6160
 msgid "Extras"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7458
+#: includes/class-pis-posts-in-sidebar.php:6167
 msgid "Add a global container with this CSS class"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7465
+#: includes/class-pis-posts-in-sidebar.php:6174
 msgid "Enter the name of your container (for example, %1$s). The plugin will add a new %2$s container with this class. You can enter only one class and the name may contain only letters, hyphens and underscores. The new container will enclose all the widget, from the widget title to the last line."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7476
+#: includes/class-pis-posts-in-sidebar.php:6189
 msgid "Unordered list"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7480
+#: includes/class-pis-posts-in-sidebar.php:6193
 msgid "Ordered list"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7484
+#: includes/class-pis-posts-in-sidebar.php:6197
 msgid "Use this type of list for the posts"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7495
+#: includes/class-pis-posts-in-sidebar.php:6208
 msgid "Try to remove the bullets and the extra left space from the list elements"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7501
+#: includes/class-pis-posts-in-sidebar.php:6214
 msgid "If the plugin doesn't remove the bullets and/or the extra left space, you have to %1$sedit your CSS file%2$s manually."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7510
+#: includes/class-pis-posts-in-sidebar.php:6224
 msgid "Add the WordPress standard classes to the post in the widget"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7516
+#: includes/class-pis-posts-in-sidebar.php:6230
 msgid "Every standard WordPress posts has a series of HTML classes, such as %s, and so on. Activating this option you can add these classes to the usual plugin's classes."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7533
+#: includes/class-pis-posts-in-sidebar.php:6247
 msgid "Cache"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7543
+#: includes/class-pis-posts-in-sidebar.php:6258
 msgid "Use a cache to serve the output"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7547
+#: includes/class-pis-posts-in-sidebar.php:6262
 msgid "This option, if activated, will increase the performance but will show the same output during the defined cache time."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7558
+#: includes/class-pis-posts-in-sidebar.php:6276
 msgid "The cache will be used for (in seconds)"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7565
+#: includes/class-pis-posts-in-sidebar.php:6283
 msgid "For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7581
+#: includes/class-pis-posts-in-sidebar.php:6300
 msgid "Debugging"
 msgstr ""
 
 #. translators: %s contains some code.
-#: includes/class-pis-posts-in-sidebar.php:7589
+#: includes/class-pis-posts-in-sidebar.php:6308
 msgid "You are using Posts in Sidebar version %s."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7595
+#: includes/class-pis-posts-in-sidebar.php:6314
 msgid "Use this options for debugging purposes only."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7597
+#: includes/class-pis-posts-in-sidebar.php:6316
 msgid "Deactivate the following option only if you want to display debugging information publicly on your site."
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7601
+#: includes/class-pis-posts-in-sidebar.php:6320
 msgid "Display debugging information to admins only"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7612
+#: includes/class-pis-posts-in-sidebar.php:6331
 msgid "Display the query for the widget"
 msgstr ""
 
-#: includes/class-pis-posts-in-sidebar.php:7622
+#: includes/class-pis-posts-in-sidebar.php:6341
 msgid "Display the complete set of parameters for the widget"
 msgstr ""

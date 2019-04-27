@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the display functions of the plugin.
+ * This file contains the display functions of the plugin
  *
  * @package PostsInSidebar
  * @since 1.23
@@ -25,6 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
+ *
  *     @type string  $title_margin      The margin for the title.
  *     @type string  $margin_unit       The measure unit for the margin.
  *                                      Accepted values:
@@ -116,12 +117,16 @@ function pis_the_title( $args ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
+ *
  *     @type string $post_id           The ID of the post.
- *     @type string $categ_sep         The separator for the categories.
- *     @type string $categories_margin The margin for the categories.
+ *     @type string $categ_sep         The separator between categories.
+ *     @type string $categories_margin The margin for the categories paragraph.
+ *                                     This variable is initially null, because
+ *                                     it must not be returned if not defined,
+ *                                     but can be filled with a numeric value.
  *     @type string $margin_unit       The measure unit for the margin.
  *                                     Accepted values:
- *                                     px (default), %, em, rem
+ *                                     px (default), %, em, rem.
  *     @type string $categ_text        The leading text for the categories.
  * }
  *
@@ -132,12 +137,23 @@ function pis_the_categories( $args ) {
 	$defaults = array(
 		'post_id'           => '',
 		'categ_sep'         => ',',
-		'categories_margin' => '',
+		'categories_margin' => null,
 		'margin_unit'       => 'px',
 		'categ_text'        => esc_html__( 'Category:', 'posts-in-sidebar' ),
 	);
 
 	$args = wp_parse_args( $args, $defaults );
+
+	// Check categories_margin validity.
+	if ( ! is_numeric( $args['categories_margin'] ) ) {
+		$args['categories_margin'] = null;
+	}
+
+	// Check margin_unit validity.
+	$valid_units = array( 'px', '%', 'em', 'rem' );
+	if ( ! in_array( $args['margin_unit'], $valid_units, true ) ) {
+		$args['margin_unit'] = 'px';
+	}
 
 	$output = '';
 
@@ -160,13 +176,17 @@ function pis_the_categories( $args ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
+ *
  *     @type string $post_id      The ID of the post.
  *     @type string $hashtag      The symbol to be used as hashtag.
- *     @type string $tag_sep      The separator for the tags.
- *     @type string $tags_margin  The margin for the tags.
+ *     @type string $tag_sep      The separator between tags.
+ *     @type string $tags_margin  The margin for the tags paragraph.
+ *                                This variable is initially null, because it
+ *                                must not be returned if not defined,
+ *                                but can be filled with a numeric value.
  *     @type string $margin_unit  The measure unit for the margin.
  *                                Accepted values:
- *                                px (default), %, em, rem
+ *                                px (default), %, em, rem.
  *     @type string $tags_text    The leading text for the tags.
  * }
  * @return string The HTML paragraph with the tags.
@@ -178,12 +198,23 @@ function pis_the_tags( $args ) {
 		'post_id'     => '',
 		'hashtag'     => '#',
 		'tag_sep'     => '',
-		'tags_margin' => '',
+		'tags_margin' => null,
 		'margin_unit' => 'px',
 		'tags_text'   => esc_html__( 'Tags:', 'posts-in-sidebar' ),
 	);
 
 	$args = wp_parse_args( $args, $defaults );
+
+	// Check tags_margin validity.
+	if ( ! is_numeric( $args['tags_margin'] ) ) {
+		$args['tags_margin'] = null;
+	}
+
+	// Check margin_unit validity.
+	$valid_units = array( 'px', '%', 'em', 'rem' );
+	if ( ! in_array( $args['margin_unit'], $valid_units, true ) ) {
+		$args['margin_unit'] = 'px';
+	}
 
 	$output = '';
 
@@ -206,6 +237,7 @@ function pis_the_tags( $args ) {
  *
  * @param array $args {
  *     The array containing the custom parameters.
+ *
  *     @type string  $post_id             The ID of the post.
  *     @type boolean $custom_field_all    If the user want to display all the custom fields of the post.
  *     @type string  $meta                The post meta.
@@ -217,6 +249,7 @@ function pis_the_tags( $args ) {
  *     @type string  $custom_field_margin The custom field bottom margin.
  *     @type string  $margin_unit         The unit for margin.
  * }
+ * @return string One or more HTML paragraphs with the custom fields.
  * @since 3.8.4
  */
 function pis_custom_field( $args ) {
@@ -235,29 +268,18 @@ function pis_custom_field( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$post_id             = $args['post_id'];
-	$custom_field_all    = $args['custom_field_all'];
-	$meta                = $args['meta'];
-	$custom_field_txt    = $args['custom_field_txt'];
-	$custom_field_key    = $args['custom_field_key'];
-	$custom_field_sep    = $args['custom_field_sep'];
-	$custom_field_count  = $args['custom_field_count'];
-	$custom_field_hellip = $args['custom_field_hellip'];
-	$custom_field_margin = $args['custom_field_margin'];
-	$margin_unit         = $args['margin_unit'];
-
 	$output = '';
 
 	// The leading text for the custom fields.
-	if ( $custom_field_txt ) {
-		$cf_text = '<span class="pis-custom-field-text-before">' . rtrim( $custom_field_txt ) . '</span> ';
+	if ( $args['custom_field_txt'] ) {
+		$cf_text = '<span class="pis-custom-field-text-before">' . rtrim( $args['custom_field_txt'] ) . '</span> ';
 	} else {
 		$cf_text = '';
 	}
 
 	// If the user want to display all the custom fields of the post.
-	if ( $custom_field_all ) {
-		$the_custom_fields = get_post_custom( $post_id );
+	if ( $args['custom_field_all'] ) {
+		$the_custom_fields = get_post_custom( $args['post_id'] );
 		if ( $the_custom_fields ) {
 			foreach ( $the_custom_fields as $cf_key => $cf_value ) {
 				// Make sure to avoid custom fields starting with _ (an underscore).
@@ -265,20 +287,20 @@ function pis_custom_field( $args ) {
 					foreach ( $cf_value as $k => $cf_v ) {
 
 						// If we have to display a text before the custom field.
-						if ( $custom_field_key ) {
-							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span><span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
+						if ( $args['custom_field_key'] ) {
+							$key = '<span class="pis-custom-field-key">' . $cf_key . '</span><span class="pis-custom-field-divider">' . $args['custom_field_sep'] . '</span>';
 						} else {
 							$key = '';
 						}
 
 						// If we have to reduce the length of the custom field value.
-						if ( ! empty( $custom_field_count ) ) {
-							if ( $custom_field_count > strlen( $cf_v ) ) {
+						if ( ! empty( $args['custom_field_count'] ) ) {
+							if ( $args['custom_field_count'] > strlen( $cf_v ) ) {
 								$cf_h = '';
 							} else {
-								$cf_h = $custom_field_hellip;
+								$cf_h = $args['custom_field_hellip'];
 							}
-							$cf_text_value = rtrim( mb_substr( $cf_v, 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $cf_h;
+							$cf_text_value = rtrim( mb_substr( $cf_v, 0, $args['custom_field_count'], get_option( 'blog_charset' ) ) ) . $cf_h;
 						} else {
 							$cf_text_value = $cf_v;
 						}
@@ -290,7 +312,7 @@ function pis_custom_field( $args ) {
 						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key, ' -' ) );
 
 						// Build the final output.
-						$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
+						$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
 						$output .= $cf_text . $key . $cf_value;
 						$output .= '</p>';
 					}
@@ -298,19 +320,19 @@ function pis_custom_field( $args ) {
 			}
 		}
 	} else {
-		$the_custom_field = get_post_meta( $post_id, $meta, false );
+		$the_custom_field = get_post_meta( $args['post_id'], $args['meta'], false );
 		if ( $the_custom_field ) {
-			if ( $custom_field_key ) {
-				$key = '<span class="pis-custom-field-key">' . $meta . '</span><span class="pis-custom-field-divider">' . $custom_field_sep . '</span>';
+			if ( $args['custom_field_key'] ) {
+				$key = '<span class="pis-custom-field-key">' . $args['meta'] . '</span><span class="pis-custom-field-divider">' . $args['custom_field_sep'] . '</span>';
 			} else {
 				$key = '';
 			}
-			if ( ! empty( $custom_field_count ) ) {
-				if ( $custom_field_count > strlen( $the_custom_field[0] ) ) {
-					$custom_field_hellip = '';
+			if ( ! empty( $args['custom_field_count'] ) ) {
+				if ( $args['custom_field_count'] > strlen( $the_custom_field[0] ) ) {
+					$args['custom_field_hellip'] = '';
 				}
-				/* It was originally: `$cf_text_value = wp_trim_words( $the_custom_field[0], $custom_field_count, $custom_field_hellip );` */
-				$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $custom_field_count, get_option( 'blog_charset' ) ) ) . $custom_field_hellip;
+				/* It was originally: `$cf_text_value = wp_trim_words( $the_custom_field[0], $args['custom_field_count'], $args['custom_field_hellip'] );` */
+				$cf_text_value = rtrim( mb_substr( $the_custom_field[0], 0, $args['custom_field_count'], get_option( 'blog_charset' ) ) ) . $args['custom_field_hellip'];
 			} else {
 				if ( isset( $the_custom_field[0] ) ) {
 					$cf_text_value = $the_custom_field[0];
@@ -320,7 +342,7 @@ function pis_custom_field( $args ) {
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
 
-			$output .= '<p ' . pis_paragraph( $custom_field_margin, $margin_unit, 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $custom_field_key, ' -' ) ), 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $args['custom_field_key'], ' -' ) ), 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}
@@ -333,20 +355,34 @@ function pis_custom_field( $args ) {
  * Add the thumbnail of the post.
  *
  * @param array $args {
- *    The array of parameters.
+ *     The array of parameters.
  *
- *    @type string  image_align         Alignment of the image. Accepts 'no_change', 'left', 'right', 'center'. Default 'no_change'.
- *    @type string  side_image_margin   The left/right margin for the image. Default null.
- *    @type string  bottom_image_margin The left/right margin for the image. Default null.
- *    @type string  margin_unit         The margin unit. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
- *    @type string  pis_query           The query containing the post. Default empty.
- *    @type string  image_size          The size of the image. Default 'thumbnail'.
- *    @type boolean thumb_wrap          If the image should be wrapped in a HTML p element. Default false.
- *    @type string  custom_image_url    The URL of the custom thumbnail. Default empty.
- *    @type boolean custom_img_no_thumb If the custom image should be used only if the post has not a featured image. Default true.
- *    @type string  post_type           The post type. Default 'post'.
- *    @type string  image_link          The URL to a custom address. Default empty.
- *    @type boolean image_link_to_post  If the thumbnail should be linked to the post. Default true.
+ *     @type string  $image_align         Alignment of the image.
+ *                                        Accepts: 'no_change', 'left', 'right', 'center'.
+ *                                        Default 'no_change'.
+ *     @type string  $side_image_margin   The left/right margin for the image.
+ *                                        Default null.
+ *     @type string  $bottom_image_margin The left/right margin for the image.
+ *                                        Default null.
+ *     @type string  $margin_unit         The margin unit.
+ *                                        Accepts 'px', '%', 'em', 'rem'.
+ *                                        Default 'px'.
+ *     @type string  $pis_query           The query containing the post.
+ *                                        Default empty.
+ *     @type string  $image_size          The size of the image.
+ *                                        Default 'thumbnail'.
+ *     @type boolean $thumb_wrap          If the image should be wrapped in a HTML p element.
+ *                                        Default false.
+ *     @type string  $custom_image_url    The URL of the custom thumbnail.
+ *                                        Default empty.
+ *     @type boolean $custom_img_no_thumb If the custom image should be used only if the post has not a featured image.
+ *                                        Default true.
+ *     @type string  $post_type           The post type.
+ *                                        Default 'post'.
+ *     @type string  $image_link          The URL to a custom address.
+ *                                        Default empty.
+ *     @type boolean $image_link_to_post  If the thumbnail should be linked to the post.
+ *                                        Default true.
  * }
  * @since 1.18
  * @return string The HTML for the thumbnail.
@@ -369,20 +405,7 @@ function pis_the_thumbnail( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$image_align         = $args['image_align'];
-	$side_image_margin   = $args['side_image_margin'];
-	$bottom_image_margin = $args['bottom_image_margin'];
-	$margin_unit         = $args['margin_unit'];
-	$pis_query           = $args['pis_query'];
-	$image_size          = $args['image_size'];
-	$thumb_wrap          = $args['thumb_wrap'];
-	$custom_image_url    = $args['custom_image_url'];
-	$custom_img_no_thumb = $args['custom_img_no_thumb'];
-	$post_type           = $args['post_type'];
-	$image_link          = $args['image_link'];
-	$image_link_to_post  = $args['image_link_to_post'];
-
-	if ( $thumb_wrap ) {
+	if ( $args['thumb_wrap'] ) {
 		$open_wrap  = '<p class="pis-thumbnail">';
 		$close_wrap = '</p>';
 	} else {
@@ -390,12 +413,12 @@ function pis_the_thumbnail( $args ) {
 		$close_wrap = '';
 	}
 
-	switch ( $image_align ) {
+	switch ( $args['image_align'] ) {
 		case 'left':
 			$image_class = 'alignleft ';
 			$image_style = '';
-			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
-				$image_style = ' style="display: inline; float: left; margin-right: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+			if ( ! is_null( $args['side_image_margin'] ) || ! is_null( $args['bottom_image_margin'] ) ) {
+				$image_style = ' style="display: inline; float: left; margin-right: ' . $args['side_image_margin'] . $args['margin_unit'] . '; margin-bottom: ' . $args['bottom_image_margin'] . $args['margin_unit'] . ';"';
 				$image_style = str_replace( ' margin-right: px;', '', $image_style );
 				$image_style = str_replace( ' margin-bottom: px;', '', $image_style );
 			}
@@ -403,8 +426,8 @@ function pis_the_thumbnail( $args ) {
 		case 'right':
 			$image_class = 'alignright ';
 			$image_style = '';
-			if ( ! is_null( $side_image_margin ) || ! is_null( $bottom_image_margin ) ) {
-				$image_style = ' style="display: inline; float: right; margin-left: ' . $side_image_margin . $margin_unit . '; margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+			if ( ! is_null( $args['side_image_margin'] ) || ! is_null( $args['bottom_image_margin'] ) ) {
+				$image_style = ' style="display: inline; float: right; margin-left: ' . $args['side_image_margin'] . $args['margin_unit'] . '; margin-bottom: ' . $args['bottom_image_margin'] . $args['margin_unit'] . ';"';
 				$image_style = str_replace( ' margin-left: px;', '', $image_style );
 				$image_style = str_replace( ' margin-bottom: px;', '', $image_style );
 			}
@@ -412,8 +435,8 @@ function pis_the_thumbnail( $args ) {
 		case 'center':
 			$image_class = 'aligncenter ';
 			$image_style = '';
-			if ( ! is_null( $bottom_image_margin ) ) {
-				$image_style = ' style="margin-bottom: ' . $bottom_image_margin . $margin_unit . ';"';
+			if ( ! is_null( $args['bottom_image_margin'] ) ) {
+				$image_style = ' style="margin-bottom: ' . $args['bottom_image_margin'] . $args['margin_unit'] . ';"';
 			}
 			break;
 		default:
@@ -423,10 +446,10 @@ function pis_the_thumbnail( $args ) {
 
 	$output = $open_wrap;
 
-	if ( $image_link_to_post ) {
+	if ( $args['image_link_to_post'] ) {
 		// Figure out if a custom link for the featured image has been set.
-		if ( $image_link ) {
-			$the_image_link = $image_link;
+		if ( $args['image_link'] ) {
+			$the_image_link = $args['image_link'];
 		} else {
 			$the_image_link = get_permalink();
 		}
@@ -439,27 +462,29 @@ function pis_the_thumbnail( $args ) {
 	 *
 	 * @since 1.28
 	 */
-	if ( 'attachment' === $post_type ) {
-		$final_image_class = rtrim( "attachment-$image_size pis-thumbnail-img " . $image_class . apply_filters( 'pis_thumbnail_class', '' ) );
+	if ( 'attachment' === $args['post_type'] ) {
+		$final_image_class = 'attachment-' . $args['image_size'] . ' pis-thumbnail-img ' . $image_class . apply_filters( 'pis_thumbnail_class', '' );
+		$final_image_class = rtrim( $final_image_class );
 		$image_html        = wp_get_attachment_image(
-			$pis_query->post->ID,
-			$image_size,
+			$args['pis_query']->post->ID,
+			$args['image_size'],
 			false,
 			array( 'class' => $final_image_class )
 		);
 	} else {
-		$final_image_class = rtrim( 'pis-thumbnail-img ' . $image_class . apply_filters( 'pis_thumbnail_class', '' ) );
+		$final_image_class = 'pis-thumbnail-img ' . $image_class . apply_filters( 'pis_thumbnail_class', '' );
+		$final_image_class = rtrim( $final_image_class );
 		/**
 		 * If the post has not a post-thumbnail AND a custom image URL is defined (in this case the custom image will be used only if the post has not a featured image)
 		 * OR
 		 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
 		 */
-		if ( ( ! has_post_thumbnail() && $custom_image_url ) || ( $custom_image_url && ! $custom_img_no_thumb ) ) {
-			$image_html = '<img src="' . esc_url( $custom_image_url ) . '" alt="" class="' . $final_image_class . '">';
+		if ( ( ! has_post_thumbnail() && $args['custom_image_url'] ) || ( $args['custom_image_url'] && ! $args['custom_img_no_thumb'] ) ) {
+			$image_html = '<img src="' . esc_url( $args['custom_image_url'] ) . '" alt="" class="' . $final_image_class . '">';
 		} else {
 			$image_html = get_the_post_thumbnail(
-				$pis_query->post->ID,
-				$image_size,
+				$args['pis_query']->post->ID,
+				$args['image_size'],
 				array( 'class' => $final_image_class )
 			);
 		}
@@ -467,7 +492,7 @@ function pis_the_thumbnail( $args ) {
 
 	$output .= str_replace( '<img', '<img' . $image_style, $image_html );
 
-	if ( $image_link_to_post ) {
+	if ( $args['image_link_to_post'] ) {
 		$output .= '</a>';
 	}
 
@@ -480,7 +505,16 @@ function pis_the_thumbnail( $args ) {
  * Add the text of the post in form of excerpt, full post, and so on.
  *
  * @since 1.18
- * @param array $args The array containing the custom parameters.
+ * @param array $args {
+ *     The array containing the custom parameters.
+ *
+ *     @type string  $excerpt         The type of excerpt to display.
+ *     @type string  $pis_query       The query activated by the plugin.
+ *     @type integer $exc_length      The length of the excerpt.
+ *     @type string  $exc_length_unit The excerpt length unit.
+ *     @type string  $the_more        The text for the "Read more" link.
+ *     @type boolean $exc_arrow       If an arrow must be displayed after the text.
+ * }
  * @return string The HTML for the text of the post.
  * @uses pis_break_text()
  * @uses pis_more_arrow()
@@ -497,13 +531,6 @@ function pis_the_text( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$excerpt         = $args['excerpt'];
-	$pis_query       = $args['pis_query'];
-	$exc_length      = $args['exc_length'];
-	$exc_length_unit = $args['exc_length_unit'];
-	$the_more        = $args['the_more'];
-	$exc_arrow       = $args['exc_arrow'];
-
 	$output = '';
 
 	/*
@@ -514,7 +541,7 @@ function pis_the_text( $args ) {
 		"Excerpt"        = the excerpt as defined by the user or generated by WordPress (shortcodes will be stripped).
 		"Only Read more" = no excerpt, only the Read more link
 	*/
-	switch ( $excerpt ) :
+	switch ( $args['excerpt'] ) :
 
 		case 'full_content':
 			/**
@@ -525,7 +552,7 @@ function pis_the_text( $args ) {
 			break;
 
 		case 'rich_content':
-			$content = $pis_query->post->post_content;
+			$content = $args['pis_query']->post->post_content;
 			// Honor any paragraph break.
 			$content = pis_break_text( $content );
 			$content = do_shortcode( $content );
@@ -534,7 +561,7 @@ function pis_the_text( $args ) {
 
 		case 'content':
 			// Remove shortcodes.
-			$content = strip_shortcodes( $pis_query->post->post_content );
+			$content = strip_shortcodes( $args['pis_query']->post->post_content );
 			// remove any HTML tag.
 			$content = wp_kses( $content, array() );
 			// Honor any paragraph break.
@@ -543,18 +570,18 @@ function pis_the_text( $args ) {
 			break;
 
 		case 'more_excerpt':
-			$excerpt_text = strip_shortcodes( $pis_query->post->post_content );
+			$excerpt_text = strip_shortcodes( $args['pis_query']->post->post_content );
 			$testformore  = strpos( $excerpt_text, '<!--more-->' );
 			if ( $testformore ) {
 				$excerpt_text = substr( $excerpt_text, 0, $testformore );
 			} else {
-				if ( 'words' === $exc_length_unit ) {
-					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, '&hellip;' );
+				if ( 'words' === $args['exc_length_unit'] ) {
+					$excerpt_text = wp_trim_words( $excerpt_text, $args['exc_length'], '&hellip;' );
 				} else {
-					$excerpt_text = substr( $excerpt_text, 0, $exc_length ) . '&hellip;';
+					$excerpt_text = substr( $excerpt_text, 0, $args['exc_length'] ) . '&hellip;';
 				}
 			}
-			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output = apply_filters( 'pis_more_excerpt_text', $excerpt_text ) . pis_more_arrow( $args['the_more'], false, $args['exc_arrow'], false, true );
 			break;
 
 		case 'excerpt':
@@ -564,43 +591,43 @@ function pis_the_text( $args ) {
 			 * @see https://wordpress.org/support/topic/issue-with-excerpts-when-using-relevanssi-search
 			 * @since 1.26
 			 */
-			if ( function_exists( 'relevanssi_do_excerpt' ) && isset( $pis_query->post->original_excerpt ) ) {
-				$pis_query->post->post_excerpt = $pis_query->post->original_excerpt;
+			if ( function_exists( 'relevanssi_do_excerpt' ) && isset( $args['pis_query']->post->original_excerpt ) ) {
+				$args['pis_query']->post->post_excerpt = $args['pis_query']->post->original_excerpt;
 			}
 
 			// If we have a user-defined excerpt...
-			if ( $pis_query->post->post_excerpt ) {
+			if ( $args['pis_query']->post->post_excerpt ) {
 				// Honor any paragraph break.
-				$user_excerpt = pis_break_text( $pis_query->post->post_excerpt );
-				$output       = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+				$user_excerpt = pis_break_text( $args['pis_query']->post->post_excerpt );
+				$output       = apply_filters( 'pis_user_excerpt', $user_excerpt ) . pis_more_arrow( $args['the_more'], false, $args['exc_arrow'], false, true );
 				$output       = trim( $output );
 			} else { // ... else generate an excerpt.
-				$excerpt_text = wp_strip_all_tags( strip_shortcodes( $pis_query->post->post_content ) );
+				$excerpt_text = wp_strip_all_tags( strip_shortcodes( $args['pis_query']->post->post_content ) );
 				$no_the_more  = false;
 				$hellip       = '&hellip;';
-				if ( 'words' === $exc_length_unit ) {
-					if ( count( explode( ' ', $excerpt_text ) ) <= $exc_length ) {
+				if ( 'words' === $args['exc_length_unit'] ) {
+					if ( count( explode( ' ', $excerpt_text ) ) <= $args['exc_length'] ) {
 						$no_the_more = true;
 					}
-					$excerpt_text = wp_trim_words( $excerpt_text, $exc_length, $hellip );
+					$excerpt_text = wp_trim_words( $excerpt_text, $args['exc_length'], $hellip );
 				} else {
-					if ( strlen( $excerpt_text ) <= $exc_length ) {
+					if ( strlen( $excerpt_text ) <= $args['exc_length'] ) {
 						$no_the_more = true;
 						$hellip      = '';
 					}
-					$excerpt_text = rtrim( mb_substr( $excerpt_text, 0, $exc_length, get_option( 'blog_charset' ) ) ) . $hellip;
+					$excerpt_text = rtrim( mb_substr( $excerpt_text, 0, $args['exc_length'], get_option( 'blog_charset' ) ) ) . $hellip;
 				}
 				$output = apply_filters( 'pis_excerpt_text', $excerpt_text );
 				$output = trim( $output );
 				if ( $output ) {
-					$output .= pis_more_arrow( $the_more, $no_the_more, $exc_arrow, false, true );
+					$output .= pis_more_arrow( $args['the_more'], $no_the_more, $args['exc_arrow'], false, true );
 				}
 			}
 			break;
 
 		case 'only_read_more':
 			$excerpt_text = '';
-			$output       = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $the_more, false, $exc_arrow, false, true );
+			$output       = apply_filters( 'pis_only_read_more', $excerpt_text ) . pis_more_arrow( $args['the_more'], false, $args['exc_arrow'], false, true );
 			$output       = trim( $output );
 
 	endswitch; // Close The text.
@@ -612,30 +639,31 @@ function pis_the_text( $args ) {
  * Add the utilities section: author, date of the post and comments.
  *
  * @param array $args {
- *    The array of parameters.
+ *     The array of parameters.
  *
- *    @type boolean display_author    If display the post's outhor. Default false.
- *    @type boolean display_date      If display the post's date. Default false.
- *    @type boolean display_mod_date  If display the modification date of the post. Default false.
- *    @type boolean comments          If display comments number. Default false.
- *    @type integer utility_margin    The CSS margin value for the section. Default null value.
- *    @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
- *    @type string  author_text       The text to be prepended before the author's name. Default 'By'.
- *    @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
- *    @type string  utility_sep       The separator between the elements of the section. Default '|'.
- *    @type string  date_text         The text to be prepended before the date. Default 'Published on'.
- *    @type boolean linkify_date      If link the date name to the posts. Default false.
- *    @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
- *    @type boolean linkify_mod_date  If link the modification date to the post. Default false.
- *    @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
- *    @type string  pis_post_id       The ID of the post. Default empy.
- *    @type boolean link_to_comments  If link the comments text to the comments form. Default true.
- *    @type boolean gravatar_display  If display the Gravatar. Default false.
- *    @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
- *    @type string  gravatar_author   The ID of the post's author. Default empty value.
- *    @type integer gravatar_size     The size of the Gravatar. Default 32.
- *    @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
+ *     @type boolean display_author    If display the post's outhor. Default false.
+ *     @type boolean display_date      If display the post's date. Default false.
+ *     @type boolean display_mod_date  If display the modification date of the post. Default false.
+ *     @type boolean comments          If display comments number. Default false.
+ *     @type integer utility_margin    The CSS margin value for the section. Default null value.
+ *     @type string  margin_unit       The margin unit for $utility_margin. Accepts 'px', '%', 'em', 'rem'. Default 'px'.
+ *     @type string  author_text       The text to be prepended before the author's name. Default 'By'.
+ *     @type boolean linkify_author    If link the author name to the posts' archive of the author. Default false.
+ *     @type string  utility_sep       The separator between the elements of the section. Default '|'.
+ *     @type string  date_text         The text to be prepended before the date. Default 'Published on'.
+ *     @type boolean linkify_date      If link the date name to the posts. Default false.
+ *     @type string  mod_date_text     The text to be prepended before the modification date. Default 'Modified on'.
+ *     @type boolean linkify_mod_date  If link the modification date to the post. Default false.
+ *     @type string  comments_text     The text to be prepended before the comments number. Default 'Comments:'.
+ *     @type string  pis_post_id       The ID of the post. Default empy.
+ *     @type boolean link_to_comments  If link the comments text to the comments form. Default true.
+ *     @type boolean gravatar_display  If display the Gravatar. Default false.
+ *     @type string  gravatar_position The position for the Gravatar. Accepts 'next_title', 'next_post', 'next_author'. Default empty.
+ *     @type string  gravatar_author   The ID of the post's author. Default empty value.
+ *     @type integer gravatar_size     The size of the Gravatar. Default 32.
+ *     @type string  gravatar_default  The default image for Gravatar when unavailable. Default empty string.
  * }
+ *
  * @since 1.18
  * @return string The HTML for the section.
  * @uses pis_paragraph()
@@ -673,56 +701,30 @@ function pis_utility_section( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$display_author        = $args['display_author'];
-	$display_date          = $args['display_date'];
-	$display_time          = $args['display_time'];
-	$display_mod_date      = $args['display_mod_date'];
-	$display_mod_time      = $args['display_mod_time'];
-	$comments              = $args['comments'];
-	$utility_margin        = $args['utility_margin'];
-	$margin_unit           = $args['margin_unit'];
-	$author_text           = $args['author_text'];
-	$linkify_author        = $args['linkify_author'];
-	$utility_sep           = $args['utility_sep'];
-	$date_text             = $args['date_text'];
-	$linkify_date          = $args['linkify_date'];
-	$mod_date_text         = $args['mod_date_text'];
-	$linkify_mod_date      = $args['linkify_mod_date'];
-	$comments_text         = $args['comments_text'];
-	$pis_post_id           = $args['pis_post_id'];
-	$link_to_comments      = $args['link_to_comments'];
-	$display_comm_num_only = $args['display_comm_num_only'];
-	$hide_zero_comments    = $args['hide_zero_comments'];
-	$gravatar_display      = $args['gravatar_display'];
-	$gravatar_position     = $args['gravatar_position'];
-	$gravatar_author       = $args['gravatar_author'];
-	$gravatar_size         = $args['gravatar_size'];
-	$gravatar_default      = $args['gravatar_default'];
-
 	$output = '';
 
-	if ( $display_author || $display_date || $display_mod_date || $comments ) {
-		$output .= '<p ' . pis_paragraph( $utility_margin, $margin_unit, 'pis-utility', 'pis_utility_class' ) . '>';
+	if ( $args['display_author'] || $args['display_date'] || $args['display_mod_date'] || $args['comments'] ) {
+		$output .= '<p ' . pis_paragraph( $args['utility_margin'], $args['margin_unit'], 'pis-utility', 'pis_utility_class' ) . '>';
 	}
 
 	/* The Gravatar */
-	if ( $gravatar_display && 'next_author' === $gravatar_position ) {
+	if ( $args['gravatar_display'] && 'next_author' === $args['gravatar_position'] ) {
 		$output .= pis_get_gravatar(
 			array(
-				'author'  => $gravatar_author,
-				'size'    => $gravatar_size,
-				'default' => $gravatar_default,
+				'author'  => $args['gravatar_author'],
+				'size'    => $args['gravatar_size'],
+				'default' => $args['gravatar_default'],
 			)
 		);
 	}
 
 	/* The author */
-	if ( $display_author ) {
+	if ( $args['display_author'] ) {
 		$output .= '<span ' . pis_class( 'pis-author', apply_filters( 'pis_author_class', '' ), false ) . '>';
-		if ( $author_text ) {
-			$output .= $author_text . ' ';
+		if ( $args['author_text'] ) {
+			$output .= $args['author_text'] . ' ';
 		}
-		if ( $linkify_author ) {
+		if ( $args['linkify_author'] ) {
 			$author_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
 			$output     .= '<a ' . pis_class( 'pis-author-link', apply_filters( 'pis_author_link_class', '' ), false ) . ' href="' . $author_link . '" rel="author">';
 			$output     .= get_the_author();
@@ -734,21 +736,21 @@ function pis_utility_section( $args ) {
 	}
 
 	/* The date */
-	if ( $display_date ) {
-		if ( $display_author ) {
-			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+	if ( $args['display_date'] ) {
+		if ( $args['display_author'] ) {
+			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $args['utility_sep'] . ' </span>';
 		}
 		$output .= '<span ' . pis_class( 'pis-date', apply_filters( 'pis_date_class', '' ), false ) . '>';
-		if ( $date_text ) {
-			$output .= $date_text . ' ';
+		if ( $args['date_text'] ) {
+			$output .= $args['date_text'] . ' ';
 		}
-		if ( $display_time ) {
+		if ( $args['display_time'] ) {
 			// translators: %s is the time of the post.
 			$post_time = ' <span class="' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
 		} else {
 			$post_time = '';
 		}
-		if ( $linkify_date ) {
+		if ( $args['linkify_date'] ) {
 			$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 			$output .= get_the_date() . $post_time;
 			$output .= '</a>';
@@ -767,21 +769,21 @@ function pis_utility_section( $args ) {
 	 * In this situation, in order to figure out if a post has been modified
 	 * after its publication, we have to compare the times (not simply the dates).
 	 */
-	if ( $display_mod_date && get_the_modified_time() !== get_the_time() ) {
-		if ( $display_author || $display_date ) {
-			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+	if ( $args['display_mod_date'] && get_the_modified_time() !== get_the_time() ) {
+		if ( $args['display_author'] || $args['display_date'] ) {
+			$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $args['utility_sep'] . ' </span>';
 		}
 		$output .= '<span ' . pis_class( 'pis-mod-date', apply_filters( 'pis_mod_date_class', '' ), false ) . '>';
-		if ( $mod_date_text ) {
-			$output .= $mod_date_text . ' ';
+		if ( $args['mod_date_text'] ) {
+			$output .= $args['mod_date_text'] . ' ';
 		}
-		if ( $display_mod_time ) {
+		if ( $args['display_mod_time'] ) {
 			// translators: %s is the time of the post modified.
 			$post_mod_time = ' <span class="' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '">' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
 		} else {
 			$post_mod_time = '';
 		}
-		if ( $linkify_mod_date ) {
+		if ( $args['linkify_mod_date'] ) {
 			$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
 			$output .= get_the_modified_date() . $post_mod_time;
 			$output .= '</a>';
@@ -793,36 +795,51 @@ function pis_utility_section( $args ) {
 
 	/* The comments */
 	if ( ! post_password_required() ) {
-		if ( $comments ) {
-			$num_comments = get_comments_number( $pis_post_id );
-			if ( '0' === $num_comments && $hide_zero_comments ) {
+		if ( $args['comments'] ) {
+			$num_comments = get_comments_number( $args['pis_post_id'] );
+			if ( '0' === $num_comments && $args['hide_zero_comments'] ) {
 				$output .= '';
 			} else {
-				if ( $display_author || $display_date || $display_mod_date ) {
-					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $utility_sep . ' </span>';
+				if ( $args['display_author'] || $args['display_date'] || $args['display_mod_date'] ) {
+					$output .= '<span ' . pis_class( 'pis-separator', apply_filters( 'pis_separator_class', '' ), false ) . '> ' . $args['utility_sep'] . ' </span>';
 				}
 				$output .= '<span ' . pis_class( 'pis-comments', apply_filters( 'pis_comments_class', '' ), false ) . '>';
-				if ( $comments_text ) {
-					$output .= $comments_text . ' ';
+				if ( $args['comments_text'] ) {
+					$output .= $args['comments_text'] . ' ';
 				}
-				$output .= pis_get_comments_number( $pis_post_id, $link_to_comments, $display_comm_num_only );
+				$output .= pis_get_comments_number( $args['pis_post_id'], $args['link_to_comments'], $args['display_comm_num_only'] );
 				$output .= '</span>';
 			}
 		}
 	}
 
-	if ( $display_author || $display_date || $display_mod_date || $comments ) {
+	if ( $args['display_author'] || $args['display_date'] || $args['display_mod_date'] || $args['comments'] ) {
 		$output .= '</p>';
 	}
 
 	return $output;
 }
 
+
 /**
  * Return the custom taxonomies of the current post.
  *
  * @since 1.29
- * @param array $args The array containing the custom parameters.
+ * @param array $args {
+ *     The array containing the custom parameters.
+ *
+ *     @type string $post_id      The ID of the post.
+ *     @type string $term_hashtag The symbol to be used as hashtag.
+ *     @type string $term_sep     The separator between terms.
+ *     @type mixed  $terms_margin The margin for the terms paragraph.
+ *                                This variable is initially null, because it
+ *                                must not be returned if not defined,
+ *                                but can be filled with a numeric value.
+ *     @type string $margin_unit  The measuring unit for the margin.
+ *                                Accepted values:
+ *                                px (default), %, em, rem.
+ * }
+ * @return string One or more HTML paragraphs with the custom taxonomies.
  * @see https://codex.wordpress.org/Function_Reference/get_the_terms#Get_terms_for_all_custom_taxonomies
  */
 function pis_custom_taxonomies_terms_links( $args ) {
@@ -836,14 +853,8 @@ function pis_custom_taxonomies_terms_links( $args ) {
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$post_id      = $args['post_id'];
-	$term_hashtag = $args['term_hashtag'];
-	$term_sep     = $args['term_sep'];
-	$terms_margin = $args['terms_margin'];
-	$margin_unit  = $args['margin_unit'];
-
 	// Get post by post id.
-	$post = get_post( $post_id );
+	$post = get_post( $args['post_id'] );
 
 	// Get post type by post.
 	$post_type = $post->post_type;
@@ -851,15 +862,26 @@ function pis_custom_taxonomies_terms_links( $args ) {
 	// Get post type taxonomies.
 	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
+	// Check terms_margin validity.
+	if ( ! is_numeric( $args['terms_margin'] ) ) {
+		$args['terms_margin'] = null;
+	}
+
+	// Check margin_unit validity.
+	$valid_units = array( 'px', '%', 'em', 'rem' );
+	if ( ! in_array( $args['margin_unit'], $valid_units, true ) ) {
+		$args['margin_unit'] = 'px';
+	}
+
 	$output = '';
 
 	foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
 		// Exclude the standard WordPress 'category' and 'post_tag' taxonomies otherwise we'll have a duplicate in the front-end.
 		if ( 'category' !== $taxonomy_slug && 'post_tag' !== $taxonomy_slug ) {
 			// Get the terms related to post.
-			$list_of_terms = get_the_term_list( $post_id, $taxonomy_slug, $term_hashtag, $term_sep . ' ' . $term_hashtag, '' );
+			$list_of_terms = get_the_term_list( $args['post_id'], $taxonomy_slug, $args['term_hashtag'], $args['term_sep'] . ' ' . $args['term_hashtag'], '' );
 			if ( ! ( is_wp_error( $list_of_terms ) ) && ( $list_of_terms ) ) {
-				$output .= '<p ' . pis_paragraph( $terms_margin, $margin_unit, 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
+				$output .= '<p ' . pis_paragraph( $args['terms_margin'], $args['margin_unit'], 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
 				$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
 				$output .= '</p>';
 			}
@@ -875,6 +897,7 @@ function pis_custom_taxonomies_terms_links( $args ) {
  * @param integer $pis_post_id The ID of the post.
  * @param boolean $link If the output is to be wrapped into a link to comments.
  * @param boolean $display_comm_num_only If displaying the number of comments only.
+ * @return string The HTML string for the comments link.
  * @since 3.0
  */
 function pis_get_comments_number( $pis_post_id, $link, $display_comm_num_only ) {
@@ -937,6 +960,7 @@ function pis_get_comments_number( $pis_post_id, $link, $display_comm_num_only ) 
  * Returns the HTML string for the author's Gravatar image.
  *
  * @param array $args The array containing the custom args.
+ * @return string The HTML string for the author's Gravatar image.
  * @since 3.0
  */
 function pis_get_gravatar( $args ) {
@@ -957,65 +981,169 @@ function pis_get_gravatar( $args ) {
  * Returns the HTML string for the archive link.
  *
  * @param array $args The array containing the custom args.
+ * @return string The HTML string for the archive link.
  * @since 3.0
  */
 function pis_archive_link( $args ) {
 	$defaults = array(
-		'link_to'        => 'category',
-		'tax_name'       => '',
-		'tax_term_name'  => '',
-		'archive_text'   => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
-		'archive_margin' => null,
-		'margin_unit'    => 'px',
+		'link_to'         => 'category',
+		'tax_name'        => '',
+		'tax_term_name'   => '',
+		'auto_term_name'  => false,
+		'archive_text'    => esc_html__( 'Display all posts', 'posts-in-sidebar' ),
+		'archive_margin'  => null,
+		'margin_unit'     => 'px',
+		'post_id'         => '',
+		'sort_categories' => false,
+		'sort_tags'       => false,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$link_to        = $args['link_to'];
-	$tax_name       = $args['tax_name'];
-	$tax_term_name  = $args['tax_term_name'];
-	$archive_text   = $args['archive_text'];
-	$archive_margin = $args['archive_margin'];
-	$margin_unit    = $args['margin_unit'];
+	$link_to         = $args['link_to'];
+	$tax_name        = $args['tax_name'];
+	$tax_term_name   = $args['tax_term_name'];
+	$auto_term_name  = $args['auto_term_name'];
+	$archive_text    = $args['archive_text'];
+	$archive_margin  = $args['archive_margin'];
+	$margin_unit     = $args['margin_unit'];
+	$post_id         = $args['post_id'];
+	$sort_categories = $args['sort_categories'];
+	$sort_tags       = $args['sort_tags'];
 
 	switch ( $link_to ) {
 		case 'author':
-			$term_identity = get_user_by( 'slug', $tax_term_name );
-			if ( $term_identity ) {
-				$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
-				$term_name = $term_identity->display_name;
+			if ( $auto_term_name && ( is_author() || is_single() ) ) {
+				// Get the ID of the author.
+				$the_author_id = get_post_field( 'post_author', $post_id );
+				// Get the nicename of the author.
+				$the_author_nicename = get_the_author_meta( 'user_nicename', $the_author_id );
+				// Get the link to author archive page and the author name to be displayed.
+				$term_link = get_author_posts_url( $the_author_id, $the_author_nicename );
+				$term_name = get_the_author_meta( 'display_name', $the_author_id );
+			} else {
+				// Get the object with the necessary details.
+				$term_identity = get_user_by( 'slug', $tax_term_name );
+				if ( $term_identity ) {
+					$term_link = get_author_posts_url( $term_identity->ID, $tax_term_name );
+					$term_name = $term_identity->display_name;
+				}
 			}
 			break;
 
 		case 'category':
-			$term_identity = get_term_by( 'slug', $tax_term_name, 'category' );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, 'category' );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_category() || is_single() ) ) {
+				if ( is_category() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to category archive page and the category name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, 'category' );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the categories of the post.
+					$post_categories = wp_get_post_categories( $post_id );
+					if ( $post_categories ) {
+						// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
+						if ( $sort_categories ) {
+							sort( $post_categories );
+						}
+						// Get the object with the necessary details.
+						$the_category = get_category( $post_categories[0] );
+						// Get the link to category archive page and the category name to be displayed.
+						$term_link = get_term_link( $the_category->term_id, 'category' );
+						$term_name = $the_category->name;
+					}
+				}
+			} else {
+				// Get the object with the necessary details.
+				$term_identity = get_term_by( 'slug', $tax_term_name, 'category' );
+				if ( $term_identity ) {
+					// Get the link to category archive page and the category name to be displayed.
+					$term_link = get_term_link( $term_identity->term_id, 'category' );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 
 		case 'tag':
-			$term_identity = get_term_by( 'slug', $tax_term_name, 'post_tag' );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, 'post_tag' );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_tag() || is_single() ) ) {
+				if ( is_tag() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to tag archive page and the tag name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, 'post_tag' );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the tags of the post.
+					$post_tags = wp_get_post_tags( $post_id );
+					if ( $post_tags ) {
+						// Sort the tags of the post in ascending order, so to use the tag used by WordPress in the permalink.
+						if ( $sort_tags ) {
+							sort( $post_tags );
+						}
+						// Get the object with the necessary details.
+						$the_tag = get_tag( $post_tags[0] );
+						// Get the link to tag archive page and the tag name to be displayed.
+						$term_link = get_term_link( $the_tag->term_id, 'post_tag' );
+						$term_name = $the_tag->name;
+					}
+				}
+			} else {
+				$term_identity = get_term_by( 'slug', $tax_term_name, 'post_tag' );
+				if ( $term_identity ) {
+					$term_link = get_term_link( $term_identity->term_id, 'post_tag' );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 
 		case 'custom_post_type':
-			if ( post_type_exists( $tax_term_name ) ) {
-				$term_link        = get_post_type_archive_link( $tax_term_name );
-				$post_type_object = get_post_type_object( $tax_term_name );
-				$term_name        = $post_type_object->labels->name;
+			if ( $auto_term_name ) {
+				$queried_object = get_queried_object();
+				if ( is_archive() ) {
+					$post_type = $queried_object->name;
+				} elseif ( is_single() ) {
+					$post_type = $queried_object->post_type;
+				}
+				if ( is_post_type_archive( $post_type ) || is_singular( $post_type ) ) {
+					$term_link        = get_post_type_archive_link( $post_type );
+					$post_type_object = get_post_type_object( $post_type );
+					$term_name        = $post_type_object->labels->name;
+				}
+			} else {
+				if ( post_type_exists( $tax_term_name ) ) {
+					$term_link        = get_post_type_archive_link( $tax_term_name );
+					$post_type_object = get_post_type_object( $tax_term_name );
+					$term_name        = $post_type_object->labels->name;
+				}
 			}
 			break;
 
 		case 'custom_taxonomy':
-			$term_identity = get_term_by( 'slug', $tax_term_name, $tax_name );
-			if ( $term_identity ) {
-				$term_link = get_term_link( $term_identity->term_id, $tax_name );
-				$term_name = $term_identity->name;
+			if ( $auto_term_name && ( is_tax() || is_single() ) ) {
+				if ( is_tax() ) {
+					// Get the object with the necessary details.
+					$queried_object = get_queried_object();
+					// Get the link to tag archive page and the tag name to be displayed.
+					$term_link = get_term_link( $queried_object->term_id, $queried_object->taxonomy );
+					$term_name = $queried_object->name;
+				} elseif ( is_single() ) {
+					// Get the tags of the post.
+					$post_terms = get_the_terms( $post_id, $tax_name );
+					if ( $post_terms ) {
+						// Get the object with the necessary details.
+						$the_term = get_term( $post_terms[0] );
+						// Get the link to tag archive page and the tag name to be displayed.
+						$term_link = get_term_link( $the_term->term_id, $tax_name );
+						$term_name = $the_term->name;
+					}
+				}
+			} else {
+				$term_identity = get_term_by( 'slug', $tax_term_name, $tax_name );
+				if ( $term_identity ) {
+					$term_link = get_term_link( $term_identity->term_id, $tax_name );
+					$term_name = $term_identity->name;
+				}
 			}
 			break;
 
@@ -1050,6 +1178,7 @@ function pis_archive_link( $args ) {
  * Includes version of Posts in Sidebar and the status of the cache.
  *
  * @param boolean $cached If the cache is active or not.
+ * @return string The "Generated by..." HTML comment.
  * @since 2.0.3
  */
 function pis_generated( $cached ) {
@@ -1066,7 +1195,7 @@ function pis_generated( $cached ) {
 /**
  * Return the debugging informations.
  *
- * @param array $parameters {
+ * @param array $args {
  *     The array containing the custom parameters.
  *
  *     @type boolean $admin_only   If the administrators only can view the debugging informations.
@@ -1076,9 +1205,10 @@ function pis_generated( $cached ) {
  *     @type string  $args         The set of options of the widget.
  *     @type boolean $cached       If the output of the widget has been cached.
  * }
+ * @return string The HTML formatted string for the debug section.
  * @since 2.0.3
  */
-function pis_debug( $parameters ) {
+function pis_debug( $args ) {
 	$defaults = array(
 		'admin_only'   => true,
 		'debug_query'  => false,
@@ -1089,19 +1219,11 @@ function pis_debug( $parameters ) {
 		'widget_id'    => '',
 	);
 
-	$parameters = wp_parse_args( $parameters, $defaults );
-
-	$admin_only   = $parameters['admin_only'];
-	$debug_query  = $parameters['debug_query'];
-	$debug_params = $parameters['debug_params'];
-	$params       = $parameters['params'];
-	$args         = $parameters['args'];
-	$cached       = $parameters['cached'];
-	$widget_id    = $parameters['widget_id'];
+	$args = wp_parse_args( $args, $defaults );
 
 	$output = '';
 
-	if ( $debug_query || $debug_params ) {
+	if ( $args['debug_query'] || $args['debug_params'] ) {
 		global $wp_version;
 		$output .= '<!-- Start PiS Debug -->';
 		// translators: %s is the name of the plugin.
@@ -1115,9 +1237,9 @@ function pis_debug( $parameters ) {
 		// translators: %s is the plugin version.
 		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION ) . '</li>' . "\n";
 		// translators: %s is the ID of the widget.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $widget_id ) . '</li>' . "\n";
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $args['widget_id'] ) . '</li>' . "\n";
 
-		if ( $cached ) {
+		if ( $args['cached'] ) {
 			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: active', 'posts-in-sidebar' ) . '</li>' . "\n";
 		} else {
 			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
@@ -1127,10 +1249,10 @@ function pis_debug( $parameters ) {
 		$output .= '</ul>';
 	}
 
-	if ( $debug_query ) {
+	if ( $args['debug_query'] ) {
 		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The parameters for the query:', 'posts-in-sidebar' ) . '</strong></p>' . "\n";
 		$output .= '<ul class="pis-debug-ul">' . "\n";
-		foreach ( $params as $key => $value ) {
+		foreach ( $args['params'] as $key => $value ) {
 			if ( is_array( $value ) ) {
 				$output .= '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
 				$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
@@ -1141,10 +1263,10 @@ function pis_debug( $parameters ) {
 		$output .= '</ul>';
 	}
 
-	if ( $debug_params ) {
+	if ( $args['debug_params'] ) {
 		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'The options of the widget:', 'posts-in-sidebar' ) . '</strong></p>' . "\n";
 		$output .= '<ul class="pis-debug-ul">' . "\n";
-		foreach ( $args as $key => $value ) {
+		foreach ( $args['args'] as $key => $value ) {
 			if ( is_array( $value ) ) {
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
 			} else {
@@ -1154,7 +1276,7 @@ function pis_debug( $parameters ) {
 		$output .= '</ul>' . "\n";
 	}
 
-	if ( $debug_query || $debug_params ) {
+	if ( $args['debug_query'] || $args['debug_params'] ) {
 		$output .= '<!-- End PiS Debug -->' . "\n";
 	}
 
@@ -1163,7 +1285,7 @@ function pis_debug( $parameters ) {
 	 *
 	 * @since 3.8.3
 	 */
-	if ( $admin_only ) {
+	if ( $args['admin_only'] ) {
 		if ( current_user_can( 'create_users' ) ) {
 			return $output;
 		} else {

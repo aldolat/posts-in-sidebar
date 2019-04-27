@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the tools functions of the plugin.
+ * This file contains the tools functions of the plugin
  *
  * @package PostsInSidebar
  * @since 1.23
@@ -114,7 +114,7 @@ function pis_normalize_values( $string = '', $absint = false ) {
 
 /**
  * Returns the title of the main post,
- * changing spaces into a plus and lowering the letters.
+ * removing punctuation and lowering the letters.
  *
  * @since 4.7.0
  * @return string $post_title The title of the main post with pluses and lowercase.

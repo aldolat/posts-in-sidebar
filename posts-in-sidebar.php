@@ -1,16 +1,27 @@
 <?php
 /**
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
+ * @link    https://dev.aldolat.it/projects/posts-in-sidebar/
+ * @since   1.0.0
+ * @package PostsInSidebar
+ * @license GPLv3 or later
+ *
+ * @wordpress-plugin
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.7.5
+ * Version: 4.7.6
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar
  * Domain Path: /languages/
  * License: GPLv3 or later
- *
- * @package PostsInSidebar
  */
 
 /*
@@ -56,7 +67,7 @@ function pis_setup() {
 	/**
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '4.7.5' );
+	define( 'PIS_VERSION', '4.7.6' );
 
 	/**
 	 * Make plugin available for i18n.

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * The link to the archive page can be automatically generated in single post or archive pages.
 ### Changed
 * The default options are in a separate function now to simplify the plugin.
+* Code optimization.
 
 ## [4.7.5] - 2019-03-09
 ### Changed

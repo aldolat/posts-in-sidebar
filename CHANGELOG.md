@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.7.6] - 2019-03-31
+## [4.7.6] - 2019-04-27
 ### Added
 * The link to the archive page can be automatically generated in single post or archive pages.
 ### Changed

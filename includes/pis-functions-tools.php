@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the tools functions of the plugin.
+ * This file contains the tools functions of the plugin
  *
  * @package PostsInSidebar
  * @since 1.23

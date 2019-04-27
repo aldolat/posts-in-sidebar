@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the functions used in the widget's forms.
+ * This file contains the functions used in the widget's forms
  *
  * @package PostsInSidebar
  * @since 1.12

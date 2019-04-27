@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the shortcode for the plugin.
+ * This file contains the shortcode for the plugin
  *
  * @package PostsInSidebar
  * @since 3.0
@@ -10,7 +10,8 @@
  * Create the shortcode.
  *
  * @param array $atts The options for the main function.
- * @example [pissc post_type="page" post_parent_in=4 exclude_current_post=1]
+ * @example [pissc number=3 ignore_sticky=1]
+ * @example [pissc post_type="page" post_parent_in=2 exclude_current_post=1]
  * @since 3.0
  */
 function pis_shortcode( $atts ) {

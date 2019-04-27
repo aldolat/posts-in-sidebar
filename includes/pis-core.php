@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the core functions of the plugin.
+ * This file contains the core functions of the plugin
  *
  * The main function is pis_get_posts_in_sidebar( $args )
  * that retrieves the posts based on the parameters

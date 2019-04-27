@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the general functions of the plugin.
+ * This file contains the general functions of the plugin
  *
  * @package PostsInSidebar
  * @since 1.23
@@ -389,7 +389,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 	// Define $classes as array.
 	$classes = array();
 
-	// If $default is not empty, remove any leading and trailing dot, space, and dash,
+	// If $default is not empty, remove any leading and trailing space and dash,
 	// transform it into an array using internal spaces, and merge it with $classes.
 	if ( ! empty( $default ) ) {
 		if ( ! is_array( $default ) ) {
@@ -398,7 +398,7 @@ function pis_class( $default = '', $class = '', $echo = true ) {
 		$classes = array_merge( $classes, $default );
 	}
 
-	// If $class is not empty, remove any leading and trailing space,
+	// If $class is not empty, remove any leading and trailing space and dash,
 	// transform it into an array using internal spaces, and merge it with $classes.
 	if ( ! empty( $class ) ) {
 		if ( ! is_array( $class ) ) {

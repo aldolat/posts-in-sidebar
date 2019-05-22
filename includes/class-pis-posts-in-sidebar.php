@@ -75,8 +75,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	public function widget( $args, $instance ) {
 		$instance = wp_parse_args( $instance, pis_get_defaults() );
 
-		$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
-
 		/*
 		 * Change the widget title if the user wants a different title in single posts (for same category).
 		 *
@@ -90,8 +88,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				}
 				$the_category      = get_category( $the_category[0] );
 				$the_category_name = $the_category->name;
-				$title             = $instance['title_same_cat'];
-				$title             = str_replace( '%s', $the_category_name, $title );
+				$instance['title'] = $instance['title_same_cat'];
+				$instance['title'] = str_replace( '%s', $the_category_name, $instance['title'] );
 			}
 		}
 
@@ -106,10 +104,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				if ( $instance['sort_tags'] ) {
 					sort( $the_tag );
 				}
-				$the_tag      = get_tag( $the_tag[0] );
-				$the_tag_name = $the_tag->name;
-				$title        = $instance['title_same_tag'];
-				$title        = str_replace( '%s', $the_tag_name, $title );
+				$the_tag           = get_tag( $the_tag[0] );
+				$the_tag_name      = $the_tag->name;
+				$instance['title'] = $instance['title_same_tag'];
+				$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
 			}
 		}
 
@@ -119,10 +117,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 * @since 3.5
 		 */
 		if ( $instance['get_from_same_author'] && ! empty( $instance['title_same_author'] ) && is_single() ) {
-			$title           = $instance['title_same_author'];
-			$post_author_id  = get_post_field( 'post_author', get_the_ID() );
-			$the_author_name = get_the_author_meta( 'display_name', $post_author_id );
-			$title           = str_replace( '%s', $the_author_name, $title );
+			$instance['title'] = $instance['title_same_author'];
+			$post_author_id    = get_post_field( 'post_author', get_the_ID() );
+			$the_author_name   = get_the_author_meta( 'display_name', $post_author_id );
+			$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
 		}
 
 		/*
@@ -158,9 +156,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			// If the term exists and the current post of the main query has this term...
 			if ( term_exists( $the_term_slug, $instance['s_custom_field_tax'] ) && has_term( $the_term_slug, $instance['s_custom_field_tax'], get_the_ID() ) ) {
 				// ... change the title as required by the user.
-				$title = $instance['title_custom_field'];
+				$instance['title'] = $instance['title_custom_field'];
 				// Also change the %s into the term name, if required.
-				$title = str_replace( '%s', wp_strip_all_tags( $the_term_name ), $title );
+				$instance['title'] = str_replace( '%s', wp_strip_all_tags( $the_term_name ), $instance['title'] );
 			}
 		}
 
@@ -172,8 +170,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( $instance['get_from_cat_page'] && ! empty( $instance['title_cat_page'] ) && is_category() ) {
 			$current_archive_category = get_queried_object();
 			$the_category_name        = $current_archive_category->name;
-			$title                    = $instance['title_cat_page'];
-			$title                    = str_replace( '%s', $the_category_name, $title );
+			$instance['title']        = $instance['title_cat_page'];
+			$instance['title']        = str_replace( '%s', $the_category_name, $instance['title'] );
 		}
 
 		/*
@@ -182,10 +180,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 * @since 4.6
 		 */
 		if ( $instance['get_from_tag_page'] && ! empty( $instance['title_tag_page'] ) && is_tag() ) {
-			$the_tag      = get_queried_object();
-			$the_tag_name = $the_tag->name;
-			$title        = $instance['title_tag_page'];
-			$title        = str_replace( '%s', $the_tag_name, $title );
+			$the_tag           = get_queried_object();
+			$the_tag_name      = $the_tag->name;
+			$instance['title'] = $instance['title_tag_page'];
+			$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
 		}
 
 		/*
@@ -194,11 +192,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 * @since 4.6
 		 */
 		if ( $instance['get_from_author_page'] && ! empty( $instance['title_author_page'] ) && is_author() ) {
-			$the_author      = get_queried_object();
-			$the_author_name = $the_author->display_name;
-			$title           = $instance['title_author_page'];
-			$title           = str_replace( '%s', $the_author_name, $title );
+			$the_author        = get_queried_object();
+			$the_author_name   = $the_author->display_name;
+			$instance['title'] = $instance['title_author_page'];
+			$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
 		}
+
+		/*
+		 * Filters the widget title.
+		 */
+		$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
 		echo "\n" . '<!-- Start Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n";
 

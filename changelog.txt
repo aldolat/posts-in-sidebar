@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.7.7 =
+
+* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) fo reporting it).
+
 = 4.7.6 =
 
 * The link to the archive page can be automatically generated in single post or archive pages.

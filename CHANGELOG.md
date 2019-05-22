@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.7.7] - 2019-05-22
+### Fixed
+* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) fo reporting it).
+
 ## [4.7.6] - 2019-04-27
 ### Added
 * The link to the archive page can be automatically generated in single post or archive pages.
@@ -510,6 +514,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.7.6]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.6...4.7.7
 [4.7.6]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.5...4.7.6
 [4.7.5]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.4...4.7.5
 [4.7.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.3...4.7.4

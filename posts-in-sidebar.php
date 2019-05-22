@@ -16,7 +16,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.7.6
+ * Version: 4.7.7
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar

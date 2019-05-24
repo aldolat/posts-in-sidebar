@@ -610,3 +610,142 @@ function pis_add_styles_to_head() {
 	}
 }
 add_action( 'wp_head', 'pis_add_styles_to_head' );
+
+/**
+ * Chage the widget title.
+ *
+ * @param array $instance The array containing the widget options.
+ * @return string $instance['title'] The changed widget title.
+ * @since 4.7.7
+ */
+function pis_change_widget_title( $instance ) {
+	// If $instance is not array, stop the function.
+	if ( ! is_array( $instance ) ) {
+		return;
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in single posts (for same category).
+	 *
+	 * @since 3.2
+	 */
+	if ( $instance['get_from_same_cat'] && ! empty( $instance['title_same_cat'] ) && is_single() ) {
+		$the_category = wp_get_post_categories( get_the_ID() );
+		if ( $the_category ) {
+			if ( $instance['sort_categories'] ) {
+				sort( $the_category );
+			}
+			$the_category      = get_category( $the_category[0] );
+			$the_category_name = $the_category->name;
+			$instance['title'] = $instance['title_same_cat'];
+			$instance['title'] = str_replace( '%s', $the_category_name, $instance['title'] );
+		}
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in single posts (for same tag).
+	 *
+	 * @since 4.3.0
+	 */
+	if ( $instance['get_from_same_tag'] && ! empty( $instance['title_same_tag'] ) && is_single() ) {
+		$the_tag = wp_get_post_tags( get_the_ID() );
+		if ( $the_tag ) {
+			if ( $instance['sort_tags'] ) {
+				sort( $the_tag );
+			}
+			$the_tag           = get_tag( $the_tag[0] );
+			$the_tag_name      = $the_tag->name;
+			$instance['title'] = $instance['title_same_tag'];
+			$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
+		}
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in single posts (for same author).
+	 *
+	 * @since 3.5
+	 */
+	if ( $instance['get_from_same_author'] && ! empty( $instance['title_same_author'] ) && is_single() ) {
+		$instance['title'] = $instance['title_same_author'];
+		$post_author_id    = get_post_field( 'post_author', get_the_ID() );
+		$the_author_name   = get_the_author_meta( 'display_name', $post_author_id );
+		$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title
+	 * in single posts (for same category/tag using custom fields).
+	 *
+	 * @since 3.7
+	 */
+	if ( $instance['get_from_custom_fld'] &&
+		isset( $instance['s_custom_field_key'] ) &&
+		isset( $instance['s_custom_field_tax'] ) &&
+		! empty( $instance['title_custom_field'] ) &&
+		is_single() ) {
+
+		// Get the custom field value of the custom field key.
+		$the_term_slug = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
+		// The functions term_exists() and has_term() seem to work only on slugs (a text value),
+		// so let's figure out if the custom field value is a numeric value.
+		// If it's numeric...
+		if ( is_numeric( $the_term_slug ) ) {
+			// ... let's get the term's array of characteristics using its ID...
+			$the_term = get_term_by( 'id', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
+			// ... and then the slug.
+			$the_term_slug = $the_term->slug;
+			// In the meantime get the term's name.
+			$the_term_name = $the_term->name;
+		} else {
+			// If the custom field value is a text value, let's get the term's array of characteristics using its slug...
+			$the_term = get_term_by( 'slug', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
+			// ... and then the term's name.
+			$the_term_name = $the_term->name;
+		}
+		// If the term exists and the current post of the main query has this term...
+		if ( term_exists( $the_term_slug, $instance['s_custom_field_tax'] ) && has_term( $the_term_slug, $instance['s_custom_field_tax'], get_the_ID() ) ) {
+			// ... change the title as required by the user.
+			$instance['title'] = $instance['title_custom_field'];
+			// Also change the %s into the term name, if required.
+			$instance['title'] = str_replace( '%s', wp_strip_all_tags( $the_term_name ), $instance['title'] );
+		}
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in archive page (for same category).
+	 *
+	 * @since 4.6
+	 */
+	if ( $instance['get_from_cat_page'] && ! empty( $instance['title_cat_page'] ) && is_category() ) {
+		$current_archive_category = get_queried_object();
+		$the_category_name        = $current_archive_category->name;
+		$instance['title']        = $instance['title_cat_page'];
+		$instance['title']        = str_replace( '%s', $the_category_name, $instance['title'] );
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in archive page (for same tag).
+	 *
+	 * @since 4.6
+	 */
+	if ( $instance['get_from_tag_page'] && ! empty( $instance['title_tag_page'] ) && is_tag() ) {
+		$the_tag           = get_queried_object();
+		$the_tag_name      = $the_tag->name;
+		$instance['title'] = $instance['title_tag_page'];
+		$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in archive page (for same author).
+	 *
+	 * @since 4.6
+	 */
+	if ( $instance['get_from_author_page'] && ! empty( $instance['title_author_page'] ) && is_author() ) {
+		$the_author        = get_queried_object();
+		$the_author_name   = $the_author->display_name;
+		$instance['title'] = $instance['title_author_page'];
+		$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
+	}
+
+	return $instance['title'];
+}

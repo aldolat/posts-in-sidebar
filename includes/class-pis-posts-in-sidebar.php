@@ -58,17 +58,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 	 * Display the content of the widget in the front-end.
 	 *
 	 * @param array $args Widget arguments.
-	 *                    $args contains:
-	 *                        $args['name'];
-	 *                        $args['id'];
-	 *                        $args['description'];
-	 *                        $args['class'];
-	 *                        $args['before_widget'];
-	 *                        $args['after_widget'];
-	 *                        $args['before_title'];
-	 *                        $args['after_title'];
-	 *                        $args['widget_id'];
-	 *                        $args['widget_name'].
+	 *                    $args contains (for example):
+	 *                        $args['name'] = Sidebar
+	 *                        $args['id'] = sidebar-1
+	 *                        $args['description'] = Add widgets here to appear in your sidebar.
+	 *                        $args['class'] = ''
+	 *                        $args['before_widget'] = <section id="pis_posts_in_sidebar-40" class="widget posts-in-sidebar">
+	 *                        $args['after_widget'] = </section>
+	 *                        $args['before_title'] = <h2 class="widget-title">
+	 *                        $args['after_title'] = </h2>
+	 *                        $args['widget_id'] = pis_posts_in_sidebar-40
+	 *                        $args['widget_name'] = Posts in Sidebar.
 	 * @param array $instance Saved values from database.
 	 * @since 1.0
 	 */
@@ -76,133 +76,35 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance = wp_parse_args( $instance, pis_get_defaults() );
 
 		/*
-		 * Change the widget title if the user wants a different title in single posts (for same category).
+		 * Store the complete ID of the widget among the widget options.
 		 *
-		 * @since 3.2
+		 * The ID will be used in the main function to check if a cached version
+		 * of the query already exists for every instance of the widget.
+		 * It is also useful to filter the widget title.
+		 *
+		 * What do $this->id, $this->id_base and $args['widget_id'] contain?
+		 * $this->id          = 'pis_posts_in_sidebar-40' (the complete ID of the widget)
+		 * $this->id_base     = 'pis_posts_in_sidebar'    (the base of the ID of the widget)
+		 * $args['widget_id'] = 'pis_posts_in_sidebar-40' (the complete ID of the widget)
 		 */
-		if ( $instance['get_from_same_cat'] && ! empty( $instance['title_same_cat'] ) && is_single() ) {
-			$the_category = wp_get_post_categories( get_the_ID() );
-			if ( $the_category ) {
-				if ( $instance['sort_categories'] ) {
-					sort( $the_category );
-				}
-				$the_category      = get_category( $the_category[0] );
-				$the_category_name = $the_category->name;
-				$instance['title'] = $instance['title_same_cat'];
-				$instance['title'] = str_replace( '%s', $the_category_name, $instance['title'] );
-			}
-		}
+		$instance['widget_id'] = $this->id; // $this->id is the id of the widget instance.
 
 		/*
-		 * Change the widget title if the user wants a different title in single posts (for same tag).
+		 * Change the widget title if requested by the user
+		 * in the widget options.
 		 *
-		 * @since 4.3.0
+		 * @since 4.7.7
 		 */
-		if ( $instance['get_from_same_tag'] && ! empty( $instance['title_same_tag'] ) && is_single() ) {
-			$the_tag = wp_get_post_tags( get_the_ID() );
-			if ( $the_tag ) {
-				if ( $instance['sort_tags'] ) {
-					sort( $the_tag );
-				}
-				$the_tag           = get_tag( $the_tag[0] );
-				$the_tag_name      = $the_tag->name;
-				$instance['title'] = $instance['title_same_tag'];
-				$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
-			}
-		}
-
-		/*
-		 * Change the widget title if the user wants a different title in single posts (for same author).
-		 *
-		 * @since 3.5
-		 */
-		if ( $instance['get_from_same_author'] && ! empty( $instance['title_same_author'] ) && is_single() ) {
-			$instance['title'] = $instance['title_same_author'];
-			$post_author_id    = get_post_field( 'post_author', get_the_ID() );
-			$the_author_name   = get_the_author_meta( 'display_name', $post_author_id );
-			$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
-		}
-
-		/*
-		 * Change the widget title if the user wants a different title
-		 * in single posts (for same category/tag using custom fields).
-		 *
-		 * @since 3.7
-		 */
-		if ( $instance['get_from_custom_fld'] &&
-			isset( $instance['s_custom_field_key'] ) &&
-			isset( $instance['s_custom_field_tax'] ) &&
-			! empty( $instance['title_custom_field'] ) &&
-			is_single() ) {
-
-			// Get the custom field value of the custom field key.
-			$the_term_slug = get_post_meta( get_the_ID(), $instance['s_custom_field_key'], true );
-			// The functions term_exists() and has_term() seem to work only on slugs (a text value),
-			// so let's figure out if the custom field value is a numeric value.
-			// If it's numeric...
-			if ( is_numeric( $the_term_slug ) ) {
-				// ... let's get the term's array of characteristics using its ID...
-				$the_term = get_term_by( 'id', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
-				// ... and then the slug.
-				$the_term_slug = $the_term->slug;
-				// In the meantime get the term's name.
-				$the_term_name = $the_term->name;
-			} else {
-				// If the custom field value is a text value, let's get the term's array of characteristics using its slug...
-				$the_term = get_term_by( 'slug', $the_term_slug, $instance['s_custom_field_tax'], 'OBJECT' );
-				// ... and then the term's name.
-				$the_term_name = $the_term->name;
-			}
-			// If the term exists and the current post of the main query has this term...
-			if ( term_exists( $the_term_slug, $instance['s_custom_field_tax'] ) && has_term( $the_term_slug, $instance['s_custom_field_tax'], get_the_ID() ) ) {
-				// ... change the title as required by the user.
-				$instance['title'] = $instance['title_custom_field'];
-				// Also change the %s into the term name, if required.
-				$instance['title'] = str_replace( '%s', wp_strip_all_tags( $the_term_name ), $instance['title'] );
-			}
-		}
-
-		/*
-		 * Change the widget title if the user wants a different title in archive page (for same category).
-		 *
-		 * @since 4.6
-		 */
-		if ( $instance['get_from_cat_page'] && ! empty( $instance['title_cat_page'] ) && is_category() ) {
-			$current_archive_category = get_queried_object();
-			$the_category_name        = $current_archive_category->name;
-			$instance['title']        = $instance['title_cat_page'];
-			$instance['title']        = str_replace( '%s', $the_category_name, $instance['title'] );
-		}
-
-		/*
-		 * Change the widget title if the user wants a different title in archive page (for same tag).
-		 *
-		 * @since 4.6
-		 */
-		if ( $instance['get_from_tag_page'] && ! empty( $instance['title_tag_page'] ) && is_tag() ) {
-			$the_tag           = get_queried_object();
-			$the_tag_name      = $the_tag->name;
-			$instance['title'] = $instance['title_tag_page'];
-			$instance['title'] = str_replace( '%s', $the_tag_name, $instance['title'] );
-		}
-
-		/*
-		 * Change the widget title if the user wants a different title in archive page (for same author).
-		 *
-		 * @since 4.6
-		 */
-		if ( $instance['get_from_author_page'] && ! empty( $instance['title_author_page'] ) && is_author() ) {
-			$the_author        = get_queried_object();
-			$the_author_name   = $the_author->display_name;
-			$instance['title'] = $instance['title_author_page'];
-			$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
-		}
+		$instance['title'] = pis_change_widget_title( $instance );
 
 		/*
 		 * Filters the widget title.
 		 */
 		$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 
+		/*
+		 * Start echoing the widget.
+		 */
 		echo "\n" . '<!-- Start Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n";
 
 		echo $args['before_widget'];
@@ -212,18 +114,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			echo '<div class="' . sanitize_html_class( $instance['container_class'] ) . '">';
 		}
 
+		/*
+		 * Echo the title, along with link, if present.
+		 */
 		if ( $instance['title'] && ! empty( $instance['title_link'] ) ) {
 			echo $args['before_title'] . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $instance['title'] . '</a>' . $args['after_title'] . "\n";
 		} elseif ( $instance['title'] ) {
 			echo $args['before_title'] . $instance['title'] . $args['after_title'] . "\n";
 		}
-
-		/*
-		 * The following 'widget_id' variable will be used in the main function
-		 * to check if a cached version of the query already exists
-		 * for every instance of the widget.
-		 */
-		$instance['widget_id'] = $this->id; // $this->id is the id of the widget instance.
 
 		/*
 		 * Execute the main function in the front-end.
@@ -6239,8 +6137,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<p>
 					<?php
 					printf(
-						// translators: %s contains some code.
-						esc_html__( 'You are using Posts in Sidebar version %s.', 'posts-in-sidebar' ),
+						// translators: %s contains the plugin version.
+						esc_html__( 'You are using Posts in Sidebar version %s', 'posts-in-sidebar' ),
 						'<strong>' . esc_attr( PIS_VERSION ) . '</strong>'
 					);
 					?>

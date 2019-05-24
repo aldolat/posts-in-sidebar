@@ -6246,6 +6246,16 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					?>
 				</p>
 
+				<p>
+					<?php
+					printf(
+						// translators: %s contains the widget id.
+						esc_html__( 'The ID of this widget is: %s', 'posts-in-sidebar' ),
+						'<strong>' . esc_attr( $this->id ) . '</strong>'
+					);
+					?>
+				</p>
+
 				<p class="pis-boxed pis-boxed-orange"><strong><?php esc_html_e( 'Use this options for debugging purposes only.', 'posts-in-sidebar' ); ?></strong> </p>
 
 				<div class="pis-boxed pis-boxed-red"><strong><?php esc_html_e( 'Deactivate the following option only if you want to display debugging information publicly on your site.', 'posts-in-sidebar' ); ?></strong>

@@ -492,6 +492,13 @@ function pis_the_thumbnail( $args ) {
 		}
 	}
 
+	/*
+	 * Filters the HTML img element.
+	 *
+	 * @since 4.8.0
+	 */
+	$image_html = apply_filters( 'pis_image_html', $image_html );
+
 	$output .= str_replace( '<img', '<img' . $image_style, $image_html );
 
 	if ( $args['image_link_to_post'] ) {

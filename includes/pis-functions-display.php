@@ -456,7 +456,7 @@ function pis_the_thumbnail( $args ) {
 		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . ' href="' . esc_url( wp_strip_all_tags( $the_image_link ) ) . '" rel="bookmark">';
 	}
 
-	/**
+	/*
 	 * If the post type is an attachment (an image, or any other attachment),
 	 * the construct is different.
 	 *
@@ -485,7 +485,9 @@ function pis_the_thumbnail( $args ) {
 			$image_html = get_the_post_thumbnail(
 				$args['pis_query']->post->ID,
 				$args['image_size'],
-				array( 'class' => $final_image_class )
+				array(
+					'class' => $final_image_class,
+				)
 			);
 		}
 	}

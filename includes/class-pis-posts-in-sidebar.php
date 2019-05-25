@@ -838,26 +838,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Post types.
-							$post_types = (array) get_post_types( '', 'objects' );
-
-							$options = array(
-								array(
-									'value' => 'any',
-									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-								),
-							);
-							foreach ( $post_types as $post_type ) {
-								$options[] = array(
-									'value' => $post_type->name,
-									'desc'  => $post_type->labels->singular_name,
-								);
-							}
-
 							pis_form_select(
 								esc_html__( 'Post type', 'posts-in-sidebar' ),
 								$this->get_field_id( 'post_type' ),
 								$this->get_field_name( 'post_type' ),
-								$options,
+								pis_select_post_types(),
 								$instance['post_type'],
 								esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 							);
@@ -931,24 +916,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Author
-							$options = array(
-								array(
-									'value' => '',
-									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-								),
-							);
-							$authors = (array) get_users( 'who=authors' ); // If set to 'authors', only authors (user level greater than 0) will be returned.
-							foreach ( $authors as $author ) {
-								$options[] = array(
-									'value' => $author->user_nicename,
-									'desc'  => $author->display_name,
-								);
-							}
 							pis_form_select(
 								esc_html__( 'Get posts by this author', 'posts-in-sidebar' ),
 								$this->get_field_id( 'author' ),
 								$this->get_field_name( 'author' ),
-								$options,
+								pis_select_authors(),
 								$instance['author']
 							);
 							?>
@@ -994,48 +966,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Post format
-							$options      = array(
-								array(
-									'value' => '',
-									'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-								),
-							);
-							$post_formats = get_terms( 'post_format' );
-							foreach ( $post_formats as $post_format ) {
-								$options[] = array(
-									'value' => $post_format->slug,
-									'desc'  => $post_format->name,
-								);
-							}
 							pis_form_select(
 								esc_html__( 'Get posts with this post format', 'posts-in-sidebar' ),
 								$this->get_field_id( 'post_format' ),
 								$this->get_field_name( 'post_format' ),
-								$options,
+								pis_select_post_formats(),
 								$instance['post_format']
 							);
 							?>
 
 							<?php
 							// ================= Post status
-							$options  = array(
-								array(
-									'value' => 'any',
-									'desc'  => 'Any',
-								),
-							);
-							$statuses = get_post_stati( array(), 'objects' );
-							foreach ( $statuses as $status ) {
-								$options[] = array(
-									'value' => $status->name,
-									'desc'  => $status->label,
-								);
-							}
 							pis_form_select(
 								esc_html__( 'Get posts with this post status', 'posts-in-sidebar' ),
 								$this->get_field_id( 'post_status' ),
 								$this->get_field_name( 'post_status' ),
-								$options,
+								pis_select_post_status(),
 								$instance['post_status']
 							);
 							?>
@@ -1079,25 +1025,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Post with/without password
-							$options = array(
-								array(
-									'value' => 'null',
-									'desc'  => esc_html__( 'With and without password', 'posts-in-sidebar' ),
-								),
-								array(
-									'value' => 'true',
-									'desc'  => esc_html__( 'With password', 'posts-in-sidebar' ),
-								),
-								array(
-									'value' => 'false',
-									'desc'  => esc_html__( 'Without password', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'Get posts with/without password', 'posts-in-sidebar' ),
 								$this->get_field_id( 'has_password' ),
 								$this->get_field_name( 'has_password' ),
-								$options,
+								pis_select_post_password(),
 								$instance['has_password']
 							);
 							?>
@@ -1152,102 +1084,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Post order by
-							$options = array(
-								'none'            => array(
-									'value' => 'none',
-									'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-								),
-								'id'              => array(
-									'value' => 'id',
-									'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-								),
-								'author'          => array(
-									'value' => 'author',
-									'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-								),
-								'title'           => array(
-									'value' => 'title',
-									'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-								),
-								'name'            => array(
-									'value' => 'name',
-									'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-								),
-								'type'            => array(
-									'value' => 'type',
-									'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-								),
-								'date'            => array(
-									'value' => 'date',
-									'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-								),
-								'modified'        => array(
-									'value' => 'modified',
-									'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-								),
-								'parent'          => array(
-									'value' => 'parent',
-									'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-								),
-								'rand'            => array(
-									'value' => 'rand',
-									'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-								),
-								'comment_count'   => array(
-									'value' => 'comment_count',
-									'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-								),
-								'relevance'       => array(
-									'value' => 'relevance',
-									'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-								),
-								'menu_order'      => array(
-									'value' => 'menu_order',
-									'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-								),
-								'meta_value'      => array(
-									'value' => 'meta_value',
-									'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-								),
-								'meta_value_num'  => array(
-									'value' => 'meta_value_num',
-									'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-								),
-								'post__in'        => array(
-									'value' => 'post__in',
-									'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-								),
-								'post_parent__in' => array(
-									'value' => 'post_parent__in',
-									'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 								$this->get_field_id( 'orderby' ),
 								$this->get_field_name( 'orderby' ),
-								$options,
+								pis_select_order_by_relevance(),
 								$instance['orderby']
 							);
 							?>
 
 							<?php
 							// ================= Post order
-							$options = array(
-								'asc'  => array(
-									'value' => 'ASC',
-									'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-								),
-								'desc' => array(
-									'value' => 'DESC',
-									'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'The order will be', 'posts-in-sidebar' ),
 								$this->get_field_id( 'order' ),
 								$this->get_field_name( 'order' ),
-								$options,
+								pis_select_order(),
 								$instance['order']
 							);
 							?>
@@ -1304,25 +1156,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same category
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_same_cat' ),
 										$this->get_field_name( 'post_type_same_cat' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_same_cat'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -1384,102 +1222,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'relevance'       => array(
-											'value' => 'relevance',
-											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_same_cat' ),
 										$this->get_field_name( 'orderby_same_cat' ),
-										$options,
+										pis_select_order_by_relevance(),
 										$instance['orderby_same_cat']
 									);
 									?>
 
 									<?php
 									// ================= Post order.
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_same_cat' ),
 										$this->get_field_name( 'order_same_cat' ),
-										$options,
+										pis_select_order(),
 										$instance['order_same_cat']
 									);
 									?>
@@ -1533,25 +1291,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same tag
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_same_tag' ),
 										$this->get_field_name( 'post_type_same_tag' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_same_tag'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -1613,102 +1357,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'relevance'       => array(
-											'value' => 'relevance',
-											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_same_tag' ),
 										$this->get_field_name( 'orderby_same_tag' ),
-										$options,
+										pis_select_order_by_relevance(),
 										$instance['orderby_same_tag']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_same_tag' ),
 										$this->get_field_name( 'order_same_tag' ),
-										$options,
+										pis_select_order(),
 										$instance['order_same_tag']
 									);
 									?>
@@ -1762,25 +1426,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same author
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_same_author' ),
 										$this->get_field_name( 'post_type_same_author' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_same_author'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -1831,102 +1481,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'relevance'       => array(
-											'value' => 'relevance',
-											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_same_author' ),
 										$this->get_field_name( 'orderby_same_author' ),
-										$options,
+										pis_select_order_by_relevance(),
 										$instance['orderby_same_author']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_same_author' ),
 										$this->get_field_name( 'order_same_author' ),
-										$options,
+										pis_select_order(),
 										$instance['order_same_author']
 									);
 									?>
@@ -1981,25 +1551,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same custom field
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_same_cf' ),
 										$this->get_field_name( 'post_type_same_cf' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_same_cf'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -2030,29 +1586,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Type of the taxonomy
-									$options = array(
-										'empty' => array(
-											'value' => '',
-											'desc'  => '',
-										),
-									);
-									$args    = array(
-										'public' => true,
-									);
-
-									$registered_taxonomies = get_taxonomies( $args, 'object' );
-
-									foreach ( $registered_taxonomies as $registered_taxonomy ) {
-										$options[] = array(
-											'value' => $registered_taxonomy->name,
-											'desc'  => $registered_taxonomy->labels->singular_name,
-										);
-									}
 									pis_form_select(
 										esc_html__( 'Type of the taxonomy', 'posts-in-sidebar' ),
 										$this->get_field_id( 's_custom_field_tax' ),
 										$this->get_field_name( 's_custom_field_tax' ),
-										$options,
+										pis_select_taxonomies(),
 										$instance['s_custom_field_tax']
 									);
 									?>
@@ -2089,102 +1627,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'relevance'       => array(
-											'value' => 'relevance',
-											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_custom_fld' ),
 										$this->get_field_name( 'orderby_custom_fld' ),
-										$options,
+										pis_select_order_by_relevance(),
 										$instance['orderby_custom_fld']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_custom_fld' ),
 										$this->get_field_name( 'order_custom_fld' ),
-										$options,
+										pis_select_order(),
 										$instance['order_custom_fld']
 									);
 									?>
@@ -2239,25 +1697,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same post format
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_same_post_format' ),
 										$this->get_field_name( 'post_type_same_post_format' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_same_post_format'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -2307,102 +1751,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'relevance'       => array(
-											'value' => 'relevance',
-											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_same_post_format' ),
 										$this->get_field_name( 'orderby_same_post_format' ),
-										$options,
+										pis_select_order_by_relevance(),
 										$instance['orderby_same_post_format']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_same_post_format' ),
 										$this->get_field_name( 'order_same_post_format' ),
-										$options,
+										pis_select_order(),
 										$instance['order_same_post_format']
 									);
 									?>
@@ -2490,25 +1854,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same category archive page
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_cat_page' ),
 										$this->get_field_name( 'post_type_cat_page' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_cat_page'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -2572,98 +1922,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_cat_page' ),
 										$this->get_field_name( 'orderby_cat_page' ),
-										$options,
+										pis_select_order_by(),
 										$instance['orderby_cat_page']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_cat_page' ),
 										$this->get_field_name( 'order_cat_page' ),
-										$options,
+										pis_select_order(),
 										$instance['order_cat_page']
 									);
 									?>
@@ -2695,25 +1969,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same tag archive page
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_tag_page' ),
 										$this->get_field_name( 'post_type_tag_page' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_tag_page'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -2777,98 +2037,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_tag_page' ),
 										$this->get_field_name( 'orderby_tag_page' ),
-										$options,
+										pis_select_order_by(),
 										$instance['orderby_tag_page']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_tag_page' ),
 										$this->get_field_name( 'order_tag_page' ),
-										$options,
+										pis_select_order(),
 										$instance['order_tag_page']
 									);
 									?>
@@ -2900,25 +2084,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same author archive page
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_author_page' ),
 										$this->get_field_name( 'post_type_author_page' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_author_page'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -2982,98 +2152,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_author_page' ),
 										$this->get_field_name( 'orderby_author_page' ),
-										$options,
+										pis_select_order_by(),
 										$instance['orderby_author_page']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_author_page' ),
 										$this->get_field_name( 'order_author_page' ),
-										$options,
+										pis_select_order(),
 										$instance['order_author_page']
 									);
 									?>
@@ -3105,25 +2199,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post types from same post format archive page
-									$post_types = (array) get_post_types( '', 'objects' );
-									$options    = array(
-										array(
-											'value' => 'any',
-											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
-										),
-									);
-									foreach ( $post_types as $post_type ) {
-										$options[] = array(
-											'value' => $post_type->name,
-											'desc'  => $post_type->labels->singular_name,
-										);
-									}
-
 									pis_form_select(
 										esc_html__( 'Post type', 'posts-in-sidebar' ),
 										$this->get_field_id( 'post_type_post_format_page' ),
 										$this->get_field_name( 'post_type_post_format_page' ),
-										$options,
+										pis_select_post_types(),
 										$instance['post_type_post_format_page'],
 										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 									);
@@ -3187,98 +2267,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 									<?php
 									// ================= Post order by
-									$options = array(
-										'none'            => array(
-											'value' => 'none',
-											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
-										),
-										'id'              => array(
-											'value' => 'id',
-											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
-										),
-										'author'          => array(
-											'value' => 'author',
-											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-										),
-										'title'           => array(
-											'value' => 'title',
-											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
-										),
-										'name'            => array(
-											'value' => 'name',
-											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
-										),
-										'type'            => array(
-											'value' => 'type',
-											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
-										),
-										'date'            => array(
-											'value' => 'date',
-											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
-										),
-										'modified'        => array(
-											'value' => 'modified',
-											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
-										),
-										'parent'          => array(
-											'value' => 'parent',
-											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
-										),
-										'rand'            => array(
-											'value' => 'rand',
-											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
-										),
-										'comment_count'   => array(
-											'value' => 'comment_count',
-											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
-										),
-										'menu_order'      => array(
-											'value' => 'menu_order',
-											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
-										),
-										'meta_value'      => array(
-											'value' => 'meta_value',
-											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
-										),
-										'meta_value_num'  => array(
-											'value' => 'meta_value_num',
-											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
-										),
-										'post__in'        => array(
-											'value' => 'post__in',
-											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
-										),
-										'post_parent__in' => array(
-											'value' => 'post_parent__in',
-											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
 										$this->get_field_id( 'orderby_post_format_page' ),
 										$this->get_field_name( 'orderby_post_format_page' ),
-										$options,
+										pis_select_order_by(),
 										$instance['orderby_post_format_page']
 									);
 									?>
 
 									<?php
 									// ================= Post order
-									$options = array(
-										'asc'  => array(
-											'value' => 'ASC',
-											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
-										),
-										'desc' => array(
-											'value' => 'DESC',
-											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
-										),
-									);
 									pis_form_select(
 										esc_html__( 'The order will be', 'posts-in-sidebar' ),
 										$this->get_field_id( 'order_post_format_page' ),
 										$this->get_field_name( 'order_post_format_page' ),
-										$options,
+										pis_select_order(),
 										$instance['order_post_format_page']
 									);
 									?>
@@ -3457,25 +2461,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column centered">
 								<?php
 								// ================= Taxonomy relation between aa and bb
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ),
 									$this->get_field_id( 'relation' ),
 									$this->get_field_name( 'relation' ),
-									$options,
+									pis_select_relation(),
 									$instance['relation'],
 									esc_html__( 'The logical relationship between each inner taxonomy array when there is more than one. Do not use with a single inner taxonomy array.', 'posts-in-sidebar' )
 								);
@@ -3505,29 +2495,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Field aa
-								$options = array(
-									'empty'   => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'term_id' => array(
-										'value' => 'term_id',
-										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' ),
-									),
-									'slug'    => array(
-										'value' => 'slug',
-										'desc'  => esc_html__( 'Slug', 'posts-in-sidebar' ),
-									),
-									'name'    => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'field_aa' ),
 									$this->get_field_name( 'field_aa' ),
-									$options,
+									pis_select_field(),
 									$instance['field_aa'],
 									esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' )
 								);
@@ -3547,29 +2519,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Operator aa
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'in'     => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in' => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'and'    => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'operator_aa' ),
 									$this->get_field_name( 'operator_aa' ),
-									$options,
+									pis_select_operator(),
 									$instance['operator_aa'],
 									esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' )
 								);
@@ -3579,25 +2533,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Taxonomy relation between aa and ab
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between A1 and A2 taxonomies', 'posts-in-sidebar' ),
 									$this->get_field_id( 'relation_a' ),
 									$this->get_field_name( 'relation_a' ),
-									$options,
+									pis_select_relation(),
 									$instance['relation_a']
 								);
 								?>
@@ -3618,29 +2558,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Field ab
-								$options = array(
-									'empty'   => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'term_id' => array(
-										'value' => 'term_id',
-										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' ),
-									),
-									'slug'    => array(
-										'value' => 'slug',
-										'desc'  => esc_html__( 'Slug', 'posts-in-sidebar' ),
-									),
-									'name'    => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'field_ab' ),
 									$this->get_field_name( 'field_ab' ),
-									$options,
+									pis_select_field(),
 									$instance['field_ab'],
 									esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' )
 								);
@@ -3660,29 +2582,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Operator ab
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'in'     => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in' => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'and'    => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'operator_ab' ),
 									$this->get_field_name( 'operator_ab' ),
-									$options,
+									pis_select_operator(),
 									$instance['operator_ab'],
 									esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' )
 								);
@@ -3708,29 +2612,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Field ba
-								$options = array(
-									'empty'   => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'term_id' => array(
-										'value' => 'term_id',
-										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' ),
-									),
-									'slug'    => array(
-										'value' => 'slug',
-										'desc'  => esc_html__( 'Slug', 'posts-in-sidebar' ),
-									),
-									'name'    => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'field_ba' ),
 									$this->get_field_name( 'field_ba' ),
-									$options,
+									pis_select_field(),
 									$instance['field_ba'],
 									esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' )
 								);
@@ -3750,29 +2636,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Operator ba
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'in'     => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in' => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'and'    => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'operator_ba' ),
 									$this->get_field_name( 'operator_ba' ),
-									$options,
+									pis_select_operator(),
 									$instance['operator_ba'],
 									esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' )
 								);
@@ -3782,29 +2650,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Taxonomy relation between ba and bb
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between B1 and B2 taxonomies', 'posts-in-sidebar' ),
 									$this->get_field_id( 'relation_b' ),
 									$this->get_field_name( 'relation_b' ),
-									$options,
+									pis_select_relation(),
 									$instance['relation_b']
 								);
 								?>
@@ -3825,29 +2675,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Field bb
-								$options = array(
-									'empty'   => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'term_id' => array(
-										'value' => 'term_id',
-										'desc'  => esc_html__( 'Term ID', 'posts-in-sidebar' ),
-									),
-									'slug'    => array(
-										'value' => 'slug',
-										'desc'  => esc_html__( 'Slug', 'posts-in-sidebar' ),
-									),
-									'name'    => array(
-										'value' => 'name',
-										'desc'  => esc_html__( 'Name', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'field_bb' ),
 									$this->get_field_name( 'field_bb' ),
-									$options,
+									pis_select_field(),
 									$instance['field_bb'],
 									esc_html__( 'Select taxonomy term by this field.', 'posts-in-sidebar' )
 								);
@@ -3867,29 +2699,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Operator bb
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'in'     => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in' => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'and'    => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'operator_bb' ),
 									$this->get_field_name( 'operator_bb' ),
-									$options,
+									pis_select_operator(),
 									$instance['operator_bb'],
 									esc_html__( 'Operator to test for terms.', 'posts-in-sidebar' )
 								);
@@ -4118,33 +2932,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<div class="pis-column">
 
 								<?php
-								$options = array(
-									'empty'             => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'post_date'         => array(
-										'value' => 'post_date',
-										'desc'  => esc_html__( 'Post date', 'posts-in-sidebar' ),
-									),
-									'post_date_gmt'     => array(
-										'value' => 'post_date_gmt',
-										'desc'  => esc_html__( 'Post date GMT', 'posts-in-sidebar' ),
-									),
-									'post_modified'     => array(
-										'value' => 'post_modified',
-										'desc'  => esc_html__( 'Post modified', 'posts-in-sidebar' ),
-									),
-									'post_modified_gmt' => array(
-										'value' => 'post_modified_gmt',
-										'desc'  => esc_html__( 'Post modified GMT', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Column', 'posts-in-sidebar' ),
 									$this->get_field_id( 'date_column' ),
 									$this->get_field_name( 'date_column' ),
-									$options,
+									pis_select_date_column(),
 									$instance['date_column'],
 									esc_html__( 'Column to query against.', 'posts-in-sidebar' )
 								);
@@ -4181,45 +2973,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Type of date
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'year'   => array(
-										'value' => 'year',
-										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' ),
-									),
-									'month'  => array(
-										'value' => 'month',
-										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' ),
-									),
-									'week'   => array(
-										'value' => 'week',
-										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' ),
-									),
-									'day'    => array(
-										'value' => 'day',
-										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' ),
-									),
-									'hour'   => array(
-										'value' => 'hour',
-										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' ),
-									),
-									'minute' => array(
-										'value' => 'minute',
-										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' ),
-									),
-									'second' => array(
-										'value' => 'second',
-										'desc'  => esc_html__( 'seconds', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type of date', 'posts-in-sidebar' ),
 									$this->get_field_id( 'date_after_dyn_date' ),
 									$this->get_field_name( 'date_after_dyn_date' ),
-									$options,
+									pis_select_date_type(),
 									$instance['date_after_dyn_date']
 								);
 								?>
@@ -4243,45 +3001,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Type of date
-								$options = array(
-									'empty'  => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'year'   => array(
-										'value' => 'year',
-										'desc'  => esc_html__( 'Years', 'posts-in-sidebar' ),
-									),
-									'month'  => array(
-										'value' => 'month',
-										'desc'  => esc_html__( 'Months', 'posts-in-sidebar' ),
-									),
-									'week'   => array(
-										'value' => 'week',
-										'desc'  => esc_html__( 'Weeks', 'posts-in-sidebar' ),
-									),
-									'day'    => array(
-										'value' => 'day',
-										'desc'  => esc_html__( 'Days', 'posts-in-sidebar' ),
-									),
-									'hour'   => array(
-										'value' => 'hour',
-										'desc'  => esc_html__( 'Hours', 'posts-in-sidebar' ),
-									),
-									'minute' => array(
-										'value' => 'minute',
-										'desc'  => esc_html__( 'Minutes', 'posts-in-sidebar' ),
-									),
-									'second' => array(
-										'value' => 'second',
-										'desc'  => esc_html__( 'Seconds', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type of date', 'posts-in-sidebar' ),
 									$this->get_field_id( 'date_before_dyn_date' ),
 									$this->get_field_name( 'date_before_dyn_date' ),
-									$options,
+									pis_select_date_type(),
 									$instance['date_before_dyn_date']
 								);
 								?>
@@ -4309,25 +3033,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Meta relation between aa and bb
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between Column A and Column B', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_relation' ),
 									$this->get_field_name( 'mq_relation' ),
-									$options,
+									pis_select_relation(),
 									$instance['mq_relation'],
 									esc_html__( 'The logical relationship between each inner meta_query array when there is more than one.', 'posts-in-sidebar' )
 								);
@@ -4369,73 +3079,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field compare aa
-								$options = array(
-									'empty'         => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'equal'         => array(
-										'value' => '=',
-										'desc'  => '=',
-									),
-									'not_equal'     => array(
-										'value' => '!=',
-										'desc'  => '!=',
-									),
-									'greater'       => array(
-										'value' => '>',
-										'desc'  => '>',
-									),
-									'greater_equal' => array(
-										'value' => '>=',
-										'desc'  => '>=',
-									),
-									'lower'         => array(
-										'value' => '<',
-										'desc'  => '<',
-									),
-									'lower_equal'   => array(
-										'value' => '<=',
-										'desc'  => '<=',
-									),
-									'like'          => array(
-										'value' => 'LIKE',
-										'desc'  => 'LIKE',
-									),
-									'not_like'      => array(
-										'value' => 'NOT LIKE',
-										'desc'  => 'NOT LIKE',
-									),
-									'in'            => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in'        => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'between'       => array(
-										'value' => 'BETWEEN',
-										'desc'  => 'BETWEEN',
-									),
-									'not_between'   => array(
-										'value' => 'NOT BETWEEN',
-										'desc'  => 'NOT BETWEEN',
-									),
-									'exists'        => array(
-										'value' => 'EXISTS',
-										'desc'  => 'EXISTS',
-									),
-									'not_exists'    => array(
-										'value' => 'NOT EXISTS',
-										'desc'  => 'NOT EXISTS',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_compare_aa' ),
 									$this->get_field_name( 'mq_compare_aa' ),
-									$options,
+									pis_select_compare(),
 									$instance['mq_compare_aa'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								);
@@ -4443,53 +3091,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field type aa
-								$options = array(
-									'empty'    => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'numeric'  => array(
-										'value' => 'NUMERIC',
-										'desc'  => 'NUMERIC',
-									),
-									'binary'   => array(
-										'value' => 'BINARY',
-										'desc'  => 'BINARY',
-									),
-									'char'     => array(
-										'value' => 'CHAR',
-										'desc'  => 'CHAR',
-									),
-									'date'     => array(
-										'value' => 'DATE',
-										'desc'  => 'DATE',
-									),
-									'datetime' => array(
-										'value' => 'DATETIME',
-										'desc'  => 'DATETIME',
-									),
-									'decimal'  => array(
-										'value' => 'DECIMAL',
-										'desc'  => 'DECIMAL',
-									),
-									'signed'   => array(
-										'value' => 'SIGNED',
-										'desc'  => 'SIGNED',
-									),
-									'time'     => array(
-										'value' => 'TIME',
-										'desc'  => 'TIME',
-									),
-									'unsigned' => array(
-										'value' => 'UNSIGNED',
-										'desc'  => 'UNSIGNED',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_type_aa' ),
 									$this->get_field_name( 'mq_type_aa' ),
-									$options,
+									pis_select_cf_type(),
 									$instance['mq_type_aa'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								);
@@ -4499,29 +3105,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Relation between aa and ab
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between A1 and A2 custom fields', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_relation_a' ),
 									$this->get_field_name( 'mq_relation_a' ),
-									$options,
+									pis_select_relation(),
 									$instance['mq_relation_a']
 								);
 								?>
@@ -4554,73 +3142,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field compare ab
-								$options = array(
-									'empty'         => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'equal'         => array(
-										'value' => '=',
-										'desc'  => '=',
-									),
-									'not_equal'     => array(
-										'value' => '!=',
-										'desc'  => '!=',
-									),
-									'greater'       => array(
-										'value' => '>',
-										'desc'  => '>',
-									),
-									'greater_equal' => array(
-										'value' => '>=',
-										'desc'  => '>=',
-									),
-									'lower'         => array(
-										'value' => '<',
-										'desc'  => '<',
-									),
-									'lower_equal'   => array(
-										'value' => '<=',
-										'desc'  => '<=',
-									),
-									'like'          => array(
-										'value' => 'LIKE',
-										'desc'  => 'LIKE',
-									),
-									'not_like'      => array(
-										'value' => 'NOT LIKE',
-										'desc'  => 'NOT LIKE',
-									),
-									'in'            => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in'        => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'between'       => array(
-										'value' => 'BETWEEN',
-										'desc'  => 'BETWEEN',
-									),
-									'not_between'   => array(
-										'value' => 'NOT BETWEEN',
-										'desc'  => 'NOT BETWEEN',
-									),
-									'exists'        => array(
-										'value' => 'EXISTS',
-										'desc'  => 'EXISTS',
-									),
-									'not_exists'    => array(
-										'value' => 'NOT EXISTS',
-										'desc'  => 'NOT EXISTS',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_compare_ab' ),
 									$this->get_field_name( 'mq_compare_ab' ),
-									$options,
+									pis_select_compare(),
 									$instance['mq_compare_ab'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								);
@@ -4628,53 +3154,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field type ab
-								$options = array(
-									'empty'    => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'numeric'  => array(
-										'value' => 'NUMERIC',
-										'desc'  => 'NUMERIC',
-									),
-									'binary'   => array(
-										'value' => 'BINARY',
-										'desc'  => 'BINARY',
-									),
-									'char'     => array(
-										'value' => 'CHAR',
-										'desc'  => 'CHAR',
-									),
-									'date'     => array(
-										'value' => 'DATE',
-										'desc'  => 'DATE',
-									),
-									'datetime' => array(
-										'value' => 'DATETIME',
-										'desc'  => 'DATETIME',
-									),
-									'decimal'  => array(
-										'value' => 'DECIMAL',
-										'desc'  => 'DECIMAL',
-									),
-									'signed'   => array(
-										'value' => 'SIGNED',
-										'desc'  => 'SIGNED',
-									),
-									'time'     => array(
-										'value' => 'TIME',
-										'desc'  => 'TIME',
-									),
-									'unsigned' => array(
-										'value' => 'UNSIGNED',
-										'desc'  => 'UNSIGNED',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_type_ab' ),
 									$this->get_field_name( 'mq_type_ab' ),
-									$options,
+									pis_select_cf_type(),
 									$instance['mq_type_ab'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								);
@@ -4712,73 +3196,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field compare ba
-								$options = array(
-									'empty'         => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'equal'         => array(
-										'value' => '=',
-										'desc'  => '=',
-									),
-									'not_equal'     => array(
-										'value' => '!=',
-										'desc'  => '!=',
-									),
-									'greater'       => array(
-										'value' => '>',
-										'desc'  => '>',
-									),
-									'greater_equal' => array(
-										'value' => '>=',
-										'desc'  => '>=',
-									),
-									'lower'         => array(
-										'value' => '<',
-										'desc'  => '<',
-									),
-									'lower_equal'   => array(
-										'value' => '<=',
-										'desc'  => '<=',
-									),
-									'like'          => array(
-										'value' => 'LIKE',
-										'desc'  => 'LIKE',
-									),
-									'not_like'      => array(
-										'value' => 'NOT LIKE',
-										'desc'  => 'NOT LIKE',
-									),
-									'in'            => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in'        => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'between'       => array(
-										'value' => 'BETWEEN',
-										'desc'  => 'BETWEEN',
-									),
-									'not_between'   => array(
-										'value' => 'NOT BETWEEN',
-										'desc'  => 'NOT BETWEEN',
-									),
-									'exists'        => array(
-										'value' => 'EXISTS',
-										'desc'  => 'EXISTS',
-									),
-									'not_exists'    => array(
-										'value' => 'NOT EXISTS',
-										'desc'  => 'NOT EXISTS',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_compare_ba' ),
 									$this->get_field_name( 'mq_compare_ba' ),
-									$options,
+									pis_select_compare(),
 									$instance['mq_compare_ba'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								);
@@ -4786,53 +3208,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field type ba
-								$options = array(
-									'empty'    => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'numeric'  => array(
-										'value' => 'NUMERIC',
-										'desc'  => 'NUMERIC',
-									),
-									'binary'   => array(
-										'value' => 'BINARY',
-										'desc'  => 'BINARY',
-									),
-									'char'     => array(
-										'value' => 'CHAR',
-										'desc'  => 'CHAR',
-									),
-									'date'     => array(
-										'value' => 'DATE',
-										'desc'  => 'DATE',
-									),
-									'datetime' => array(
-										'value' => 'DATETIME',
-										'desc'  => 'DATETIME',
-									),
-									'decimal'  => array(
-										'value' => 'DECIMAL',
-										'desc'  => 'DECIMAL',
-									),
-									'signed'   => array(
-										'value' => 'SIGNED',
-										'desc'  => 'SIGNED',
-									),
-									'time'     => array(
-										'value' => 'TIME',
-										'desc'  => 'TIME',
-									),
-									'unsigned' => array(
-										'value' => 'UNSIGNED',
-										'desc'  => 'UNSIGNED',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_type_ba' ),
 									$this->get_field_name( 'mq_type_ba' ),
-									$options,
+									pis_select_cf_type(),
 									$instance['mq_type_ba'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								);
@@ -4842,29 +3222,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Relation between ba and bb
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'and'   => array(
-										'value' => 'AND',
-										'desc'  => 'AND',
-									),
-									'or'    => array(
-										'value' => 'OR',
-										'desc'  => 'OR',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Relation between B1 and B2 custom fields', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_relation_b' ),
 									$this->get_field_name( 'mq_relation_b' ),
-									$options,
+									pis_select_relation(),
 									$instance['mq_relation_b']
 								);
 								?>
@@ -4897,73 +3259,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field compare bb
-								$options = array(
-									'empty'         => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'equal'         => array(
-										'value' => '=',
-										'desc'  => '=',
-									),
-									'not_equal'     => array(
-										'value' => '!=',
-										'desc'  => '!=',
-									),
-									'greater'       => array(
-										'value' => '>',
-										'desc'  => '>',
-									),
-									'greater_equal' => array(
-										'value' => '>=',
-										'desc'  => '>=',
-									),
-									'lower'         => array(
-										'value' => '<',
-										'desc'  => '<',
-									),
-									'lower_equal'   => array(
-										'value' => '<=',
-										'desc'  => '<=',
-									),
-									'like'          => array(
-										'value' => 'LIKE',
-										'desc'  => 'LIKE',
-									),
-									'not_like'      => array(
-										'value' => 'NOT LIKE',
-										'desc'  => 'NOT LIKE',
-									),
-									'in'            => array(
-										'value' => 'IN',
-										'desc'  => 'IN',
-									),
-									'not_in'        => array(
-										'value' => 'NOT IN',
-										'desc'  => 'NOT IN',
-									),
-									'between'       => array(
-										'value' => 'BETWEEN',
-										'desc'  => 'BETWEEN',
-									),
-									'not_between'   => array(
-										'value' => 'NOT BETWEEN',
-										'desc'  => 'NOT BETWEEN',
-									),
-									'exists'        => array(
-										'value' => 'EXISTS',
-										'desc'  => 'EXISTS',
-									),
-									'not_exists'    => array(
-										'value' => 'NOT EXISTS',
-										'desc'  => 'NOT EXISTS',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Operator', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_compare_bb' ),
 									$this->get_field_name( 'mq_compare_bb' ),
-									$options,
+									pis_select_compare(),
 									$instance['mq_compare_bb'],
 									esc_html__( 'Operator to test for values.', 'posts-in-sidebar' )
 								);
@@ -4971,53 +3271,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Custom field type bb
-								$options = array(
-									'empty'    => array(
-										'value' => '',
-										'desc'  => '',
-									),
-									'numeric'  => array(
-										'value' => 'NUMERIC',
-										'desc'  => 'NUMERIC',
-									),
-									'binary'   => array(
-										'value' => 'BINARY',
-										'desc'  => 'BINARY',
-									),
-									'char'     => array(
-										'value' => 'CHAR',
-										'desc'  => 'CHAR',
-									),
-									'date'     => array(
-										'value' => 'DATE',
-										'desc'  => 'DATE',
-									),
-									'datetime' => array(
-										'value' => 'DATETIME',
-										'desc'  => 'DATETIME',
-									),
-									'decimal'  => array(
-										'value' => 'DECIMAL',
-										'desc'  => 'DECIMAL',
-									),
-									'signed'   => array(
-										'value' => 'SIGNED',
-										'desc'  => 'SIGNED',
-									),
-									'time'     => array(
-										'value' => 'TIME',
-										'desc'  => 'TIME',
-									),
-									'unsigned' => array(
-										'value' => 'UNSIGNED',
-										'desc'  => 'UNSIGNED',
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Type', 'posts-in-sidebar' ),
 									$this->get_field_id( 'mq_type_bb' ),
 									$this->get_field_name( 'mq_type_bb' ),
-									$options,
+									pis_select_cf_type(),
 									$instance['mq_type_bb'],
 									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
 								);
@@ -5097,21 +3355,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Title length Unit
-							$options = array(
-								'words' => array(
-									'value' => 'words',
-									'desc'  => esc_html__( 'Words', 'posts-in-sidebar' ),
-								),
-								'chars' => array(
-									'value' => 'chars',
-									'desc'  => esc_html__( 'Characters', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'Title length unit', 'posts-in-sidebar' ),
 								$this->get_field_id( 'title_length_unit' ),
 								$this->get_field_name( 'title_length_unit' ),
-								$options,
+								pis_select_length_unit(),
 								$instance['title_length_unit']
 							);
 							?>
@@ -5133,41 +3381,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Type of text
-							$options = array(
-								'full_content'   => array(
-									'value' => 'full_content',
-									'desc'  => esc_html__( 'The full content', 'posts-in-sidebar' ),
-								),
-								'rich_content'   => array(
-									'value' => 'rich_content',
-									'desc'  => esc_html__( 'The rich content', 'posts-in-sidebar' ),
-								),
-								'content'        => array(
-									'value' => 'content',
-									'desc'  => esc_html__( 'The simple text', 'posts-in-sidebar' ),
-								),
-								'more_excerpt'   => array(
-									'value' => 'more_excerpt',
-									'desc'  => esc_html__( 'The excerpt up to "more" tag', 'posts-in-sidebar' ),
-								),
-								'excerpt'        => array(
-									'value' => 'excerpt',
-									'desc'  => esc_html__( 'The excerpt', 'posts-in-sidebar' ),
-								),
-								'only_read_more' => array(
-									'value' => 'only_read_more',
-									'desc'  => esc_html__( 'Display only the Read more link', 'posts-in-sidebar' ),
-								),
-								'none'           => array(
-									'value' => 'none',
-									'desc'  => esc_html__( 'Do not show any text', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'Display this type of text', 'posts-in-sidebar' ),
 								$this->get_field_id( 'excerpt' ),
 								$this->get_field_name( 'excerpt' ),
-								$options,
+								pis_select_text_type(),
 								$instance['excerpt'],
 								// translators: there is some code.
 								sprintf( esc_html__( 'For more information regarding these types of text, please see %1$shere%2$s.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Usage#types-of-text-to-display" target="_blank">', '</a>' )
@@ -5187,21 +3405,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<?php
 							// ================= Excerpt length Unit
-							$options = array(
-								'words' => array(
-									'value' => 'words',
-									'desc'  => esc_html__( 'Words', 'posts-in-sidebar' ),
-								),
-								'chars' => array(
-									'value' => 'chars',
-									'desc'  => esc_html__( 'Characters', 'posts-in-sidebar' ),
-								),
-							);
 							pis_form_select(
 								esc_html__( 'Excerpt length unit', 'posts-in-sidebar' ),
 								$this->get_field_id( 'exc_length_unit' ),
 								$this->get_field_name( 'exc_length_unit' ),
-								$options,
+								pis_select_length_unit(),
 								$instance['exc_length_unit']
 							);
 							?>
@@ -5260,50 +3468,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Image sizes
-								$options = array();
-								$sizes   = (array) get_intermediate_image_sizes();
-								$sizes[] = 'full';
-								foreach ( $sizes as $size ) {
-									$options[] = array(
-										'value' => $size,
-										'desc'  => $size,
-									);
-								}
 								pis_form_select(
 									esc_html__( 'The size of the thumbnail will be', 'posts-in-sidebar' ),
 									$this->get_field_id( 'image_size' ),
 									$this->get_field_name( 'image_size' ),
-									$options,
+									pis_select_image_size(),
 									$instance['image_size']
 								);
 								?>
 
 								<?php
 								// ================= Image align
-								$options = array(
-									'nochange' => array(
-										'value' => 'nochange',
-										'desc'  => esc_html__( 'Do not change', 'posts-in-sidebar' ),
-									),
-									'left'     => array(
-										'value' => 'left',
-										'desc'  => esc_html__( 'Left', 'posts-in-sidebar' ),
-									),
-									'right'    => array(
-										'value' => 'right',
-										'desc'  => esc_html__( 'Right', 'posts-in-sidebar' ),
-									),
-									'center'   => array(
-										'value' => 'center',
-										'desc'  => esc_html__( 'Center', 'posts-in-sidebar' ),
-									),
-
-								);
 								pis_form_select(
 									esc_html__( 'Align the image to', 'posts-in-sidebar' ),
 									$this->get_field_id( 'image_align' ),
 									$this->get_field_name( 'image_align' ),
-									$options,
+									pis_select_image_align(),
 									$instance['image_align']
 								);
 								?>
@@ -5581,25 +3761,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Gravatar position
-								$options = array(
-									'next_title'  => array(
-										'value' => 'next_title',
-										'desc'  => esc_html__( 'Next to the post title', 'posts-in-sidebar' ),
-									),
-									'next_post'   => array(
-										'value' => 'next_post',
-										'desc'  => esc_html__( 'Next to the post content', 'posts-in-sidebar' ),
-									),
-									'next_author' => array(
-										'value' => 'next_author',
-										'desc'  => esc_html__( 'Next to the author name', 'posts-in-sidebar' ),
-									),
-								);
 								pis_form_select(
 									esc_html__( 'Gravatar position', 'posts-in-sidebar' ),
 									$this->get_field_id( 'gravatar_position' ),
 									$this->get_field_name( 'gravatar_position' ),
-									$options,
+									pis_select_gravatar_position(),
 									$instance['gravatar_position']
 								);
 								?>
@@ -5985,27 +4151,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Which custom field
-								$options = array(
-									'empty' => array(
-										'value' => '',
-										'desc'  => '',
-									),
-								);
-								$metas   = (array) pis_meta();
-								foreach ( $metas as $meta ) {
-									if ( is_protected_meta( $meta, 'post' ) ) {
-										continue;
-									}
-									$options[] = array(
-										'value' => $meta,
-										'desc'  => $meta,
-									);
-								}
 								pis_form_select(
 									esc_html__( 'Display this custom field', 'posts-in-sidebar' ),
 									$this->get_field_id( 'meta' ),
 									$this->get_field_name( 'meta' ),
-									$options,
+									pis_select_meta(),
 									$instance['meta']
 								);
 								?>
@@ -6120,66 +4270,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<?php
 								// ================= Which taxonomy
-								$options = array(
-									/* Author */
-									'author'   => array(
-										'value' => 'author',
-										'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
-									),
-									/* Category */
-									'category' => array(
-										'value' => 'category',
-										'desc'  => esc_html__( 'Category', 'posts-in-sidebar' ),
-									),
-									/* tag */
-									'tag'      => array(
-										'value' => 'tag',
-										'desc'  => esc_html__( 'Tag', 'posts-in-sidebar' ),
-									),
-								);
-								/* Custom post type */
-								$custom_post_types = get_post_types(
-									array(
-										'_builtin' => false,
-									)
-								);
-								if ( $custom_post_types ) {
-									$options[] = array(
-										'value' => 'custom_post_type',
-										'desc'  => esc_html__( 'Custom post type', 'posts-in-sidebar' ),
-									);
-								}
-								/* Custom taxonomy */
-								$custom_taxonomy = get_taxonomies(
-									array(
-										'public'   => true,
-										'_builtin' => false,
-									)
-								);
-								if ( $custom_taxonomy ) {
-									$options[] = array(
-										'value' => 'custom_taxonomy',
-										'desc'  => esc_html__( 'Custom taxonomy', 'posts-in-sidebar' ),
-									);
-								}
-								/* Post format */
-								if ( $post_formats ) { // $post_formats has been already declared (search above).
-									foreach ( $post_formats as $post_format ) {
-										$options[] = array(
-											'value' => $post_format->slug,
-											'desc'  => sprintf(
-												// translators: This is the name of the post format.
-												esc_html__( 'Post format: %s', 'posts-in-sidebar' ),
-												$post_format->name
-											),
-										);
-									}
-								}
 								pis_form_select(
 									esc_html__( 'Link to the archive of', 'posts-in-sidebar' ),
 									$this->get_field_id( 'link_to' ),
 									$this->get_field_name( 'link_to' ),
-									$options,
+									pis_select_archive_link(),
 									$instance['link_to'],
 									'',
 									'pis-linkto-form'
@@ -6326,29 +4421,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php
 						// ================= Margin unit
-						$options = array(
-							'px'  => array(
-								'value' => 'px',
-								'desc'  => 'px',
-							),
-							'%'   => array(
-								'value' => '%',
-								'desc'  => '%',
-							),
-							'em'  => array(
-								'value' => 'em',
-								'desc'  => 'em',
-							),
-							'rem' => array(
-								'value' => 'rem',
-								'desc'  => 'rem',
-							),
-						);
 						pis_form_select(
 							esc_html__( 'Unit for margins', 'posts-in-sidebar' ),
 							$this->get_field_id( 'margin_unit' ),
 							$this->get_field_name( 'margin_unit' ),
-							$options,
+							pis_select_margin_unit(),
 							$instance['margin_unit']
 						);
 						?>
@@ -6473,21 +4550,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<?php
 						// ================= Type of HTML for list of posts
-						$options = array(
-							'ul' => array(
-								'value' => 'ul',
-								'desc'  => esc_html__( 'Unordered list', 'posts-in-sidebar' ),
-							),
-							'ol' => array(
-								'value' => 'ol',
-								'desc'  => esc_html__( 'Ordered list', 'posts-in-sidebar' ),
-							),
-						);
 						pis_form_select(
 							esc_html__( 'Use this type of list for the posts', 'posts-in-sidebar' ),
 							$this->get_field_id( 'list_element' ),
 							$this->get_field_name( 'list_element' ),
-							$options,
+							pis_select_list_type(),
 							$instance['list_element']
 						);
 						?>

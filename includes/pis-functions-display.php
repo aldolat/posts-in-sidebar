@@ -456,7 +456,7 @@ function pis_the_thumbnail( $args ) {
 		$output .= '<a ' . pis_class( 'pis-thumbnail-link', apply_filters( 'pis_thumbnail_link_class', '' ), false ) . ' href="' . esc_url( wp_strip_all_tags( $the_image_link ) ) . '" rel="bookmark">';
 	}
 
-	/**
+	/*
 	 * If the post type is an attachment (an image, or any other attachment),
 	 * the construct is different.
 	 *
@@ -480,15 +480,24 @@ function pis_the_thumbnail( $args ) {
 		 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
 		 */
 		if ( ( ! has_post_thumbnail() && $args['custom_image_url'] ) || ( $args['custom_image_url'] && ! $args['custom_img_no_thumb'] ) ) {
-			$image_html = '<img src="' . esc_url( $args['custom_image_url'] ) . '" alt="" class="' . $final_image_class . '">';
+			$image_html = '<img src="' . esc_url( $args['custom_image_url'] ) . '" alt="Post thumbnail" class="' . $final_image_class . '">';
 		} else {
 			$image_html = get_the_post_thumbnail(
 				$args['pis_query']->post->ID,
 				$args['image_size'],
-				array( 'class' => $final_image_class )
+				array(
+					'class' => $final_image_class,
+				)
 			);
 		}
 	}
+
+	/*
+	 * Filters the HTML img element.
+	 *
+	 * @since 4.8.0
+	 */
+	$image_html = apply_filters( 'pis_image_html', $image_html );
 
 	$output .= str_replace( '<img', '<img' . $image_style, $image_html );
 

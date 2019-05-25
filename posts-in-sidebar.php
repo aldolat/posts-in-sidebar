@@ -64,12 +64,12 @@ add_action( 'plugins_loaded', 'pis_setup' );
  */
 function pis_setup() {
 
-	/**
+	/*
 	 * Define the version of the plugin.
 	 */
 	define( 'PIS_VERSION', '4.8.0' );
 
-	/**
+	/*
 	 * Make plugin available for i18n.
 	 * Translations must be archived in the /languages/ directory.
 	 * The name of each translation file must be, for example:
@@ -161,15 +161,22 @@ function pis_load_scripts( $hook ) {
  */
 function pis_load_widgets() {
 
-	/**
+	/*
 	 * Load the widget's form functions.
 	 *
 	 * @since 1.12
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-widget-form-functions.php';
 
-	/**
-	 * Load the widget's PHP file.
+	/*
+	 * Load the select options for the widget's form functions.
+	 *
+	 * @since 4.8.0
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-select-options.php';
+
+	/*
+	 * Load the widget's file.
 	 *
 	 * @since 1.1
 	 */

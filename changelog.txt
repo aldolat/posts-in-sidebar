@@ -2,7 +2,7 @@
 
 = 4.7.7 =
 
-* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) fo reporting it).
+* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) for reporting it).
 * Code optimization.
 
 = 4.7.6 =

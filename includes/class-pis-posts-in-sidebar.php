@@ -314,6 +314,22 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['ptm_scf'] = pis_check_post_types( $instance['ptm_scf'] );
 		}
 
+		$instance['get_from_same_post_format'] = isset( $new_instance['get_from_same_post_format'] ) ? 1 : 0;
+		$instance['number_same_post_format']   = intval( wp_strip_all_tags( $new_instance['number_same_post_format'] ) );
+		$instance['title_same_post_format']    = wp_strip_all_tags( $new_instance['title_same_post_format'] );
+		$instance['orderby_same_post_format']  = $new_instance['orderby_same_post_format'];
+		$instance['order_same_post_format']    = $new_instance['order_same_post_format'];
+		$instance['offset_same_post_format']   = absint( wp_strip_all_tags( $new_instance['offset_same_post_format'] ) );
+		if ( 0 === $instance['offset_same_post_format'] || ! is_numeric( $instance['offset_same_post_format'] ) ) {
+			$instance['offset_same_post_format'] = '';
+		}
+		$instance['search_same_post_format']    = isset( $new_instance['search_same_post_format'] ) ? 1 : 0;
+		$instance['post_type_same_post_format'] = $new_instance['post_type_same_post_format'];
+		$instance['ptm_spf']                    = $new_instance['ptm_spf'];
+		if ( ! empty( $instance['ptm_spf'] ) ) {
+			$instance['ptm_spf'] = pis_check_post_types( $instance['ptm_spf'] );
+		}
+
 		$instance['dont_ignore_params'] = isset( $new_instance['dont_ignore_params'] ) ? 1 : 0;
 
 		$instance['get_from_cat_page'] = isset( $new_instance['get_from_cat_page'] ) ? 1 : 0;
@@ -368,6 +384,24 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['ptm_sap']               = $new_instance['ptm_sap'];
 		if ( ! empty( $instance['ptm_sap'] ) ) {
 			$instance['ptm_sap'] = pis_check_post_types( $instance['ptm_sap'] );
+		}
+
+		$instance['get_from_post_format_page'] = isset( $new_instance['get_from_post_format_page'] ) ? 1 : 0;
+		$instance['number_post_format_page']   = intval( wp_strip_all_tags( $new_instance['number_post_format_page'] ) );
+		if ( 0 === $instance['number_post_format_page'] || ! is_numeric( $instance['number_post_format_page'] ) ) {
+			$instance['number_post_format_page'] = '';
+		}
+		$instance['offset_post_format_page'] = absint( wp_strip_all_tags( $new_instance['offset_post_format_page'] ) );
+		if ( 0 === $instance['offset_post_format_page'] || ! is_numeric( $instance['offset_post_format_page'] ) ) {
+			$instance['offset_post_format_page'] = '';
+		}
+		$instance['title_post_format_page']     = wp_strip_all_tags( $new_instance['title_post_format_page'] );
+		$instance['orderby_post_format_page']   = $new_instance['orderby_post_format_page'];
+		$instance['order_post_format_page']     = $new_instance['order_post_format_page'];
+		$instance['post_type_post_format_page'] = $new_instance['post_type_post_format_page'];
+		$instance['ptm_spfp']               = $new_instance['ptm_spfp'];
+		if ( ! empty( $instance['ptm_spfp'] ) ) {
+			$instance['ptm_spfp'] = pis_check_post_types( $instance['ptm_spfp'] );
 		}
 
 		$instance['dont_ignore_params_page'] = isset( $new_instance['dont_ignore_params_page'] ) ? 1 : 0;
@@ -2183,6 +2217,224 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						</div>
 
+						<h6 data-panel="get-posts-current-pf" class="pis-widget-title"><?php esc_html_e( 'Get posts from current post format', 'posts-in-sidebar' ); ?></h6>
+
+						<div class="pis-container">
+
+							<div class="pis-column-container">
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Get posts from same post format when on single post
+									pis_form_checkbox(
+										esc_html__( 'When on single posts, get posts from the current post format', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_same_post_format' ),
+										$this->get_field_name( 'get_from_same_post_format' ),
+										$instance['get_from_same_post_format'],
+										// translators: there is some code in placeholders.
+										sprintf( esc_html__( 'When activated, this function will get posts from the same post format of the post, ignoring other parameters like categories, tags, date, author, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+									);
+									?>
+
+									<?php
+									// ================= Post types from same post format
+									$post_types = (array) get_post_types( '', 'objects' );
+									$options    = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										),
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
+
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_same_post_format' ),
+										$this->get_field_name( 'post_type_same_post_format' ),
+										$options,
+										$instance['post_type_same_post_format'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									);
+									?>
+
+									<?php
+									// ================= Multiple post types in same post format
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_spf' ),
+										$this->get_field_name( 'ptm_spf' ),
+										esc_attr( $instance['ptm_spf'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									);
+									?>
+
+								</div>
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Posts quantity
+									pis_form_input_text(
+										esc_html__( 'When on single posts, get this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'number_same_post_format' ),
+										$this->get_field_name( 'number_same_post_format' ),
+										esc_attr( $instance['number_same_post_format'] ),
+										'3',
+										// translators: %s is -1.
+										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									);
+									?>
+
+									<?php
+									// ================= The custom widget title when on single posts
+									pis_form_input_text(
+										esc_html__( 'When on single posts, use this widget title', 'posts-in-sidebar' ),
+										$this->get_field_id( 'title_same_post_format' ),
+										$this->get_field_name( 'title_same_post_format' ),
+										esc_attr( $instance['title_same_post_format'] ),
+										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										// translators: %s is a `%s`.
+										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									);
+									?>
+
+									<?php
+									// ================= Post order by
+									$options = array(
+										'none'            => array(
+											'value' => 'none',
+											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
+										),
+										'id'              => array(
+											'value' => 'id',
+											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
+										),
+										'author'          => array(
+											'value' => 'author',
+											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
+										),
+										'title'           => array(
+											'value' => 'title',
+											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
+										),
+										'name'            => array(
+											'value' => 'name',
+											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
+										),
+										'type'            => array(
+											'value' => 'type',
+											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
+										),
+										'date'            => array(
+											'value' => 'date',
+											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
+										),
+										'modified'        => array(
+											'value' => 'modified',
+											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
+										),
+										'parent'          => array(
+											'value' => 'parent',
+											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
+										),
+										'rand'            => array(
+											'value' => 'rand',
+											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
+										),
+										'comment_count'   => array(
+											'value' => 'comment_count',
+											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
+										),
+										'relevance'       => array(
+											'value' => 'relevance',
+											'desc'  => esc_html__( 'Relevance (when searching)', 'posts-in-sidebar' ),
+										),
+										'menu_order'      => array(
+											'value' => 'menu_order',
+											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
+										),
+										'meta_value'      => array(
+											'value' => 'meta_value',
+											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
+										),
+										'meta_value_num'  => array(
+											'value' => 'meta_value_num',
+											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
+										),
+										'post__in'        => array(
+											'value' => 'post__in',
+											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
+										),
+										'post_parent__in' => array(
+											'value' => 'post_parent__in',
+											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
+										),
+									);
+									pis_form_select(
+										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+										$this->get_field_id( 'orderby_same_post_format' ),
+										$this->get_field_name( 'orderby_same_post_format' ),
+										$options,
+										$instance['orderby_same_post_format']
+									);
+									?>
+
+									<?php
+									// ================= Post order
+									$options = array(
+										'asc'  => array(
+											'value' => 'ASC',
+											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
+										),
+										'desc' => array(
+											'value' => 'DESC',
+											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
+										),
+									);
+									pis_form_select(
+										esc_html__( 'The order will be', 'posts-in-sidebar' ),
+										$this->get_field_id( 'order_same_post_format' ),
+										$this->get_field_name( 'order_same_post_format' ),
+										$options,
+										$instance['order_same_post_format']
+									);
+									?>
+
+									<?php
+									// ================= Number of posts to skip
+									pis_form_input_text(
+										esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'offset_same_post_format' ),
+										$this->get_field_name( 'offset_same_post_format' ),
+										esc_attr( $instance['offset_same_post_format'] ),
+										'5'
+									);
+									?>
+
+									<?php
+									// ================= Search post title
+									pis_form_checkbox(
+										esc_html__( 'Post title matching', 'posts-in-sidebar' ),
+										$this->get_field_id( 'search_same_post_format' ),
+										$this->get_field_name( 'search_same_post_format' ),
+										$instance['search_same_post_format'],
+										esc_html__( 'Show posts that match the main post title. WordPress will show posts with the same post format of the main post and matching in a search for the title of the main post.', 'posts-in-sidebar' )
+									);
+									?>
+
+								</div>
+
+							</div>
+
+						</div>
+
 						<div class="pis-column-container">
 
 							<?php
@@ -2823,6 +3075,211 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'order_author_page' ),
 										$options,
 										$instance['order_author_page']
+									);
+									?>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<h6 data-panel="get-posts-post-format-archive-page" class="pis-widget-title"><?php esc_html_e( 'Get posts from current post format archive page', 'posts-in-sidebar' ); ?></h6>
+
+						<div class="pis-container">
+
+							<div class="pis-column-container">
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Get posts from same post format
+									pis_form_checkbox(
+										esc_html__( 'When on archive pages, get posts from the current post format archive page', 'posts-in-sidebar' ),
+										$this->get_field_id( 'get_from_post_format_page' ),
+										$this->get_field_name( 'get_from_post_format_page' ),
+										$instance['get_from_post_format_page'],
+										esc_html__( 'When activated, this function will get posts from the archive page of the current post format, ignoring other parameters like categories, tags, date, author, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									);
+									?>
+
+									<?php
+									// ================= Post types from same post format archive page
+									$post_types = (array) get_post_types( '', 'objects' );
+									$options    = array(
+										array(
+											'value' => 'any',
+											'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
+										),
+									);
+									foreach ( $post_types as $post_type ) {
+										$options[] = array(
+											'value' => $post_type->name,
+											'desc'  => $post_type->labels->singular_name,
+										);
+									}
+
+									pis_form_select(
+										esc_html__( 'Post type', 'posts-in-sidebar' ),
+										$this->get_field_id( 'post_type_post_format_page' ),
+										$this->get_field_name( 'post_type_post_format_page' ),
+										$options,
+										$instance['post_type_post_format_page'],
+										esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
+									);
+									?>
+
+									<?php
+									// ================= Multiple post types in same post format archive page
+									pis_form_input_text(
+										esc_html__( 'Multiple post types', 'posts-in-sidebar' ),
+										$this->get_field_id( 'ptm_spfp' ),
+										$this->get_field_name( 'ptm_spfp' ),
+										esc_attr( $instance['ptm_spfp'] ),
+										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
+										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
+									);
+									?>
+
+								</div>
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Posts quantity
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, get this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'number_post_format_page' ),
+										$this->get_field_name( 'number_post_format_page' ),
+										esc_attr( $instance['number_post_format_page'] ),
+										'3',
+										// translators: %s is -1.
+										sprintf( esc_html__( 'The value %s shows all the posts.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									);
+									?>
+
+									<?php
+									// ================= Offset
+									pis_form_input_text(
+										esc_html__( 'Skip this number of posts', 'posts-in-sidebar' ),
+										$this->get_field_id( 'offset_post_format_page' ),
+										$this->get_field_name( 'offset_post_format_page' ),
+										esc_attr( $instance['offset_post_format_page'] ),
+										'10',
+										// translators: %s is -1.
+										sprintf( esc_html__( 'If you entered %s in the previous field, this option will be ignored.', 'posts-in-sidebar' ), '<code>-1</code>' )
+									);
+									?>
+
+									<?php
+									// ================= The custom widget title when on archive page
+									pis_form_input_text(
+										esc_html__( 'When on archive pages, use this widget title', 'posts-in-sidebar' ),
+										$this->get_field_id( 'title_post_format_page' ),
+										$this->get_field_name( 'title_post_format_page' ),
+										esc_attr( $instance['title_post_format_page'] ),
+										// translators: %s is the name of the author.
+										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										// translators: there is some code in placeholders.
+										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
+									);
+									?>
+
+									<?php
+									// ================= Post order by
+									$options = array(
+										'none'            => array(
+											'value' => 'none',
+											'desc'  => esc_html__( 'None', 'posts-in-sidebar' ),
+										),
+										'id'              => array(
+											'value' => 'id',
+											'desc'  => esc_html__( 'ID', 'posts-in-sidebar' ),
+										),
+										'author'          => array(
+											'value' => 'author',
+											'desc'  => esc_html__( 'Author', 'posts-in-sidebar' ),
+										),
+										'title'           => array(
+											'value' => 'title',
+											'desc'  => esc_html__( 'Title', 'posts-in-sidebar' ),
+										),
+										'name'            => array(
+											'value' => 'name',
+											'desc'  => esc_html__( 'Name (post slug)', 'posts-in-sidebar' ),
+										),
+										'type'            => array(
+											'value' => 'type',
+											'desc'  => esc_html__( 'Post type', 'posts-in-sidebar' ),
+										),
+										'date'            => array(
+											'value' => 'date',
+											'desc'  => esc_html__( 'Date', 'posts-in-sidebar' ),
+										),
+										'modified'        => array(
+											'value' => 'modified',
+											'desc'  => esc_html__( 'Modified', 'posts-in-sidebar' ),
+										),
+										'parent'          => array(
+											'value' => 'parent',
+											'desc'  => esc_html__( 'Parent', 'posts-in-sidebar' ),
+										),
+										'rand'            => array(
+											'value' => 'rand',
+											'desc'  => esc_html__( 'Random', 'posts-in-sidebar' ),
+										),
+										'comment_count'   => array(
+											'value' => 'comment_count',
+											'desc'  => esc_html__( 'Comment count', 'posts-in-sidebar' ),
+										),
+										'menu_order'      => array(
+											'value' => 'menu_order',
+											'desc'  => esc_html__( 'Menu order', 'posts-in-sidebar' ),
+										),
+										'meta_value'      => array(
+											'value' => 'meta_value',
+											'desc'  => esc_html__( 'Meta value', 'posts-in-sidebar' ),
+										),
+										'meta_value_num'  => array(
+											'value' => 'meta_value_num',
+											'desc'  => esc_html__( 'Meta value number', 'posts-in-sidebar' ),
+										),
+										'post__in'        => array(
+											'value' => 'post__in',
+											'desc'  => esc_html__( 'Preserve ID order', 'posts-in-sidebar' ),
+										),
+										'post_parent__in' => array(
+											'value' => 'post_parent__in',
+											'desc'  => esc_html__( 'Preserve post parent order', 'posts-in-sidebar' ),
+										),
+									);
+									pis_form_select(
+										esc_html__( 'Order posts by', 'posts-in-sidebar' ),
+										$this->get_field_id( 'orderby_post_format_page' ),
+										$this->get_field_name( 'orderby_post_format_page' ),
+										$options,
+										$instance['orderby_post_format_page']
+									);
+									?>
+
+									<?php
+									// ================= Post order
+									$options = array(
+										'asc'  => array(
+											'value' => 'ASC',
+											'desc'  => esc_html__( 'Ascending', 'posts-in-sidebar' ),
+										),
+										'desc' => array(
+											'value' => 'DESC',
+											'desc'  => esc_html__( 'Descending', 'posts-in-sidebar' ),
+										),
+									);
+									pis_form_select(
+										esc_html__( 'The order will be', 'posts-in-sidebar' ),
+										$this->get_field_id( 'order_post_format_page' ),
+										$this->get_field_name( 'order_post_format_page' ),
+										$options,
+										$instance['order_post_format_page']
 									);
 									?>
 

@@ -738,6 +738,18 @@ function pis_change_widget_title( $instance ) {
 	}
 
 	/*
+	 * Change the widget title if the user wants a different title in single posts (for same post format).
+	 *
+	 * @since 4.8.0
+	 */
+	if ( $instance['get_from_same_post_format'] && ! empty( $instance['title_same_post_format'] ) && is_single() ) {
+		$instance['title'] = $instance['title_same_post_format'];
+		$post_format       = get_post_format( get_the_ID() );
+		$post_format_name  = get_post_format_string( $post_format );
+		$instance['title'] = str_replace( '%s', $post_format_name, $instance['title'] );
+	}
+
+	/*
 	 * Change the widget title if the user wants a different title in archive page (for same category).
 	 *
 	 * @since 4.6
@@ -771,6 +783,18 @@ function pis_change_widget_title( $instance ) {
 		$the_author_name   = $the_author->display_name;
 		$instance['title'] = $instance['title_author_page'];
 		$instance['title'] = str_replace( '%s', $the_author_name, $instance['title'] );
+	}
+
+	/*
+	 * Change the widget title if the user wants a different title in archive page (for same post format).
+	 *
+	 * @since 4.8.0
+	 */
+	if ( $instance['get_from_post_format_page'] && ! empty( $instance['title_post_format_page'] ) && is_tax( 'post_format' ) ) {
+		$instance['title'] = $instance['title_post_format_page'];
+		$post_format       = get_post_format( get_the_ID() );
+		$post_format_name  = get_post_format_string( $post_format );
+		$instance['title'] = str_replace( '%s', $post_format_name, $instance['title'] );
 	}
 
 	return $instance['title'];

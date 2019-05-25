@@ -160,7 +160,6 @@ function pis_load_scripts( $hook ) {
  * @since 1.0
  */
 function pis_load_widgets() {
-
 	/*
 	 * Load the widget's form functions.
 	 *

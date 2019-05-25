@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.8.0] - 2019-05-26
 ### Added
 * Added new section for post formats when changing the query in single posts or in an archive page.
+* Added a filter for the img element of the featured image.
 
 ## [4.7.7] - 2019-05-25
 ### Fixed

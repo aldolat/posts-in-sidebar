@@ -480,7 +480,7 @@ function pis_the_thumbnail( $args ) {
 		 * if custom image URL is defined AND the custom image should be used in every case (in this case the custom image will be used for all posts, even those who already have a featured image).
 		 */
 		if ( ( ! has_post_thumbnail() && $args['custom_image_url'] ) || ( $args['custom_image_url'] && ! $args['custom_img_no_thumb'] ) ) {
-			$image_html = '<img src="' . esc_url( $args['custom_image_url'] ) . '" alt="" class="' . $final_image_class . '">';
+			$image_html = '<img src="' . esc_url( $args['custom_image_url'] ) . '" alt="Post thumbnail" class="' . $final_image_class . '">';
 		} else {
 			$image_html = get_the_post_thumbnail(
 				$args['pis_query']->post->ID,

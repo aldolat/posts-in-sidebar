@@ -1743,7 +1743,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_same_post_format' ),
 										$this->get_field_name( 'title_same_post_format' ),
 										esc_attr( $instance['title_same_post_format'] ),
-										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: %s is a `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
@@ -2259,7 +2259,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'title_post_format_page' ),
 										esc_attr( $instance['title_post_format_page'] ),
 										// translators: %s is the name of the author.
-										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);

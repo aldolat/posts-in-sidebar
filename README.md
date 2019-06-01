@@ -116,5 +116,5 @@ This plugin does not collect any user data.
 [README]: ./README.md
 [version-badge]: https://img.shields.io/badge/Version-4.8.0-blue.svg
 [requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
-[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.2.0-green.svg
+[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.2.1-green.svg
 [license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

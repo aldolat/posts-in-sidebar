@@ -63,7 +63,6 @@ add_action( 'plugins_loaded', 'pis_setup' );
  * @since 1.27
  */
 function pis_setup() {
-
 	/*
 	 * Define the version of the plugin.
 	 */

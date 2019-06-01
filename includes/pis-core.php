@@ -597,6 +597,64 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/*
+	 * Check if the user wants to display posts from the same post format of the single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * This will work in single (regular) posts and in custom post types.
+	 *
+	 * @since 4.8.0
+	 */
+	if ( $get_from_same_post_format && is_single() ) {
+		// Set the post_type.
+		if ( isset( $ptm_spf ) && ! empty( $ptm_spf ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_spf );
+		} else {
+			$params['post_type'] = $post_type_same_post_format;
+		}
+
+		// Set the number of posts.
+		if ( isset( $number_same_post_format ) && ! empty( $number_same_post_format ) ) {
+			$params['posts_per_page'] = $number_same_post_format;
+		}
+
+		// Set the post format.
+		$current_post_format = get_post_format( $single_post_id );
+		if ( $current_post_format ) {
+			$params['post_format'] = 'post-format-' . $current_post_format;
+		}
+
+		if ( isset( $orderby_same_post_format ) && ! empty( $orderby_same_post_format ) ) {
+			$params['orderby'] = $orderby_same_post_format;
+		}
+
+		if ( isset( $order_same_post_format ) && ! empty( $order_same_post_format ) ) {
+			$params['order'] = $order_same_post_format;
+		}
+
+		if ( isset( $offset_same_post_format ) && ! empty( $offset_same_post_format ) ) {
+			$params['offset'] = $offset_same_post_format;
+		}
+
+		if ( $search_same_post_format ) {
+			$params['s'] = pis_get_post_title();
+		}
+
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['author__in']      = '';
+			$params['category_name']   = '';
+			$params['tag']             = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
+			$params['meta_key']        = '';
+			$params['meta_value']      = '';
+		}
+	}
+
+	/*
 	 * Check if the user wants to display posts from the same category when on category archive page.
 	 * The parameters for excluding posts (like "post__not_in") will be left active.
 	 *
@@ -747,6 +805,58 @@ function pis_get_posts_in_sidebar( $args ) {
 			$params['meta_query']      = '';
 			$params['post_parent__in'] = '';
 			$params['post_format']     = '';
+			$params['meta_key']        = '';
+			$params['meta_value']      = '';
+		}
+	}
+
+	/*
+	 * Check if the user wants to display posts from the same post format when on post format archive page.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 *
+	 * @since 4.8.0
+	 */
+	if ( $get_from_post_format_page && is_tax( 'post_format' ) ) {
+		// Set the post_type.
+		if ( isset( $ptm_spfp ) && ! empty( $ptm_spfp ) ) {
+			$params['post_type'] = (array) explode( ', ', $ptm_spfp );
+		} else {
+			$params['post_type'] = $post_type_post_format_page;
+		}
+
+		// Set the number of posts.
+		if ( isset( $number_post_format_page ) && ! empty( $number_post_format_page ) ) {
+			$params['posts_per_page'] = $number_post_format_page;
+		}
+
+		// Set the post format.
+		$current_archive_post_format = get_queried_object();
+		$params['post_format']       = $current_archive_post_format->slug;
+
+		// Set the number of posts to skip.
+		if ( isset( $offset_post_format_page ) && ! empty( $offset_post_format_page ) ) {
+			$params['offset'] = $offset_post_format_page;
+		}
+
+		if ( isset( $orderby_post_format_page ) && ! empty( $orderby_post_format_page ) ) {
+			$params['orderby'] = $orderby_post_format_page;
+		}
+
+		if ( isset( $order_post_format_page ) && ! empty( $order_post_format_page ) ) {
+			$params['order'] = $order_post_format_page;
+		}
+
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['author__in']      = '';
+			$params['category_name']   = '';
+			$params['tag']             = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
 			$params['meta_key']        = '';
 			$params['meta_value']      = '';
 		}

@@ -16,7 +16,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.7.7
+ * Version: 4.8.0
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -63,13 +63,12 @@ add_action( 'plugins_loaded', 'pis_setup' );
  * @since 1.27
  */
 function pis_setup() {
-
-	/**
+	/*
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '4.7.7' );
+	define( 'PIS_VERSION', '4.8.0' );
 
-	/**
+	/*
 	 * Make plugin available for i18n.
 	 * Translations must be archived in the /languages/ directory.
 	 * The name of each translation file must be, for example:
@@ -160,16 +159,22 @@ function pis_load_scripts( $hook ) {
  * @since 1.0
  */
 function pis_load_widgets() {
-
-	/**
+	/*
 	 * Load the widget's form functions.
 	 *
 	 * @since 1.12
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-widget-form-functions.php';
 
-	/**
-	 * Load the widget's PHP file.
+	/*
+	 * Load the select options for the widget's form functions.
+	 *
+	 * @since 4.8.0
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'includes/pis-select-options.php';
+
+	/*
+	 * Load the widget's file.
 	 *
 	 * @since 1.1
 	 */

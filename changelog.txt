@@ -1,8 +1,13 @@
 == Changelog ==
 
+= 4.8.0 =
+
+* Added new section for post formats when changing the query in single posts or in an archive page.
+* Added a filter for the `img` element of the featured image (thanks [@chancarlo](https://github.com/chancarlo) for the suggestion).
+
 = 4.7.7 =
 
-* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) fo reporting it).
+* Fixed the displaying of custom title when modifying the query in single posts/pages (thanks [@emmagbro](https://wordpress.org/support/users/emmagbro/) for reporting it).
 * Code optimization.
 
 = 4.7.6 =

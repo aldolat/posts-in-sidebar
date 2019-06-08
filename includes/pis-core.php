@@ -940,11 +940,16 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 
 		/*
+		 * If we are in a shortcode, assign the correct id to ul element.
+		 *
+		 * @since 4.8.1
+		 */
+		'' !== $shortcode_id ? $pis_ul_id = ' id="ul_' . $shortcode_id . '" ' : $pis_ul_id = ' id="ul_' . $widget_id . '" ';
+
+		/*
 		 * Add the ID selector to UL since some page builder plugins remove the section HTML tag.
 		 * @since 4.5.0
 		 */
-		$pis_ul_id = ' id="ul_' . $widget_id . '" ';
-
 		$pis_output .= '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>' . "\n";
 
 		while ( $pis_query->have_posts() ) :

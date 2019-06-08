@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.8.1 =
+
+* Added a new option for the shortcode to define the id of the HTML container (useful when we have multiple shortcodes and we want to give a unique style to each instance).
+
 = 4.8.0 =
 
 * Added new section for post formats when changing the query in single posts or in an archive page.

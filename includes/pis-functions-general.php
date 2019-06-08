@@ -394,6 +394,8 @@ function pis_get_defaults() {
 		'admin_only'   => true,
 		'debug_query'  => false,
 		'debug_params' => false,
+
+		'shortcode_id'               => '',
 	);
 
 	return $defaults;

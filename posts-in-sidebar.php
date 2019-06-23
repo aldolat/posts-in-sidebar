@@ -16,7 +16,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.8.0
+ * Version: 4.8.1
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -66,7 +66,7 @@ function pis_setup() {
 	/*
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '4.8.0' );
+	define( 'PIS_VERSION', '4.8.1' );
 
 	/*
 	 * Make plugin available for i18n.
@@ -132,24 +132,31 @@ function pis_setup() {
 }
 
 /**
- * Load the Javascript file.
+ * Load the Javascript and CSS file.
+ *
  * The file will be loaded only in the widgets admin page.
+ * If the plugin "Page Builder by SiteOrigin" is active, it will be loaded
+ * in post.php too.
  *
  * @param string $hook The page where to load scripts.
  * @since 1.29
  */
 function pis_load_scripts( $hook ) {
-	if ( 'widgets.php' !== $hook ) {
-		return;
+	if ( is_plugin_active( 'siteorigin-panels/siteorigin-panels.php' ) && 'post.php' === $hook ) {
+		// Register and enqueue the CSS file.
+		wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
+		wp_enqueue_style( 'pis_style' );
+	} else {
+		if ( 'widgets.php' === $hook ) {
+			// Register and enqueue the JS file.
+			wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
+			wp_enqueue_script( 'pis_js' );
+
+			// Register and enqueue the CSS file.
+			wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
+			wp_enqueue_style( 'pis_style' );
+		}
 	}
-
-	// Register and enqueue the JS file.
-	wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
-	wp_enqueue_script( 'pis_js' );
-
-	// Register and enqueue the CSS file.
-	wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
-	wp_enqueue_style( 'pis_style' );
 }
 
 

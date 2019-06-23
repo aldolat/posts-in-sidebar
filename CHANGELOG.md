@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.1] - 2019-06-23
+### Added
+* Added a new option for the shortcode to define the id of the HTML container (useful when we have multiple shortcodes and we want to give a unique style to each instance).
+* Fixed applying CSS in "Page Builder" by SiteOrigin plugin.
+### Fixed
+* Fixed applying correct id to ul element when using the shortcode.
+
 ## [4.8.0] - 2019-06-01
 ### Added
 * Added new section for post formats when changing the query in single posts or in an archive page.
@@ -520,6 +527,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.8.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.7...4.8.0
 [4.7.7]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.6...4.7.7
 [4.7.6]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.5...4.7.6

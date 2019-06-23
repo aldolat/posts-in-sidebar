@@ -1686,12 +1686,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<?php
 									// ================= Get posts from same post format when on single post
 									pis_form_checkbox(
-										esc_html__( 'When on single posts, get posts from the current post format', 'posts-in-sidebar' ),
+										esc_html__( 'When on single posts, get posts with the current post format', 'posts-in-sidebar' ),
 										$this->get_field_id( 'get_from_same_post_format' ),
 										$this->get_field_name( 'get_from_same_post_format' ),
 										$instance['get_from_same_post_format'],
-										// translators: there is some code in placeholders.
-										sprintf( esc_html__( 'When activated, this function will get posts from the same post format of the post, ignoring other parameters like categories, tags, date, author, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' ), '<a href="https://github.com/aldolat/posts-in-sidebar/wiki/Advanced-Usage#the-get-posts-from-taxonomy-using-custom-field-option" target="_blank">', '</a>' )
+										esc_html__( 'When activated, this function will get posts with the same post format of the post, ignoring other parameters like categories, tags, date, author, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
 									);
 									?>
 
@@ -1743,7 +1742,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_same_post_format' ),
 										$this->get_field_name( 'title_same_post_format' ),
 										esc_attr( $instance['title_same_post_format'] ),
-										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: %s is a `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
@@ -2259,7 +2258,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'title_post_format_page' ),
 										esc_attr( $instance['title_post_format_page'] ),
 										// translators: %s is the name of the author.
-										esc_html__( 'Posts under %s post format', 'posts-in-sidebar' ),
+										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: there is some code in placeholders.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);

@@ -11,7 +11,7 @@
 **Donate link:** https://dev.aldolat.it/projects/posts-in-sidebar/  
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.6  
-**Tested up to:** 5.2.1  
+**Tested up to:** 5.2.2  
 **Stable tag:** 4.8.1  
 **License:** GPLv3 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-3.0.html  
@@ -113,5 +113,5 @@ This plugin does not collect any user data.
 [README]: ./README.md
 [version-badge]: https://img.shields.io/badge/Version-4.8.1-blue.svg
 [requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
-[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.2.1-green.svg
+[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.2.2-green.svg
 [license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

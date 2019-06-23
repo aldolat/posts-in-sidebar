@@ -940,11 +940,24 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 
 		/*
-		 * If we are in a shortcode, assign the correct id to ul element.
+		 * Added control structure to define the ID to be added.
 		 *
-		 * @since 4.8.1
+		 * For reference:
+		 * $widget_id is populated only when the script is executed in the sidebar;
+		 * $shortcode_id is populated only when the user uses the option shortcode_id in the shortcode.
+		 *
+		 * @since 4.8.1 Added control structure to define the ID to be added.
 		 */
-		'' !== $shortcode_id ? $pis_ul_id = ' id="ul_' . $shortcode_id . '" ' : $pis_ul_id = ' id="ul_' . $widget_id . '" ';
+		if ( ! empty( $widget_id ) ) {
+			// We are in a sidebar widget.
+			$pis_ul_id = ' id="ul_' . $widget_id . '" ';
+		} elseif ( ! empty( $shortcode_id ) ) {
+			// We are in a shortcode.
+			$pis_ul_id = ' id="ul_' . $shortcode_id . '" ';
+		} else {
+			// We are in a shortcode but user has not defined an ID, so remove the ID selector.
+			$pis_ul_id = ' ';
+		}
 
 		/*
 		 * Add the ID selector to UL since some page builder plugins remove the section HTML tag.

@@ -4429,18 +4429,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						?>
 
-						<p>
-							<?php
-							printf(
-								// translators: %s contains some code.
-								esc_html__( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'posts-in-sidebar' ),
-								'<code>10</code>',
-								'<code>0</code>'
-							);
-							?>
-						</p>
-
 					</div>
+
+					<p class="clear">
+						<?php
+						printf(
+							// translators: %s contains some code.
+							esc_html__( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'posts-in-sidebar' ),
+							'<code>10</code>',
+							'<code>0</code>'
+						);
+						?>
+					</p>
 
 				</div>
 

@@ -652,6 +652,51 @@ function pis_select_length_unit() {
 }
 
 /**
+ * Get options for type of HTML tag for post titles.
+ *
+ * @since 4.8.2
+ * @return array $options The array with the options for the HTML tag for post title.
+ */
+function pis_select_html_title_type_of() {
+	$options = array(
+		'p'  => array(
+			'value' => 'p',
+			'desc'  => 'P',
+		),
+		'h1' => array(
+			'value' => 'h1',
+			'desc'  => 'H1',
+		),
+		'h2' => array(
+			'value' => 'h2',
+			'desc'  => 'H2',
+		),
+		'h3' => array(
+			'value' => 'h3',
+			'desc'  => 'H3',
+		),
+		'h4' => array(
+			'value' => 'h4',
+			'desc'  => 'H4',
+		),
+		'h5' => array(
+			'value' => 'h5',
+			'desc'  => 'H5',
+		),
+		'h6' => array(
+			'value' => 'h6',
+			'desc'  => 'H6',
+		),
+		'h7' => array(
+			'value' => 'h7',
+			'desc'  => 'H7',
+		),
+	);
+
+	return $options;
+}
+
+/**
  * Get options for type of text.
  *
  * @since 4.8.0

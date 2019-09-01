@@ -274,6 +274,7 @@ function pis_get_defaults() {
 		'title_length'               => 0,
 		'title_length_unit'          => 'words',
 		'title_hellipsis'            => true,
+		'html_title_type_of'         => 'p',
 
 		// The featured image of the post.
 		'display_image'              => false,

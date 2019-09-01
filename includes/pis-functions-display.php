@@ -26,23 +26,24 @@ if ( ! defined( 'WPINC' ) ) {
  * @param array $args {
  *     The array containing the custom parameters.
  *
- *     @type string  $title_margin      The margin for the title.
- *     @type string  $margin_unit       The measure unit for the margin.
- *                                      Accepted values:
- *                                      px (default), %, em, rem
- *     @type boolean $gravatar_display  If the Gravatar should be displayed.
- *     @type string  $gravatar_position The position of the Gravatar.
- *                                      Accepted values:
- *                                      next_author (default), next_title, next_post
- *     @type string  $gravatar_author   The ID of the post author.
- *     @type integer $gravatar_size     The size of the displayed Gravatar.
- *     @type string  $gravatar_default  The URL of the default Gravatar image.
- *     @type boolean $link_on_title     If the title should be linked to the post.
- *     @type boolean $arrow             If an HTML arrow should be added to the title.
- *     @type integer $title_length      The length of the post title.
- *                                      Accepted values:
- *                                      0 (default, meaning no shortening), any positive integer.
- *     @type boolean $title_hellipsis   If an horizontal ellipsis should be added after the shortened title.
+ *     @type string  $title_margin       The margin for the title.
+ *     @type string  $margin_unit        The measure unit for the margin.
+ *                                       Accepted values:
+ *                                       px (default), %, em, rem
+ *     @type boolean $gravatar_display   If the Gravatar should be displayed.
+ *     @type string  $gravatar_position  The position of the Gravatar.
+ *                                       Accepted values:
+ *                                       next_author (default), next_title, next_post
+ *     @type string  $gravatar_author    The ID of the post author.
+ *     @type integer $gravatar_size      The size of the displayed Gravatar.
+ *     @type string  $gravatar_default   The URL of the default Gravatar image.
+ *     @type boolean $link_on_title      If the title should be linked to the post.
+ *     @type boolean $arrow              If an HTML arrow should be added to the title.
+ *     @type integer $title_length       The length of the post title.
+ *                                       Accepted values:
+ *                                       0 (default, meaning no shortening), any positive integer.
+ *     @type boolean $title_hellipsis    If an horizontal ellipsis should be added after the shortened title.
+ *     @type string  $html_title_type_of The type of HTML tag for post title.
  * }
  *
  * @return string The HTML paragraph with the title.
@@ -52,23 +53,24 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function pis_the_title( $args ) {
 	$defaults = array(
-		'title_margin'      => '',
-		'margin_unit'       => '',
-		'gravatar_display'  => false,
-		'gravatar_position' => '',
-		'gravatar_author'   => '',
-		'gravatar_size'     => '32',
-		'gravatar_default'  => '',
-		'link_on_title'     => true,
-		'arrow'             => false,
-		'title_length'      => 0,
-		'title_length_unit' => 'words',
-		'title_hellipsis'   => true,
+		'title_margin'       => '',
+		'margin_unit'        => '',
+		'gravatar_display'   => false,
+		'gravatar_position'  => '',
+		'gravatar_author'    => '',
+		'gravatar_size'      => '32',
+		'gravatar_default'   => '',
+		'link_on_title'      => true,
+		'arrow'              => false,
+		'title_length'       => 0,
+		'title_length_unit'  => 'words',
+		'title_hellipsis'    => true,
+		'html_title_type_of' => 'p',
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	$output = '<p ' . pis_paragraph( $args['title_margin'], $args['margin_unit'], 'pis-title', 'pis_title_class' ) . '>';
+	$output = '<' . $args['html_title_type_of'] . ' ' . pis_paragraph( $args['title_margin'], $args['margin_unit'], 'pis-title', 'pis_title_class' ) . '>';
 
 	// The Gravatar.
 	if ( $args['gravatar_display'] && 'next_title' === $args['gravatar_position'] ) {
@@ -107,7 +109,7 @@ function pis_the_title( $args ) {
 		$output .= '</a>';
 	}
 
-	$output .= '</p>';
+	$output .= '</' . $args['html_title_type_of'] . '>';
 
 	return $output;
 }

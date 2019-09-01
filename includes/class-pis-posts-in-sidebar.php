@@ -567,6 +567,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 		$instance['title_length_unit'] = wp_strip_all_tags( $new_instance['title_length_unit'] );
 		$instance['title_hellipsis']   = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
+		$instance['html_title_type_of'] = wp_strip_all_tags( $new_instance['html_title_type_of'] );
 
 		// The featured image of the post.
 		$instance['display_image']       = isset( $new_instance['display_image'] ) ? 1 : 0;
@@ -3370,6 +3371,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id( 'title_hellipsis' ),
 								$this->get_field_name( 'title_hellipsis' ),
 								$instance['title_hellipsis']
+							);
+							?>
+
+							<?php
+							// ================= Type of HTML tag for post title
+							pis_form_select(
+								esc_html__( 'Type of HTML tag for post title', 'posts-in-sidebar' ),
+								$this->get_field_id( 'html_title_type_of' ),
+								$this->get_field_name( 'html_title_type_of' ),
+								pis_select_html_title_type_of(),
+								$instance['html_title_type_of']
 							);
 							?>
 

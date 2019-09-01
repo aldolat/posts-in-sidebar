@@ -1053,18 +1053,19 @@ function pis_get_posts_in_sidebar( $args ) {
 				/* The title */
 				$pis_title_content .= pis_the_title(
 					array(
-						'title_margin'      => $title_margin,
-						'margin_unit'       => $margin_unit,
-						'gravatar_display'  => $gravatar_display,
-						'gravatar_position' => $gravatar_position,
-						'gravatar_author'   => get_the_author_meta( 'ID' ),
-						'gravatar_size'     => $gravatar_size,
-						'gravatar_default'  => $gravatar_default,
-						'link_on_title'     => $link_on_title,
-						'arrow'             => $arrow,
-						'title_length'      => $title_length,
-						'title_length_unit' => $title_length_unit,
-						'title_hellipsis'   => $title_hellipsis,
+						'title_margin'       => $title_margin,
+						'margin_unit'        => $margin_unit,
+						'gravatar_display'   => $gravatar_display,
+						'gravatar_position'  => $gravatar_position,
+						'gravatar_author'    => get_the_author_meta( 'ID' ),
+						'gravatar_size'      => $gravatar_size,
+						'gravatar_default'   => $gravatar_default,
+						'link_on_title'      => $link_on_title,
+						'arrow'              => $arrow,
+						'title_length'       => $title_length,
+						'title_length_unit'  => $title_length_unit,
+						'title_hellipsis'    => $title_hellipsis,
+						'html_title_type_of' => $html_title_type_of,
 					)
 				) . "\n";
 

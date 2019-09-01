@@ -8,26 +8,27 @@
 # Posts in Sidebar
 
 **Contributors:** aldolat  
-**Donate link:** https://dev.aldolat.it/projects/posts-in-sidebar/  
+**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>  
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.6  
-**Tested up to:** 5.2.2  
-**Stable tag:** 4.8.1  
+**Tested up to:** 5.3.0  
+**Stable tag:** 4.8.2  
 **License:** GPLv3 or later  
-**License URI:** https://www.gnu.org/licenses/gpl-3.0.html  
+**License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>  
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
-- [Description](#description)
-- [Documentation, Help & Bugs](#documentation-help-bugs)
-- [Installation](#installation)
-  - [Installing Posts in Sidebar](#installing-posts-in-sidebar)
-  - [Uninstalling Posts in Sidebar](#uninstalling-posts-in-sidebar)
-- [Screenshots](#screenshots)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [License](#license)
-- [Credits](#credits)
-- [Privacy Policy](#privacy-policy)
+* [Posts in Sidebar](#posts-in-sidebar)
+  * [Description](#description)
+  * [Documentation, Help & Bugs](#documentation-help--bugs)
+  * [Installation](#installation)
+    * [Installing Posts in Sidebar](#installing-posts-in-sidebar)
+    * [Uninstalling Posts in Sidebar](#uninstalling-posts-in-sidebar)
+  * [Screenshots](#screenshots)
+  * [Frequently Asked Questions](#frequently-asked-questions)
+  * [License](#license)
+  * [Credits](#credits)
+  * [Privacy Policy](#privacy-policy)
 
 ## Description
 
@@ -39,22 +40,22 @@ Once installed, Posts in Sidebar creates a new widget for your sidebar. Add it t
 
 Here are some of the functions you'll have:
 
-- get posts by authors, categories, tags, post format, or any custom taxonomy;
-- get posts by exact IDs;
-- get posts by meta key/value;
-- get posts by modification date;
-- get posts children of other posts;
-- get posts by search;
-- get posts by recent comments;
-- get posts by complex taxonomies queries;
-- get posts by complex date queries;
-- get posts by complex custom fields queries;
-- get posts from the category of the current post;
-- exclude posts by authors, taxonomies, and so on;
-- control which elements of the posts are displayed (like post thumbnail, taxonomies, meta values, and so on);
-- stylize the output of the widget using custom CSS styles;
-- cache the output of the widget to save queries to the database;
-- ... and much more.
+* get posts by authors, categories, tags, post format, or any custom taxonomy;
+* get posts by exact IDs;
+* get posts by meta key/value;
+* get posts by modification date;
+* get posts children of other posts;
+* get posts by search;
+* get posts by recent comments;
+* get posts by complex taxonomies queries;
+* get posts by complex date queries;
+* get posts by complex custom fields queries;
+* get posts from the category of the current post;
+* exclude posts by authors, taxonomies, and so on;
+* control which elements of the posts are displayed (like post thumbnail, taxonomies, meta values, and so on);
+* stylize the output of the widget using custom CSS styles;
+* cache the output of the widget to save queries to the database;
+* ... and much more.
 
 The powerful WordPress class `WP_Query` is at your fingertips with this plugin. To understand what this plugin can do, take a look at this [Codex page](https://codex.wordpress.org/Class_Reference/WP_Query): almost all these functions are already included in Posts in Sidebar.
 
@@ -111,7 +112,7 @@ This plugin does not collect any user data.
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./gpl-3.0.txt
 [README]: ./README.md
-[version-badge]: https://img.shields.io/badge/Version-4.8.1-blue.svg
+[version-badge]: https://img.shields.io/badge/Version-4.8.2-blue.svg
 [requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
-[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.2.2-green.svg
+[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.3.0-green.svg
 [license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

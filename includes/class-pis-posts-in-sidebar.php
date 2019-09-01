@@ -567,6 +567,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 		$instance['title_length_unit'] = wp_strip_all_tags( $new_instance['title_length_unit'] );
 		$instance['title_hellipsis']   = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
+		$instance['html_title_type_of'] = wp_strip_all_tags( $new_instance['html_title_type_of'] );
 
 		// The featured image of the post.
 		$instance['display_image']       = isset( $new_instance['display_image'] ) ? 1 : 0;
@@ -1743,7 +1744,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_name( 'title_same_post_format' ),
 										esc_attr( $instance['title_same_post_format'] ),
 										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
-										// translators: %s is a `%s`.
+										// translators: %s is a literal `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
 									?>
@@ -2259,7 +2260,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										esc_attr( $instance['title_post_format_page'] ),
 										// translators: %s is the name of the author.
 										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
-										// translators: there is some code in placeholders.
+										// translators: %s is a literal `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
 									);
 									?>
@@ -3373,6 +3374,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							);
 							?>
 
+							<?php
+							// ================= Type of HTML tag for post title
+							pis_form_select(
+								esc_html__( 'Type of HTML tag for post title', 'posts-in-sidebar' ),
+								$this->get_field_id( 'html_title_type_of' ),
+								$this->get_field_name( 'html_title_type_of' ),
+								pis_select_html_title_type_of(),
+								$instance['html_title_type_of']
+							);
+							?>
+
 						</div>
 
 						<div class="pis-column">
@@ -4429,18 +4441,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						);
 						?>
 
-						<p>
-							<?php
-							printf(
-								// translators: %s contains some code.
-								esc_html__( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'posts-in-sidebar' ),
-								'<code>10</code>',
-								'<code>0</code>'
-							);
-							?>
-						</p>
-
 					</div>
+
+					<p class="clear">
+						<?php
+						printf(
+							// translators: %s contains some code.
+							esc_html__( 'Enter here only the value without any unit, e.g. enter %1$s if you want a space of 10px or enter %2$s if you don\'t want any space.', 'posts-in-sidebar' ),
+							'<code>10</code>',
+							'<code>0</code>'
+						);
+						?>
+					</p>
 
 				</div>
 

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.2] - 2019-09-01
+### Added
+* Added a new option to choose the HTML tag for post title (thanks [@ugotta](https://wordpress.org/support/users/ugotta/) for the suggestion).
+### Changed
+* Minor editings.
+
 ## [4.8.1] - 2019-06-23
 ### Added
 * Added a new option for the shortcode to define the id of the HTML container (useful when we have multiple shortcodes and we want to give a unique style to each instance).
@@ -527,6 +533,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.8.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.7...4.8.0
 [4.7.7]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.6...4.7.7

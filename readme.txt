@@ -3,8 +3,8 @@ Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.6
-Tested up to: 5.2.1
-Stable tag: 4.8.1
+Tested up to: 5.3.0
+Stable tag: 4.8.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
 Posts in Sidebar is a plugin for WordPress that lets you show a list of your posts using the criteria you want. This plugin gives you almost all the power of WordPress to retrieve the posts you want and show them in your sidebars.
 
-The plugin has also a shortcode, that you can use in your posts/pages to list your posts.
+The plugin has also a shortcode, that you can use in your posts/pages to list your posts. You can find more information in the [Wiki page on GitHub](https://github.com/aldolat/posts-in-sidebar/wiki/The-Shortcode).
 
 Once installed, Posts in Sidebar creates a new widget for your sidebar. Add it to your sidebar, select the options to retrieve the posts you want, and save the widget: you're done!
 

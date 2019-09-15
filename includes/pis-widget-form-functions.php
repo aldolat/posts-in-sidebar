@@ -90,7 +90,7 @@ function pis_form_textarea( $label, $id, $name, $text, $placeholder = '', $style
 function pis_form_checkbox( $label, $id, $name, $checked, $comment = '', $class = '' ) {
 	$class = rtrim( 'pis-checkbox ' . $class );
 	echo '<p class="' . esc_attr( $class ) . '">';
-	echo '<input class="checkbox" type="checkbox" ' . checked( $checked, true, false ) . ' id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" />&nbsp;';
+	echo '<input class="checkbox" type="checkbox" ' . checked( $checked, true, false ) . ' id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" /> ';
 	pis_form_label( $label, $id );
 	if ( $comment ) {
 		echo '<br /><em>' . wp_kses_post( $comment ) . '</em>';
@@ -115,7 +115,7 @@ function pis_form_select( $label, $id, $name, $options, $value, $comment = '', $
 	echo '<p>';
 	pis_form_label( $label, $id );
 	$class = rtrim( 'pis-select ' . $class );
-	echo '&nbsp;<select name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">';
+	echo ' <select name="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">';
 	foreach ( $options as $option ) {
 		echo '<option ' . selected( $option['value'], $value, false ) . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['desc'] ) . '</option>';
 	}

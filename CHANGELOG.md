@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.3] - 2019-09-15
+### Fixed
+* Removed non-breakable space between the label and the select/checkbox menus.
+
 ## [4.8.2] - 2019-09-01
 ### Added
 * Added a new option to choose the HTML tag for post title (thanks [@ugotta](https://wordpress.org/support/users/ugotta/) for the suggestion).
@@ -533,6 +537,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.8.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.2...4.8.3
 [4.8.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.7.7...4.8.0

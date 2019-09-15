@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.8.3 =
+
+* Removed non-breakable space between the label and the select/checkbox menus.
+
 = 4.8.2 =
 
 * Added a new option to choose the HTML tag for post title (thanks [@ugotta](https://wordpress.org/support/users/ugotta/) for the suggestion).

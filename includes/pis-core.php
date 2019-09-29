@@ -898,12 +898,30 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	// If the user has chosen a cached version of the widget output...
 	if ( $cached ) {
+		/**
+		 * Define the ID for the transient.
+		 *
+		 * If the transient is created by a widget, it will be the $widget_id,
+		 * or, if created by a shortcode, it will be defined by the user with $shortcode_id.
+		 *
+		 * If the user has not defined a $shortcode_id, it will be "pis_noid",
+		 * otherwise the transient will have a name like
+		 * _transient__query_cache
+		 * with a double underscore, instead of (for example)
+		 * _transient_ID_query_cache.
+		 *
+		 * @since 4.8.4
+		 */
+		! empty( $shortcode_id ) ? $transient_id = esc_html( $shortcode_id ) : $transient_id = $widget_id;
+		if ( empty( $transient_id ) ) {
+			$transient_id = 'pis_noid';
+		}
 		// Get the cached query.
-		$pis_query = get_transient( $widget_id . '_query_cache' );
+		$pis_query = get_transient( $transient_id . '_query_cache' );
 		// If it does not exist, create a new query and cache it for future uses.
 		if ( ! $pis_query ) {
 			$pis_query = new WP_Query( $params );
-			set_transient( $widget_id . '_query_cache', $pis_query, $cache_time );
+			set_transient( $transient_id . '_query_cache', $pis_query, $cache_time );
 		}
 	} else { // ... otherwise serve a non-cached version of the output.
 		$pis_query = new WP_Query( $params );
@@ -1333,7 +1351,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			'params'       => $params,       // array  The parameters for the query.
 			'args'         => $args,         // array  The complete set of parameters of the widget.
 			'cached'       => $cached,       // bool   If the cache is active.
-			'widget_id'    => $widget_id,    // string The ID of the widget.
+			'widget_id'    => $transient_id, // string The ID of the widget.
 		)
 	);
 

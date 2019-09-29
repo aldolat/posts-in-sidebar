@@ -190,3 +190,32 @@ function pis_array2string( $array ) {
 
 	return $output;
 }
+
+/**
+ * Get transient timeout.
+ *
+ * @param  string $transient_id          The ID of the transient.
+ * @return string $expiry_time_formatted The formatted expiry date and time or false.
+ * @since 4.8.4
+ */
+function pis_get_transient_timeout( $transient_id ) {
+	// Define the output variable.
+	$expiry_time_formatted = '';
+
+	// Get the transient timeout. It is stored in the database as UNIX time (GMT time).
+	$unix_expiry_time = get_transient( 'timeout_' . $transient_id . '_query_cache' );
+
+	// Get local time offet.
+	$local_offset = (int) get_option( 'gmt_offset' ) * 3600;
+
+	// Add local time offest to GMT expiry time.
+	$expiry_time = $unix_expiry_time + $local_offset;
+
+	// Get user date and time format.
+	$datetime_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+
+	// Convert UNIX formatted expiry datetime to human expiry time.
+	$expiry_time_formatted = date_i18n( $datetime_format, $expiry_time );
+
+	return $expiry_time_formatted;
+}

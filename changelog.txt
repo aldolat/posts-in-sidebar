@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.8.4 =
+
+* Improved cache management.
+* Display date and time of the cache expiration in the debug section.
+* Added an ID when the shortcode has not an option for the ID.
+
 = 4.8.3 =
 
 * Removed non-breakable space between the label and the select/checkbox menus.

@@ -1251,7 +1251,9 @@ function pis_debug( $args ) {
 		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $args['widget_id'] ) . '</li>' . "\n";
 
 		if ( $args['cached'] ) {
-			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: active', 'posts-in-sidebar' ) . '</li>' . "\n";
+			$expiry_time = pis_get_transient_timeout( $args['widget_id'] );
+			// translators: Placeholder is a datetime formatted string.
+			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Cache: active. Will expire on %s', 'posts-in-sidebar' ), $expiry_time ) . '</li>' . "\n";
 		} else {
 			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
 		}

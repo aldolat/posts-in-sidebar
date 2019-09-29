@@ -912,7 +912,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 *
 		 * @since 4.8.4
 		 */
-		! empty( $shortcode_id ) ? $transient_id = esc_html( $shortcode_id ) : $transient_id = $widget_id;
+		! empty( $shortcode_id ) ? $transient_id = pis_clean_string( $shortcode_id ) : $transient_id = $widget_id;
 		if ( empty( $transient_id ) ) {
 			$transient_id = 'pis_noid';
 		}
@@ -971,7 +971,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			$pis_ul_id = ' id="ul_' . $widget_id . '" ';
 		} elseif ( ! empty( $shortcode_id ) ) {
 			// We are in a shortcode.
-			$pis_ul_id = ' id="ul_' . $shortcode_id . '" ';
+			$pis_ul_id = ' id="ul_' . pis_clean_string( $shortcode_id ) . '" ';
 		} else {
 			// We are in a shortcode but user has not defined an ID, so remove the ID selector.
 			$pis_ul_id = ' ';

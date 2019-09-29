@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.4] - 2019-09-29
+### Changed
+* Improved cache management.
+### Added
+* Display date and time of the cache expiration in the debug section.
+* Added an ID when the shortcode has not an option for the ID.
+
 ## [4.8.3] - 2019-09-15
 ### Fixed
 * Removed non-breakable space between the label and the select/checkbox menus.
@@ -537,6 +544,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.8.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.3...4.8.4
 [4.8.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.2...4.8.3
 [4.8.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.0...4.8.1

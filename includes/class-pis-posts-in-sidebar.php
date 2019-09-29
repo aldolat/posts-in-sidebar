@@ -727,16 +727,17 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Cache.
 		$instance['cached']     = isset( $new_instance['cached'] ) ? 1 : 0;
-		$instance['cache_time'] = wp_strip_all_tags( $new_instance['cache_time'] );
-		// If cache time is not a numeric value OR is 0, then reset cache. Also set cache time to 3600 if cache is active.
-		if ( ! is_numeric( $new_instance['cache_time'] ) || 0 === $new_instance['cache_time'] ) {
+		$instance['cache_time'] = absint( wp_strip_all_tags( $new_instance['cache_time'] ) );
+		// If user entered a cache time different from the stored cache time, reset the cache.
+		if ( $instance['cache_time'] !== $old_instance['cache_time'] ) {
 			delete_transient( $this->id . '_query_cache' );
-			if ( $instance['cached'] ) {
-				$instance['cache_time'] = 3600;
-			} else {
-				$instance['cache_time'] = '';
-			}
 		}
+		// If `0` is entered as cache time, set cache time to 3600.
+		// Do not use strict comparison (`===`) because the value is stored as string in the database!
+		if ( 0 == $instance['cache_time'] ) {
+			$instance['cached'] ? $instance['cache_time'] = 3600 : $instance['cache_time'] = '';
+		}
+
 		// This option is stored only for uninstall purposes. See uninstall.php for further information.
 		$instance['widget_id'] = $this->id;
 
@@ -4648,9 +4649,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							'3600',
 							sprintf(
 								// translators: %s contains some code.
-								esc_html__( 'For example, %1$s for one hour of cache. To reset the cache, enter %2$s and save the widget.', 'posts-in-sidebar' ),
-								'<code>3600</code>',
-								'<code>0</code>'
+								esc_html__( 'For example, %s for one hour of cache. To reset the cache, enter a value different from the previously saved.', 'posts-in-sidebar' ),
+								'<code>3600</code>'
 							)
 						);
 						?>

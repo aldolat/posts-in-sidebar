@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.5] - 2019-10-06
+### Changed
+* Added sanitization for shortcode_id.
+### Fixed
+* Fixed PHP notice for $transient_id variable.
+
 ## [4.8.4] - 2019-09-29
 ### Changed
 * Improved cache management.
@@ -544,6 +550,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.8.5]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.4...4.8.5
 [4.8.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.3...4.8.4
 [4.8.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.2...4.8.3
 [4.8.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.1...4.8.2

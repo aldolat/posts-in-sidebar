@@ -219,3 +219,21 @@ function pis_get_transient_timeout( $transient_id ) {
 
 	return $expiry_time_formatted;
 }
+
+/**
+ * Remove extra charachters from a string.
+ *
+ * This function will maintain the following charachters:
+ * a-z, A-Z, 0-9, _
+ * removing others.
+ *
+ * @param string $string  The string to be cleaned.
+ * @return string $string The cleaned, lowercased string.
+ * @since 4.8.5
+ */
+function pis_clean_string( $string ) {
+	$string = preg_replace( '/([^a-zA-Z0-9_]+)/', '', $string );
+	$string = strtolower( $string );
+
+	return $string;
+}

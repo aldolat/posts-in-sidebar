@@ -1,7 +1,7 @@
 == Changelog ==
 
 = 4.8.5 =
-* Added sanitization for shortcode_id.
+* Added sanitization for $shortcode_id.
 * Fixed PHP notice for $transient_id variable.
 
 = 4.8.4 =

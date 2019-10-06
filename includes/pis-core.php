@@ -1343,6 +1343,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	endif;
 
 	// Debugging.
+	isset( $transient_id ) ? $id_of_widget = $transient_id : $id_of_widget = $widget_id;
 	$pis_output .= pis_debug(
 		array(
 			'admin_only'   => $admin_only,   // bool   If display debug informations to admin only.
@@ -1351,7 +1352,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			'params'       => $params,       // array  The parameters for the query.
 			'args'         => $args,         // array  The complete set of parameters of the widget.
 			'cached'       => $cached,       // bool   If the cache is active.
-			'widget_id'    => $transient_id, // string The ID of the widget.
+			'widget_id'    => $id_of_widget, // string The ID of the widget.
 		)
 	);
 

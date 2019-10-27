@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.9.0] - 2019-10-27
+### Added
+* The word `now` used as Custom field value in the Custom field query panel will be changed in the current date and time.
+### Changed
+* Removed use of `date_i18n()`.
+### Fixed
+* Fixed printing the correct class for custom field key.
+
 ## [4.8.5] - 2019-10-06
 ### Changed
 * Added sanitization for shortcode_id.
@@ -550,6 +558,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.9.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.5...4.9.0
 [4.8.5]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.4...4.8.5
 [4.8.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.3...4.8.4
 [4.8.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.2...4.8.3

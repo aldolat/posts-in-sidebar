@@ -12,7 +12,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.6  
 **Tested up to:** 5.3.0  
-**Stable tag:** 4.8.5  
+**Stable tag:** 4.9.0  
 **License:** GPLv3 or later  
 **License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>  
 
@@ -112,7 +112,7 @@ This plugin does not collect any user data.
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./gpl-3.0.txt
 [README]: ./README.md
-[version-badge]: https://img.shields.io/badge/Version-4.8.5-blue.svg
+[version-badge]: https://img.shields.io/badge/Version-4.9.0-blue.svg
 [requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
 [tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.3.0-green.svg
 [license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

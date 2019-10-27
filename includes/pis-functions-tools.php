@@ -237,3 +237,36 @@ function pis_clean_string( $string ) {
 
 	return $string;
 }
+
+/**
+ * Get current date and time.
+ *
+ * @param bool $date Whether the date should be retrived.
+ * @param bool $time Whether the time should be retrived.
+ * @return string|bool $output The formatted date/time or false if both $date and $time are false.
+ * @since 4.9.0
+ */
+function pis_get_current_datetime( $date = true, $time = true ) {
+	$date_format = get_option( 'date_format' );
+	$time_format = get_option( 'time_format' );
+	$gmt_offset  = get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+
+	if ( ! is_bool( $date ) ) {
+		$date = false;
+	}
+	if ( ! is_bool( $time ) ) {
+		$time = false;
+	}
+
+	if ( $date && ! $time ) {
+		$output = date( $date_format, time() + $gmt_offset );
+	} elseif ( ! $date && $time ) {
+		$output = date( $time_format, time() + $gmt_offset );
+	} elseif ( $date && $time ) {
+		$output = date( $date_format . ' ' . $time_format, time() + $gmt_offset );
+	} else {
+		$output = false;
+	}
+
+	return $output;
+}

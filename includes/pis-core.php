@@ -145,6 +145,27 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 
 	/*
+	 * Before building the array for post meta query,
+	 * check if user entered `now` as custom field value.
+	 * This is handy if custom fields are used to store dates
+	 * and we want to compare the stored date with the current date.
+	 *
+	 * @since 4.9.0
+	 */
+	if ( 'now' === $mq_value_aa ) {
+		$mq_value_aa = apply_filters( 'cf_value_a1', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_ab ) {
+		$mq_value_ab = apply_filters( 'cf_value_a2', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_ba ) {
+		$mq_value_ba = apply_filters( 'cf_value_b1', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_bb ) {
+		$mq_value_bb = apply_filters( 'cf_value_b2', pis_get_current_datetime(), $widget_id );
+	}
+
+	/*
 	 * Build the array for post meta query.
 	 * It must be an array of array.
 	 *

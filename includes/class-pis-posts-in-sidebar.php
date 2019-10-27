@@ -3074,7 +3074,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_value_aa' ),
 									esc_attr( $instance['mq_value_aa'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
-									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+									sprintf(
+										esc_html__(
+											'Enter one or more values of the custom field, comma separated. If you enter %s, this will be replaced with the current date and time.',
+											'posts-in-sidebar'
+										),
+										'<code>now</code>'
+									)
 								);
 								?>
 

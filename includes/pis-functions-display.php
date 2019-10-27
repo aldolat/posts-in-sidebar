@@ -311,7 +311,7 @@ function pis_custom_field( $args ) {
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
 						// Create the class from the key of the custom field key.
-						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key, ' -' ) );
+						$pis_cf_key_class = ' pis-custom-field-' . preg_replace( '/[\s]+/', '-', trim( strtolower( $cf_key ), ' -' ) );
 
 						// Build the final output.
 						$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
@@ -344,7 +344,7 @@ function pis_custom_field( $args ) {
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
 
-			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $args['custom_field_key'], ' -' ) ), 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field pis-custom-field-' . preg_replace( '/[\s]+/', '-', trim( strtolower( $args['meta'] ), ' -' ) ), 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}

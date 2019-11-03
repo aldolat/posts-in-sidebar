@@ -1305,6 +1305,9 @@ function pis_debug( $args ) {
 				$output .= '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
 				$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
 			} else {
+				if ( 1 === $value ) {
+					$value = 'true';
+				}
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}
@@ -1318,6 +1321,9 @@ function pis_debug( $args ) {
 			if ( is_array( $value ) ) {
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
 			} else {
+				if ( 1 === $value ) {
+					$value = 'true';
+				}
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}

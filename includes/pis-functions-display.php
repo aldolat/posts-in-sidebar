@@ -1251,18 +1251,18 @@ function pis_debug( $args ) {
 
 		if ( $args['cached'] ) {
 			$cache_info = pis_get_cache_info( $args['widget_id'] );
-			$output .= '<li class="pis-debug-li">' . esc_html__(
+			$output    .= '<li class="pis-debug-li">' . esc_html__(
 				'Cache: active.',
 				'posts-in-sidebar'
-			) . '</li>' . "\n";
-			$output .= '<ul class="pis-debug-ul">';
-			$output .= '<li class="pis-debug-li">' . sprintf(
+			) . "\n";
+			$output    .= '<ul class="pis-debug-ul">' . "\n";
+			$output    .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time when the cache was created.
 				esc_html__(
 					'Created on: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_created'] . '</li>'
+				$cache_info['cache_created'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the duration of the cache.
@@ -1270,7 +1270,7 @@ function pis_debug( $args ) {
 					'Duration: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_duration'] . '</li>'
+				$cache_info['cache_duration'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time when the cache will expire.
@@ -1278,7 +1278,7 @@ function pis_debug( $args ) {
 					'Will expire on: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_expires'] . '</li>'
+				$cache_info['cache_expires'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the remaining time.
@@ -1286,9 +1286,9 @@ function pis_debug( $args ) {
 					'Remaining time: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_remaining_time'] . '</li>'
+				$cache_info['cache_remaining_time'] . '</li>' . "\n"
 			);
-			$output .= '</ul>';
+			$output .= '</ul>' . "\n" . '</li>' . "\n";
 		} else {
 			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
 		}

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-03T19:27:52+01:00\n"
+"POT-Creation-Date: 2019-11-03T21:04:25+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.3.0\n"
 "X-Domain: posts-in-sidebar\n"
@@ -1826,7 +1826,7 @@ msgstr ""
 msgid "The parameters for the query:"
 msgstr ""
 
-#: includes/pis-functions-display.php:1315
+#: includes/pis-functions-display.php:1318
 msgid "The options of the widget:"
 msgstr ""
 

@@ -4,6 +4,7 @@
 
 * Totally revamped cache management.
 * The word `now` used as Custom field value in the Custom field query panel will be changed in the current date and time.
+* In debug section display true if an option is active.
 * Removed use of `date_i18n()`.
 * Fixed printing the correct class for custom field key.
 

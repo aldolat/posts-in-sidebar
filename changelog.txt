@@ -2,6 +2,7 @@
 
 = 4.9.0 =
 
+* Totally revamped cache management.
 * The word `now` used as Custom field value in the Custom field query panel will be changed in the current date and time.
 * Removed use of `date_i18n()`.
 * Fixed printing the correct class for custom field key.

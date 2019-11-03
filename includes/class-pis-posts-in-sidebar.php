@@ -2260,7 +2260,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_post_format_page' ),
 										$this->get_field_name( 'title_post_format_page' ),
 										esc_attr( $instance['title_post_format_page'] ),
-										// translators: %s is the name of the author.
+										// translators: %s is the name of a post format.
 										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: %s is a literal `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )

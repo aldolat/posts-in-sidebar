@@ -831,7 +831,6 @@ function pis_utility_section( $args ) {
 	return $output;
 }
 
-
 /**
  * Return the custom taxonomies of the current post.
  *

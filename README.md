@@ -1,11 +1,11 @@
+# Posts in Sidebar
+
 ![banner](https://ps.w.org/posts-in-sidebar/assets/banner-772x250.png)
 
 [![version][version-badge]][CHANGELOG]
 [![requires][requires-badge]][README]
 [![tested][tested-badge]][README]
 [![license][license-badge]][LICENSE]
-
-# Posts in Sidebar
 
 **Contributors:** aldolat  
 **Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>  

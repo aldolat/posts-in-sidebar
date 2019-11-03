@@ -192,32 +192,47 @@ function pis_array2string( $array ) {
 }
 
 /**
- * Get transient timeout.
+ * Get info about the cache.
  *
- * @param  string $transient_id          The ID of the transient.
- * @return string $expiry_time_formatted The formatted expiry date and time or false.
+ * @param  string $widget_id  The ID of the widget.
+ * @return array  $cache_info An associative array containing cache information.
  * @since 4.8.4
  */
-function pis_get_transient_timeout( $transient_id ) {
-	// Define the output variable.
-	$expiry_time_formatted = '';
+function pis_get_cache_info( $widget_id ) {
+	$cache_info = array();
 
-	// Get user date and time format.
+	// Get transient values.
+	$cache_created_timestamp = get_transient( 'mod_' . $widget_id . '_query_cache' );
+	$cache_expires_timestamp = get_transient( 'timeout_' . $widget_id . '_query_cache' );
+
+	// Get the local GMT offset and date/time formats.
+	$local_offset    = (int) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
 	$datetime_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 
-	// Get the transient timeout. It is stored in the database as UNIX time (GMT time).
-	$unix_expiry_time = get_transient( 'timeout_' . $transient_id . '_query_cache' );
+	// Add local GMT offset to transients timeout.
+	$cache_created_timestamp_localized = $cache_created_timestamp + $local_offset;
+	$cache_expires_timestamp_localized = $cache_expires_timestamp + $local_offset;
 
-	// Get local time offet.
-	$local_offset = (int) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+	// Get date and time of cache creation.
+	$cache_created = date( $datetime_format, $cache_created_timestamp_localized );
 
-	// Add local time offest to UNIX (GMT) expiry time.
-	$expiry_time = $unix_expiry_time + $local_offset;
+	// Get cache duration time.
+	$cache_duration = human_time_diff( $cache_created_timestamp, $cache_expires_timestamp );
 
-	// Convert UNIX formatted expiry datetime to human expiry time.
-	$expiry_time_formatted = date( $datetime_format, $expiry_time );
+	// Get date and time of cache expiration.
+	$cache_expires = date( $datetime_format, $cache_expires_timestamp_localized );
 
-	return $expiry_time_formatted;
+	// Get remaining time to next cache update.
+	$cache_remaining_time = human_time_diff( $cache_expires_timestamp, time() );
+
+	$cache_info = array(
+		'cache_created'        => $cache_created,
+		'cache_duration'       => $cache_duration,
+		'cache_expires'        => $cache_expires,
+		'cache_remaining_time' => $cache_remaining_time,
+	);
+
+	return $cache_info;
 }
 
 /**

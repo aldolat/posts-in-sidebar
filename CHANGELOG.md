@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.9.0] - 2019-10-27
+## [4.9.0] - 2019-11-09
 ### Added
 * Totally revamped cache management.
 * The word `now` used as Custom field value in the Custom field query panel will be changed in the current date and time.
+* Added new filter for adding hidden (protected) custom fields to the dropdown menu in the widget admin (section "Displaying posts" > "The custom fields" > "Display this custom field").
 ### Changed
-* In debug section display true if an option is active.
+* In debug section, if an option is active, the widget will display "true".
 * Removed use of `date_i18n()`.
 ### Fixed
 * Fixed printing the correct class for custom field key.

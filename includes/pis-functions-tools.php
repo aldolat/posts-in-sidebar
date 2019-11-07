@@ -259,6 +259,7 @@ function pis_clean_string( $string ) {
  * @param bool $date Whether the date should be retrived.
  * @param bool $time Whether the time should be retrived.
  * @return string|bool $output The formatted date/time or false if both $date and $time are false.
+ *                             Output example: November 10, 2019 10:42:35
  * @since 4.9.0
  */
 function pis_get_current_datetime( $date = true, $time = true ) {

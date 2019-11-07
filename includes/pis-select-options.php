@@ -837,7 +837,15 @@ function pis_select_meta() {
 		);
 	}
 
-	return $options;
+	/**
+	 * Filters the list of custom fields.
+	 *
+	 * Using this filter, the user can add hidden (protected) custom fields
+	 * to the list in the display section of custom fields in the widget admin.
+	 *
+	 * @since 4.9.0
+	 */
+	return apply_filters( 'pis_selected_metas', $options );
 }
 
 /**

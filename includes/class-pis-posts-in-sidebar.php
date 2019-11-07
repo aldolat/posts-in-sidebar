@@ -729,9 +729,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['cached']     = isset( $new_instance['cached'] ) ? 1 : 0;
 		$instance['cache_time'] = absint( wp_strip_all_tags( $new_instance['cache_time'] ) );
 		// If user entered a cache time different from the stored cache time, reset the cache.
-		if ( $instance['cache_time'] !== $old_instance['cache_time'] ) {
-			delete_transient( $this->id . '_query_cache' );
+		if ( isset( $old_instance['cache_time'] ) ) {
+			if ( $instance['cache_time'] !== $old_instance['cache_time'] ) {
+				delete_transient( $this->id . '_query_cache' );
+			}
 		}
+
 		// If `0` is entered as cache time, set cache time to 3600.
 		// Do not use strict comparison (`===`) because the value is stored as string in the database!
 		if ( 0 == $instance['cache_time'] ) {

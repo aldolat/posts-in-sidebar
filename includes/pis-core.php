@@ -145,6 +145,27 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 
 	/*
+	 * Before building the array for post meta query,
+	 * check if user entered `now` as custom field value.
+	 * This is handy if custom fields are used to store dates
+	 * and we want to compare the stored date with the current date.
+	 *
+	 * @since 4.9.0
+	 */
+	if ( 'now' === $mq_value_aa ) {
+		$mq_value_aa = apply_filters( 'cf_value_a1', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_ab ) {
+		$mq_value_ab = apply_filters( 'cf_value_a2', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_ba ) {
+		$mq_value_ba = apply_filters( 'cf_value_b1', pis_get_current_datetime(), $widget_id );
+	}
+	if ( 'now' === $mq_value_bb ) {
+		$mq_value_bb = apply_filters( 'cf_value_b2', pis_get_current_datetime(), $widget_id );
+	}
+
+	/*
 	 * Build the array for post meta query.
 	 * It must be an array of array.
 	 *
@@ -904,24 +925,29 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * If the transient is created by a widget, it will be the $widget_id,
 		 * or, if created by a shortcode, it will be defined by the user with $shortcode_id.
 		 *
-		 * If the user has not defined a $shortcode_id, it will be "pis_noid",
+		 * If the user has not defined a $shortcode_id, it will be "pis_noid_[unixtime]"
+		 * where [unixtime] is the UNIX timestamp when the cache was generated,
 		 * otherwise the transient will have a name like
 		 * _transient__query_cache
 		 * with a double underscore, instead of (for example)
 		 * _transient_ID_query_cache.
 		 *
 		 * @since 4.8.4
+		 * @since 4.9.0 Added `_time()` to `pis-noid`.
 		 */
 		! empty( $shortcode_id ) ? $transient_id = pis_clean_string( $shortcode_id ) : $transient_id = $widget_id;
 		if ( empty( $transient_id ) ) {
-			$transient_id = 'pis_noid';
+			$transient_id = 'pis_noid_' . time();
 		}
 		// Get the cached query.
 		$pis_query = get_transient( $transient_id . '_query_cache' );
 		// If it does not exist, create a new query and cache it for future uses.
 		if ( ! $pis_query ) {
 			$pis_query = new WP_Query( $params );
+			// Set transient containing the query.
 			set_transient( $transient_id . '_query_cache', $pis_query, $cache_time );
+			// Set transient containing the timestamp of cache creation.
+			set_transient( 'mod_' . $transient_id . '_query_cache', time(), $cache_time );
 		}
 	} else { // ... otherwise serve a non-cached version of the output.
 		$pis_query = new WP_Query( $params );

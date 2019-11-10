@@ -4,7 +4,7 @@ Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.6
 Tested up to: 5.3.0
-Stable tag: 4.8.5
+Stable tag: 4.9.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

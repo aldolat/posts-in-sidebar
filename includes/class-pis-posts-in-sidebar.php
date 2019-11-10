@@ -729,9 +729,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['cached']     = isset( $new_instance['cached'] ) ? 1 : 0;
 		$instance['cache_time'] = absint( wp_strip_all_tags( $new_instance['cache_time'] ) );
 		// If user entered a cache time different from the stored cache time, reset the cache.
-		if ( $instance['cache_time'] !== $old_instance['cache_time'] ) {
-			delete_transient( $this->id . '_query_cache' );
+		if ( isset( $old_instance['cache_time'] ) ) {
+			if ( $instance['cache_time'] !== $old_instance['cache_time'] ) {
+				delete_transient( $this->id . '_query_cache' );
+			}
 		}
+
 		// If `0` is entered as cache time, set cache time to 3600.
 		// Do not use strict comparison (`===`) because the value is stored as string in the database!
 		if ( 0 == $instance['cache_time'] ) {
@@ -1744,6 +1747,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_same_post_format' ),
 										$this->get_field_name( 'title_same_post_format' ),
 										esc_attr( $instance['title_same_post_format'] ),
+										// translators: %s is the name of a post format.
 										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: %s is a literal `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -2259,7 +2263,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'title_post_format_page' ),
 										$this->get_field_name( 'title_post_format_page' ),
 										esc_attr( $instance['title_post_format_page'] ),
-										// translators: %s is the name of the author.
+										// translators: %s is the name of a post format.
 										esc_html__( 'Posts with %s post format', 'posts-in-sidebar' ),
 										// translators: %s is a literal `%s`.
 										sprintf( esc_html__( 'Use %s to display the name of the post format.', 'posts-in-sidebar' ), '<code>%s</code>' )
@@ -3074,7 +3078,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_value_aa' ),
 									esc_attr( $instance['mq_value_aa'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
-									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+									// translators: the placeholder contains some code.
+									sprintf( esc_html__( 'Enter one or more values of the custom field, comma separated. If you enter %s, this will be replaced with the current date and time.', 'posts-in-sidebar' ), '<code>now</code>' )
 								);
 								?>
 
@@ -3137,7 +3142,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_value_ab' ),
 									esc_attr( $instance['mq_value_ab'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
-									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+									// translators: the placeholder contains some code.
+									sprintf( esc_html__( 'Enter one or more values of the custom field, comma separated. If you enter %s, this will be replaced with the current date and time.', 'posts-in-sidebar' ), '<code>now</code>' )
 								);
 								?>
 
@@ -3191,7 +3197,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_value_ba' ),
 									esc_attr( $instance['mq_value_ba'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
-									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+									// translators: the placeholder contains some code.
+									sprintf( esc_html__( 'Enter one or more values of the custom field, comma separated. If you enter %s, this will be replaced with the current date and time.', 'posts-in-sidebar' ), '<code>now</code>' )
 								);
 								?>
 
@@ -3254,7 +3261,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_value_bb' ),
 									esc_attr( $instance['mq_value_bb'] ),
 									esc_html__( 'blue, orange, red', 'posts-in-sidebar' ),
-									esc_html__( 'Enter one or more values of the custom field, comma separated.', 'posts-in-sidebar' )
+									// translators: the placeholder contains some code.
+									sprintf( esc_html__( 'Enter one or more values of the custom field, comma separated. If you enter %s, this will be replaced with the current date and time.', 'posts-in-sidebar' ), '<code>now</code>' )
 								);
 								?>
 

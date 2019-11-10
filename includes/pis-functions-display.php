@@ -311,7 +311,7 @@ function pis_custom_field( $args ) {
 						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
 
 						// Create the class from the key of the custom field key.
-						$pis_cf_key_class = ' pis-' . preg_replace( '/[\s]+/', '-', trim( $cf_key, ' -' ) );
+						$pis_cf_key_class = ' pis-custom-field-' . preg_replace( '/[\s_]+/', '-', trim( strtolower( $cf_key ), ' -_' ) );
 
 						// Build the final output.
 						$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field' . $pis_cf_key_class, 'pis_custom_fields_class' ) . '>';
@@ -344,7 +344,7 @@ function pis_custom_field( $args ) {
 			}
 			$cf_value = '<span class="pis-custom-field-value">' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
 
-			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field ' . preg_replace( '/[\s]+/', '-', trim( $args['custom_field_key'], ' -' ) ), 'pis_custom_fields_class' ) . '>';
+			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field pis-custom-field-' . preg_replace( '/[\s_]+/', '-', trim( strtolower( $args['meta'] ), ' -_' ) ), 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;
 			$output .= '</p>';
 		}
@@ -831,7 +831,6 @@ function pis_utility_section( $args ) {
 	return $output;
 }
 
-
 /**
  * Return the custom taxonomies of the current post.
  *
@@ -1251,9 +1250,45 @@ function pis_debug( $args ) {
 		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $args['widget_id'] ) . '</li>' . "\n";
 
 		if ( $args['cached'] ) {
-			$expiry_time = pis_get_transient_timeout( $args['widget_id'] );
-			// translators: Placeholder is a datetime formatted string.
-			$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Cache: active. Will expire on %s', 'posts-in-sidebar' ), $expiry_time ) . '</li>' . "\n";
+			$cache_info = pis_get_cache_info( $args['widget_id'] );
+			$output    .= '<li class="pis-debug-li">' . esc_html__(
+				'Cache: active.',
+				'posts-in-sidebar'
+			) . "\n";
+			$output    .= '<ul class="pis-debug-ul">' . "\n";
+			$output    .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the time when the cache was created.
+				esc_html__(
+					'Created on: %s',
+					'posts-in-sidebar'
+				),
+				$cache_info['cache_created'] . '</li>' . "\n"
+			);
+			$output .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the duration of the cache.
+				esc_html__(
+					'Duration: %s',
+					'posts-in-sidebar'
+				),
+				$cache_info['cache_duration'] . '</li>' . "\n"
+			);
+			$output .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the time when the cache will expire.
+				esc_html__(
+					'Will expire on: %s',
+					'posts-in-sidebar'
+				),
+				$cache_info['cache_expires'] . '</li>' . "\n"
+			);
+			$output .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the remaining time.
+				esc_html__(
+					'Remaining time: %s',
+					'posts-in-sidebar'
+				),
+				$cache_info['cache_remaining_time'] . '</li>' . "\n"
+			);
+			$output .= '</ul>' . "\n" . '</li>' . "\n";
 		} else {
 			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
 		}
@@ -1270,6 +1305,9 @@ function pis_debug( $args ) {
 				$output .= '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
 				$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
 			} else {
+				if ( 1 === $value ) {
+					$value = 'true';
+				}
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}
@@ -1283,6 +1321,9 @@ function pis_debug( $args ) {
 			if ( is_array( $value ) ) {
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
 			} else {
+				if ( 1 === $value ) {
+					$value = 'true';
+				}
 				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}

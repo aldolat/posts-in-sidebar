@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.9.0] - 2019-11-09
+## [4.9.0] - 2019-11-10
 ### Added
 * Totally revamped cache management.
 * The word `now` used as Custom field value in the Custom field query panel will be changed in the current date and time.

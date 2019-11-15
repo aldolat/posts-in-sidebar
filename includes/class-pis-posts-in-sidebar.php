@@ -556,6 +556,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['post_parent_not_in'] = '';
 		}
 		$instance['exclude_current_post'] = isset( $new_instance['exclude_current_post'] ) ? 1 : 0;
+		
+		// Get posts from current user.
+		$instance['get_from_username'] = isset( $new_instance['get_from_username'] ) ? 1 : 0;
+
+		$instance['dont_ignore_params_username'] = isset( $new_instance['dont_ignore_params_username'] ) ? 1 : 0;
 
 		// The title of the post.
 		$instance['display_title'] = isset( $new_instance['display_title'] ) ? 1 : 0;
@@ -3291,6 +3296,53 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								?>
 
 							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Get posts from user login name -->
+				<div class="pis-section pis-2col">
+					<h5 data-panel="loginname-query" class="pis-widget-title"><?php esc_html_e( 'Get posts from username', 'posts-in-sidebar' ); ?></h5>
+
+					<div class="pis-container">
+
+						<p>
+							<em>
+								<?php esc_html_e( 'This section lets you retrieve posts from the current user login name. This means that you can show a custom list of posts for each user. To make this, create - for each post - a custom field where the meta key is equal to the user login name, leaving empty the meta value. A single post can have multiple custom fields, one for each user. When the user is logged in, he will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+							</em>
+						</p>
+
+						<div class="pis-column-container">
+
+							<?php
+							// ================= Get posts from current username.
+							pis_form_checkbox(
+								esc_html__( 'Get posts from current username', 'posts-in-sidebar' ),
+								$this->get_field_id( 'get_from_username' ),
+								$this->get_field_name( 'get_from_username' ),
+								$instance['get_from_username'],
+								esc_html__( 'Remember to set up a meta key for each user in your posts.', 'posts-in-sidebar' )
+							);
+							?>
+
+						</div>
+
+						<div class="pis-column-container">
+
+							<?php
+							// ================= Don't ignore other parameters
+							pis_form_checkbox(
+								esc_html__( 'Do not ignore other parameters', 'posts-in-sidebar' ),
+								$this->get_field_id( 'dont_ignore_params_username' ),
+								$this->get_field_name( 'dont_ignore_params_username' ),
+								$instance['dont_ignore_params_username'],
+								esc_html__( 'By default, when you activate the option above to change the query, the plugin will deactivate other parameters like categories, tags, date, author, and so on. To leave in action these parameters, activate this option.', 'posts-in-sidebar' ),
+								'pis-boxed pis-boxed-light-blue'
+							);
+							?>
 
 						</div>
 

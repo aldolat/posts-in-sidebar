@@ -883,6 +883,26 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
+	if ( $get_from_username ) {
+		$current_user       = wp_get_current_user();
+		$params['meta_key'] = $current_user->user_login;  // Uses an array of array.
+		
+		// Reset other parameters. The user can choose not to reset them.
+		if ( ! $dont_ignore_params_username ) {
+			$params['post__in']        = '';
+			$params['author_name']     = '';
+			$params['author__in']      = '';
+			$params['category_name']   = '';
+			$params['tag']             = '';
+			$params['tax_query']       = '';
+			$params['date_query']      = '';
+			$params['meta_query']      = '';
+			$params['post_parent__in'] = '';
+			$params['post_format']     = '';
+			$params['meta_value']      = '';
+		}
+	}
+
 	/*
 	 * Remove empty items from the $params array.
 	 * This is necessary for some parts of WP_Query (like dates)

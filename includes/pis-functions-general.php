@@ -267,6 +267,14 @@ function pis_get_defaults() {
 		'tag_not_in'                 => '',                                                            // Tag ID, comma separated.
 		'post_parent_not_in'         => '',
 
+		// Get posts from user login name.
+		'get_from_username'          => false,
+
+		/*
+		 * Do not ignore other parameters when changing query using current user login name.
+		 */
+		'dont_ignore_params_username'=> false,
+
 		// The title of the post.
 		'display_title'              => true,
 		'link_on_title'              => true,

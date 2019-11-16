@@ -3311,7 +3311,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This section lets you retrieve posts from the current user login name. This means that you can show a custom list of posts for each user. To make this, create - for each post - a custom field where the meta key is equal to the user login name, leaving empty the meta value. A single post can have multiple custom fields, one for each user. When the user is logged in, he will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the current logged-in user.' ); ?>
+							</em>
+						</p>
+
+						<p>
+							<em>
+								<?php esc_html_e( 'This means that you can show a custom list of posts for each user. To make this, create &mdash; for each post &mdash; a custom field where the meta key is equal to the user login name. The meta value can be empty, since it\'s not used here. A single post can have multiple custom fields, one for each user. When the user is logged in, he will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 
@@ -3323,8 +3329,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Get posts from current username', 'posts-in-sidebar' ),
 								$this->get_field_id( 'get_from_username' ),
 								$this->get_field_name( 'get_from_username' ),
-								$instance['get_from_username'],
-								esc_html__( 'Remember to set up a meta key for each user in your posts.', 'posts-in-sidebar' )
+								$instance['get_from_username']
 							);
 							?>
 

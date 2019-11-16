@@ -885,10 +885,10 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	if ( $get_from_username ) {
 		$current_user       = wp_get_current_user();
-		$params['meta_key'] = $current_user->user_login;  // Uses an array of array.
-		
+		$params['meta_key'] = $current_user->user_login;
+
 		// Reset other parameters. The user can choose not to reset them.
-		if ( ! $dont_ignore_params_username ) {
+		if ( $current_user->user_login && ! $dont_ignore_params_username ) {
 			$params['post__in']        = '';
 			$params['author_name']     = '';
 			$params['author__in']      = '';

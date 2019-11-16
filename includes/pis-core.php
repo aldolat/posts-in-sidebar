@@ -883,23 +883,48 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 	}
 
+	/*
+	 * Check if the user wants to display posts that have a custom field
+	 * where the meta key is equal to the currently logged-in user.
+	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 *
+	 * @since 4.10.0
+	 */
 	if ( $get_from_username ) {
-		$current_user       = wp_get_current_user();
-		$params['meta_key'] = $current_user->user_login;
 
-		// Reset other parameters. The user can choose not to reset them.
-		if ( $current_user->user_login && ! $dont_ignore_params_username ) {
-			$params['post__in']        = '';
-			$params['author_name']     = '';
-			$params['author__in']      = '';
-			$params['category_name']   = '';
-			$params['tag']             = '';
-			$params['tax_query']       = '';
-			$params['date_query']      = '';
-			$params['meta_query']      = '';
-			$params['post_parent__in'] = '';
-			$params['post_format']     = '';
-			$params['meta_value']      = '';
+		// Get the current user data, to see if he is logged-in.
+		$current_user = wp_get_current_user();
+
+		// The user is logged in.
+		if ( $current_user->user_login ) {
+
+			// Get posts that have the current username as meta key.
+			$query_args = array(
+				'meta_key' => $current_user->user_login,
+			);
+			$posts_with_username = get_posts( $query_args );
+
+			// Posts with username as meta key exist.
+			if ( $posts_with_username ) {
+
+				// Set the username as meta_key for the query.
+				$params['meta_key'] = $current_user->user_login;
+
+				// Reset other parameters. The user can choose not to reset them.
+				if ( ! $dont_ignore_params_username ) {
+					$params['post__in']        = '';
+					$params['author_name']     = '';
+					$params['author__in']      = '';
+					$params['category_name']   = '';
+					$params['tag']             = '';
+					$params['tax_query']       = '';
+					$params['date_query']      = '';
+					$params['meta_query']      = '';
+					$params['post_parent__in'] = '';
+					$params['post_format']     = '';
+					$params['meta_value']      = '';
+				}
+			}
 		}
 	}
 

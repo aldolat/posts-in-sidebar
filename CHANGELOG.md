@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.10.0] - 2019-11-17
 ### Added
 * Added option to get posts from current user login name.
+* Added current page URL to debug.
+### Changed
+* The widget introduction is now passed through PHP trim to remove extra spaces, carriage returns, etc.
 
 ## [4.9.0] - 2019-11-10
 ### Added

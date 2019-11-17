@@ -37,14 +37,14 @@ function pis_get_defaults() {
 		'intro'                      => '',
 
 		// Posts retrieving.
-		'post_type'                  => 'post',                                                        // post, page, attachment, or any custom post type.
-		'post_type_multiple'         => '',                                                            // A list of post types, comma separated.
-		'posts_id'                   => '',                                                            // Post/Pages IDs, comma separated.
-		'author'                     => '',                                                            // Author nicename.
-		'author_in'                  => '',                                                            // Author IDs.
-		'posts_by_comments'          => false,                                                         // Boolean. An array of post IDs will be used.
-		'cat'                        => '',                                                            // Category slugs, comma separated.
-		'tag'                        => '',                                                            // Tag slugs, comma separated.
+		'post_type'                  => 'post', // post, page, attachment, or any custom post type.
+		'post_type_multiple'         => '',     // A list of post types, comma separated.
+		'posts_id'                   => '',     // Post/Pages IDs, comma separated.
+		'author'                     => '',     // Author nicename.
+		'author_in'                  => '',     // Author IDs.
+		'posts_by_comments'          => false,  // Boolean. An array of post IDs will be used.
+		'cat'                        => '',     // Category slugs, comma separated.
+		'tag'                        => '',     // Tag slugs, comma separated.
 		'post_parent_in'             => '',
 		'post_format'                => '',
 		'number'                     => get_option( 'posts_per_page' ),
@@ -60,7 +60,7 @@ function pis_get_defaults() {
 		 * otherwise it will break sticky posts.
 		 */
 		'search'                     => null,
-		'has_password'               => 'null',                                                        // Fake content that will be converted later into real null/true/false.
+		'has_password'               => 'null', // Fake content that will be converted later into real null/true/false.
 		'post_password'              => '',
 		'ignore_sticky'              => false,
 
@@ -259,14 +259,6 @@ function pis_get_defaults() {
 		'mq_compare_bb'              => '',
 		'mq_type_bb'                 => '',
 
-		// Posts exclusion.
-		'author_not_in'              => '',
-		'exclude_current_post'       => false,
-		'post_not_in'                => '',
-		'cat_not_in'                 => '',                                                            // Category ID, comma separated.
-		'tag_not_in'                 => '',                                                            // Tag ID, comma separated.
-		'post_parent_not_in'         => '',
-
 		// Get posts from user login name.
 		'get_from_username'          => false,
 
@@ -274,6 +266,14 @@ function pis_get_defaults() {
 		 * Do not ignore other parameters when changing query using current user login name.
 		 */
 		'dont_ignore_params_username'=> false,
+
+		// Posts exclusion.
+		'author_not_in'              => '',
+		'exclude_current_post'       => false,
+		'post_not_in'                => '',
+		'cat_not_in'                 => '', // Category ID, comma separated.
+		'tag_not_in'                 => '', // Tag ID, comma separated.
+		'post_parent_not_in'         => '',
 
 		// The title of the post.
 		'display_title'              => true,
@@ -353,7 +353,7 @@ function pis_get_defaults() {
 		'custom_field'               => false,
 		'custom_field_txt'           => '',
 		'meta'                       => '',
-		'custom_field_count'         => '',                                                            // In characters.
+		'custom_field_count'         => '', // In characters.
 		'custom_field_hellip'        => '&hellip;',
 		'custom_field_key'           => false,
 		'custom_field_sep'           => ':',

@@ -2323,131 +2323,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 				</div>
 
-				<!-- Excluding posts -->
-				<div class="pis-section">
-
-					<h5 data-panel="excluding-posts" class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h5>
-
-					<div class="pis-container">
-
-						<p><em>
-							<?php
-							esc_html_e( 'Define here which posts must be excluded from the query.', 'posts-in-sidebar' );
-							?>
-						</em></p>
-
-						<p><em>
-							<?php
-							// translators: there is some code in placeholders.
-							printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' );
-							?>
-						</em></p>
-
-						<div class="pis-column-container">
-
-							<div class="pis-column">
-
-								<?php
-								// ================= Exclude posts by these authors
-								if ( is_array( $instance['author_not_in'] ) ) {
-									$var = implode( ',', $instance['author_not_in'] );
-								} else {
-									$var = $instance['author_not_in'];
-								}
-								pis_form_input_text(
-									esc_html__( 'Exclude posts by these authors', 'posts-in-sidebar' ),
-									$this->get_field_id( 'author_not_in' ),
-									$this->get_field_name( 'author_not_in' ),
-									esc_attr( $var ),
-									'1, 23, 45',
-									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php
-								// ================= Exclude posts from categories
-								if ( is_array( $instance['cat_not_in'] ) ) {
-									$var = implode( ',', $instance['cat_not_in'] );
-								} else {
-									$var = $instance['cat_not_in'];
-								}
-								pis_form_input_text(
-									esc_html__( 'Exclude posts from these categories', 'posts-in-sidebar' ),
-									$this->get_field_id( 'cat_not_in' ),
-									$this->get_field_name( 'cat_not_in' ),
-									esc_attr( $var ),
-									'3, 31',
-									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-								);
-								?>
-
-							</div>
-
-							<div class="pis-column">
-
-								<?php
-								// ================= Exclude posts from tags
-								if ( is_array( $instance['tag_not_in'] ) ) {
-									$var = implode( ',', $instance['tag_not_in'] );
-								} else {
-									$var = $instance['tag_not_in'];
-								}
-								pis_form_input_text(
-									esc_html__( 'Exclude posts from these tags', 'posts-in-sidebar' ),
-									$this->get_field_id( 'tag_not_in' ),
-									$this->get_field_name( 'tag_not_in' ),
-									esc_attr( $var ),
-									'7, 11',
-									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php
-								// ================= Exclude posts that have these ids.
-								pis_form_input_text(
-									esc_html__( 'Exclude posts with these IDs', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_not_in' ),
-									$this->get_field_name( 'post_not_in' ),
-									esc_attr( $instance['post_not_in'] ),
-									'5, 29, 523, 4519',
-									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-								);
-								?>
-
-							</div>
-
-							<div class="pis-column">
-
-								<?php
-								// ================= Exclude posts whose parent is in these IDs.
-								pis_form_input_text(
-									esc_html__( 'Exclude posts whose parent is in these IDs', 'posts-in-sidebar' ),
-									$this->get_field_id( 'post_parent_not_in' ),
-									$this->get_field_name( 'post_parent_not_in' ),
-									esc_attr( $instance['post_parent_not_in'] ),
-									'5, 29, 523, 4519',
-									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-								);
-								?>
-
-								<?php
-								// ================= Exclude current post
-								pis_form_checkbox(
-									esc_html__( 'Automatically exclude the current post in single post or the current page in single page', 'posts-in-sidebar' ),
-									$this->get_field_id( 'exclude_current_post' ),
-									$this->get_field_name( 'exclude_current_post' ),
-									$instance['exclude_current_post']
-								);
-								?>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
 				<!-- Custom taxonomy query -->
 				<div class="pis-section pis-2col">
 
@@ -3348,6 +3223,131 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'pis-boxed pis-boxed-light-blue'
 							);
 							?>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Excluding posts -->
+				<div class="pis-section">
+
+					<h5 data-panel="excluding-posts" class="pis-widget-title"><?php esc_html_e( 'Excluding posts', 'posts-in-sidebar' ); ?></h5>
+
+					<div class="pis-container">
+
+						<p><em>
+							<?php
+							esc_html_e( 'Define here which posts must be excluded from the query.', 'posts-in-sidebar' );
+							?>
+						</em></p>
+
+						<p><em>
+							<?php
+							// translators: there is some code in placeholders.
+							printf( esc_html__( 'If a field requires one or more IDs, install %1$sthis plugin%2$s to easily find the IDs.', 'posts-in-sidebar' ), '<a href="https://wordpress.org/plugins/reveal-ids-for-wp-admin-25/" target="_blank">', '</a>' );
+							?>
+						</em></p>
+
+						<div class="pis-column-container">
+
+							<div class="pis-column">
+
+								<?php
+								// ================= Exclude posts by these authors
+								if ( is_array( $instance['author_not_in'] ) ) {
+									$var = implode( ',', $instance['author_not_in'] );
+								} else {
+									$var = $instance['author_not_in'];
+								}
+								pis_form_input_text(
+									esc_html__( 'Exclude posts by these authors', 'posts-in-sidebar' ),
+									$this->get_field_id( 'author_not_in' ),
+									$this->get_field_name( 'author_not_in' ),
+									esc_attr( $var ),
+									'1, 23, 45',
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+								);
+								?>
+
+								<?php
+								// ================= Exclude posts from categories
+								if ( is_array( $instance['cat_not_in'] ) ) {
+									$var = implode( ',', $instance['cat_not_in'] );
+								} else {
+									$var = $instance['cat_not_in'];
+								}
+								pis_form_input_text(
+									esc_html__( 'Exclude posts from these categories', 'posts-in-sidebar' ),
+									$this->get_field_id( 'cat_not_in' ),
+									$this->get_field_name( 'cat_not_in' ),
+									esc_attr( $var ),
+									'3, 31',
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php
+								// ================= Exclude posts from tags
+								if ( is_array( $instance['tag_not_in'] ) ) {
+									$var = implode( ',', $instance['tag_not_in'] );
+								} else {
+									$var = $instance['tag_not_in'];
+								}
+								pis_form_input_text(
+									esc_html__( 'Exclude posts from these tags', 'posts-in-sidebar' ),
+									$this->get_field_id( 'tag_not_in' ),
+									$this->get_field_name( 'tag_not_in' ),
+									esc_attr( $var ),
+									'7, 11',
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+								);
+								?>
+
+								<?php
+								// ================= Exclude posts that have these ids.
+								pis_form_input_text(
+									esc_html__( 'Exclude posts with these IDs', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_not_in' ),
+									$this->get_field_name( 'post_not_in' ),
+									esc_attr( $instance['post_not_in'] ),
+									'5, 29, 523, 4519',
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+								);
+								?>
+
+							</div>
+
+							<div class="pis-column">
+
+								<?php
+								// ================= Exclude posts whose parent is in these IDs.
+								pis_form_input_text(
+									esc_html__( 'Exclude posts whose parent is in these IDs', 'posts-in-sidebar' ),
+									$this->get_field_id( 'post_parent_not_in' ),
+									$this->get_field_name( 'post_parent_not_in' ),
+									esc_attr( $instance['post_parent_not_in'] ),
+									'5, 29, 523, 4519',
+									esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+								);
+								?>
+
+								<?php
+								// ================= Exclude current post
+								pis_form_checkbox(
+									esc_html__( 'Automatically exclude the current post in single post or the current page in single page', 'posts-in-sidebar' ),
+									$this->get_field_id( 'exclude_current_post' ),
+									$this->get_field_name( 'exclude_current_post' ),
+									$instance['exclude_current_post']
+								);
+								?>
+
+							</div>
 
 						</div>
 

@@ -1242,6 +1242,8 @@ function pis_debug( $args ) {
 		$output .= '<ul class="pis-debug-ul">' . "\n";
 		// translators: %s is the site URL.
 		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() ) . '</li>' . "\n";
+		// translators: %s is the current page URL.
+		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Page URL: %s', 'posts-in-sidebar' ), esc_url( pis_get_current_url() ) ) . '</li>' . "\n";
 		// translators: %s is the WordPress version.
 		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version ) . '</li>' . "\n";
 		// translators: %s is the plugin version.

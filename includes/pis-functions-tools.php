@@ -286,3 +286,27 @@ function pis_get_current_datetime( $date = true, $time = true ) {
 
 	return $output;
 }
+
+/**
+ * Get the URL of the current page, without trailing slash.
+ *
+ * This function works fine both with permalinks activated or not.
+ *
+ * @return string The URL currently visited.
+ * @example https://www.example.com/tag/markup-2 A standard URL.
+ * @example https://www.example.com/?tag=markup-2 An URL with a query string.
+ *
+ * @since 4.10.0
+ */
+function pis_get_current_url() {
+	$url = '';
+
+	if ( isset( $_SERVER['REQUEST_SCHEME'] ) && isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
+		$scheme = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_SCHEME'] ) ) . '://';
+		$host   = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+		$uri    = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		$url    = untrailingslashit( $scheme . $host . $uri );
+	}
+
+	return $url;
+}

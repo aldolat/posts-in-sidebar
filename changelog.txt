@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.10.0 =
+
+* Added option to get posts from current user login name.
+* Added current page URL to debug.
+* The widget introduction is now passed through PHP trim to remove extra spaces, carriage returns, etc.
+
 = 4.9.0 =
 
 * Totally revamped cache management.

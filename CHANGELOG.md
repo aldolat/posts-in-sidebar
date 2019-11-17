@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.10.0] - 2019-11-17
+### Added
+* Added option to get posts from current user login name.
+* Added current page URL to debug.
+### Changed
+* The widget introduction is now passed through PHP trim to remove extra spaces, carriage returns, etc.
+
 ## [4.9.0] - 2019-11-10
 ### Added
 * Totally revamped cache management.
@@ -561,6 +568,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.10.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.9.0...4.10.0
 [4.9.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.5...4.9.0
 [4.8.5]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.4...4.8.5
 [4.8.4]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.3...4.8.4

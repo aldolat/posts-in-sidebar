@@ -156,7 +156,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['title_link'] = esc_url( wp_strip_all_tags( $new_instance['title_link'] ) );
 
 		// The introduction for the widget.
-		$instance['intro'] = wp_kses_post( $new_instance['intro'] );
+		$instance['intro'] = trim( wp_kses_post( $new_instance['intro'] ) );
 
 		// Posts retrieving.
 		$instance['post_type'] = wp_strip_all_tags( $new_instance['post_type'] );

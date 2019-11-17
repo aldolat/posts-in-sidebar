@@ -3186,7 +3186,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the currently logged-in user.' ); ?>
+								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the currently logged-in user.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 

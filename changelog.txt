@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.10.1 =
+
+* Added missing domain in a string.
+
 = 4.10.0 =
 
 * Added option to get posts from current user login name.

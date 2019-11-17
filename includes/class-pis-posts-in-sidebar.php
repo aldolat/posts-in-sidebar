@@ -3186,13 +3186,19 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the current logged-in user.' ); ?>
+								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the currently logged-in user.' ); ?>
 							</em>
 						</p>
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This means that you can show a custom list of posts for each user. To make this, create &mdash; for each post &mdash; a custom field where the meta key is equal to the user login name. The meta value can be empty, since it\'s not used here. A single post can have multiple custom fields, one for each user. When the user is logged in, he will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+								<?php esc_html_e( 'This means that you can show a custom list of posts for each user. To make this, create &mdash; for each post or for the posts you want &mdash; a custom field where the meta key is equal to the user login name. The meta value can be empty, since it is ignored here. A single post can have multiple custom fields, one for each user. When logged in, the user will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+							</em>
+						</p>
+
+						<p>
+							<em>
+								<?php esc_html_e( 'If the user is not logged-in or the widget does not find any post having a meta key with the username of the logged-in user, the widget will simply ignore this option.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 

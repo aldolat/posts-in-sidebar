@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.10.2] - 2019-11-18
+### Fixed
+* Fixed HTML output for time, thanks to [saajo-lab](https://github.com/saajo-lab) for his post [here](https://github.com/aldolat/posts-in-sidebar/issues/41).
+
 ## [4.10.1] - 2019-11-17
 ### Fixed
 * Added missing domain in a string.
@@ -572,6 +576,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.10.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.1...4.10.2
 [4.10.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.0...4.10.1
 [4.10.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.9.0...4.10.0
 [4.9.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.8.5...4.9.0

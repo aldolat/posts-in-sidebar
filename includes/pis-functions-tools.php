@@ -202,7 +202,7 @@ function pis_get_cache_info( $widget_id ) {
 	$cache_info = array();
 
 	// Get transient values.
-	$cache_created_timestamp = get_transient( 'mod_' . $widget_id . '_query_cache' );
+	$cache_created_timestamp = get_transient( $widget_id . '_created_query_cache' );
 	$cache_expires_timestamp = get_transient( 'timeout_' . $widget_id . '_query_cache' );
 
 	// Get the local GMT offset and date/time formats.

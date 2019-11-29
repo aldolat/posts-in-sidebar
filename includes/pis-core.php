@@ -977,12 +977,28 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * with a double underscore, instead of (for example)
 		 * _transient_ID_query_cache.
 		 *
+		 * TRANSIENTS CREATED:
+		 *
+		 * 1) if using a widget or if the user defined the $shortcode_id:
+		 * `pis_transients_[$widget_id OR $shortcode_id]_query_cache` (contains the query);
+		 * `pis_transients_[$widget_id OR $shortcode_id]_created_query_cache` (contains the timestamp of transient creation).
+		 *
+		 * 2) if the user has not defined a $shortcode_id:
+		 * `pis_transients_noid_query_cache` (contains the query);
+		 * `pis_transients_noid_created_query_cache` (contains the timestamp of transient creation).
+		 *
+		 * After this, WordPress will do:
+		 * a) prepend the `_transient_` string to all created transients;
+		 * b) create other transients (one for each new transient) using the same name
+		 *    and adding `_transient_timeout_` prefix.
+		 *
 		 * @since 4.8.4
-		 * @since 4.9.0 Added `_time()` to `pis-noid`.
+		 * @since 4.9.0  Added `time()` to `pis-noid`.
+		 * @since 4.10.3 Modified transients name into `pis_transients_`.
 		 */
-		! empty( $shortcode_id ) ? $transient_id = pis_clean_string( $shortcode_id ) : $transient_id = $widget_id;
-		if ( empty( $transient_id ) ) {
-			$transient_id = 'pis_noid_' . time();
+		! empty( $shortcode_id ) ? $transient_id = 'pis_transients_' . pis_clean_string( $shortcode_id ) : $transient_id = 'pis_transients_' . $widget_id;
+		if ( 'pis_transients_' === $transient_id ) { // This is the case when the user has not defined a $shortcode_id.
+			$transient_id = 'pis_transients_noid_' . time();
 		}
 		// Get the cached query.
 		$pis_query = get_transient( $transient_id . '_query_cache' );
@@ -992,7 +1008,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			// Set transient containing the query.
 			set_transient( $transient_id . '_query_cache', $pis_query, $cache_time );
 			// Set transient containing the timestamp of cache creation.
-			set_transient( 'mod_' . $transient_id . '_query_cache', time(), $cache_time );
+			set_transient( $transient_id . '_created_query_cache', time(), $cache_time );
 		}
 	} else { // ... otherwise serve a non-cached version of the output.
 		$pis_query = new WP_Query( $params );

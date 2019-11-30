@@ -996,8 +996,15 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * @since 4.9.0  Added `time()` to `pis-noid`.
 		 * @since 4.10.3 Modified transients name into `pis_transients_`.
 		 */
-		! empty( $shortcode_id ) ? $transient_id = 'pis_transients_' . pis_clean_string( $shortcode_id ) : $transient_id = 'pis_transients_' . $widget_id;
-		if ( 'pis_transients_' === $transient_id ) { // This is the case when the user has not defined a $shortcode_id.
+		if ( '' === $shortcode_id ) {
+			// We are in a sidebar widget.
+			$transient_id = 'pis_transients_' . $widget_id;
+		} else {
+			// We are in a shortcode and user defined a $shortcode_id.
+			$transient_id = 'pis_transients_' . pis_clean_string( $shortcode_id );
+		}
+		if ( 'pis_transients_' === $transient_id ) {
+			// We are in a shortcode and user has not defined a $shortcode_id.
 			$transient_id = 'pis_transients_noid_' . time();
 		}
 		// Get the cached query.

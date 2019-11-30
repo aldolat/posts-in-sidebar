@@ -1269,7 +1269,7 @@ function pis_debug( $args ) {
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time when the cache will expire.
 				esc_html__(
-					'Expires in: %s',
+					'Will expire on: %s',
 					'posts-in-sidebar'
 				),
 				$cache_info['cache_expires'] . '</li>' . "\n"
@@ -1293,7 +1293,7 @@ function pis_debug( $args ) {
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the remaining time.
 				esc_html__(
-					'Remaining time: %s',
+					'Expires in: %s',
 					'posts-in-sidebar'
 				),
 				$cache_info['cache_remaining_time'] . '</li>' . "\n"

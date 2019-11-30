@@ -1259,12 +1259,20 @@ function pis_debug( $args ) {
 			) . "\n";
 			$output    .= '<ul class="pis-debug-ul">' . "\n";
 			$output    .= '<li class="pis-debug-li">' . sprintf(
-				// translators: %s is the time when the cache was created.
+				// translators: %s is the date and time when the cache was created.
 				esc_html__(
 					'Created on: %s',
 					'posts-in-sidebar'
 				),
 				$cache_info['cache_created'] . '</li>' . "\n"
+			);
+			$output    .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the time passed from cache creation.
+				esc_html__(
+					'Time passed: %s',
+					'posts-in-sidebar'
+				),
+				$cache_info['cache_passed'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the duration of the cache.

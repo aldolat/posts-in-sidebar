@@ -216,6 +216,9 @@ function pis_get_cache_info( $widget_id ) {
 	// Get date and time of cache creation.
 	$cache_created = date( $datetime_format, $cache_created_timestamp_localized );
 
+	// Get how much time passed since creation.
+	$cache_passed = human_time_diff( $cache_created_timestamp, time() );
+
 	// Get cache duration time.
 	$cache_duration = human_time_diff( $cache_created_timestamp, $cache_expires_timestamp );
 
@@ -227,6 +230,7 @@ function pis_get_cache_info( $widget_id ) {
 
 	$cache_info = array(
 		'cache_created'        => $cache_created,
+		'cache_passed'         => $cache_passed,
 		'cache_duration'       => $cache_duration,
 		'cache_expires'        => $cache_expires,
 		'cache_remaining_time' => $cache_remaining_time,

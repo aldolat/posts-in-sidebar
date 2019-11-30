@@ -970,12 +970,9 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * If the transient is created by a widget, it will be the $widget_id,
 		 * or, if created by a shortcode, it will be defined by the user with $shortcode_id.
 		 *
-		 * If the user has not defined a $shortcode_id, it will be "pis_noid_[unixtime]"
-		 * where [unixtime] is the UNIX timestamp when the cache was generated,
-		 * otherwise the transient will have a name like
-		 * _transient__query_cache
-		 * with a double underscore, instead of (for example)
-		 * _transient_ID_query_cache.
+		 * If the user has not defined a $shortcode_id, it will be "noid".
+		 * The user should always set a $shortcode_id, in order to avoid cache reusing among different shortcodes.
+		 * Also, the $shortcode_id will be used to uniquely identify a shortcode in the HTML structure.
 		 *
 		 * TRANSIENTS CREATED:
 		 *
@@ -994,7 +991,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 *
 		 * @since 4.8.4
 		 * @since 4.9.0  Added `time()` to `pis-noid`.
-		 * @since 4.10.3 Modified transients name into `pis_transients_`.
+		 * @since 4.10.3 Modified transients name into `pis_transients_`. Removed `time()` from `pis_transients_noid`.
 		 */
 		if ( '' === $shortcode_id ) {
 			// We are in a sidebar widget.
@@ -1005,7 +1002,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 		if ( 'pis_transients_' === $transient_id ) {
 			// We are in a shortcode and user has not defined a $shortcode_id.
-			$transient_id = 'pis_transients_noid_' . time();
+			$transient_id = 'pis_transients_noid';
 		}
 		// Get the cached query.
 		$pis_query = get_transient( $transient_id . '_query_cache' );

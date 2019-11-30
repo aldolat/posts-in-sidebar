@@ -1266,13 +1266,13 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_created'] . '</li>' . "\n"
 			);
-			$output    .= '<li class="pis-debug-li">' . sprintf(
-				// translators: %s is the time passed from cache creation.
+			$output .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the time when the cache will expire.
 				esc_html__(
-					'Time passed: %s',
+					'Expires in: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_passed'] . '</li>' . "\n"
+				$cache_info['cache_expires'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the duration of the cache.
@@ -1282,13 +1282,13 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_duration'] . '</li>' . "\n"
 			);
-			$output .= '<li class="pis-debug-li">' . sprintf(
-				// translators: %s is the time when the cache will expire.
+			$output    .= '<li class="pis-debug-li">' . sprintf(
+				// translators: %s is the time passed from cache creation.
 				esc_html__(
-					'Will expire on: %s',
+					'Time passed: %s',
 					'posts-in-sidebar'
 				),
-				$cache_info['cache_expires'] . '</li>' . "\n"
+				$cache_info['cache_passed'] . '</li>' . "\n"
 			);
 			$output .= '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the remaining time.

@@ -11,8 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 * Added time passed in the debug section, when the cache is active, and reorganized items.
 ### Changed
-* Removed use of PHP `time()` when creating automatic shortcode ID. In a shortcode, the user must define a `shortcode_id` when using the cache.
 * Now uninstall delete all transients created by this plugin, not only the transients with the widget ID in their names.
+### Fixed
+* Removed use of PHP `time()` when creating automatic shortcode ID. In a shortcode, the user must define a `shortcode_id` when using the cache. This fixes proliferation of transients.
+
 
 ## [4.10.2] - 2019-11-18
 ### Fixed

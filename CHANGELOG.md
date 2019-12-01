@@ -6,13 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.10.3] - 2019-12-01
 ### Added
 * Added time passed in the debug section, when the cache is active, and reorganized items.
 ### Changed
 * Removed use of PHP `time()` when creating automatic shortcode ID. In a shortcode, the user must define a `shortcode_id` when using the cache.
 * Now uninstall delete all transients created by this plugin, not only the transients with the widget ID in their names.
-
-## [4.10.3] - 2019-11-30
 
 ## [4.10.2] - 2019-11-18
 ### Fixed

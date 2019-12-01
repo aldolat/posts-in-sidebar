@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.10.3] - 2019-12-01
+### Added
+* Added time passed in the debug section, when the cache is active, and reorganized items.
+### Changed
+* Now uninstall delete all transients created by this plugin, not only the transients with the widget ID in their names.
+### Fixed
+* Removed use of PHP `time()` when creating automatic shortcode ID. In a shortcode, the user must define a `shortcode_id` when using the cache. This fixes proliferation of transients.
+
 ## [4.10.2] - 2019-11-18
 ### Fixed
 * Fixed HTML output for time, thanks to [saajo-lab](https://github.com/saajo-lab) for his post [here](https://github.com/aldolat/posts-in-sidebar/issues/41).
@@ -576,6 +584,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.10.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.2...4.10.3
 [4.10.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.1...4.10.2
 [4.10.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.0...4.10.1
 [4.10.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.9.0...4.10.0

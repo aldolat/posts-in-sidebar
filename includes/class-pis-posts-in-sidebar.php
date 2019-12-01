@@ -556,7 +556,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['post_parent_not_in'] = '';
 		}
 		$instance['exclude_current_post'] = isset( $new_instance['exclude_current_post'] ) ? 1 : 0;
-		
+
 		// Get posts from current user.
 		$instance['get_from_username'] = isset( $new_instance['get_from_username'] ) ? 1 : 0;
 
@@ -746,7 +746,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['cached'] ? $instance['cache_time'] = 3600 : $instance['cache_time'] = '';
 		}
 
-		// This option is stored only for uninstall purposes. See uninstall.php for further information.
+		// In the past, this option were stored only for uninstall purposes.
 		$instance['widget_id'] = $this->id;
 
 		// Debug.

@@ -970,19 +970,39 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * If the transient is created by a widget, it will be the $widget_id,
 		 * or, if created by a shortcode, it will be defined by the user with $shortcode_id.
 		 *
-		 * If the user has not defined a $shortcode_id, it will be "pis_noid_[unixtime]"
-		 * where [unixtime] is the UNIX timestamp when the cache was generated,
-		 * otherwise the transient will have a name like
-		 * _transient__query_cache
-		 * with a double underscore, instead of (for example)
-		 * _transient_ID_query_cache.
+		 * If the user has not defined a $shortcode_id, it will be "noid".
+		 * The user should always set a $shortcode_id, in order to avoid cache reusing among different shortcodes.
+		 * Also, the $shortcode_id will be used to uniquely identify a shortcode in the HTML structure.
+		 *
+		 * TRANSIENTS CREATED:
+		 *
+		 * 1) if using a widget or if the user defined the $shortcode_id:
+		 * `pis_transients_[$widget_id OR $shortcode_id]_query_cache` (contains the query);
+		 * `pis_transients_[$widget_id OR $shortcode_id]_created_query_cache` (contains the timestamp of transient creation).
+		 *
+		 * 2) if the user has not defined a $shortcode_id:
+		 * `pis_transients_noid_query_cache` (contains the query);
+		 * `pis_transients_noid_created_query_cache` (contains the timestamp of transient creation).
+		 *
+		 * After this, WordPress will do:
+		 * a) prepend the `_transient_` string to all created transients;
+		 * b) create other transients (one for each new transient) using the same name
+		 *    and adding `_transient_timeout_` prefix.
 		 *
 		 * @since 4.8.4
-		 * @since 4.9.0 Added `_time()` to `pis-noid`.
+		 * @since 4.9.0  Added `time()` to `pis-noid`.
+		 * @since 4.10.3 Modified transients name into `pis_transients_`. Removed `time()` from `pis_transients_noid`.
 		 */
-		! empty( $shortcode_id ) ? $transient_id = pis_clean_string( $shortcode_id ) : $transient_id = $widget_id;
-		if ( empty( $transient_id ) ) {
-			$transient_id = 'pis_noid_' . time();
+		if ( '' === $shortcode_id ) {
+			// We are in a sidebar widget.
+			$transient_id = 'pis_transients_' . $widget_id;
+		} else {
+			// We are in a shortcode and user defined a $shortcode_id.
+			$transient_id = 'pis_transients_' . pis_clean_string( $shortcode_id );
+		}
+		if ( 'pis_transients_' === $transient_id ) {
+			// We are in a shortcode and user has not defined a $shortcode_id.
+			$transient_id = 'pis_transients_noid';
 		}
 		// Get the cached query.
 		$pis_query = get_transient( $transient_id . '_query_cache' );
@@ -992,7 +1012,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			// Set transient containing the query.
 			set_transient( $transient_id . '_query_cache', $pis_query, $cache_time );
 			// Set transient containing the timestamp of cache creation.
-			set_transient( 'mod_' . $transient_id . '_query_cache', time(), $cache_time );
+			set_transient( $transient_id . '_created_query_cache', time(), $cache_time );
 		}
 	} else { // ... otherwise serve a non-cached version of the output.
 		$pis_query = new WP_Query( $params );

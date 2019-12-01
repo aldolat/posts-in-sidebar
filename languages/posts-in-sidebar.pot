@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Posts in Sidebar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.10.2\n"
+"Project-Id-Version: Posts in Sidebar 4.10.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-18T14:34:22+01:00\n"
+"POT-Creation-Date: 2019-12-01T20:59:50+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.3.0\n"
 "X-Domain: posts-in-sidebar\n"
@@ -1823,40 +1823,45 @@ msgstr ""
 msgid "Cache: active."
 msgstr ""
 
-#. translators: %s is the time when the cache was created.
+#. translators: %s is the date and time when the cache was created.
 #: includes/pis-functions-display.php:1263
 msgid "Created on: %s"
 msgstr ""
 
-#. translators: %s is the duration of the cache.
-#: includes/pis-functions-display.php:1271
-msgid "Duration: %s"
-msgstr ""
-
 #. translators: %s is the time when the cache will expire.
-#: includes/pis-functions-display.php:1279
+#: includes/pis-functions-display.php:1271
 msgid "Will expire on: %s"
 msgstr ""
 
-#. translators: %s is the remaining time.
-#: includes/pis-functions-display.php:1287
-msgid "Remaining time: %s"
+#. translators: %s is the duration of the cache.
+#: includes/pis-functions-display.php:1279
+msgid "Duration: %s"
 msgstr ""
 
+#. translators: %s is the time passed from cache creation.
+#: includes/pis-functions-display.php:1287
+msgid "Time passed: %s"
+msgstr ""
+
+#. translators: %s is the remaining time.
 #: includes/pis-functions-display.php:1295
+msgid "Expires in: %s"
+msgstr ""
+
+#: includes/pis-functions-display.php:1303
 msgid "Cache: not active"
 msgstr ""
 
 #. translators: %1$s is the number of queries, %2$s is the number of seconds.
-#: includes/pis-functions-display.php:1298
+#: includes/pis-functions-display.php:1306
 msgid "Queries: %1$s queries in %2$s seconds"
 msgstr ""
 
-#: includes/pis-functions-display.php:1303
+#: includes/pis-functions-display.php:1311
 msgid "The parameters for the query:"
 msgstr ""
 
-#: includes/pis-functions-display.php:1320
+#: includes/pis-functions-display.php:1328
 msgid "The options of the widget:"
 msgstr ""
 

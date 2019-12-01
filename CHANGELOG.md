@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 * Removed use of PHP `time()` when creating automatic shortcode ID. In a shortcode, the user must define a `shortcode_id` when using the cache. This fixes proliferation of transients.
 
-
 ## [4.10.2] - 2019-11-18
 ### Fixed
 * Fixed HTML output for time, thanks to [saajo-lab](https://github.com/saajo-lab) for his post [here](https://github.com/aldolat/posts-in-sidebar/issues/41).

@@ -261,11 +261,12 @@ function pis_get_defaults() {
 
 		// Get posts from user login name.
 		'get_from_username'          => false,
+		'use_categories'             => false,
 
 		/*
 		 * Do not ignore other parameters when changing query using current user login name.
 		 */
-		'dont_ignore_params_username'=> false,
+		'dont_ignore_params_username' => false,
 
 		// Posts exclusion.
 		'author_not_in'              => '',

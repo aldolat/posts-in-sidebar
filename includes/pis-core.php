@@ -898,24 +898,41 @@ function pis_get_posts_in_sidebar( $args ) {
 		// The user is logged in.
 		if ( $current_user->user_login ) {
 
-			// Get posts that have the current username as meta key.
-			$query_args = array(
-				'meta_key' => $current_user->user_login,
-			);
+			// Define if the user wants posts from a category or from a custom field.
+			if ( $use_categories ) {
+				// Get posts that have the current username as category.
+				$id_of_category = get_cat_ID( $current_user->user_login );
+				$query_args     = array(
+					'category' => $id_of_category, // 'category' accepts ID only.
+				);
+			} else {
+				// Get posts that have the current username as meta key.
+				$query_args = array(
+					'meta_key' => $current_user->user_login,
+				);
+			}
+
 			$posts_with_username = get_posts( $query_args );
 
 			// Posts with username as meta key exist.
 			if ( $posts_with_username ) {
 
-				// Set the username as meta_key for the query.
-				$params['meta_key'] = $current_user->user_login;
+				if ( $use_categories ) {
+					// Set the username as category for the query.
+					$params['category_name'] = $current_user->user_login;
+				} else {
+					// Set the username as meta_key for the query.
+					$params['meta_key'] = $current_user->user_login;
+				}
 
 				// Reset other parameters. The user can choose not to reset them.
 				if ( ! $dont_ignore_params_username ) {
-					$params['post__in']        = '';
-					$params['author_name']     = '';
-					$params['author__in']      = '';
-					$params['category_name']   = '';
+					$params['post__in']    = '';
+					$params['author_name'] = '';
+					$params['author__in']  = '';
+					if ( ! $use_categories ) {
+						$params['category_name'] = '';
+					}
 					$params['tag']             = '';
 					$params['tax_query']       = '';
 					$params['date_query']      = '';

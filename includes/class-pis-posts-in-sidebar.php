@@ -559,6 +559,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		// Get posts from current user.
 		$instance['get_from_username'] = isset( $new_instance['get_from_username'] ) ? 1 : 0;
+		$instance['use_categories']    = isset( $new_instance['use_categories'] ) ? 1 : 0;
 
 		$instance['dont_ignore_params_username'] = isset( $new_instance['dont_ignore_params_username'] ) ? 1 : 0;
 
@@ -3186,31 +3187,54 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key equal to the username of the currently logged-in user.', 'posts-in-sidebar' ); ?>
+								<?php esc_html_e( 'This section lets you retrieve posts that have a custom field key or a category equal to the username of the currently logged-in user. This means that you can show a custom list of posts for each user.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 
 						<p>
 							<em>
-								<?php esc_html_e( 'This means that you can show a custom list of posts for each user. To make this, create &mdash; for each post or for the posts you want &mdash; a custom field where the meta key is equal to the user login name. The meta value can be empty, since it is ignored here. A single post can have multiple custom fields, one for each user. When logged in, the user will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+								<?php esc_html_e( 'If you want to use custom field keys, create &mdash; for each post or for the posts you want &mdash; a custom field where the meta key is equal to the user login name. The meta value can be empty, since it is ignored here. A single post can have multiple custom fields, one for each user.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 
 						<p>
 							<em>
-								<?php esc_html_e( 'If the user is not logged-in or the widget does not find any post having a meta key with the username of the logged-in user, the widget will simply ignore this option.', 'posts-in-sidebar' ); ?>
+								<?php esc_html_e( 'If you want to use categories, assign the posts you want to a category that has the same name of the user.', 'posts-in-sidebar' ); ?>
+							</em>
+						</p>
+
+						<p>
+							<em>
+								<?php esc_html_e( 'When logged in, the user will see the posts you have marked with his username.', 'posts-in-sidebar' ); ?>
+							</em>
+						</p>
+
+						<p>
+							<em>
+								<?php esc_html_e( 'If the user is not logged-in or the widget does not find any post having a meta key (or a category) with the username of the logged-in user, the widget will simply ignore this option.', 'posts-in-sidebar' ); ?>
 							</em>
 						</p>
 
 						<div class="pis-column-container">
 
 							<?php
-							// ================= Get posts from current username.
+							// ================= Get posts from current username (will use custom field key).
 							pis_form_checkbox(
 								esc_html__( 'Get posts from current username', 'posts-in-sidebar' ),
 								$this->get_field_id( 'get_from_username' ),
 								$this->get_field_name( 'get_from_username' ),
 								$instance['get_from_username']
+							);
+							?>
+
+							<?php
+							// ================= Use category for "Get posts from current username".
+							pis_form_checkbox(
+								esc_html__( 'Use category instead of meta key', 'posts-in-sidebar' ),
+								$this->get_field_id( 'use_categories' ),
+								$this->get_field_name( 'use_categories' ),
+								$instance['use_categories'],
+								esc_html__( 'When you activate this option, make sure to activate also the option "Get posts from current username"', 'posts-in-sidebar' )
 							);
 							?>
 

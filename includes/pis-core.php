@@ -912,9 +912,12 @@ function pis_get_posts_in_sidebar( $args ) {
 				);
 			}
 
+			// Just in case the user wants posts other than published.
+			$query_args += array( 'post_status' => $post_status );
+
 			$posts_with_username = get_posts( $query_args );
 
-			// Posts with username as meta key exist.
+			// Posts with username as meta key or category exist.
 			if ( $posts_with_username ) {
 
 				if ( $use_categories ) {

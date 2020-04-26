@@ -884,11 +884,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/*
-	 * Check if the user wants to display posts that have a custom field
-	 * where the meta key is equal to the currently logged-in user.
-	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * Check if the user wants to display posts that have a custom field or a
+	 * category where the meta key or the category is equal to the login name of
+	 * the currently logged-in user.
+	 * The parameters for excluding posts (like "post__not_in") will be left
+	 * active.
 	 *
 	 * @since 4.10.0
+	 * @since 4.11.0 Added option to get posts from a category.
 	 */
 	if ( $get_from_username ) {
 
@@ -921,7 +924,7 @@ function pis_get_posts_in_sidebar( $args ) {
 			if ( $posts_with_username ) {
 
 				if ( $use_categories ) {
-					// Set the username as category for the query.
+					// Set the username as category slug for the query.
 					$params['category_name'] = $current_user->user_login;
 				} else {
 					// Set the username as meta_key for the query.

@@ -3223,7 +3223,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Get posts from current username', 'posts-in-sidebar' ),
 								$this->get_field_id( 'get_from_username' ),
 								$this->get_field_name( 'get_from_username' ),
-								$instance['get_from_username']
+								$instance['get_from_username'],
+								esc_html__( 'This option will use custom field keys.', 'posts-in-sidebar' )
 							);
 							?>
 

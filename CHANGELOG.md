@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.11.0] - 2020-04-26
+### Added
+* In "Get posts from username", added option to get posts from a category (istead of a custom field key) that has the same name as the currently logged-in user.
+
 ## [4.10.3] - 2019-12-01
 ### Added
 * Added time passed in the debug section, when the cache is active, and reorganized items.
@@ -584,6 +588,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.11.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.3...4.11.0
 [4.10.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.2...4.10.3
 [4.10.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.1...4.10.2
 [4.10.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.0...4.10.1

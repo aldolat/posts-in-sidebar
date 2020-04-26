@@ -884,11 +884,14 @@ function pis_get_posts_in_sidebar( $args ) {
 	}
 
 	/*
-	 * Check if the user wants to display posts that have a custom field
-	 * where the meta key is equal to the currently logged-in user.
-	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * Check if the user wants to display posts that have a custom field or a
+	 * category where the meta key or the category is equal to the login name of
+	 * the currently logged-in user.
+	 * The parameters for excluding posts (like "post__not_in") will be left
+	 * active.
 	 *
 	 * @since 4.10.0
+	 * @since 4.11.0 Added option to get posts from a category.
 	 */
 	if ( $get_from_username ) {
 
@@ -898,24 +901,44 @@ function pis_get_posts_in_sidebar( $args ) {
 		// The user is logged in.
 		if ( $current_user->user_login ) {
 
-			// Get posts that have the current username as meta key.
-			$query_args = array(
-				'meta_key' => $current_user->user_login,
-			);
+			// Define if the user wants posts from a category or from a custom field.
+			if ( $use_categories ) {
+				// Get posts that have the current username as category.
+				$id_of_category = get_cat_ID( $current_user->user_login );
+				$query_args     = array(
+					'category' => $id_of_category, // 'category' accepts ID only.
+				);
+			} else {
+				// Get posts that have the current username as meta key.
+				$query_args = array(
+					'meta_key' => $current_user->user_login,
+				);
+			}
+
+			// Just in case the user wants posts other than published.
+			$query_args += array( 'post_status' => $post_status );
+
 			$posts_with_username = get_posts( $query_args );
 
-			// Posts with username as meta key exist.
+			// Posts with username as meta key or category exist.
 			if ( $posts_with_username ) {
 
-				// Set the username as meta_key for the query.
-				$params['meta_key'] = $current_user->user_login;
+				if ( $use_categories ) {
+					// Set the username as category slug for the query.
+					$params['category_name'] = $current_user->user_login;
+				} else {
+					// Set the username as meta_key for the query.
+					$params['meta_key'] = $current_user->user_login;
+				}
 
 				// Reset other parameters. The user can choose not to reset them.
 				if ( ! $dont_ignore_params_username ) {
-					$params['post__in']        = '';
-					$params['author_name']     = '';
-					$params['author__in']      = '';
-					$params['category_name']   = '';
+					$params['post__in']    = '';
+					$params['author_name'] = '';
+					$params['author__in']  = '';
+					if ( ! $use_categories ) {
+						$params['category_name'] = '';
+					}
 					$params['tag']             = '';
 					$params['tax_query']       = '';
 					$params['date_query']      = '';

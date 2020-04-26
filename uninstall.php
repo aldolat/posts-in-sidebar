@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * `pis_transients_`.
  *
  * @since 1.16
- * @since 4.10.3 Modified according new transients management.
+ * @since 4.10.3 Modified according to new transients management.
  */
 function pis_garbage_collection() {
 	// Delete plugin's transients from the database.

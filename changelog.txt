@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.11.0 =
+
+* In "Get posts from username", added option to get posts from a category (istead of a custom field key) that has the same name as the currently logged-in user.
+
 = 4.10.3 =
 
 * Added time passed in the debug section, when the cache is active, and reorganized items.

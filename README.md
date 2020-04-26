@@ -2,17 +2,12 @@
 
 ![banner](https://ps.w.org/posts-in-sidebar/assets/banner-772x250.png)
 
-[![version][version-badge]][CHANGELOG]
-[![requires][requires-badge]][README]
-[![tested][tested-badge]][README]
-[![license][license-badge]][LICENSE]
-
 **Contributors:** aldolat
 **Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>
 **Tags:** post, sidebar, widget, query, wp_query
 **Requires at least:** 4.6
-**Tested up to:** 5.3.0
-**Stable tag:** 4.10.3
+**Tested up to:** 5.4
+**Stable tag:** 4.11.0
 **License:** GPLv3 or later
 **License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
 

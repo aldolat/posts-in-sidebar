@@ -2,14 +2,14 @@
 
 ![banner](https://ps.w.org/posts-in-sidebar/assets/banner-772x250.png)
 
-**Contributors:** aldolat
-**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>
-**Tags:** post, sidebar, widget, query, wp_query
-**Requires at least:** 4.6
-**Tested up to:** 5.4
-**Stable tag:** 4.11.0
-**License:** GPLv3 or later
-**License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
+**Contributors:** aldolat  
+**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>  
+**Tags:** post, sidebar, widget, query, wp_query  
+**Requires at least:** 4.6  
+**Tested up to:** 5.4  
+**Stable tag:** 4.11.0  
+**License:** GPLv3 or later  
+**License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>  
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
@@ -103,11 +103,3 @@ I would like to say *Thank You* to all the people who helped me in making this p
 ## Privacy Policy
 
 This plugin does not collect any user data.
-
-[CHANGELOG]: ./CHANGELOG.md
-[LICENSE]: ./gpl-3.0.txt
-[README]: ./README.md
-[version-badge]: https://img.shields.io/badge/Version-4.10.3-blue.svg
-[requires-badge]: https://img.shields.io/badge/Requires_WordPress-4.6.0-green.svg
-[tested-badge]: https://img.shields.io/badge/Tested_up_to_WordPress-5.3.0-green.svg
-[license-badge]: https://img.shields.io/badge/License-GPLv3-ff69b4.svg

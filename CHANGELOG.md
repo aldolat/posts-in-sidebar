@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.12.0] - 2020-08-14
+### Added
+* Added fields for date and time formatting.
+
 ## [4.11.0] - 2020-04-26
 ### Added
-* In "Get posts from username", added option to get posts from a category (istead of a custom field key) that has the same name as the currently logged-in user.
+* In "Get posts from username", added option to get posts from a category (instead of a custom field key) that has the same name as the currently logged-in user.
 
 ## [4.10.3] - 2019-12-01
 ### Added

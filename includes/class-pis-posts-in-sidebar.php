@@ -609,10 +609,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['linkify_date']          = isset( $new_instance['linkify_date'] ) ? 1 : 0;
 		$instance['display_date']          = isset( $new_instance['display_date'] ) ? 1 : 0;
 		$instance['display_time']          = isset( $new_instance['display_time'] ) ? 1 : 0;
+		$instance['date_format']           = wp_strip_all_tags( $new_instance['date_format'] );
+		$instance['time_format']           = wp_strip_all_tags( $new_instance['time_format'] );
 		$instance['display_mod_date']      = isset( $new_instance['display_mod_date'] ) ? 1 : 0;
 		$instance['mod_date_text']         = wp_strip_all_tags( $new_instance['mod_date_text'] );
 		$instance['linkify_mod_date']      = isset( $new_instance['linkify_mod_date'] ) ? 1 : 0;
 		$instance['display_mod_time']      = isset( $new_instance['display_mod_time'] ) ? 1 : 0;
+		$instance['date_mod_format']       = wp_strip_all_tags( $new_instance['date_mod_format'] );
+		$instance['time_mod_format']       = wp_strip_all_tags( $new_instance['time_mod_format'] );
 		$instance['comments']              = isset( $new_instance['comments'] ) ? 1 : 0;
 		$instance['comments_text']         = wp_strip_all_tags( $new_instance['comments_text'] );
 		$instance['linkify_comments']      = isset( $new_instance['linkify_comments'] ) ? 1 : 0;
@@ -3948,6 +3952,88 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									esc_html__( 'A space will be added before and after the separator.', 'posts-in-sidebar' )
 								);
 								?>
+
+							</div>
+
+						</div>
+
+						<div class="pis-column-container">
+
+						<h6><?php esc_html_e( 'Date and time formatting', 'posts-in-sidebar' ); ?></h6>
+
+						<p>
+							<?php
+							esc_html_e( 'In these fields you can define the format of date and time for this widget.', 'posts-in-sidebar' );
+							echo ' ';
+							esc_html_e( 'If you leave these fields blank, the widget will use the format as defined in the Settings page of WordPress.', 'posts-in-sidebar' );
+							echo ' ';
+							esc_html_e( 'It\'s not necessary to fill all the fields, but only those you want to change.', 'posts-in-sidebar' );
+							?>
+						</p>
+
+						<p>
+							<?php
+							printf(
+									// translators: The link to date and time formatting in WordPress documentation.
+									esc_html__( 'For more information about date and time formatting see the %s.', 'posts-in-sidebar' ),
+									'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer">WordPress documentation</a>'
+								);
+							?>
+						</p>
+
+						<div class="pis-2col">
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Date format
+									pis_form_input_text(
+										esc_html__( 'Date format', 'posts-in-sidebar' ),
+										$this->get_field_id( 'date_format' ),
+										$this->get_field_name( 'date_format' ),
+										esc_attr( $instance['date_format'] ),
+										'F j, Y'
+									);
+									?>
+
+									<?php
+									// ================= Time format
+									pis_form_input_text(
+										esc_html__( 'Time format', 'posts-in-sidebar' ),
+										$this->get_field_id( 'time_format' ),
+										$this->get_field_name( 'time_format' ),
+										esc_attr( $instance['time_format'] ),
+										'g:i a'
+									);
+									?>
+
+								</div>
+
+								<div class="pis-column">
+
+									<?php
+									// ================= Date modified format
+									pis_form_input_text(
+										esc_html__( 'Date modified format', 'posts-in-sidebar' ),
+										$this->get_field_id( 'date_mod_format' ),
+										$this->get_field_name( 'date_mod_format' ),
+										esc_attr( $instance['date_mod_format'] ),
+										'F j, Y'
+									);
+									?>
+
+									<?php
+									// ================= Time modified format
+									pis_form_input_text(
+										esc_html__( 'Time modified format', 'posts-in-sidebar' ),
+										$this->get_field_id( 'time_mod_format' ),
+										$this->get_field_name( 'time_mod_format' ),
+										esc_attr( $instance['time_mod_format'] ),
+										'g:i a',
+									);
+									?>
+
+								</div>
 
 							</div>
 

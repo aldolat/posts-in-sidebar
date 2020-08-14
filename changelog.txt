@@ -1,8 +1,12 @@
 == Changelog ==
 
+= 4.12.0 =
+
+* Added fields for date and time formatting.
+
 = 4.11.0 =
 
-* In "Get posts from username", added option to get posts from a category (istead of a custom field key) that has the same name as the currently logged-in user.
+* In "Get posts from username", added option to get posts from a category (instead of a custom field key) that has the same name as the currently logged-in user.
 
 = 4.10.3 =
 

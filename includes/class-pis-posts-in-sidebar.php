@@ -3965,7 +3965,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<?php
 							esc_html_e( 'In these fields you can define the format of date and time for this widget.', 'posts-in-sidebar' );
 							echo ' ';
-							esc_html_e( 'If not defined, the widget will use the format as defined in the Settings page of WordPress.', 'posts-in-sidebar' );
+							esc_html_e( 'If you leave these fields blank, the widget will use the format as defined in the Settings page of WordPress.', 'posts-in-sidebar' );
+							echo ' ';
+							esc_html_e( 'It\'s not necessary to fill all the fields, but only those you want to change.', 'posts-in-sidebar' );
 							?>
 						</p>
 

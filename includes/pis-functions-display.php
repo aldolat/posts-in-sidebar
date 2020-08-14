@@ -686,8 +686,12 @@ function pis_utility_section( $args ) {
 		'display_author'        => false,
 		'display_date'          => false,
 		'display_time'          => false,
+		'date_format'           => get_option( 'date_format' ),
+		'time_format'           => get_option( 'time_format' ),
 		'display_mod_date'      => false,
 		'display_mod_time'      => false,
+		'date_mod_format'       => get_option( 'time_format' ),
+		'time_mod_format'       => get_option( 'time_format' ),
 		'comments'              => false,
 		'utility_margin'        => null,
 		'margin_unit'           => 'px',
@@ -757,16 +761,16 @@ function pis_utility_section( $args ) {
 		}
 		if ( $args['display_time'] ) {
 			// translators: %s is the time of the post.
-			$post_time = ' <span ' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '>' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time() ) . '</span>';
+			$post_time = ' <span ' . pis_class( 'pis-time', apply_filters( 'pis_time_class', '' ), false ) . '>' . sprintf( esc_html_x( 'at %s', '%s is the time of the post.', 'posts-in-sidebar' ), get_the_time( $args['time_format'] ) ) . '</span>';
 		} else {
 			$post_time = '';
 		}
 		if ( $args['linkify_date'] ) {
 			$output .= '<a ' . pis_class( 'pis-date-link', apply_filters( 'pis_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-			$output .= get_the_date() . $post_time;
+			$output .= get_the_date( $args['date_format'] ) . $post_time;
 			$output .= '</a>';
 		} else {
-			$output .= get_the_date() . $post_time;
+			$output .= get_the_date( $args['date_format'] ) . $post_time;
 		}
 		$output .= '</span>';
 	}
@@ -790,16 +794,16 @@ function pis_utility_section( $args ) {
 		}
 		if ( $args['display_mod_time'] ) {
 			// translators: %s is the time of the post modified.
-			$post_mod_time = ' <span ' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '>' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time() ) . '</span>';
+			$post_mod_time = ' <span ' . pis_class( 'pis-mod-time', apply_filters( 'pis_mod_time_class', '' ), false ) . '>' . sprintf( esc_html_x( 'at %s', '%s is the time of the post modified.', 'posts-in-sidebar' ), get_the_modified_time( $args['time_mod_format'] ) ) . '</span>';
 		} else {
 			$post_mod_time = '';
 		}
 		if ( $args['linkify_mod_date'] ) {
 			$output .= '<a ' . pis_class( 'pis-mod-date-link', apply_filters( 'pis_mod_date_link_class', '' ), false ) . ' href="' . get_permalink() . '" rel="bookmark">';
-			$output .= get_the_modified_date() . $post_mod_time;
+			$output .= get_the_modified_date( $args['date_mod_format'] ) . $post_mod_time;
 			$output .= '</a>';
 		} else {
-			$output .= get_the_modified_date() . $post_mod_time;
+			$output .= get_the_modified_date( $args['date_mod_format'] ) . $post_mod_time;
 		}
 		$output .= '</span>';
 	}

@@ -4029,7 +4029,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'time_mod_format' ),
 										$this->get_field_name( 'time_mod_format' ),
 										esc_attr( $instance['time_mod_format'] ),
-										'g:i a',
+										'g:i a'
 									);
 									?>
 

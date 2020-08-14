@@ -3975,8 +3975,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<?php
 							printf(
 									// translators: The link to date and time formatting in WordPress documentation.
-									esc_html__( 'For more information about date and time formatting see the %s.', 'posts-in-sidebar' ),
-									'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer">WordPress documentation</a>'
+									esc_html__( 'For more information about date and time formatting see the %1$sWordPress documentation%2$s.', 'posts-in-sidebar' ),
+									'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer">',
+									'</a>'
 								);
 							?>
 						</p>
@@ -4014,7 +4015,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<?php
 									// ================= Date modified format
 									pis_form_input_text(
-										esc_html__( 'Date modified format', 'posts-in-sidebar' ),
+										esc_html__( 'Modification date format', 'posts-in-sidebar' ),
 										$this->get_field_id( 'date_mod_format' ),
 										$this->get_field_name( 'date_mod_format' ),
 										esc_attr( $instance['date_mod_format'] ),
@@ -4025,7 +4026,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<?php
 									// ================= Time modified format
 									pis_form_input_text(
-										esc_html__( 'Time modified format', 'posts-in-sidebar' ),
+										esc_html__( 'Modification time format', 'posts-in-sidebar' ),
 										$this->get_field_id( 'time_mod_format' ),
 										$this->get_field_name( 'time_mod_format' ),
 										esc_attr( $instance['time_mod_format'] ),

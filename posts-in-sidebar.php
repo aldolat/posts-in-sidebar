@@ -152,6 +152,19 @@ function pis_load_scripts( $hook ) {
 			wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 			wp_enqueue_script( 'pis_js' );
 
+			// Register and enqueue the JS file for duplicate the widget.
+			wp_register_script( 'pis_js_duplicate', plugins_url( 'assets/pis-duplicate.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, true );
+			wp_enqueue_script( 'pis_js_duplicate' );
+
+			wp_localize_script(
+				'pis_js_duplicate',
+				'pis_js_duplicate_widget',
+				array(
+					'text'  => __( 'Duplicate', 'posts-in-sidebar' ),
+					'title' => __( 'Make a copy of this widget', 'posts-in-sidebar' ),
+				)
+			);
+
 			// Register and enqueue the CSS file.
 			wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
 			wp_enqueue_style( 'pis_style' );

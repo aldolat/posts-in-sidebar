@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Posts in Sidebar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.12.1\n"
+"Project-Id-Version: Posts in Sidebar 4.13.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-08-14T13:33:07+02:00\n"
+"POT-Creation-Date: 2020-10-31T19:40:46+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: posts-in-sidebar\n"
@@ -833,7 +833,7 @@ msgid "Here you can get posts published after/before a certain date. You can als
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2722
-msgid "Get posts after this date"
+msgid "Get posts published after this date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2724
@@ -856,7 +856,7 @@ msgid "The day of the month. Accepts numbers 1-31."
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2763
-msgid "Get posts before this date"
+msgid "Get posts published before this date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2765
@@ -896,7 +896,7 @@ msgid "Also, please note that these options will override the corresponding opti
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2851
-msgid "Get posts after this amount of time"
+msgid "Get posts published after this amount of time"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2856
@@ -910,7 +910,7 @@ msgid "Type of date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2879
-msgid "Get posts before this amount of time"
+msgid "Get posts published before this amount of time"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:2914
@@ -1808,6 +1808,14 @@ msgstr ""
 msgid "Display the complete set of parameters for the widget"
 msgstr ""
 
+#: includes/class-pis-posts-in-sidebar.php:4915
+msgid "Note for widget duplication"
+msgstr ""
+
+#: includes/class-pis-posts-in-sidebar.php:4918
+msgid "When you duplicate the widget, please reload the page, so that you can open the panels in the duplicated widget."
+msgstr ""
+
 #. translators: %s is the time of the post.
 #: includes/pis-functions-display.php:764
 msgctxt "%s is the time of the post."
@@ -2172,10 +2180,18 @@ msgstr ""
 msgid "Ordered list"
 msgstr ""
 
-#: posts-in-sidebar.php:203
+#: posts-in-sidebar.php:164
+msgid "Duplicate"
+msgstr ""
+
+#: posts-in-sidebar.php:165
+msgid "Make a copy of this widget"
+msgstr ""
+
+#: posts-in-sidebar.php:217
 msgid "Click here to rate and review this plugin on WordPress.org"
 msgstr ""
 
-#: posts-in-sidebar.php:203
+#: posts-in-sidebar.php:217
 msgid "Rate this plugin"
 msgstr ""

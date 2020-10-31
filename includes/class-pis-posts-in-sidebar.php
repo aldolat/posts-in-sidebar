@@ -4910,6 +4910,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
+		<div class="pis-section pis-boxed pis-boxed-orange">
+
+			<h5><?php esc_html_e( 'Note for widget duplication', 'posts-in-sidebar' ); ?></h5>
+
+			<p><?php
+			esc_html_e(
+				'When you duplicate the widget, please reload the page, so that you can open the panels in the duplicated widget.',
+				'posts-in-sidebar'
+			);
+			?></p>
+		</div>
+
 		<?php
 	}
 

@@ -4,7 +4,7 @@
  * released under GPLv3.
  *
  * @package PostsInSidebar
- * @since 4.13
+ * @since 4.13.0
  */
 
 (function ($) {
@@ -86,7 +86,7 @@
             $widget[0].id = 'widget-' + newid + '_' + idbase + '-' + newnum;
             $widget.find('input.widget-id').val(idbase + '-' + newnum);
             $widget.find('input.widget_number').val(newnum);
-            $widget.find('input.widget-control-save').removeAttr('disabled').val('Save');
+            //$widget.find('input.widget-control-save').removeAttr('disabled').val('Save');
             $widget.hide();
             $original.after($widget);
             $widget.fadeIn();

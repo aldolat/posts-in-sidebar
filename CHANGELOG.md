@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.13.0] - 2020-10-31
 ### Changed
+* Added function to duplicate the widget.
 * Changed some strings.
 
 ## [4.12.1] - 2020-08-14
@@ -223,8 +226,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.8.4] - 2017-04-09
 ### Added
-* Added option to maintain active other parameters when on single post (props by techsmurfy).
-* Added option to sort categories of the main post before getting the posts for the sidebar. When the user wants to get posts from the current category, now the user can choose to fetch posts from the main category of the main post (i.e. the category with the lowest ID) or from the category with the lowest key ID in the array of categories (props by techsmurfy).
+* Added option to maintain active other parameters when on single post (requested by techsmurfy).
+* Added option to sort categories of the main post before getting the posts for the sidebar. When the user wants to get posts from the current category, now the user can choose to fetch posts from the main category of the main post (i.e. the category with the lowest ID) or from the category with the lowest key ID in the array of categories (requested by techsmurfy).
 * Added options to move certain parts before/after the title.
 * Added Indonesian translation, thanks to Jordan Silaen.
 ### Removed
@@ -233,7 +236,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.8.3] - 2017-03-11
 ### Added
 * Added option to display debugging information to admins only.
-* Now the custom field value for getting posts via custom field key can be the taxonomy ID (props by morfe1).
+* Now the custom field value for getting posts via custom field key can be the taxonomy ID (requested by morfe1).
 ### Removed
 * Removed Italian l10n from `languages/` directory, because the Italian language pack in GlotPress is completed.
 ### Security
@@ -262,7 +265,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.7] - 2016-05-24
 ### Added
-* NEW: Added support to get posts, when on single post, from user-defined category/tag using custom field (props by Mike S).
+* NEW: Added support to get posts, when on single post, from user-defined category/tag using custom field (requested by Mike S).
 * NEW: Added support for changing number of posts when on single post.
 ### Fixed
 * FIX: fixed displaying comments string when using languages different from English.
@@ -273,7 +276,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.5] - 2016-03-24
 ### Added
-* NEW: Added support to get posts by the author of the current post (props by Derek).
+* NEW: Added support to get posts by the author of the current post (requested by Derek).
 ### Fixed
 * FIX: fixed getting posts by category slug.
 ### Changed
@@ -285,21 +288,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.3.1] - 2016-02-06
 ### Fixed
-* FIX: fixed wrong characters displaying in custom field values (props by [bubdev](https://wordpress.org/support/profile/bubdev)).
+* FIX: fixed wrong characters displaying in custom field values (requested by [bubdev](https://wordpress.org/support/profile/bubdev)).
 * Minor improvements.
 
 ## [3.3] - 2016-01-21
 ### Added
-* NEW: Added option to truncate the custom field content (props by [bubdev](https://wordpress.org/support/profile/bubdev)).
+* NEW: Added option to truncate the custom field content (requested by [bubdev](https://wordpress.org/support/profile/bubdev)).
 
 ## [3.2] - 2015-12-31
 ### Added
-* NEW: Added support to get posts from the category of the current post (props by [wendygordon](https://wordpress.org/support/profile/wendygordon)).
+* NEW: Added support to get posts from the category of the current post (requested by [wendygordon](https://wordpress.org/support/profile/wendygordon)).
 * Minor improvements.
 
 ## [3.1] - 2015-11-08
 ### Added
-* NEW: Added option to display the modification date (props by [ecdltf](https://wordpress.org/support/profile/ecdltf)).
+* NEW: Added option to display the modification date (requested by [ecdltf](https://wordpress.org/support/profile/ecdltf)).
 
 ## [3.0.1] - 2015-10-31
 ### Fixed
@@ -348,7 +351,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * NEW: Support for queries based on search.
 * NEW: Support for getting and excluding posts that are children of other posts.
 * NEW: Support for custom taxonomies.
-* NEW: Added support for custom link in featured image (props by troy-f).
+* NEW: Added support for custom link in featured image (requested by troy-f).
 * NEW: Changed appearance for widget sections that are collapsible now.
 ### Changed
 * WordPress 4.1 is required (for nested taxonomy handling).
@@ -375,13 +378,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.26] - 2015-03-22
 ### Changed
-* Compatibility with Relevantssi plugin (props by KTS915).
+* Compatibility with Relevantssi plugin (requested by KTS915).
 * Updated the Hebrew translation (thanks to Ahrale).
 
 ## [1.25] - 2015-03-14
 ### Added
-* NEW: Added options to use a custom image instead of the standard featured image (props by joaogsr).
-* NEW: Added class "sticky" if a post is sticky (props by acrok).
+* NEW: Added options to use a custom image instead of the standard featured image (requested by joaogsr).
+* NEW: Added class "sticky" if a post is sticky (requested by acrok).
 * Added placeholders in HTML fields.
 ### Changed
 * CHANGE: Added a checkbox to completely hide the widget if no posts are found (instead of removing the "no posts text" in order to do this).
@@ -394,8 +397,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.23] - 2015-02-25
 ### Added
-* NEW: the widget can be hidden now if no posts are found (props by der_velli).
-* NEW: Added the option to display the full size of the featured image (props by Ilaria).
+* NEW: the widget can be hidden now if no posts are found (requested by der_velli).
+* NEW: Added the option to display the full size of the featured image (requested by Ilaria).
 ### Changed
 * Moved plugin's functions files into subfolder.
 * Moved plugin's functions into separate file.
@@ -461,9 +464,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.15] - 2013-12-15
 ### Added
-* NEW: The posts can be retrieved using the ID (props by Matt).
-* NEW: The list of posts can now be displayed in a numbered list (props by Sean).
-* NEW: The excerpt can be displayed up to the "more" tag (props by EvertVd).
+* NEW: The posts can be retrieved using the ID (requested by Matt).
+* NEW: The list of posts can now be displayed in a numbered list (requested by Sean).
+* NEW: The excerpt can be displayed up to the "more" tag (requested by EvertVd).
 ### Fixed
 * FIX: There are no more empty spaces after "Category" or "Tags" text.
 ### Changed
@@ -480,10 +483,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.13] - 2013-08-30
 ### Added
-* NEW: Added option for adding user defined styles (props by Ahrale).
-* NEW: Added option for setting the space around the image (props by Ahrale).
-* NEW: Added check for rtl languages (the arrow can now be from right to left, props by Ahrale).
-* NEW: Added option for ordering by "Menu order" and "Comment count" (props by hypn0ticnet).
+* NEW: Added option for adding user defined styles (requested by Ahrale).
+* NEW: Added option for setting the space around the image (requested by Ahrale).
+* NEW: Added check for rtl languages (the arrow can now be from right to left, requested by Ahrale).
+* NEW: Added option for ordering by "Menu order" and "Comment count" (requested by hypn0ticnet).
 ### Changed
 * Updated Hebrew translation (thanks to Ahrale).
 * Minor enhancements.
@@ -598,6 +601,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.13.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.1...4.13.0
+[4.12.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.0...4.12.1
+[4.12.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.11.0...4.12.0
 [4.11.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.3...4.11.0
 [4.10.3]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.2...4.10.3
 [4.10.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.10.1...4.10.2

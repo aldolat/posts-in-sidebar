@@ -2719,7 +2719,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h6><?php esc_html_e( 'Get posts after this date', 'posts-in-sidebar' ); ?></h6>
+								<h6><?php esc_html_e( 'Get posts published after this date', 'posts-in-sidebar' ); ?></h6>
 
 								<p><em><?php esc_html_e( 'Get posts published after a certain date.', 'posts-in-sidebar' ); ?></em></p>
 
@@ -2760,7 +2760,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h6><?php esc_html_e( 'Get posts before this date', 'posts-in-sidebar' ); ?></h6>
+								<h6><?php esc_html_e( 'Get posts published before this date', 'posts-in-sidebar' ); ?></h6>
 
 								<p><em><?php esc_html_e( 'Get posts published before a certain date.', 'posts-in-sidebar' ); ?></em></p>
 
@@ -2848,7 +2848,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h6><?php esc_html_e( 'Get posts after this amount of time', 'posts-in-sidebar' ); ?></h6>
+								<h6><?php esc_html_e( 'Get posts published after this amount of time', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= The amount of time for the dynamic date
@@ -2876,7 +2876,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h6><?php esc_html_e( 'Get posts before this amount of time', 'posts-in-sidebar' ); ?></h6>
+								<h6><?php esc_html_e( 'Get posts published before this amount of time', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= The amount of time for the dynamic date
@@ -4908,6 +4908,18 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			</div>
 
+		</div>
+
+		<div class="pis-section pis-boxed pis-boxed-orange">
+
+			<h5><?php esc_html_e( 'Note for widget duplication', 'posts-in-sidebar' ); ?></h5>
+
+			<p><?php
+			esc_html_e(
+				'When you duplicate the widget, please reload the page, so that you can open the panels in the duplicated widget.',
+				'posts-in-sidebar'
+			);
+			?></p>
 		</div>
 
 		<?php

@@ -93,25 +93,6 @@
             // Not exactly sure what multi_number is used for.
             $widget.find('.multi_number').val(newnum);
 
-            // Support for text widget
-            if ($widget.find('.text-widget-fields').length > 0) {
-                var iframeId = $widget.find('.mce-edit-area > iframe').attr('id');
-                var tinyMceId = iframeId.substring(0, iframeId.length - 4);
-                var textAreaValue = '';
-                if($widget.find('.wp-core-ui.wp-editor-wrap').hasClass('tmce-active')){
-                    textAreaValue = tinyMCE.get(tinyMceId).getContent();
-                }else{
-                    textAreaValue = $widget.find('.widefat.text.wp-editor-area').val();
-                }
-                var timeStamp = Math.floor(Date.now() / 1000);
-                var $tmceActive = $widget.find('.wp-editor-wrap');
-
-                $tmceActive.parent().html('<textarea id="e_' + timeStamp + '_text">' + textAreaValue + '</textarea>');
-                wp.editor.initialize('e_' + timeStamp + '_text', {tinymce: true, quicktags: true});
-                $('#e_' + timeStamp + '_text').addClass('widefat text wp-editor-area');
-                $widget.find('.text-widget-fields > p label').attr('for', 'e_' + timeStamp + '_title');
-                $widget.find('.text-widget-fields > p input').attr('id', 'e_' + timeStamp + '_title');
-            }
             wpWidgets.save($widget, 0, 0, 1);
 
             ev.stopPropagation();

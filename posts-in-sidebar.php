@@ -213,8 +213,17 @@ function pis_load_widgets() {
  */
 function pis_add_links( $links, $file ) {
 	if ( plugin_basename( __FILE__ ) === $file ) {
+		// Changelog.
+		$changelog_url = 'https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md';
+		$links[]       = '<a target="_blank" href="' . $changelog_url . '">' . esc_html__( 'Changelog', 'posts-in-sidebar' ) . '</a>';
+
+		// Documentation.
+		$doc_url = 'https://github.com/aldolat/posts-in-sidebar/wiki';
+		$links[] = '<a target="_blank" href="' . $doc_url . '">' . esc_html__( 'Documentation', 'posts-in-sidebar' ) . '</a>';
+
+		// Reviews.
 		$rate_url = 'https://wordpress.org/support/plugin/' . basename( dirname( __FILE__ ) ) . '/reviews/#new-post';
-		$links[]  = '<a target="_blank" href="' . $rate_url . '" title="' . esc_html__( 'Click here to rate and review this plugin on WordPress.org', 'posts-in-sidebar' ) . '">' . esc_html__( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
+		$links[]  = '<a target="_blank" href="' . $rate_url . '">' . esc_html__( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
 	}
 	return $links;
 }

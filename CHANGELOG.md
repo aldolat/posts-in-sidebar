@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 * Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
 * Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
+* Updated compatibility to WordPress 5.6.
 
 ## [4.13.0] - 2020-10-31
 ### Added
@@ -609,6 +610,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.14.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.13...4.14.0
 [4.13.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.1...4.13.0
 [4.12.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.0...4.12.1
 [4.12.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.11.0...4.12.0

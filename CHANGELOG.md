@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.13.0] - 2020-10-31
+## [4.14.0] - 2020-11-21
 ### Changed
+* Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
+* Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
+
+## [4.13.0] - 2020-10-31
+### Added
 * Added function to duplicate the widget.
+### Changed
 * Changed some strings.
 
 ## [4.12.1] - 2020-08-14

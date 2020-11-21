@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 4.14.0 =
+
+* Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
+* Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
+
 = 4.13.0 =
 
 * Added function to duplicate the widget.

@@ -139,8 +139,9 @@ function pis_setup() {
  * in post.php too.
  *
  * @param string $hook The page where to load scripts.
- * @since 1.29
- * @since 4.13 Added code for duplicate widget.
+ * @since 2.0
+ * @since 4.13.0 Added code for duplicate widget.
+ * @since 4.14.0 Added check if Duplicate Widgets plugin is active.
  */
 function pis_load_scripts( $hook ) {
 	if ( is_plugin_active( 'siteorigin-panels/siteorigin-panels.php' ) && 'post.php' === $hook ) {
@@ -153,18 +154,21 @@ function pis_load_scripts( $hook ) {
 			wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 			wp_enqueue_script( 'pis_js' );
 
-			// Register and enqueue the JS file for duplicate the widget.
-			wp_register_script( 'pis_js_duplicate', plugins_url( 'assets/pis-duplicate.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, true );
-			wp_enqueue_script( 'pis_js_duplicate' );
+			// Do not load the JS for duplicate a widget if Duplicate Widgets plugin is active.
+			if ( ! is_plugin_active( 'duplicate-widgets/duplicate-widgets.php' ) ) {
+				// Register and enqueue the JS file for duplicate the widget.
+				wp_register_script( 'pis_js_duplicate', plugins_url( 'assets/pis-duplicate.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, true );
+				wp_enqueue_script( 'pis_js_duplicate' );
 
-			wp_localize_script(
-				'pis_js_duplicate',
-				'pis_js_duplicate_widget',
-				array(
-					'text'  => __( 'Duplicate', 'posts-in-sidebar' ),
-					'title' => __( 'Make a copy of this widget', 'posts-in-sidebar' ),
-				)
-			);
+				wp_localize_script(
+					'pis_js_duplicate',
+					'pis_js_duplicate_widget',
+					array(
+						'text'  => __( 'Duplicate', 'posts-in-sidebar' ),
+						'title' => __( 'Make a copy of this widget', 'posts-in-sidebar' ),
+					)
+				);
+			}
 
 			// Register and enqueue the CSS file.
 			wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );

@@ -4910,7 +4910,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 		</div>
 
-		<div class="pis-section pis-boxed pis-boxed-orange">
+		<div class="pis-section pis-boxed pis-boxed-light-blue">
 
 			<h5><?php esc_html_e( 'Note for widget duplication', 'posts-in-sidebar' ); ?></h5>
 

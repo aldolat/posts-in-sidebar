@@ -1,44 +1,45 @@
 /**
- * Posts in Sidebar javascript for duplicating a widget.
- * This file is a modified version of Duplicate Widgets' js file from @themesfactory
+ * Posts in Sidebar Javascript for duplicating a widget.
+ * This file is a modified version of Duplicate Widgets' JS file by @themesfactory
  * released under GPLv3.
  *
  * @package PostsInSidebar
  * @since 4.13.0
+ * @since 4.14.0 Changed functions names to avoid conflicts with Duplicate Widgets plugin.
  */
 
 (function ($) {
-    if (!window.Ag) window.Ag = {};
+    if (!window.Pis) window.Pis = {};
 
-    Ag.CloneWidgets = {
+    Pis.CloneWidget = {
         // Initialize
         init: function () {
-            $('body').on('click', '.widget-control-actions .clone-me', Ag.CloneWidgets.Clone);
-            Ag.CloneWidgets.Bind();
+            $('body').on('click', '.widget-control-actions .pis-clone-me', Pis.CloneWidget.Clone);
+            Pis.CloneWidget.Bind();
         },
 
         // Add Clone button to widgets control buttons
         Bind: function () {
-            $('#widgets-right').off('DOMSubtreeModified', Ag.CloneWidgets.Bind);
-            $('*[id*=pis_posts_in_sidebar-]:visible .widget-control-actions:not(.meks-cloneable)').each(function () {
+            $('#widgets-right').off('DOMSubtreeModified', Pis.CloneWidget.Bind);
+            $('*[id*=pis_posts_in_sidebar-]:visible .widget-control-actions:not(.pis-cloneable)').each(function () {
                 var $widget = $(this);
 
                 var $clone = $('<a>');
                 var clone = $clone.get()[0];
-                $clone.addClass('clone-me meks-clone-action')
+                $clone.addClass('pis-clone-me pis-clone-action')
                     .attr('title', pis_js_duplicate_widget.title)
                     .attr('href', '#')
                     .html(pis_js_duplicate_widget.text);
 
 
-                $widget.addClass('meks-cloneable');
+                $widget.addClass('pis-cloneable');
                 $clone.insertAfter($widget.find('.alignleft .widget-control-remove'));
 
                 //Separator |
                 clone.insertAdjacentHTML('beforebegin', ' | ');
             });
 
-            $('#widgets-right').on('DOMSubtreeModified', Ag.CloneWidgets.Bind);
+            $('#widgets-right').on('DOMSubtreeModified', Pis.CloneWidget.Bind);
         },
 
         // Cloning the widget with support for text widget with tinyMce (Wp Editor)
@@ -93,25 +94,6 @@
             // Not exactly sure what multi_number is used for.
             $widget.find('.multi_number').val(newnum);
 
-            // Support for text widget
-            if ($widget.find('.text-widget-fields').length > 0) {
-                var iframeId = $widget.find('.mce-edit-area > iframe').attr('id');
-                var tinyMceId = iframeId.substring(0, iframeId.length - 4);
-                var textAreaValue = '';
-                if($widget.find('.wp-core-ui.wp-editor-wrap').hasClass('tmce-active')){
-                    textAreaValue = tinyMCE.get(tinyMceId).getContent();
-                }else{
-                    textAreaValue = $widget.find('.widefat.text.wp-editor-area').val();
-                }
-                var timeStamp = Math.floor(Date.now() / 1000);
-                var $tmceActive = $widget.find('.wp-editor-wrap');
-
-                $tmceActive.parent().html('<textarea id="e_' + timeStamp + '_text">' + textAreaValue + '</textarea>');
-                wp.editor.initialize('e_' + timeStamp + '_text', {tinymce: true, quicktags: true});
-                $('#e_' + timeStamp + '_text').addClass('widefat text wp-editor-area');
-                $widget.find('.text-widget-fields > p label').attr('for', 'e_' + timeStamp + '_title');
-                $widget.find('.text-widget-fields > p input').attr('id', 'e_' + timeStamp + '_title');
-            }
             wpWidgets.save($widget, 0, 0, 1);
 
             ev.stopPropagation();
@@ -119,5 +101,5 @@
         }
     };
 
-    $(Ag.CloneWidgets.init);
+    $(Pis.CloneWidget.init);
 })(jQuery);

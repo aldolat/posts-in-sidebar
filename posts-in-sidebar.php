@@ -16,7 +16,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.13.0
+ * Version: 4.14.0
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -66,7 +66,7 @@ function pis_setup() {
 	/*
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '4.13.0' );
+	define( 'PIS_VERSION', '4.14.0' );
 
 	/*
 	 * Make plugin available for i18n.
@@ -139,8 +139,9 @@ function pis_setup() {
  * in post.php too.
  *
  * @param string $hook The page where to load scripts.
- * @since 1.29
- * @since 4.13 Added code for duplicate widget.
+ * @since 2.0
+ * @since 4.13.0 Added code for duplicate widget.
+ * @since 4.14.0 Added check if Duplicate Widgets plugin is active.
  */
 function pis_load_scripts( $hook ) {
 	if ( is_plugin_active( 'siteorigin-panels/siteorigin-panels.php' ) && 'post.php' === $hook ) {
@@ -153,18 +154,21 @@ function pis_load_scripts( $hook ) {
 			wp_register_script( 'pis_js', plugins_url( 'assets/pis-admin.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, false );
 			wp_enqueue_script( 'pis_js' );
 
-			// Register and enqueue the JS file for duplicate the widget.
-			wp_register_script( 'pis_js_duplicate', plugins_url( 'assets/pis-duplicate.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, true );
-			wp_enqueue_script( 'pis_js_duplicate' );
+			// Do not load the JS for duplicate a widget if Duplicate Widgets plugin is active.
+			if ( ! is_plugin_active( 'duplicate-widgets/duplicate-widgets.php' ) ) {
+				// Register and enqueue the JS file for duplicate the widget.
+				wp_register_script( 'pis_js_duplicate', plugins_url( 'assets/pis-duplicate.js', __FILE__ ), array( 'jquery' ), PIS_VERSION, true );
+				wp_enqueue_script( 'pis_js_duplicate' );
 
-			wp_localize_script(
-				'pis_js_duplicate',
-				'pis_js_duplicate_widget',
-				array(
-					'text'  => __( 'Duplicate', 'posts-in-sidebar' ),
-					'title' => __( 'Make a copy of this widget', 'posts-in-sidebar' ),
-				)
-			);
+				wp_localize_script(
+					'pis_js_duplicate',
+					'pis_js_duplicate_widget',
+					array(
+						'text'  => __( 'Duplicate', 'posts-in-sidebar' ),
+						'title' => __( 'Make a copy of this widget', 'posts-in-sidebar' ),
+					)
+				);
+			}
 
 			// Register and enqueue the CSS file.
 			wp_register_style( 'pis_style', plugins_url( 'assets/pis-admin.css', __FILE__ ), array(), PIS_VERSION, 'all' );
@@ -213,8 +217,17 @@ function pis_load_widgets() {
  */
 function pis_add_links( $links, $file ) {
 	if ( plugin_basename( __FILE__ ) === $file ) {
+		// Changelog.
+		$changelog_url = 'https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md';
+		$links[]       = '<a target="_blank" href="' . $changelog_url . '">' . esc_html__( 'Changelog', 'posts-in-sidebar' ) . '</a>';
+
+		// Documentation.
+		$doc_url = 'https://github.com/aldolat/posts-in-sidebar/wiki';
+		$links[] = '<a target="_blank" href="' . $doc_url . '">' . esc_html__( 'Documentation', 'posts-in-sidebar' ) . '</a>';
+
+		// Reviews.
 		$rate_url = 'https://wordpress.org/support/plugin/' . basename( dirname( __FILE__ ) ) . '/reviews/#new-post';
-		$links[]  = '<a target="_blank" href="' . $rate_url . '" title="' . esc_html__( 'Click here to rate and review this plugin on WordPress.org', 'posts-in-sidebar' ) . '">' . esc_html__( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
+		$links[]  = '<a target="_blank" href="' . $rate_url . '">' . esc_html__( 'Rate this plugin', 'posts-in-sidebar' ) . '</a>';
 	}
 	return $links;
 }

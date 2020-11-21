@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [4.14.0] - 2020-11-21
+### Added
+* Added new links to plugin line in the WordPress plugins management page.
 ### Changed
 * Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
 * Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.

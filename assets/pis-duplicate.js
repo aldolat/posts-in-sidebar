@@ -1,44 +1,45 @@
 /**
- * Posts in Sidebar javascript for duplicating a widget.
- * This file is a modified version of Duplicate Widgets' js file from @themesfactory
+ * Posts in Sidebar Javascript for duplicating a widget.
+ * This file is a modified version of Duplicate Widgets' JS file by @themesfactory
  * released under GPLv3.
  *
  * @package PostsInSidebar
  * @since 4.13.0
+ * @since 4.14.0 Changed functions names to avoid conflicts with Duplicate Widgets plugin.
  */
 
 (function ($) {
-    if (!window.Ag) window.Ag = {};
+    if (!window.Pis) window.Pis = {};
 
-    Ag.CloneWidgets = {
+    Pis.CloneWidget = {
         // Initialize
         init: function () {
-            $('body').on('click', '.widget-control-actions .clone-me', Ag.CloneWidgets.Clone);
-            Ag.CloneWidgets.Bind();
+            $('body').on('click', '.widget-control-actions .pis-clone-me', Pis.CloneWidget.Clone);
+            Pis.CloneWidget.Bind();
         },
 
         // Add Clone button to widgets control buttons
         Bind: function () {
-            $('#widgets-right').off('DOMSubtreeModified', Ag.CloneWidgets.Bind);
-            $('*[id*=pis_posts_in_sidebar-]:visible .widget-control-actions:not(.meks-cloneable)').each(function () {
+            $('#widgets-right').off('DOMSubtreeModified', Pis.CloneWidget.Bind);
+            $('*[id*=pis_posts_in_sidebar-]:visible .widget-control-actions:not(.pis-cloneable)').each(function () {
                 var $widget = $(this);
 
                 var $clone = $('<a>');
                 var clone = $clone.get()[0];
-                $clone.addClass('clone-me meks-clone-action')
+                $clone.addClass('pis-clone-me pis-clone-action')
                     .attr('title', pis_js_duplicate_widget.title)
                     .attr('href', '#')
                     .html(pis_js_duplicate_widget.text);
 
 
-                $widget.addClass('meks-cloneable');
+                $widget.addClass('pis-cloneable');
                 $clone.insertAfter($widget.find('.alignleft .widget-control-remove'));
 
                 //Separator |
                 clone.insertAdjacentHTML('beforebegin', ' | ');
             });
 
-            $('#widgets-right').on('DOMSubtreeModified', Ag.CloneWidgets.Bind);
+            $('#widgets-right').on('DOMSubtreeModified', Pis.CloneWidget.Bind);
         },
 
         // Cloning the widget with support for text widget with tinyMce (Wp Editor)
@@ -100,5 +101,5 @@
         }
     };
 
-    $(Ag.CloneWidgets.init);
+    $(Pis.CloneWidget.init);
 })(jQuery);

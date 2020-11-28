@@ -91,6 +91,15 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 6. The introductory text for the widget.
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
+== Changelog ==
+
+= 4.14.0 =
+
+* Added new links to plugin line in the WordPress plugins management page.
+* Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
+* Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
+* Updated compatibility to WordPress 5.6.
+
 == Upgrade Notice ==
 
 = 4.7.0 =
@@ -124,15 +133,3 @@ Bugfix for password-protected posts.
 = 1.2 =
 
 Version 1.2 has changed the option to display the text of the post. When upgrading to version 1.2, check every Posts in Sidebar widget at section The text of the post to make sure that the option fits your needs.
-
-= 1.0.2 =
-
-No notice to display.
-
-= 1.0.1 =
-
-No notice to display.
-
-= 1.0 =
-
-No notice to display.

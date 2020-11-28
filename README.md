@@ -24,6 +24,8 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
   * [License](#license)
   * [Credits](#credits)
   * [Privacy Policy](#privacy-policy)
+  * [Changelog](#changelog)
+    * [4.14.0](#4140)
 
 ## Description
 
@@ -103,3 +105,12 @@ I would like to say *Thank You* to all the people who helped me in making this p
 ## Privacy Policy
 
 This plugin does not collect any user data.
+
+## Changelog
+
+### 4.14.0
+
+* Added new links to plugin line in the WordPress plugins management page.
+* Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
+* Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
+* Updated compatibility to WordPress 5.6.

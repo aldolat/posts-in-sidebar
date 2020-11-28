@@ -822,7 +822,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name( 'intro' ),
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-				$style = 'resize: vertical; width: 100%; height: 80px;'
+				'resize: vertical; width: 100%; height: 80px; min-height: 80px;'
 			);
 			?>
 
@@ -4708,7 +4708,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name( 'custom_styles' ),
 							$instance['custom_styles'],
 							esc_html__( 'Enter here your CSS styles', 'posts-in-sidebar' ),
-							$style = 'resize: vertical; width: 100%; height: 80px;'
+							'resize: vertical; width: 100%; height: 80px; min-height: 80px;'
 						);
 						?>
 

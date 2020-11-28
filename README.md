@@ -114,3 +114,5 @@ This plugin does not collect any user data.
 * Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
 * Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
 * Updated compatibility to WordPress 5.6.
+
+For the complete changelog see [here](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

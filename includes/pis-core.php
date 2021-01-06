@@ -1057,7 +1057,7 @@ function pis_get_posts_in_sidebar( $args ) {
 	if ( $pis_query->have_posts() ) :
 
 		if ( $intro ) {
-			$pis_output = '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
+			$pis_output .= "\n" . '<p ' . pis_paragraph( $intro_margin, $margin_unit, 'pis-intro', 'pis_intro_class' ) . '>' . pis_break_text( $intro ) . '</p>';
 		}
 
 		// When updating from 1.14, the $list_element variable is empty.
@@ -1095,7 +1095,7 @@ function pis_get_posts_in_sidebar( $args ) {
 		 * Add the ID selector to UL since some page builder plugins remove the section HTML tag.
 		 * @since 4.5.0
 		 */
-		$pis_output .= '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>' . "\n";
+		$pis_output .= "\n" . '<' . $list_element . $pis_ul_id . pis_class( 'pis-ul', apply_filters( 'pis_ul_class', '' ), false ) . $bullets_style . '>' . "\n";
 
 		while ( $pis_query->have_posts() ) :
 			$pis_query->the_post();
@@ -1152,7 +1152,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$wp_post_classes = ' ' . implode( ' ', get_post_class( '', $pis_query->post->ID ) );
 				}
 
-				$pis_output .= '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>' . "\n";
+				$pis_output .= "\t" . '<li ' . pis_class( 'pis-li' . $post_id_class . $current_post_class . $sticky_class . $private_class . $wp_post_classes, apply_filters( 'pis_li_class', '' ), false ) . '>' . "\n";
 
 				// Define the containers for single sections to be concatenated later.
 				$pis_thumbnail_content    = '';
@@ -1180,7 +1180,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'image_link'          => $image_link,
 						'image_link_to_post'  => $image_link_to_post,
 					)
-				) . "\n";
+				);
 
 				/* The title */
 				$pis_title_content .= pis_the_title(
@@ -1199,7 +1199,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'title_hellipsis'    => $title_hellipsis,
 						'html_title_type_of' => $html_title_type_of,
 					)
-				) . "\n";
+				);
 
 				/*
 				 * The post content.
@@ -1224,7 +1224,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 					// If the the text of the post is empty or the user does not want to display the image, hide the HTML p tag.
 					if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) ) {
-						$pis_text_content .= '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
+						$pis_text_content .= "\n\t\t" . '<p ' . pis_paragraph( $excerpt_margin, $margin_unit, 'pis-excerpt', 'pis_excerpt_class' ) . '>';
 					}
 
 					if ( $display_image && ! $image_before_title ) {
@@ -1266,7 +1266,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_text_content .= $pis_the_text;
 
 					if ( ! empty( $pis_the_text ) || ( $display_image && ! $image_before_title ) ) {
-						$pis_text_content .= '</p>' . "\n";
+						$pis_text_content .= '</p>';
 					}
 				endif;
 				/* Close the post content */
@@ -1304,7 +1304,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'gravatar_size'         => $gravatar_size,
 						'gravatar_default'      => $gravatar_default,
 					)
-				) . "\n";
+				);
 
 				/* The categories */
 				$pis_categories_content .= pis_the_categories(
@@ -1315,7 +1315,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'margin_unit'       => $margin_unit,
 						'categ_text'        => $categ_text,
 					)
-				) . "\n";
+				);
 
 				/* The tags */
 				$pis_tags_content .= pis_the_tags(
@@ -1327,7 +1327,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'margin_unit' => $margin_unit,
 						'tags_text'   => $tags_text,
 					)
-				) . "\n";
+				);
 
 				/* The custom taxonomies */
 				$pis_custom_tax_content .= pis_custom_taxonomies_terms_links(
@@ -1338,7 +1338,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'terms_margin' => $terms_margin,
 						'margin_unit'  => $margin_unit,
 					)
-				) . "\n";
+				);
 
 				/* The post meta */
 				$pis_custom_field_content .= pis_custom_field(
@@ -1354,7 +1354,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'custom_field_margin' => $custom_field_margin,
 						'margin_unit'         => $margin_unit,
 					)
-				) . "\n";
+				);
 
 				// Concatenate the variables.
 				if ( $display_image && $image_before_title ) {
@@ -1416,7 +1416,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					$pis_output .= $pis_custom_field_content;
 				}
 
-				$pis_output .= '</li>' . "\n";
+				$pis_output .= "\n\t" . '</li>' . "\n";
 				/* Close li */
 
 			}

@@ -111,7 +111,7 @@ function pis_the_title( $args ) {
 
 	$output .= '</' . $args['html_title_type_of'] . '>';
 
-	return $output;
+	return "\t\t" . $output;
 }
 
 /**
@@ -170,7 +170,11 @@ function pis_the_categories( $args ) {
 		$output .= '</p>';
 	}
 
-	return $output;
+	if ( empty( $output ) ) {
+		return $output;
+	} else {
+		return "\n\t\t" . $output;
+	}
 }
 
 /**
@@ -231,7 +235,11 @@ function pis_the_tags( $args ) {
 		$output .= '</p>';
 	}
 
-	return $output;
+	if ( empty( $output ) ) {
+		return $output;
+	} else {
+		return "\n\t\t" . $output;
+	}
 }
 
 /**
@@ -350,7 +358,11 @@ function pis_custom_field( $args ) {
 		}
 	}
 
-	return $output;
+	if ( empty( $output ) ) {
+		return $output;
+	} else {
+		return "\n\t\t" . $output;
+	}
 }
 
 /**
@@ -832,7 +844,11 @@ function pis_utility_section( $args ) {
 		$output .= '</p>';
 	}
 
-	return $output;
+	if ( empty( $output ) ) {
+		return $output;
+	} else {
+		return "\n\t\t" . $output;
+	}
 }
 
 /**
@@ -895,7 +911,7 @@ function pis_custom_taxonomies_terms_links( $args ) {
 			// Get the terms related to post.
 			$list_of_terms = get_the_term_list( $args['post_id'], $taxonomy_slug, $args['term_hashtag'], $args['term_sep'] . ' ' . $args['term_hashtag'], '' );
 			if ( ! ( is_wp_error( $list_of_terms ) ) && ( $list_of_terms ) ) {
-				$output .= '<p ' . pis_paragraph( $args['terms_margin'], $args['margin_unit'], 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
+				$output .= "\n\t\t" . '<p ' . pis_paragraph( $args['terms_margin'], $args['margin_unit'], 'pis-terms-links pis-' . $taxonomy_slug, 'pis_terms_class' ) . '>';
 				$output .= '<span class="pis-tax-name">' . $taxonomy->label . '</span>: ' . apply_filters( 'pis_terms_list', $list_of_terms );
 				$output .= '</p>';
 			}
@@ -1239,30 +1255,30 @@ function pis_debug( $args ) {
 
 	if ( $args['debug_query'] || $args['debug_params'] ) {
 		global $wp_version;
-		$output .= '<!-- Start PiS Debug -->';
+		$output .= '<!-- Start PiS Debug -->' . "\n";
 		// translators: %s is the name of the plugin.
 		$output .= '<h3 class="pis-debug-title-main">' . sprintf( esc_html__( '%s Debug', 'posts-in-sidebar' ), 'Posts in Sidebar' ) . '</h3>' . "\n";
 		$output .= '<p class="pis-debug-title"><strong>' . esc_html__( 'Environment information:', 'posts-in-sidebar' ) . '</strong></p>' . "\n";
 		$output .= '<ul class="pis-debug-ul">' . "\n";
 		// translators: %s is the site URL.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() ) . '</li>' . "\n";
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'Site URL: %s', 'posts-in-sidebar' ), site_url() ) . '</li>' . "\n";
 		// translators: %s is the current page URL.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Page URL: %s', 'posts-in-sidebar' ), esc_url( pis_get_current_url() ) ) . '</li>' . "\n";
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'Page URL: %s', 'posts-in-sidebar' ), esc_url( pis_get_current_url() ) ) . '</li>' . "\n";
 		// translators: %s is the WordPress version.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version ) . '</li>' . "\n";
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'WP version: %s', 'posts-in-sidebar' ), $wp_version ) . '</li>' . "\n";
 		// translators: %s is the plugin version.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION ) . '</li>' . "\n";
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'PiS version: %s', 'posts-in-sidebar' ), PIS_VERSION ) . '</li>' . "\n";
 		// translators: %s is the ID of the widget.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $args['widget_id'] ) . '</li>' . "\n";
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'Widget ID: %s', 'posts-in-sidebar' ), $args['widget_id'] ) . '</li>' . "\n";
 
 		if ( $args['cached'] ) {
 			$cache_info = pis_get_cache_info( $args['widget_id'] );
-			$output    .= '<li class="pis-debug-li">' . esc_html__(
+			$output    .= "\t" . '<li class="pis-debug-li">' . esc_html__(
 				'Cache: active.',
 				'posts-in-sidebar'
 			) . "\n";
-			$output    .= '<ul class="pis-debug-ul">' . "\n";
-			$output    .= '<li class="pis-debug-li">' . sprintf(
+			$output    .= "\t\t" . '<ul class="pis-debug-ul">' . "\n";
+			$output    .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the date and time when the cache was created.
 				esc_html__(
 					'Created on: %s',
@@ -1270,7 +1286,7 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_created'] . '</li>' . "\n"
 			);
-			$output .= '<li class="pis-debug-li">' . sprintf(
+			$output .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time when the cache will expire.
 				esc_html__(
 					'Will expire on: %s',
@@ -1278,7 +1294,7 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_expires'] . '</li>' . "\n"
 			);
-			$output .= '<li class="pis-debug-li">' . sprintf(
+			$output .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the duration of the cache.
 				esc_html__(
 					'Duration: %s',
@@ -1286,7 +1302,7 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_duration'] . '</li>' . "\n"
 			);
-			$output    .= '<li class="pis-debug-li">' . sprintf(
+			$output    .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time passed from cache creation.
 				esc_html__(
 					'Time passed: %s',
@@ -1294,7 +1310,7 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_passed'] . '</li>' . "\n"
 			);
-			$output .= '<li class="pis-debug-li">' . sprintf(
+			$output .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the remaining time.
 				esc_html__(
 					'Expires in: %s',
@@ -1302,13 +1318,14 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_remaining_time'] . '</li>' . "\n"
 			);
-			$output .= '</ul>' . "\n" . '</li>' . "\n";
+			$output .= "\t\t" . '</ul>' . "\n";
+			$output .= "\t" . '</li>' . "\n";
 		} else {
-			$output .= '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
+			$output .= "\t" . '<li class="pis-debug-li">' . esc_html__( 'Cache: not active', 'posts-in-sidebar' ) . '</li>' . "\n";
 		}
 		// translators: %1$s is the number of queries, %2$s is the number of seconds.
-		$output .= '<li class="pis-debug-li">' . sprintf( esc_html__( 'Queries: %1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</li>' . "\n";
-		$output .= '</ul>';
+		$output .= "\t" . '<li class="pis-debug-li">' . sprintf( esc_html__( 'Queries: %1$s queries in %2$s seconds', 'posts-in-sidebar' ), get_num_queries(), timer_stop() ) . '</li>' . "\n";
+		$output .= '</ul>' . "\n";
 	}
 
 	if ( $args['debug_query'] ) {
@@ -1316,16 +1333,16 @@ function pis_debug( $args ) {
 		$output .= '<ul class="pis-debug-ul">' . "\n";
 		foreach ( $args['params'] as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$output .= '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
-				$output .= '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
+				$output .= "\t" . '<li class="pis-debug-li">' . $key . ':</li>' . "\n";
+				$output .= "\t" . '<ul class="pis-debug-ul" style="margin-bottom: 0;">' . pis_array2string( $value ) . '</ul>' . "\n";
 			} else {
 				if ( 1 === $value ) {
 					$value = 'true';
 				}
-				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
+				$output .= "\t" . '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}
-		$output .= '</ul>';
+		$output .= '</ul>' . "\n";
 	}
 
 	if ( $args['debug_params'] ) {
@@ -1333,12 +1350,12 @@ function pis_debug( $args ) {
 		$output .= '<ul class="pis-debug-ul">' . "\n";
 		foreach ( $args['args'] as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
+				$output .= "\t" . '<li class="pis-debug-li">' . $key . ': <code>' . implode( ', ', $value ) . '</code></li>' . "\n";
 			} else {
 				if ( 1 === $value ) {
 					$value = 'true';
 				}
-				$output .= '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
+				$output .= "\t" . '<li class="pis-debug-li">' . $key . ': <code>' . esc_html( $value ) . '</code></li>' . "\n";
 			}
 		}
 		$output .= '</ul>' . "\n";

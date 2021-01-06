@@ -107,20 +107,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		echo "\n" . '<!-- Start Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n";
 
-		echo $args['before_widget'];
+		echo $args['before_widget'] . "\n";
 
 		// Add a new container if the "Container Class" is not empty.
 		if ( ! empty( $instance['container_class'] ) ) {
-			echo '<div class="' . sanitize_html_class( $instance['container_class'] ) . '">';
+			echo '<div class="' . sanitize_html_class( $instance['container_class'] ) . '">' . "\n";
 		}
 
 		/*
 		 * Echo the title, along with link, if present.
 		 */
 		if ( $instance['title'] && ! empty( $instance['title_link'] ) ) {
-			echo $args['before_title'] . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $instance['title'] . '</a>' . $args['after_title'] . "\n";
+			echo $args['before_title'] . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $instance['title'] . '</a>' . $args['after_title'];
 		} elseif ( $instance['title'] ) {
-			echo $args['before_title'] . $instance['title'] . $args['after_title'] . "\n";
+			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 		}
 
 		/*
@@ -130,12 +130,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		pis_posts_in_sidebar( $instance );
 
 		if ( ! empty( $instance['container_class'] ) ) {
-			echo '</div>';
+			echo '</div>' . "\n";
 		}
 
-		echo $args['after_widget'];
+		echo $args['after_widget'] . "\n";
 
-		echo "\n" . '<!-- End Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n\n";
+		echo '<!-- End Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n\n";
 	}
 
 	/**

@@ -3,7 +3,7 @@ Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 4.14.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -57,6 +57,13 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 I would like to say *Thank You* to all the people who helped me in making this plugin better and translated it into their respective languages.
 
+This plugin uses the following Javascript code, released under the terms of the GNU GPLv2 or later:
+
+* a modified version of @kometschuh's code for "Category Posts Widget" plugin, used to open and close panels in the widget admin user interface;
+* a modified version of @themesfactory's code for Duplicate Widgets plugin, used to duplicate a widget.
+
+Thanks to these developers for their work and for using the GNU General Public License.
+
 = Privacy Policy =
 
 This plugin does not collect any user data.
@@ -99,6 +106,8 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 * Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
 * Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
 * Updated compatibility to WordPress 5.6.
+
+The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).
 
 == Upgrade Notice ==
 

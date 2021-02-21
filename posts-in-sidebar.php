@@ -25,7 +25,7 @@
  */
 
 /*
-Copyright (C) 2009, 2020  Aldo Latino  (email : aldolat@gmail.com)
+Copyright (C) 2009, 2021  Aldo Latino  (email : aldolat@gmail.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

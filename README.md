@@ -2,14 +2,14 @@
 
 ![banner](https://ps.w.org/posts-in-sidebar/assets/banner-772x250.png)
 
-**Contributors:** aldolat  
-**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>  
-**Tags:** post, sidebar, widget, query, wp_query  
-**Requires at least:** 4.6  
-**Tested up to:** 5.7  
-**Stable tag:** 4.14.0  
-**License:** GPLv3 or later  
-**License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>  
+**Contributors:** aldolat
+**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>
+**Tags:** post, sidebar, widget, query, wp_query
+**Requires at least:** 4.6
+**Tested up to:** 5.7
+**Stable tag:** 4.15.0
+**License:** GPLv3 or later
+**License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
 
@@ -25,7 +25,7 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
   * [Credits](#credits)
   * [Privacy Policy](#privacy-policy)
   * [Changelog](#changelog)
-    * [4.14.0](#4140)
+    * [4.15.0](#4150)
 
 ## Description
 
@@ -115,11 +115,10 @@ This plugin does not collect any user data.
 
 ## Changelog
 
-### 4.14.0
+### 4.15.0
 
-* Added new links to plugin line in the WordPress plugins management page.
-* Changed functions names in `pis-duplicate.js` to avoid conflicts with Duplicate Widgets plugin.
-* Load the JS for duplicating a widget only if "Duplicate Widgets" plugin is not active.
-* Updated compatibility to WordPress 5.6.
+* Added compatibility with Yoast SEO plugin when determining the main category of a post.
+* Cleaned and beautified HTML source code.
+* Updated compatibility to WordPress 5.7.
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

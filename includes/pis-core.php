@@ -26,9 +26,10 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * The core function.
  *
- * @since 1.0
  * @param array $args The options for the main function.
  * @return string The HTML output.
+ * @since 1.0
+ * @since 4.15.0 Added compatibility with Yoast SEO plugin.
  */
 function pis_get_posts_in_sidebar( $args ) {
 	$args = wp_parse_args( $args, pis_get_defaults() );
@@ -394,8 +395,9 @@ function pis_get_posts_in_sidebar( $args ) {
 			$post_categories = wp_get_post_categories( $single_post_id );
 		}
 		if ( $post_categories ) {
-			/* Sort the categories of the post in ascending order,
-			 * so to use the category used by WordPress in the permalink.
+			/* Sort the categories of the post in ascending order based on the
+			 * ID of the categories, so to use the category used by WordPress in
+			 * the permalink.
 			 * $sort_categories has no effect if $yoast_main_cat is active,
 			 * because $yoast_main_cat is always an array of one element.
 			 */

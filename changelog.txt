@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.15.0 =
+
+* Added compatibility with Yoast SEO plugin when determining the main category of a post.
+* Cleaned and beautified HTML source code.
+* Updated compatibility to WordPress 5.7.
+
 = 4.14.0 =
 
 * Added new links to plugin line in the WordPress plugins management page.

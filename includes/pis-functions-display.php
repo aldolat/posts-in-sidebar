@@ -1013,6 +1013,7 @@ function pis_get_gravatar( $args ) {
  * @param array $args The array containing the custom args.
  * @return string The HTML string for the archive link.
  * @since 3.0
+ * @since 4.15.0 Added compatibility with Yoast SEO plugin.
  */
 function pis_archive_link( $args ) {
 	$defaults = array(

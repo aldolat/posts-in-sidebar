@@ -660,6 +660,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @param array $instance The array containing the widget options.
  * @return string $instance['title'] The changed widget title.
  * @since 4.7.7
+ * @since 4.15.0 Added compatibility with Yoast SEO plugin.
  */
 function pis_change_widget_title( $instance ) {
 	// If $instance is not array, stop the function.

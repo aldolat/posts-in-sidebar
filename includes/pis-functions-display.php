@@ -1025,6 +1025,7 @@ function pis_archive_link( $args ) {
 		'margin_unit'     => 'px',
 		'post_id'         => '',
 		'sort_categories' => false,
+		'yoast_main_cat'  => false,
 		'sort_tags'       => false,
 	);
 
@@ -1039,6 +1040,7 @@ function pis_archive_link( $args ) {
 	$margin_unit     = $args['margin_unit'];
 	$post_id         = $args['post_id'];
 	$sort_categories = $args['sort_categories'];
+	$yoast_main_cat  = $args['yoast_main_cat'];
 	$sort_tags       = $args['sort_tags'];
 
 	switch ( $link_to ) {
@@ -1071,7 +1073,11 @@ function pis_archive_link( $args ) {
 					$term_name = $queried_object->name;
 				} elseif ( is_single() ) {
 					// Get the categories of the post.
-					$post_categories = wp_get_post_categories( $post_id );
+					if ( $yoast_main_cat && function_exists( 'yoast_get_primary_term_id' ) && false !== yoast_get_primary_term_id( 'category', $post_id ) ) {
+						$post_categories = explode( ',', yoast_get_primary_term_id( 'category', $post_id ) );
+					} else {
+						$post_categories = wp_get_post_categories( $post_id );
+					}
 					if ( $post_categories ) {
 						// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
 						if ( $sort_categories ) {
@@ -1302,7 +1308,7 @@ function pis_debug( $args ) {
 				),
 				$cache_info['cache_duration'] . '</li>' . "\n"
 			);
-			$output    .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
+			$output .= "\t\t\t" . '<li class="pis-debug-li">' . sprintf(
 				// translators: %s is the time passed from cache creation.
 				esc_html__(
 					'Time passed: %s',

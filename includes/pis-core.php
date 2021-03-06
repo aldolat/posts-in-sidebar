@@ -355,16 +355,24 @@ function pis_get_posts_in_sidebar( $args ) {
 	 */
 
 	/*
-	 * Check if the user wants to display posts from the same category of the single post.
-	 * The parameters for excluding posts (like "post__not_in") will be left active.
+	 * Check if the user wants to display posts from the same category of the
+	 * single post.
+	 * The parameters for excluding posts (like "post__not_in") will be left
+	 * active.
 	 * This will work in single (regular) posts and in custom post types.
 	 *
-	 * The category used will be the first in the array ($post_categories[0]), i.e. the category with the lowest ID.
-	 * In the permalink WordPress uses the category with the lowest ID and we want to use this.
-	 * On the contrary, if we get the list of posts categories, these are returned by WordPress in an aphabetically ordered array,
-	 * where the lowest key ID has not always the category used in the permalink.
+	 * The category used will be the first in the array ($post_categories[0]),
+	 * i.e. the category with the lowest ID.
+	 * In the permalink, WordPress uses the category with the lowest ID and we
+	 * want to use this.
+	 * On the contrary, if we get the list of posts categories, these are
+	 * returned by WordPress in an aphabetically ordered array,
+	 * where the lowest key ID has not always the category used in the
+	 * permalink.
 	 *
 	 * @since 3.2
+	 * @since 4.15.0 Added compatibility with Yoast SEO plugin, which lets the
+	 *               user to choose a main category.
 	 */
 	if ( $get_from_same_cat && is_single() ) {
 		// Set the post_type.
@@ -380,9 +388,17 @@ function pis_get_posts_in_sidebar( $args ) {
 		}
 
 		// Set the category.
-		$post_categories = wp_get_post_categories( $single_post_id );
+		if ( $yoast_main_cat && function_exists( 'yoast_get_primary_term_id' ) && false !== yoast_get_primary_term_id( 'category', $single_post_id ) ) {
+			$post_categories = explode( ',', yoast_get_primary_term_id( 'category', $single_post_id ) );
+		} else {
+			$post_categories = wp_get_post_categories( $single_post_id );
+		}
 		if ( $post_categories ) {
-			// Sort the categories of the post in ascending order, so to use the category used by WordPress in the permalink.
+			/* Sort the categories of the post in ascending order,
+			 * so to use the category used by WordPress in the permalink.
+			 * $sort_categories has no effect if $yoast_main_cat is active,
+			 * because $yoast_main_cat is always an array of one element.
+			 */
 			if ( $sort_categories ) {
 				sort( $post_categories );
 			}
@@ -1440,6 +1456,7 @@ function pis_get_posts_in_sidebar( $args ) {
 					'margin_unit'     => $margin_unit,
 					'post_id'         => $single_post_id,
 					'sort_categories' => $sort_categories,
+					'yoast_main_cat'  => $yoast_main_cat,
 					'sort_tags'       => $sort_tags,
 				)
 			);

@@ -105,7 +105,7 @@ I would like to say *Thank You* to all the people who helped me in making this p
 This plugin uses the following Javascript code, released under the terms of the GNU GPLv2 or later:
 
 * a modified version of @kometschuh's code for "Category Posts Widget" plugin, used to open and close panels in the widget admin user interface;
-* a modified version of @themesfactory's code for Duplicate Widgets plugin, used to duplicate a widget.
+* a modified version of @themesfactory's code for "Duplicate Widgets" plugin, used to duplicate a widget.
 
 Thanks to these developers for their work and for using the GNU General Public License.
 

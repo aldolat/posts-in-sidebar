@@ -3,8 +3,8 @@ Contributors: aldolat
 Donate link: https://dev.aldolat.it/projects/posts-in-sidebar/
 Tags: post, sidebar, widget, query, wp_query
 Requires at least: 4.6
-Tested up to: 5.6
-Stable tag: 4.14.0
+Tested up to: 5.7
+Stable tag: 4.15.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -57,6 +57,13 @@ This plugin is developed using [GitHub](https://github.com/aldolat/posts-in-side
 
 I would like to say *Thank You* to all the people who helped me in making this plugin better and translated it into their respective languages.
 
+This plugin uses the following JavaScript code, released under the terms of the GNU GPLv2 or later:
+
+* a modified version of @kometschuh's code for "Category Posts Widget" plugin, used to open and close panels in the widget admin user interface;
+* a modified version of @themesfactory's code for "Duplicate Widgets" plugin, used to duplicate a widget.
+
+Thanks to these developers for their work and for using the GNU General Public License.
+
 = Privacy Policy =
 
 This plugin does not collect any user data.
@@ -91,6 +98,16 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 6. The introductory text for the widget.
 7. Displaying the full set of items (categories, date, author, tags, and so on).
 
+== Changelog ==
+
+= 4.15.0 =
+
+* Added compatibility with Yoast SEO plugin when determining the main category of a post.
+* Cleaned and beautified HTML source code.
+* Updated compatibility to WordPress 5.7.
+
+The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).
+
 == Upgrade Notice ==
 
 = 4.7.0 =
@@ -124,15 +141,3 @@ Bugfix for password-protected posts.
 = 1.2 =
 
 Version 1.2 has changed the option to display the text of the post. When upgrading to version 1.2, check every Posts in Sidebar widget at section The text of the post to make sure that the option fits your needs.
-
-= 1.0.2 =
-
-No notice to display.
-
-= 1.0.1 =
-
-No notice to display.
-
-= 1.0 =
-
-No notice to display.

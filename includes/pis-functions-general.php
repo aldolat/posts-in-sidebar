@@ -72,6 +72,7 @@ function pis_get_defaults() {
 		'number_same_cat'             => '',
 		'title_same_cat'              => '',
 		'sort_categories'             => false,
+		'yoast_main_cat'              => false,
 		'orderby_same_cat'            => 'date',
 		'order_same_cat'              => 'DESC',
 		'offset_same_cat'             => '',
@@ -659,6 +660,7 @@ add_action( 'wp_head', 'pis_add_styles_to_head' );
  * @param array $instance The array containing the widget options.
  * @return string $instance['title'] The changed widget title.
  * @since 4.7.7
+ * @since 4.15.0 Added compatibility with Yoast SEO plugin.
  */
 function pis_change_widget_title( $instance ) {
 	// If $instance is not array, stop the function.
@@ -672,7 +674,11 @@ function pis_change_widget_title( $instance ) {
 	 * @since 3.2
 	 */
 	if ( $instance['get_from_same_cat'] && ! empty( $instance['title_same_cat'] ) && is_single() ) {
-		$the_category = wp_get_post_categories( get_the_ID() );
+		if ( $instance['yoast_main_cat'] && function_exists( 'yoast_get_primary_term_id' ) && false !== yoast_get_primary_term_id( 'category', get_the_ID() ) ) {
+			$the_category = explode( ',', yoast_get_primary_term_id( 'category', get_the_ID() ) );
+		} else {
+			$the_category = wp_get_post_categories( get_the_ID() );
+		}
 		if ( $the_category ) {
 			if ( $instance['sort_categories'] ) {
 				sort( $the_category );

@@ -107,20 +107,20 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		 */
 		echo "\n" . '<!-- Start Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n";
 
-		echo $args['before_widget'];
+		echo $args['before_widget'] . "\n";
 
 		// Add a new container if the "Container Class" is not empty.
 		if ( ! empty( $instance['container_class'] ) ) {
-			echo '<div class="' . sanitize_html_class( $instance['container_class'] ) . '">';
+			echo '<div class="' . sanitize_html_class( $instance['container_class'] ) . '">' . "\n";
 		}
 
 		/*
 		 * Echo the title, along with link, if present.
 		 */
 		if ( $instance['title'] && ! empty( $instance['title_link'] ) ) {
-			echo $args['before_title'] . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $instance['title'] . '</a>' . $args['after_title'] . "\n";
+			echo $args['before_title'] . '<a class="pis-title-link" href="' . esc_url( $instance['title_link'] ) . '">' . $instance['title'] . '</a>' . $args['after_title'];
 		} elseif ( $instance['title'] ) {
-			echo $args['before_title'] . $instance['title'] . $args['after_title'] . "\n";
+			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 		}
 
 		/*
@@ -130,12 +130,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		pis_posts_in_sidebar( $instance );
 
 		if ( ! empty( $instance['container_class'] ) ) {
-			echo '</div>';
+			echo '</div>' . "\n";
 		}
 
-		echo $args['after_widget'];
+		echo $args['after_widget'] . "\n";
 
-		echo "\n" . '<!-- End Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n\n";
+		echo '<!-- End Posts in Sidebar - ' . esc_html( $args['widget_id'] ) . ' -->' . "\n\n";
 	}
 
 	/**
@@ -241,6 +241,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		}
 		$instance['title_same_cat']   = wp_strip_all_tags( $new_instance['title_same_cat'] );
 		$instance['sort_categories']  = isset( $new_instance['sort_categories'] ) ? 1 : 0;
+		$instance['yoast_main_cat']   = isset( $new_instance['yoast_main_cat'] ) ? 1 : 0;
 		$instance['orderby_same_cat'] = $new_instance['orderby_same_cat'];
 		$instance['order_same_cat']   = $new_instance['order_same_cat'];
 		$instance['offset_same_cat']  = absint( wp_strip_all_tags( $new_instance['offset_same_cat'] ) );
@@ -822,7 +823,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				$this->get_field_name( 'intro' ),
 				$instance['intro'],
 				esc_html__( 'These posts are part of my Readings series.', 'posts-in-sidebar' ),
-				$style = 'resize: vertical; width: 100%; height: 80px;'
+				'resize: vertical; width: 100%; height: 80px; min-height: 80px;'
 			);
 			?>
 
@@ -1154,6 +1155,47 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-container">
 
+							<p class="pis-boxed pis-boxed-light-blue">
+								<em>
+									<strong>
+										<?php
+										esc_html_e( 'How this plugin chooses the main category of the post.', 'posts-in-sidebar' );
+										?>
+									</strong>
+									<br />
+									<br />
+									<?php
+									esc_html_e(
+										'When the option "When on single posts, get posts from the current category" is activated and the post has multiple categories, Posts in Sidebar will choose the category with the lowest initial letter, just as WordPress does when we get the list of the categories of a post.', 'posts-in-sidebar'
+									);
+									?>
+									<br />
+									<br />
+									<?php
+									printf(
+										// translators: Opening and closing "strong" HTML tag.
+										esc_html__(
+											'If you activate the option %1$s"Use the main category as WordPress does for permalinks"%2$s (formerly known here as "Sort categories"), Posts in Sidebar will get the category with the lowest category ID. This is the WordPress behaviour when it determines the permalink structure if the category is used in the permalink.', 'posts-in-sidebar'
+										),
+										'<strong>',
+										'</strong>'
+									);
+									?>
+									<br />
+									<br />
+									<?php
+									printf(
+										// translators: Opening and closing "strong" HTML tag.
+										esc_html__(
+											'If you use the Yoast SEO plugin and want to use the main category as defined with that plugin, activate the option %1$s"Use the main category as defined in the Yoast SEO plugin"%2$s.', 'posts-in-sidebar'
+										),
+										'<strong>',
+										'</strong>'
+									);
+									?>
+								</em>
+							</p>
+
 							<div class="pis-column-container">
 
 								<div class="pis-column">
@@ -1165,7 +1207,27 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										$this->get_field_id( 'get_from_same_cat' ),
 										$this->get_field_name( 'get_from_same_cat' ),
 										$instance['get_from_same_cat'],
-										esc_html__( 'When activated, this function will get posts from the category of the post, ignoring other parameters like tags, date, post formats, etc. If the post has multiple categories, the plugin will use the first category in the array of categories (the category with the lowest initial letter). If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+										esc_html__( 'When activated, this option will ignore other parameters like tags, date, post formats, etc. If you don\'t want to ignore other parameters, activate the checkbox below, at the end of this panel.', 'posts-in-sidebar' )
+									);
+									?>
+
+									<?php
+									// ================= Sort categories
+									pis_form_checkbox(
+										esc_html__( 'Use the main category as WordPress does for permalinks', 'posts-in-sidebar' ),
+										$this->get_field_id( 'sort_categories' ),
+										$this->get_field_name( 'sort_categories' ),
+										$instance['sort_categories']
+									);
+									?>
+
+									<?php
+									// ================= Yoast main category
+									pis_form_checkbox(
+										esc_html__( 'Use the main category as defined in the Yoast SEO plugin', 'posts-in-sidebar' ),
+										$this->get_field_id( 'yoast_main_cat' ),
+										$this->get_field_name( 'yoast_main_cat' ),
+										$instance['yoast_main_cat']
 									);
 									?>
 
@@ -1190,17 +1252,6 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 										esc_attr( $instance['ptm_sc'] ),
 										esc_html__( 'post, page, book, recipe', 'posts-in-sidebar' ),
 										esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
-									);
-									?>
-
-									<?php
-									// ================= Sort categories
-									pis_form_checkbox(
-										esc_html__( 'Sort categories', 'posts-in-sidebar' ),
-										$this->get_field_id( 'sort_categories' ),
-										$this->get_field_name( 'sort_categories' ),
-										$instance['sort_categories'],
-										esc_html__( 'When activated, this function will sort the categories of the main post so that the category, where the plugin will get posts from, will match the main category of the main post, i.e. the category with the lowest ID.', 'posts-in-sidebar' )
 									);
 									?>
 
@@ -4708,7 +4759,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							$this->get_field_name( 'custom_styles' ),
 							$instance['custom_styles'],
 							esc_html__( 'Enter here your CSS styles', 'posts-in-sidebar' ),
-							$style = 'resize: vertical; width: 100%; height: 80px;'
+							'resize: vertical; width: 100%; height: 80px; min-height: 80px;'
 						);
 						?>
 

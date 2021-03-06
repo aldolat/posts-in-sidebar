@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.15.0] - 2020-03-06
+### Added
+* Added compatibility with Yoast SEO plugin when determining the main category of a post.
+### Changed
+* Cleaned and beautified HTML source code.
+* Updated compatibility to WordPress 5.7.
+
 ## [4.14.0] - 2020-11-21
 ### Added
 * Added new links to plugin line in the WordPress plugins management page.
@@ -610,6 +617,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.15.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.14.0...4.15.0
 [4.14.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.13.0...4.14.0
 [4.13.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.1...4.13.0
 [4.12.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.0...4.12.1

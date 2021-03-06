@@ -16,7 +16,7 @@
  * Plugin Name: Posts in Sidebar
  * Plugin URI: https://dev.aldolat.it/projects/posts-in-sidebar/
  * Description: Publish a list of posts in your sidebar
- * Version: 4.14.0
+ * Version: 4.15.0
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
  * Text Domain: posts-in-sidebar
@@ -25,7 +25,7 @@
  */
 
 /*
-Copyright (C) 2009, 2020  Aldo Latino  (email : aldolat@gmail.com)
+Copyright (C) 2009, 2021  Aldo Latino  (email : aldolat@gmail.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ function pis_setup() {
 	/*
 	 * Define the version of the plugin.
 	 */
-	define( 'PIS_VERSION', '4.14.0' );
+	define( 'PIS_VERSION', '4.15.0' );
 
 	/*
 	 * Make plugin available for i18n.

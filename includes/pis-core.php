@@ -151,19 +151,23 @@ function pis_get_posts_in_sidebar( $args ) {
 	 * This is handy if custom fields are used to store dates
 	 * and we want to compare the stored date with the current date.
 	 *
+	 * For date comparison, the format of the date in the custom field MUST be
+	 * in the format: YYYY-MM-DD (in php format: Y-m-d).
+	 * See: https://developer.wordpress.org/reference/classes/wp_query/#custom-field-post-meta-parameters.
+	 *
 	 * @since 4.9.0
 	 */
 	if ( 'now' === $mq_value_aa ) {
-		$mq_value_aa = apply_filters( 'cf_value_a1', pis_get_current_datetime(), $widget_id );
+		$mq_value_aa = apply_filters( 'cf_value_a1', pis_get_current_datetime( true, false ), $widget_id );
 	}
 	if ( 'now' === $mq_value_ab ) {
-		$mq_value_ab = apply_filters( 'cf_value_a2', pis_get_current_datetime(), $widget_id );
+		$mq_value_ab = apply_filters( 'cf_value_a2', pis_get_current_datetime( true, false ), $widget_id );
 	}
 	if ( 'now' === $mq_value_ba ) {
-		$mq_value_ba = apply_filters( 'cf_value_b1', pis_get_current_datetime(), $widget_id );
+		$mq_value_ba = apply_filters( 'cf_value_b1', pis_get_current_datetime( true, false ), $widget_id );
 	}
 	if ( 'now' === $mq_value_bb ) {
-		$mq_value_bb = apply_filters( 'cf_value_b2', pis_get_current_datetime(), $widget_id );
+		$mq_value_bb = apply_filters( 'cf_value_b2', pis_get_current_datetime( true, false ), $widget_id );
 	}
 
 	/*

@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.15.0] - 2020-03-06
+## [4.15.1] - 2021-05-15
+* Changed date format in `pis_get_current_datetime()` function, now forced to `Y-m-d` (YYYY-MM-DD).
+* Added filter to date and time format in `pis_get_current_datetime()` function.
+* The word `now` used as Custom field value in the Custom field query panel will be changed in the current date, ignoring time by default. This can be changed using a filter.
+
+## [4.15.0] - 2021-03-06
 ### Added
 * Added compatibility with Yoast SEO plugin when determining the main category of a post.
 ### Changed
@@ -617,6 +622,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.0...4.15.1
 [4.15.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.14.0...4.15.0
 [4.14.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.13.0...4.14.0
 [4.13.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.12.1...4.13.0

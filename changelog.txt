@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.15.1 =
+
+* Changed date format in `pis_get_current_datetime()` function, now forced to `Y-m-d` (YYYY-MM-DD).
+* Added filter to date and time format in `pis_get_current_datetime()` function.
+* The word `now` used as Custom field value in the Custom field query panel will be changed in the current date, ignoring time by default. This can be changed using a filter.
+
 = 4.15.0 =
 
 * Added compatibility with Yoast SEO plugin when determining the main category of a post.

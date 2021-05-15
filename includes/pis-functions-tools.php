@@ -267,8 +267,8 @@ function pis_clean_string( $string ) {
  * @since 4.9.0
  */
 function pis_get_current_datetime( $date = true, $time = true ) {
-	$date_format = get_option( 'date_format' );
-	$time_format = get_option( 'time_format' );
+	$date_format = apply_filters( 'pis_cf_dateformat', 'Y-m-d' );
+	$time_format = apply_filters( 'pis_cf_timeformat', 'H:i' );
 	$gmt_offset  = get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
 
 	if ( ! is_bool( $date ) ) {

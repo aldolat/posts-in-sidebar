@@ -1127,7 +1127,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id( 'offset_number' ),
 								$this->get_field_name( 'offset_number' ),
 								esc_attr( $instance['offset_number'] ),
-								'5'
+								'5',
+								// translators: %s is -1.
+								sprintf(
+									esc_html( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
+									'<code>-1</code>'
+								)
 							);
 							?>
 

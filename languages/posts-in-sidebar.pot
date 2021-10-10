@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Posts in Sidebar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.15.1\n"
+"Project-Id-Version: Posts in Sidebar 4.15.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-15T21:09:06+02:00\n"
+"POT-Creation-Date: 2021-10-10T07:47:21+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: posts-in-sidebar\n"
@@ -1171,7 +1171,7 @@ msgid "Use this text for More link"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3587
-#: includes/pis-functions-display.php:551
+#: includes/pis-functions-display.php:553
 #: includes/pis-functions-general.php:303
 msgid "Read more&hellip;"
 msgstr ""
@@ -1278,7 +1278,7 @@ msgid "Use this text before author's name"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3779
-#: includes/pis-functions-display.php:710
+#: includes/pis-functions-display.php:712
 #: includes/pis-functions-general.php:308
 msgid "By"
 msgstr ""
@@ -1296,7 +1296,7 @@ msgid "Use this text before date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3814
-#: includes/pis-functions-display.php:713
+#: includes/pis-functions-display.php:715
 #: includes/pis-functions-general.php:315
 msgid "Published on"
 msgstr ""
@@ -1318,7 +1318,7 @@ msgid "Use this text before comments"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3859
-#: includes/pis-functions-display.php:717
+#: includes/pis-functions-display.php:719
 #: includes/pis-functions-general.php:327
 msgid "Comments:"
 msgstr ""
@@ -1356,7 +1356,7 @@ msgid "Use this text before modification date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3957
-#: includes/pis-functions-display.php:715
+#: includes/pis-functions-display.php:717
 #: includes/pis-functions-general.php:321
 msgid "Modified on"
 msgstr ""
@@ -1835,116 +1835,116 @@ msgid "When you duplicate the widget, please reload the page, so that you can op
 msgstr ""
 
 #. translators: %s is the time of the post.
-#: includes/pis-functions-display.php:776
+#: includes/pis-functions-display.php:778
 msgctxt "%s is the time of the post."
 msgid "at %s"
 msgstr ""
 
 #. translators: %s is the time of the post modified.
-#: includes/pis-functions-display.php:809
+#: includes/pis-functions-display.php:811
 msgctxt "%s is the time of the post modified."
 msgid "at %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:948
+#: includes/pis-functions-display.php:950
 msgid "Leave a comment"
 msgstr ""
 
-#: includes/pis-functions-display.php:954
+#: includes/pis-functions-display.php:956
 msgid "Comments are closed"
 msgstr ""
 
-#: includes/pis-functions-display.php:959
+#: includes/pis-functions-display.php:961
 msgid "1 Comment"
 msgstr ""
 
 #. translators: %d is the number of comments.
-#: includes/pis-functions-display.php:967
+#: includes/pis-functions-display.php:969
 msgid "%s Comments"
 msgstr ""
 
-#: includes/pis-functions-display.php:1024
+#: includes/pis-functions-display.php:1026
 msgid "Display all posts"
 msgstr ""
 
 #. translators: %s is the name of the plugin.
-#: includes/pis-functions-display.php:1267
+#: includes/pis-functions-display.php:1269
 msgid "%s Debug"
 msgstr ""
 
 #. translators: %s is the name of the plugin.
-#: includes/pis-functions-display.php:1268
+#: includes/pis-functions-display.php:1270
 msgid "Environment information:"
 msgstr ""
 
 #. translators: %s is the site URL.
-#: includes/pis-functions-display.php:1271
+#: includes/pis-functions-display.php:1273
 msgid "Site URL: %s"
 msgstr ""
 
 #. translators: %s is the current page URL.
-#: includes/pis-functions-display.php:1273
+#: includes/pis-functions-display.php:1275
 msgid "Page URL: %s"
 msgstr ""
 
 #. translators: %s is the WordPress version.
-#: includes/pis-functions-display.php:1275
+#: includes/pis-functions-display.php:1277
 msgid "WP version: %s"
 msgstr ""
 
 #. translators: %s is the plugin version.
-#: includes/pis-functions-display.php:1277
+#: includes/pis-functions-display.php:1279
 msgid "PiS version: %s"
 msgstr ""
 
 #. translators: %s is the ID of the widget.
-#: includes/pis-functions-display.php:1279
+#: includes/pis-functions-display.php:1281
 msgid "Widget ID: %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:1283
+#: includes/pis-functions-display.php:1285
 msgid "Cache: active."
 msgstr ""
 
 #. translators: %s is the date and time when the cache was created.
-#: includes/pis-functions-display.php:1290
+#: includes/pis-functions-display.php:1292
 msgid "Created on: %s"
 msgstr ""
 
 #. translators: %s is the time when the cache will expire.
-#: includes/pis-functions-display.php:1298
+#: includes/pis-functions-display.php:1300
 msgid "Will expire on: %s"
 msgstr ""
 
 #. translators: %s is the duration of the cache.
-#: includes/pis-functions-display.php:1306
+#: includes/pis-functions-display.php:1308
 msgid "Duration: %s"
 msgstr ""
 
 #. translators: %s is the time passed from cache creation.
-#: includes/pis-functions-display.php:1314
+#: includes/pis-functions-display.php:1316
 msgid "Time passed: %s"
 msgstr ""
 
 #. translators: %s is the remaining time.
-#: includes/pis-functions-display.php:1322
+#: includes/pis-functions-display.php:1324
 msgid "Expires in: %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:1331
+#: includes/pis-functions-display.php:1333
 msgid "Cache: not active"
 msgstr ""
 
 #. translators: %1$s is the number of queries, %2$s is the number of seconds.
-#: includes/pis-functions-display.php:1334
+#: includes/pis-functions-display.php:1336
 msgid "Queries: %1$s queries in %2$s seconds"
 msgstr ""
 
-#: includes/pis-functions-display.php:1339
+#: includes/pis-functions-display.php:1341
 msgid "The parameters for the query:"
 msgstr ""
 
-#: includes/pis-functions-display.php:1356
+#: includes/pis-functions-display.php:1358
 msgid "The options of the widget:"
 msgstr ""
 

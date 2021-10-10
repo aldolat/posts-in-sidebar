@@ -261,8 +261,8 @@ function pis_the_tags( $args ) {
  * }
  * @return string One or more HTML paragraphs with the custom fields.
  * @since 3.8.4
- * @since 4.16.0 Added custom classes for span element.
- * @since 4.16.0 Added filter for custom attributes for span element.
+ * @since 4.15.2 Added custom classes for span element.
+ * @since 4.15.2 Added filter for custom attributes for span element.
  */
 function pis_custom_field( $args ) {
 	$defaults = array(

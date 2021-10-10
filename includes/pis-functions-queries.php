@@ -378,6 +378,7 @@ function pis_meta_query( $args ) {
  *
  * @return array   $post_ids  The array with the IDs of the post.
  *
+ * @link https://stackoverflow.com/questions/698438/ordering-wordpress-posts-by-most-recent-comment
  * @since 4.1
  */
 function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
@@ -393,20 +394,37 @@ function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $or
 
 	$number = (int) apply_filters( 'pis_get_posts_by_recent_comments', $limit );
 
-	$sql = "SELECT $posts_table.*,
-	coalesce(
-		(
-			select max(comment_date)
-			from $wpdb->comments wpc
-			where wpc.comment_post_id = $posts_table.id
-		),
-		$posts_table.post_date
-	) as mcomment_date
-	from $wpdb->posts $posts_table
-	where post_type = '$post_type'
-	and post_status = 'publish'
-	order by mcomment_date $order
-	limit $number";
+	// If user wants all the posts, remove the limit.
+	if ( -1 === $number ) {
+		$sql = "SELECT $posts_table.*,
+		coalesce(
+			(
+				select max(comment_date)
+				from $wpdb->comments wpc
+				where wpc.comment_post_id = $posts_table.id
+			),
+			$posts_table.post_date
+		) as mcomment_date
+		from $wpdb->posts $posts_table
+		where post_type = '$post_type'
+		and post_status = 'publish'
+		order by mcomment_date $order";
+	} else {
+		$sql = "SELECT $posts_table.*,
+		coalesce(
+			(
+				select max(comment_date)
+				from $wpdb->comments wpc
+				where wpc.comment_post_id = $posts_table.id
+			),
+			$posts_table.post_date
+		) as mcomment_date
+		from $wpdb->posts $posts_table
+		where post_type = '$post_type'
+		and post_status = 'publish'
+		order by mcomment_date $order
+		limit $number";
+	}
 
 	$post_ids = $wpdb->get_col( $sql );
 

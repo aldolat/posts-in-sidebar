@@ -1058,7 +1058,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'post_password' ),
 								esc_attr( $instance['post_password'] ),
 								// XKCD, Password Strength, https://xkcd.com/936/.
-								'correct horse battery staple'
+								esc_html__( 'correct horse battery staple', 'posts-in-sidebar' )
 							);
 							?>
 

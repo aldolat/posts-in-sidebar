@@ -104,6 +104,10 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 * It's now possible to add custom classes to the span element of custom fields.
 * Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
+* Added a comment for "Skip this number of posts"
+* Fixed missing i18n.
+* Fixed getting all posts by recent comments.
+* Fixed "Read more..." behavior.
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).
 

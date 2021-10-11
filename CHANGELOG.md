@@ -11,11 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 * It's now possible to add custom classes to the span element of custom fields.
 * Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
-* Added a comment for "Skip this number of posts"
+* Added a comment for "Skip this number of posts" (thanks to @china_guy).
 ### Fixed
-* Fixed missing i18n.
-* Fixed getting all posts by recent comments.
-* Fixed "Read more..." behavior.
+* Fixed missing i18n (thanks to @china_guy).
+* Fixed getting all posts by recent comments (thanks to @china_guy).
+* Fixed "Read more..." behavior (thanks to @china_guy).
 
 ## [4.15.1] - 2021-05-15
 ### Added

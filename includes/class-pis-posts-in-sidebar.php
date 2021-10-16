@@ -3044,7 +3044,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_aa' ),
 									pis_select_cf_type(),
 									$instance['mq_type_aa'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									// For decimal values see https://stackoverflow.com/questions/30018711/wordpress-meta-query-not-working-with-decimal-type
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3108,7 +3109,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ab' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ab'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3163,7 +3164,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ba' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ba'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3227,7 +3228,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_bb' ),
 									pis_select_cf_type(),
 									$instance['mq_type_bb'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 

@@ -117,7 +117,12 @@ This plugin does not collect any user data.
 
 ### 4.15.2
 
+* Added a comment in Custom field type fields.
 * It's now possible to add custom classes to the span element of custom fields.
 * Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
+* Added a comment for "Skip this number of posts" (thanks to @china_guy).
+* Fixed missing i18n (thanks to @china_guy).
+* Fixed getting all posts by recent comments (thanks to @china_guy).
+* Fixed "Read more..." behavior (thanks to @china_guy).
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

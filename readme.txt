@@ -102,6 +102,7 @@ Please, see [FAQ page](https://github.com/aldolat/posts-in-sidebar/wiki/FAQ) on 
 
 = 4.15.2 =
 
+* Added a comment in Custom field type fields.
 * It's now possible to add custom classes to the span element of custom fields.
 * Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
 * Added a comment for "Skip this number of posts" (thanks to @china_guy).

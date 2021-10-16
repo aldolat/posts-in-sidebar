@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.15.2] - 2021-10-16
+## [4.16.0] - 2021-10-16
 ### Added
 * Added a comment in Custom field type fields.
 * It's now possible to add custom classes to the span element of custom fields.
@@ -635,7 +635,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
-[4.15.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.1...4.15.2
+[4.16.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.1...4.16.0
 [4.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.0...4.15.1
 [4.15.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.14.0...4.15.0
 [4.14.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.13.0...4.14.0

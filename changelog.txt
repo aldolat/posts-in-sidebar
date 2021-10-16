@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 4.15.2 =
+= 4.16.0 =
 
 * Added a comment in Custom field type fields.
 * It's now possible to add custom classes to the span element of custom fields.

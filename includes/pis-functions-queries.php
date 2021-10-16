@@ -395,7 +395,7 @@ function pis_meta_query( $args ) {
  * @return array   $post_ids  The array with the IDs of the post or an empty array.
  *
  * @since 4.1
- * @since 4.15.2 Function rewritten from scratch.
+ * @since 4.16.0 Function rewritten from scratch.
  */
 function pis_get_posts_by_recent_comments( $post_type = 'post', $order = 'DESC' ) {
 	$post_ids = array();

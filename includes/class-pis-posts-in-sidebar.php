@@ -3682,7 +3682,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= The link of the image to post
@@ -3707,7 +3707,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
-								<h5><?php esc_html_e( 'Custom featured image', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Custom featured image', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Custom image URL
@@ -3737,7 +3737,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Positioning image before title
@@ -3764,6 +3764,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<div class="pis-column-container">
 
 							<div class="pis-column">
+
+							<h6><?php esc_html_e( 'Author', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Author
@@ -3799,6 +3801,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Date', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Date
@@ -3844,6 +3848,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Comments', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Number of comments
@@ -4099,7 +4105,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Section position
@@ -4137,7 +4143,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Post categories
@@ -4176,7 +4182,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Post tags
@@ -4226,7 +4232,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Custom taxonomies
@@ -4271,7 +4277,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4301,7 +4307,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4331,7 +4337,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4472,7 +4478,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Section position

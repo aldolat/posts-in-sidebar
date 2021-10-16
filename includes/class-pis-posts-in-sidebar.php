@@ -1058,7 +1058,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'post_password' ),
 								esc_attr( $instance['post_password'] ),
 								// XKCD, Password Strength, https://xkcd.com/936/.
-								'correct horse battery staple'
+								esc_html__( 'correct horse battery staple', 'posts-in-sidebar' )
 							);
 							?>
 
@@ -1127,7 +1127,12 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_id( 'offset_number' ),
 								$this->get_field_name( 'offset_number' ),
 								esc_attr( $instance['offset_number'] ),
-								'5'
+								'5',
+								// translators: %s is -1.
+								sprintf(
+									esc_html( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
+									'<code>-1</code>'
+								)
 							);
 							?>
 
@@ -3039,7 +3044,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_aa' ),
 									pis_select_cf_type(),
 									$instance['mq_type_aa'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									// For decimal values see https://stackoverflow.com/questions/30018711/wordpress-meta-query-not-working-with-decimal-type
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3103,7 +3109,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ab' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ab'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3158,7 +3164,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ba' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ba'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3222,7 +3228,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_bb' ),
 									pis_select_cf_type(),
 									$instance['mq_type_bb'],
-									esc_html__( 'Custom field type.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3676,7 +3682,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'The link of the featured image', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= The link of the image to post
@@ -3701,7 +3707,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								);
 								?>
 
-								<h5><?php esc_html_e( 'Custom featured image', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Custom featured image', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Custom image URL
@@ -3731,7 +3737,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Positioning image before title
@@ -3758,6 +3764,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<div class="pis-column-container">
 
 							<div class="pis-column">
+
+							<h6><?php esc_html_e( 'Author', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Author
@@ -3793,6 +3801,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Date', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Date
@@ -3838,6 +3848,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							</div>
 
 							<div class="pis-column">
+
+								<h6><?php esc_html_e( 'Comments', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Number of comments
@@ -4093,7 +4105,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Section position
@@ -4131,7 +4143,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Categories', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Post categories
@@ -4170,7 +4182,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Tags', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Post tags
@@ -4220,7 +4232,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 							<div class="pis-column">
 
-								<h5><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h5>
+								<h6><?php esc_html_e( 'Custom taxonomies', 'posts-in-sidebar' ); ?></h6>
 
 								<?php
 								// ================= Custom taxonomies
@@ -4265,7 +4277,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4295,7 +4307,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4325,7 +4337,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 								<div class="pis-boxed pis-boxed-light-blue">
 
-									<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+									<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 									<?php
 									// ================= Section position
@@ -4466,7 +4478,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 						<div class="pis-boxed pis-boxed-light-blue">
 
-							<h5><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h5>
+							<h6><?php esc_html_e( 'Move this section', 'posts-in-sidebar' ); ?></h6>
 
 							<?php
 							// ================= Section position

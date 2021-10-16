@@ -7,10 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.16.0] - 2021-10-16
+### Added
+* Added a comment in Custom field type fields.
+* It's now possible to add custom classes to the span element of custom fields.
+* Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
+* Added a comment for "Skip this number of posts" (thanks to @china_guy).
+### Fixed
+* Fixed missing i18n (thanks to @china_guy).
+* Fixed getting all posts by recent comments (thanks to @china_guy).
+* Fixed "Read more..." behavior (thanks to @china_guy).
+
 ## [4.15.1] - 2021-05-15
-* Changed date format in `pis_get_current_datetime()` function, now forced to `Y-m-d` (YYYY-MM-DD).
+### Added
 * Added filter to date and time format in `pis_get_current_datetime()` function.
 * The word `now` used as Custom field value in the Custom field query panel will be changed in the current date, ignoring time by default. This can be changed using a filter.
+### Changed
+* Changed date format in `pis_get_current_datetime()` function, now forced to `Y-m-d` (YYYY-MM-DD).
 
 ## [4.15.0] - 2021-03-06
 ### Added
@@ -622,6 +635,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.16.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.1...4.16.0
 [4.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.0...4.15.1
 [4.15.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.14.0...4.15.0
 [4.14.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.13.0...4.14.0

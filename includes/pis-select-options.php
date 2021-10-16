@@ -95,7 +95,7 @@ function pis_select_post_status() {
 	$options  = array(
 		array(
 			'value' => 'any',
-			'desc'  => 'Any',
+			'desc'  => esc_html__( 'Any', 'posts-in-sidebar' ),
 		),
 	);
 	$statuses = get_post_stati( array(), 'objects' );

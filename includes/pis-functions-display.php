@@ -261,6 +261,8 @@ function pis_the_tags( $args ) {
  * }
  * @return string One or more HTML paragraphs with the custom fields.
  * @since 3.8.4
+ * @since 4.16.0 Added custom classes for span element.
+ * @since 4.16.0 Added filter for custom attributes for span element.
  */
 function pis_custom_field( $args ) {
 	$defaults = array(
@@ -316,7 +318,7 @@ function pis_custom_field( $args ) {
 						}
 
 						// Build the custom field value line.
-						$cf_value = '<span class="pis-custom-field-value">' . $cf_text_value . '</span>';
+						$cf_value = '<span ' . apply_filters( 'pis_cf_add_attribute', '' ) . ' ' . pis_class( 'pis-custom-field-value', apply_filters( 'pis_custom_field_span_class', '' ), false ) . '>' . $cf_text_value . '</span>';
 
 						// Create the class from the key of the custom field key.
 						$pis_cf_key_class = ' pis-custom-field-' . preg_replace( '/[\s_]+/', '-', trim( strtolower( $cf_key ), ' -_' ) );
@@ -350,7 +352,7 @@ function pis_custom_field( $args ) {
 					$cf_text_value = '';
 				}
 			}
-			$cf_value = '<span class="pis-custom-field-value">' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
+			$cf_value = '<span ' . apply_filters( 'pis_cf_add_attribute', '' ) . ' ' . pis_class( 'pis-custom-field-value', apply_filters( 'pis_custom_field_span_class', '' ), false ) . '>' . apply_filters( 'pis_custom_field_value', $cf_text_value ) . '</span>';
 
 			$output .= '<p ' . pis_paragraph( $args['custom_field_margin'], $args['margin_unit'], 'pis-custom-field pis-custom-field-' . preg_replace( '/[\s_]+/', '-', trim( strtolower( $args['meta'] ), ' -_' ) ), 'pis_custom_fields_class' ) . '>';
 			$output .= $cf_text . $key . $cf_value;

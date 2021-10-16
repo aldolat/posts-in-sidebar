@@ -2,13 +2,13 @@
 
 ![banner](https://ps.w.org/posts-in-sidebar/assets/banner-772x250.png)
 
-**Contributors:** aldolat
-**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>
-**Tags:** post, sidebar, widget, query, wp_query
-**Requires at least:** 4.6
-**Tested up to:** 5.8
-**Stable tag:** 4.15.1
-**License:** GPLv3 or later
+**Contributors:** aldolat  
+**Donate link:** <https://dev.aldolat.it/projects/posts-in-sidebar/>  
+**Tags:** post, sidebar, widget, query, wp_query  
+**Requires at least:** 4.6  
+**Tested up to:** 5.8  
+**Stable tag:** 4.16.0  
+**License:** GPLv3 or later  
 **License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
 
 This plugin adds a widget to display a list of posts in the WordPress sidebar.
@@ -25,7 +25,7 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
   * [Credits](#credits)
   * [Privacy Policy](#privacy-policy)
   * [Changelog](#changelog)
-    * [4.15.1](#4151)
+    * [4.16.0](#4160)
 
 ## Description
 
@@ -115,10 +115,14 @@ This plugin does not collect any user data.
 
 ## Changelog
 
-### 4.15.1
+### 4.16.0
 
-* Changed date format in `pis_get_current_datetime()` function, now forced to `Y-m-d` (YYYY-MM-DD).
-* Added filter to date and time format in `pis_get_current_datetime()` function.
-* The word `now` used as Custom field value in the Custom field query panel will be changed in the current date, ignoring time by default. This can be changed using a filter.
+* Added a comment in Custom field type fields.
+* It's now possible to add custom classes to the span element of custom fields.
+* Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
+* Added a comment for "Skip this number of posts" (thanks to @china_guy).
+* Fixed missing i18n (thanks to @china_guy).
+* Fixed getting all posts by recent comments (thanks to @china_guy).
+* Fixed "Read more..." behavior (thanks to @china_guy).
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

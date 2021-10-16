@@ -574,6 +574,12 @@ function pis_arrow( $pre_space = true ) {
  */
 function pis_more_arrow( $the_more = '', $no_the_more = false, $exc_arrow = false, $echo = true, $pre_space = true ) {
 	$output = '';
+	if ( 0 === $exc_arrow ) {
+		$exc_arrow = false;
+	}
+	if ( 1 === $exc_arrow ) {
+		$exc_arrow = true;
+	}
 	// If we do not want any "Read more" nor any arrow
 	// or the user doesn't want any "Read more" nor any arrow.
 	if ( ( true === $no_the_more && false === $exc_arrow ) || ( '' === $the_more && false === $exc_arrow ) ) {

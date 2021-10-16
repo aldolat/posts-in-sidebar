@@ -371,62 +371,52 @@ function pis_meta_query( $args ) {
 /**
  * Get posts by most recent comments.
  *
- * @param  string  $post_type The post type.
+ * This function will retrieve the defined number of posts based on the most
+ * recent comments. Since the function operates on comments and since a post can
+ * have multiple comments, first we must get all comments. Then for each
+ * comment, we store the relevant post IDs. Finally, we remove duplicated IDs of
+ * the returned posts and, only for an aesthetic reason, we reindex the elements
+ * of the array.
+ *
+ * A note. We can't slice here the array containing the post IDs (i.e., we can't
+ * return only the number of IDs defined by the user in the widget) because at
+ * this moment we don't know if the user wants to add other params to the query,
+ * for example posts by category, tag, and so on.
+ *
+ * @param  string  $post_type Post type or array of post types to retrieve
+ *                            affiliated comments for. Pass 'any' to match any value.
+ *                            Default: 'post'.
  * @param  integer $limit     The number of post IDs to retrieve.
- * @param  string  $order     The order parameter.
- *                            Accepted values: 'desc' (default), 'asc'.
+ *                            Default: 10.
+ * @param  string  $order     How to order retrieved comments.
+ *                            Accepts: 'ASC', 'DESC'.
+ *                            Default: 'DESC'.
  *
- * @return array   $post_ids  The array with the IDs of the post.
+ * @return array   $post_ids  The array with the IDs of the post or an empty array.
  *
- * @link https://stackoverflow.com/questions/698438/ordering-wordpress-posts-by-most-recent-comment
  * @since 4.1
+ * @since 4.15.2 Function rewritten from scratch.
  */
-function pis_get_posts_by_recent_comments( $post_type = 'post', $limit = 10, $order = 'desc' ) {
-	global $wpdb;
+function pis_get_posts_by_recent_comments( $post_type = 'post', $order = 'DESC' ) {
+	$post_ids = array();
 
-	/*
-	 * $wpdb properties for database prefix:
-	 *     $wpdb->base_prefix = Get the prefix defined in wp-config.php;
-	 *     $wpdb->prefix      = Get the prefix for the current site (useful in a multisite installation).
-	 * @see https://codex.wordpress.org/Class_Reference/wpdb#Class_Variables
-	 */
-	$posts_table = $wpdb->prefix . 'posts'; // Will output, for example, 'wp_posts'.
+	$args = array(
+		'post_type'   => $post_type,
+		'order'       => $order,
+		'status'      => 'approve',
+		'post_status' => 'publish',
+	);
 
-	$number = (int) apply_filters( 'pis_get_posts_by_recent_comments', $limit );
+	$recent_comments = get_comments( $args );
 
-	// If user wants all the posts, remove the limit.
-	if ( -1 === $number ) {
-		$sql = "SELECT $posts_table.*,
-		coalesce(
-			(
-				select max(comment_date)
-				from $wpdb->comments wpc
-				where wpc.comment_post_id = $posts_table.id
-			),
-			$posts_table.post_date
-		) as mcomment_date
-		from $wpdb->posts $posts_table
-		where post_type = '$post_type'
-		and post_status = 'publish'
-		order by mcomment_date $order";
-	} else {
-		$sql = "SELECT $posts_table.*,
-		coalesce(
-			(
-				select max(comment_date)
-				from $wpdb->comments wpc
-				where wpc.comment_post_id = $posts_table.id
-			),
-			$posts_table.post_date
-		) as mcomment_date
-		from $wpdb->posts $posts_table
-		where post_type = '$post_type'
-		and post_status = 'publish'
-		order by mcomment_date $order
-		limit $number";
+	if ( $recent_comments ) {
+		foreach ( $recent_comments as $comment ) {
+			$post_ids[] = $comment->comment_post_ID;
+		}
 	}
 
-	$post_ids = $wpdb->get_col( $sql );
+	$post_ids = array_unique( $post_ids );
+	$post_ids = array_values( $post_ids );
 
 	return $post_ids;
 }

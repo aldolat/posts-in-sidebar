@@ -518,14 +518,18 @@ function pis_meta() {
 
 	$limit = (int) apply_filters( 'pis_postmeta_limit', 30 );
 
-	$sql = "SELECT DISTINCT meta_key
-		FROM $wpdb->postmeta
-		WHERE meta_key NOT BETWEEN '_' AND '_z'
-		HAVING meta_key NOT LIKE %s
-		ORDER BY meta_key
-		LIMIT %d";
-
-	$keys = $wpdb->get_col( $wpdb->prepare( $sql, $wpdb->esc_like( '_' ) . '%', $limit ) );
+	$keys = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT DISTINCT meta_key
+			FROM $wpdb->postmeta
+			WHERE meta_key NOT BETWEEN '_' AND '_z'
+			HAVING meta_key NOT LIKE %s
+			ORDER BY meta_key
+			LIMIT %d",
+			$wpdb->esc_like( '_' ) . '%',
+			$limit
+		)
+	);
 
 	if ( $keys ) {
 		natcasesort( $keys );

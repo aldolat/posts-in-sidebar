@@ -1486,6 +1486,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	// Debugging.
 	isset( $transient_id ) ? $id_of_widget = $transient_id : $id_of_widget = $widget_id;
+
 	$pis_output .= pis_debug(
 		array(
 			'admin_only'   => $admin_only,   // bool   If display debug informations to admin only.

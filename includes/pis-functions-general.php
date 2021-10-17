@@ -409,6 +409,7 @@ function pis_get_defaults() {
 		'admin_only'                  => true,
 		'debug_query'                 => false,
 		'debug_params'                => false,
+		'debug_post_id'               => false,
 
 		'shortcode_id'                => '',
 	);

@@ -756,9 +756,10 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['widget_id'] = $this->id;
 
 		// Debug.
-		$instance['admin_only']   = isset( $new_instance['admin_only'] ) ? 1 : 0;
-		$instance['debug_query']  = isset( $new_instance['debug_query'] ) ? 1 : 0;
-		$instance['debug_params'] = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['admin_only']    = isset( $new_instance['admin_only'] ) ? 1 : 0;
+		$instance['debug_query']   = isset( $new_instance['debug_query'] ) ? 1 : 0;
+		$instance['debug_params']  = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['debug_post_id'] = isset( $new_instance['debug_post_id'] ) ? 1 : 0;
 
 		return $instance;
 	}
@@ -4966,6 +4967,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 					$this->get_field_id( 'debug_params' ),
 					$this->get_field_name( 'debug_params' ),
 					$instance['debug_params']
+				);
+				?>
+
+				<?php
+				// ================= Debug: display the ID of the post just before the post title
+				pis_form_checkbox(
+					esc_html__( 'Display the ID of the post just before the post title', 'posts-in-sidebar' ),
+					$this->get_field_id( 'debug_post_id' ),
+					$this->get_field_name( 'debug_post_id' ),
+					$instance['debug_post_id'],
+					sprintf(
+						// translators: %s contains the post ID as string.
+						esc_html__( 'The ID will be displayed as %s.', 'posts-in-sidebar' ),
+						'[123]'
+					)
 				);
 				?>
 

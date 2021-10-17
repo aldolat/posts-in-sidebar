@@ -400,7 +400,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		$instance['orderby_post_format_page']   = $new_instance['orderby_post_format_page'];
 		$instance['order_post_format_page']     = $new_instance['order_post_format_page'];
 		$instance['post_type_post_format_page'] = $new_instance['post_type_post_format_page'];
-		$instance['ptm_spfp']               = $new_instance['ptm_spfp'];
+		$instance['ptm_spfp']                   = $new_instance['ptm_spfp'];
 		if ( ! empty( $instance['ptm_spfp'] ) ) {
 			$instance['ptm_spfp'] = pis_check_post_types( $instance['ptm_spfp'] );
 		}
@@ -572,8 +572,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 		if ( '' === $instance['title_length'] || ! is_numeric( $instance['title_length'] ) ) {
 			$instance['title_length'] = 0;
 		}
-		$instance['title_length_unit'] = wp_strip_all_tags( $new_instance['title_length_unit'] );
-		$instance['title_hellipsis']   = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
+		$instance['title_length_unit']  = wp_strip_all_tags( $new_instance['title_length_unit'] );
+		$instance['title_hellipsis']    = isset( $new_instance['title_hellipsis'] ) ? 1 : 0;
 		$instance['html_title_type_of'] = wp_strip_all_tags( $new_instance['html_title_type_of'] );
 
 		// The featured image of the post.
@@ -752,13 +752,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 			$instance['cached'] ? $instance['cache_time'] = 3600 : $instance['cache_time'] = '';
 		}
 
-		// In the past, this option were stored only for uninstall purposes.
+		// In the past, this option was stored only for uninstall purposes.
 		$instance['widget_id'] = $this->id;
 
 		// Debug.
-		$instance['admin_only']   = isset( $new_instance['admin_only'] ) ? 1 : 0;
-		$instance['debug_query']  = isset( $new_instance['debug_query'] ) ? 1 : 0;
-		$instance['debug_params'] = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['admin_only']    = isset( $new_instance['admin_only'] ) ? 1 : 0;
+		$instance['debug_query']   = isset( $new_instance['debug_query'] ) ? 1 : 0;
+		$instance['debug_params']  = isset( $new_instance['debug_params'] ) ? 1 : 0;
+		$instance['debug_post_id'] = isset( $new_instance['debug_post_id'] ) ? 1 : 0;
 
 		return $instance;
 	}
@@ -1130,7 +1131,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'5',
 								// translators: %s is -1.
 								sprintf(
-									esc_html( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
+									esc_html__( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
 									'<code>-1</code>'
 								)
 							);
@@ -3045,7 +3046,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									pis_select_cf_type(),
 									$instance['mq_type_aa'],
 									// For decimal values see https://stackoverflow.com/questions/30018711/wordpress-meta-query-not-working-with-decimal-type
-									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Leave this field blank when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3109,7 +3110,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ab' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ab'],
-									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Leave this field blank when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3164,7 +3165,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_ba' ),
 									pis_select_cf_type(),
 									$instance['mq_type_ba'],
-									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Leave this field blank when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -3228,7 +3229,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_bb' ),
 									pis_select_cf_type(),
 									$instance['mq_type_bb'],
-									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Leave this field blank when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 
@@ -4037,11 +4038,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 						<p>
 							<?php
 							printf(
-									// translators: The link to date and time formatting in WordPress documentation.
-									esc_html__( 'For more information about date and time formatting see the %1$sWordPress documentation%2$s.', 'posts-in-sidebar' ),
-									'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer">',
-									'</a>'
-								);
+								// translators: The link to date and time formatting in WordPress documentation.
+								esc_html__( 'For more information about date and time formatting see the %1$sWordPress documentation%2$s.', 'posts-in-sidebar' ),
+								'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer">',
+								'</a>'
+							);
 							?>
 						</p>
 
@@ -4969,6 +4970,21 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				);
 				?>
 
+				<?php
+				// ================= Debug: display the ID of the post just before the post title
+				pis_form_checkbox(
+					esc_html__( 'Display the ID of the post just before the post title', 'posts-in-sidebar' ),
+					$this->get_field_id( 'debug_post_id' ),
+					$this->get_field_name( 'debug_post_id' ),
+					$instance['debug_post_id'],
+					sprintf(
+						// translators: %s contains the post ID as string.
+						esc_html__( 'The ID will be displayed as %s.', 'posts-in-sidebar' ),
+						'[123]'
+					)
+				);
+				?>
+
 			</div>
 
 		</div>
@@ -4977,12 +4993,14 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 
 			<h5><?php esc_html_e( 'Note for widget duplication', 'posts-in-sidebar' ); ?></h5>
 
-			<p><?php
-			esc_html_e(
-				'When you duplicate the widget, please reload the page, so that you can open the panels in the duplicated widget.',
-				'posts-in-sidebar'
-			);
-			?></p>
+			<p>
+				<?php
+				esc_html_e(
+					'When you duplicate the widget, please reload the page, so that you can open the panels in the duplicated widget.',
+					'posts-in-sidebar'
+				);
+				?>
+			</p>
 		</div>
 
 		<?php

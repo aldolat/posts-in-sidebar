@@ -1220,6 +1220,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'title_length_unit'  => $title_length_unit,
 						'title_hellipsis'    => $title_hellipsis,
 						'html_title_type_of' => $html_title_type_of,
+						'display_post_id'    => $debug_post_id,
 					)
 				);
 
@@ -1485,6 +1486,7 @@ function pis_get_posts_in_sidebar( $args ) {
 
 	// Debugging.
 	isset( $transient_id ) ? $id_of_widget = $transient_id : $id_of_widget = $widget_id;
+
 	$pis_output .= pis_debug(
 		array(
 			'admin_only'   => $admin_only,   // bool   If display debug informations to admin only.

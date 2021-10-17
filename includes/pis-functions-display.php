@@ -44,6 +44,7 @@ if ( ! defined( 'WPINC' ) ) {
  *                                       0 (default, meaning no shortening), any positive integer.
  *     @type boolean $title_hellipsis    If an horizontal ellipsis should be added after the shortened title.
  *     @type string  $html_title_type_of The type of HTML tag for post title.
+ *     @type boolean $display_post_id    If the post ID should be displayed (for debugging purposes).
  * }
  *
  * @return string The HTML paragraph with the title.
@@ -66,6 +67,7 @@ function pis_the_title( $args ) {
 		'title_length_unit'  => 'words',
 		'title_hellipsis'    => true,
 		'html_title_type_of' => 'p',
+		'display_post_id'    => false,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -81,6 +83,10 @@ function pis_the_title( $args ) {
 				'default' => $args['gravatar_default'],
 			)
 		);
+	}
+
+	if ( $args['display_post_id'] ) {
+		$output .= '[' . get_the_id() . '] ';
 	}
 
 	if ( $args['link_on_title'] ) {

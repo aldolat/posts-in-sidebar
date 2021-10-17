@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.16.1] - 2021-10-17
+### Added
+* Added a new option in the Debug section for displaying the post ID just before the post title.
+### Changed
+* Changed the comment for an option.
+### Fixed
+* Fixed i18n for a string.
+
 ## [4.16.0] - 2021-10-16
 ### Added
 * Added a comment in Custom field type fields.
@@ -635,6 +643,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.16.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.16.0...4.16.1
 [4.16.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.1...4.16.0
 [4.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.0...4.15.1
 [4.15.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.14.0...4.15.0

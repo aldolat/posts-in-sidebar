@@ -7,7 +7,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.6  
 **Tested up to:** 5.8  
-**Stable tag:** 4.16.0  
+**Stable tag:** 4.16.1  
 **License:** GPLv3 or later  
 **License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
 
@@ -25,7 +25,7 @@ This plugin adds a widget to display a list of posts in the WordPress sidebar.
   * [Credits](#credits)
   * [Privacy Policy](#privacy-policy)
   * [Changelog](#changelog)
-    * [4.16.0](#4160)
+    * [4.16.1](#4161)
 
 ## Description
 
@@ -115,14 +115,10 @@ This plugin does not collect any user data.
 
 ## Changelog
 
-### 4.16.0
+### 4.16.1
 
-* Added a comment in Custom field type fields.
-* It's now possible to add custom classes to the span element of custom fields.
-* Added `pis_cf_add_attribute` filter. It allows to add custom attributes to the span element of custom fields.
-* Added a comment for "Skip this number of posts" (thanks to @china_guy).
-* Fixed missing i18n (thanks to @china_guy).
-* Fixed getting all posts by recent comments (thanks to @china_guy).
-* Fixed "Read more..." behavior (thanks to @china_guy).
+* Added a new option in the Debug section for displaying the post ID just before the post title.
+* Changed the comment for an option.
+* Fixed i18n for a string.
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

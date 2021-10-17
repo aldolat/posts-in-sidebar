@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.16.1 =
+
+* Added a new option in the Debug section for displaying the post ID just before the post title.
+* Changed the comment for an option.
+* Fixed i18n for a string.
+
 = 4.16.0 =
 
 * Added a comment in Custom field type fields.

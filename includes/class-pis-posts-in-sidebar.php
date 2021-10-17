@@ -1130,7 +1130,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								'5',
 								// translators: %s is -1.
 								sprintf(
-									esc_html( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
+									esc_html__( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
 									'<code>-1</code>'
 								)
 							);

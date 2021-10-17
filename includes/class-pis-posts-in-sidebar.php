@@ -3229,7 +3229,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									$this->get_field_name( 'mq_type_bb' ),
 									pis_select_cf_type(),
 									$instance['mq_type_bb'],
-									esc_html__( 'Custom field type. Do not define a type when using decimal values.', 'posts-in-sidebar' )
+									esc_html__( 'Custom field type. Leave this field blank when using decimal values.', 'posts-in-sidebar' )
 								);
 								?>
 

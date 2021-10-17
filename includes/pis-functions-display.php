@@ -45,12 +45,15 @@ if ( ! defined( 'WPINC' ) ) {
  *     @type boolean $title_hellipsis    If an horizontal ellipsis should be added after the shortened title.
  *     @type string  $html_title_type_of The type of HTML tag for post title.
  *     @type boolean $display_post_id    If the post ID should be displayed (for debugging purposes).
+ *     @type boolean $admin_only         If the post ID should be displayed to admins only.
  * }
  *
  * @return string The HTML paragraph with the title.
  * @since 3.8.4
- * @since 4.4.0 Added `$title_length` option.
- * @since 4.4.0 Added `$title_hellipsis` option.
+ * @since 4.4.0  Added `$title_length` option.
+ * @since 4.4.0  Added `$title_hellipsis` option.
+ * @since 4.16.1 Added `$display_post_id` option.
+ * @since 4.16.2 Added `$admin_only` option.
  */
 function pis_the_title( $args ) {
 	$defaults = array(
@@ -68,6 +71,7 @@ function pis_the_title( $args ) {
 		'title_hellipsis'    => true,
 		'html_title_type_of' => 'p',
 		'display_post_id'    => false,
+		'admin_only'         => true,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -86,7 +90,13 @@ function pis_the_title( $args ) {
 	}
 
 	if ( $args['display_post_id'] ) {
-		$output .= '[' . get_the_id() . '] ';
+		if ( $args['admin_only'] ) {
+			if ( current_user_can( 'create_users' ) ) {
+				$output .= '<span ' . pis_class( 'pis-debug-post-id', apply_filters( 'pis_display_post_id_class', '' ), false ) . '>[' . get_the_id() . ']</span> ';
+			}
+		} else {
+			$output .= '<span ' . pis_class( 'pis-debug-post-id', apply_filters( 'pis_display_post_id_class', '' ), false ) . '>[' . get_the_id() . ']</span> ';
+		}
 	}
 
 	if ( $args['link_on_title'] ) {

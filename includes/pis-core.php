@@ -1221,6 +1221,7 @@ function pis_get_posts_in_sidebar( $args ) {
 						'title_hellipsis'    => $title_hellipsis,
 						'html_title_type_of' => $html_title_type_of,
 						'display_post_id'    => $debug_post_id,
+						'admin_only'         => $admin_only,
 					)
 				);
 

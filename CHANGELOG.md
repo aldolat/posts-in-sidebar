@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.16.2] - 2021-10-18
+### Fixed
+* Fixed displaying post ID to admins only.
+
 ## [4.16.1] - 2021-10-17
 ### Added
 * Added a new option in the Debug section for displaying the post ID just before the post title.
@@ -643,6 +647,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/posts-in-sidebar/commits/develop
+[4.16.2]: https://github.com/aldolat/posts-in-sidebar/compare/4.16.1...4.16.2
 [4.16.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.16.0...4.16.1
 [4.16.0]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.1...4.16.0
 [4.15.1]: https://github.com/aldolat/posts-in-sidebar/compare/4.15.0...4.15.1

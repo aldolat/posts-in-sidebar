@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Posts in Sidebar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posts in Sidebar 4.16.0\n"
+"Project-Id-Version: Posts in Sidebar 4.16.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/posts-in-sidebar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-10-17T18:28:46+02:00\n"
+"POT-Creation-Date: 2021-10-18T19:09:28+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: posts-in-sidebar\n"
@@ -1180,7 +1180,7 @@ msgid "Use this text for More link"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3594
-#: includes/pis-functions-display.php:559
+#: includes/pis-functions-display.php:569
 #: includes/pis-functions-general.php:303
 msgid "Read more&hellip;"
 msgstr ""
@@ -1294,7 +1294,7 @@ msgid "Use this text before author's name"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3788
-#: includes/pis-functions-display.php:718
+#: includes/pis-functions-display.php:728
 #: includes/pis-functions-general.php:308
 msgid "By"
 msgstr ""
@@ -1318,7 +1318,7 @@ msgid "Use this text before date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3825
-#: includes/pis-functions-display.php:721
+#: includes/pis-functions-display.php:731
 #: includes/pis-functions-general.php:315
 msgid "Published on"
 msgstr ""
@@ -1344,7 +1344,7 @@ msgid "Use this text before comments"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3872
-#: includes/pis-functions-display.php:725
+#: includes/pis-functions-display.php:735
 #: includes/pis-functions-general.php:327
 msgid "Comments:"
 msgstr ""
@@ -1382,7 +1382,7 @@ msgid "Use this text before modification date"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:3970
-#: includes/pis-functions-display.php:723
+#: includes/pis-functions-display.php:733
 #: includes/pis-functions-general.php:321
 msgid "Modified on"
 msgstr ""
@@ -1466,7 +1466,7 @@ msgid "Use this text before categories list"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:4166
-#: includes/pis-functions-display.php:150
+#: includes/pis-functions-display.php:160
 #: includes/pis-functions-general.php:337
 msgid "Category:"
 msgstr ""
@@ -1494,7 +1494,7 @@ msgid "Use this text before tags list"
 msgstr ""
 
 #: includes/class-pis-posts-in-sidebar.php:4205
-#: includes/pis-functions-display.php:215
+#: includes/pis-functions-display.php:225
 #: includes/pis-functions-general.php:344
 msgid "Tags:"
 msgstr ""
@@ -1870,116 +1870,116 @@ msgid "When you duplicate the widget, please reload the page, so that you can op
 msgstr ""
 
 #. translators: %s is the time of the post.
-#: includes/pis-functions-display.php:784
+#: includes/pis-functions-display.php:794
 msgctxt "%s is the time of the post."
 msgid "at %s"
 msgstr ""
 
 #. translators: %s is the time of the post modified.
-#: includes/pis-functions-display.php:817
+#: includes/pis-functions-display.php:827
 msgctxt "%s is the time of the post modified."
 msgid "at %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:956
+#: includes/pis-functions-display.php:966
 msgid "Leave a comment"
 msgstr ""
 
-#: includes/pis-functions-display.php:962
+#: includes/pis-functions-display.php:972
 msgid "Comments are closed"
 msgstr ""
 
-#: includes/pis-functions-display.php:967
+#: includes/pis-functions-display.php:977
 msgid "1 Comment"
 msgstr ""
 
 #. translators: %d is the number of comments.
-#: includes/pis-functions-display.php:975
+#: includes/pis-functions-display.php:985
 msgid "%s Comments"
 msgstr ""
 
-#: includes/pis-functions-display.php:1032
+#: includes/pis-functions-display.php:1042
 msgid "Display all posts"
 msgstr ""
 
 #. translators: %s is the name of the plugin.
-#: includes/pis-functions-display.php:1275
+#: includes/pis-functions-display.php:1285
 msgid "%s Debug"
 msgstr ""
 
 #. translators: %s is the name of the plugin.
-#: includes/pis-functions-display.php:1276
+#: includes/pis-functions-display.php:1286
 msgid "Environment information:"
 msgstr ""
 
 #. translators: %s is the site URL.
-#: includes/pis-functions-display.php:1279
+#: includes/pis-functions-display.php:1289
 msgid "Site URL: %s"
 msgstr ""
 
 #. translators: %s is the current page URL.
-#: includes/pis-functions-display.php:1281
+#: includes/pis-functions-display.php:1291
 msgid "Page URL: %s"
 msgstr ""
 
 #. translators: %s is the WordPress version.
-#: includes/pis-functions-display.php:1283
+#: includes/pis-functions-display.php:1293
 msgid "WP version: %s"
 msgstr ""
 
 #. translators: %s is the plugin version.
-#: includes/pis-functions-display.php:1285
+#: includes/pis-functions-display.php:1295
 msgid "PiS version: %s"
 msgstr ""
 
 #. translators: %s is the ID of the widget.
-#: includes/pis-functions-display.php:1287
+#: includes/pis-functions-display.php:1297
 msgid "Widget ID: %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:1291
+#: includes/pis-functions-display.php:1301
 msgid "Cache: active."
 msgstr ""
 
 #. translators: %s is the date and time when the cache was created.
-#: includes/pis-functions-display.php:1298
+#: includes/pis-functions-display.php:1308
 msgid "Created on: %s"
 msgstr ""
 
 #. translators: %s is the time when the cache will expire.
-#: includes/pis-functions-display.php:1306
+#: includes/pis-functions-display.php:1316
 msgid "Will expire on: %s"
 msgstr ""
 
 #. translators: %s is the duration of the cache.
-#: includes/pis-functions-display.php:1314
+#: includes/pis-functions-display.php:1324
 msgid "Duration: %s"
 msgstr ""
 
 #. translators: %s is the time passed from cache creation.
-#: includes/pis-functions-display.php:1322
+#: includes/pis-functions-display.php:1332
 msgid "Time passed: %s"
 msgstr ""
 
 #. translators: %s is the remaining time.
-#: includes/pis-functions-display.php:1330
+#: includes/pis-functions-display.php:1340
 msgid "Expires in: %s"
 msgstr ""
 
-#: includes/pis-functions-display.php:1339
+#: includes/pis-functions-display.php:1349
 msgid "Cache: not active"
 msgstr ""
 
 #. translators: %1$s is the number of queries, %2$s is the number of seconds.
-#: includes/pis-functions-display.php:1342
+#: includes/pis-functions-display.php:1352
 msgid "Queries: %1$s queries in %2$s seconds"
 msgstr ""
 
-#: includes/pis-functions-display.php:1347
+#: includes/pis-functions-display.php:1357
 msgid "The parameters for the query:"
 msgstr ""
 
-#: includes/pis-functions-display.php:1364
+#: includes/pis-functions-display.php:1374
 msgid "The options of the widget:"
 msgstr ""
 

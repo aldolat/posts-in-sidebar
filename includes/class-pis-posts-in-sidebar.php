@@ -880,7 +880,7 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 							<?php
 							// ================= Posts ID
 							pis_form_input_text(
-								esc_html__( 'Get these posts exactly', 'posts-in-sidebar' ),
+								esc_html__( 'Get posts with these IDs', 'posts-in-sidebar' ),
 								$this->get_field_id( 'posts_id' ),
 								$this->get_field_name( 'posts_id' ),
 								esc_attr( $instance['posts_id'] ),

@@ -849,10 +849,11 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 				<!-- Basic setup -->
 				<div class="pis-section">
 
-					<div class="pis-column-container">
+					<h5 class="pis-simple-title"><?php esc_html_e( 'Post type', 'posts-in-sidebar' ); ?></h5>
+
+					<div class="pis-column-container pis-2col">
 
 						<div class="pis-column">
-
 							<?php
 							// ================= Post types.
 							pis_form_select(
@@ -864,7 +865,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Select a single post type.', 'posts-in-sidebar' )
 							);
 							?>
+						</div>
 
+						<div class="pis-column">
 							<?php
 							// ================= Multiple post types
 							pis_form_input_text(
@@ -876,7 +879,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Enter post types slugs, comma separated. This option, if filled, overrides the option above.', 'posts-in-sidebar' )
 							);
 							?>
+						</div>
 
+					</div>
+
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by IDs', 'posts-in-sidebar' ); ?></h5>
+
+						<div class="pis-column">
 							<?php
 							// ================= Posts ID
 							pis_form_input_text(
@@ -888,11 +899,29 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
 							);
 							?>
-
 						</div>
 
 						<div class="pis-column">
+							<?php
+							// ================= Post parent
+							pis_form_input_text(
+								esc_html__( 'Get posts whose parent is in these IDs', 'posts-in-sidebar' ),
+								$this->get_field_id( 'post_parent_in' ),
+								$this->get_field_name( 'post_parent_in' ),
+								esc_attr( $instance['post_parent_in'] ),
+								esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
+								esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
+							);
+							?>
+						</div>
 
+					</div>
+
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by taxonomy', 'posts-in-sidebar' ); ?></h5>
+
+						<div class="pis-column">
 							<?php
 							// ================= Category
 							pis_form_input_text(
@@ -905,11 +934,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the categories, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 							);
 							?>
-
 						</div>
 
 						<div class="pis-column">
-
 							<?php
 							// ================= Tag
 							pis_form_input_text(
@@ -922,15 +949,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								sprintf( esc_html__( 'Enter slugs, comma separated. To display posts that have all of the tags, use %1$s (a plus) between terms, for example:%2$s.', 'posts-in-sidebar' ), '<code>+</code>', '<br /><code>staff+news+our-works</code>' )
 							);
 							?>
-
 						</div>
 
 					</div>
 
-					<div class="pis-column-container">
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by author', 'posts-in-sidebar' ); ?></h5>
 
 						<div class="pis-column">
-
 							<?php
 							// ================= Author
 							pis_form_select(
@@ -941,7 +968,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$instance['author']
 							);
 							?>
+						</div>
 
+						<div class="pis-column">
 							<?php
 							// ================= Multiple authors
 							pis_form_input_text(
@@ -953,34 +982,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'Enter IDs, comma separated. Note that if you fill this field, the previous one will be ignored.', 'posts-in-sidebar' )
 							);
 							?>
-
-							<?php
-							// ================= Get posts by recent comments
-							pis_form_checkbox(
-								esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
-								$this->get_field_id( 'posts_by_comments' ),
-								$this->get_field_name( 'posts_by_comments' ),
-								$instance['posts_by_comments'],
-								esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
-							);
-							?>
-
 						</div>
 
+					</div>
+
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by post format and status', 'posts-in-sidebar' ); ?></h5>
+
 						<div class="pis-column">
-
-							<?php
-							// ================= Post parent
-							pis_form_input_text(
-								esc_html__( 'Get posts whose parent is in these IDs', 'posts-in-sidebar' ),
-								$this->get_field_id( 'post_parent_in' ),
-								$this->get_field_name( 'post_parent_in' ),
-								esc_attr( $instance['post_parent_in'] ),
-								esc_html__( '2, 5, 12, 14, 20', 'posts-in-sidebar' ),
-								esc_html__( 'Enter IDs, comma separated.', 'posts-in-sidebar' )
-							);
-							?>
-
 							<?php
 							// ================= Post format
 							pis_form_select(
@@ -991,7 +1001,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$instance['post_format']
 							);
 							?>
-
+						</div>
+						<div class="pis-column">
 							<?php
 							// ================= Post status
 							pis_form_select(
@@ -1002,11 +1013,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$instance['post_status']
 							);
 							?>
-
 						</div>
 
-						<div class="pis-column">
+					</div>
 
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by custom field', 'posts-in-sidebar' ); ?></h5>
+
+						<div class="pis-column">
 							<?php
 							// ================= Post meta key
 							pis_form_input_text(
@@ -1017,7 +1032,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'meta-key', 'posts-in-sidebar' )
 							);
 							?>
+						</div>
 
+						<div class="pis-column">
 							<?php
 							// ================= Post meta value
 							pis_form_input_text(
@@ -1028,7 +1045,28 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'meta-value', 'posts-in-sidebar' )
 							);
 							?>
+						</div>
 
+					</div>
+
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by recent comments and search', 'posts-in-sidebar' ); ?></h5>
+
+						<div class="pis-column">
+							<?php
+							// ================= Get posts by recent comments
+							pis_form_checkbox(
+								esc_html__( 'Get posts by recent comments', 'posts-in-sidebar' ),
+								$this->get_field_id( 'posts_by_comments' ),
+								$this->get_field_name( 'posts_by_comments' ),
+								$instance['posts_by_comments'],
+								esc_html__( 'Only published posts, in descending order, will be retrieved.', 'posts-in-sidebar' )
+							);
+							?>
+						</div>
+
+						<div class="pis-column">
 							<?php
 							// ================= Search
 							pis_form_input_text(
@@ -1039,7 +1077,15 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'words to search', 'posts-in-sidebar' )
 							);
 							?>
+						</div>
 
+					</div>
+
+					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Get posts by password', 'posts-in-sidebar' ); ?></h5>
+
+						<div class="pis-column">
 							<?php
 							// ================= Post with/without password
 							pis_form_select(
@@ -1050,7 +1096,9 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$instance['has_password']
 							);
 							?>
+						</div>
 
+						<div class="pis-column">
 							<?php
 							// ================= Post password
 							pis_form_input_text(
@@ -1062,12 +1110,13 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								esc_html__( 'correct horse battery staple', 'posts-in-sidebar' )
 							);
 							?>
-
 						</div>
 
 					</div>
 
 					<div class="pis-column-container pis-2col">
+
+						<h5 class="pis-simple-title"><?php esc_html_e( 'Number of posts, order, sticky posts and skipping', 'posts-in-sidebar' ); ?></h5>
 
 						<div class="pis-column">
 

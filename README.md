@@ -7,7 +7,7 @@
 **Tags:** post, sidebar, widget, query, wp_query  
 **Requires at least:** 4.6  
 **Tested up to:** 5.8  
-**Stable tag:** 4.16.2  
+**Stable tag:** 4.16.3  
 **License:** GPLv3 or later  
 **License URI:** <https://www.gnu.org/licenses/gpl-3.0.html>
 
@@ -115,8 +115,8 @@ This plugin does not collect any user data.
 
 ## Changelog
 
-### 4.16.2
+### 4.16.3
 
-* Fixed displaying post ID to admins only.
+* Changed admin UI in the "Getting posts" section.
 
 The full changelog is documented in the changelog file released along with the plugin package and is hosted on [GitHub](https://github.com/aldolat/posts-in-sidebar/blob/master/CHANGELOG.md).

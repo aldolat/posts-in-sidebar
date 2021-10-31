@@ -1178,8 +1178,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 								$this->get_field_name( 'offset_number' ),
 								esc_attr( $instance['offset_number'] ),
 								'5',
-								// translators: %s is -1.
 								sprintf(
+									// translators: %s is -1.
 									esc_html__( 'This option will be ignored if you set %s in "Get this number of posts".', 'posts-in-sidebar' ),
 									'<code>-1</code>'
 								)
@@ -1221,7 +1221,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									<br />
 									<?php
 									esc_html_e(
-										'When the option "When on single posts, get posts from the current category" is activated and the post has multiple categories, Posts in Sidebar will choose the category with the lowest initial letter, just as WordPress does when we get the list of the categories of a post.', 'posts-in-sidebar'
+										'When the option "When on single posts, get posts from the current category" is activated and the post has multiple categories, Posts in Sidebar will choose the category with the lowest initial letter, just as WordPress does when we get the list of the categories of a post.',
+										'posts-in-sidebar'
 									);
 									?>
 									<br />
@@ -1230,7 +1231,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									printf(
 										// translators: Opening and closing "strong" HTML tag.
 										esc_html__(
-											'If you activate the option %1$s"Use the main category as WordPress does for permalinks"%2$s (formerly known here as "Sort categories"), Posts in Sidebar will get the category with the lowest category ID. This is the WordPress behaviour when it determines the permalink structure if the category is used in the permalink.', 'posts-in-sidebar'
+											'If you activate the option %1$s"Use the main category as WordPress does for permalinks"%2$s (formerly known here as "Sort categories"), Posts in Sidebar will get the category with the lowest category ID. This is the WordPress behaviour when it determines the permalink structure if the category is used in the permalink.',
+											'posts-in-sidebar'
 										),
 										'<strong>',
 										'</strong>'
@@ -1242,7 +1244,8 @@ class PIS_Posts_In_Sidebar extends WP_Widget {
 									printf(
 										// translators: Opening and closing "strong" HTML tag.
 										esc_html__(
-											'If you use the Yoast SEO plugin and want to use the main category as defined with that plugin, activate the option %1$s"Use the main category as defined in the Yoast SEO plugin"%2$s.', 'posts-in-sidebar'
+											'If you use the Yoast SEO plugin and want to use the main category as defined with that plugin, activate the option %1$s"Use the main category as defined in the Yoast SEO plugin"%2$s.',
+											'posts-in-sidebar'
 										),
 										'<strong>',
 										'</strong>'

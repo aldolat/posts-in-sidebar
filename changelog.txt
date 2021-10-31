@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.16.3 =
+
+* Changed admin UI in the "Getting posts" section.
+
 = 4.16.2 =
 
 * Fixed displaying post ID to admins only.

@@ -160,6 +160,11 @@ h6.pis-widget-title + .pis-container {
 	margin-bottom: 0;
 	margin-top: 1em;
 }
+.pis-container h5.pis-simple-title {
+	margin-bottom: 0;
+	border-top: 1px solid #ccc;
+	padding-top: 1em;
+}
 
 /*
 Fix opening container when PiS is used with SiteOrigin
